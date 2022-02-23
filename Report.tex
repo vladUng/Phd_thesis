@@ -1,0 +1,71 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% 		Dissertation template
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{import}
+\usepackage{Utilities/utilities}
+
+
+\input{Utilities/glossary.tex}
+
+
+% define line-spacing
+% \linespread{1.25}
+
+% \renewcommand{\familydefault}{\sfdefault}
+% \geometry{left=3cm,right=3cm,top=2cm,bottom=2cm}
+
+% % % for proof read
+% \linespread{1.75}
+
+\begin{document}
+
+\import{Utilities/}{title.tex}
+
+
+%%%%%%%%%%% Table of Contents, Figures and Images %%%%%%%%%%% 
+
+%this needs to be defined before inserting the table of contents
+\setcounter{tocdepth}{1} % Show sections
+\setcounter{tocdepth}{2} % + subsections
+\setcounter{tocdepth}{3} % + subsubsections
+% \setcounter{tocdepth}{4} % + paragraphs
+% \setcounter{tocdepth}{5} % + subparagraphs
+
+\tableofcontents
+
+\newpage
+
+\listoffigures
+
+\listoftables
+
+% \lstlistoflistings
+
+\newpage
+
+\printglossary[type=acronym] 
+
+
+\newpage
+
+\import{Sections/}{bladder_subtyping.tex}
+
+\import{Sections/}{data_integration.tex}
+
+
+\newpage
+
+\bibliographystyle{IEEEtranN}
+\bibliography{paperpile_2}
+ 
+
+% \import{Sections/}{appendix.tex}
+    
+
+\end{document}
+
+ 
