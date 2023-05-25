@@ -1,0 +1,81 @@
+\section{Network I}
+
+\subsection{Background}
+
+\subsubsection{Datasets used}
+
+\subsection{Pipeline developed}
+
+\subsection{Experiments run}
+
+In the initial experiments two networks were constructed, one from the healthy dataset and the other from the tumour dataset (TCGA). For the healthy dataset we started with the samples from the P0 as these would represent an unaltered version of the bladder tissue. Compared with the AbsCa differentiated tissues dataset, P0 contains the noise in the in-situ tissue. 
+
+On these networks we have applied modifiers, reward and penalising the genes that are mutated, proportionally to the mutations across the cohort. The hypothesis is that by applying modifiers it will improve the community separation inside the networks and each community will be representative of a biological process. Then, we'll select the most representative genes for each community using ModCon score. Those selected genes were going to be used to stratify the samples, by looking at their representation in each sample by applying z-score. These z-scores will be than used to stratify the samples.
+
+The parameters that can be set through PGCNA are the following:
+\begin{itemize}
+    \item Dataset - P0, tum, AbsCa, AbsCa+P0
+    \item Edges per gene - 3 by default
+    \item Edges per TF - 50 by default 
+    \item Genes retention - how many of the most varied genes are retained. I run experiments for: 3K, 4K, 5K, 6K, 7K
+    \item Modifiers - beta, norm3, standard
+\end{itemize}
+
+\subsection{P0 and mutation count}
+
+A starting point of our experiments was to build a network from P0 data on which to apply modifiers. Select the genes from the communities and then use it to stratify the TCGA tumour the dataset. The hypothesis for this experiment is that to test the power of PGCNA and to stratify the TCGA by the healthy dataset which may yield some interesting results. Thus the following networks are generated for the P0:
+
+% TODO add the meta table
+\begin{itemize}
+    \item Sizes: 4K-7K
+    \item For each size: standard, beta, norm3 and norm2
+    \item For each size: 50 edges per Transcription Factor, 3 edges per normal gene
+\end{itemize}
+
+
+% Reason 1 for why this approach is not good - bad gene selection
+In the first experiment run, with 4K genes I have noticed that there were not that many changes between communities when the modifier is applied. This is different from what I intended to see when modifiers are applied. As we want to better separation between communities, and smaller with more dedicated biological processes, the expected result is to have the communities splits. Thus, I have started investigating this during which I found out that there is a poor representation of the genes mutated in the P0 samples. Thus lead to further investigating on how to select the genes for the PGCNA; this was covered in this section \textbf{Write the section}.
+To support this argument the following figures are needed:
+\begin{itemize}
+    \item Sankey plot of the community changes 
+    \item Figure to show the mutation representation in each community in the P0 dataset 
+    \item Show the mutation count evolution when applying different threshold. This can be the mutation burden
+    \item The gene expression of the genes in each community
+    \item Experiments with 10K and that there is too much noise. The reason for doing this is that I wanted to have more genes from the P0 included in the Tumour dataset
+\end{itemize}
+
+% Reason 2 - scatter biological pathways 
+Further on, when we look at the biology of each community we could see that there a lot shared pathways across communities. This include PGDF, angiogenesis, apoptosis and others. This gives the impression that the approach developed did the contrary from the intended behaviour, instead of isolating the biological processes it scattered through the network. The pathways were discovered through the Gene Ontology tool using PANTHER Pathway option and no correction; the latter because the majority of the genes inputted were given significant results. This further strengthen our intuition that this approach is not providing the intended results.
+Figures I need to support for the above argument:
+\begin{itemize}
+    \item Pick 2-3 pathways from the ones found and highlight in the network.
+    \item Maybe put the Network with annotations?
+\end{itemize}
+
+% Reason 3 - Effect of the TF
+While performing the biological interpretation, looking at the genes selected by ModCon score, it can be clearly noticed that the TF genes play a major role in the networks. The reason for this is that in this set of experiment we enable 50 edges for each Transcription Factor, thus biasing the network for these genes. Definitely, this parameter have a large impact of ModCon. Therfore, we performed an experiment with a lower number of edges per TF and we found out that there are smaller communities.
+Figure supporting the above:
+\begin{itemize}
+    \item how many of the genes selected from the ModCon are a TF? Give some stats
+    \item The sub-graph where only the ModCon genes are selected for each community. with the size of the TF
+\end{itemize}
+
+% Reason 4 - Linking to the tumour stratification 
+An open problem to the network selection process is how to link back the genes used in a healthy network to tumour stratification. When tried to apply MEV on the genes selected with the P0 + mutations-count there weren't that well represented in the TCGA's dataset with the same number of genes (4K) - ~1/3 of the genes were presented. However, when all the (basic filtered) 13k genes from the tumour dataset were used, there was a better match. Also, when comparing with the other cohorts didn't make sense, the Basal split wasn't present in neither of the networks. However, regardless of the representation, this approach is not fulfilling the initial task which is to integrated the tumour and healthy as it stratifies just by the GE from P0 and doensn't consider the Ge from tumour dataset.
+To support this argument the following figures are needed:
+\begin{itemize}
+    \item Stats showing the representation of the selected genes through P0 in the TCGA data
+    \item A Morpheus plot with the hierarchical clustering for the one of the P0 experiments
+    \item Sankey plot of the Tumour stratification when the genes selected with the P0.
+\end{itemize}
+
+
+\subsubsection{Conclusion}
+
+There are a few argument made against this experiment:
+\begin{itemize}
+    \item The number of connections a gene has a similar effect to the reward modifier. (thinking of the Sankey plot when TF=10 and std-norm3 on P0). This is somehow expected as in the PGCNA paper the author says that more connections yield less communities.
+    \item P0 dataset may not have enough power to form smaller communities. This would be verified in the next experiments with TF=10
+    \item Many genes from the P0 selection network are missed in the TCGA and the GE of the tumour are not considered.
+    \item There is a bias in the gene selection, when the most varied are used, and sometimes the one with the highest magnitude are omitted. Thus experiments to include genes with highest variance, magnitude and mutation count
+\end{itemize}
