@@ -1,7 +1,7 @@
 
-\section{Data Integration}
+\section{Data integration}
 
-\subsection{Previous work}
+\subsection{Overview}
 
 There are multiple studies \citet{Menyhart2021-ef, Subramanian2020-tk, Picard2021-qr, Reel2021-sg} which are reviewing the work done in integrating multiple data types in the -omics realm. A particular good work is of \citet{Menyhart2021-ef} which classifies the different approaches undertaken in the field for disease stratification:
 \begin{itemize}
@@ -13,7 +13,7 @@ There are multiple studies \citet{Menyhart2021-ef, Subramanian2020-tk, Picard202
         \end{itemize}
     \item Statistical methods for data integration
         \begin{itemize}
-            \item iCluster family \citet{Shen2009-ew, Shen2012-yj, Mo2018-el}
+            \item iCluster family \citet{Shen2009-ew, Mo2013-zi, Mo2018-el}
             \item A probabilitisc graphical model - PARADIGM. \textbf{This may needs further exploration as it may be closer to what we want}
             \item Usupervised Bayesian Consensus Clustering (BCG). This is based on \textit{Dirichlet mixture model}
         \end{itemize}
@@ -43,9 +43,43 @@ A nice overview of all the models reviewed by \citet{Menyhart2021-ef} is provide
     \item others (fusion, correlation, PCA, multi-step)
 \end{itemize}
 
+\subsection{A sequential approach}
 
-Matrix factorisation is a widely used mathematical technique where the data is decomposed in smaller matrices. This is done for several reasons in computing, one being that that smaller matrices have a lower computational cost. Another reason, and the main one in computational biology is that the decomposed matrices incorporate latent information about the biological data. In another words, by condensing the initial matrix data to smaller matrices only the relevant information is kept while the noise is discarded. \acrlong{pca} is one class of matrix factorisation as well as the iCluster \cite{Shen2009-ew, Shen2012-yj, Mo2018-el}. The novelty introduced by the latter collection of algorithms is that they take a collection of datasets and that data together is reduced to a latent space, compared to PCA which takes just one data type. The \citet{Shen2009-ew} proposed iCluster which takes only contionous data, further work is done by the same group in 2019 \citet{Shen2012-yj} where they've introduced iCluster+ which takes binary data too. A major critique of those two initial models was that it needs some parameter fine tuning and it's computationally expensive to find the latent space. To address this the same group proposed \citet{Mo2018-el} which adds a Bayesian approach to matrix factorisation in finding the latent variable. Apart from addressing the previous issue the model also gives a score to which feature contributed to the subtype (check this?).
+In this class of algorithms the approach of the problem is almost sequential in the sense of:
 
-It's worth mentioning that a sub-class of matrix factorisation was used in the 2017 paper \citet{Robertson2017-mg} in which the bladder cancer sub-typing was done. In this case, the authors are looking at non-negative matrix and again using a Bayesian approach to find the latent space which is then later clustered; method called Bayesian NMF.
+\begin{itemize}
+    \item Authors pre-process the data in numerous ways depending on the next step, but usually it involves normalisation and filtering out the genes that are not biologically significant (this is done by some arbitrary rules)
+    
+    \item Represent the data in a latent space, like this only the relevant features are kept. 
+    \begin{itemize}
+        \item The construction of the latent space can be done separately for each dataset type as well as combined for all (e.g. iCluster family)
+        \item \textbf{Note:} I don't understand the biology good enough but it seams that there usually might me mean that some of the data might be missed. For instance, when a gene is filtered out it needs to be relative to the sample
+    \end{itemize}
+    
+    \item After this apply a clustering technique to find the subgroups
+\end{itemize}
 
-Similarly to what the matrix factorisation algorithm are doing, there are the Autoencoders models which are trying to find a latent variable space using more modern approach. These also in theory could incorporate multiple data types.
+For finding the latent space there are several approaches used:
+
+\begin{itemize}
+    \item PCA
+    \item Bayesian approaches, like Bayesian NMF from the consensus 
+    \item iCluster approach where they have used another Bayesian method to find the posterior probability describing the data
+    \item Autoencoders
+    
+\end{itemize}
+
+
+\newpage
+
+\subsection{Matrix factorisation}
+Matrix factorisation is a widely used mathematical technique where the data is decomposed into smaller matrices. This is done for several reasons in computing, one being that smaller matrices have a lower computational cost. Another reason and the main one in computational biology is that the decomposed matrices incorporate latent information about the biological data. In other words, by condensing the initial matrix data to smaller matrices only the relevant information is kept while the noise is discarded. \acrlong{pca} is one class of matrix factorisation as well as the iCluster \cite{Shen2009-ew, Mo2013-zi, Mo2018-el}. The novelty introduced by the latter collection of algorithms is that they take a collection of datasets and that the cumulative data is reduced to a latent space, compared to PCA which takes just one data type. The \citet{Shen2009-ew} proposed iCluster which takes only continuous data, further work is done by the same group in 2019 \citet{Mo2013-zi} where they've introduced iCluster+ which takes binary data too. A major critique of those two initial models was that it needs some parameter fine-tuning and it's computationally expensive to find the latent space. To address this the same group proposed \citet{Mo2018-el} which adds a Bayesian approach to matrix factorisation in finding the latent variable.
+% Apart from addressing the previous issue the model also gives a score to which feature contributed to the subtype (check this?).
+
+It's worth mentioning that a sub-class of matrix factorisation was used in the 2017 paper \citet{Robertson2017-mg} in which the bladder cancer sub-typing was done. In this case, the authors are looking at a non-negative matrix and again using a Bayesian approach to find the latent space which is then later clustered; a method called Bayesian NMF.
+
+Similarly to what the matrix factorisation algorithms are doing, there are the Autoencoders models which are trying to find a latent variable space using a more modern approach. These also in theory could incorporate multiple data types.
+
+\newpage
+
+\import{Sections/}{network_approach.tex}

@@ -1,0 +1,44 @@
+\section{iCluster family}
+
+\subsection{Overview}
+
+Solid work in integrating GE, mutations and other omics is done by \hyperlink{https://www.mskcc.org/profile/ronglai-shen}{Shen's lab} which have developed a range of computation models. Their initial model is called iCluster and was published in 2009 \citet{Shen2009-ew} to combine GE with other omics. The authors wanted to account for the heterogeneity in a tumour by finding the latent variables in the multiple datasets. In the author's words: 
+
+--- 
+
+\textit{" The main idea behind iCluster is that tumour subtypes can be modeled as unobserved (latent) variables that can be simultaneously estimated from copy number data, mRNA expression data and other available data types."}
+
+--- 
+
+Also, they've served inspiration from:
+
+--- 
+
+\textit{"Tipping and Bishop (1999) showed that the principal components can be computed through maximum-likelihood estimation of parameters under a Gaussian latent variable model. In their framework, the correlations among variables are modeled through the latent variables of a substantially lower dimension space, while an additional error term is added to model the residual variance" }
+
+--- 
+
+An upgraded version of iCluster was released through the work of \citet{Mo2013-zi} in 2013 which is called iClusterPlus. This model added the option to integrate categorical to the model, as previously only continuous data was accepted as input. Thus, now the model can make even more powerful subtyping.
+
+A disadvantage to iCluster and iClusterPlus is that are computationally expensive and can run for a limited set of genes. However, subsequent work from \citet{Mo2018-el}
+which introduced a Bayesian approach to iCluster to solve some of the issues. The new model, called iClusterBayesian is more efficient and supposedly (?) overcomes the selection bias in iCluster. The same critique is done in a Review of the methods used in disease sub-typing conducted by \citet{Menyhart2021-ef}.
+
+--- 
+
+There are also several applications of iCluster to other cancers such Glioblastoma \cite{Shen2012-yj},  Breast cancer \citet{Curtis2012-ff} and other cancers. (need to follow in more detail)
+--- 
+
+A strong point of the work described above is that everything is available online and explained in detail in the corresponding papers. However, some questions need answering:
+
+\begin{itemize}
+    \item Limitation of using CNVs over point mutation
+    \item Does the Bayesian version solve the problem of knowing how much each gene contributed to each group?
+    \item Have they've applied to other datasets?
+    \item How much success does iCluster have?
+    \item How does it compare to a network approach?
+\end{itemize}
+
+\subsection{Applying iCluster}
+
+\subsection{Results}
+

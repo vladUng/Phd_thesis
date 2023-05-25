@@ -1,1 +1,49 @@
-\section{Bladder Subtyping}
+\section{MIBC Subtyping}
+
+\subsection{Biological motivation}
+\subsubsection{Datasets available}
+\subsubsection{Current classifications}
+\subsubsection{Limitations}
+
+\subsection{Clustering analysis}
+
+\subsubsection{Computational methods}
+
+In the section, Cluster metrics from Re\_classification notebook, I'm exploring the cluster scores for various cluster models and cluster sizes. The overall conclusion in that section is that it needs further exploration, hence the Silhouette distribution in the following section.
+
+I think I can put the figures from there and explain the reasoning here.
+
+\begin{itemize}
+    \item Explaining clustering
+        \begin{itemize}
+            \item Filtering genes (the threshold value).
+            \item How we measured cluster separation.
+            \item The different cluster models we have explored. 
+            \item Different cluster sizes.
+            \item Dimension reduction technique (PCA). Comparison with \& without. Present elbow method for how the number of components for PCA was chosen.
+            \item Fuzzy c-means, getting the membership of the data.
+            \item Talk about the gold standard of the number of genes selected and how we explored if by adding more it improves the clustering.
+            \item Selection of genes. Our methods vs Robertson's method. We can talk about that even if the number of clusters haven't changed we could have noticed in the DEA volcano plots that the features are more prominent.
+            \item RSEM vs TPM's data?
+        \end{itemize}
+    \item Replicating results from Robertson? - It didn't work.
+\end{itemize}
+
+
+\subsection{Biological intepretation}
+
+
+\begin{itemize}
+    \item Difference in genome annotations
+    \item VU vs Robertson vs Consensus - done
+    \item VU vs Lund - done
+    \item VU vs SB - done
+    \item DEA: Two basal splits - done
+    \item DEA: Basal vs Luminal - done
+    \item DEA: Compare with SB's changes - done
+    \item DEA: Compare the splits in the larger Basal from VU - done
+    \item Looking at the score in the metadata. Is there any correlation between the 
+    \item Clustertree - done
+    \item Survival analysis. Comparison between Basal subgroups.
+    \item Gene Signature Enrichment Analysis (GSEA) on the different groups 
+\end{itemize}
