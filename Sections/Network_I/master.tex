@@ -1,0 +1,97 @@
+\section{Network I}
+
+
+Key results:
+\begin{itemize}
+    \item Biological
+          \begin{itemize}
+              \item Integration of mutations on the healthy/tumour datasets
+              \item PGCNA network with multiple datasets tumour, healthy
+          \end{itemize}
+    \item Engineering
+          \begin{itemize}
+              \item Pipeline developed to integrate mutations and the capability to easily change the ways on how the mutations are integrated.
+              \item The tools created to analyse the networks. Mainly I'm referring to the community comparison.
+          \end{itemize}
+\end{itemize}
+
+
+Suggested figures:
+\begin{itemize}
+    \item Methods/Implementation
+          \begin{itemize}
+              \item Diagram of the pipeline developed showing where I modified the code from the original paper  - Figure 5
+              \item The different modifiers - Figure 6
+          \end{itemize}
+    \item Results
+          \begin{itemize}
+              \item Network visualisation. There are several variations/modes of the network that we can use depending on what we want to highlight in an experiment.
+                    \begin{itemize}
+                        \item Colour by community detection
+                        \item Node size by TF
+                        \item Node size by Integrated Value of Influence
+                        \item Node size bye mutation count
+                    \end{itemize}
+
+          \end{itemize}
+\end{itemize}
+\begin{itemize}
+    \item For each dataset we will need to display the network visualisation with Gephi:
+          \begin{itemize}
+              \item Tum
+              \item P0
+              \item P0+AbsCa  + Undifferentiated
+          \end{itemize}
+\end{itemize}
+
+\begin{itemize}
+    \item Community comparison (Sankey)
+          \begin{itemize}
+              \item Standard (unmodified) vs reward
+              \item Standard vs penalisation
+              \item Across different number of genes
+          \end{itemize}
+\end{itemize}
+
+\begin{itemize}
+    \item Explore membership changes (box plot \- for now)
+          \begin{itemize}
+              \item From which community the genes are changing to
+              \item Showing how many of these genes are mutated.
+              \item Trying to find where these mutations are going.
+          \end{itemize}
+\end{itemize}
+
+
+%% % % % % % % % 
+\subsection{Overview}
+
+
+\import{Sections/Network_I/}{review.tex}
+
+
+\subsubsection{Datasets used}
+
+
+\import{Sections/Network_I/}{methods.tex}
+
+
+\subsubsection{Results}
+
+In the initial experiments two networks were constructed, one from the healthy dataset and the other from the tumour dataset (TCGA). For the healthy dataset we started with the samples from the P0 as these would represent an unaltered version of the bladder tissue. Compared with the AbsCa differentiated tissues dataset, P0 contains the noise in the in-situ tissue.
+
+On these networks we have applied modifiers, reward and penalising the genes that are mutated, proportionally to the mutations across the cohort. The hypothesis is that by applying modifiers it will improve the community separation inside the networks and each community will be representative of a biological process. Then, we'll select the most representative genes for each community using ModCon score. Those selected genes were going to be used to stratify the samples, by looking at their representation in each sample by applying z-score. These z-scores will be than used to stratify the samples.
+
+The parameters that can be set through PGCNA are the following:
+\begin{itemize}
+    \item Dataset - P0, tum, AbsCa, AbsCa+P0
+    \item Edges per gene - 3 by default
+    \item Edges per TF - 50 by default
+    \item Genes retention - how many of the most varied genes are retained. I run experiments for: 3K, 4K, 5K, 6K, 7K
+    \item Modifiers - beta, norm3, standard
+\end{itemize}
+
+
+\import{Sections/Network_I/}{pgcna.tex}
+
+\import{Sections/Network_I/}{h_derived.tex}

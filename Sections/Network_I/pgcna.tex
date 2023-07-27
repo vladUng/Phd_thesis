@@ -1,25 +1,4 @@
-\section{Network I}
 
-\subsection{Background}
-
-\subsubsection{Datasets used}
-
-\subsection{Pipeline developed}
-
-\subsection{Experiments run}
-
-In the initial experiments two networks were constructed, one from the healthy dataset and the other from the tumour dataset (TCGA). For the healthy dataset we started with the samples from the P0 as these would represent an unaltered version of the bladder tissue. Compared with the AbsCa differentiated tissues dataset, P0 contains the noise in the in-situ tissue. 
-
-On these networks we have applied modifiers, reward and penalising the genes that are mutated, proportionally to the mutations across the cohort. The hypothesis is that by applying modifiers it will improve the community separation inside the networks and each community will be representative of a biological process. Then, we'll select the most representative genes for each community using ModCon score. Those selected genes were going to be used to stratify the samples, by looking at their representation in each sample by applying z-score. These z-scores will be than used to stratify the samples.
-
-The parameters that can be set through PGCNA are the following:
-\begin{itemize}
-    \item Dataset - P0, tum, AbsCa, AbsCa+P0
-    \item Edges per gene - 3 by default
-    \item Edges per TF - 50 by default 
-    \item Genes retention - how many of the most varied genes are retained. I run experiments for: 3K, 4K, 5K, 6K, 7K
-    \item Modifiers - beta, norm3, standard
-\end{itemize}
 
 \subsection{P0 and mutation count}
 
@@ -72,7 +51,7 @@ To support this argument the following figures are needed:
 \end{itemize}
 
 
-\subsubsection{Conclusion}
+\subsubsection{Conclusions}
 
 There are a few argument made against this experiment:
 \begin{itemize}
@@ -81,7 +60,6 @@ There are a few argument made against this experiment:
     \item Many genes from the P0 selection network are missed in the TCGA and the GE of the tumour are not considered.
     \item There is a bias in the gene selection, when the most varied are used, and sometimes the one with the highest magnitude are omitted. Thus experiments to include genes with highest variance, magnitude and mutation count
 \end{itemize}
-
 
 
 \subsubsection{Draft Figures}
