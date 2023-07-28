@@ -1,0 +1,39 @@
+\subsection{TCGA's RNAseq and mutations}
+
+
+The purpose of this section is to show the starting point of the network approach and the graph properties when using only RNAseq data. Another question that this section can answer is: How do we choose the best network configuration?
+
+Datasets used with RNAseq (gene expression):
+\begin{itemize}
+
+    \item TCGA only
+    \item Combined gene expression Healthy (P0+AbsCa) and TCGA. Representing the healthy dataset with P0+AbsCa will have more statistical power than taking it separately. This is needed as the TCGA dataset is larger than P0 and AbsCa datasets.
+\end{itemize}
+
+Results/figures/stats:
+\begin{itemize}
+
+    \item How the different parameters affect the network stats , thus helping to find the best network configuration. Ideally, it should be a systematic approach analysing networks with different parameters. However, I’m afraid that this will lead to a lot of data generated with little value added as there is no clear score that tells us how well a network performs on subtyping.
+    \item Network stats will come in the form of distributions of the nodes value for: degree, hub score, Integrated value of Influence, weight distributions etc...
+          \begin{itemize}
+              \item Different network sizes. Range: 3000-10000, step 1000
+              \item Edges per node for normal genes. Range: 3-10, step 10
+              \item Edges per node for Transcription Factors. Range: 10-100, step 10
+          \end{itemize}
+    \item For a selected network include the full visualisations:
+          \begin{itemize}
+
+              \item Network in Gephi
+              \item Stats of the network – Figure 7
+              \item Clustering of the Module Evaluation Value (MEV)
+          \end{itemize}
+
+    \item The selected experiment I will compare it with our previous approach and the other classification such as TCGA, consensus, Lund – See an example in Figure 8
+\end{itemize}
+
+
+Ideally, the selection of networks should be based on the network stats, choosing the graphs that are the least nosy but also retain biological information. In practice, I'm not sure how we can do this with the current network stats, and I need to investigate/think about this more. Nevertheless, I should select two networks one for each dataset:
+\begin{itemize}
+    \item TCGA: very likely that I will choose with the following properties: 4000 genes, 3 edges per (normal) gene, 50 edges per (Transcription Factor)
+    \item Combined TCGA and P0: Probably like the above.
+\end{itemize}

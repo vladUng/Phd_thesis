@@ -1,6 +1,36 @@
 \subsection{Methods}
 
+
+Start the section by explaining how PGCNA works and the role of the different parameters, covering the stages of PGCNA:
+\begin{itemize}
+    \item Gene selection
+    \item Combination of multiple datasets
+    \item Edges per node
+    \item Correlation
+    \item Community detection
+    \item Module Community scores
+    \item Module Evaluation Value
+    \item Hierarchical clustering
+    \item Visualising with Gephi
+\end{itemize}
+
 \subsubsection{Modified PGCNA}
+
+Clearly separate the modifications I made to PGCNA and explain the reason behind them:
+
+\begin{itemize}
+    \item Already implemented:
+          \begin{itemize}
+              \item Allow more edges per node for the Transcription Factors (TF)
+              \item Modify the pipeline to export the graph objects outside of the PGCNA developed by Mathew Care
+              \item Add the modifiers to the genes to penalise/reward based on the mutation count.
+          \end{itemize}
+    \item On the list
+          \begin{itemize}
+              \item Change the community detection algorithm from Leiden to stochastic block model (SBM)(Zhang and Peixoto 2020). I read some criticism (blog, paper) of the current approaches in community detection and I want to explore the suggested alternative SBM.
+          \end{itemize}
+\end{itemize}
+
 
 % \subsubsection{Building a network}
 
