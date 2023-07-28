@@ -1,6 +1,6 @@
 
 
-\subsection{P0 and mutation count}
+\subsubsection{P0 and mutation count}
 
 A starting point of our experiments was to build a network from P0 data on which to apply modifiers. Select the genes from the communities and then use it to stratify the TCGA tumour the dataset. The hypothesis for this experiment is that to test the power of PGCNA and to stratify the TCGA by the healthy dataset which may yield some interesting results. Thus the following networks are generated for the P0:
 
@@ -13,11 +13,11 @@ A starting point of our experiments was to build a network from P0 data on which
 
 
 % Reason 1 for why this approach is not good - bad gene selection
-In the first experiment run, with 4K genes I have noticed that there were not that many changes between communities when the modifier is applied. This is different from what I intended to see when modifiers are applied. We want to see better separation between communities, with smaller and more dedicated biological processes. Thus, I have started investigating this during which I found out that there is a poor representation of the genes mutated in the P0 samples. Thus lead to further investigating on how to select the genes for the PGCNA; this was covered in this section \textbf{Write the section}.
+In the first experiment run, with 4K genes I have noticed that there were not that many changes between communities when the modifier is applied. This is different from what I intended to see when modifiers are applied. We want to see better separation between communities, with smaller and more dedicated biological processes. Thus, I have started investigating this during which I found out that there is a poor representation of the genes mutated in the P0 samples. Thus lead to further investigating on how to select the genes for the PGCNA; this was covered in this section \ref{Sec:N_I:gene_sel}.
 
 To support this argument the following figures are needed:
 \begin{itemize}
-    \item Sankey plot with the community changes 
+    \item Sankey plot with the community changes
     \item Bar Figure to show the mutation representation in each community in the P0 dataset. Figure \ref{fig:N_I:P0_median}
     \item Show the mutation intensity (i.e. mutation count) evolution when applying different threshold.  Figure \ref{fig:N_I:P0_comp}
     \item The median gene expression of the genes in each community. See Figure \ref{fig:N_I:P0_comp}.
@@ -38,11 +38,11 @@ While performing the biological interpretation, looking at the genes selected by
 Figure supporting the above:
 \begin{itemize}
     \item How many of the genes selected from the ModCon are a TF? Give some stats
-    \item The sub-graph where only the ModCon genes are selected for each community. with the size of the TF \ref{fig:N_1:tf_comp}
+    \item The sub-graph where only the ModCon genes are selected for each community; with the size of the TF \ref{fig:N_1:tf_comp}
 \end{itemize}
 
 % Reason 4 - Linking to the tumour stratification 
-An open problem to the network selection process is how to link back the genes used in a healthy network to tumour stratification. When tried to apply MEV on the genes selected with the P0 + mutations-count there weren't that well represented in the TCGA's dataset with the same number of genes (4K) - ~1/3 of the genes were presented. However, when all the (basic filtered) 13k genes from the tumour dataset were used, there was a better match. Also, when comparing with the other cohorts didn't make sense, the Basal split wasn't present in neither of the networks. However, regardless of the representation, this approach is not fulfilling the initial task which is to integrated the tumour and healthy as it stratifies just by the GE from P0 and doesn't consider the GE from tumour dataset.
+An open problem to the network selection process is how to link back the genes used in a healthy network to tumour stratification. When tried to apply MEV on the genes selected with the P0 + mutations-count there weren't that well represented in the TCGA's dataset with the same number of genes (4K) - ~1/3 of the genes were presented. However, when all the (basic filtered) 13k genes from the tumour dataset were used, there was a better match. Also, when comparing with the other cohorts didn't make sense, the Basal split wasn't present in neither of the networks. Regardless of the representation, this approach is not fulfilling the initial task which is to integrated the tumour and healthy as it stratifies just by the GE from P0 and doesn't consider the GE from tumour dataset.
 To support this argument the following figures are needed:
 \begin{itemize}
     \item Stats showing the representation of the selected genes through P0 in the TCGA data
@@ -51,7 +51,7 @@ To support this argument the following figures are needed:
 \end{itemize}
 
 
-\subsubsection{Conclusions}
+\paragraph{Conclusions}
 
 There are a few argument made against this experiment:
 \begin{itemize}
@@ -62,51 +62,48 @@ There are a few argument made against this experiment:
 \end{itemize}
 
 
-\subsubsection{Draft Figures}
+\paragraph{Draft Figures}
 
-
-\begin{figure}
-\captionsetup[subfigure]{justification=Centering}
-\begin{subfigure}[t]{1.0\textwidth}
-    \includegraphics[width=\textwidth]{Images/P0/standard_4K_50TF_median.png}
-    \caption{Standard median values}
-\end{subfigure}\hspace{\fill} % maximize horizontal separation
-
-\bigskip % more vertical separation
-\begin{subfigure}[t]{1.0\textwidth}
-    \includegraphics[width=\linewidth]{Images/P0/norm3_4K_50TF_median.png}
-    \caption{Norm3 median values}
-\end{subfigure}\hspace{\fill} % maximize horizontal separation
-
-\caption{Median values for source and target}
-\label{fig:N_I:P0_median}
+\begin{figure}[H]
+    \captionsetup[subfigure]{justification=Centering}
+    \begin{subfigure}[t]{0.5\textwidth}
+        \includegraphics[width=\textwidth]{Images/P0/standard_4K_50TF_median.png}
+        \caption{Standard median values}
+    \end{subfigure}\hspace{\fill} % maximize horizontal separation
+    \bigskip % more vertical separation
+    \begin{subfigure}[t]{0.5\textwidth}
+        \includegraphics[width=\linewidth]{Images/P0/norm3_4K_50TF_median.png}
+        \caption{Norm3 median values}
+    \end{subfigure}\hspace{\fill} % maximize horizontal separation
+    \caption{Median values for source and target}
+    \label{fig:N_I:P0_median}
 \end{figure}
 
 
 \begin{figure}
-\captionsetup[subfigure]{justification=Centering}
-\begin{subfigure}[t]{0.5\textwidth}
-    \includegraphics[width=\textwidth]{Images/P0/box_standard_4K_50TF_norm3_4K_50TF.png}
-    \caption{Mutation count per community}
-\end{subfigure}\hspace{\fill} % maximize horizontal separation
-\begin{subfigure}[t]{0.5\textwidth}
-    \includegraphics[width=\linewidth]{Images/P0/memberShip_standard_4K_50TF_norm3_4K_50TF.png}
-    \caption{Membership changes}
-\end{subfigure}\hspace{\fill} % maximize horizontal separation
-\bigskip % more vertical separation
-\begin{subfigure}[t]{0.9\textwidth}
-    \includegraphics[width=\linewidth]{Images/P0/sankey_standard_4K_50TF_norm3_4K_50TF.png}
-    \caption{Sankey between standard and norm3}
-\end{subfigure}\hspace{\fill} % maximize horizontal separation
+    \captionsetup[subfigure]{justification=Centering}
+    \begin{subfigure}[t]{0.5\textwidth}
+        \includegraphics[width=\textwidth]{Images/P0/box_standard_4K_50TF_norm3_4K_50TF.png}
+        \caption{Mutation count per community}
+    \end{subfigure}\hspace{\fill} % maximize horizontal separation
+    \begin{subfigure}[t]{0.5\textwidth}
+        \includegraphics[width=\linewidth]{Images/P0/memberShip_standard_4K_50TF_norm3_4K_50TF.png}
+        \caption{Membership changes}
+    \end{subfigure}\hspace{\fill} % maximize horizontal separation
+    \bigskip % more vertical separation
+    \begin{subfigure}[t]{0.9\textwidth}
+        \includegraphics[width=\linewidth]{Images/P0/sankey_standard_4K_50TF_norm3_4K_50TF.png}
+        \caption{Sankey between standard and norm3}
+    \end{subfigure}\hspace{\fill} % maximize horizontal separation
 
-\caption{Comparison between Standard and norm3}
-\label{fig:N_I:P0_comp}
+    \caption{Comparison between Standard and norm3}
+    \label{fig:N_I:P0_comp}
 \end{figure}
 
-                               
 
-\begin{figure}[!htb]                                  
-\centering\includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Images/P0/TF_comp.png}
+
+\begin{figure}[!htb]
+    \centering\includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Images/P0/TF_comp.png}
     \caption{TF Comparison}
     \label{fig:N_1:tf_comp}
 \end{figure}
