@@ -14,8 +14,6 @@ Key results:
               \item The tools created to analyse the networks. Mainly I'm referring to the community comparison.
           \end{itemize}
 \end{itemize}
-
-
 Suggested figures:
 \begin{itemize}
     \item Methods/Implementation
@@ -40,7 +38,7 @@ Suggested figures:
           \begin{itemize}
               \item Tum
               \item P0
-              \item P0+AbsCa  + Undifferentiated
+              \item P0+AbsCa+Undifferentiated
           \end{itemize}
 \end{itemize}
 
@@ -73,15 +71,6 @@ Suggested figures:
 \subsubsection{Datasets used}
 
 
-\import{Sections/Network_I/}{methods.tex}
-
-
-\subsubsection{Results}
-
-In the initial experiments two networks were constructed, one from the healthy dataset and the other from the tumour dataset (TCGA). For the healthy dataset we started with the samples from the P0 as these would represent an unaltered version of the bladder tissue. Compared with the AbsCa differentiated tissues dataset, P0 contains the noise in the in-situ tissue.
-
-On these networks we have applied modifiers, reward and penalising the genes that are mutated, proportionally to the mutations across the cohort. The hypothesis is that by applying modifiers it will improve the community separation inside the networks and each community will be representative of a biological process. Then, we'll select the most representative genes for each community using ModCon score. Those selected genes were going to be used to stratify the samples, by looking at their representation in each sample by applying z-score. These z-scores will be than used to stratify the samples.
-
 The parameters that can be set through PGCNA are the following:
 \begin{itemize}
     \item Dataset - P0, tum, AbsCa, AbsCa+P0
@@ -92,7 +81,26 @@ The parameters that can be set through PGCNA are the following:
 \end{itemize}
 
 
+\import{Sections/Network_I/}{methods.tex}
+
 \subsection{Experiments}
+
+
+In the initial experiments two networks were constructed, one from the healthy dataset and the other from the tumour dataset (TCGA). For the healthy dataset we started with the samples from the P0 as these would represent an unaltered version of the bladder tissue. Compared with the AbsCa differentiated tissues dataset, P0 contains the noise in the in-situ tissue.
+
+On these networks we have applied modifiers, reward and penalising the genes that are mutated, proportionally to the mutations across the cohort. The hypothesis is that by applying modifiers it will improve the community separation inside the networks and each community will be representative of a biological process. Then, we'll select the most representative genes for each community using ModCon score. Those selected genes were going to be used to stratify the samples, by looking at their representation in each sample by applying z-score. These z-scores will be than used to stratify the samples.
+
+
+There are some general graphs that can be used to analyse the network:
+\begin{itemize}
+    \item Leiden Rank compared to the modifiers. This allows to check which network yields the best result
+    \item Stats: network size, number of connections, hub nodes, degree nodes, number of mutations included
+    \item A Gephi network
+    \item Sankey plot with stratification with other methods
+    \item Community enrichment patterns
+    \item GO analysis plots
+\end{itemize}
+
 
 \import{Sections/Network_I/}{tum.tex}
 \newpage
@@ -104,14 +112,13 @@ The parameters that can be set through PGCNA are the following:
 \import{Sections/Network_I/}{gene_selection.tex}
 \newpage
 
-\subsection{Checkpoint}
+\import{Sections/Network_I/}{network_enhanced.tex}
+\newpage
 
-Tasks regarding on network analysis. In essence, small questions that are trying to find the best network configuration:
-\begin{todolist}
-    \item Do we need more stats? How do the authors in PGCNA choose the number of edges per node? Can we apply it to our case?
-    \item What defines a noisy network?
-    \item How do we know if we lose some biological information?
-\end{todolist}
+\subsection{Discussion}
+
+
+\subsection{Checkpoint}
 
 
 Things left to do:
@@ -133,5 +140,10 @@ Things left to do:
               \item To be completed
           \end{todolist}
 \end{itemize}
-
-
+\vspace{1cm}
+\textbf{Conceptual} regarding on network analysis. In essence, small questions that are trying to find the best network configuration:
+\begin{todolist}
+    \item Do we need more stats? How do the authors in PGCNA choose the number of edges per node? Can we apply it to our case?
+    \item What defines a noisy network?
+    \item How do we know if we lose some biological information?
+\end{todolist}

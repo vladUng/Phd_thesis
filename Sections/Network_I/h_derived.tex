@@ -1,3 +1,20 @@
 \subsubsection{Healthy derived tumour stratification} \label{Sec:N_I:h_derived}
 
-This covers the work I did to find the tumour subtypes based on the healthy communities.
+The hypothesis of this experiment is that by using the healthy communities the tunour dataset can be stratified differently. The experiments run here are:
+\begin{itemize}
+    \item All-healthy \- P0 + AbsCa + Undifferentiated
+    \item TCGA dataset 
+    \item Leiden algorithm with Modularity Score
+    \item 10TF
+    \item 3EPG
+    \item Modifiers standard/reward/penalisation
+\end{itemize}
+
+To test our hypothesis apart from the usual graphs used to analyse the networks (see below the list) there was some biological interepretation performed. This included running GO analysis and understanding which communities contributed to the subtypes. 
+
+This section will cover the usual graphs used to analyse the networks.
+\begin{todolist}
+    \item Leiden Rank compared to the modifiers
+    \item Sankey plot with stratification with other methods
+    \item Community enrichment patterns 
+\end{todolist}
