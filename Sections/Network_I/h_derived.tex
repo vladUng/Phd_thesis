@@ -14,7 +14,24 @@ To test our hypothesis apart from the usual graphs used to analyse the networks 
 
 This section will cover the usual graphs used to analyse the networks.
 \begin{todolist}
-    \item Leiden Rank compared to the modifiers
-    \item Sankey plot with stratification with other methods
-    \item Community enrichment patterns 
+    \item[\done] Leiden Rank compared to the modifiers
+    \item[\done] Sankey plot with stratification with other methods: VU+in-situ + TCGA and consensus
+    \item[\done] Community enrichment patterns 
+    \item Find significance between patterns.
+    \item [\done] Survival plots.
+    \item Survival tables with different checkpoints.
+    \item Gene Ontology plots (?)
+    \item What are the shared pathway? Are these scattered as in the P0 experiments?
+    \item Show stats
+    \begin{todolist}
+        \item How many genes are shared between the tumour and healthy? All healty and all tumour? Selected healthy and all tumour / selected most varied?
+        \item How many of the genes are mutated?
+    \end{todolist}
 \end{todolist}
+
+\paragraph{Discussion}
+
+From the analysis performed there are some clear findings, there are two patterns in community enrichment across samples and another one which is fuzzier. Apart from this the new subtypes stratify based on the healthy communitiy is different from the previous ones. \textbf{WHY so different? Not sure.} A possible explanation might be that healthy and tumour don't share that many genes. It's also worth mentioning that the reward networks seams to further separate the two main patterns in the community enrichment. 
+
+In this version of the network pipeline there are some parts that can be further improved. We know that the community detection is flawed from the work from Tiagio \cite[]{TIago}
+

@@ -52,26 +52,17 @@ Notes:
     \item Score for mutations – normalised value
 \end{itemize}
 
-
-\paragraph{Checkpoint}
-Based on the points from above, it feels that mutations have a lesser role than the magnitude and variance of a gene, that is because mutations are dependent for a gene to be expressed. Therefore, I will suggest the two sets of experiments:
-\begin{todolist}
-    \item Highest variance x highest magnitude
-    \item Highest variance x highest magnitude x highest mutations
-\end{todolist}
-
-
 \paragraph{Draft Figures}
 
-\begin{figure}
+\begin{figure}[!htb]
     \captionsetup[subfigure]{justification=Centering}
-    \begin{subfigure}[t]{0.75\textwidth}
+    \begin{subfigure}[!t]{0.75\textwidth}
         \includegraphics[width=\textwidth]{Sections/Network_I/Resources/Gene_selection/included_mut.png}
         \caption{Mutated genes in the selection}
     \end{subfigure}\hspace{\fill} % maximize horizontal separation
 
     \bigskip % more vertical separation
-    \begin{subfigure}[t]{0.75\textwidth}
+    \begin{subfigure}[!t]{0.75\textwidth}
         \includegraphics[width=\linewidth]{Sections/Network_I/Resources/Gene_selection/not_included_mut.png}
         \caption{Non-mutated genes in the selection}
     \end{subfigure}\hspace{\fill} % maximize horizontal separation
@@ -79,3 +70,19 @@ Based on the points from above, it feels that mutations have a lesser role than 
     \caption{Which of the genes are mutated and not in the selected genes}
     \label{fig:N_I:gene_sel}
 \end{figure}
+
+
+\begin{figure}[!htb]
+    \centering\includegraphics[width=0.75\textwidth,height=0.75\textheight,keepaspectratio]{Sections/Network_I/Resources/Gene_selection/GeneSelection_strategies.png}
+    \caption{Showing different gene selection strategies.}
+    \label{fig:N_I:gene_sel_strategies}
+\end{figure}
+
+
+\paragraph{Checkpoint}
+Based on the points from above, it feels that mutations have a lesser role than the magnitude and variance of a gene, that is because mutations are dependent for a gene to be expressed. Therefore, I will suggest the two sets of experiments:
+\begin{todolist}
+    \item Highest variance x highest magnitude
+    \item Highest variance x highest magnitude x highest mutations
+    \item Take the genes from the consensus package (~800) and then look at them to see how highly mutated are.
+\end{todolist}
