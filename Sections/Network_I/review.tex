@@ -1,4 +1,4 @@
-
+\subsection{Previous work}
 
 So far in my literature review of the graphs/network approaches to biological networks, I found out that the processing steps are common across the solutions propsosed. Overall, the workflow is:
 \begin{itemize}
@@ -15,38 +15,8 @@ So far in my literature review of the graphs/network approaches to biological ne
 \end{itemize}
 
 
-The problem with the embedding space is that it may be less “open” then the spearman correlation.
+In this work the authors \cite{Sobolevsky2022-di} compare Louivan \cite{} and Leiden to Graph Neural Networks.
 
-
-\subsubsection{Previous work}
-
-In this work the authors \cite{Sobolevsky2022-di} compare Louivan \cite{} and Leiden to Grap Neural Networks.
-
-\subsubsection{Describing a network}
-
-The motivation behind using network/graph approaches is that they are closer to the biology of bladder cancer. More specifically, these allow us to represent pathways, and partial correlation between genes. Thus, a network approach is dealing both with the local and global effects of a gene. In addition, having links/connections between genes/nodes will enable to add weights (i.e importance) but also severe (in case of mutations that turns off a pathway).
-\\~\\
-The network approach can be split into several sub-parts:
-\begin{enumerate}
-    \item \textbf{Building the network/graph}
-    \begin{itemize}
-        \item This covers the work on CoRegNet \citet{Nicolle2015-tn} and PGCNA2 \citet{Care2019-ij}
-    \end{itemize}
-    \item \textbf{Finding the key genes in the network}. This problem comes in different faces: the problem of node influence, node centrality, network's hub etc. Some papers that look at this are:
-    \begin{itemize}
-        \item Integrated Value of Influence (IVI) \citet{Salavaty2020-wo} - This is a very good paper which combines different metrics to find the node of influence in a biological network. It justifies why choosing 6 popular metrics and how are integrated. I think this should be ok to use it.  - \textit{See more notes at the end}
-        \item Hub Discovery in partial Correlation Graphs by \citet{Hero2012-ch} - Seams good but it's very mathematical and couldn't find any implementation.
-        \item (+) other methods like Autoencoders, Graph Neural Networks, and Cartesian Genetic Programming? (the dataset might be too big though)
-    \end{itemize}
-    \item \textbf{Propagating the data to network}. This refers to how to integrate other datasets 
-    \begin{itemize}
-        \item There is some relevant work from \citet{He2017-dj} where they have integrated somatic mutations with gene expression. See below for a detailed description.
-    \end{itemize}
-    \item \textbf{How the data is visualised}
-    \begin{itemize}
-        \item In both the CoRegNet and PGCNA2 the authors have some recommendations on what tools to use to visualise the network. At the moment, I haven't revised these but my specs are: interactive, being able to filter/select different nodes.
-    \end{itemize}
-\end{enumerate}
 
 
 The work from \citet{He2017-dj} is \textbf{very relevant to this stage} as they have integrated somatic mutations with gene expression in a network approach.  They employed a very similar method to what we were thinking to do:
@@ -87,7 +57,17 @@ It's worth mentioning that this work is building on \citet{Hofree2013-ld} which 
 \end{itemize}
 
 
-\subsubsection{Integrated Value of Influence}
+\subsection{Metrics}
+
+\begin{itemize}
+    \item Network Metrics
+    \item Comparing with previous work
+    \item Community detection metrics 
+\end{itemize}
+
+\subsubsection{Network Metrics}
+
+\paragraph{Integrate Value of Influence}
 
 The central focus of the paper is to identify the most influential nodes in the network. This can mean the nodes that play an important role, have lots of connections w/ the other nodes. 
 
@@ -123,7 +103,10 @@ Their novel part or what are the limitations that they are addressing through th
 They say that each of the metrics captures a different topological dim of the graph, including local, semi-local and global topology. Another advantage of their work is that: \textit{None of them requires a fully connected graph or module to be calculated}.
 
 
-\import{Sections/}{graph_nn.tex}
+\import{Sections/Network_I/}{comm_detection.tex}
+
+
+\import{Sections/Network_I/}{miscellaneous.tex}
 
 \newpage
 

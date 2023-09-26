@@ -61,14 +61,42 @@ Suggested figures:
 \end{itemize}
 
 
-%% % % % % % % % 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Overview}
+
+This section needs to begin by addressing why a network approach, why the Gene expression is best represented by a network and the features that it enables us to build on that.
+
+% 
+The motivation behind using network/graph approaches is that they are closer to the biology of bladder cancer. More specifically, these allow us to represent pathways, and partial correlation between genes. Thus, a network approach is dealing both with the local and global effects of a gene. In addition, having links/connections between genes/nodes will enable to add weights (i.e importance) but also severe (in case of mutations that turns off a pathway).
+
+The network approach can be split into several sub-parts:
+\begin{enumerate}
+    \item \textbf{Building the network/graph}
+    \begin{itemize}
+        \item This covers the work on CoRegNet \citet{Nicolle2015-tn} and PGCNA2 \citet{Care2019-ij}
+    \end{itemize}
+    \item \textbf{Finding the key genes in the network}. This problem comes in different faces: the problem of node influence, node centrality, network's hub etc. Some papers that look at this are:
+    \begin{itemize}
+        \item Integrated Value of Influence (IVI) \citet{Salavaty2020-wo} - This is a very good paper which combines different metrics to find the node of influence in a biological network. It justifies why choosing 6 popular metrics and how are integrated. I think this should be ok to use it.  - \textit{See more notes at the end}
+        \item Hub Discovery in partial Correlation Graphs by \citet{Hero2012-ch} - Seams good but it's very mathematical and couldn't find any implementation.
+        \item (+) other methods like Autoencoders, Graph Neural Networks, and Cartesian Genetic Programming? (the dataset might be too big though)
+    \end{itemize}
+    \item \textbf{Propagating the data to network}. This refers to how to integrate other datasets 
+    \begin{itemize}
+        \item There is some relevant work from \citet{He2017-dj} where they have integrated somatic mutations with gene expression. See below for a detailed description.
+    \end{itemize}
+    \item \textbf{How the data is visualised}
+    \begin{itemize}
+        \item In both the CoRegNet and PGCNA2 the authors have some recommendations on what tools to use to visualise the network. At the moment, I haven't revised these but my specs are: interactive, being able to filter/select different nodes.
+    \end{itemize}
+\end{enumerate}
+
 
 
 \import{Sections/Network_I/}{review.tex}
 
 
-\subsubsection{Datasets used}
+\subsection{Datasets used}
 
 
 The parameters that can be set through PGCNA are the following:
@@ -112,7 +140,9 @@ There are some general graphs that can be used to analyse the network:
 \import{Sections/Network_I/}{gene_selection.tex}
 \newpage
 
-\import{Sections/Network_I/}{network_enhanced.tex}
+\newpage
+\import{Sections/Network_I/}{selective_pruning.tex}
+
 \newpage
 
 \subsection{Discussion}
