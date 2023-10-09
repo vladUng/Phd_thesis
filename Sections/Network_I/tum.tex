@@ -1,14 +1,30 @@
 \subsubsection{TCGA's RNAseq and mutations}
 
 
-The purpose of this section is to show the starting point of the network approach and the graph properties when using only RNAseq data. Another question that this section can answer is: How do we choose the best network configuration?
+The Parsimonious Gene Correlation Analysis Network Analysis (PGCNA) was used to stratify breast, colon, and glioblastoma cancers \cite{Care2019-ij,Tanner2023-wa} based on gene expression. With the goal to better inform the MIBC subtyping, in this section we developed an integrative network approach to stratify MIBC. Our model differs from PGCNA by building the network using both gene expression and mutation as well as  domain knowledge through Transcription Factors (TFs).
 
-Datasets used with RNAseq (gene expression):
-\begin{itemize}
+% Weight modifiers 
+The network weights are modified to integrated the mutation burden across the TCGA cohort into the network. At the network construction stage, after the Spearman correlation network and before the edge pruning the correlation values are changed according two opposing strategies. The reward strategy '\textit{promotes}' the genes which are highly mutated across tumour by increasing their weight, conversely the penalised strategy \textit{punishes} the genes that are highly mutated. The two modifiers are described in Figure \ref{fig:N_I:modifiers} where the highest mutated genes (e.g. TP53, TTN) are the most penalised/rewarded, while the weight values for un-mutated genes remain unchanged. It is worth mentioning, that there is no need to adapt the ModCon as the weight changes will affect the connectivity parameters from Equation \ref{eq:modcon}.
 
-    \item TCGA only
-    \item Combined gene expression Healthy (P0+AbsCa) and TCGA. Representing the healthy dataset with P0+AbsCa will have more statistical power than taking it separately. This is needed as the TCGA dataset is larger than P0 and AbsCa datasets.
-\end{itemize}
+\begin{figure}[!htb]    \centering\includegraphics[width=0.9\textwidth,height=0.9\textheight,keepaspectratio]{Sections/Network_I/Resources/Methods/modifiers.png}
+    \caption{Represting the two weight modifier strategies employed at the network construction stage. The blue, reward strategy, awards the genes that have a high burden across the cohort. Conversely, the  penalised strategy decreases the edges' strength for highly mutated genes. In both cases, the un-mutated genes remain unchanged.}
+    \label{fig:N_I:modifiers}
+\end{figure}
+
+
+\newpage
+
+Structure:
+\begin{todolist}
+    \item [\done] Describe weight modifiers and the motivation behind them
+    \item [\done] Describe how ModCon was adapted and Spearman Correlation process 
+    \item Network stats - between the 3 different types of modifiers. What shall we do?
+    \item Looking at the mutation representation 
+    \item Leiden Community detection
+    \item Sankey comparison
+    \item Community comparison 
+\end{todolist}
+
 
 Results/figures/stats:
 \begin{itemize}
@@ -22,7 +38,6 @@ Results/figures/stats:
           \end{itemize}
     \item For a selected network include the full visualisations:
           \begin{itemize}
-
               \item Network in Gephi
               \item Stats of the network – Figure 7
               \item Clustering of the Module Evaluation Value (MEV)
