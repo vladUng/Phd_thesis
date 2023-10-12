@@ -3,7 +3,8 @@
 
 The Parsimonious Gene Correlation Analysis Network Analysis (PGCNA) was used to stratify breast, colon, and glioblastoma cancers \cite{Care2019-ij,Tanner2023-wa} based on gene expression. With the goal to better inform the MIBC subtyping, in this section we developed an integrative network approach to stratify MIBC. Our model differs from PGCNA by building the network using both gene expression and mutation as well as  domain knowledge through Transcription Factors (TFs).
 
-% Weight modifiers 
+\paragraph{Describing the network}
+
 The network weights are modified to integrated the mutation burden across the TCGA cohort into the network. At the network construction stage, after the Spearman correlation network and before the edge pruning the correlation values are changed according two opposing strategies. The reward strategy '\textit{promotes}' the genes which are highly mutated across tumour by increasing their weight, conversely the penalised strategy \textit{punishes} the genes that are highly mutated. The two modifiers are described in Figure \ref{fig:N_I:modifiers} where the highest mutated genes (e.g. TP53, TTN) are the most penalised/rewarded, while the weight values for un-mutated genes remain unchanged. It is worth mentioning, that there is no need to adapt the ModCon as the weight changes will affect the connectivity parameters from Equation \ref{eq:modcon}.
 
 \begin{figure}[!htb]    \centering\includegraphics[width=0.9\textwidth,height=0.9\textheight,keepaspectratio]{Sections/Network_I/Resources/Methods/modifiers.png}
@@ -21,51 +22,50 @@ The node degree represents the number of connections a node has, a higher number
 
 The different network metrics for standard (blue), reward (red) and penalised (green) are shown in Figure \ref{fig:N_I:net_metrics_tum}. The network metrics are generally similar across the different type modifiers with the exception of the penalised network where the nodes' degree is negatively affected and the the nodes are usually closer to each other (higher closeness values). This is due to the penalised function which almost prunes the connections for the highly mutated genes.
 
-There are $\approx30K$ genes in the TCGA's MIBC cohort, from which less than a half ($\approx13K$) are considered expressed; more than 3 samples have TPM values larger than 0.5. From the $\approx13K$ genes there are $\approx10K$ genes which are mutated at least once are mutated, but then as the mutation burden is increased there are less genes represented as seen in Figure \ref{fig:N_I:mut_rep_tum}. The same trend can be noticed for TFs genes initially being 1027 genes in all the expressed genes, but only a few are mutated. The striking aspect of the Figure \ref{fig:N_I:mut_rep_tum} is the steep decrease of the genes mutated, we have explored different genes selection strategies in Section \ref{}.
-
 \begin{figure}[!htb]    \centering\includegraphics[width=1.0\textwidth,height=0.6\textheight,keepaspectratio]{Sections/Network_I/Resources/Tum_network/MutTF_representation_4K-all.png}
     \caption{Mutation representation in the 4K most varied genes vs all the genes expressed.}
     \label{fig:N_I:mut_rep_tum}
 \end{figure}
 
 
+There are $\approx30K$ genes in the TCGA's MIBC cohort, from which less than a half ($\approx13K$) are considered expressed; more than 3 samples have TPM values larger than 0.5. From the $\approx13K$ genes there are $\approx10K$ genes which are mutated at least once are mutated, but then as the mutation burden is increased there are less genes represented as seen in Figure \ref{fig:N_I:mut_rep_tum}. The same trend can be noticed for TFs genes initially being 1027 genes in all the expressed genes, but only a few are mutated. The striking aspect of the Figure \ref{fig:N_I:mut_rep_tum} is the steep decrease of the genes mutated, we have explored different genes selection strategies in Section \ref{}.
+
+\begin{figure}[!htb]    \centering\includegraphics[width=1.0\textwidth,height=0.6\textheight,keepaspectratio]{Sections/Network_I/Resources/Tum_network/LeidenMetrics_Sankey_TF-6.png}
+    \caption{On the top are displayed the community size and Modularity Score. The two metrics used to asses the weight modifiers (Standard, Penalty and Reward) the Leiden algorithm. At the bottom the Sankey plot to show the MIBC subtyping using the different standard classifiers (TCGA and consensus) with our previous developed clustering and the three different networks. }
+    \label{fig:N_I:leiden_modifiers}
+\end{figure}
+
+\paragraph{Community detection and MIBC stratification}
+
+Modularity score is used to measure the community separation and to evaluate performance of the Leiden community detection algorithm. The Standard and Reward have higher Modularity scores compared to the Penalised network as seen in Figure \ref{fig:N_I:leiden_modifiers}. The unmodified network consistently finds more communities than the other 2 modified networks. 
+
+
+
+After applying ModCon the important genes from the network we then apply K-means (K=6) clustering on the MEV values to find the MIBC subtypes. As the goal of this set of experiments was to understand the changes in the MIBC subtypes derived from the different weight modifiers. To avoid introducing other variables and to be consistent with our previous findings (see Section \ref{}) where K-means with K=6 (or 5) was found to exhibit the most separated clusters, we chosen K=6 for K-means on the MEV score. 
+
+At the bottom of Figure \ref{fig:N_I:leiden_modifiers} the Sankey plot shows the differences in the MIBC subtypes between the 3 type of networks, the literature (TCGA \& consensus) and our previous classification. All the networks split into two smaller groups (Reward and Standard - \textit{3\&1}; Penalised - \textit{3 \& 2}) the Luminal Papillary (LumP) and Luminal Infiltrated/Non-Specified (LumInf/NS) is consistently clustered in one group (0). However, there are more changes in the Basal split and Ne. The Standard and Reward are consistent in finding the same 3 groups (\textit{5, 4 and 2}) where\textit{ 5} is a mixed of LumInf/NS and High IFNg,\textit{4} is mainly Low IFNG and a few NE samples while \textit{2} is a combination of High and Medium IFNg. This may suggest that cluster 4 may represent the tumours which are more basal (de-differentiated), while \textit{5} the tumours with high infiltration and immune response and cluster \textit{2} the samples between the two. In the Penalised network sub-grouping the cluster \textit{5} remains the same, but \textit{4} and \textit{1} are changed. The former contains more of the LumP and Low IFNG samples, while the latter hold most of the IFNG samples. This suggest that the Penalised network stratification perform worst.
+
+Overall, the stratification shown in Figure \ref{fig:N_I:leiden_modifiers} shows the potential of the Network approach by finding similar three Basal subgroups as in our previous clustering where we used both computational method and domain knowledge from in-vitro study\citet{Baker2022-bj}. However, there is little difference between the networks suggesting that there weight modifiers don't have a high impact on MIBC stratification with K-means (K=6).
+ 
+
 \newpage
 
-Structure:
+Checkpoint:
 \begin{todolist}
     \item [\done] Describe weight modifiers and the motivation behind them
     \item [\done] Describe how ModCon was adapted and Spearman Correlation process 
     \item [\done] Network stats - between the 3 different types of modifiers. What shall we do?
-    \item Looking at the mutation representation 
-    \item Leiden Community detection
-    \item Sankey comparison
-    \item Community comparison 
+    \item [\done] Looking at the mutation representation 
+    \item [\done] Leiden Community detection
+    \item [\done] Sankey comparison
+    \item [\done] Community comparison 
+    \item [\done] Justify the network configurations
+    \item Network on gephi? (optional)
+    \item Comparing with Lund? (optional)
+    \item Community analysis (optional). How are the mutated genes represented per community, per TF and per median GE.
 \end{todolist}
 
+\newpage
 
-Results/figures/stats:
-\begin{itemize}
+\subsubsection{Clustering analysis vs Network gene selection}
 
-    \item How the different parameters affect the network stats , thus helping to find the best network configuration. Ideally, it should be a systematic approach analysing networks with different parameters. However, I’m afraid that this will lead to a lot of data generated with little value added as there is no clear score that tells us how well a network performs on subtyping.
-    \item Network stats will come in the form of distributions of the nodes value for: degree, hub score, Integrated value of Influence, weight distributions etc...
-          \begin{itemize}
-              \item Different network sizes. Range: 3000-10000, step 1000
-              \item Edges per node for normal genes. Range: 3-10, step 10
-              \item Edges per node for Transcription Factors. Range: 10-100, step 10
-          \end{itemize}
-    \item For a selected network include the full visualisations:
-          \begin{itemize}
-              \item Network in Gephi
-              \item Stats of the network – Figure 7
-              \item Clustering of the Module Evaluation Value (MEV)
-          \end{itemize}
-
-    \item The selected experiment I will compare it with our previous approach and the other classification such as TCGA, consensus, Lund – See an example in Figure 8
-\end{itemize}
-
-
-Ideally, the selection of networks should be based on the network stats, choosing the graphs that are the least nosy but also retain biological information. In practice, I'm not sure how we can do this with the current network stats, and I need to investigate/think about this more. Nevertheless, I should select two networks one for each dataset:
-\begin{itemize}
-    \item TCGA: very likely that I will choose with the following properties: 4000 genes, 3 edges per (normal) gene, 50 edges per (Transcription Factor)
-    \item Combined TCGA and P0: Probably like the above.
-\end{itemize}
