@@ -46,7 +46,31 @@ After applying ModCon the important genes from the network we then apply K-means
 At the bottom of Figure \ref{fig:N_I:leiden_modifiers} the Sankey plot shows the differences in the MIBC subtypes between the 3 type of networks, the literature (TCGA \& consensus) and our previous classification. All the networks split into two smaller groups (Reward and Standard - \textit{3\&1}; Penalised - \textit{3 \& 2}) the Luminal Papillary (LumP) and Luminal Infiltrated/Non-Specified (LumInf/NS) is consistently clustered in one group (0). However, there are more changes in the Basal split and Ne. The Standard and Reward are consistent in finding the same 3 groups (\textit{5, 4 and 2}) where\textit{ 5} is a mixed of LumInf/NS and High IFNg,\textit{4} is mainly Low IFNG and a few NE samples while \textit{2} is a combination of High and Medium IFNg. This may suggest that cluster 4 may represent the tumours which are more basal (de-differentiated), while \textit{5} the tumours with high infiltration and immune response and cluster \textit{2} the samples between the two. In the Penalised network sub-grouping the cluster \textit{5} remains the same, but \textit{4} and \textit{1} are changed. The former contains more of the LumP and Low IFNG samples, while the latter hold most of the IFNG samples. This suggest that the Penalised network stratification perform worst.
 
 Overall, the stratification shown in Figure \ref{fig:N_I:leiden_modifiers} shows the potential of the Network approach by finding similar three Basal subgroups as in our previous clustering where we used both computational method and domain knowledge from in-vitro study\citet{Baker2022-bj}. However, there is little difference between the networks suggesting that there weight modifiers don't have a high impact on MIBC stratification with K-means (K=6).
- 
+
+\subsubsection{Clustering analysis vs Network gene selection}
+
+Crudely simplified the network approach is an advance gene selection mechanism based on multiple data-types: gene co-expression, mutation and transcription factors. Specifically, the Module Connectivity step from Figure \ref{fig:N_I:network_pipeline} picks the genes that have the highest connectivity (see Eq. \ref{eq:modcon}) and varied across the dataset, which are then used for clustering analysis (through MEV). Similarly, in the previous chapter $\approx3K$ top most relative varied genes were used in the K-means clustering analysis. Therefore, there is a need to compare the two gene selection methods and to assess the differences.
+
+The comparison is performed only using the TCGA's MIBC dataset to avoid differences between the tumour and healthy samples. The network was constructed from the 5K most varied genes, no weight modifier and the minimum degree for TFs  was set to 6 and 3 to the standard genes. For a network formed of 5K genes, the ModCon (=100 for each community) selects in total $\approx2.8K$ genes. The TF configuration to keep 6 edges per TF is selected based on the experiment in Section \ref{} where it was observed that more than 10 edges per TF does not influence the network and the 3 connections is the standard, thus we selected the middle value for the gene comparison.
+
+
+\begin{figure}[!htb]    \centering\includegraphics[width=1.0\textwidth,height=0.7\textheight,keepaspectratio]{Sections/Network_I/Resources/Tum_network/ClusteringAnalysis_vs_Network_3.png}
+    \caption{Network selection vs. Clustering Analysis. Blue points are represented by the genes selected exclusively by the highest median standard deviation ratio, the green by the network and red by both approaches. The size of the points is the median expression of the genes.To avoid log values of 0 the mutations count were offset by one.}
+    \label{fig:N_I:network_ca_selection}
+\end{figure}
+
+
+The $\approx2.8K$ genes selected through the network are compared with the 3K most relative varied. Between the two sets of genes there are 1733 different genes and 746 shared. In Figure \ref{fig:N_I:network_ca_selection} the two sets of genes are plotted against the Mutation Burden across the TCGA cohort (Y-axis) and the relative variance across (X-axis). Blue points are represented by the genes selected exclusively by the highest median standard deviation ratio, the green by the network and red by both approaches. As expected the genes selected only by relative variance are skewed to the right picking the highly mutated genes that also have a high variance. Contrary, the network approach (using ModCon) not only selects most of the varied genes but also some of the highest mutated genes despite having low variance. The points' size is relative to the median expression in the TCGA cohort and from the Figure \ref{fig:N_I:network_ca_selection} it can be seen that the classical gene selection does not include the highly expressed genes as the network does.
+
+This comparison shows the power of the network approach which selects not only the highly varied genes but also the ones that have consistent expression values and high mutation burden.
+
+\subsubsection{Conclusion}
+
+
+The two set of experiments suggests the potential of the network approach.
+
+
+
 
 \newpage
 
@@ -60,12 +84,8 @@ Checkpoint:
     \item [\done] Sankey comparison
     \item [\done] Community comparison 
     \item [\done] Justify the network configurations
+    \item Discussion and Conclusion
     \item Network on gephi? (optional)
     \item Comparing with Lund? (optional)
     \item Community analysis (optional). How are the mutated genes represented per community, per TF and per median GE.
 \end{todolist}
-
-\newpage
-
-\subsubsection{Clustering analysis vs Network gene selection}
-
