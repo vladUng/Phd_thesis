@@ -91,12 +91,7 @@ The network approach can be split into several sub-parts:
     \end{itemize}
 \end{enumerate}
 
-
-
-\import{Sections/Network_I/}{review.tex}
-
-
-\subsection{Datasets used}
+\subsubsection{Datasets used}
 
 
 The parameters that can be set through PGCNA are the following:
@@ -109,27 +104,19 @@ The parameters that can be set through PGCNA are the following:
 \end{itemize}
 
 
+\import{Sections/Network_I/}{review.tex}
+
+
 \import{Sections/Network_I/}{methods.tex}
 
 \newpage
 
-\subsection{Experiments}
+\subsection{Experiments Overview}
 
 
 In the initial experiments two networks were constructed, one from the healthy dataset and the other from the tumour dataset (TCGA). For the healthy dataset we started with the samples from the P0 as these would represent an unaltered version of the bladder tissue. Compared with the AbsCa differentiated tissues dataset, P0 contains the noise in the in-situ tissue.
 
 On these networks we have applied modifiers, reward and penalising the genes that are mutated, proportionally to the mutations across the cohort. The hypothesis is that by applying modifiers it will improve the community separation inside the networks and each community will be representative of a biological process. Then, we'll select the most representative genes for each community using ModCon score. Those selected genes were going to be used to stratify the samples, by looking at their representation in each sample by applying z-score. These z-scores will be than used to stratify the samples.
-
-
-There are some general graphs that can be used to analyse the network:
-\begin{itemize}
-    \item Leiden Rank compared to the modifiers. This allows to check which network yields the best result
-    \item Stats: network size, number of connections, hub nodes, degree nodes, number of mutations included
-    \item A Gephi network
-    \item Sankey plot with stratification with other methods
-    \item Community enrichment patterns
-    \item GO analysis plots
-\end{itemize}
 
 
 \import{Sections/Network_I/}{tum.tex}
@@ -155,9 +142,9 @@ There are some general graphs that can be used to analyse the network:
 
 Things left to do:
 \begin{itemize}
-    \item Changes to the network pipeline:
+    \item Experiments 
           \begin{todolist}
-              \item Use Stochastic Block Model (SBM) to determine the communities
+              \item Re-write the introduction to cover all the experiments, especially the two parts
           \end{todolist}
     \item P0 - experiments
           \begin{todolist}
