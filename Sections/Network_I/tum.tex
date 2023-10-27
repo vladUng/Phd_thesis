@@ -3,7 +3,7 @@
 
 The Parsimonious Gene Correlation Analysis Network Analysis (PGCNA) was used to stratify breast, colon, and glioblastoma cancers \cite{Care2019-ij,Tanner2023-wa} based on gene expression. With the goal to better inform the MIBC subtyping, in this section we developed an integrative network approach to stratify MIBC. Our model differs from PGCNA by building the network using both gene expression and mutation as well as  domain knowledge through Transcription Factors (TFs).
 
-\subsubsection{Describing the network}
+\subsubsection{Describing the network} \label{s:N_I:tum_describe}
 
 The network weights are modified to integrated the mutation burden across the TCGA cohort into the network. At the network construction stage, after the Spearman correlation network and before the edge pruning the correlation values are changed according two opposing strategies. The reward strategy '\textit{promotes}' the genes which are highly mutated across tumour by increasing their weight, conversely the penalised strategy \textit{punishes} the genes that are highly mutated. The two modifiers are described in Figure \ref{fig:N_I:modifiers} where the highest mutated genes (e.g. TP53, TTN) are the most penalised/rewarded, while the weight values for un-mutated genes remain unchanged. It is worth mentioning, that there is no need to adapt the ModCon as the weight changes will affect the connectivity parameters from Equation \ref{eq:modcon}.
 
@@ -16,7 +16,7 @@ The network weights are modified to integrated the mutation burden across the TC
 The node degree represents the number of connections a node has, a higher number, the more important the node is to the network. However, it is not only important how many connections there are but also to which nodes are these connections too, and PageRank\cite{Brin1998-mc} accounts for that. Thus, degree and PageRank are used in this project to described the network's centrality. It is also important how close the nodes are and if a node is an intermediate between others, thus the closeness and betweeness metrics are employed to describe the network. In addition, the Integrated Value of Influence (IVI) \cite{Salavaty2020-wo} combines multiple metrics and it is used to score the nodes have both a local and global influence to the network.
 
 \begin{figure}[!htb]    \centering\includegraphics[width=1.0\textwidth,height=0.7\textheight,keepaspectratio]{Sections/Network_I/Resources/Tum_network/NetworkMetricsComp_10TF.png}
-    \caption{Network metrics for the tumour networks formed from 4K genes, 3 connections per standard gene and 10 for TFs with the different weight modifiers; standard (blue), reward (red) and penalised (green). The y-axis represent the log10 of the meric. }
+    \caption{Network metrics for the tumour networks formed from 4K genes, 3 connections per standard gene and 10 for TFs with the different weight modifiers; standard (blue), reward (red) and penalised (green). The y-axis represent the log10 of the metric. }
     \label{fig:N_I:net_metrics_tum}
 \end{figure}
 
@@ -69,9 +69,9 @@ The two set of experiments performed in this Section suggest the potential of a 
 
 Both experiments show the advantages of the network approach in finding new potential cancer subgroups. However, the data integration strategy in this section did not exhibit the desired results and further work is done in the following sections
 
-\vspace{50mm}
+\newpage
 
-Checkpoint:
+\subsubsection{Checkpoint}:
 \begin{todolist}
     \item [\done] Describe weight modifiers and the motivation behind them
     \item [\done] Describe how ModCon was adapted and Spearman Correlation process 
@@ -82,6 +82,7 @@ Checkpoint:
     \item [\done] Community comparison 
     \item [\done] Justify the network configurations
     \item [\done] Discussion and Conclusion
+    \item Survival plots
     \item Network on gephi? (optional)
     \item Comparing with Lund? (optional)
     \item Community analysis (optional). How are the mutated genes represented per community, per TF and per median GE.

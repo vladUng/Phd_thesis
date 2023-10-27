@@ -1,18 +1,151 @@
 
 
-\subsection{P0 and mutation count}
+\subsection{P0 with mutation burden} \label{s:p0}
 
-A starting point of our experiments was to build a network from P0 data on which to apply modifiers. Select the genes from the communities and then use it to stratify the TCGA tumour the dataset. The hypothesis for this experiment is that to test the power of PGCNA and to stratify the TCGA by the healthy dataset which may yield some interesting results. Thus the following networks are generated for the P0:
+ 
+The Jack Birch's Unit holds a large dataset of bladder tissue samples both cancerous and non-cancerous. There are three different types of 'normal'  (or healthy or non-cancerous) bladder samples: P0 (23), Abs/Ca-differentiated (49) and undifferentiated (15). The P0 are in-situ tissues taken from healthy individual unaltered in the lab, the ABS/Ca differentiated are in-vitro which have been differentiated by the ABS/Ca protocol and lastly the undifferentiated are in-vitro samples which yet are not specialised. From the previous classifications \citet{Robertson2017-mg, Kamoun2020-tj} it is known that there are 2 major subgroups Luminal Papillary (LumP) and Basal Squamous (Ba/Sq). The former is known to share aspects with the differentiated tissue while the latter with the undifferentiated. 
 
-% TODO add the meta table
-\begin{itemize}
-    \item Sizes: 4K-7K
-    \item For each size: standard, beta, norm3 and norm2
-    \item For each size: 50 edges per Transcription Factor, 3 edges per normal gene
-\end{itemize}
+In this section we used only the P0 dataset to construct a healthy network representing the co-expressed genes network in an unaltered bladder tissue. The network is built based on the pipeline described in Figure \ref{fig:N_I:network_pipeline} where instead of the tumour's gene expression the data from P0 is used, but the mutation burden for the modifiers is still used. This means that the Module Connectivity (ModCon) selects the genes which are most representative of the communities in the healthy network. These selected genes are used to compute the Module Evaluation Value score using the gene expression from TCGA. Therefore, this approach can be thought as a method to select the genes most representative for the P0 samples and how their expression changes in the tumour dataset. 
+
+It is worth noting that there are only 23 P0 samples and this may not offer enough statistical power to find communities with specific biological functions. In addition, the Basal may be under-represented by the lack of undifferentiated tissue samples. Nevertheless, using unprocessed tissue samples may unravel new biology.
+
+The top 4K most-relative varied genes (median/std) from P0 are used to construct the network, the same weight modifiers (Reward and Penalised see Fig \ref{fig:N_I:modifiers}) are employed and 50 edges for the Transcription Factor. For the standard genes 3 edges are kept while for Transcription Factors (TFs) 50. The top 100 genes are selected with ModCon and for MEVs the top 4K most varied genes are used.
 
 
-% Reason 1 for why this approach is not good - bad gene selection
+\subsubsection{Describing the Network}
+
+
+\begin{figure}[!htb]    
+    \centering
+    \includegraphics[width=1.0\textwidth,height=0.7\textheight,keepaspectratio]{Sections/Network_I/Resources/P0/P0_NetworkMetricsComp_50TF_2.png}
+    \caption{Network metrics for the P0 networks formed from 4K genes, 3 connections per standard gene and 50 for TFs with the different weight modifiers; standard (blue), reward (red) and penalised (green). The y-axis represent the log10 of the metric. }
+    \label{fig:N_I:net_metrics_p0}
+\end{figure}
+
+In the previous section \ref{s:N_I:tum_describe} five different network metrics were chosen to describe the networks generated: degree, PageRank, closeness, betweeness and IVI. These give an overview of the network properties, how well are the nodes connected, shortest path between them and their overall importance (IVI). In Figure \ref{fig:N_I:net_metrics_p0} the degree and PageRank plots for Standard and Reward network have a con-like set of points, denoting a subgroup of genes with a high number of edges. This is further enforced by the scale of the Y-axes; compared to the tumour experiments where the nodes degree where <100. Interestingly, PageRank values are at the similar scale with the ones from the tumour experiments (Figure \ref{fig:N_I:net_metrics_tum}). From the Closeness plot it can be seen that the Reward and Standard have lower values compared to Penalised denoting that less central nodes in the networks. For the Integrated Value Of Influence (IVI) the Standard and Reward have a larger spread compared to Penalised. 
+
+Overall, the network metrics suggest that the Penalised network is different from the other two networks suggesting that reducing the weights to values close to 0 for highly mutated genes has a higher impact on the network than doubling their values.
+
+\subsubsection{Choosing Clustering model}
+
+% Explain what and why are the clustering methods we used
+To find the appropriate clustering model and the number of clusters we adapt the previous work done in Chapter \ref{} (Subtyping chapter) where we used Principal Component Analysis (PCA) and K-means to stratify MIBC based on gene expression. Based on three different clustering method (Silhouette with cosine distance, Calinski Habrasz and Davies Bouldin\footnote{For a refresher on the clustering metrics see Section \ref{}}) we selected following clustering models \footnote{I have explored other clustering methods such as DBSCAN, MeanShit, Affinity Propagation, OPTICS, HDBSCAN and Fuzzy K-means. All based on Scikit-learn \cite{Scikit-learn_undated-ax}} the K-means, Agglomerative Clustering, Birch, Ward, Gaussian Mixture Model and Spectral Clustering. 
+
+% Introduce the results and motivate the reason of why we don't include K=2,3
+In this section we apply the above-mentioned clustering methods to the MEV scores derived from the three networks (Standard, Reward and Penalised) with K ranging from 3-9 and we used the same clustering metrics to assess the performance. In Figure \ref{fig:N_I:p0_choosing_cs} the clustering metrics are displayed, were the number of 'x' marks the highest score after cluster size 2 and 3. The models with 2 clusters or 3 are not taken in account as the metrics tend to give higher score for models with 2,3  clusters. This can be seen in our results as well were usually the clustering models perform worst with the increase of K. 
+
+% \begin{table}[!htb]
+%     \centering
+%     \begin{tblr}{
+%       cell{1}{1} = {r=2}{},
+%       cell{1}{2} = {c=3}{},
+%       cell{1}{5} = {c=3}{},
+%       cell{1}{8} = {c=3}{},
+%       vlines,
+%       hline{1,3-6} = {-}{},
+%       hline{2} = {2-10}{},
+%     }
+    
+%     Network   & Silhouette &        &        & Calinski Habrasz &       &          & Davies-Bouldin &         &          \\
+%               & 1          & 2      & 3      & 1        & 2     & 3        & 1              & 2       & 3        \\
+%     Standard  & Avg\_6     & Avg\_5 & Avg\_7 & KM\_4    & KM\_5 & Birch\_4 & Spec\_4        & Spec\_6 & Birch\_4 \\
+%     Reward    & Avg\_7     & Avg\_8 & Avg\_9 & KM\_4    & KM\_5 & KM\_6    & Spec\_4        & Spec\_6 & Ward\_6  \\
+%     Penalised & Avg\_4     & Avg\_5 & KM\_4  & KM\_5    & KM\_6 & GM\_4    & Spec\_4        & KM\_4   & KM\_6    
+%     \end{tblr}
+%     \caption{The top 3 Clustering models for P0 dataset. Avg - Agglomerative Clustering with Average linkage, KM - K-means, GM - Gaussian Mixture Models, Spec - Spectral Clustering}
+%     \label{tbl:N_I:p0_choosing_cs}
+% \end{table}
+
+\begin{figure}[!htb]
+    \centering
+    \begin{subfigure}[b]{0.47\textwidth}
+        \centering
+        \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/P0/top3_cs_gen_p0_tum4K.png}
+        \caption{Cluster model}
+    \end{subfigure} %
+    \hfill
+    \begin{subfigure}[b]{0.47\textwidth}
+        \centering
+        \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/P0/top3_cs_model_p0_tum4K.png}
+        \caption{Cluster size}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.47\textwidth}
+        \centering
+        \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/P0/top3_cs_size_p0_tum4K.png}    
+        \caption{Cluster model and size}
+    \end{subfigure}
+    \hfill
+    \caption{Top 3 clustering models for each network type with the best scores across the 3 clustering scores. A) at the most common clustering model B) the most likely cluster size C) looks at the overall most common clustering model configuration.}
+    \label{fig:N_I:p0_top_3_metrics}
+\end{figure}
+
+
+% Comment Figure & Table
+Figure \ref{tbl:N_I:p0_choosing_cs} A) is a summary of the top 3 clustering models for each of the metrics and networks. From this table and Figure \ref{fig:N_I:p0_choosing_cs} it can be seen that Agglomerative Clustering with Average linkage performs scores highest by Silhouette scores in all networks, K-means by Calinski Habrasz metric and Spectral Clustering by Davies Bouldin. In addition, the top positions are hold by models with K varying from 4-7. 
+
+
+
+% Conclusion Choosing Model and K
+The lack of an obvious cluster model shows the challenge of working with gene expression datasets. It also shows the limitation of using average scores for clustering metrics. Thus, we select the Silhouette cosine score\footnote{For the same reason as we chosen it as a main metric in the last chapter. Compared with the other metrics the Silhouette score uses cosine as a distance which is more suitable for high dimension data.} to look at the spread across samples in Figure \ref{fig:N_I:p0_sillhouette_spread}. With the exception of the Agglomerative clustering with average linkage the other clustering models have a high spread of the silhouette across the different cluster size. This suggests that the Agglomerative clustering behaves better. As there is no clear difference between the cluster sizes we chosen K=6 as it is the best score for the Standard network, it is consistent with previous findings and it makes comparison easier.
+
+\begin{figure}[!htb]
+    \thispagestyle{plain}
+    \centering
+    \begin{subfigure}{1.0\linewidth}
+        \centering
+        \includegraphics[width=1.0\textwidth,height=0.17\textheight]{Sections/Network_I/Resources/P0/Standard_tum4k_sill_spread.png}
+        \caption{Standard network}
+    \end{subfigure} %
+
+    \begin{subfigure}{1.0\linewidth}
+        \centering
+        \includegraphics[width=1.0\textwidth,height=0.17\textheight]{Sections/Network_I/Resources/P0/Reward_tum4k_sill_spread.png}
+        \caption{Reward network}
+    \end{subfigure}
+    
+    \begin{subfigure}{1.0\linewidth}
+        \centering
+        \includegraphics[width=1.0\textwidth,height=0.17\textheight]{Sections/Network_I/Resources/P0/Penalised_tum4k_sill_spread.png}      
+        \caption{Penalised network}
+    \end{subfigure}
+    \caption{Cosine Silhouette score spread across samples over different clustering models with various K.}
+    \label{fig:N_I:p0_sillhouette_spread}
+\end{figure}
+
+
+\begin{figure}[!htb]
+    \centering
+    \begin{subfigure}{1.0\linewidth}
+        \centering
+        \includegraphics[width=1.0\textwidth,height=0.27\textheight]{Sections/Network_I/Resources/P0/CA_metrics_Std_2_tum_4k.png}
+        \caption{Standard network}
+    \end{subfigure} %
+
+    \begin{subfigure}{1.0\linewidth}
+        \centering
+        \includegraphics[width=1.0\textwidth,height=0.27\textheight]{Sections/Network_I/Resources/P0/CA_metrics_Rwd_2_tum_4k.png}
+        \caption{Reward network}
+    \end{subfigure}
+    
+    \begin{subfigure}{1.0\linewidth}
+        \centering
+        \includegraphics[width=1.0\textwidth,height=0.27\textheight]{Sections/Network_I/Resources/P0/CA_metrics_Pen_2_tum_4k.png}
+        \caption{Penalised network}
+    \end{subfigure}
+    \caption{Clustering metrics for the 3 networks generated from P0 samples.}
+    \label{fig:N_I:p0_choosing_cs}
+\end{figure}
+
+
+
+
+\subsubsection{Network comparison}
+
+
+\newpage
+
+% Reason 1 for why this approach is not good - poor gene representation in the tumour
 In the first experiment run, with 4K genes I have noticed that there were not that many changes between communities when the modifier is applied. This is different from what I intended to see when modifiers are applied. We want to see better separation between communities, with smaller and more dedicated biological processes. Thus, I have started investigating this during which I found out that there is a poor representation of the genes mutated in the P0 samples. Thus lead to further investigating on how to select the genes for the PGCNA; this was covered in this section \ref{Sec:N_I:gene_sel}.
 
 To support this argument the following figures are needed:
@@ -33,7 +166,7 @@ Figures I need to support for the above argument:
     \item Maybe put the Network with annotations?
 \end{itemize}
 
-% Reason 3 - Effect of the TF
+% Reason 3 - Effect of the TF. but this really is 
 While performing the biological interpretation, looking at the genes selected by ModCon score, it can be clearly noticed that the TF genes play a major role in the networks. The reason for this is that in this set of experiment we enable 50 edges for each Transcription Factor, thus biasing the network for these genes. Definitely, this parameter have a large impact of ModCon. Therfore, we performed an experiment with a lower number of edges per TF and we found out that there are more communities with fewer communties.
 Figure supporting the above:
 \begin{itemize}
