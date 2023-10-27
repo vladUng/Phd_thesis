@@ -29,65 +29,50 @@ Overall, the network metrics suggest that the Penalised network is different fro
 \subsubsection{Choosing Clustering model}
 
 % Explain what and why are the clustering methods we used
-To find the appropriate clustering model and the number of clusters we adapt the previous work done in Chapter \ref{} (Subtyping chapter) where we used Principal Component Analysis (PCA) and K-means to stratify MIBC based on gene expression. Based on three different clustering method (Silhouette with cosine distance, Calinski Habrasz and Davies Bouldin\footnote{For a refresher on the clustering metrics see Section \ref{}}) we selected following clustering models \footnote{I have explored other clustering methods such as DBSCAN, MeanShit, Affinity Propagation, OPTICS, HDBSCAN and Fuzzy K-means. All based on Scikit-learn \cite{Scikit-learn_undated-ax}} the K-means, Agglomerative Clustering, Birch, Ward, Gaussian Mixture Model and Spectral Clustering. 
-
-% Introduce the results and motivate the reason of why we don't include K=2,3
-In this section we apply the above-mentioned clustering methods to the MEV scores derived from the three networks (Standard, Reward and Penalised) with K ranging from 3-9 and we used the same clustering metrics to assess the performance. In Figure \ref{fig:N_I:p0_choosing_cs} the clustering metrics are displayed, were the number of 'x' marks the highest score after cluster size 2 and 3. The models with 2 clusters or 3 are not taken in account as the metrics tend to give higher score for models with 2,3  clusters. This can be seen in our results as well were usually the clustering models perform worst with the increase of K. 
-
-% \begin{table}[!htb]
-%     \centering
-%     \begin{tblr}{
-%       cell{1}{1} = {r=2}{},
-%       cell{1}{2} = {c=3}{},
-%       cell{1}{5} = {c=3}{},
-%       cell{1}{8} = {c=3}{},
-%       vlines,
-%       hline{1,3-6} = {-}{},
-%       hline{2} = {2-10}{},
-%     }
-    
-%     Network   & Silhouette &        &        & Calinski Habrasz &       &          & Davies-Bouldin &         &          \\
-%               & 1          & 2      & 3      & 1        & 2     & 3        & 1              & 2       & 3        \\
-%     Standard  & Avg\_6     & Avg\_5 & Avg\_7 & KM\_4    & KM\_5 & Birch\_4 & Spec\_4        & Spec\_6 & Birch\_4 \\
-%     Reward    & Avg\_7     & Avg\_8 & Avg\_9 & KM\_4    & KM\_5 & KM\_6    & Spec\_4        & Spec\_6 & Ward\_6  \\
-%     Penalised & Avg\_4     & Avg\_5 & KM\_4  & KM\_5    & KM\_6 & GM\_4    & Spec\_4        & KM\_4   & KM\_6    
-%     \end{tblr}
-%     \caption{The top 3 Clustering models for P0 dataset. Avg - Agglomerative Clustering with Average linkage, KM - K-means, GM - Gaussian Mixture Models, Spec - Spectral Clustering}
-%     \label{tbl:N_I:p0_choosing_cs}
-% \end{table}
+To find the appropriate clustering model and the number of clusters we adapt the previous work done in Chapter \ref{} (Subtyping chapter) where we used Principal Component Analysis (PCA) and K-means to stratify MIBC based on gene expression. Based on three different clustering method (Silhouette with cosine distance, Calinski Habrasz and Davies Bouldin\footnote{For a refresher on the clustering metrics see Section \ref{}}) we selected following clustering models \footnote{I have explored other clustering methods such as DBSCAN, MeanShit, Affinity Propagation, OPTICS, HDBSCAN and Fuzzy K-means. All based on Scikit-learn \cite{Scikit-learn_undated-ax}} the K-means, Agglomerative Clustering with Average linkage (Agg\_Avg), Birch, Ward, Gaussian Mixture Model and Spectral Clustering. 
 
 \begin{figure}[!htb]
     \centering
-    \begin{subfigure}[b]{0.47\textwidth}
+    \begin{subfigure}[b]{0.49\textwidth}
         \centering
-        \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/P0/top3_cs_gen_p0_tum4K.png}
-        \caption{Cluster model}
-    \end{subfigure} %
-    \hfill
-    \begin{subfigure}[b]{0.47\textwidth}
-        \centering
-        \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/P0/top3_cs_model_p0_tum4K.png}
-        \caption{Cluster size}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.47\textwidth}
-        \centering
-        \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/P0/top3_cs_size_p0_tum4K.png}    
+        \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/P0/top3_cs_gen_p0_tum4K.png}    
         \caption{Cluster model and size}
     \end{subfigure}
     \hfill
-    \caption{Top 3 clustering models for each network type with the best scores across the 3 clustering scores. A) at the most common clustering model B) the most likely cluster size C) looks at the overall most common clustering model configuration.}
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/P0/top3_cs_model_p0_tum4K.png}
+        \caption{Cluster model}
+    \end{subfigure} %
+    \hfill
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/P0/top3_cs_size_p0_tum4K.png}
+        \caption{Cluster size}
+    \end{subfigure}
+     \hfill
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\textwidth, keepaspectratio]{Sections/Network_I/Resources/P0/p0_elbowMethod_4K.png}
+        \label{fig:N_I:p0_elbow_method}
+        \caption{Elbow method}
+    \end{subfigure}
+    \caption{Clustering models for each network type with the top three clustering scores. Colouring scale corresponds to the encounter frequency \textbf{per network type}; i.e. the count restarts for every network. A) looks at the overall most common clustering model configuration. B) at the most common clustering model C) the most likely cluster size.}
     \label{fig:N_I:p0_top_3_metrics}
 \end{figure}
 
 
-% Comment Figure & Table
-Figure \ref{tbl:N_I:p0_choosing_cs} A) is a summary of the top 3 clustering models for each of the metrics and networks. From this table and Figure \ref{fig:N_I:p0_choosing_cs} it can be seen that Agglomerative Clustering with Average linkage performs scores highest by Silhouette scores in all networks, K-means by Calinski Habrasz metric and Spectral Clustering by Davies Bouldin. In addition, the top positions are hold by models with K varying from 4-7. 
+% Introduce the results and motivate the reason of why we don't include K=2,3
+In this section we apply the above-mentioned clustering methods to the MEV scores derived from the three networks (Standard, Reward and Penalised) with K ranging from 3-9 and we used the same clustering metrics to assess the performance. In Figure \ref{fig:N_I:p0_choosing_cs} the clustering metrics are displayed, were the number of 'x' marks the highest score after cluster size 2 and 3. The models with 2 clusters or 3 are not taken in account as the metrics tend to give higher score for models with 2,3 clusters. This can be seen in our results as well were usually the clustering models perform worst with the increase of K. 
 
+% Comment on Top 3 models + cs, models and just CS
+While Figure \ref{fig:N_I:p0_choosing_cs} shows the general trends of the metrics across the 3 different clustering scores, it is not very clear which model with how many clusters performs the best for each network or overall. Figure \ref{fig:N_I:p0_top_3_metrics} assists the decision making by looking at the most overall used model with cluster size, only at the cluster model and size in A), B) and C); the colouring scale corresponds to the encounter frequency across network type; e.g. in A) K-means with K=4 appears 3 times in standard network and Spectral Clustering with K=4 two times in all three network types. The colouring strategies helps delineating the configurations for each network. From Figure \ref{fig:N_I:p0_choosing_cs} A) it can be noticed that the standard network is the only one having a model picked by all three metrics. In B) it is clearer that K-means is the preferred model by both standard and penalised network, while for Reward network both Agg\_Avg and K-means are selected 3 times. In terms of the the cluster sizes, in Figure \ref{fig:N_I:p0_choosing_cs} C), K=4 is the most common number of subgroups followed by K=5. Overall, the clusterings scores suggest that both K-Means and Agg\_Avg have similar overall performances while the preferred cluster sizes is K=4 followed by K=5. Furthermore, K=4 is the overall choice of clusters numbers through the Elbow approach in Figure \ref{fig:N_I:p0_elbow_method}.
 
 
 % Conclusion Choosing Model and K
-The lack of an obvious cluster model shows the challenge of working with gene expression datasets. It also shows the limitation of using average scores for clustering metrics. Thus, we select the Silhouette cosine score\footnote{For the same reason as we chosen it as a main metric in the last chapter. Compared with the other metrics the Silhouette score uses cosine as a distance which is more suitable for high dimension data.} to look at the spread across samples in Figure \ref{fig:N_I:p0_sillhouette_spread}. With the exception of the Agglomerative clustering with average linkage the other clustering models have a high spread of the silhouette across the different cluster size. This suggests that the Agglomerative clustering behaves better. As there is no clear difference between the cluster sizes we chosen K=6 as it is the best score for the Standard network, it is consistent with previous findings and it makes comparison easier.
+The lack of an obvious cluster model shows the challenge of working with gene expression datasets. It also shows the limitation of using average scores for clustering metrics. Thus, we select the Silhouette cosine score\footnote{For the same reason as we chosen it as a main metric in the last chapter. Compared with the other metrics the Silhouette score uses cosine as a distance which is more suitable for high dimension data.} to look at the spread across samples in Figure \ref{fig:N_I:p0_sillhouette_spread}. With the exception of the Agg\_Avg and K-means the other clustering models have a higher spread of the silhouette across the different cluster size
+
+The clustering scores and the analysis performed suggests that K-means and Agglomerative Clustering with average linkage perform better than the rest as in the top 3 models used \ref{fig:N_I:p0_choosing_cs} B) and the spread of the scores in Figure \ref{fig:N_I:p0_sillhouette_spread}. Going forwards K-means was chosen for its simplicity compared to the Agglomerative Clustering. The Elbow method \ref{fig:N_I:p0_elbow_method} and the other metrics suggests that K=4 is the right choice. This is different from what is expected as in the earlier work \ref{} we found at least five clusters using computational methods and K=6 with biological knowledge (IFNg groups). Also, this is is the next K after 3 which was filtered at the beginning. Thus, in the next section two set of experiments will be performed for K-means with K=4 and K=5. 
 
 \begin{figure}[!htb]
     \thispagestyle{plain}
@@ -141,6 +126,30 @@ The lack of an obvious cluster model shows the challenge of working with gene ex
 
 
 \subsubsection{Network comparison}
+
+
+
+
+
+
+\begin{figure}[!htb]
+    \hfill
+    \begin{subfigure}[b]{0.47\textwidth}
+        \centering
+        \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/P0/4K_p0_modConMev_rep_standard_4K_50TF.png}
+        \caption{The most relative varied genes}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.47\textwidth}
+        \centering
+        \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/P0/10K_p0_modConMev_rep_standard_4K_50TF.png}
+        \caption{All the genes expressed}
+    \end{subfigure}
+    \hfill
+    \caption{Genes found in the tumour dataset for each network community. The top 100 genes are selected by ModCon score. A) Is when the tumour dataset is restricted to the top most varied genes B) Includes all the expressed genes in the tumour dataset. }
+    \label{fig:N_I:p0_mev_rep}
+\end{figure}
+
 
 
 \newpage
