@@ -65,15 +65,6 @@ To find the appropriate clustering model and the number of clusters we adapt the
 % Introduce the results and motivate the reason of why we don't include K=2,3
 In this section we apply the above-mentioned clustering methods to the MEV scores derived from the three networks (Standard, Reward and Penalised) with K ranging from 3-9 and we used the same clustering metrics to assess the performance. In Figure \ref{fig:N_I:p0_choosing_cs} the clustering metrics are displayed, were the number of 'x' marks the highest score after cluster size 2 and 3. The models with 2 clusters or 3 are not taken in account as the metrics tend to give higher score for models with 2,3 clusters. This can be seen in our results as well were usually the clustering models perform worst with the increase of K. 
 
-% Comment on Top 3 models + cs, models and just CS
-While Figure \ref{fig:N_I:p0_choosing_cs} shows the general trends of the metrics across the 3 different clustering scores, it is not very clear which model with how many clusters performs the best for each network or overall. Figure \ref{fig:N_I:p0_top_3_metrics} assists the decision making by looking at the most overall used model with cluster size, only at the cluster model and size in A), B) and C); the colouring scale corresponds to the encounter frequency across network type; e.g. in A) K-means with K=4 appears 3 times in standard network and Spectral Clustering with K=4 two times in all three network types. The colouring strategies helps delineating the configurations for each network. From Figure \ref{fig:N_I:p0_choosing_cs} A) it can be noticed that the standard network is the only one having a model picked by all three metrics. In B) it is clearer that K-means is the preferred model by both standard and penalised network, while for Reward network both Agg\_Avg and K-means are selected 3 times. In terms of the the cluster sizes, in Figure \ref{fig:N_I:p0_choosing_cs} C), K=4 is the most common number of subgroups followed by K=5. Overall, the clusterings scores suggest that both K-Means and Agg\_Avg have similar overall performances while the preferred cluster sizes is K=4 followed by K=5. Furthermore, K=4 is the overall choice of clusters numbers through the Elbow approach in Figure \ref{fig:N_I:p0_elbow_method}.
-
-
-% Conclusion Choosing Model and K
-The lack of an obvious cluster model shows the challenge of working with gene expression datasets. It also shows the limitation of using average scores for clustering metrics. Thus, we select the Silhouette cosine score\footnote{For the same reason as we chosen it as a main metric in the last chapter. Compared with the other metrics the Silhouette score uses cosine as a distance which is more suitable for high dimension data.} to look at the spread across samples in Figure \ref{fig:N_I:p0_sillhouette_spread}. With the exception of the Agg\_Avg and K-means the other clustering models have a higher spread of the silhouette across the different cluster size
-
-The clustering scores and the analysis performed suggests that K-means and Agglomerative Clustering with average linkage perform better than the rest as in the top 3 models used \ref{fig:N_I:p0_choosing_cs} B) and the spread of the scores in Figure \ref{fig:N_I:p0_sillhouette_spread}. Going forwards K-means was chosen for its simplicity compared to the Agglomerative Clustering. The Elbow method \ref{fig:N_I:p0_elbow_method} and the other metrics suggests that K=4 is the right choice. This is different from what is expected as in the earlier work \ref{} we found at least five clusters using computational methods and K=6 with biological knowledge (IFNg groups). Also, this is is the next K after 3 which was filtered at the beginning. Thus, in the next section two set of experiments will be performed for K-means with K=4 and K=5. 
-
 \begin{figure}[!htb]
     \thispagestyle{plain}
     \centering
@@ -98,39 +89,140 @@ The clustering scores and the analysis performed suggests that K-means and Agglo
     \label{fig:N_I:p0_sillhouette_spread}
 \end{figure}
 
-
 \begin{figure}[!htb]
-    \centering
+    \hfill
     \begin{subfigure}{1.0\linewidth}
-        \centering
-        \includegraphics[width=1.0\textwidth,height=0.27\textheight]{Sections/Network_I/Resources/P0/CA_metrics_Std_2_tum_4k.png}
+        \includegraphics[width=1.0\textwidth,height=0.25\textheight]{Sections/Network_I/Resources/P0/CA_metrics_Std_2_tum_4k.png}
         \caption{Standard network}
     \end{subfigure} %
-
-    \begin{subfigure}{1.0\linewidth}
-        \centering
-        \includegraphics[width=1.0\textwidth,height=0.27\textheight]{Sections/Network_I/Resources/P0/CA_metrics_Rwd_2_tum_4k.png}
+    \hfill
+    \begin{subfigure}{0.49\linewidth}
+        \includegraphics[width=1.0\textwidth,height=0.25\textheight]{Sections/Network_I/Resources/P0/CA_metrics_Rwd_2_tum_4k.png}
         \caption{Reward network}
     \end{subfigure}
-    
-    \begin{subfigure}{1.0\linewidth}
-        \centering
-        \includegraphics[width=1.0\textwidth,height=0.27\textheight]{Sections/Network_I/Resources/P0/CA_metrics_Pen_2_tum_4k.png}
+    \hfill
+    \begin{subfigure}{0.49\linewidth}
+        \includegraphics[width=1.0\textwidth,height=0.25\textheight]{Sections/Network_I/Resources/P0/CA_metrics_Pen_2_tum_4k.png}
         \caption{Penalised network}
     \end{subfigure}
+    \hfill
     \caption{Clustering metrics for the 3 networks generated from P0 samples.}
     \label{fig:N_I:p0_choosing_cs}
 \end{figure}
 
 
+% Comment on Top 3 models + cs, models and just CS
+While Figure \ref{fig:N_I:p0_choosing_cs} shows the general trends of the metrics across the 3 different clustering scores, it is not very clear which model with how many clusters performs the best for each network or overall. Figure \ref{fig:N_I:p0_top_3_metrics} assists the decision making by looking at the most overall used model with cluster size, only at the cluster model and size in A), B) and C); the colouring scale corresponds to the encounter frequency across network type; e.g. in A) K-means with K=4 appears 3 times in standard network and Spectral Clustering with K=4 two times in all three network types. The colouring strategies helps delineating the configurations for each network. From Figure \ref{fig:N_I:p0_choosing_cs} A) it can be noticed that the standard network is the only one having a model picked by all three metrics. In B) it is clearer that K-means is the preferred model by both standard and penalised network, while for Reward network both Agg\_Avg and K-means are selected 3 times. In terms of the the cluster sizes, in Figure \ref{fig:N_I:p0_choosing_cs} C), K=4 is the most common number of subgroups followed by K=5. Overall, the clustering scores suggest that both K-Means and Agg\_Avg have similar performances while the preferred cluster sizes is K=4 followed by K=5. Furthermore, K=4 is the overall choice of clusters numbers through the Elbow approach in Figure \ref{fig:N_I:p0_top_3_metrics} D.
+
+
+% Using cosine sillhouette to look at the spread
+The lack of an obvious cluster model shows the challenge of working with gene expression datasets. It also shows the limitation of using average scores for clustering metrics. Thus, we select the Silhouette cosine score\footnote{For the same reason as we chosen it as a main metric in the last chapter. Compared with the other metrics the Silhouette score uses cosine as a distance which is more suitable for high dimension data.} to look at the spread across samples in Figure \ref{fig:N_I:p0_sillhouette_spread}. With the exception of the Agg\_Avg and K-means the other clustering models have a higher spread of the silhouette across the different cluster size.
+
+% narrowing done to the 2 clustering models
+The clustering scores and the analysis performed suggests that K-means and Agglomerative Clustering with average linkage perform better than the rest as in the top 3 models used \ref{fig:N_I:p0_top_3_metrics} B) and the silhouette spread in Figure \ref{fig:N_I:p0_sillhouette_spread}. The Elbow method Figure \ref{fig:N_I:p0_top_3_metrics} D) and the other metrics suggests that K=4 is the right choice. This is different from what is expected as in the earlier work \ref{} we found at least five clusters using computational methods and K=6 with biological knowledge (IFNg groups). Also, this is is the next K considered as K=2,3 are not taken in account when finding the top 3 scores as it was explained at the beginning of the section.
+
+\begin{figure}[!htb]
+    \hfill
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/P0/Sankey_KM_4K.png}
+        \caption{K-Means}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/P0/Sankey_Avg_4K.png}
+        \caption{Agglomerative with average linkage}
+    \end{subfigure}
+    \hfill
+    \caption{Sankey plots for the two best performing models. }
+    \label{fig:N_I:p0_sky_Agg_KMeans}
+\end{figure}
+
+
+Two Sankey plots in Figure \ref{fig:N_I:p0_sky_Agg_KMeans} are used to assess the differences in the MIBC subtyping between the two best clustering model and the two cluster sizes\footnote{The standard networks were only used for comparison to simplify the process.}. There is a striking difference between the two clustering models, Agg\_Avg finds disproportionate clusters while the K-means finds similar size groups. This, together with the High IFNG subgroup found by K-means suggests that this model is the best choice. 
+
+
+The cluster metrics are not very useful in determining the number of clusters, the scores decrease proportionally with the number of clusters, thus the best result if given by the lowest K. Elbow method helps in this case but one it is a heuristic approach. In Figure \ref{fig:N_I:p0_sky_Agg_KMeans} A) when K=5, the larger group 0 from K=4 is split into smaller groups, see subtype 2 \& 5 (when K=5). For this and the fact that it is expected to find larger groups K=5 is preferred over K=4.
 
 
 \subsubsection{Network comparison}
 
 
+Figure \ref{fig:N_I:p0_sky_leiden} represents an overview of the decisions made in the previous sub-sections, K-means (K=5) was found to be the most suitable clustering model. The three networks are compared with the consensus and TCGA classifiers \citet{Kamoun2020-tj, Robertson2017-mg} as well as our subtyping from Section \ref{}). From the top left figure it can be observed that there number of communities is similar across the three networks, there are 9 or 10 with a few exceptions. There are significantly less communities compared with the number of subgraphs found in the tumour network; see Figure \ref{fig:N_I:tum_leiden_modifiers}. The small variance of the Modularity score in the Figure on the right suggests that the communities are fairly stable and the penalised network have a lower performance by 0.04.
+
+\begin{figure}[!htb]    
+    \centering
+    \includegraphics[width=1.0\textwidth,height=0.7\textheight,keepaspectratio]{Sections/Network_I/Resources/P0/Ldn_Sky_TF_50_RawKMeans_K5.png}
+    \caption{Overview of the MIBC stratification using P0 dataset.}
+    \label{fig:N_I:p0_sky_leiden}
+\end{figure}
+
+From the Sankey plot it can be seen that the High IFNG group (CA+IFNg) is contained across the 3 networks in cluster 3. Groups 2 in Standard and Penalised are similar and formed mostly from Ba/Sq groups while cluster 1 (Reward) has additional samples from LumInf/NS\footnote{Would this mean that by increasing the weight values more samples are added to the group? While pruning edges removes some of the noise?}. The cluster 0 from the Standard network resembles to the LumInf/NS group from the CA+IFNG classification, being a mixed of samples. Group 0 (Reward and Penalised) and 1 (Standard) contains samples which previously were considered Luminal samples. Lastly, cluster 4 contains a consistent number of samples which previously classified as LumP or/and Luminal Unstable (LumU), Unspecified (LumNS).
+
+Overall, the comparison between classifications shows that the network approaches exhibit different subtypes from the other traditional methods. Several samples change group membership in the three different networks, but there are no large changes. This suggests that the weight modifiers strategies have little effect on the subtyping.
+
+
+\subsubsection{Community analysis}
+
+
+\begin{figure}[!htb]
+    \hfill
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/P0/Comms/Sky_Comm_Comp_4K.png}
+        \caption{Gene changes}
+    \end{subfigure}
+    \hfill
+     \begin{subfigure}[b]{0.49\textwidth}
+            \centering
+            \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/P0/Comms/Mut_Comm_Comp_4K.png}
+            \caption{Mutation representation}
+    \end{subfigure}
+    \hfill
+    \hfill
+    \begin{subfigure}[b]{0.47\textwidth}
+        \centering
+        \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/P0/Comms/P0_standard_4K_50TF_med.png}
+        \caption{Standard expression values}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.47\textwidth}
+        \centering
+        \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/P0/Comms/P0_standard_4K_50TF_med.png}
+        \caption{Reward expression values}
+    \end{subfigure}
+    \hfill
+    \caption{Gene communities changes.}
+    \label{fig:N_I:p0_comm_chgs}
+\end{figure}
 
 
 
+
+\begin{figure}[!htb]
+    \hfill
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/P0/Comms/Mut_evo_Std_4k.png}
+        \caption{Standard}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/P0/Comms/Mut_evo_Rwd_4k.png}
+        \caption{Reward}
+    \end{subfigure}
+    \caption{Mutation burder per communities}
+    \label{fig:N_I:p0_mut_burden}
+\end{figure}
+
+
+
+To understand the lack of changes
+
+
+
+\newpage
 
 \begin{figure}[!htb]
     \hfill
