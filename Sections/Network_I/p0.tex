@@ -162,9 +162,9 @@ From the Sankey plot it can be seen that the High IFNG group (CA+IFNg) is contai
 
 Overall, the comparison between classifications shows that the network approaches exhibit different subtypes from the other traditional methods. Several samples change group membership in the three different networks, but there are no large changes. This suggests that the weight modifiers strategies have little effect on the subtyping.
 
-
 \subsubsection{Community analysis}
 
+Previous subsections showed that the weight modifiers do have an effect on the network metrics but little effect on the MIBC subtyping. A natural next step is to analyse the changes in communities when a modifier is applied. There are a few questions to answers 1) How do the communities change? 2) Is there a difference in mutation burden? 3) How much the gene expression differs? 
 
 \begin{figure}[!htb]
     \hfill
@@ -189,7 +189,7 @@ Overall, the comparison between classifications shows that the network approache
     \hfill
     \begin{subfigure}[b]{0.47\textwidth}
         \centering
-        \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/P0/Comms/P0_standard_4K_50TF_med.png}
+        \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/P0/Comms/P0_norm3_4K_50TF_med.png}
         \caption{Reward expression values}
     \end{subfigure}
     \hfill
@@ -197,6 +197,19 @@ Overall, the comparison between classifications shows that the network approache
     \label{fig:N_I:p0_comm_chgs}
 \end{figure}
 
+
+% How the communities are sincronise
+To ease the analysis and based on the Modularity Score, the standard and reward networks are selected for community comparisons. A common problem in unsupervised learning is the group labelling differences between the different models and the standard strategy is to count up from the largest group. This means that there are community labelling differences between the standard and reward networks which makes the analysis confusing. Therefore, the community labels are synchronised to match which is achieved by selecting the standard network as a reference for community numbering. Next, each community in the standard network is matched with the community with the highest representation from the reward network, this then takes the label from the reference labeling.
+
+% Reward modifier is not powerful enough
+Figure \ref{fig:N_I:p0_comm_chgs} sheds some light on the above questions. The sankey in A) shows 
+how the genes change communities from the standard to the reward network. The biggest change is represented by the lack of community 10 in the reward network, otherwise the communities remarkable simple. Figures \ref{fig:N_I:p0_comm_chgs} C), D) show the median gene expression across the communities for the two networks. Communities 1 and two are almost unchanged in the reward network while in the others the spread of the median expression is affected. The most striking difference is in community 9 and 3.  
+
+Figure \ref{fig:N_I:p0_comm_chgs} B) displays the number of mutated genes (Y) in each reward network's community. For each group it can be usually notice that the there are a large number of mutated genes from the same community. Community 1 has a large number of mutations in the standard network and it receives a few more mutated genes from com 2 (standard). Community 4 has lots of mutated genes in the standard but it receives a few from com 6 as well. Communities 8 and 9 have few mutated genes which can be impart explained by their relative small size. Overall, the reward modifier is the trigger of the community changes but it is not powerful enough to set off large community migrations.
+
+% 
+Figure \ref{fig:N_I:p0_comm_chgs} B) is a suitable plot to show that most communities have a higher number of mutated genes between the weight modifiers, but it is not suitable too check if the reward modifier affected the genes with the higher mutation burden. In Figure \ref{fig:N_I:p0_mut}
+it shows the mutation burden across communities. In the standard, communities 1, 2, 3, 4 and 5 have the highest number of genes mutated and it can be noticed that all have the same trend a sharp decline after mutation burden >1; community 4 having the highest number of highly mutated genes. Similar trends can be noticed in the reward network but communities 2,3,4 have a similar slope. In addition, community 9 has just a few mutation with low burden, while 6 and 7 are better separated in the reward. This changes suggests that the highly mutated genes are the ones changing communities.
 
 
 
@@ -212,17 +225,21 @@ Overall, the comparison between classifications shows that the network approache
         \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/P0/Comms/Mut_evo_Rwd_4k.png}
         \caption{Reward}
     \end{subfigure}
-    \caption{Mutation burder per communities}
+    \caption{Mutation burden per communities}
     \label{fig:N_I:p0_mut_burden}
 \end{figure}
 
 
+% Conclusion 1 - Weight modifiers work
+Overall, the community analysis shows that there reward modifier works, there are changes between communities and this is given by the mutated genes, especially the ones with a high burden. However, the modifier does not have enough power to cause large changes.
 
-To understand the lack of changes
+\subsubsection{Gene representation}
+
+It is worth remembering that the network is built on the P0 data and then the information extracted from there it is used to stratify the tumour dataset. The two types of data is expected to have differences in gene expression, some of the genes may be expressed in the P0 data but not in the tumour and vice-versa. Therefore, it is important to understand how well are represented the genes selected through the network approach (ModCon and MEV) in the tumour dataset. 
 
 
-
-\newpage
+% Conclusion 2 - Poor representation
+Figure \ref{fig:N_I:p0_mev_rep} shows that representation for each community. In Figure \ref{fig:N_I:p0_mev_rep} A) shows the genes selected are represented in the most varied genes (in TCGA) while B) in all the expressed genes. From the two sub-figures it can be clearly seen that using just the most varied genes was missing a large number of genes. Nevertheless, there are is still a few genes missing when all the expressed genes are used. This may suggests that using a larger dataset may help increase the gene coverage. 
 
 \begin{figure}[!htb]
     \hfill
@@ -243,20 +260,18 @@ To understand the lack of changes
 \end{figure}
 
 
+\subsubsection{Conclusion}
+
+So far in this section all of the experiments were performed with networks that have been minimum 50 connections per Transcription Factor gene. This value was pseudo-random chosen with the hope to prioritise the TFs in the network. Moreover, this was made on the assumption that the Leiden community detection algorithm is agnostic at the nodes' number of connection. Given the poor results in the MIBC subtyping this assumption came to scrutiny. 
+
+Lowering the minimum number of edges per TF to 10 had a drastic improvements in the performance. There are more communities found and the modularity score across all three network increased. In addition, when computing all the expressed genes were considered instead of looking at just the most varied ones. The clustering and communities were re-analysed but similar trends were found. The weight modifiers change the networks, there are changes in communities but no significant difference in the MIBC subtypes. 
+
+The following changes are considered in the next section 1) Analyse the effect of TFs in the networks to find the most suitable value 2) Use the entire healthy dataset to increase the gene representation in the tumour,  3) a different community detection was analysed.
+
+
 
 \newpage
 
-% Reason 1 for why this approach is not good - poor gene representation in the tumour
-In the first experiment run, with 4K genes I have noticed that there were not that many changes between communities when the modifier is applied. This is different from what I intended to see when modifiers are applied. We want to see better separation between communities, with smaller and more dedicated biological processes. Thus, I have started investigating this during which I found out that there is a poor representation of the genes mutated in the P0 samples. Thus lead to further investigating on how to select the genes for the PGCNA; this was covered in this section \ref{Sec:N_I:gene_sel}.
-
-To support this argument the following figures are needed:
-\begin{itemize}
-    \item Sankey plot with the community changes
-    \item Bar Figure to show the mutation representation in each community in the P0 dataset. Figure \ref{fig:N_I:P0_median}
-    \item Show the mutation intensity (i.e. mutation count) evolution when applying different threshold.  Figure \ref{fig:N_I:P0_comp}
-    \item The median gene expression of the genes in each community. See Figure \ref{fig:N_I:P0_comp}.
-    \item Experiments with 10K and that there is too much noise. The reason for doing this is that I wanted to have more genes from the P0 included in the Tumour dataset
-\end{itemize}
 
 % Reason 2 - Scatter biological pathways 
 Further on, when we look at the biology of each community we could see that there a lot shared pathways across communities. This include PDGF, CCKR, apoptosis and others. This gives the impression that the approach developed did the contrary from the intended behaviour, instead of isolating the biological processes it scattered through the network. The pathways were discovered through the Gene Ontology tool using PANTHER Pathway option and \textbf{no correction}; the latter because the majority of the genes inputted were \textbf{not} given significant results. This further strengthen our intuition that this approach is not providing the intended results.
@@ -274,71 +289,4 @@ Figure supporting the above:
     \item How many of the genes selected from the ModCon are a TF? Give some stats
     \item The sub-graph where only the ModCon genes are selected for each community; with the size of the TF \ref{fig:N_1:tf_comp}
 \end{itemize}
-
-% Reason 4 - Linking to the tumour stratification 
-An open problem to the network selection process is how to link back the genes used in a healthy network to tumour stratification. When tried to apply MEV on the genes selected with the P0 + mutations-count there weren't that well represented in the TCGA's dataset with the same number of genes (4K) - ~1/3 of the genes were presented. However, when all the (basic filtered) 13k genes from the tumour dataset were used, there was a better match. Also, when comparing with the other cohorts didn't make sense, the Basal split wasn't present in neither of the networks. Regardless of the representation, this approach is not fulfilling the initial task which is to integrated the tumour and healthy as it stratifies just by the GE from P0 and doesn't consider the GE from tumour dataset.
-To support this argument the following figures are needed:
-\begin{itemize}
-    \item Stats showing the representation of the selected genes through P0 in the TCGA data
-    \item A Morpheus plot with the hierarchical clustering for the one of the P0 experiments
-    \item Sankey plot of the Tumour stratification when the genes selected with the P0.
-\end{itemize}
-
-
-\subsubsection{Conclusion}
-
-There are a few argument made against this experiment:
-\begin{itemize}
-    \item The number of connections a gene has a similar effect to the reward modifier. (thinking of the Sankey plot when TF=10 and std-norm3 on P0). This is somehow expected as in the PGCNA paper the author says that more connections yield less communities.
-    \item P0 dataset may not have enough power to form smaller communities. This would be verified in the next experiments with TF=10
-    \item Many genes from the P0 selection network are missed in the TCGA and the GE of the tumour are not considered.
-    \item There is a bias in the gene selection, when the most varied are used, and sometimes the one with the highest magnitude are omitted. Thus experiments to include genes with highest variance, magnitude and mutation count
-\end{itemize}
-
-
-\subsubsection{Draft Figures}
-
-\begin{figure}[H]
-    \captionsetup[subfigure]{justification=Centering}
-    \begin{subfigure}[t]{0.5\textwidth}
-        \includegraphics[width=\textwidth]{Images/P0/standard_4K_50TF_median.png}
-        \caption{Standard median values}
-    \end{subfigure}\hspace{\fill} % maximize horizontal separation
-    \bigskip % more vertical separation
-    \begin{subfigure}[t]{0.5\textwidth}
-        \includegraphics[width=\linewidth]{Images/P0/norm3_4K_50TF_median.png}
-        \caption{Norm3 median values}
-    \end{subfigure}\hspace{\fill} % maximize horizontal separation
-    \caption{Median values for source and target}
-    \label{fig:N_I:P0_median}
-\end{figure}
-
-
-\begin{figure}
-    \captionsetup[subfigure]{justification=Centering}
-    \begin{subfigure}[t]{0.5\textwidth}
-        \includegraphics[width=\textwidth]{Images/P0/box_standard_4K_50TF_norm3_4K_50TF.png}
-        \caption{Mutation count per community}
-    \end{subfigure}\hspace{\fill} % maximize horizontal separation
-    \begin{subfigure}[t]{0.5\textwidth}
-        \includegraphics[width=\linewidth]{Images/P0/memberShip_standard_4K_50TF_norm3_4K_50TF.png}
-        \caption{Membership changes}
-    \end{subfigure}\hspace{\fill} % maximize horizontal separation
-    \bigskip % more vertical separation
-    \begin{subfigure}[t]{0.9\textwidth}
-        \includegraphics[width=\linewidth]{Images/P0/sankey_standard_4K_50TF_norm3_4K_50TF.png}
-        \caption{Sankey between standard and norm3}
-    \end{subfigure}\hspace{\fill} % maximize horizontal separation
-
-    \caption{Comparison between Standard and norm3}
-    \label{fig:N_I:P0_comp}
-\end{figure}
-
-
-
-\begin{figure}[!htb]
-    \centering\includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Images/P0/TF_comp.png}
-    \caption{TF Comparison}
-    \label{fig:N_1:tf_comp}
-\end{figure}
 
