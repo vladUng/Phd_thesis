@@ -14,51 +14,7 @@ Key results:
               \item The tools created to analyse the networks. Mainly I'm referring to the community comparison.
           \end{itemize}
 \end{itemize}
-Suggested figures:
-\begin{itemize}
-    \item Methods/Implementation
-          \begin{itemize}
-              \item Diagram of the pipeline developed showing where I modified the code from the original paper  - Figure 5
-              \item The different modifiers - Figure 6
-          \end{itemize}
-    \item Results
-          \begin{itemize}
-              \item Network visualisation. There are several variations/modes of the network that we can use depending on what we want to highlight in an experiment.
-                    \begin{itemize}
-                        \item Colour by community detection
-                        \item Node size by TF
-                        \item Node size by Integrated Value of Influence
-                        \item Node size bye mutation count
-                    \end{itemize}
 
-          \end{itemize}
-\end{itemize}
-\begin{itemize}
-    \item For each dataset we will need to display the network visualisation with Gephi:
-          \begin{itemize}
-              \item Tum
-              \item P0
-              \item P0+AbsCa+Undifferentiated
-          \end{itemize}
-\end{itemize}
-
-\begin{itemize}
-    \item Community comparison (Sankey)
-          \begin{itemize}
-              \item Standard (unmodified) vs reward
-              \item Standard vs penalisation
-              \item Across different number of genes
-          \end{itemize}
-\end{itemize}
-
-\begin{itemize}
-    \item Explore membership changes (box plot \- for now)
-          \begin{itemize}
-              \item From which community the genes are changing to
-              \item Showing how many of these genes are mutated.
-              \item Trying to find where these mutations are going.
-          \end{itemize}
-\end{itemize}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -69,27 +25,6 @@ This section needs to begin by addressing why a network approach, why the Gene e
 % 
 The motivation behind using network/graph approaches is that they are closer to the biology of bladder cancer. More specifically, these allow us to represent pathways, and partial correlation between genes. Thus, a network approach is dealing both with the local and global effects of a gene. In addition, having links/connections between genes/nodes will enable to add weights (i.e importance) but also severe (in case of mutations that turns off a pathway).
 
-The network approach can be split into several sub-parts:
-\begin{enumerate}
-    \item \textbf{Building the network/graph}
-    \begin{itemize}
-        \item This covers the work on CoRegNet \citet{Nicolle2015-tn} and PGCNA2 \citet{Care2019-ij}
-    \end{itemize}
-    \item \textbf{Finding the key genes in the network}. This problem comes in different faces: the problem of node influence, node centrality, network's hub etc. Some papers that look at this are:
-    \begin{itemize}
-        \item Integrated Value of Influence (IVI) \citet{Salavaty2020-wo} - This is a very good paper which combines different metrics to find the node of influence in a biological network. It justifies why choosing 6 popular metrics and how are integrated. I think this should be ok to use it.  - \textit{See more notes at the end}
-        \item Hub Discovery in partial Correlation Graphs by \citet{Hero2012-ch} - Seams good but it's very mathematical and couldn't find any implementation.
-        \item (+) other methods like Autoencoders, Graph Neural Networks, and Cartesian Genetic Programming? (the dataset might be too big though)
-    \end{itemize}
-    \item \textbf{Propagating the data to network}. This refers to how to integrate other datasets 
-    \begin{itemize}
-        \item There is some relevant work from \citet{He2017-dj} where they have integrated somatic mutations with gene expression. See below for a detailed description.
-    \end{itemize}
-    \item \textbf{How the data is visualised}
-    \begin{itemize}
-        \item In both the CoRegNet and PGCNA2 the authors have some recommendations on what tools to use to visualise the network. At the moment, I haven't revised these but my specs are: interactive, being able to filter/select different nodes.
-    \end{itemize}
-\end{enumerate}
 
 \subsubsection{Datasets used}
 
@@ -104,7 +39,8 @@ The parameters that can be set through PGCNA are the following:
 \end{itemize}
 
 
-\import{Sections/Network_I/}{review.tex}
+% This needs to be in the literature review side of things
+% \import{Sections/Network_I/}{review.tex}
 
 
 \import{Sections/Network_I/}{methods.tex}
@@ -114,10 +50,9 @@ The parameters that can be set through PGCNA are the following:
 \subsection{Experiments Overview}
 
 
-In the initial experiments two networks were constructed, one from the healthy dataset and the other from the tumour dataset (TCGA). For the healthy dataset we started with the samples from the P0 as these would represent an unaltered version of the bladder tissue. Compared with the AbsCa differentiated tissues dataset, P0 contains the noise in the in-situ tissue.
+In the initial experiments two networks were constructed, one from the healthy dataset and the other from the tumour dataset (TCGA). Only P0 samples from the healthy datasets are initially used to build the networks as these represents an unaltered version of the bladder tissue. Compared with the AbsCa differentiated tissues dataset, P0 contains the noise in the in-situ tissue.
 
-On these networks we have applied modifiers, reward and penalising the genes that are mutated, proportionally to the mutations across the cohort. The hypothesis is that by applying modifiers it will improve the community separation inside the networks and each community will be representative of a biological process. Then, we'll select the most representative genes for each community using ModCon score. Those selected genes were going to be used to stratify the samples, by looking at their representation in each sample by applying z-score. These z-scores will be than used to stratify the samples.
-
+On these networks weight modifiers were applied, reward and penalising the genes that are mutated, proportionally to the mutations across the cohort. The hypothesis is that by applying modifiers it will improve the community separation inside the networks and each community will be representative of a biological process. Then, the most representative genes are selected for each community using ModCon score. Those  genes are used to stratify the MIBC samples by clustering their MEV.
 
 \import{Sections/Network_I/}{tum.tex}
 \newpage
