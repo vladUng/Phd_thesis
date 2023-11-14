@@ -5,10 +5,9 @@
 \fbox{
     \parbox{0.95\linewidth}{
       \begin{itemize}
-        \item Develop a network pipeline (inspired from PGCNA)
         \item First attempt to integrate mutations and Transcription Factors
         \item Use non-cancerous data (P0) to inform MIBC subtyping 
-        \item Develop tools to analyse networks
+        \item Develop a network pipeline (inspired from PGCNA) and tools to analyse results
       \end{itemize}
     }
 }
@@ -16,16 +15,22 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Overview}
+\subsection{Summary}
 
-This section needs to begin by addressing why a network approach, why the Gene expression is best represented by a network and the features that it enables us to build on that.
-% 
-The motivation behind using network/graph approaches is that they are closer to the biology of bladder cancer. More specifically, these allow us to represent pathways, and partial correlation between genes. Thus, a network approach is dealing both with the local and global effects of a gene. In addition, having links/connections between genes/nodes will enable to add weights (i.e importance) but also severe (in case of mutations that turns off a pathway).
+In the previous chapter, standard clustering methods and insights from in situ experiments (\citet{Baker2022-bj}) were utilised to stratify the muscle-invasive bladder cancer (MIBC) cohort from The Cancer Genome Atlas (TCGA). This work uncovered new MIBC subgroups with significant biological differences compared to those identified in the TCGA (\citet{Robertson2017-mg}) and consensus (\citet{Kamoun2020-tj}) stratification. This finding highlights the potential for discovering biologically relevant groups and underscores the need for new methods that combine data at the computational level.
+
+Networks/Graphs methods have been previously used to stratify other cancers (glioblastoma - \citet{Care2019-ij}) and the gene expression data is represented in a way that enables further information integration.  Additionally, networks serve as powerful visualisation tools, enhancing the biological understanding of diseases.
 
 
-\subsubsection{Datasets used}
+This chapter delves into how mutations and transcription factors can be integrated into a network approach, aiming to uncover new MIBC subgroups. Two primary networks are constructed: one from the tumour dataset (Section \ref{s:N_I:tum}) and another from the healthy dataset (Section \ref{s:p0}). The experiments with the tumour network aim to demonstrate the potential of the network approach and to draw comparisons with the findings from the previous chapter. Conversely, the experiments with the healthy network investigate how non-cancerous information can inform MIBC stratification.
 
-The MIBC cohort from The Cancer Genome Atlas (TCGA) \cite{Robertson2017-mg} and the P0 samples from Jack Birch Unit (JBU) are used. The first dataset is used in the first part of the chapter where a network is created from the genes expressed in the tumours and then subtype the cohort. While in second part, the network is constructed from the genes expressed in the P0 samples which are then used to subgroup the MIBC cohort from TCGA. Both datasets consists of Transcriptions Per Million (TPM) from RNA sequencing (RNAseq). 
+Furthermore, this chapter focuses on understanding how different parameters in the network pipeline influence the graphs and disease subtyping. It involves developing tools and methods to analyse the vast amount of results, highlighting the challenges inherent in working with unsupervised learning (in machine learning terminology), particularly in the context of highly heterogeneous data.
+
+Overall, the work presented in this section demonstrates the potential of networks in MIBC subtyping. Although the initial methods for data integration show limited impact on disease subtyping, this chapter lays the groundwork for future chapters, where initial assumptions are revised, and new, adapted methods are employed.
+
+\subsubsection{Datasets}
+
+The MIBC cohort from The Cancer Genome Atlas \cite{Robertson2017-mg} and the P0 samples from Jack Birch Unit (JBU) are used. The first dataset is used in the first part of the chapter where a network is created from the genes expressed in the tumours and then subtype the cohort. While in second part, the network is constructed from the genes expressed in the P0 samples which are then used to subgroup the MIBC cohort from TCGA. Both datasets consists of Transcriptions Per Million (TPM) from RNA sequencing (RNAseq). 
 
 The mutation information is coming from Whole Exon Sequencing (WES) of the MIBC cohort from TCGA. In this chapter only the mutation count, i.e. how much a gene is mutated across the cohort. In the following chapters the mutation type (e.g. if it is missense) is used to integrate more details.
 
@@ -38,54 +43,19 @@ The list of Transcription Factors (TFs) is taken from The Human Transcription Fa
 
 
 \import{Sections/Network_I/}{methods.tex}
-
 \newpage
-
-\subsection{Experiments Overview}
-
-
-In the initial experiments two networks were constructed, one from the healthy dataset and the other from the tumour dataset (TCGA). Only P0 samples from the healthy datasets are initially used to build the networks as these represents an unaltered version of the bladder tissue. Compared with the AbsCa differentiated tissues dataset, P0 contains the noise in the in-situ tissue.
-
-On these networks weight modifiers were applied, reward and penalising the genes that are mutated, proportionally to the mutations across the cohort. The hypothesis is that by applying modifiers it will improve the community separation inside the networks and each community will be representative of a biological process. Then, the most representative genes are selected for each community using ModCon score. Those  genes are used to stratify the MIBC samples by clustering their MEV.
-
 \import{Sections/Network_I/}{tum.tex}
 \newpage
 \import{Sections/Network_I/}{p0.tex}
 \newpage
 
-
-
-\newpage
-
 \subsection{Discussion}
 
+This chapter presents the initial attempt of this project to apply a network-based approach for stratifying the muscle invasive bladder cancer (MIBC) cohort from the TCGA database. The approach involved integrating multiple data types at the computational stage, including gene expression from both cancerous and non-cancerous tissues, mutation burden, and transcription factors (TFs).
 
-\subsection{Checkpoint}
+Two main co-expressed gene networks were explored: one constructed from tumour samples and the other from healthy tissue samples. The experiments demonstrated that integrating mutations and TFs was successful at the graph level, but had limited impact on MIBC subtyping. Network metrics varied between the modified networks (as shown in Figures \ref{fig:N_I:net_metrics_tum} and \ref{fig:N_I:net_metrics_p0}), and highly mutated genes were observed to change communities (Figure \ref{fig:N_I:p0_mut_burden}). The disease subgroups identified through this network approach showed different results compared to standard approaches, with only minor variations observed between networks modified by weight modifiers. This suggests that the weight modifier strategies, as depicted in Figure \ref{fig:N_I:modifiers}, require further refinement.
 
+It was also noted that altering the number of edges per TF significantly impacted the Leiden algorithm's performance and the number of communities identified. Additionally, as highlighted by\citet{Peixoto2021-jx, Peixoto2023-rt}, models such as Leiden and Louvain are descriptive methods, and the communities they identify do not always reflect the underlying knowledge in the network. Consequently, an alternative community detection method will be explored in the following chapter.
 
-Things left to do:
-\begin{itemize}
-    \item Experiments 
-          \begin{todolist}
-              \item Re-write the introduction to cover all the experiments, especially the two parts
-          \end{todolist}
-    \item P0 - experiments
-          \begin{todolist}
-              \item Put stats: How many of the genes selected w/ ModCon are TF. How does this compares to the initial ratio.
-          \end{todolist}
-    \item Tum - experiments
-          \begin{todolist}
-              \item To be completed
-          \end{todolist}
-    \item H derived experiments
-          \begin{todolist}
-              \item To be completed
-          \end{todolist}
-\end{itemize}
-\vspace{1cm}
-\textbf{Conceptual} regarding on network analysis. In essence, small questions that are trying to find the best network configuration:
-\begin{todolist}
-    \item Do we need more stats? How do the authors in PGCNA choose the number of edges per node? Can we apply it to our case?
-    \item What defines a noisy network?
-    \item How do we know if we lose some biological information?
-\end{todolist}
+Overall, the subsequent section will consider the following changes: 1) Analysing the effect of TFs in the networks to determine the most suitable value; 2) Utilising the entire healthy dataset to enhance gene representation in the tumour network; 3) Applying a different community detection algorithm; and 4) Improving the strategies for weight modifiers.
+

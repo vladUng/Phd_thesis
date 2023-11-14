@@ -4,14 +4,14 @@
 
 
 \begin{figure}[!htb]
-    \centering\includegraphics[width=0.75\textwidth,height=0.75\textheight,keepaspectratio]{Sections/Network_I/Resources/Methods/network_pipeline.png}
+    \centering\includegraphics[width=0.95\textwidth,height=0.95\textheight,keepaspectratio]{Sections/Network_I/Resources/Methods/network_pipeline.png}
     \caption{Network pipeline}
     \label{fig:N_I:network_pipeline}
 \end{figure}
 
 
 % Start by giving an overview of the pipeline, there are several components to it: Network contruction & gene filtering, Community Detection, Finding the relevant genes in each community, Representation of this genes across samples & clustering
-From Figure \ref{fig:N_I:network_pipeline} The network pipeline is broken in several stages 1) the network is constructed from RNA-seq data 2) community detection algorithms are applied 3) find the most important genes in each community and 4) find the representation of the genes from 3) to the samples and 5) apply clustering analysis to find the disease subgroups.
+From Figure \ref{fig:N_I:network_pipeline} The network pipeline is broken in several stages 1) the network is constructed from RNA-seq data and to which community detection algorithms are applied 2) find the most important genes in each community and 3) find the representation of the genes from 3) to the samples and 4) apply clustering analysis to find the disease subgroups.
 
 % Describe each componenet and why I'm doing this 
 
@@ -19,20 +19,23 @@ From Figure \ref{fig:N_I:network_pipeline} The network pipeline is broken in sev
 \subsubsection{Gene filtering}
 The genes are filtered by the same approach as in \ref{}\footnote{This will be a reference to the Data pre-processing in the Clustering Analysis work with Interferon$\gamma$} selecting the top 5K genes (may vary with experiment) with the highest median/standard deviation. A Spearman Correlation matrix is then built on the 5K genes, where the correlation of two genes represents the edges' weight while network nodes are the genes themselves. 
 
+% There is not specific rationale for choosing 3K or 5K top most varied genes. 
+For clustering analysis usually a third of the expressed genes (3K-4k genes) are used (e.g. TCGA subtyping - \citet{Robertson2017-mg}). However, in the non-cancerous experiments it was observed that when selecting the top 3K most varied genes (in the healthy) there are just a few mutated in the tumour dataset, and 5K genes were used instead. Thus, the experiments are usually run with the number of genes ranging from 3K-5K; Graphs with 6K and 7K nodes (=genes) were also explored, but not included in this chapter as usually these networks were quite dense and even harder to analyse.
+
 % Selective edge pruning
-\subsubsection{Selective edge pruning}
+\subsubsection{Edge pruning}
 For a network of 5K nodes there are $1.24x10^6$ possible edges and keeping all of them makes the network challenging to analyse. In \citet{Care2019-ij} the authors explore different edge pruning strategies and found that on their datasets (Glioblastoma and Breast cancers) an aggressive strategy yields the best result. The strategy keeps the 3 top most correlated genes, meaning that each node has a minimum degree of 3. However, if gene A is in the top 3 of gene E (and the reverse is not true - gene E is not in the top of gene A) then A will have a degree of 4 or the node has edges to the other 4 different genes. The authors from PGCNA build networks with 3-10 minimum edges for nodes and observed that the one with 3 edges yields the best result by the Modularity Score\footnote{Metric used by Leiden and Louivan algorithm to assess the community separation.} and the number of communities, where a larger number has the potential to yields better biological results.
 
-The edge pruning approach from \citet{Care2019-ij} was implemented and adapted to have a preferential treatment for a list of genes that are Human Transcription Factors \cite{Lambert2018-el} (TF). The TFs are genes that have a higher impact on the other genes by regulating their expression. Therefore, the selective edge pruning strategy we developed would allow the TFs to have a higher number of edges compared to the standard genes. There are number of experiments performed on finding the right number of connections for TF genes in Section \ref{N_I:s_exp_edge_pruning}
+The edge pruning approach from \citet{Care2019-ij} was implemented and adapted to have a preferential treatment for a list of genes that are Human Transcription Factors \cite{Lambert2018-el} (TF). The TFs are genes that have a higher impact on the other genes by regulating their expression. Therefore, the selective edge pruning strategy developed would allow the TFs to have a higher number of edges compared to the standard genes. There are number of experiments performed on finding the right number of connections for TF genes in the next chapter \ref{N_I:s_exp_edge_pruning}
 
 % Community detection
 \subsubsection{Community detection}
 
 Once the network is built a community detection algorithm is applied to find the sub-networks of genes. The purpose of this is to find the genes that are correlated together which in turn will, potentially, resemble some parts of the biological process. This hypothesis can be verified using Gene Set Enrichment Analysis (GSEA) or Gene Ontology (GO). It is worth noting that the ideal communities would be given by the biological pathways but that information is incomplete and not always available.
 
-In this project we have explored two main classes of community detection algorithms: Leiden and Stochastic Block Model (SBM). The first algorithm is a popular method used to find partitions, blocks (=communities) used in the work of \citet{Care2019-ij}. However, Leiden may find non-existent structure in the data as explained in \citet{Peixoto2021-jx}. The SBM introduced by \citet{Peixoto2019-fg} addresses this issues by employing a Bayesian approach to find the blocks in the networks. 
+In this project two main classes of community detection algorithms are explored: Leiden and Stochastic Block Model (SBM). The first algorithm is a popular method used to find partitions, blocks (=communities) used in the work of \citet{Care2019-ij}. However, Leiden may find non-existent structure in the data as explained in \citet{Peixoto2021-jx}. The SBM introduced by \citet{Peixoto2019-fg} addresses this issues by employing a Bayesian approach to find the blocks in the networks. 
 
-In this project both methods are used. Initially, Leiden with Modularity Score is used in the Tumour (Section \ref{s:N_I:tum}) and in P0 networks (Section \ref{s:p0}). This is then followed by the experiments performed with all the healthy data (\ref{}) and the improved network pipeline (\ref{})\footnote{Sections to come}.
+In this project both methods are used. Initially, Leiden with Modularity Score is used in the Tumour (Section \ref{s:N_I:tum}) and in P0 networks (Section \ref{s:p0}). This is then followed by the experiments performed in the next chapter with all the healthy data (\ref{}) and the improved network pipeline (\ref{})\footnote{Sections to come}.
 
 % Finding the relevant genes
 \subsubsection{Important genes in communities}
@@ -44,12 +47,12 @@ In the work of \citet{Care2019-ij}, the  Module Connectivity (ModCon) score is c
          \cdot (100 - VarAcross) / 100
 \end{multline}
 
-The PGCNA was developed to support multiple datasets but in this project the majority of the experiments were run with a single dataset, thus $VarAcross$ would not have a large impact on Equation \ref{eq:modcon}. Importantly, in the original formulation of $ModCon$, the connectivity parameter is the summation of the Spearman Correlation values. However, in the weight modifier experiments, where the Spearman Correlation values are strengthen/weaken by the gene's mutation burden the modified correlation are considered.
+The PGCNA was developed to support multiple datasets but in this project the majority of the experiments were run with a single dataset, thus $VarAcross$ does not have a large impact on Equation \ref{eq:modcon}. Importantly, in the original formulation of $ModCon$, the connectivity parameter is the summation of the Spearman Correlation values. However, in the weight modifier experiments, where the Spearman Correlation values are strengthen/weaken by the gene's mutation burden the changed correlation are considered.
 
 % Representation of genes across samples & Clustering
 \subsubsection{Sample subtyping}
 
-After the genes are ranked by the importance in the nodes, the top 25-100 genes are selected as representative. The top 25 genes were selected in PGCNA work \cite{Care2019-ij} while 100 was used in the healthy networks where the top 25 genes from the healthy were not present in the tumour dataset. For each community there is a list of the most important genes which are then used to compute the Module Evaluation (MEV) score \citet{Care2019-ij} to find the gene's representation in each of the samples. The MEV is described in the pseudo-code of the algorithm in \ref{alg:mev}.
+After the genes are ranked by the importance in the nodes, the top 25-100 genes are selected as representative. The top 25 genes were selected in PGCNA work \cite{Care2019-ij} which worked when the same dataset is used for network and subtyping. However, when the healthy graphs were computed, there are situations when the most varied genes in the non-cancerous dataset are not present in the tumours dataset. Thus, more genes (100) were selected for each community. These chosen genes are used to compute the Module Evaluation (MEV) score \citet{Care2019-ij} to find the gene's representation in each of the samples. The MEV is described in the pseudo-code in Algorithm \ref{alg:mev}.
 
 \begin{algorithm}
 \caption{Module Evaluation Value }\label{alg:mev}
