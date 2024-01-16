@@ -11875,8 +11875,22 @@
   month    =  "10~" # sep,
   year     =  2014,
   keywords = "all; complex networks; graph; Network; other; network; Computer
-              Software; Applied Computer Science",
+              Software; Applied Computer Science;Graph/Network;Tools",
   doi      = "10.6084/m9.figshare.1164194.v3"
+}
+
+@ARTICLE{Peixoto2017-gc,
+  title     = "Nonparametric Bayesian inference of the microcanonical
+               stochastic block model",
+  author    = "Peixoto, Tiago P",
+  journal   = "Phys. Rev. E",
+  publisher = "American Physical Society",
+  volume    =  95,
+  number    =  1,
+  pages     = "012317",
+  month     =  "17~" # jan,
+  year      =  2017,
+  doi       = "10.1103/PhysRevE.95.012317"
 }
 
 @ARTICLE{Version_undated-dh,
@@ -12085,6 +12099,81 @@
   year      =  2012,
   keywords  = "ML",
   issn      = "1049-5258"
+}
+
+@ARTICLE{Yadlowsky2023-bm,
+  title         = "Pretraining Data Mixtures Enable Narrow Model Selection
+                   Capabilities in Transformer Models",
+  author        = "Yadlowsky, Steve and Doshi, Lyric and Tripuraneni, Nilesh",
+  abstract      = "Transformer models, notably large language models (LLMs),
+                   have the remarkable ability to perform in-context learning
+                   (ICL) -- to perform new tasks when prompted with unseen
+                   input-output examples without any explicit model training.
+                   In this work, we study how effectively transformers can
+                   bridge between their pretraining data mixture, comprised of
+                   multiple distinct task families, to identify and learn new
+                   tasks in-context which are both inside and outside the
+                   pretraining distribution. Building on previous work, we
+                   investigate this question in a controlled setting, where we
+                   study transformer models trained on sequences of $(x, f(x))$
+                   pairs rather than natural language. Our empirical results
+                   show transformers demonstrate near-optimal unsupervised
+                   model selection capabilities, in their ability to first
+                   in-context identify different task families and in-context
+                   learn within them when the task families are
+                   well-represented in their pretraining data. However when
+                   presented with tasks or functions which are out-of-domain of
+                   their pretraining data, we demonstrate various failure modes
+                   of transformers and degradation of their generalization for
+                   even simple extrapolation tasks. Together our results
+                   highlight that the impressive ICL abilities of high-capacity
+                   sequence models may be more closely tied to the coverage of
+                   their pretraining data mixtures than inductive biases that
+                   create fundamental generalization capabilities.",
+  month         =  "1~" # nov,
+  year          =  2023,
+  archivePrefix = "arXiv",
+  eprint        = "2311.00871",
+  primaryClass  = "cs.LG",
+  arxivid       = "2311.00871"
+}
+
+% The entry below contains non-ASCII chars that could not be converted
+% to a LaTeX equivalent.
+@ARTICLE{Li2018-st,
+  title    = "Minimap2: pairwise alignment for nucleotide sequences",
+  author   = "Li, Heng",
+  abstract = "MOTIVATION: Recent advances in sequencing technologies promise
+              ultra-long reads of ∼100 kb in average, full-length mRNA or cDNA
+              reads in high throughput and genomic contigs over 100 Mb in
+              length. Existing alignment programs are unable or inefficient to
+              process such data at scale, which presses for the development of
+              new alignment algorithms. RESULTS: Minimap2 is a general-purpose
+              alignment program to map DNA or long mRNA sequences against a
+              large reference database. It works with accurate short reads of
+              $\geq$100 bp in length, $\geq$1 kb genomic reads at error rate
+              ∼15\%, full-length noisy Direct RNA or cDNA reads and assembly
+              contigs or closely related full chromosomes of hundreds of
+              megabases in length. Minimap2 does split-read alignment, employs
+              concave gap cost for long insertions and deletions and introduces
+              new heuristics to reduce spurious alignments. It is 3-4 times as
+              fast as mainstream short-read mappers at comparable accuracy, and
+              is $\geq$30 times faster than long-read genomic or cDNA mappers
+              at higher accuracy, surpassing most aligners specialized in one
+              type of alignment. AVAILABILITY AND IMPLEMENTATION:
+              https://github.com/lh3/minimap2. SUPPLEMENTARY INFORMATION:
+              Supplementary data are available at Bioinformatics online.",
+  journal  = "Bioinformatics",
+  volume   =  34,
+  number   =  18,
+  pages    = "3094--3100",
+  month    =  "15~" # sep,
+  year     =  2018,
+  language = "en",
+  issn     = "1367-4803, 1367-4811",
+  pmid     = "29750242",
+  doi      = "10.1093/bioinformatics/bty191",
+  pmc      = "PMC6137996"
 }
 
 @ARTICLE{Jumper2021-du,
