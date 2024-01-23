@@ -12968,6 +12968,98 @@
   keywords     = "ML;Bioinformatics;Clustering"
 }
 
+@INPROCEEDINGS{Pons2005-oa,
+  title     = "Computing Communities in Large Networks Using Random Walks",
+  booktitle = "Computer and Information Sciences - {ISCIS} 2005",
+  author    = "Pons, Pascal and Latapy, Matthieu",
+  abstract  = "Dense subgraphs of sparse graphs (communities), which appear in
+               most real-world complex networks, play an important role in many
+               contexts. Computing them however is generally expensive. We
+               propose here a measure of similarities between vertices based on
+               random walks which has several important advantages: it captures
+               well the community structure in a network, it can be computed
+               efficiently, it works at various scales, and it can be used in
+               an agglomerative algorithm to compute efficiently the community
+               structure of a network. We propose such an algorithm which runs
+               in time O(mn2) and space O(n2) in the worst case, and in time
+               O(n2log n) and space O(n2) in most real-world cases (n and m are
+               respectively the number of vertices and edges in the input
+               graph).",
+  publisher = "Springer Berlin Heidelberg",
+  pages     = "284--293",
+  year      =  2005,
+  keywords  = "Graph/Network;Supporting",
+  doi       = "10.1007/11569596\_31"
+}
+
+@ARTICLE{Clauset2004-em,
+  title    = "Finding community structure in very large networks",
+  author   = "Clauset, Aaron and Newman, M E J and Moore, Cristopher",
+  abstract = "The discovery and analysis of community structure in networks is
+              a topic of considerable recent interest within the physics
+              community, but most methods proposed so far are unsuitable for
+              very large networks because of their computational cost. Here we
+              present a hierarchical agglomeration algorithm for detecting
+              community structure which is faster than many competing
+              algorithms: its running time on a network with n vertices and m
+              edges is O (md log n) where d is the depth of the dendrogram
+              describing the community structure. Many real-world networks are
+              sparse and hierarchical, with m approximately n and d
+              approximately log n, in which case our algorithm runs in
+              essentially linear time, O (n log(2) n). As an example of the
+              application of this algorithm we use it to analyze a network of
+              items for sale on the web site of a large on-line retailer, items
+              in the network being linked if they are frequently purchased by
+              the same buyer. The network has more than 400 000 vertices and 2
+              x 10(6) edges. We show that our algorithm can extract meaningful
+              communities from this network, revealing large-scale patterns
+              present in the purchasing habits of customers.",
+  journal  = "Phys. Rev. E Stat. Nonlin. Soft Matter Phys.",
+  volume   =  70,
+  number   = "6 Pt 2",
+  pages    = "066111",
+  month    =  dec,
+  year     =  2004,
+  keywords = "Graph/Network;Supporting",
+  language = "en",
+  issn     = "1539-3755",
+  pmid     = "15697438",
+  doi      = "10.1103/PhysRevE.70.066111"
+}
+
+@ARTICLE{Shi2020-em,
+  title    = "Quantifying Direct Dependencies in Biological Networks by
+              Multiscale Association Analysis",
+  author   = "Shi, Jifan and Zhao, Juan and Liu, Xiaoping and Chen, Luonan and
+              Li, Tiejun",
+  abstract = "Partial correlation (PC) or conditional mutual information (CMI)
+              is widely used in detecting direct dependencies between the
+              observed variables in biological networks by eliminating indirect
+              correlations/associations, but it fails whenever there are some
+              strong correlations in a network. In this paper, we theoretically
+              develop a multiscale association analysis to overcome this flaw.
+              We propose a new measure, partial association (PA), based on the
+              multiscale conditional mutual information. We show that linear PA
+              and nonlinear PA have clear advantages over PC and CMI from both
+              theoretical and computational aspects. Both simulated models and
+              real omics datasets demonstrate that PA is superior to PC and CMI
+              in terms of accuracy, and is a powerful tool to identify the
+              direct associations or reconstruct molecular networks based on
+              the observed data. Survival and functional analyses of the hub
+              genes in the gene networks reconstructed from TCGA data for
+              different cancers also validated the effectiveness of our method.",
+  journal  = "IEEE/ACM Trans. Comput. Biol. Bioinform.",
+  volume   =  17,
+  number   =  2,
+  pages    = "449--458",
+  year     =  2020,
+  keywords = "Graph/Network;Statistics;Supporting",
+  language = "en",
+  issn     = "1545-5963, 1557-9964",
+  pmid     = "29994264",
+  doi      = "10.1109/TCBB.2018.2846648"
+}
+
 @ARTICLE{Sobolevsky2022-di,
   title     = "Graph neural network inspired algorithm for unsupervised network
                community detection",
@@ -13358,6 +13450,7 @@
   pages    = "23653",
   month    =  "8~" # dec,
   year     =  2021,
+  keywords = "Graph/Network",
   language = "en",
   issn     = "2045-2322",
   pmid     = "34880275",
@@ -13789,6 +13882,229 @@
   pmid     = "34717010",
   doi      = "10.1002/pro.4218",
   pmc      = "PMC8740835"
+}
+
+@ARTICLE{Ghanbari2019-tq,
+  title    = "The Distance Precision Matrix: computing networks from non-linear
+              relationships",
+  author   = "Ghanbari, Mahsa and Lasserre, Julia and Vingron, Martin",
+  abstract = "MOTIVATION: Full-order partial correlation, a fundamental
+              approach for network reconstruction, e.g. in the context of gene
+              regulation, relies on the precision matrix (the inverse of the
+              covariance matrix) as an indicator of which variables are
+              directly associated. The precision matrix assumes Gaussian linear
+              data and its entries are zero for pairs of variables that are
+              independent given all other variables. However, there is still
+              very little theory on network reconstruction under the assumption
+              of non-linear interactions among variables. RESULTS: We propose
+              Distance Precision Matrix, a network reconstruction method aimed
+              at both linear and non-linear data. Like partial distance
+              correlation, it builds on distance covariance, a measure of
+              possibly non-linear association, and on the idea of full-order
+              partial correlation, which allows to discard indirect
+              associations. We provide evidence that the Distance Precision
+              Matrix method can successfully compute networks from linear and
+              non-linear data, and consistently so across different datasets,
+              even if sample size is low. The method is fast enough to compute
+              networks on hundreds of nodes. AVAILABILITY AND IMPLEMENTATION:
+              An R package DPM is available at
+              https://github.molgen.mpg.de/ghanbari/DPM. SUPPLEMENTARY
+              INFORMATION: Supplementary data are available at Bioinformatics
+              online.",
+  journal  = "Bioinformatics",
+  volume   =  35,
+  number   =  6,
+  pages    = "1009--1017",
+  month    =  "15~" # mar,
+  year     =  2019,
+  keywords = "Graph/Network;Statistics;Supporting",
+  language = "en",
+  issn     = "1367-4803, 1367-4811",
+  pmid     = "30165509",
+  doi      = "10.1093/bioinformatics/bty724",
+  pmc      = "PMC6420154"
+}
+
+@INCOLLECTION{Imoto2001-uc,
+  title     = "{ESTIMATION} {OF} {GENETIC} {NETWORKS} {AND} {FUNCTIONAL}
+               {STRUCTURES} {BETWEEN} {GENES} {BY} {USING} {BAYESIAN}
+               {NETWORKS} {AND} {NONPARAMETRIC} {REGRESSION}",
+  booktitle = "Biocomputing 2002",
+  author    = "Imoto, Seiya and Goto, Takao and Miyano, Satoru",
+  abstract  = "Abstract We propose a new method for constructing genetic
+               network from gene expression data by using Bayesian networks. We
+               use nonparametric regression for capturing nonlinear
+               relationships between genes and derive a new criterion for
+               choosing the network in general situations. In a theoretical
+               sense, our proposed theory and methodology include previous
+               methods based on Bayes approach. We applied the proposed method
+               to the S. cerevisiae cell cycle data and showed the
+               effectiveness of our method by comparing with previous methods.",
+  publisher = "WORLD SCIENTIFIC",
+  pages     = "175--186",
+  month     =  "1~" # dec,
+  year      =  2001,
+  keywords  = "Graph/Network;Supporting",
+  isbn      = "9789810247775",
+  doi       = "10.1142/9789812799623\_0017"
+}
+
+@ARTICLE{Cancer_Genome_Atlas_Research_Network2014-xp,
+  title    = "Comprehensive molecular characterization of gastric
+              adenocarcinoma",
+  author   = "{Cancer Genome Atlas Research Network}",
+  abstract = "Gastric cancer is a leading cause of cancer deaths, but analysis
+              of its molecular and clinical characteristics has been
+              complicated by histological and aetiological heterogeneity. Here
+              we describe a comprehensive molecular evaluation of 295 primary
+              gastric adenocarcinomas as part of The Cancer Genome Atlas (TCGA)
+              project. We propose a molecular classification dividing gastric
+              cancer into four subtypes: tumours positive for Epstein-Barr
+              virus, which display recurrent PIK3CA mutations, extreme DNA
+              hypermethylation, and amplification of JAK2, CD274 (also known as
+              PD-L1) and PDCD1LG2 (also known as PD-L2); microsatellite
+              unstable tumours, which show elevated mutation rates, including
+              mutations of genes encoding targetable oncogenic signalling
+              proteins; genomically stable tumours, which are enriched for the
+              diffuse histological variant and mutations of RHOA or fusions
+              involving RHO-family GTPase-activating proteins; and tumours with
+              chromosomal instability, which show marked aneuploidy and focal
+              amplification of receptor tyrosine kinases. Identification of
+              these subtypes provides a roadmap for patient stratification and
+              trials of targeted therapies.",
+  journal  = "Nature",
+  volume   =  513,
+  number   =  7517,
+  pages    = "202--209",
+  month    =  "11~" # sep,
+  year     =  2014,
+  keywords = "Cancer;TCGA",
+  language = "en",
+  issn     = "0028-0836, 1476-4687",
+  pmid     = "25079317",
+  doi      = "10.1038/nature13480",
+  pmc      = "PMC4170219"
+}
+
+@ARTICLE{Yang2016-dm,
+  title    = "A non-negative matrix factorization method for detecting modules
+              in heterogeneous omics multi-modal data",
+  author   = "Yang, Zi and Michailidis, George",
+  abstract = "MOTIVATION: Recent advances in high-throughput omics technologies
+              have enabled biomedical researchers to collect large-scale
+              genomic data. As a consequence, there has been growing interest
+              in developing methods to integrate such data to obtain deeper
+              insights regarding the underlying biological system. A key
+              challenge for integrative studies is the heterogeneity present in
+              the different omics data sources, which makes it difficult to
+              discern the coordinated signal of interest from source-specific
+              noise or extraneous effects. RESULTS: We introduce a novel method
+              of multi-modal data analysis that is designed for heterogeneous
+              data based on non-negative matrix factorization. We provide an
+              algorithm for jointly decomposing the data matrices involved that
+              also includes a sparsity option for high-dimensional settings.
+              The performance of the proposed method is evaluated on synthetic
+              data and on real DNA methylation, gene expression and miRNA
+              expression data from ovarian cancer samples obtained from The
+              Cancer Genome Atlas. The results show the presence of common
+              modules across patient samples linked to cancer-related pathways,
+              as well as previously established ovarian cancer subtypes.
+              AVAILABILITY AND IMPLEMENTATION: The source code repository is
+              publicly available at https://github.com/yangzi4/iNMF. CONTACT:
+              gmichail@umich.edu SUPPLEMENTARY INFORMATION: Supplementary data
+              are available at Bioinformatics online.",
+  journal  = "Bioinformatics",
+  volume   =  32,
+  number   =  1,
+  pages    = "1--8",
+  month    =  "1~" # jan,
+  year     =  2016,
+  keywords = "Clustering",
+  language = "en",
+  issn     = "1367-4803, 1367-4811",
+  pmid     = "26377073",
+  doi      = "10.1093/bioinformatics/btv544",
+  pmc      = "PMC5006236"
+}
+
+@ARTICLE{Tamada2011-ok,
+  title    = "Estimating genome-wide gene networks using nonparametric Bayesian
+              network models on massively parallel computers",
+  author   = "Tamada, Yoshinori and Imoto, Seiya and Araki, Hiromitsu and
+              Nagasaki, Masao and Print, Cristin and Charnock-Jones, D Stephen
+              and Miyano, Satoru",
+  abstract = "We present a novel algorithm to estimate genome-wide gene
+              networks consisting of more than 20,000 genes from gene
+              expression data using nonparametric Bayesian networks. Due to the
+              difficulty of learning Bayesian network structures, existing
+              algorithms cannot be applied to more than a few thousand genes.
+              Our algorithm overcomes this limitation by repeatedly estimating
+              subnetworks in parallel for genes selected by neighbor node
+              sampling. Through numerical simulation, we confirmed that our
+              algorithm outperformed a heuristic algorithm in a shorter time.
+              We applied our algorithm to microarray data from human umbilical
+              vein endothelial cells (HUVECs) treated with siRNAs, to construct
+              a human genome-wide gene network, which we compared to a small
+              gene network estimated for the genes extracted using a
+              traditional bioinformatics method. The results showed that our
+              genome-wide gene network contains many features of the small
+              network, as well as others that could not be captured during the
+              small network estimation. The results also revealed
+              master-regulator genes that are not in the small network but that
+              control many of the genes in the small network. These analyses
+              were impossible to realize without our proposed algorithm.",
+  journal  = "IEEE/ACM Trans. Comput. Biol. Bioinform.",
+  volume   =  8,
+  number   =  3,
+  pages    = "683--697",
+  year     =  2011,
+  keywords = "Graph/Network;Supporting",
+  language = "en",
+  issn     = "1545-5963, 1557-9964",
+  pmid     = "20714027",
+  doi      = "10.1109/TCBB.2010.68"
+}
+
+@ARTICLE{Tanaka2020-mw,
+  title    = "{System-Based} Differential Gene Network Analysis for
+              Characterizing a {Sample-Specific} Subnetwork",
+  author   = "Tanaka, Yoshihisa and Tamada, Yoshinori and Ikeguchi, Marie and
+              Yamashita, Fumiyoshi and Okuno, Yasushi",
+  abstract = "Gene network estimation is a method key to understanding a
+              fundamental cellular system from high throughput omics data.
+              However, the existing gene network analysis relies on having a
+              sufficient number of samples and is required to handle a huge
+              number of nodes and estimated edges, which remain difficult to
+              interpret, especially in discovering the clinically relevant
+              portions of the network. Here, we propose a novel method to
+              extract a biomedically significant subnetwork using a Bayesian
+              network, a type of unsupervised machine learning method that can
+              be used as an explainable and interpretable artificial
+              intelligence algorithm. Our method quantifies sample specific
+              networks using our proposed Edge Contribution value (ECv) based
+              on the estimated system, which realizes condition-specific
+              subnetwork extraction using a limited number of samples. We
+              applied this method to the Epithelial-Mesenchymal Transition
+              (EMT) data set that is related to the process of metastasis and
+              thus prognosis in cancer biology. We established our
+              method-driven EMT network representing putative gene
+              interactions. Furthermore, we found that the sample-specific ECv
+              patterns of this EMT network can characterize the survival of
+              lung cancer patients. These results show that our method unveils
+              the explainable network differences in biological and clinical
+              features through artificial intelligence technology.",
+  journal  = "Biomolecules",
+  volume   =  10,
+  number   =  2,
+  month    =  "14~" # feb,
+  year     =  2020,
+  keywords = "EMT; differential network analysis; gene network; lung cancer
+              survival analysis;Graph/Network;Supporting",
+  language = "en",
+  issn     = "2218-273X",
+  pmid     = "32075209",
+  doi      = "10.3390/biom10020306",
+  pmc      = "PMC7072632"
 }
 
 @ARTICLE{Rheinbay2017-au,

@@ -1,22 +1,14 @@
-\subsection{Co-expressed networks} \label{s:lit:co_net}
+\subsection{Overview} \label{s:lit:co_net}
 
 Co-expressed networks are built from gene expression data (RNAseq or Microarray) where the edges' strength represents the correlation between the two. 
-% Weighted Gene Correlation Network Analysis (WGCNA) by \citet{Langfelder2008-sn} was one of the first and more popular of a such approach. 
+
 
 % Challenges in the neworks - or assumptions - decisions
 % Create the network - the use of correlation - what are the advantages?
 % Reduce the edges - use a threshold 
 
 
-% WGCNA
-One of the most popular gene co-expressed network (GCN) is the Weighted Gene Correlation Network Analysis (WGCNA) by \citet{Langfelder2008-sn}. This paper is an accumulation of different works from Dr Steve Horvath lab which offers a clear and concise methodology to build and analyse a GCN, and more importantly everything is packed in an R package which then other researchers can use. Being a referential work in the field, it follows the steps described above on creating, processing and analysing the graph. Compared to PGCNA (presented below) where correlation values are unaltered, in WGCNA the values are scaled from 0-1, which at the cost of loosing some information resolution it helps the graph processing. To reduce the number of edges \citet{Langfelder2008-sn} sets a threshold to the correlation values and for community detection they apply topological overlap which was described in\citet{Zhang2005-xq} and applied to \citet{Yip2007-mr, Li2007-vz, Ravasz2002-au}. The discovered modules are then clustered using hierarchical clustering.
-
-% Partial-correlation
-Partial-correlation is also used by \citet{De_la_Fuente2004-ts}
-
-
 % TF - Elati's work
-
 
 % HCNM - and integrating data into networks
 \subsection{Data integration in networks}
@@ -25,7 +17,7 @@ Partial-correlation is also used by \citet{De_la_Fuente2004-ts}
 
 One way to integrate multiple data-types is to build a separate network for each data type and then connect them through an intra-layer, thus giving rise to a multi-layer network. This is the approach taken by \citet{Vangimalla2021-fc} in the Heterogeneous Correlation Network Model (HCNM) to subtype the breast carcinoma cohort from TCGA using gene expression and DNA methylation. Compared to the WGCNA and PGCNA, the HCNM constructs the gene expression layer with partial-correlation, and the DNA methylation using biweight mid-correlation, a metric popularised by WGCNA. 
 
-Once the network layers are constructed the authors apply an edge reduction technique by filtering out low weighted connections. Then, to find the biological related genes, for each layer, the consensus of three different community detection algorithms (Louivan\cite{Blondel2008-ik}, Walktrap method\footnote{} and Fast Greedy Optimisation Model\footnote{}) is taken. Together with the network metrics (degree, centrality and betweenness) in both layers, the genes for the intra-layer network are established.
+Once the network layers are constructed the authors apply an edge reduction technique by filtering out low weighted connections. Then, to find the biological related genes, for each layer, the consensus of three different community detection algorithms (Louivan\cite{Blondel2008-ik}, Walktrap method \citet{Pons2005-oa} and Fast Greedy Optimisation Model \citet{Clauset2004-em}) is taken. Together with the network metrics (degree, centrality and betweenness) in both layers, the genes for the intra-layer network are established.
 
 With the intra-layer network constructed the authors again perform the steps of finding the important nodes and once this is done they apply something called similarity network fusion (SNF) and affinity network fusion (ANF) to find the representation of the genes in the samples\footnote{This step is analogous to the MEV from PGCNA}. 
 
@@ -53,12 +45,12 @@ Overall, NetICS is available to the general public and it promises good results.
 
 \subsubsection{DrDimot}
 
-DrDimont (Drug response prediction from Differential analysis of multi-omics networks)\citet{Hiort2022-lk} is another multi-layer approach used in biological networks. As the name suggested the model predicts the drug response based on combining data from gene expression, proteins, phosposite and metabolimics. For each available data type a separated layer from correlation scores and the edges are reduced by a mechanism similar as in WGCNA. The layers are simply connected through their node names. DrDimont was used to explore the different (known) drug responses to the breast cancer from TCGA.
+DrDimont (Drug response prediction from Differential analysis of multi-omics networks) \citet{Hiort2022-lk} is another multi-layer approach used in biological networks. As the name suggested the model predicts the drug response based on combining data from gene expression, proteins, phosposite and metabolimics. For each available data type a separated layer from correlation scores and the edges are reduced by a mechanism similar as in WGCNA. The layers are simply connected through their node names. DrDimont was used to explore the different (known) drug responses to the breast cancer from TCGA.
 
 This shows another application of the network, including WGCNA, to drug discovery. This is a work with strong biological motivation, but the model developed does not incorporate the mutations or Transcription Factors and it does not use any community detection algorithm to find the structures across the layers.
 
 
-\subsection{PGCNA}
+\subsubsection{PGCNA}
 
 Parsimonious Gene Correlation Network Analysis (PGCNA) by \citet{Care2019-ij}, is a more recent  approach developed with the goal to stratify a disease based on gene expression and aid the researchers to visualise with the genomic data exploration
 
@@ -82,7 +74,7 @@ The authors explores keeping edges from 3-10 and all of them, and found that les
 
 \paragraph{Community detection}
 
-To detect the structure after the correlation matrix was reduced the Care et al explored 3 different classes of algorithms: K-means, hierarchical clustering and community detection (Louivan\citet{Blondel2008-ik} or FastUnfold and Leiden\citet{Traag2019-ne}\footnote{Leiden algorithm is an improvement to the Louivan which was released after PGCNA was published, but in the Github package, the Leiden is used as it outperforms Louivan.}). The latter outperformed the other two classes, with Louivan applied to a network constructed with 3 edges per gene, having the highest SCES. What is crucial in this comparison is that the traditional clustering methods, K-means and hierarchical clustering, are outperformed by the network approach.
+To detect the structure after the correlation matrix was reduced the Care et al explored 3 different classes of algorithms: K-means, hierarchical clustering and community detection (Louivan\citet{Blondel2008-ik} or FastUnfold Leiden \citet{Traag2019-ne}\footnote{Leiden algorithm is an improvement to the Louivan which was released after PGCNA was published, but in the Github package, the Leiden is used as it outperforms Louivan.}). The latter outperformed the other two classes, with Louivan applied to a network constructed with 3 edges per gene, having the highest SCES. What is crucial in this comparison is that the traditional clustering methods, K-means and hierarchical clustering, are outperformed by the network approach.
 
 \paragraph{Bridging the gap between genes and sample}
 
@@ -94,8 +86,45 @@ Overall, PGCNA represents a bespoke pipeline for disease subtyping which introdu
 
 While PGCNA solves some of the challenges that this project faced there are still many left untouched. What is the best way to integrate the effect of the mutations into the network? Would selective edge pruning offer a better representation of the data? And so on. Thus, the work in this project builds on PGCNA and it offers the support for multiple data types integration.
 
+
+
+
+
+
+\subsubsection{WGCNA}
+
+% WGCNA
+One of the most popular gene co-expressed network (GCN) is the Weighted Gene Correlation Network Analysis (WGCNA) by \citet{Langfelder2008-sn}. This paper is an accumulation of different works from Dr Steve Horvath lab which offers a clear and concise methodology to build and analyse a GCN, and more importantly everything is packed in an R package which then other researchers can use. Being a referential work in the field, it follows the steps described above on creating, processing and analysing the graph. Compared to PGCNA (presented below) where correlation values are unaltered, in WGCNA the values are scaled from 0-1, which at the cost of loosing some information resolution it helps the graph processing. To reduce the number of edges \citet{Langfelder2008-sn} sets a threshold to the correlation values and for community detection they apply topological overlap which was described in\citet{Zhang2005-xq} and applied to \citet{Yip2007-mr, Li2007-vz, Ravasz2002-au}. The discovered modules are then clustered using hierarchical clustering.
+
+% PGCNA 
+
+\subsubsection{Partial-correlation}
+
+An improvement to the Spearman or Pearson metric is partial-correlation which removes the influences of other variables to the correlation of the studied pair of variables, thus giving a purer correlation metric. This approach has been applied by \citet{De_la_Fuente2004-ts} to a yeast microarray gene expression. Ideally, for partial-correlation to work the dataset has to be symmetric, the number of samples and features are equal. This is not the case for genomic data where there are more features than samples, thus one finding,from simulated data, is that there is no added value for computing more than the second order partial correlation\footnote{Second-order denotes for how many variables are controlled for not affecting the relationship between the studied pair of variables For example, calculating the second-order partial correlation for $x$ and $y$ means removing the effect of variable $a$ and $b$}. This is relevant each order of the partial correlation introduces an added computational cost. \citet{De_la_Fuente2004-ts} generated some biological leads but were never assessed how successfully were. Nevertheless, partial-correlation remains an alternative to other popular metrics that can be further explored.
+
+The partial-correlation is also known as the inverse of the covariate matrix or precision metrics and there has been work to make it more efficient \citet{Ghanbari2019-tq}. However, this is not a widely used metric in building the biological networks. Probably due to the small number of samples over the features and still being a more computational taxing process than the alternatives.
+
+\subsubsection{Bayesian approaches}
+
+An alternative to co-expressed network is represented by the work \citet{Nakazawa2021-yq} which instead of correlation metric it uses Bayesian methods to construct the network of the cancer. The algorithm was initially introduced by \citet{Imoto2001-uc} which is very computationally heavy, thus the authors are using \citet{Tamada2011-ok} for implementation. Once the cancer’s network is built, the authors adapted the work of \citet{Tanaka2020-mw} to find patient specific subnetworks. Lastly, the patient-specific subnetworks are then clustered using the hierarchical clustering by their similarity and differences.
+
+The work is applied to the stomach cancer from TCGA, and it is compared to the subtypes from iCluster\citet{Shen2009-ew} as a representative of the multi-omics approaches. iCluster was applied to the stomach TCGA cohort by \citet{Cancer_Genome_Atlas_Research_Network2014-xp} using somatic mutation, mRNA expression, miRNA expression, promoter methylation, somatic copy number alteration and protein expression. The authors \citet{Nakazawa2021-yq} argue that adding multi-omics introduces noise and pollutes the subtype discovery, one of the evidence presented is the lack of significance in survival rate in the TCGA paper \citet{Cancer_Genome_Atlas_Research_Network2014-xp} which found four groups. However, using their method and only gene expression, they have found three subtypes which exhibited significant survival rates. The authors compared the method with iNMF \citet{Yang2016-dm} another multi-omics clustering, and yield similar results with iCluster.
+
+The authors have not performed an in-depth exploration of the biological found through their method. Finding less subtypes statistically increase the chances to find significance in subgroups. Thus, the authors are a bit quick to assess the novelty of their subtypes, but raised an important point for the project, that considering multi-omics may add some extra noise that it needs to be considered.
+
+In summary, the work of \citet{Nakazawa2021-yq} is a comparable Bayesian alternative to the work of \citet{Care2019-ij}. It does not use multiple datasets, it is not parsimonious and its biological findings are not put under scrutiny. Nevertheless, it aims for the same goal, subtyping a disease by gene expression. It also makes it comparable with the network approached developed in this project. However, the work developed in this project integrates healthy data, mutations and Transcription Factors.
+
+
+
 \subsection{Building a network}
 
 \subsection{Community detection}
+
+\subsubsection{Modularity maximisation}
+
+\subsubsection{Bayesian approaches}
+
+
+\subsection{From gene to samples}
 
 
