@@ -1,0 +1,66 @@
+\section{Network Notes}
+
+\subsection{Network previous work}
+
+So far in my literature review of the graphs/network approaches to biological networks, I found out that the processing steps are common across the solutions propsosed. Overall, the workflow is:
+\begin{itemize}
+    \item Reducing the data - This comes in different shapes and forms but all have the same goal, create a smaller adjacent matrix from which a network can then be created.
+    \begin{itemize}
+        \item In PCGNA - the median of the spearman correlation is used to reduce all the correlation across the datasets.
+        \item In WCGNA - another correlation
+        \item The Graph NN - embedding space
+        \item The encoder - another embedding space
+    \end{itemize}
+    \item Do some pruning on the the edges
+    \item The most aggressive being PGCNA 
+    \item Apply some clustering to find the communities or the genes correlated 
+\end{itemize}
+
+
+
+\subsubsection{Network Metrics}
+
+\paragraph{Integrate Value of Influence}
+
+The central focus of the paper is to identify the most influential nodes in the network. This can mean the nodes that play an important role, have lots of connections w/ the other nodes. 
+
+The paper is relevant to my work for several reasons:
+\begin{itemize}
+    \item it offers a good review of the metrics used to identify the most influential nodes
+    \item  It justifies how the integration is done, but thought the explanation of addition/multiplication was a bit too much and unnecessary
+\end{itemize}
+
+--- 
+Some ways to look at the influence of a node: 
+
+\begin{itemize}
+    \item They talk a lot about \textbf{centrality} as a way to measure influence.
+    \item Mention of \textbf{betweenness} = "defined as the tendency of a node to be on the shortest path between nodes in a graph".
+    \item \textbf{Collective influence} =  "is a novel global centrality metric that measures the collective number of nodes that can be reached from a given node" 
+    \item\textbf{ Neighbourhood connectivity} = "is a semi-local centrality measure of a network that deals with the connectivity (number of neighbours) of nodes. "
+
+\end{itemize}
+
+Their novel part or what are the limitations that they are addressing through the Integrated Value of Influence (IVI):
+
+\begin{enumerate}
+    \item degree centrality 
+    \item ClusterRank
+    \item Neighbourhood connectivity - This is used to overcome the issue of positional bias of betweenness centrality
+    \item local H index
+    \item Betweenness centrality  
+    \item Collective influence 
+\end{enumerate}
+
+
+They say that each of the metrics captures a different topological dim of the graph, including local, semi-local and global topology. Another advantage of their work is that: \textit{None of them requires a fully connected graph or module to be calculated}.
+
+
+% \import{Sections/Network_I/}{miscellaneous.tex}
+
+\newpage
+
+
+ 
+
+
