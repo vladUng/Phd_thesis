@@ -141,7 +141,7 @@
   pages    = "016107",
   month    =  jan,
   year     =  2011,
-  keywords = "Graph/Network",
+  keywords = "Graph/Network;Community detection;Supporting",
   language = "en",
   issn     = "1539-3755, 1550-2376",
   pmid     = "21405744",
@@ -1736,6 +1736,7 @@
   volume   =  28,
   pages    = "121--132",
   year     =  2023,
+  keywords = "Graph/Network;Networks",
   language = "en",
   issn     = "2335-6936, 2335-6928",
   pmid     = "36540970",
@@ -14106,6 +14107,41 @@
   pmc      = "PMC7072632"
 }
 
+@ARTICLE{Rosvall2008-kw,
+  title    = "Maps of random walks on complex networks reveal community
+              structure",
+  author   = "Rosvall, Martin and Bergstrom, Carl T",
+  abstract = "To comprehend the multipartite organization of large-scale
+              biological and social systems, we introduce an information
+              theoretic approach that reveals community structure in weighted
+              and directed networks. We use the probability flow of random
+              walks on a network as a proxy for information flows in the real
+              system and decompose the network into modules by compressing a
+              description of the probability flow. The result is a map that
+              both simplifies and highlights the regularities in the structure
+              and their relationships. We illustrate the method by making a map
+              of scientific communication as captured in the citation patterns
+              of >6,000 journals. We discover a multicentric organization with
+              fields that vary dramatically in size and degree of integration
+              into the network of science. Along the backbone of the
+              network-including physics, chemistry, molecular biology, and
+              medicine-information flows bidirectionally, but the map reveals a
+              directional pattern of citation from the applied fields to the
+              basic sciences.",
+  journal  = "Proc. Natl. Acad. Sci. U. S. A.",
+  volume   =  105,
+  number   =  4,
+  pages    = "1118--1123",
+  month    =  "29~" # jan,
+  year     =  2008,
+  keywords = "Graph/Network;Networks;Community detection",
+  language = "en",
+  issn     = "0027-8424, 1091-6490",
+  pmid     = "18216267",
+  doi      = "10.1073/pnas.0706851105",
+  pmc      = "PMC2234100"
+}
+
 @ARTICLE{Rheinbay2017-au,
   title    = "Recurrent and functional regulatory mutations in breast cancer",
   author   = "Rheinbay, Esther and Parasuraman, Prasanna and Grimsby, Jonna and
@@ -14225,6 +14261,283 @@
   issn     = "0036-8075, 1095-9203",
   pmid     = "34648354",
   doi      = "10.1126/science.abj1541"
+}
+
+% The entry below contains non-ASCII chars that could not be converted
+% to a LaTeX equivalent.
+@ARTICLE{Traag2015-tq,
+  title    = "Faster unfolding of communities: speeding up the Louvain
+              algorithm",
+  author   = "Traag, V A",
+  abstract = "Many complex networks exhibit a modular structure of densely
+              connected groups of nodes. Usually, such a modular structure is
+              uncovered by the optimization of some quality function. Although
+              flawed, modularity remains one of the most popular quality
+              functions. The Louvain algorithm was originally developed for
+              optimizing modularity, but has been applied to a variety of
+              methods. As such, speeding up the Louvain algorithm enables the
+              analysis of larger graphs in a shorter time for various methods.
+              We here suggest to consider moving nodes to a random neighbor
+              community, instead of the best neighbor community. Although
+              incredibly simple, it reduces the theoretical runtime complexity
+              from O(m) to O(nlog〈k〉) in networks with a clear community
+              structure. In benchmark networks, it speeds up the algorithm
+              roughly 2-3 times, while in some real networks it even reaches 10
+              times faster runtimes. This improvement is due to two factors:
+              (1) a random neighbor is likely to be in a ``good'' community and
+              (2) random neighbors are likely to be hubs, helping the
+              convergence. Finally, the performance gain only slightly
+              diminishes the quality, especially for modularity, thus providing
+              a good quality-performance ratio. However, these gains are less
+              pronounced, or even disappear, for some other measures such as
+              significance or surprise.",
+  journal  = "Phys. Rev. E Stat. Nonlin. Soft Matter Phys.",
+  volume   =  92,
+  number   =  3,
+  pages    = "032801",
+  month    =  sep,
+  year     =  2015,
+  keywords = "Graph/Network;Community detection;Supporting",
+  language = "en",
+  issn     = "1539-3755, 1550-2376",
+  pmid     = "26465522",
+  doi      = "10.1103/PhysRevE.92.032801"
+}
+
+@ARTICLE{Bae2017-rz,
+  title     = "Scalable and Efficient {Flow-Based} Community Detection for
+               {Large-Scale} Graph Analysis",
+  author    = "Bae, Seung-Hee and Halperin, Daniel and West, Jevin D and
+               Rosvall, Martin and Howe, Bill",
+  abstract  = "Community detection is an increasingly popular approach to
+               uncover important structures in large networks. Flow-based
+               community detection methods rely on communication patterns of
+               the network rather than structural properties to determine
+               communities. The Infomap algorithm in particular optimizes a
+               novel objective function called the map equation and has been
+               shown to outperform other approaches in third-party benchmarks.
+               However, Infomap and its variants are inherently sequential,
+               limiting their use for large-scale graphs.In this article, we
+               propose a novel algorithm to optimize the map equation called
+               RelaxMap. RelaxMap provides two important improvements over
+               Infomap: parallelization, so that the map equation can be
+               optimized over much larger graphs, and prioritization, so that
+               the most important work occurs first, iterations take less time,
+               and the algorithm converges faster. We implement these
+               techniques using OpenMP on shared-memory multicore systems, and
+               evaluate our approach on a variety of graphs from standard graph
+               clustering benchmarks as well as real graph datasets. Our
+               evaluation shows that both techniques are effective: RelaxMap
+               achieves 70\% parallel efficiency on eight cores, and
+               prioritization improves algorithm performance by an additional
+               20--50\% on average, depending on the graph properties.
+               Additionally, RelaxMap converges in the similar number of
+               iterations and provides solutions of equivalent quality as the
+               serial Infomap implementation.",
+  journal   = "ACM Trans. Knowl. Discov. Data",
+  publisher = "Association for Computing Machinery",
+  volume    =  11,
+  number    =  3,
+  pages     = "1--30",
+  month     =  "6~" # mar,
+  year      =  2017,
+  address   = "New York, NY, USA",
+  keywords  = "Community detection, graph analysis, parallelization,
+               prioritization;Graph/Network;Community detection;Supporting",
+  issn      = "1556-4681",
+  doi       = "10.1145/2992785"
+}
+
+@ARTICLE{Waltman2013-zw,
+  title    = "A smart local moving algorithm for large-scale modularity-based
+              community detection",
+  author   = "Waltman, Ludo and van Eck, Nees Jan",
+  abstract = "We introduce a new algorithm for modularity-based community
+              detection in large networks. The algorithm, which we refer to as
+              a smart local moving algorithm, takes advantage of a well-known
+              local moving heuristic that is also used by other algorithms.
+              Compared with these other algorithms, our proposed algorithm uses
+              the local moving heuristic in a more sophisticated way. Based on
+              an analysis of a diverse set of networks, we show that our smart
+              local moving algorithm identifies community structures with
+              higher modularity values than other algorithms for large-scale
+              modularity optimization, among which the popular ``Louvain
+              algorithm''. The computational efficiency of our algorithm makes
+              it possible to perform community detection in networks with tens
+              of millions of nodes and hundreds of millions of edges. Our smart
+              local moving algorithm also performs well in small and
+              medium-sized networks. In short computing times, it identifies
+              community structures with modularity values equally high as, or
+              almost as high as, the highest values reported in the literature,
+              and sometimes even higher than the highest values found in the
+              literature.",
+  journal  = "Eur. Phys. J. B",
+  volume   =  86,
+  number   =  11,
+  pages    = "471",
+  month    =  "13~" # nov,
+  year     =  2013,
+  keywords = "Graph/Network;Community detection;Supporting",
+  issn     = "1434-6028, 1434-6036",
+  doi      = "10.1140/epjb/e2013-40829-0"
+}
+
+@ARTICLE{Ozaki2016-dl,
+  title     = "A simple acceleration method for the Louvain algorithm",
+  author    = "Ozaki, Naoto and {the Graduate School of Information Science and
+               Technology, University of Tokyo, Tokyo, Japan.} and Tezuka,
+               Hiroshi and Inaba, Mary",
+  journal   = "Int. J. Comput. Electr. Eng.",
+  publisher = "International Academy Publishing (IAP)",
+  volume    =  8,
+  number    =  3,
+  pages     = "207--218",
+  year      =  2016,
+  keywords  = "Graph/Network;Supporting;Community detection",
+  issn      = "1793-8163",
+  doi       = "10.17706/ijcee.2016.8.3.207-218"
+}
+
+@ARTICLE{Van_Dongen2008-yj,
+  title     = "Graph Clustering Via a Discrete Uncoupling Process",
+  author    = "Van Dongen, Stijn",
+  abstract  = "A discrete uncoupling process for finite spaces is introduced,
+               called the Markov Cluster Process or the MCL process. The
+               process is the engine for the graph clustering algorithm called
+               the MCL algorithm. The MCL process takes a stochastic matrix as
+               input, and then alternates expansion and inflation, each step
+               defining a stochastic matrix in terms of the previous one.
+               Expansion corresponds with taking the kth power of a stochastic
+               matrix, where $k\in\N$. Inflation corresponds with a
+               parametrized operator $\Gamma_r$, $r\geq 0$, that maps the set
+               of (column) stochastic matrices onto itself. The image $\Gamma_r
+               M$ is obtained by raising each entry in M to the rth power and
+               rescaling each column to have sum 1 again. In practice the
+               process converges very fast towards a limit that is invariant
+               under both matrix multiplication and inflation, with quadratic
+               convergence around the limit points. The heuristic behind the
+               process is its expected behavior for (Markov) graphs possessing
+               cluster structure. The process is typically applied to the
+               matrix of random walks on a given graph G, and the connected
+               components of (the graph associated with) the process limit
+               generically allow a clustering interpretation of G. The limit is
+               in general extremely sparse and iterands are sparse in a
+               weighted sense, implying that the MCL algorithm is very fast and
+               highly scalable. Several mathematical properties of the MCL
+               process are established. Most notably, the process (and
+               algorithm) iterands posses structural properties generalizing
+               the mapping from process limits onto clusterings. The inflation
+               operator $\Gamma_r$ maps the class of matrices that are
+               diagonally similar to a symmetric matrix onto itself. The phrase
+               diagonally positive semi-definite (dpsd) is used for matrices
+               that are diagonally similar to a positive semi-definite matrix.
+               For $r\in\N$ and for M a stochastic dpsd matrix, the image
+               $\Gamma_r M$ is again dpsd. Determinantal inequalities satisfied
+               by a dpsd matrix M imply a natural ordering among the diagonal
+               elements of M, generalizing the mapping of process limits onto
+               clusterings. The spectrum of $\Gamma_\{\infty\} M$ is of the
+               form $\{0^\{n-k\}, 1^k\}$, where k is the number of endclasses
+               of the ordering associated with M, and n is the dimension of M.
+               This attests to the uncoupling effect of the inflation operator.",
+  journal   = "SIAM J. Matrix Anal. Appl.",
+  publisher = "Society for Industrial and Applied Mathematics",
+  volume    =  30,
+  number    =  1,
+  pages     = "121--141",
+  month     =  "1~" # jan,
+  year      =  2008,
+  keywords  = "Graph/Network;Supporting",
+  issn      = "0895-4798",
+  doi       = "10.1137/040608635"
+}
+
+@ARTICLE{Fortunato2007-gh,
+  title    = "Resolution limit in community detection",
+  author   = "Fortunato, Santo and Barth{\'e}lemy, Marc",
+  abstract = "Detecting community structure is fundamental for uncovering the
+              links between structure and function in complex networks and for
+              practical applications in many disciplines such as biology and
+              sociology. A popular method now widely used relies on the
+              optimization of a quantity called modularity, which is a quality
+              index for a partition of a network into communities. We find that
+              modularity optimization may fail to identify modules smaller than
+              a scale which depends on the total size of the network and on the
+              degree of interconnectedness of the modules, even in cases where
+              modules are unambiguously defined. This finding is confirmed
+              through several examples, both in artificial and in real social,
+              biological, and technological networks, where we show that
+              modularity optimization indeed does not resolve a large number of
+              modules. A check of the modules obtained through modularity
+              optimization is thus necessary, and we provide here key elements
+              for the assessment of the reliability of this community detection
+              method.",
+  journal  = "Proc. Natl. Acad. Sci. U. S. A.",
+  volume   =  104,
+  number   =  1,
+  pages    = "36--41",
+  month    =  "2~" # jan,
+  year     =  2007,
+  keywords = "Graph/Network;Supporting",
+  language = "en",
+  issn     = "0027-8424",
+  pmid     = "17190818",
+  doi      = "10.1073/pnas.0605965104",
+  pmc      = "PMC1765466"
+}
+
+@ARTICLE{Holland1983-oo,
+  title     = "Stochastic blockmodels: First steps",
+  author    = "Holland, Paul W and Laskey, Kathryn Blackmond and Leinhardt,
+               Samuel",
+  abstract  = "A stochastic model is proposed for social networks in which the
+               actors in a network are partitioned into subgroups called
+               blocks. The model provides a stochastic generalization of the
+               blockmodel. Estimation techniques are developed for the special
+               case of a single relation social network, with blocks specified
+               a priori. An extension of the model allows for tendencies toward
+               reciprocation of ties beyond those explained by the partition.
+               The extended model provides a one degree-of-freedom test of the
+               model. A numerical example from the social network literature is
+               used to illustrate the methods.",
+  journal   = "Soc. Networks",
+  publisher = "Elsevier",
+  volume    =  5,
+  number    =  2,
+  pages     = "109--137",
+  month     =  "1~" # jun,
+  year      =  1983,
+  keywords  = "Graph/Network",
+  issn      = "0378-8733",
+  doi       = "10.1016/0378-8733(83)90021-7"
+}
+
+@ARTICLE{Guimera2004-gv,
+  title    = "Modularity from fluctuations in random graphs and complex
+              networks",
+  author   = "Guimer{\`a}, Roger and Sales-Pardo, Marta and Amaral, Lu{\'\i}s A
+              Nunes",
+  abstract = "The mechanisms by which modularity emerges in complex networks
+              are not well understood but recent reports have suggested that
+              modularity may arise from evolutionary selection. We show that
+              finding the modularity of a network is analogous to finding the
+              ground-state energy of a spin system. Moreover, we demonstrate
+              that, due to fluctuations, stochastic network models give rise to
+              modular networks. Specifically, we show both numerically and
+              analytically that random graphs and scale-free networks have
+              modularity. We argue that this fact must be taken into
+              consideration to define statistically significant modularity in
+              complex networks.",
+  journal  = "Phys. Rev. E Stat. Nonlin. Soft Matter Phys.",
+  volume   =  70,
+  number   = "2 Pt 2",
+  pages    = "025101",
+  month    =  aug,
+  year     =  2004,
+  language = "en",
+  issn     = "1539-3755",
+  pmid     = "15447530",
+  doi      = "10.1103/PhysRevE.70.025101",
+  pmc      = "PMC2441765"
 }
 
 @ARTICLE{Whalen2021-qa,
@@ -19721,6 +20034,7 @@
   pages    = "016114",
   month    =  jul,
   year     =  2011,
+  keywords = "Graph/Network;Community detection",
   language = "en",
   issn     = "1539-3755, 1550-2376",
   pmid     = "21867264",

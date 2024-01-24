@@ -21,7 +21,7 @@ The authors compares their work with WGCNA and draw inspiration from other techn
 
 Over the previous methods, the PGCNA supports the integration of multiple gene expression datasets by taking the median expression of a gene across the data. It is also been released in a GitHub package\footnote{\url{https://github.com/medmaca/PGCNA} } being relatively easy to use and to adapt to one's needs. PGCNA was also successfully applied to the Breast and Glioblastoma TCGA cohorts and it supports multiple datasets by using the median gene expression.
 
-\paragraph{Measuring success}
+\paragraph*{Measuring success}
 
 To asses the performance of PGCNA over techniques \citet{Care2019-ij} proposed the scaled cluster enrichment score (SCES). The metric is computed for each module (i.e. a set of gene grouped together - regardless of the method, network or clustering analysis) taking in account the enrichment scores (obtained from gene ontology) and selects the 15 most significant\footnote{Only the enriched pathways that have False-Discovery Rate (FDR) $<0.05$ and containing genes $\geq5$ between $\leq1000$}. Then, the using z-scores the specific enrichment are determined for each module. Also, everything is adjusted by the number of genes in a module. Therefore, SCES is a metric the rewards the modules with unique enrichment signals and that are not large or ‘rewarding purity'\cite{Care2019-ij}.
 
@@ -29,21 +29,21 @@ It is worth mentioning, that gene ontology results are highly dependent on the l
 
 With all the limitations of gene ontology, SCES is a metric to asses the significance of the biology of each module which usually more than there is available for computational models.
 
-\paragraph{Edge reduction}
+\paragraph*{Edge reduction}
 
 One important finding in the work of \citet{Care2019-ij} is that a simple and aggressive edge pruning strategy performed better then other strategies. These were iPCC (iterative Pearson’s correlation coefficient), PowerST and Sigmoid, the last two being part of the WGCNA pipeline.
 
 The authors explores keeping edges from 3-10 and all of them, and found that less than 3, yielded isolated communities (or disconnected). Also, increasing the numbers yield a large number of communities find and a decrease in the SCES metric (modularity score too).
 
-\paragraph{Community detection}
+\paragraph*{Community detection}
 
 To detect the structure after the correlation matrix was reduced the Care et al explored 3 different classes of algorithms: K-means, hierarchical clustering and community detection (Louivan\citet{Blondel2008-ik} or FastUnfold Leiden \citet{Traag2019-ne}\footnote{Leiden algorithm is an improvement to the Louivan which was released after PGCNA was published, but in the Github package, the Leiden is used as it outperforms Louivan.}). The latter outperformed the other two classes, with Louivan applied to a network constructed with 3 edges per gene, having the highest SCES. What is crucial in this comparison is that the traditional clustering methods, K-means and hierarchical clustering, are outperformed by the network approach.
 
-\paragraph{Bridging the gap between genes and sample}
+\paragraph*{Bridging the gap between genes and sample}
 
 The end goal of PGCNA is to use the network representation to inform disease subtyping, thus there was a need to bridge the gap between the gene representation to samples. This is done by using the module connection values (ModCon) which from each community selects the top 25 most relevant genes. Then, the Module Evaluation Value (MEV) takes the 25 genes and computes the enrichment in the dataset. Lastly, these scores are then used for subtyping.
 
-\paragraph{Summary on PGCNA}
+\paragraph*{Summary on PGCNA}
 
 Overall, PGCNA represents a bespoke pipeline for disease subtyping which introduces several key methods to the field. It shows that network and community detection yields the best results, a simple edge pruning performs better than the other techniques and methods to bridge the gap between the gene representation to the samples.
 
@@ -53,10 +53,9 @@ While PGCNA solves some of the challenges that this project faced there are stil
 \subsubsection{WGCNA}
 
 One of the most popular gene co-expressed network (GCN) is the Weighted Gene Correlation Network Analysis (WGCNA) by \citet{Langfelder2008-sn}. This paper is an accumulation of different works from Dr Steve Horvath lab which offers a clear and concise methodology to build and analyse a GCN, and more importantly everything is packed in an R package which then other researchers can use. Being a referential work in the field, it follows the steps described above on creating, processing and analysing the graph. Compared to PGCNA (presented below) where correlation values are unaltered, in WGCNA the values are scaled from 0-1, which at the cost of loosing some information resolution it helps the graph processing. To reduce the number of edges \citet{Langfelder2008-sn} sets a threshold to the correlation values and for community detection they apply topological overlap which was described in\citet{Zhang2005-xq} and applied to \citet{Yip2007-mr, Li2007-vz, Ravasz2002-au}. The discovered modules are then clustered using hierarchical clustering.
-\subsection{NetNMF} 
 
-
-
+% He et al -
+\subsubsection{NetNMF} 
 The work from \citet{He2017-dj} is \textbf{very relevant to this stage} as they have integrated somatic mutations with gene expression in a network approach.  They employed a very similar method to what we were thinking to do:
 \begin{itemize}
     \item Have two matrixes, one for mutations and one for gene expression
