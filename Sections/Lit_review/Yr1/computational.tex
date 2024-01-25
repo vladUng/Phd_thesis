@@ -91,22 +91,6 @@ However, this doesn't accommodate well with non-linear patterns for which \acrfu
 
 Another dimension reduction technique is Bayesian-\acrfull{nmf} which operates on the same principles as PCA which is by finding a matrix of a lower rank with the minimum information loss. This means that the features present in the data are preserved better when reduced to lower dimensions while the ones that do not contribute to the data resolution are discarded. In addition, Bayesian-NMF conserves the non-linear aspects of the data and is the method used in the \acrfull{tcga} classification by \citet{Robertson2017-mg}. 
 
-\subsection{Graph Theory} \label{s:graph_overview}
-
-One of the aims of graph theory is to find the influence nodes, which in biology this might be the case of finding the driver genes which are the ones with the biggest impact on the network. In Figure \ref{fig:graphs_basic} it's a simple representation of a graph, where a node (or vertices) is a gene and the edge between them is the connection. 
-
-To establish how genes are linked to a network and interact,  the edges are assigned values that enforce the link between nodes (genes) and this data can be put into a table that can be processed by different graph algorithms. As one of the goals of this project is to understand how genes interact and their network effect, 
-    Section \ref{s:multi-view} covers how graph theory is applied in multi-omics. Apart from being able to find the driver genes graphs are a good tool to visualise the gene interactions. 
-
-\begin{figure}[!htb]
-  \centering\includegraphics[width=0.5\textwidth,height=0.5\textheight,keepaspectratio]{Sections/Lit_review/Resources/basic_graphs.png}
-    \caption{Basic graphs.}
-    \label{fig:graphs_basic}
-\end{figure}
-\FloatBarrier
-
-
-% Keep this section simple. It links to parts of your project you haven't discussed yet and so becomes a bit unclear. Effectively you want to state that genes can be linked in a network and that many biological approaches allow measurements of genes. This means you can infer relationships, see how relationships change in disease/perturbation and assess how distinct, but linked-in-the-network perturbations can lead to a common result/phenotype/observation
 
 
 \subsection{Evolutionary Algorithms} \label{s:ea_overiew}
@@ -135,6 +119,22 @@ Defining the fitness function as well as encoding the data for the EA algorithm 
 The MDPFinder model presented in Section \ref{s:mutations} used a variation of EA, called \acrfull{ga} which is a simpler version of the EA family where individuals resemble the chromosome. \acrfull{cgp} is another EA algorithm which it's used to process graph representation and it overcomes some of the limitations of the simpler EA methods. As we've seen that graph representation it's already been used in gene networks, CGP may represent an interesting venue to follow. 
 
 
+\subsection{Graph Theory} \label{s:graph_overview}
+
+One of the aims of graph theory is to find the influence nodes, which in biology this might be the case of finding the driver genes which are the ones with the biggest impact on the network. In Figure \ref{fig:graphs_basic} it's a simple representation of a graph, where a node (or vertices) is a gene and the edge between them is the connection. 
+
+To establish how genes are linked to a network and interact,  the edges are assigned values that enforce the link between nodes (genes) and this data can be put into a table that can be processed by different graph algorithms. As one of the goals of this project is to understand how genes interact and their network effect, 
+    Section \ref{s:multi-view} covers how graph theory is applied in multi-omics. Apart from being able to find the driver genes graphs are a good tool to visualise the gene interactions. 
+
+\begin{figure}[!htb]
+  \centering\includegraphics[width=0.5\textwidth,height=0.5\textheight,keepaspectratio]{Sections/Lit_review/Resources/basic_graphs.png}
+    \caption{Basic graphs.}
+    \label{fig:graphs_basic}
+\end{figure}
+\FloatBarrier
+
+
+% Keep this section simple. It links to parts of your project you haven't discussed yet and so becomes a bit unclear. Effectively you want to state that genes can be linked in a network and that many biological approaches allow measurements of genes. This means you can infer relationships, see how relationships change in disease/perturbation and assess how distinct, but linked-in-the-network perturbations can lead to a common result/phenotype/observation
 
 \subsection{Artificial Neural Networks} \label{s:ann_overview}
 
@@ -151,11 +151,6 @@ In Figure \ref{fig:ann_basic} it's a simple, single-layer, feed-forward Neural N
 \end{figure}
 \FloatBarrier
 
-% Despite being inspired by biological Neural Networks, the conventional ANN have many differences which may be the cause
-
-\acrfull{snn} are considered the third generation of Artificial NN as they embed additional biological characteristics. The main difference between the conventional ANN and SNN is that in the latter, the neurons fire when receiving enough input in a specific time window; this temporal dimension can be another method to encode information. On top of that, there is research that shows that dendrites can encode information at no or little computational cost \cite{Cao2015-wj}. This has the potential to process information with smaller ANN\footnote{Remember, one of the disadvantages of the DL is that it requires large Artificial Neural Networks that are expensive to train.} and/or to tackle more complex problems (with many features) at a low computational cost. Moreover, there is recent work by \citet{Perez-Nieves2021-uj} which has shown to be promising in building higher level concepts\cite{Stringer2008-mw,Stringer2006-fj} by adding heterogenous synapse time firing. It is worth remembering that the current scepticism in the conventional ANN approaches is that they can't form higher-level representations of objects, so these might be an exciting opportunity to overcome that. On top of that, SNN has been predicted to be more computational efficient and dedicated hardware are built like TrueNorth\cite{Dharmendra_S_Modha_undated-is} (IBM) and  Spinaker\cite{Furber2014-ot} (The University of Manchester). 
-
-However, SNNs are still in their infancy and apart from helping neuroscientists to simulate different parts of the brain, they haven't been applied to more real-life problems. One of the reasons for this is that they don't have a back-propagation equivalent algorithm, but there are current efforts in this area \cite{Nicola2017-ru}. Moreover, the temporal dimension introduces additional complexity into the models making it difficult to research.
 
 \subsubsection{Autoencoders} \label{s:autoencod_overview}
 

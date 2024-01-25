@@ -9,7 +9,7 @@
 % Work of the pre-processing I've done so far? but not sure how relevant this is or if it deserves a dedicated subsection
 
 
-\section{Conclusion}
+\subsection{Conclusion}
 
 The purpose of chapter \ref{s:computational} was to support the materials covered in the previous chapter which presented an overview of the effort done in the field of genomics. It started with the progress in analysing the RNAseq data to which the hierarchical clustering is the Consensus (\citet{Kamoun2020-tj}) approach for subtyping the bladder cancer. The section was followed by a survey of the methods used in processing the mutation data with models such as MDPFinder \citet{Zhao2012-wj} or Dendrix \citet{Vandin2012-cf}. The prevalent approach in these studies is to apply different methods either stochastic or greedy to find the subset of relevant mutations. Next, it's given an overview of graph/network theory approaches to genomics, where the work is aiming to find and weigh the connections between genes. Followed, by the section of the Suggested pipeline which is a catalogue of proposed flows in analysing the genomic data, where the researchers proposed a series of steps to apply different methods. Lastly, we have looked at the Deep Learning methods to genetics data, from which we've found out that Autoencoders are a veritable candidate for reducing the dimensions of the data. A summary of the models reviewed can be seen in Appendix \ref{ap:tables_models}, where Table \ref{tab:data_used} along the approaches used, In Table \ref{tab:approaches} the same models are seen but with the datasets and goals of the research.
 
@@ -40,37 +40,4 @@ The aims and goals are divided into two, the long-term and the immediate goals (
 \end{itemize}
 
 
-\subsubsection*{Short-term}
 
-\begin{itemize} 
-    \item Replicate the Consensus approach (section \ref{s:rnaSeq}).
-    \item Add to the Consensus clustering the mutations data.
-    \item Build on the work presented in the mutations approaches (section \ref{s:mutations}) and add the Gene Expression data.
-    \item Compare the results from the above experiments and decide which is better.
-    \item Introduce a method to add domain expertise to the models developed.
-    \item Explore how the Autoencoders can be 
-    \item Compare results with the canonical bladder subtyping.
-\end{itemize}
-
-\subsection{Risks} \label{s:risks}
-
-In terms of the risk and challenges, the project faces the following:
-
-\begin{itemize}
-    \item Other labs are working on  combining the transcriptome and mutations data
-    \begin{itemize}
-        \item Unlikely that other labs to focus on \acrlong{mibc}.
-        \item \acrlong{jbu} have unique insights into how normal bladder cancer works. This means that we can validate, integrate the computational model with domain knowledge.
-    \end{itemize}
-    \item Combining data is technically difficult. I proposed to work in parallel on two streams. 
-    \begin{itemize}
-        \item Adding To the Consensus \acrfull{ge} subtyping the mutation data. However, hierarchical clustering may not be suitable for integrating the mutations data, but the EAs approach may represent a solution.
-        \item Adding GE to the standard mutation model. The challenge is that there is not a consensus approach as it's in the case for GE.
-    \end{itemize}
-    \item The Consensus bladder cancer classification might be time-consuming
-\end{itemize}
-
-
-\section{Ethics statement}
-
-After consideration of the University's code of practice and principles for good ethical governance, no ethical issues were identified in this project. 

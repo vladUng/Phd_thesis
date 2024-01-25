@@ -35,17 +35,17 @@
 %this needs to be defined before inserting the table of contents
 % \setcounter{tocdepth}{1} % Show sections
 % \setcounter{tocdepth}{2} % + subsections
-\setcounter{tocdepth}{3} % + subsubsections
-% \setcounter{tocdepth}{4} % + paragraphs
+% \setcounter{tocdepth}{3} % + subsubsections
+\setcounter{tocdepth}{4} % + paragraphs
 % \setcounter{tocdepth}{5} % + subparagraphs
 
 \tableofcontents
 
 \newpage
 
-\listoffigures
+% \listoffigures
 
-\listoftables
+% \listoftables
 
 % \lstlistoflistings
 
@@ -56,11 +56,17 @@
 \newpage
 
 
-% \import{Sections/Introduction/}{introduction.tex}
+\import{Sections/Introduction/}{yr1.tex}
 
-% \newpage
+\newpage
+
+\import{Sections/Lit_review/Yr1/}{master.tex}
+
+\newpage
+
 
 \import{Sections/Lit_review/}{master.tex}
+
 % \newpage
 
 % \import{Sections/ClusteringAnalysis/}{clustering_analysis.tex}
@@ -74,7 +80,7 @@
 
 % \newpage
 
-\import{Sections/Network_II/}{master.tex}
+% \import{Sections/Network_II/}{master.tex}
 
 % \newpage
 
@@ -88,6 +94,11 @@
 
 
 % \section{Other applications}
+
+\section{Ethics statement}
+
+After consideration of the University's code of practice and principles for good ethical governance, no ethical issues were identified in this project. 
+
 
 \newpage
 
