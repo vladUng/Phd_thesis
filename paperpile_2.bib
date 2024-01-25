@@ -62,7 +62,7 @@
   pages     = "289--332",
   month     =  "23~" # nov,
   year      =  2019,
-  keywords  = "Graph/Network",
+  keywords  = "Graph/Network;SBM",
   isbn      = "9781119224709, 9781119483298",
   doi       = "10.1002/9781119483298.ch11"
 }
@@ -315,7 +315,7 @@
   pages     = "024309",
   month     =  "23~" # aug,
   year      =  2023,
-  keywords  = "Graph/Network",
+  keywords  = "Graph/Network;SBM",
   doi       = "10.1103/PhysRevE.108.024309"
 }
 
@@ -2204,7 +2204,7 @@
   pages     = "011047",
   month     =  "24~" # mar,
   year      =  2014,
-  keywords  = "Graph/Network",
+  keywords  = "Graph/Network;SBM",
   doi       = "10.1103/PhysRevX.4.011047"
 }
 
@@ -12295,7 +12295,7 @@
   month    =  "10~" # sep,
   year     =  2014,
   keywords = "all; complex networks; graph; Network; other; network; Computer
-              Software; Applied Computer Science;Graph/Network;Tools",
+              Software; Applied Computer Science;Graph/Network;Tools;SBM",
   doi      = "10.6084/m9.figshare.1164194.v3"
 }
 
@@ -12310,7 +12310,7 @@
   pages     = "012317",
   month     =  "17~" # jan,
   year      =  2017,
-  keywords  = "Graph/Network",
+  keywords  = "Graph/Network;SBM",
   doi       = "10.1103/PhysRevE.95.012317"
 }
 
@@ -13197,7 +13197,7 @@
   pages    = "012306",
   month    =  jan,
   year     =  2018,
-  keywords = "Graph/Network",
+  keywords = "Graph/Network;SBM",
   language = "en",
   issn     = "2470-0053, 2470-0045",
   pmid     = "29448436",
@@ -14533,11 +14533,375 @@
   pages    = "025101",
   month    =  aug,
   year     =  2004,
+  keywords = "Graph/Network",
   language = "en",
   issn     = "1539-3755",
   pmid     = "15447530",
   doi      = "10.1103/PhysRevE.70.025101",
   pmc      = "PMC2441765"
+}
+
+@ARTICLE{Charmpi2021-ze,
+  title    = "Optimizing network propagation for multi-omics data integration",
+  author   = "Charmpi, Konstantina and Chokkalingam, Manopriya and Johnen,
+              Ronja and Beyer, Andreas",
+  abstract = "Network propagation refers to a class of algorithms that
+              integrate information from input data across connected nodes in a
+              given network. These algorithms have wide applications in systems
+              biology, protein function prediction, inferring
+              condition-specifically altered sub-networks, and prioritizing
+              disease genes. Despite the popularity of network propagation,
+              there is a lack of comparative analyses of different algorithms
+              on real data and little guidance on how to select and
+              parameterize the various algorithms. Here, we address this
+              problem by analyzing different combinations of network
+              normalization and propagation methods and by demonstrating
+              schemes for the identification of optimal parameter settings on
+              real proteome and transcriptome data. Our work highlights the
+              risk of a 'topology bias' caused by the incorrect use of network
+              normalization approaches. Capitalizing on the fact that network
+              propagation is a regularization approach, we show that minimizing
+              the bias-variance tradeoff can be utilized for selecting optimal
+              parameters. The application to real multi-omics data demonstrated
+              that optimal parameters could also be obtained by either
+              maximizing the agreement between different omics layers (e.g.
+              proteome and transcriptome) or by maximizing the consistency
+              between biological replicates. Furthermore, we exemplified the
+              utility and robustness of network propagation on multi-omics
+              datasets for identifying ageing-associated genes in brain and
+              liver tissues of rats and for elucidating molecular mechanisms
+              underlying prostate cancer progression. Overall, this work
+              compares different network propagation approaches and it presents
+              strategies for how to use network propagation algorithms to
+              optimally address a specific research question at hand.",
+  journal  = "PLoS Comput. Biol.",
+  volume   =  17,
+  number   =  11,
+  pages    = "e1009161",
+  month    =  nov,
+  year     =  2021,
+  keywords = "Graph/Network",
+  language = "en",
+  issn     = "1553-734X, 1553-7358",
+  pmid     = "34762640",
+  doi      = "10.1371/journal.pcbi.1009161",
+  pmc      = "PMC8664198"
+}
+
+@ARTICLE{Vanunu2010-el,
+  title    = "Associating genes and protein complexes with disease via network
+              propagation",
+  author   = "Vanunu, Oron and Magger, Oded and Ruppin, Eytan and Shlomi, Tomer
+              and Sharan, Roded",
+  abstract = "A fundamental challenge in human health is the identification of
+              disease-causing genes. Recently, several studies have tackled
+              this challenge via a network-based approach, motivated by the
+              observation that genes causing the same or similar diseases tend
+              to lie close to one another in a network of protein-protein or
+              functional interactions. However, most of these approaches use
+              only local network information in the inference process and are
+              restricted to inferring single gene associations. Here, we
+              provide a global, network-based method for prioritizing disease
+              genes and inferring protein complex associations, which we call
+              PRINCE. The method is based on formulating constraints on the
+              prioritization function that relate to its smoothness over the
+              network and usage of prior information. We exploit this function
+              to predict not only genes but also protein complex associations
+              with a disease of interest. We test our method on gene-disease
+              association data, evaluating both the prioritization achieved and
+              the protein complexes inferred. We show that our method
+              outperforms extant approaches in both tasks. Using data on 1,369
+              diseases from the OMIM knowledgebase, our method is able (in a
+              cross validation setting) to rank the true causal gene first for
+              34\% of the diseases, and infer 139 disease-related complexes
+              that are highly coherent in terms of the function, expression and
+              conservation of their member proteins. Importantly, we apply our
+              method to study three multi-factorial diseases for which some
+              causal genes have been found already: prostate cancer, alzheimer
+              and type 2 diabetes mellitus. PRINCE's predictions for these
+              diseases highly match the known literature, suggesting several
+              novel causal genes and protein complexes for further
+              investigation.",
+  journal  = "PLoS Comput. Biol.",
+  volume   =  6,
+  number   =  1,
+  pages    = "e1000641",
+  month    =  "15~" # jan,
+  year     =  2010,
+  keywords = "Graph/Network;Propagation based",
+  language = "en",
+  issn     = "1553-734X, 1553-7358",
+  pmid     = "20090828",
+  doi      = "10.1371/journal.pcbi.1000641",
+  pmc      = "PMC2797085"
+}
+
+@ARTICLE{Capriotti2019-gx,
+  title    = "Integrating molecular networks with genetic variant
+              interpretation for precision medicine",
+  author   = "Capriotti, Emidio and Ozturk, Kivilcim and Carter, Hannah",
+  abstract = "More reliable and cheaper sequencing technologies have revealed
+              the vast mutational landscapes characteristic of many phenotypes.
+              The analysis of such genetic variants has led to successful
+              identification of altered proteins underlying many Mendelian
+              disorders. Nevertheless the simple one-variant one-phenotype
+              model valid for many monogenic diseases does not capture the
+              complexity of polygenic traits and disorders. Although
+              experimental and computational approaches have improved detection
+              of functionally deleterious variants and important interactions
+              between gene products, the development of comprehensive models
+              relating genotype and phenotypes remains a challenge in the field
+              of genomic medicine. In this context, a new view of the
+              pathologic state as significant perturbation of the network of
+              interactions between biomolecules is crucial for the
+              identification of biochemical pathways associated with complex
+              phenotypes. Seminal studies in systems biology combined the
+              analysis of genetic variation with protein-protein interaction
+              networks to demonstrate that even as biological systems evolve to
+              be robust to genetic variation, their topologies create disease
+              vulnerabilities. More recent analyses model the impact of genetic
+              variants as changes to the ``wiring'' of the interactome to
+              better capture heterogeneity in genotype-phenotype relationships.
+              These studies lay the foundation for using networks to predict
+              variant effects at scale using machine-learning or algorithmic
+              approaches. A wealth of databases and resources for the
+              annotation of genotype-phenotype relationships have been
+              developed to support developments in this area. This overview
+              describes how study of the molecular interactome has generated
+              insights linking the organization of biological systems to
+              disease mechanism, and how this information can enable precision
+              medicine. This article is categorized under: Translational,
+              Genomic, and Systems Medicine > Translational Medicine Biological
+              Mechanisms > Cell Signaling Models of Systems Properties and
+              Processes > Mechanistic Models Analytical and Computational
+              Methods > Computational Methods.",
+  journal  = "Wiley Interdiscip. Rev. Syst. Biol. Med.",
+  volume   =  11,
+  number   =  3,
+  pages    = "e1443",
+  month    =  may,
+  year     =  2019,
+  keywords = "disease mechanism; genetic disease; network analysis; variant
+              interpretation;Graph/Network;Propagation based",
+  language = "en",
+  issn     = "1939-5094, 1939-005X",
+  pmid     = "30548534",
+  doi      = "10.1002/wsbm.1443",
+  pmc      = "PMC6450710"
+}
+
+@ARTICLE{Petti2023-qo,
+  title    = "Network medicine for patients' stratification: From single-layer
+              to multi-omics",
+  author   = "Petti, Manuela and Farina, Lorenzo",
+  abstract = "Precision medicine research increasingly relies on the integrated
+              analysis of multiple types of omics. In the era of big data, the
+              large availability of different health-related information
+              represents a great, but at the same time untapped, chance with a
+              potentially fundamental role in the prevention, diagnosis and
+              prognosis of diseases. Computational methods are needed to
+              combine this data to create a comprehensive view of a given
+              disease. Network science can model biomedical data in terms of
+              relationships among molecular players of different nature and has
+              been successfully proposed as a new paradigm for studying human
+              diseases. Patient stratification is an open challenge aimed at
+              identifying subtypes with different disease manifestations,
+              severity, and expected survival time. Several stratification
+              approaches based on high-throughput gene expression measurements
+              have been successfully applied. However, few attempts have been
+              proposed to exploit the integration of various genotypic and
+              phenotypic data to discover novel sub-types or improve the
+              detection of known groupings. This article is categorized under:
+              Cancer > Biomedical Engineering Cancer > Computational Models
+              Cancer > Genetics/Genomics/Epigenetics.",
+  journal  = "WIREs Mech Dis",
+  volume   =  15,
+  number   =  6,
+  pages    = "e1623",
+  month    =  "15~" # jun,
+  year     =  2023,
+  keywords = "health-related data; multidimensional; network medicine; patient
+              similarity network; patient stratification; precision
+              medicine;Graph/Network;Propagation based",
+  language = "en",
+  issn     = "2692-9368",
+  pmid     = "37323106",
+  doi      = "10.1002/wsbm.1623"
+}
+
+@ARTICLE{Van_Dam2018-id,
+  title    = "Gene co-expression analysis for functional classification and
+              gene-disease predictions",
+  author   = "van Dam, Sipko and V{\~o}sa, Urmo and van der Graaf, Adriaan and
+              Franke, Lude and de Magalh{\~a}es, Jo{\~a}o Pedro",
+  abstract = "Gene co-expression networks can be used to associate genes of
+              unknown function with biological processes, to prioritize
+              candidate disease genes or to discern transcriptional regulatory
+              programmes. With recent advances in transcriptomics and
+              next-generation sequencing, co-expression networks constructed
+              from RNA sequencing data also enable the inference of functions
+              and disease associations for non-coding genes and splice
+              variants. Although gene co-expression networks typically do not
+              provide information about causality, emerging methods for
+              differential co-expression analysis are enabling the
+              identification of regulatory genes underlying various phenotypes.
+              Here, we introduce and guide researchers through a (differential)
+              co-expression analysis. We provide an overview of methods and
+              tools used to create and analyse co-expression networks
+              constructed from gene expression data, and we explain how these
+              can be used to identify genes with a regulatory role in disease.
+              Furthermore, we discuss the integration of other data types with
+              co-expression networks and offer future perspectives of
+              co-expression analysis.",
+  journal  = "Brief. Bioinform.",
+  volume   =  19,
+  number   =  4,
+  pages    = "575--592",
+  month    =  "20~" # jul,
+  year     =  2018,
+  keywords = "Graph/Network;Propagation based",
+  language = "en",
+  issn     = "1467-5463, 1477-4054",
+  pmid     = "28077403",
+  doi      = "10.1093/bib/bbw139",
+  pmc      = "PMC6054162"
+}
+
+@ARTICLE{Lee2011-xj,
+  title    = "Prioritizing candidate disease genes by network-based boosting of
+              genome-wide association data",
+  author   = "Lee, Insuk and Blom, U Martin and Wang, Peggy I and Shim, Jung
+              Eun and Marcotte, Edward M",
+  abstract = "Network ``guilt by association'' (GBA) is a proven approach for
+              identifying novel disease genes based on the observation that
+              similar mutational phenotypes arise from functionally related
+              genes. In principle, this approach could account even for
+              nonadditive genetic interactions, which underlie the synergistic
+              combinations of mutations often linked to complex diseases. Here,
+              we analyze a large-scale, human gene functional interaction
+              network (dubbed HumanNet). We show that candidate disease genes
+              can be effectively identified by GBA in cross-validated tests
+              using label propagation algorithms related to Google's PageRank.
+              However, GBA has been shown to work poorly in genome-wide
+              association studies (GWAS), where many genes are somewhat
+              implicated, but few are known with very high certainty. Here, we
+              resolve this by explicitly modeling the uncertainty of the
+              associations and incorporating the uncertainty for the seed set
+              into the GBA framework. We observe a significant boost in the
+              power to detect validated candidate genes for Crohn's disease and
+              type 2 diabetes by comparing our predictions to results from
+              follow-up meta-analyses, with incorporation of the network
+              serving to highlight the JAK-STAT pathway and associated adaptors
+              GRB2/SHC1 in Crohn's disease and BACH2 in type 2 diabetes.
+              Consideration of the network during GWAS thus conveys some of the
+              benefits of enrolling more participants in the GWAS study. More
+              generally, we demonstrate that a functional network of human
+              genes provides a valuable statistical framework for prioritizing
+              candidate disease genes, both for candidate gene-based and
+              GWAS-based studies.",
+  journal  = "Genome Res.",
+  volume   =  21,
+  number   =  7,
+  pages    = "1109--1121",
+  month    =  jul,
+  year     =  2011,
+  keywords = "Tools;Supporting",
+  language = "en",
+  issn     = "1088-9051, 1549-5469",
+  pmid     = "21536720",
+  doi      = "10.1101/gr.118992.110",
+  pmc      = "PMC3129253"
+}
+
+@ARTICLE{Cerami2011-ql,
+  title    = "Pathway Commons, a web resource for biological pathway data",
+  author   = "Cerami, Ethan G and Gross, Benjamin E and Demir, Emek and
+              Rodchenkov, Igor and Babur, Ozg{\"u}n and Anwar, Nadia and
+              Schultz, Nikolaus and Bader, Gary D and Sander, Chris",
+  abstract = "Pathway Commons (http://www.pathwaycommons.org) is a collection
+              of publicly available pathway data from multiple organisms.
+              Pathway Commons provides a web-based interface that enables
+              biologists to browse and search a comprehensive collection of
+              pathways from multiple sources represented in a common language,
+              a download site that provides integrated bulk sets of pathway
+              information in standard or convenient formats and a web service
+              that software developers can use to conveniently query and access
+              all data. Database providers can share their pathway data via a
+              common repository. Pathways include biochemical reactions,
+              complex assembly, transport and catalysis events and physical
+              interactions involving proteins, DNA, RNA, small molecules and
+              complexes. Pathway Commons aims to collect and integrate all
+              public pathway data available in standard formats. Pathway
+              Commons currently contains data from nine databases with over
+              1400 pathways and 687,000 interactions and will be continually
+              expanded and updated.",
+  journal  = "Nucleic Acids Res.",
+  volume   =  39,
+  number   = "Database issue",
+  pages    = "D685--90",
+  month    =  jan,
+  year     =  2011,
+  keywords = "Tools;Supporting",
+  language = "en",
+  issn     = "0305-1048, 1362-4962",
+  pmid     = "21071392",
+  doi      = "10.1093/nar/gkq1039",
+  pmc      = "PMC3013659"
+}
+
+@INPROCEEDINGS{Cai2008-fv,
+  title           = "Non-negative matrix factorization on manifold",
+  booktitle       = "2008 Eighth {IEEE} International Conference on Data Mining",
+  author          = "Cai, Deng and He, Xiaofei and Wu, Xiaoyun and Han, Jiawei",
+  publisher       = "IEEE",
+  month           =  dec,
+  year            =  2008,
+  keywords        = "Graph/Network",
+  conference      = "2008 Eighth IEEE International Conference on Data Mining
+                     (ICDM)",
+  location        = "Pisa, Italy",
+  isbn            = "9780769535029",
+  doi             = "10.1109/icdm.2008.57"
+}
+
+@ARTICLE{Bhalla2021-uv,
+  title    = "Patient similarity network of newly diagnosed multiple myeloma
+              identifies patient subgroups with distinct genetic features and
+              clinical implications",
+  author   = "Bhalla, Sherry and Melnekoff, David T and Aleman, Adolfo and
+              Leshchenko, Violetta and Restrepo, Paula and Keats, Jonathan and
+              Onel, Kenan and Sawyer, Jeffrey R and Madduri, Deepu and Richter,
+              Joshua and Richard, Shambavi and Chari, Ajai and Cho, Hearn Jay
+              and Dudley, Joel T and Jagannath, Sundar and Lagan{\`a},
+              Alessandro and Parekh, Samir",
+  abstract = "The remarkable genetic heterogeneity of multiple myeloma poses a
+              substantial challenge for proper prognostication and clinical
+              management of patients. Here, we introduce MM-PSN, the first
+              multiomics patient similarity network of myeloma. MM-PSN enabled
+              accurate dissection of the genetic and molecular landscape of the
+              disease and determined 12 distinct subgroups defined by five data
+              types generated from genomic and transcriptomic profiling of 655
+              patients. MM-PSN identified patient subgroups not previously
+              described defined by specific patterns of alterations, enriched
+              for specific gene vulnerabilities, and associated with potential
+              therapeutic options. Our analysis revealed that co-occurrence of
+              t(4;14) and 1q gain identified patients at significantly higher
+              risk of relapse and shorter survival as compared to t(4;14) as a
+              single lesion. Furthermore, our results show that 1q gain is the
+              most important single lesion conferring high risk of relapse and
+              that it can improve on the current International Staging Systems
+              (ISS and R-ISS).",
+  journal  = "Sci Adv",
+  volume   =  7,
+  number   =  47,
+  pages    = "eabg9551",
+  month    =  "19~" # nov,
+  year     =  2021,
+  language = "en",
+  issn     = "2375-2548",
+  pmid     = "34788103",
+  doi      = "10.1126/sciadv.abg9551",
+  pmc      = "PMC8598000"
 }
 
 @ARTICLE{Whalen2021-qa,
@@ -19608,6 +19972,7 @@
   pages     = "021003",
   month     =  "5~" # apr,
   year      =  2021,
+  keywords  = "SBM",
   doi       = "10.1103/PhysRevX.11.021003"
 }
 
@@ -19695,6 +20060,7 @@
   pages     = "043271",
   month     =  "23~" # nov,
   year      =  2020,
+  keywords  = "SBM",
   doi       = "10.1103/PhysRevResearch.2.043271"
 }
 
@@ -20130,6 +20496,7 @@
                    detectability of modular structures in networks.",
   month         =  "29~" # may,
   year          =  2017,
+  keywords      = "SBM",
   archivePrefix = "arXiv",
   eprint        = "1705.10225",
   primaryClass  = "stat.ML",
@@ -20190,6 +20557,7 @@
   pages    = "6794",
   month    =  "10~" # nov,
   year     =  2022,
+  keywords = "SBM",
   language = "en",
   issn     = "2041-1723",
   pmid     = "36357376",
@@ -20231,7 +20599,7 @@
                    interpretation of their results.",
   month         =  "30~" # nov,
   year          =  2021,
-  keywords      = "Graph/Network",
+  keywords      = "Graph/Network;SBM",
   copyright     = "http://creativecommons.org/licenses/by-nc-sa/4.0/",
   archivePrefix = "arXiv",
   eprint        = "2112.00183",
