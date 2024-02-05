@@ -1,5 +1,5 @@
 
-\section{Multi-omics} \label{s:multi-omics}
+\section{Analysing omics data} \label{s:multi-omics}
 
 % introduction the importance of genetics as a field (when was born), key discoveries
 % The field of genetics is moving rapidly since 1953 when Francis Crick and James Watson discovered the structure of the DNA; a breakthrough built on the work of Rosalind Franklin \& her lab. Subsequent work in the field highlighted the central role that genes play in all living organisms and it represented the missing piece in Darwin's theory of evolution. 
@@ -135,7 +135,7 @@ It can be seen that there is no Consensus approach in how the mutation data is p
 % The approaches are somewhat analogous, but you need to say how you can use existing "mutation importance" approaches to inform which mutations are most likely to be useful in subtyping...
 % You could make the general point at the start of this whole section that mutations are typically used to look for hotspots, mutational processes, or driver mutations.
 
-\subsection{Combining approaches} \label{s:multi-view}
+\subsection{Integrative approaches} \label{s:multi-view}
 
 \vspace{3mm}
 \fbox {
@@ -202,6 +202,17 @@ PiCnIc (Pipeline for Cancer Inference)\cite{Caravagna2016-vw} is another pipelin
 % Interesting! I would make a point here that gene expression forms the basis and everything else is a correlation. Then you can discuss whether using all the data at once could be more informative. You can say how mutations are rarely subtype-exclusive.
 
 This section aim was to give an overview of the work done in combining multiple sources of data, to cover how graphs can be used to analyse the gene network and the suggested workflows in multi-omics. The Pipelines covered in this section focused more on analysing the data rather than answering a biological question. The graph theory remains a good candidate to process the overall connections between genes which might be used in conjunction with \acrlong{cgp}.
+
+
+\subsection{Matrix factorisation - iCluster family}
+
+Matrix factorisation is a widely used mathematical technique where the data is decomposed into smaller matrices. This is done for several reasons in computing, one being that smaller matrices have a lower computational cost. Another reason and the main one in computational biology is that the decomposed matrices incorporate latent information about the biological data. In other words, by condensing the initial matrix data to smaller matrices only the relevant information is kept while the noise is discarded. \acrlong{pca} is one class of matrix factorisation as well as the iCluster \cite{Shen2009-ew, Mo2013-zi, Mo2018-el}. The novelty introduced by the latter collection of algorithms is that they take a collection of datasets and that the cumulative data is reduced to a latent space, compared to PCA which takes just one data type. The \citet{Shen2009-ew} proposed iCluster which takes only continuous data, further work is done by the same group in 2019 \citet{Mo2013-zi} where they've introduced iCluster+ which takes binary data too. A major critique of those two initial models was that it needs some parameter fine-tuning and it's computationally expensive to find the latent space. To address this the same group proposed \citet{Mo2018-el} which adds a Bayesian approach to matrix factorisation in finding the latent variable.
+% Apart from addressing the previous issue the model also gives a score to which feature contributed to the subtype (check this?).
+
+It's worth mentioning that a sub-class of matrix factorisation was used in the 2017 paper \citet{Robertson2017-mg} in which the bladder cancer sub-typing was done. In this case, the authors are looking at a non-negative matrix and again using a Bayesian approach to find the latent space which is then later clustered; a method called Bayesian NMF.
+
+Similarly to what the matrix factorisation algorithms are doing, there are the Autoencoders models which are trying to find a latent variable space using a more modern approach. These also in theory could incorporate multiple data types.
+
 
 \subsection{Deep Learning  and Genomics} \label{s:dl_genomics}
 

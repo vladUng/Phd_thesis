@@ -10,9 +10,33 @@ This part of the literature review is structure so that it offers an overview of
 % Leiden and others
 \subsubsection{Modularity maximisation}
 
-Leiden and Louvain \citet{Traag2019-ne,Blondel2008-ik} are relatively simple algorithms with a similar strategy as in the agglomerative hierarchical clustering, where each node (gene) has its own partition, then these are moved until the optimal partitions is found. The optimal is usually asses by Eq \ref{}, which is called modularity function. The resolution parameter controls the number of communities, lower values gives less communities where higher lead to more. An alternative to the Modularity maximisation is Constant Pots Model (CPM) introduced by \citet{Traag2011-if}. Both functions are explored in this project see Section \ref{}.
+Leiden and Louvain \citet{Traag2019-ne,Blondel2008-ik} are relatively simple algorithms with a similar strategy as in the agglomerative hierarchical clustering, where each node (gene) has its own partition, then these are moved until the optimal partitions is found. 
+To determine the partitions both publications are building on the earlier work from Mark Newman who had numerous contributions to the field. He introduced the modularity function in Eq \ref{eq:modularity} \citet{Newman2004-dd} which quantifies the difference between the actual number of edges in community, the term $e_c$. Where as the number of expected edges is given by the $\frac{K_c^2}{2m}$, where $K_c$ is the sum of degrees of the nodes in community $c$ and $m$ is total number of edges in the network \cite{Traag2019-ne}. The $\gamma$ is the resolution parameter which with higher values allows for more communities to be found while smaller values, less communities.
 
-\citet{Traag2019-ne} addresses the above Louivan's limitation  which it founds arbitrarily badly connected communities and resolution limit. The latter refers that Louivan is not able to find more than $\sqrt{2E}$, where E is the total number of edges and as shown in \citet{Peixoto2021-jx}, it can not find smaller communities even when there is a statistical evidence for it. Leiden is a culmination of other efforts to improve Louivan\cite{Ozaki2016-dl,Waltman2013-zw,Bae2017-rz, Traag2015-tq} and the authros prove and guarantee that the algorithm converges to stable partitions, no disconnected communities and it shows that it is faster. Disconnected communities is something that was observed by \citet{Care2019-ij} when they used Louivan algorithm and set the number of edges per gene smaller than 2. Thus, it is an improvement to the original algorithm.
+\begin{equation} \label{eq:modularity}
+    {\mathcal H} =\frac{1}{2m}\,{\sum }_{c}({e}_{c}-{\rm{\gamma }}\frac{{K}_{c}^{2}}{2m}),
+\end{equation}
+
+
+Optimising the modularity function is classified as an NP-hard problem, meaning it takes a lot of computational resources to find the solution. Heuristics like Leuvain and Leiden were introduced, which are trying to optimise for Eq. \ref{eq:mod_max_cost}, initially proposed by Newman \cite{Newman2006-fa}. E represent all the edges in the network, $A_i,j$ is an element of the adjacency matrix, $k_i$, $k_j$ the degree of nodes $i,j$; $b_i$ the community membership of node $i$ \cite{Peixoto2021-jx}. Thus the idea of the modularity maximisation methods is to find community $\bar{b}$ which gives the maximum value for the modularity maximisation Eq \ref{eq:mod_max_cost}.
+
+\begin{equation} \label{eq:mod_max_cost}
+    Q(A,b) = \frac{1}{2E} \sum_{ij} \left( A_{ij} - \frac{k_i k_j}{2E} \right) \delta_{b_i, b_j}
+\end{equation}
+
+\begin{equation} \label{eq:mod_max_per_com}
+    \bar{b} = \underset{b}{\mathrm{argmax}} \, Q(A, \, b).
+\end{equation}
+
+
+\citet{Traag2019-ne} addresses the Louivan`s limitations of finding arbitrarily badly connected communities and suffering of resolution limit by proposing the Constants Pots Model (CPM) based on Eq \ref{eq:CPM}. The equation is very similar to Eq \ref{eq:modularity} but the expected number of connections in a community is given by combinations $(\begin{array}{c}{n}_{c}\\ 2\end{array})$, where $n_c$ is the number of edges in community c. Both modularity functions are explored in this project see Section \ref{} along with the Stochastic Block Model.
+
+\begin{equation} \label{eq:CPM}
+    {\mathcal H} ={\sum }_{c}[{e}_{c}-\gamma (\begin{array}{c}{n}_{c}\\ 2\end{array})],
+\end{equation}
+
+
+Introducing the CPM, \citet{Traag2019-ne} solves the resolution limit in Louivan. The resolution limit generally refers to that a model is not able to find more than $\sqrt{2E}$, where E is the total number of edges and as shown in \citet{Peixoto2021-jx}, it can not find smaller communities even when there is a statistical evidence for it. Leiden is a culmination of other efforts to improve Louivan\cite{Ozaki2016-dl,Waltman2013-zw,Bae2017-rz, Traag2015-tq} and the authors prove and guarantee that the algorithm converges to stable partitions, no disconnected communities and it shows that it is faster. Disconnected communities is something that was observed by \citet{Care2019-ij} when they used Louivan algorithm and set the number of edges per gene smaller than 2. Thus, it is an improvement to the original algorithm.
 
 % Comparative studies
 The work of \citet{Shemirani2023-ww} is used to find short-segment shared by a group of people who are distantly related, with goal to find rare traits and disease in biobanks. For these kind of applications, community detection algorithms are used and the authors compare multiple popular methods Leiden, Louivan, InfoMap \citet{Rosvall2008-kw} and Markov Clustering (MCL) \citet{Van_Dongen2008-yj}. Despite being a different problem from the one addressed in this PhD, the work of \citet{Shemirani2023-ww} is relevant as it offers a comparison between the different community detection algorithms. Leiden and Louivan generally have higher Modularity scores but The MCL and InfoMap are closer to the ground-truth communities. The authors reason that is due to the resolution limit and the Leiden, Louivan are not able to find smaller communities. This reinforces, the problem described above and raised by Tiago \citet{Peixoto2021-jx} and others \cite{Fortunato2007-gh, Traag2019-ne}, covered in the next section (\ref{s:lit:descriptive_inference}).
