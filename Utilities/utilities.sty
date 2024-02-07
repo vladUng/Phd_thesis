@@ -24,7 +24,7 @@
 \usepackage{float}
 \usepackage{tabularray}
 \usepackage{listings}
-
+\usepackage{cleveref} 
 
 \usepackage{algorithm,algpseudocode}
 
@@ -99,6 +99,17 @@
 \usepackage[numbers]{natbib}
 
 \usepackage[acronym]{glossaries}
+
+
+% Custom section commands
+\crefname{section}{section}{sections}
+\Crefname{section}{Section}{Sections}
+
+\crefname{equation}{eq.}{eqs.}
+\Crefname{equation}{Eq.}{Eqs.}
+
+\crefname{figure}{fig.}{figs.}
+\Crefname{figure}{Fig.}{Figs.}
 
 % check list
 \usepackage{enumitem,amssymb}
