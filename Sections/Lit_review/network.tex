@@ -24,7 +24,19 @@ One such approach are the co-expressed networks which uses different correlation
 \import{Sections/Lit_review/}{comm_detection.tex}
 
 
-\subsection{From gene to samples}
+% Remarks
+\subsection{Summary} 
+
+This section explored some of the popular methods to build network and how these models were applied to a variety of diseases. The co-expressed networks, with WGCNA \cite{Langfelder2008-sn} being the most popular method and PGCNA \cite{Care2019-ij} introducing a newer correlation based networks. HCNM \cite{Vangimalla2021-fc} and iHNMMO \citet{Peng2017-ik} create multi-layer networks each being a representation of the data types. While DrDimont \cite{Hiort2022-lk} and NetICS \citet{Dimitrakopoulos2018-br} uses differentially expressed analysis results between either healthy-disease or disease-drug response to build the networks. Partial-correlation has also been in network construction phase by \citet{De_la_Fuente2004-ts} as well as Bayesian approaches  probabilistic methods by \cite{Nakazawa2021-yq, Tamada2011-ok, Tanaka2020-mw}.
+
+All of these methods shared their aim to advance the understanding and analysis of the genomic data, but differ in their objectives. Only PGCNA, WGCNA, HCNM and Nakazawa et al.\cite{Care2019-ij, Langfelder2008-sn, Nakazawa2021-yq,  Vangimalla2021-fc} were developed to subtype the cancer. iHNMMO \cite{Peng2017-ik}, NetICS \cite{Dimitrakopoulos2018-br} have the goals to find a subset of relevant genes at the disease level, while DrDimont \cite{Hiort2022-lk} the genes responding to a drug. 
+
+% Argument for why chossing correlation - not great
+In this project, the approach taken is similar to the one from PGCNA and WGCNA which is to built the network from correlation scores of the data. Despite the casual-inference limitations, the correlation based networks are computational faster, simpler to implement and easier to analyse, which is a fundamental aspect of the project.
+
+
+
+
 
 % PGCNA 
 
