@@ -1,14 +1,40 @@
 \subsection{Co-expressed networks} \label{s:lit:co_net}
 
-Co-expressed networks are built from gene expression data (RNAseq or Microarray) where the edges' strength represents the correlation between the two. 
-
-
 % Challenges in the neworks - or assumptions - decisions
 % Create the network - the use of correlation - what are the advantages?
 % Reduce the edges - use a threshold 
-The field of using networks to analyse genomic data is a fast moving field with rapid advancements in the past 10 years. 
 
-The review from 2023 of \citet{Petti2023-qo} is covering the network based approaches to stratify a disease. In this section, the most relevant models to the project presented there are covered. Another interesting review is the one from \citet{Van_Dam2018-id} which covers the network built from Deferentially Expressed Genes (DEG). Another review from 2020 which focuses on network fusion is \citet{Di_Nanni2020-qu} which also covers the work from \citet{Dimitrakopoulos2018-br}, presented later in \ref{} section,
+There are two methods reviewed in this section Weighted Gene Correlation Network Analysis (WGCNA) \citet{Langfelder2008-sn} and Parsimonious Gene Correlation Analysis (PGCNA) \citet{Care2019-ij}. The former represents the first formalisation of this kind of methods to analysis correlation networks while the latter is a more recent development and targeted to disease subtyping. 
+
+Both methods and the others derived are similar in methodology having the following steps:
+\begin{enumerate}
+    \item Construct network based on the correlation matrix.
+    \begin{itemize}
+        \item WGCNA alters the correlation values to be between 0-1, where as PGCNA does not change the values 
+    \end{itemize}
+    \item Edge reduction with the goal to isolate the signal from the noise and build a network that it is easier to analyse
+    \begin{itemize}
+        \item PGCNA applies and aggressive strategy, while WGCNA impose the correlation values to be above a certain threshold
+    \end{itemize}
+    \item Construct the network from the reduced matrix
+    \item Find the communities in the network
+    \begin{itemize}
+        \item WGCNA on hierarchical clustering (check this) while PGCNA using Louivan \citet{Blondel2008-ik} or Leiden \citet{Traag2019-ne}
+    \end{itemize}
+\end{enumerate}
+
+To these steps PGCNA also extracts the relevant genes for each communities and uses them to stratify the cancer. In addition, the work from \citet{Care2019-ij} also supports multiple datasets.
+
+The review from 2023 of \citet{Petti2023-qo} is covering the network based approaches to stratify a disease. Another interesting review is the one from \citet{Van_Dam2018-id} which covers the network built from Deferentially Expressed Genes (DEG). Another review from 2020 which focuses on network fusion is \citet{Di_Nanni2020-qu} which also covers the work from \citet{Dimitrakopoulos2018-br}.
+
+
+
+ % WGCNA
+\subsubsection{WGCNA} \label{s:lit:WGCNA}
+
+One of the most popular gene co-expressed network (GCN) is the Weighted Gene Correlation Network Analysis (WGCNA) by \citet{Langfelder2008-sn}. This paper is an accumulation of different works from Dr Steve Horvath lab which offers a clear and concise methodology to build and analyse a GCN, and more importantly everything is packed in an R package which then other researchers can use. Being a referential work in the field, it follows the steps described above on creating, processing and analysing the graph.
+
+Compared to PGCNA (see \ref{s:lit:pgcna}) where correlation values are unaltered, in WGCNA the values are scaled from 0-1, which at the cost of loosing some information resolution it helps the graph processing. To reduce the number of edges \citet{Langfelder2008-sn} sets a threshold to the correlation values and for community detection they apply topological overlap which was described in \textbf{\citet{Zhang2005-xq} and applied to \citet{Yip2007-mr, Li2007-vz, Ravasz2002-au}}. The discovered modules are then clustered using hierarchical clustering.
 
 % PGCNA
 \subsubsection{PGCNA} \label{s:lit:pgcna}
@@ -49,11 +75,6 @@ Overall, PGCNA represents a bespoke pipeline for disease subtyping which introdu
 
 While PGCNA solves some of the challenges that this project faced there are still many left untouched. What is the best way to integrate the effect of the mutations into the network? Would selective edge pruning offer a better representation of the data? And so on. Thus, the work in this project builds on PGCNA and it offers the support for multiple data types integration.
 
-% WGCNA
-\subsubsection{WGCNA} \label{s:lit:WGCNA}
-
-One of the most popular gene co-expressed network (GCN) is the Weighted Gene Correlation Network Analysis (WGCNA) by \citet{Langfelder2008-sn}. This paper is an accumulation of different works from Dr Steve Horvath lab which offers a clear and concise methodology to build and analyse a GCN, and more importantly everything is packed in an R package which then other researchers can use. Being a referential work in the field, it follows the steps described above on creating, processing and analysing the graph. Compared to PGCNA (see \ref{s:lit:pgcna}) where correlation values are unaltered, in WGCNA the values are scaled from 0-1, which at the cost of loosing some information resolution it helps the graph processing. To reduce the number of edges \citet{Langfelder2008-sn} sets a threshold to the correlation values and for community detection they apply topological overlap which was described in \textbf{\citet{Zhang2005-xq} and applied to \citet{Yip2007-mr, Li2007-vz, Ravasz2002-au}}. The discovered modules are then clustered using hierarchical clustering.
-
 % Alternatives to co-expressed networks - partial-coor
 \subsubsection{Partial-correlation} \label{s:lit:partial-corr}
 
@@ -75,7 +96,7 @@ In summary, the work of \citet{Nakazawa2021-yq} is a comparable Bayesian alterna
 
 
 
-\subsection{Data integration}
+\subsection{Data integration} \label{s:lit:net_data_int}
 \subsubsection{Network propagation} \label{s:lit:net_prop}
 
 An interesting approach to integrate multiple data types into a network is introduced by  \citet{Hofree2013-ld}. The authors created a network from public data on gene interaction networks \cite{Szklarczyk2019-pu, Cerami2011-ql, Lee2011-xj} to which then applied a projection method developed by \citet{Vanunu2010-el} to diffuse the somatic information into the network from gene interactions. The resultant network is then projected to a latent space using netNMF method \citet{Cai2008-fv} which represent the space combining both the mutations and the gene expression. Then hierarchical clustering is applied.
