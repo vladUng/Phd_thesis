@@ -1,4 +1,4 @@
-\section{Literature Review}
+\section{Notes - literature review}
 
 There are two main goals here:
 \begin{itemize}
@@ -22,7 +22,78 @@ This section will be a combination of:
 \end{itemize}
 
 
-\subsection{Network Notes}
+\subsection{Data Integration notes}
+
+\subsubsection{Overview}
+
+There are multiple studies \citet{Menyhart2021-ef, Subramanian2020-tk, Picard2021-qr, Reel2021-sg} which are reviewing the work done in integrating multiple data types in the -omics realm. A particular good work is of \citet{Menyhart2021-ef} which classifies the different approaches undertaken in the field for disease stratification:
+\begin{itemize}
+    \item Multivariate methods for data integration
+        \begin{itemize}
+            \item Non-matrix factorisation (NMF) - my understanding of this is that it's a dimension reduction technique which preserves the non-linear aspect of the data better than PCA. Also, it's been used in conjunction with Bayesian approaches by \citet{Robertson2017-mg}
+            \item Joint and Individual Variation Explained (JIVE) - similar to PCA
+            \item MoCluster \cite{Meng2016-ui} - not sure about this one
+        \end{itemize}
+    \item Statistical methods for data integration
+        \begin{itemize}
+            \item iCluster family \citet{Shen2009-ew, Mo2013-zi, Mo2018-el}
+            \item A probabilitisc graphical model - PARADIGM. \textbf{This may needs further exploration as it may be closer to what we want}
+            \item Usupervised Bayesian Consensus Clustering (BCG). This is based on \textit{Dirichlet mixture model}
+        \end{itemize}
+    \item Network-based integration
+        \begin{itemize}
+            \item iOmicsPASS - supervised approach
+        \end{itemize}
+    \item Fusion-based integration
+        \begin{itemize}
+            \item Pattern Fusion Analysis (PFA) - comparable with iCluster, maybe worth exploring
+        \end{itemize}
+    \item Similarity-based integration
+        \begin{itemize}
+            \item Similarity network fusion - networks are created per omics which are then combined for clustering.
+        \end{itemize}
+    \item Correlation-based integration
+        \begin{itemize}
+            \item Using Canonical correrlation analysis (CCA) to asses correlation across different data types.
+        \end{itemize}
+\end{itemize}
+
+A nice overview of all the models reviewed by \citet{Menyhart2021-ef} is provided in the paper and gives an appreciation of the methods applied and to which cancer types. Arguably \citet{Subramanian2020-tk} also provides a table with the methods used in subtyping but it feels less comprehensive. Nevertheless, the approaches used so far can be summarised to the following:
+\begin{itemize}
+    \item Matrix factorisation
+    \item Bayesian
+    \item network based / similarity 
+    \item others (fusion, correlation, PCA, multi-step)
+\end{itemize}
+
+\subsubsection{A sequential approach}
+
+In this class of algorithms the approach of the problem is almost sequential in the sense of:
+
+\begin{itemize}
+    \item Authors pre-process the data in numerous ways depending on the next step, but usually it involves normalisation and filtering out the genes that are not biologically significant (this is done by some arbitrary rules)
+    
+    \item Represent the data in a latent space, like this only the relevant features are kept. 
+    \begin{itemize}
+        \item The construction of the latent space can be done separately for each dataset type as well as combined for all (e.g. iCluster family)
+        \item \textbf{Note:} I don't understand the biology good enough but it seams that there usually might me mean that some of the data might be missed. For instance, when a gene is filtered out it needs to be relative to the sample
+    \end{itemize}
+    
+    \item After this apply a clustering technique to find the subgroups
+\end{itemize}
+
+For finding the latent space there are several approaches used:
+
+\begin{itemize}
+    \item PCA
+    \item Bayesian approaches, like Bayesian NMF from the consensus 
+    \item iCluster approach where they have used another Bayesian method to find the posterior probability describing the data
+    \item Autoencoders
+    
+\end{itemize}
+
+\newpage
+
 
 \subsection{Network previous work}
 

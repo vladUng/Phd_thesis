@@ -152,7 +152,7 @@ In Figure \ref{fig:ann_basic} it's a simple, single-layer, feed-forward Neural N
 \FloatBarrier
 
 
-\subsubsection{Autoencoders} \label{s:autoencod_overview}
+\paragraph*{Autoencoders} \label{s:autoencod_overview}
 
 Autoencoders are a particular type of Deep Neural Networks and Figure \ref{fig:autoencoders} represents a diagram a simple Autoencoder architecture in which it can be seen that there are 3 main components. The input layer to which the data is fed, for more complex models it has additional hidden layers and with the input, the two layers are known together as the encoder stage. The bottleneck part is where the data is compressed into a lower dimension. Next, a mirror to the encoder, the decoder, is dealing with reconstructing the outputs of the bottleneck into original data; hence, the name. This part of autoencoders is an advantage over the PCA as the original data can be reconstructed from the lower dimension. A derivative of Neural Networks, autoencoders are more suitable to find non-linear patterns in the data as whereas PCA finds only linear patterns. With all these advantages as dimension reduction techniques is not a surprise that there has been some work on applying Autoencoders to genomics (explored further in section \ref{s:autoencoders}).
 
