@@ -1,4 +1,4 @@
-\section{Computational methods} \label{s:computational}
+\section{Computational methods} \label{s:lit:computational}
 
 
 \acrfull{ml} and \acrfull{ai} have become buzz words in the past 10 years which have largely been due to the breakthroughs in difficult problems like Computer Vision\cite{Krizhevsky2012-qa} coupled with the increase in computational power. There is usually confusion between the ML \& AI terms, the former represents a subfield of the AI \cite{Domingos_Pedro2015-xr}. In the "Master Algorithm", \citet{Domingos_Pedro2015-xr} defines that the goal of the AI field is to make computers learn better than humans. This has been turned in popular culture to have three milestones, turned into three stages of AI: narrow, human-level and general AI. Currently, we don't have anything remotely close to human-level and arguably we are a long way\footnote{See paper "Artificial intelligence hits the barrier of meaning" by \citet{Mitchell2019-hv}}. For example, in Computer Vision, the models can detect complex patterns and score high in classifications problems but the algorithm doesn't create any meaning or complex representation of the object classified. These limitations can be seen in the failed promises from Tesla, Waymo and other companies seeking to achieve full self-driving cars\footnote{Dr F. Piekniewski is an AI researcher who has a more cynical view of the AI progress and the big claims some popular tech figures do. Specifically, on self-driving cars, its blog post is interesting \cite{Piekniewski2021-if}.}.  Similarly, for the Large Language Models (LLMs) like ChatGPT or Bard which massively advanced the chatbots but the models still can not form an understanding of the real world. Thus, one can see the AI term as more of an aspiration to which the field aims.
@@ -7,12 +7,12 @@ Machine Learning represents the collection of tools that are used in Artificial 
 
 From an ML stance, learning can be of three types: supervised, semi-supervised and unsupervised learning. The first case is when the human labels the data, the corollary being that there is a need for careful processing as well as already having information about the data. This is the 'easiest' case as it comes with a wealth of information and the output is known to belong to the pre-defined set of labels. In this are the most recent progress in \acrfull{dl} was made but it's not a realistic scenario as labelling data is usually challenging and expensive. The semi-supervised (or \acrfull{rl}) is when the model is not given labelled data to learn from, but a set of rules from where it needs to find the solution. This approach has met some successes through \acrfull{dqn} which achieved human skills at Atari games\cite{Mnih2015-cw} or AlphaGo Zero\cite{Silver2017-sw} which is the best Go player in the world. 
 
-As the name suggests the unsupervised learning is the case where there is no input from a human. These computational approaches are used when there is not enough data about the problem, what to expect and patterns are hard to define. Clustering is the prevalent algorithm, that is to find patterns in data which then can be validated with domain knowledge. This is the common scenario in biological applications that data is not labelled, unsupervised approaches are used as seen in \cref{s:rnaSeq}.
+As the name suggests the unsupervised learning is the case where there is no input from a human. These computational approaches are used when there is not enough data about the problem, what to expect and patterns are hard to define. Clustering is the prevalent algorithm, that is to find patterns in data which then can be validated with domain knowledge. This is the common scenario in biological applications that data is not labelled, unsupervised approaches are used as seen in \cref{s:lit:rnaSeq}.
 
 
-\textbf{Revise this after structuring}. The Chapter starts by covering the clustering techniques (\ref{s:clustering}) to support the concepts in consensus subtyping (\ref{s:rnaSeq}). Popular dimension reduction algorithms are widely in genomics where there is a high number of features and are covered in section \ref{s:dim_red}. This is followed by EA (\cref{s:ea_overiew}) and Graph Theory (section \cref{s:graph_overview}) basics in order to support some of the work presented in \cref{s:mutations} and \ref{s:lit:multi-view}. Next \acrlong{ann} are introduced covering concepts like Autoencoders or Spiking Neural Networks, the first is needed for \cref{s:autoencoders}. Lastly, the Neuroevolution \cref{s:neuroevolution} introduces concepts on how to combine the evolutionary with the connectionist approach. 
+\textbf{Revise this after structuring}. The Chapter starts by covering the clustering techniques (\ref{s:lit:clustering}) to support the concepts in consensus subtyping (\ref{s:lit:rnaSeq}). Popular dimension reduction algorithms are widely in genomics where there is a high number of features and are covered in section \ref{s:lit:dim_red}. This is followed by EA (\cref{s:lit:ea_overview}) and Graph Theory (section \cref{s:lit:graph_overview}) basics in order to support some of the work presented in \cref{s:lit:mutations} and \ref{s:lit:multi-view}. Next \acrlong{ann} are introduced covering concepts like Autoencoders or Spiking Neural Networks, the first is needed for \cref{s:lit:autoencoders}. Lastly, the Neuroevolution \cref{s:lit:neuroevolution} introduces concepts on how to combine the evolutionary with the connectionist approach. 
 
-\subsection{Clustering} \label{s:clustering}
+\subsection{Clustering} \label{s:lit:clustering}
 
 Clustering algorithms have many variations and these are best covered in a code sample\cite{Scikit-learn_undated-ax} from the Scikit-learn library\cite{Pedregosa2011-ts}. A selection of the methods which worked on this project are displayed in \cref{fig:clustering_types}. The rows represent different types of datasets and the columns are the algorithms covered in this document: K-means being a general-purpose algorithm, Ward and Agglomerative both being hierarchical clustering, but Agglomerative is peforming pair-wise grouping. It is worth mentioning, that a modified version of the Scikit-learn code was adapted to the project needs, enabling the run pf multiples clustering techniques with varied parameters to the JBU and TCGA datasets. 
 
@@ -58,7 +58,7 @@ Agglomerative clustering is a type of hierarchical clustering that starts from c
     Smaller clusters morph together into a larger ones
 \end{lstlisting} 
 
-\subsubsection*{Clustering metrics}
+\subsubsection*{Clustering metrics} \label{s:lit:clustering_metrics}
 
 One of the challenges in clustering is to measure the performance of grouping as there is no labelling or prior information on how the grouping should look like. This project uses the canonical metrics which are supported by Scikit-learn\cite{Pedregosa2011-ts,Scikit-learn_undated-ax}. These are:
 \begin{itemize}
@@ -84,7 +84,7 @@ In addition to the above metrics, there is a popular heuristic procedure, the El
 \FloatBarrier
 
 
-\subsection{Dimension reduction} \label{s:dim_red}
+\subsection{Dimension reduction} \label{s:lit:dim_red}
 
 In contrast to many computationally- or physics-focused data analysis problems, biologically derived datasets are characterised by a high number of features (dimension) and a small number of samples. Thus, it is often essential to use dimension reduction, \acrfull{pca} is the standard method that works by projecting the higher dimension to the specified lower dimension. For example, a principal component of a genomic dataset might be linked to biological sex, as it influences many features of a biological system.
 
@@ -94,14 +94,14 @@ Another dimension reduction technique is \acrfull{nmf} which operates on the sam
 
 
 
-\subsection{Evolutionary Algorithms} \label{s:ea_overiew}
+\subsection{Evolutionary Algorithms} \label{s:lit:ea_overview}
 
 % In the previous section described how graphs are used to analyse the gene interactions and a similar approach but the different algorithm is \acrfull{cgp}. This is part of the \acrfull{ea} family which draws inspiration from the Darwinian evolution.
 
 \acrlong{ea} are a type of \acrshort{ml} that draws inspiration from Darwinian evolution. By incorporating random changes in the algorithm, EA can be used for optimisation or search problems. Thus, EAs are suitable for doing a wide search of the solution space\footnote{Imagine the solution space as space of the total possible solutions for a problem.} which means that they might find an unusual solution and escape the local minimum. A useful analogy here is to think as one climbing a mountain (search space), the goal (optimal solution) is to reach the highest peak but along the way, there are other peaks (local minimum) but smaller (less optimal) than the highest peak (optimal solution). The process (algorithm) in reaching the desired peak is incremental and it requires choosing the right path to reach the global top. Usually, an algorithm has difficulties in differentiated between the highest peaks and the smaller ones, but due to the high variation characteristic of EA, these methods perform well in such problems.
 
 
-However, these algorithms have a high computational cost and do not usually scale well, therefore are applied to relatively small problems (i.e. number of features). The corollary is that EAs are easier to understand compared to the  \acrfull{dl} (explored in \cref{s:dl_genomics}) and are classified as a 'white-box' approach. In \cref{s:mutations} is presented the MDPFinder (\citet{Zhao2012-wj}) model where \acrfull{ga}, a simpler version of EAs, are applied to process both Gene Expression and mutations.
+However, these algorithms have a high computational cost and do not usually scale well, therefore are applied to relatively small problems (i.e. number of features). The corollary is that EAs are easier to understand compared to the  \acrfull{dl} (explored in \cref{s:lit:dl_genomics}) and are classified as a 'white-box' approach. In \cref{s:lit:mutations} is presented the MDPFinder (\citet{Zhao2012-wj}) model where \acrfull{ga}, a simpler version of EAs, are applied to process both Gene Expression and mutations.
 
 % would split the sentence here. You could then link to your next point, perhaps: "...from Darwinian evolution. By incorporating random changes in the parameters of a model, or set of models, EA can be used for optimisation..." Something like this makes it clearer why the Darwinian principles are important
 
@@ -117,10 +117,10 @@ As EA resembles the evolutionary process there is also some shared terminology, 
 
 Defining the fitness function as well as encoding the data for the EA algorithm is one of the challenges when developing EA as it is problem specific. Biological evolution is a process that takes time and many iterations, the in-silico adaptation share that and it is the reason for not scaling well or as it has a high computational cost.
 
-The MDPFinder model presented in \cref{s:mutations} used a variation of EA, called \acrfull{ga} which is a simpler version of the EA family where individuals resemble the chromosome. \acrfull{cgp} is another EA algorithm which it's used to process graph representation and it overcomes some of the limitations of the simpler EA methods. As we've seen that graph representation it's already been used in gene networks, CGP may represent an interesting venue to follow. 
+The MDPFinder model presented in \cref{s:lit:mutations} used a variation of EA, called \acrfull{ga} which is a simpler version of the EA family where individuals resemble the chromosome. \acrfull{cgp} is another EA algorithm which it's used to process graph representation and it overcomes some of the limitations of the simpler EA methods. As we've seen that graph representation it's already been used in gene networks, CGP may represent an interesting venue to follow. 
 
 
-\subsection{Artificial Neural Networks} \label{s:ann_overview}
+\subsection{Artificial Neural Networks} \label{s:lit:ann_overview}
 
 As it was mentioned at the beginning of this chapter, the connectionist approach is what drives the current AI hype and it's due to the advances in both algorithms and computational power. The inspiration comes from how the brain draws the information from the external stimuli, stores it in memory and retrieve it. Despite being many unknowns to the brain, the main components that are involved in the learning process are the neurons and the synapses between them\footnote{The neurons and synapses are the main components, but there may be others like dendrites which can also be computational units as seen later in the section.}. The simplest learning rule was introduced by Donald Hebb which states "Neurons that fire together, wire together"\cite{Hebb_Donald1949-nn}. This means that a neuron that fire or its concurrently activated with another one (or in a given time window) the two form a stronger connection. The opposite is true, the synapse is weaken, when two neurons that do not get activated in the same time window.
 
@@ -135,9 +135,9 @@ As it was mentioned at the beginning of this chapter, the connectionist approach
 \FloatBarrier
 
 
-\paragraph*{Autoencoders} \label{s:autoencod_overview}
+\paragraph*{Autoencoders} \label{s:lit:autoencod_overview}
 
-Autoencoders are a particular type of Deep Neural Networks and \cref{fig:autoencoders} represents a diagram a simple Autoencoder architecture in which it can be seen that there are 3 main components. The input layer to which the data is fed, for more complex models it has additional hidden layers and with the input, the two layers are known together as the encoder stage. The bottleneck part is where the data is compressed into a lower dimension. Next, a mirror to the encoder, the decoder, is dealing with reconstructing the outputs of the bottleneck into original data; hence, the name. This part of autoencoders is an advantage over the PCA as the original data can be reconstructed from the lower dimension. A derivative of Neural Networks, autoencoders are more suitable to find non-linear patterns in the data as whereas PCA finds only linear patterns. With all these advantages as dimension reduction techniques is not a surprise that there has been some work on applying Autoencoders to genomics (explored further in \cref{s:autoencoders}).
+Autoencoders are a particular type of Deep Neural Networks and \cref{fig:autoencoders} represents a diagram a simple Autoencoder architecture in which it can be seen that there are 3 main components. The input layer to which the data is fed, for more complex models it has additional hidden layers and with the input, the two layers are known together as the encoder stage. The bottleneck part is where the data is compressed into a lower dimension. Next, a mirror to the encoder, the decoder, is dealing with reconstructing the outputs of the bottleneck into original data; hence, the name. This part of autoencoders is an advantage over the PCA as the original data can be reconstructed from the lower dimension. A derivative of Neural Networks, autoencoders are more suitable to find non-linear patterns in the data as whereas PCA finds only linear patterns. With all these advantages as dimension reduction techniques is not a surprise that there has been some work on applying Autoencoders to genomics (explored further in \cref{s:lit:autoencoders}).
 
 \begin{figure}[!htb]
   \centering\includegraphics[width=0.8\textwidth,height=0.5\textheight,keepaspectratio]{Images/Autoencoders/simple_autoencoders.png}
@@ -150,7 +150,7 @@ Autoencoders are the most successful \acrshort{dnn} approaches to genomics probl
 
 
 
-\subsection{Graph Theory} \label{s:graph_overview}
+\subsection{Graph Theory} \label{s:lit:graph_overview}
 
 One of the aims of graph theory is to find the influence nodes, which in biology this might be the case of finding the driver genes which are the ones with the biggest impact on the network. In \cref{fig:graphs_basic} it's a simple representation of a graph, where a node (or vertices) is a gene and the edge between them is the connection. 
 
@@ -167,9 +167,9 @@ To establish how genes are linked to a network and interact,  the edges are assi
 % Keep this section simple. It links to parts of your project you haven't discussed yet and so becomes a bit unclear. Effectively you want to state that genes can be linked in a network and that many biological approaches allow measurements of genes. This means you can infer relationships, see how relationships change in disease/perturbation and assess how distinct, but linked-in-the-network perturbations can lead to a common result/phenotype/observation
 
 
-\subsection{Choosing the right ML approach} \label{s:neuroevolution}
+\subsection{Choosing the right ML approach} \label{s:lit:neuroevolution}
 
-\Cref{s:ea_overiew} covered the basics of the evolutionary approach, and in both \ref{s:ann_overview} \& \ref{s:autoencod_overview} sections it was presented the connectionists' view of ML. These two solve different types of problems, where so far, the EAs are better for search problems and the ANNs for classification. The ANNs work by finding an optimal configuration of the weights and network topology, which can be seen as a search/optimisation problem for the right network configuration. Therefore, there has been work in combining the two approaches in what is called Neuroevolution. Such an approach has been used to process mutations data and it's covered in \cref{s:mutations}.
+\Cref{s:lit:ea_overview} covered the basics of the evolutionary approach, and in both \ref{s:lit:ann_overview} \& \ref{s:lit:autoencod_overview} sections it was presented the connectionists' view of ML. These two solve different types of problems, where so far, the EAs are better for search problems and the ANNs for classification. The ANNs work by finding an optimal configuration of the weights and network topology, which can be seen as a search/optimisation problem for the right network configuration. Therefore, there has been work in combining the two approaches in what is called Neuroevolution. Such an approach has been used to process mutations data and it's covered in \cref{s:lit:mutations}.
 
 In these computational methods, EAs are used to find the optimal initial configuration of the ANN, which then it's used to be trained. Starting from a different than random state helps the ANN to avoid the local minimum problem, and to increase the classifications performances. On top of that, the EAs are also used to determine the best network topology which means the number of layers, units, their connections, etc.
 
