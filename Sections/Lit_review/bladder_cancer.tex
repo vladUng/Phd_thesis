@@ -66,6 +66,95 @@ TCGA cohort is also part of the consensus effort to stratify the bladder cancer 
 % Introducing the delays in translating the subtypes to clinical application
 Importantly \citet{Kamoun2020-tj} admitted that there are delays in translating the different subtypes discovered through the consensus, TCGA to clinical applications. 
 
+Properties of the TCGA subtypes:
+\begin{itemize}
+    \item Luminal-papillary (35\%)
+    \begin{itemize}
+        \item KRT20, PPARG, FOXA1, GATA3, SNX31, UPK1A, UPK2, FGFR3
+        \item Characterised by FGFR3 mutations
+        \item papillary histology
+        \item low risk of progression
+    \end{itemize}
+    \item Luminal-infiltrated (19\%)
+    \begin{itemize}
+        \item CD274, PDCD1LG2, IDO1, CXCL11, L1CAM, SAA1
+        \item lowest purity
+        \item high expression of EMT and myofibroblast markers, and of the miR-200s (tumour suppressor) 
+        \item medium expression of CD274 and CTLA4 immune markers
+        \item may respond to immune checkpoint therapy
+        \item may be resistant to cisplatin-based chemotherapy
+    \end{itemize}
+    \item Luminal (6\%)
+    \begin{itemize}
+        \item KRT20, PPARG, FOXA1, GATA3, SNX31, UPK1A, UPK2, FGFR3
+        \item New subtype in TCGA
+    \end{itemize}
+    \item Basal-squamous (35\%)
+    \begin{itemize}
+        \item CD44, KRT6A, KRT5, KRT14, COL17A1; Squamous: DSC3, GSDMC, TCGM1, PI3, TP63
+        \item high incidence in women
+        \item squamous differentiation
+        \item basal keratin expression
+        \item high expression of CD274 and CTLA4 immune markers
+        \item migt be useful for immune checkpoint therapy
+    \end{itemize}
+    \item Neuronal (5\%)
+    \begin{itemize}
+        \item MSI1, PLEKHG4B, GNG4, PEG10, RND2, APLP1, SOX2, TUBB2B 
+        \item Expression of neuroendocrine, neuronal gene and high cell-cycle signature of proliferative state
+        \item The most aggresisive tumours with lowest survival rate
+    \end{itemize}
+\end{itemize}
+
+\begin{table}[htbp]
+\centering
+\caption{The molecular characterisation of the TCGA subgroups from \cite{Robertson2017-mg}}
+\begin{tabularx}{\textwidth}{
+  >{\hsize=.6\hsize\raggedright\arraybackslash}X
+  >{\hsize=.8\hsize\raggedright\arraybackslash}X
+  >{\hsize=.6\hsize\arraybackslash}X
+}
+\toprule
+Subtype & Genes & Description \\
+\midrule
+Luminal-papillary (35\%) & KRT20, PPARG, FOXA1, GATA3, SNX31, UPK1A, UPK2, FGFR3 & 
+\begin{itemize}[leftmargin=*, nosep, after=\vspace{-\baselineskip}, before=\vspace{-.6\baselineskip}]
+    \item Characterised by FGFR3 mutations
+    \item Papillary histology
+    \item Low risk of progression
+\end{itemize} \\
+\midrule
+Luminal-infiltrated (19\%) & CD274, PDCD1LG2, IDO1, CXCL11, L1CAM, SAA1 & 
+\begin{itemize}[leftmargin=*, nosep, after=\vspace{-\baselineskip}, before=\vspace{-.6\baselineskip}]
+    \item Lowest purity
+    \item High expression of EMT and myofibroblast markers, and of the miR-200s (tumour suppressor)
+    \item Medium expression of CD274 and CTLA4 immune markers
+    \item May respond to immune checkpoint therapy
+    \item May be resistant to cisplatin-based chemotherapy
+\end{itemize} \\
+\midrule
+Luminal (6\%) & KRT20, PPARG, FOXA1, GATA3, SNX31, UPK1A, UPK2, FGFR3 & 
+\begin{itemize}[leftmargin=*, nosep, after=\vspace{-\baselineskip}, before=\vspace{-.6\baselineskip}]
+    \item New subtype in TCGA
+\end{itemize} \\
+\midrule
+Basal-squamous (35\%) & CD44, KRT6A, KRT5, KRT14, COL17A1; Squamous: DSC3, GSDMC, TCGM1, PI3, TP63 & 
+\begin{itemize}[leftmargin=*, nosep, after=\vspace{-\baselineskip}, before=\vspace{-.6\baselineskip}]
+    \item High incidence in women
+    \item Squamous differentiation
+    \item Basal keratin expression
+    \item High expression of CD274 and CTLA4 immune markers
+    \item Might be useful for immune checkpoint therapy
+\end{itemize} \\
+\midrule
+Neuronal (5\%) & MSI1, PLEKHG4B, GNG4, PEG10, RND2, APLP1, SOX2, TUBB2B & 
+\begin{itemize}[leftmargin=*, nosep, after=\vspace{-\baselineskip}, before=\vspace{-.6\baselineskip}]
+    \item Expression of neuroendocrine, neuronal gene and high cell-cycle signature of proliferative state
+    \item The most aggressive tumours with the lowest survival rate
+\end{itemize} \\
+\bottomrule
+\end{tabularx}
+\end{table}
 
 \subsubsection{Other omics}
 
@@ -90,6 +179,7 @@ The research conducted by \citet{Alexandrov2013-gi} studies the mutational signa
 
 % epigenetic burden
 The high somatic mutation burden is also highlighted by other research \cite{Tcga2014-dr, Robertson2017-mg, Kamoun2020-tj}. The first two studies found that the mutations disrupt the epigenetic machinery. Understanding these anomalies have the potential to lead to new potential targeted treatments.
+
 
 
 
