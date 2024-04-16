@@ -20,10 +20,10 @@ The previous work done in the field can be categorised based on the data given t
 \fbox {
     \parbox{\linewidth}{
       \begin{itemize}
-        \item Focus on subtyping the cancer based on RNAseq
-        \item Six consensus classifications for bladder cancer by \citet{Kamoun2020-tj}
-        \item Prevalent approch is hierarchical clustering on RNAseq data
-        \item TCGA classification by \citet{Robertson2017-mg}
+        \item Focus on the clustering methods of RNAseq data for MIBC subtyping
+        \item Prevalent approach is hierarchical clustering on RNAseq data
+        \item Network approach to combine multiple datasets
+        \item \textbf{Other approaches (?)}
       \end{itemize}
     }
 }
@@ -35,26 +35,39 @@ The proteins are the building blocks of every living organism and implicitly of 
 
 Genomics datasets (including RNAseq) are characterised by having a small number of data points (tissue samples) but a large number of features (number of genes). Another aspect of the available datasets is that the samples usually come from tumours because obtaining a sample involves surgery, hence there is less publicly available data on healthy tissue. In contrast, as JBU's focuses on bladder tissue there is data collected on the urothelium which is the normal tissue counterpart of the cell that is usually transformed in urothelial cancer.
 
-% specifically the urothelium which is the normal tissue counterpart of the cell that is usually transformed in urothelial cancer
-Cancer is not one disease and it has been a lot of effort in subtyping the cancers as defining subgroups will help to diagnose and treat patients. In the 2020 paper \citet{Kamoun2020-tj} combine six approaches \cite{Mo2018-rl, Damrauer2014-tc, Choi2014-ed, Marzouka2018-ge, Rebouissou2014-ep,Robertson2017-mg} on bladder cancer subtyping to find a consensus in subgrouping. This resulted in 6 subtypes which can be seen in \cref{fig:2020_consens} with their characteristics. It can be noticed that some subtypes are more prevalent than others, with Luminal Papillary (24\%) and Basal/Squamous (35\%) being most common, followed by Luminal Unstable and Stoma Rich (both 15\%). Moreover, each subtype has a different mutations signature only enforcing the project hypothesis by adding mutation to the RNAseq data will yield better cancer classifications.
+\paragraph{Consensus}
 
-\begin{figure}[!htb]                                  
-    \centering\includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Images/TCGA/2020_consensus_subtypes.jpg}
-      \caption{The six different subtypes of \acrfull{mibc} by the consensus classifier\cite{Kamoun2020-tj}, the names are based on their differentiation status, morphology etc. There are three different types of Luminal Bladder cancer: most common being the ones related to papillary morphology (LumP), Luminal Non-Specified (LumNS) showing immune markers, and Luminal Unstable (LumU) is the newest luminal subtype. Basal/Squamous (Ba/Sq) is the most common bladder cancer and is related to the Squamous tissue. Neuroendocrine-like (NE-like) share similarities with Ba/Sq cancer and Stroma-rich are likely not to be a biological group but a collection of samples that contain artefacts from the collection or/and other intermediate processes. Imaged adapted from \cite{Kamoun2020-tj}.
-      }
-      \label{fig:2020_consens}
-  \end{figure}
-  \FloatBarrier
 
-There are few points worth emphasising in the consensus paper, first, all the approaches\cite{Mo2018-rl, Damrauer2014-tc, Choi2014-ed, Marzouka2018-ge, Rebouissou2014-ep,Robertson2017-mg} considered were using hierarchical clustering. Secondly, all models are given only RNAseq data\footnote{Robertson et al. use domain knowledge to choose the number of subtypes.} and the studies are not using the same data (except \cite{Robertson2017-mg, Mo2018-rl} which both are using TCGA data). One consequence of using different data sources is that each study proposed a different set of subgroups. To reach the consensus on subtyping, \citet{Kamoun2020-tj} combined all the datasets resulting in 1750 samples and run the models enlisted above. All the output from the approaches enlisted were analysed together as a network and based on this the six consensus subtypes were defined in \cref{fig:2020_consens}.
+\begin{figure}[!htb]    
+    \centering
+\includegraphics[width=0.9\textwidth,height=0.9\textheight,keepaspectratio]{Sections/Lit_review/Resources/consensus_network_classifier.jpg}
+    \caption{Showing the network to classify the MIBC subgroups.}
+    \label{fig:lit:consensus_network}
+\end{figure}
 
-% you don't need to get too much into biology. In a couple of lines you can say why groups were named - papillary from papillary morphology (google it), Ba/Sq and neuro from markers indicative of those tissue differentiation states (so we know markers for them). You don't need to list subgroup x is called this because... but say that subgroups are named based on their differentiation status, morphology etc. Stroma-rich, not a "proper" biological grouping (most likely) etc etc
+
+% Re-introduce the consensus work
+Cancer is not a single disease and it has been a lot of effort in subtyping the cancers as defining subgroups will help to diagnose and treat patients. In the 2020 paper \citet{Kamoun2020-tj} combine six approaches \cite{Mo2018-rl, Damrauer2014-tc, Choi2014-ed, Marzouka2018-ge, Rebouissou2014-ep,Robertson2017-mg} on bladder cancer subtyping to find a consensus in subgrouping. 
+
+% Present the goal of the paper, the challenge of combining multiple datasets 
+There are few points worth emphasising in the consensus paper, first, all the approaches\cite{Mo2018-rl, Damrauer2014-tc, Choi2014-ed, Marzouka2018-ge, Rebouissou2014-ep,Robertson2017-mg} considered were using hierarchical clustering. Secondly, all models are given only RNAseq data\footnote{Robertson et al. use domain knowledge to choose the number of subtypes.} and the studies are not using the same data (except \cite{Robertson2017-mg, Mo2018-rl} which both are using TCGA data). One consequence of using different data sources is that each study proposed a different set of subgroups. 
+
+% Solution and inspiration from colorectal research
+To reach the consensus on subtyping, \citet{Kamoun2020-tj} combined all the datasets resulting in 1750 samples and run the models enlisted above. All the output from the approaches enlisted above were analysed together as a network using the methods of the colorectal consensus work from \citet{Guinney2015-fy}. To find how the groups of the MIBC subtypes across the classifications Markov Clustering algorithm (MCL) \citet{Van_Dongen2008-yj} is used; this is a type of the community detection algorithm which is later presented in the thesis; see \cref{s:lit:comm_detect}.
+
+% Limitations: Small size compared to colorectal; they haven't used other consensus algorithms
+One of the consensus limitations (acknowledged by the authors too) is the variability of the cohorts and their subtype. The MIBC has 1750 samples compared to 4151 samples used in the colorectal cancer consensus work \cite{Guinney2015-fy}, which represent the initial effort to combine multiple disease classifiers. Running the clustering independently on each cohort and not at the cohort level was also a trade-off required by the different sequencing technologies present in the data. 
+
+\paragraph{TCGA}
 
 
 % Talk about the consensus in Robertson paper
 One of the approaches considered in the Consensus was the work done by \citet{Robertson2017-mg} which found five bladder cancer subtypes in TCGA dataset. The main difference between the two classifications consists in that Luminal-infiltrated (TCGA subtype) was reclassified as Stroma-rich and \citet{Robertson2017-mg} does not classify Luminal unstable (LumU). The TCGA dataset consists of 408 different donor bladder samples with  $\sim$56k expressed genes each. At the pre-processing stage, the under-expressed genes were removed, and only the 25\% with the highest standard deviation were selected, reducing the number of genes to 3347. The authors used agglomerative hierarchical clustering with average linkage and found five clusters. This was supported by another approach Bayesian \acrfull{nmf} \cite{Schmidt2009-zh}.
 
- 
+\paragraph{Lund?}
+
+
+\paragraph{Other works}
 % Talk about sci-fold
 More recent work is \citet{Tian2021-vu} who used the Stiefel manifold method on gene expression, miRNA expression data and DNA methylation. Compared to previous work discussed in this subsection, Tian et al. are focusing on four other cancers from TCGA dataset: glioblastoma multiforme (GBM), breast invasive carcinoma (BIC) Skim Cutaneous Melanoma (SKCM) and Acute Myeloid Leukemia (AMIL). In their work, the authors suggest that using both gene expression and DNA methylation would yield better subtyping but they do not provide clear results on their model.
 
