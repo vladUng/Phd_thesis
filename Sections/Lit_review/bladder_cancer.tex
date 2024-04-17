@@ -55,22 +55,61 @@ In this section there are three main studies on MIBC stratification covered, the
 
 There are two main parts of each of the study that are highly relevant for this project: the methods used for cluster the gene expression and the biological output. Despite the consensus work combining multiple studies, TCGA and the Lund classifications, hold their relevance by offering list of genes specific to each subtype. 
 
+The Sankey plot in figure \cref{fig:lit:subtypes_comp} shows the difference in sample classifications across the three studies covered in this project.
+
+\begin{figure}[!htb]   
+\centering
+\includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Lit_review/Resources/Lung_subtypes.jpg}
+  \caption{Showing the differences between the 3 studied classifiers}
+\label{fig:lit:subtypes_comp}
+\end{figure}
+\FloatBarrier
+
 \paragraph*{TCGA}
 
 % Introduction of TCGA
-There are two comprehensive studies of the muscle-invasive bladder cancer (MIBC) cohort from The Cancer Genome Atlas (TCGA) \citet{Tcga2014-dr} and \citet{Robertson2017-mg}. The first is the initial research analysing the fist batch of patient samples (131) while the other analysed the entire cohort of 412 patient samples. The MIBC cohort from TCGA is an invaluable asset for the research community as a number of sequencing techniques were applied to the samples: mRNAseq (gene expression), WEX and WGS (somatic mutations), microarray-based (copy number variations) as well as metadata about the patients. This cohort is characterised by aggressive tumours, having a high grade muscle invasive.
+There are two comprehensive studies of the muscle-invasive bladder cancer (MIBC) cohort from The Cancer Genome Atlas (TCGA) \citet{Tcga2014-dr} and \citet{Robertson2017-mg}. The first is the initial research analysing the fist batch of patient samples (131) while the other analysed the entire cohort of 412 patient samples. The MIBC cohort from TCGA is an invaluable asset for the research community as a number of sequencing techniques were applied to the samples: mRNAseq (gene expression), WEX and WGS (somatic mutations), microarray-based (copy number variations) as well as metadata about the patients. This cohort is characterised by aggressive tumours, having a high grade muscle invasive and contains 408 tumour samples.
 
 % Talk about the TCGA subtypes
 In the work of \citet{Robertson2017-mg} multiple data types are analysed separately, centring on the subgroups derived from gene expression and then correlating with the other data analysis. The main result being the stratification of the MIBC into five distinct molecular subtypes: $35\%$- Luminal Papillary (LumP), $19\%$ Luminal infiltrated (LumInf), $6\%$ Luminal, $35\%$ Basal Squamous (Ba/Sq) and $5\%$ Neuronal. The highest 5-year survival is given by the Luminal subgroups while the Neuronal has the worst prognosis. 
 
 Throughout their work \citet{Robertson2017-mg} offer a comprehensive description of the genes that are expressed in the their stratification system. The subtypes, gene specific and their function are presented in \cref{tab:lit:tcga_genes}.
 
+
+
 \paragraph*{Lund}
 
 % Introduce Lund cohort
-Another study of the bladder cancer, but using microarray sequencing to derive gene expression is the work from \citet{Marzouka2018-ge} and 
+At the Lund University, Sweden, there has been another effort from \citet{Sjodahl2017-xr,Marzouka2018-ge} to stratify the MIBC. The work also known as the Lund classifier, compromised 307 tumour aggressive samples on which microarray sequencing was performed to determine the gene expression. Apart from the different sequencing technology, what sets the Lund cohort apart is the immunohistochemical (IHC) matched (mostly) dataset which informed their previous stratification \citet{Sjodahl2017-xr}, only based on the gene expression,
+
+% Clustering approach
+As in the most studies on cancer stratification based on gene expression, \citet{Sjodahl2017-xr} applied a stepwise hierarchical clustering to the 307 sample finding 6 subtypes. This was then followed by the work of \citet{Marzouka2018-ge} (same lab) which used the IHC information to further split into 10 groups and create a classifier\footnote{precursor of the consensus classifier}. In the later work, the group select 1200 of the most representative genes of the classes by applying a bootstrapping-like method.
+
+\citet{Marzouka2018-ge} applied their 10 groups classifier on the MIBC cohort from TCGA as show in \cref{fig:lit:subtypes_comp}. There are four Urothelial-like subtypes UroA-Prog, Uro-Inf, UroB and UroC, two genomically unstable GU and GU-inf, two Basal/Squamous cell carcinoma (SCC) Ba/Sq and Ba/Sq-inf, and two other groups Mes-like and Small-cell/neuronendocrine (Sc/Ne). \Cref{fig:lit:lund_fig} from \citet{Marzouka2018-ge} offer a good overview of the specific gene expression to each of the Lund subtypes and \cref{tab:lit:lund_genes} is a summary of the highlighted genes for the main groups.
+
+
+Compared to the other classifiers, the Lund group name the luminal samples Urothelial like and with the addition of the IHC data, the authors were able to find smaller groups which a high concentration of infiltrated cells; see \cref{fig:lit:subtypes_comp} for comparison. The additional knowledge from IHC, makes the study an invaluable resource that enriches the MIBC understanding and understanding. In addition, there are several scores developed by combining multiple gene expression to help the stratification. Basal/Squamous ratio, \textit{ERBB} score or the circuit score are all used to separate the luminal from basal, GU from Uro-b or stromal from the basal, as see in \cref{fig:lit:lund_fig}.
+
+
+\begin{figure}[!htb]   
+\centering
+\includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Lit_review/Resources/Lung_subtypes.jpg}
+  \caption{Subtyping the MIBC cohort from TCGA using the Lund classifier \cite{Marzouka2018-ge}. A) represents the stromal and immune cell signatures as well as the scores computed with the ESTIMATE tool\cite{Yoshihara2013-wq}. B-J represents subtype-specific signature scored as well as the Circuit, Ba/Sq ratio and \textit{ERBB} which aids the separation of subtypes. The signature scores are summarised in \cref{tab:lit:lund_genes} and image is taken from \cite{Marzouka2018-ge}.
+}
+\label{fig:lit:lund_fig}
+\end{figure}
+\FloatBarrier
+
 
 \paragraph*{Consensus}
+
+% Introducing the consensus work
+The TCGA and Lund cohorts are part of the effort from \citet{Kamoun2020-tj} to find a consensus among the multiple studies on MIBC stratification. There a total of six different cohorts used in the consensus and apart from the two already mentioned \citet{Kamoun2020-tj} it also utilises the work of \citet{Mo2018-rl, Damrauer2014-tc, Choi2014-ed, Rebouissou2014-ep}. This resulted in 6 subtypes which can be seen in \cref{fig:2020_consens} with their characteristics. It can be noticed that some subtypes are more prevalent than others, with Luminal Papillary (24\%) and Basal/Squamous (35\%) being most common, followed by Luminal Unstable and Stroma Rich (both 15\%). Moreover, each subtype has a different mutations signature only enforcing the project hypothesis by adding mutation to the RNAseq data will yield better cancer classifications.
+
+The main output of this work is an R package\footnote{See the \url{https://github.com/cit-bioinfo/consensusMIBC}.} that can classify a tissue sample based on the expression of 857 genes which were found to cover the properties of the six consensus MIBC subtypes. Initially the authors selected 857 genes that are the most representative for the six subtypes which was computed by using the statistical test LIMMA moderate t-tests\footnote{For more details check section 'Single-sample transcriptomic classifier construction' from the Supplementary document of the consensus. Alternatives approaches for classifications have been discussed by \citet{Eriksson2022-vw}}. The centroids represent the mean value of these genes across the six different datasets used. For each sample to classify, the Pearson correlation is computed and the column (i.e. consensus subtype) with the highest value represents the MIBC group; if the Pearson correlation is $<0.2$ the samples remains unclassified. 
+
+
+TCGA and Lund studies offered a least of the genes specific to each subtype which were summarised in two tables \cref{tab:lit:tcga_genes} and \cref{tab:lit:lund_genes}. In contrast, the MIBC consensus does not provide a clear defined list of genes specific to each subtype, but a classification tool based on selected genes and a summary of the molecular properties as seen in \cref{tab:lit:consensus_genes}. The tool is valuable and useful for the bladder cancer research community, however one can then ask if the lack of a succinct list of genes is not an indirect consequence of the heterogeneity of the disease, and with this the challenges of studying it. 
 
 \begin{figure}[!htb]   
 \centering
@@ -81,134 +120,6 @@ Another study of the bladder cancer, but using microarray sequencing to derive g
 \end{figure}
 \FloatBarrier
 
-
-
-% Introducing the consensus work
-The TCGA and Lund cohorts are part of the effort from \citet{Kamoun2020-tj} to find a consensus among the multiple studies on MIBC stratification. There a total of six different cohorts used in the consensus and apart from the two already mentioned \citet{Kamoun2020-tj} it also utilises the work of \citet{Mo2018-rl, Damrauer2014-tc, Choi2014-ed, Rebouissou2014-ep}. This resulted in 6 subtypes which can be seen in \cref{fig:2020_consens} with their characteristics. It can be noticed that some subtypes are more prevalent than others, with Luminal Papillary (24\%) and Basal/Squamous (35\%) being most common, followed by Luminal Unstable and Stroma Rich (both 15\%). Moreover, each subtype has a different mutations signature only enforcing the project hypothesis by adding mutation to the RNAseq data will yield better cancer classifications.
-
-The main output of this work is an R package\footnote{See the \url{https://github.com/cit-bioinfo/consensusMIBC}.} that can classify a tissue sample based on the expression of 857 genes which were found to cover the properties of the six consensus MIBC subtypes. Initially the authors selected 857 genes that are the most representative for the six subtypes which was computed by using the statistical test LIMMA moderate t-tests\footnote{For more details check section 'Single-sample transcriptomic classifier construction' from the Supplementary document of the consensus. Alternatives approaches for classifications have been discussed by \citet{Eriksson2022-vw}}. The centroids represent the mean value of these genes across the six different datasets used. For each sample to classify, the Pearson correlation is computed and the column (i.e. consensus subtype) with the highest value represents the MIBC group; if the Pearson correlation is $<0.2$ the samples remains unclassified. 
-
-
-TCGA and Lund studies offered a least of the genes specific to each subtype which were summarised in two tables \cref{tab:lit:tcga_genes} and \cref{tab:lit:lund_genes}. In contrast, the MIBC consensus does not provide a clear defined list of genes specific to each subtype, but a classification tool based on selected genes and a summary of the molecular properties as seen in \cref{tab:lit:consensus_genes}. The tool is valuable and useful for the bladder cancer research community, however one can then ask if the lack of a succinct list of genes is not an indirect consequence of the heterogeneity of the disease, and with this the challenges of studying it. 
-
-
-% Consensus table
-\begin{table}[htbp]
-\centering
-\caption{The molecular characterisation of the MIBC subgroups taken based on the consensus work of \cite{Kamoun2020-tj}. It summaries sections\ textit{ 3.2 and 3.3 } from the main paper. LumP, LumNS and LumU exhibit more differentiation status characteristics and contain \textit{PARG/GATA3/FOXA1}-related Lund signature.}
-    \begin{tabularx}{\textwidth}{>{\hsize=.8\hsize\raggedright\arraybackslash}X >{\hsize=1.2\hsize\arraybackslash}X}
-    \toprule
-    Subtype & Description \\
-    \midrule
-    Luminal-papillary (LumP) (24\%) & 
-    \begin{itemize}[leftmargin=*, nosep, after=\vspace{-\baselineskip}]
-        \item High expression of noninvasive Ta pathway signature
-        \item Mutations in \textit{FGFR3, KDM6A}
-    \end{itemize} \\
-    \midrule
-    Luminal non-specified (LumNS) (8\%) & 
-    \begin{itemize}[leftmargin=*, nosep, after=\vspace{-\baselineskip}]
-        \item Elevated stromal infiltration signatures
-        \item ELF3 mutations, activated by \textit{PPARG//RARG}
-    \end{itemize} \\
-    \midrule
-    Luminal unstable (LumU) (15\%) & 
-    \begin{itemize}[leftmargin=*, nosep, after=\vspace{-\baselineskip}]
-        \item Higher cell activity compared to other luminal tumours
-        \item Mutations in \textit{ERCC2, TP53}
-    \end{itemize} \\
-    \midrule
-    Stroma-rich (15\%) & 
-    \begin{itemize}[leftmargin=*, nosep, after=\vspace{-\baselineskip}]
-        \item Intermediate levels of urothelial differentiation and stromal infiltration
-        \item Overexpression of smooth muscle, endothelial, fibroblast and myofibroblast gene signatures
-        \item Immune infiltration of T and B-cell
-    \end{itemize} \\
-    \midrule
-    Basal/Squamous (35\%) & 
-    \begin{itemize}[leftmargin=*, nosep, after=\vspace{-\baselineskip}]
-        \item Mutations in \textit{KDM6A, RB1}
-        \item Signatures associated with Basal
-        \item Immune infiltration: cytotoxic lymphocytes, natural killer cells
-    \end{itemize} \\
-    \midrule
-    Neuronal (3\%) & 
-    \begin{itemize}[leftmargin=*, nosep, after=\vspace{-\baselineskip}]
-        \item Mutations in \textit{KDM6A, RB1}
-        \item Signatures associated with Basal
-    \end{itemize} \\
-    \bottomrule
-    \end{tabularx}
-    \label{tab:lit:consensus_genes}
-\end{table}
-
-
-
-% Lund table
-
-\begin{table}[]
-    \centering
-    \begin{tabular}{c|c}
-         &  \\
-         & 
-    \end{tabular}
-    \caption{Caption}
-    \label{tab:lit:lund_genes}
-\end{table}
-
-
-% TCGA table
-
-\begin{table}[htbp]
-\centering
-\caption{The molecular characterisation of the TCGA subgroups taken from the \textit{mRNA Expression-Based Molecular Subtypes} and \textit{Discussion} section Figure 2 from \citet{Robertson2017-mg}}
-    \begin{tabularx}{\textwidth}{
-      >{\hsize=.6\hsize\raggedright\arraybackslash}X
-      >{\hsize=.8\hsize\raggedright\arraybackslash}X
-      >{\hsize=.6\hsize\arraybackslash}X
-    }
-    \toprule
-    Subtype & Genes & Description \\
-    \midrule
-    Luminal-papillary (35\%) & KRT20, PPARG, FOXA1, GATA3, SNX31, UPK1A, UPK2, FGFR3 & 
-    \begin{itemize}[leftmargin=*, nosep, after=\vspace{-\baselineskip}, before=\vspace{-.6\baselineskip}]
-        \item Characterised by FGFR3 mutations
-        \item Papillary histology
-        \item Low risk of progression
-    \end{itemize} \\
-    \midrule
-    Luminal-infiltrated (19\%) & CD274, PDCD1LG2, IDO1, CXCL11, L1CAM, SAA1 & 
-    \begin{itemize}[leftmargin=*, nosep, after=\vspace{-\baselineskip}, before=\vspace{-.6\baselineskip}]
-        \item Lowest purity
-        \item High expression of EMT and myofibroblast markers, and of the miR-200s (tumour suppressor)
-        \item Medium expression of CD274 and CTLA4 immune markers
-        \item May respond to immune checkpoint therapy
-        \item May be resistant to cisplatin-based chemotherapy
-    \end{itemize} \\
-    \midrule
-    Luminal (6\%) & KRT20, PPARG, FOXA1, GATA3, SNX31, UPK1A, UPK2, FGFR3 & 
-    \begin{itemize}[leftmargin=*, nosep, after=\vspace{-\baselineskip}, before=\vspace{-.6\baselineskip}]
-        \item New subtype in TCGA
-    \end{itemize} \\
-    \midrule
-    Basal-squamous (35\%) & CD44, KRT6A, KRT5, KRT14, COL17A1; Squamous: DSC3, GSDMC, TCGM1, PI3, TP63 & 
-    \begin{itemize}[leftmargin=*, nosep, after=\vspace{-\baselineskip}, before=\vspace{-.6\baselineskip}]
-        \item High incidence in women
-        \item Squamous differentiation
-        \item Basal keratin expression
-        \item High expression of CD274 and CTLA4 immune markers
-        \item Might be useful for immune checkpoint therapy
-    \end{itemize} \\
-    \midrule
-    Neuronal (5\%) & MSI1, PLEKHG4B, GNG4, PEG10, RND2, APLP1, SOX2, TUBB2B & 
-    \begin{itemize}[leftmargin=*, nosep, after=\vspace{-\baselineskip}, before=\vspace{-.6\baselineskip}]
-        \item Expression of neuroendocrine, neuronal gene and high cell-cycle signature of proliferative state
-        \item The most aggressive tumours with the lowest survival rate
-    \end{itemize} \\
-    \bottomrule
-    \end{tabularx}
-    \label{tab:lit:tcga_genes}
-\end{table}
 
 \subsubsection{Other omics}
 
@@ -290,8 +201,8 @@ The MIBC heterogeneity and the challenging aspect of finding clinical relevant s
     \begin{todolist}
         \item [\done] Table markers for Consensus
         \item [\done] Table markers for TCGA
-        \item Table markers for Lund
-        \item Mutations found and relevant
+        \item [\done] Table markers for Lund
+        \item [\done] Mutations found and relevant
     \end{todolist}
     \item Talk about the current UK trial that is using TCGA subtypes, stressing the importance of finding the right subgroups
     \item Healthy dataset 
@@ -302,3 +213,148 @@ The MIBC heterogeneity and the challenging aspect of finding clinical relevant s
     \end{todolist}
 
 \end{todolist}
+
+
+\subsection{Tables}
+
+
+% TCGA table
+\begin{table}[htbp]
+\centering
+\caption{The molecular characterisation of the TCGA subgroups taken from the \textit{mRNA Expression-Based Molecular Subtypes} and \textit{Discussion} section Figure 2 from \citet{Robertson2017-mg}}
+    \begin{tabularx}{\textwidth}{
+      >{\hsize=.6\hsize\raggedright\arraybackslash}X
+      >{\hsize=.8\hsize\raggedright\arraybackslash}X
+      >{\hsize=.6\hsize\arraybackslash}X
+    }
+    \toprule
+    Subtype & Genes & Description \\
+    \midrule
+    Luminal-papillary (35\%) & \textit{KRT20, PPARG, FOXA1, GATA3, SNX31, UPK1A, UPK2, FGFR3} & 
+    \begin{itemize}[leftmargin=*, nosep, after=\vspace{-\baselineskip}, before=\vspace{-.6\baselineskip}]
+        \item Characterised by \textit{FGFR3} mutations
+        \item Papillary histology
+        \item Low risk of progression
+    \end{itemize} \\
+    \midrule
+    Luminal-infiltrated (19\%) & \textit{CD274, PDCD1LG2, IDO1, CXCL11, L1CAM, SAA1} & 
+    \begin{itemize}[leftmargin=*, nosep, after=\vspace{-\baselineskip}, before=\vspace{-.6\baselineskip}]
+        \item Lowest purity
+        \item High expression of \textit{EMT} and myofibroblast markers, and of the miR-200s (tumour suppressor)
+        \item Medium expression of \textit{CD274, CTLA4} immune markers
+        \item May respond to immune checkpoint therapy
+        \item May be resistant to cisplatin-based chemotherapy
+    \end{itemize} \\
+    \midrule
+    Luminal (6\%) & \textit{KRT20, PPARG, FOXA1, GATA3, SNX31, UPK1A, UPK2, FGFR3} & 
+    \begin{itemize}[leftmargin=*, nosep, after=\vspace{-\baselineskip}, before=\vspace{-.6\baselineskip}]
+        \item New subtype in TCGA
+    \end{itemize} \\
+    \midrule
+    Basal-squamous (35\%) &\textit{ CD44, KRT6A, KRT5, KRT14, COL17A1}; Squamous: \textit{DSC3, GSDMC, TCGM1, PI3, TP63} & 
+    \begin{itemize}[leftmargin=*, nosep, after=\vspace{-\baselineskip}, before=\vspace{-.6\baselineskip}]
+        \item High incidence in women
+        \item Squamous differentiation
+        \item Basal keratin expression
+        \item High expression of \textit{CD274, CTLA4} immune markers
+        \item Might be useful for immune checkpoint therapy
+    \end{itemize} \\
+    \midrule
+    Neuronal (5\%) &\textit{ MSI1, PLEKHG4B, GNG4, PEG10, RND2, APLP1, SOX2, TUBB2B} & 
+    \begin{itemize}[leftmargin=*, nosep, after=\vspace{-\baselineskip}, before=\vspace{-.6\baselineskip}]
+        \item Expression of neuroendocrine, neuronal gene and high cell-cycle signature of proliferative state
+        \item The most aggressive tumours with the lowest survival rate
+    \end{itemize} \\
+    \bottomrule
+    \end{tabularx}
+    \label{tab:lit:tcga_genes}
+\end{table}
+
+% Lund table
+\begin{table}[htbp]
+\centering
+\caption{Summary table of the work done for Lund stratification which is primarily based on the Figure 2 from \citet{Marzouka2018-ge} but it also contains some additional information from research group's earlier work from  \citet{Sjodahl2017-xr}. The suffix '-inf' represents the infiltrated nature of the subtype.}
+    \begin{tabularx}{\textwidth}{>{\hsize=.6\hsize\raggedright\arraybackslash}X >{\hsize=\hsize\arraybackslash}X}
+    \toprule
+    Subtype & Description \\
+    \midrule
+    UroA and GU & 
+    \begin{itemize}[leftmargin=*, nosep, after=\vspace{-\baselineskip}]
+        \item The UroA and GU tumours exhibit two signatures known in urothelial cell differentiation 1) \textit{PPARG, FOXA1, GATA3, ELF3} and 2) \textit{UPK1A, UPK1B, UPK2, UPK3A, KRT20}. These are the genes also seen in the Luminal subtypes form TCGA (\textbf{check this}).
+        \item The difference between GU and Uro subtypes is given by the up/down-regulated of \textit{FGFR3, CCND1, E2F3, RB1, CDKN2A}.
+    \end{itemize} \\
+    \midrule
+    Basal/Squamous & 
+    \begin{itemize}[leftmargin=*, nosep, after=\vspace{-\baselineskip}]
+        \item The signatures of \textit{KRT5, KRT14, FOXA1 and GATA3} are definitory for the Basal/Squamous tumours (Ba/Sq). 
+        \item Keratinization signature: \textit{KRT5, KRT6A, KRT6B, KRT6C, KRT14, KRT16}
+        \item Cell adhesion genes \textit{EPCAM, CDH1, CDH3} differentiate the Basal tumours from the squamous.
+        \item The Basal/Squamous are also separated from the Uro and GU subtypes by the difference in expression of the tyrosine kinase receptors \textit{EGFR, ERBB2, ERBB3}.
+    \end{itemize} \\
+    \midrule
+    MES-like & 
+    \begin{itemize}[leftmargin=*, nosep, after=\vspace{-\baselineskip}]
+        \item Similar to Sc/NE-like, but are less infiltrated
+    \end{itemize} \\
+    \midrule
+    Sc/NE-like & 
+    \begin{itemize}[leftmargin=*, nosep, after=\vspace{-\baselineskip}]
+        \item As in the case for Basal, high in \textit{KRT5, KRT14}, low in \textit{FOXA1, GATA3}
+        \item High expression in\textit{ CHGA, SYP, ENO2}
+        \item More infiltrated than the MES-like
+    \end{itemize} \\
+    \bottomrule
+    \end{tabularx}
+    \label{tab:lit:lund_genes}
+\end{table}
+
+% Consensus table
+\begin{table}[htbp]
+\centering
+\caption{The molecular characterisation of the MIBC subgroups taken based on the consensus work of \cite{Kamoun2020-tj}. It summaries sections\ textit{ 3.2 and 3.3 } from the main paper. LumP, LumNS and LumU exhibit more differentiation status characteristics and contain \textit{PARG/GATA3/FOXA1}-related Lund signature.}
+    \begin{tabularx}{\textwidth}{>{\hsize=.8\hsize\raggedright\arraybackslash}X >{\hsize=\hsize\arraybackslash}X}
+    \toprule
+    Subtype & Description \\
+    \midrule
+    Luminal-papillary (LumP) (24\%) & 
+    \begin{itemize}[leftmargin=*, nosep, after=\vspace{-\baselineskip}]
+        \item High expression of noninvasive Ta pathway signature
+        \item Mutations in \textit{FGFR3, KDM6A}
+    \end{itemize} \\
+    \midrule
+    Luminal non-specified (LumNS) (8\%) & 
+    \begin{itemize}[leftmargin=*, nosep, after=\vspace{-\baselineskip}]
+        \item Elevated stromal infiltration signatures
+        \item \textit{ELF3} mutations, activated by \textit{PPARG//RARG}
+    \end{itemize} \\
+    \midrule
+    Luminal unstable (LumU) (15\%) & 
+    \begin{itemize}[leftmargin=*, nosep, after=\vspace{-\baselineskip}]
+        \item Higher cell activity compared to other luminal tumours
+        \item Mutations in \textit{ERCC2, TP53}
+    \end{itemize} \\
+    \midrule
+    Stroma-rich (15\%) & 
+    \begin{itemize}[leftmargin=*, nosep, after=\vspace{-\baselineskip}]
+        \item Intermediate levels of urothelial differentiation and stromal infiltration
+        \item Overexpression of smooth muscle, endothelial, fibroblast and myofibroblast gene signatures
+        \item Immune infiltration of T and B-cell
+    \end{itemize} \\
+    \midrule
+    Basal/Squamous (35\%) & 
+    \begin{itemize}[leftmargin=*, nosep, after=\vspace{-\baselineskip}]
+        \item Mutations in \textit{KDM6A, RB1}
+        \item Signatures associated with Basal
+        \item Immune infiltration: cytotoxic lymphocytes, natural killer cells
+    \end{itemize} \\
+    \midrule
+    Neuronal (3\%) & 
+    \begin{itemize}[leftmargin=*, nosep, after=\vspace{-\baselineskip}]
+        \item Mutations in \textit{KDM6A, RB1}
+        \item Signatures associated with Basal
+    \end{itemize} \\
+    \bottomrule
+    \end{tabularx}
+    \label{tab:lit:consensus_genes}
+\end{table}
+
