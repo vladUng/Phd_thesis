@@ -21,9 +21,8 @@ A driving motivation in cancer research is to learn the gene mechanisms to devel
 %  expression, mutation and signalling 
 Sequencing techniques are becoming more affordable every year, and now companies like 10X Genomics can extract gene expression information at the single cell level. In addition, we get mutation data with base-pair precision; i.e. we know which part of the gene sequence presents an anomaly. Even with the costs lowering every year, sequencing large cohorts is expensive, and there are just a few large studies such as The Cancer Genome Atlas which has been used in this project.
 
-There are two important types of datasets used in this project: the data on non-cancerous bladder from Jack Birch Unit (JBU) and MIBC cohort from The Cancer Genome Atlas (TCGA). The first helps build a representation of the urothelium which is as close as possible to the healthy tissue\footnote{As it is an invasive procedure, it is extremely challenging to convince a healthy person to donate a bladder tissue biopsy} which is then use to inform the tumour stratification.
 
-\cref{s:lit:bladder_cancer} introduces the reader to the bladder cancer by providing an overview of the global and local impact of the disease to both the patients and the healthcare system. It also presents the molecular characteristics of the bladder cancer and what is known at the moment of writing. The chapter then continues with an introduction of the non-cancerous dataset with the molecular properties.
+\Cref{s:lit:bladder_cancer} introduces the reader to the bladder cancer by providing an overview of the global and local impact of the disease to both the patients and the healthcare system. It also presents the molecular characteristics of the bladder cancer and what is known at the moment of writing. The chapter then continues with an introduction of the non-cancerous dataset with the molecular properties.
 
 \subsection{Bladder Cancer} \label{s:lit:bladder_cancer}
 % Overview of the bladder cancer stats
@@ -55,13 +54,13 @@ In this section there are three main studies on MIBC stratification covered, the
 
 There are two main parts of each of the study that are highly relevant for this project: the methods used for cluster the gene expression and the biological output. Despite the consensus work combining multiple studies, TCGA and the Lund classifications, hold their relevance by offering list of genes specific to each subtype. 
 
-The Sankey plot in figure \cref{fig:lit:subtypes_comp} shows the difference in sample classifications across the three studies covered in this project.
+The Sankey plot in figure \cref{fig:lit:classifier_comp} shows the difference in sample classifications across the three studies covered in this project.
 
 \begin{figure}[!htb]   
 \centering
-\includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Lit_review/Resources/Lung_subtypes.jpg}
+\includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Lit_review/Resources/classifier_differences.png}
   \caption{Showing the differences between the 3 studied classifiers}
-\label{fig:lit:subtypes_comp}
+\label{fig:lit:classifier_comp}
 \end{figure}
 \FloatBarrier
 
@@ -76,7 +75,6 @@ In the work of \citet{Robertson2017-mg} multiple data types are analysed separat
 Throughout their work \citet{Robertson2017-mg} offer a comprehensive description of the genes that are expressed in the their stratification system. The subtypes, gene specific and their function are presented in \cref{tab:lit:tcga_genes}.
 
 
-
 \paragraph*{Lund}
 
 % Introduce Lund cohort
@@ -85,10 +83,10 @@ At the Lund University, Sweden, there has been another effort from \citet{Sjodah
 % Clustering approach
 As in the most studies on cancer stratification based on gene expression, \citet{Sjodahl2017-xr} applied a stepwise hierarchical clustering to the 307 sample finding 6 subtypes. This was then followed by the work of \citet{Marzouka2018-ge} (same lab) which used the IHC information to further split into 10 groups and create a classifier\footnote{precursor of the consensus classifier}. In the later work, the group select 1200 of the most representative genes of the classes by applying a bootstrapping-like method.
 
-\citet{Marzouka2018-ge} applied their 10 groups classifier on the MIBC cohort from TCGA as show in \cref{fig:lit:subtypes_comp}. There are four Urothelial-like subtypes UroA-Prog, Uro-Inf, UroB and UroC, two genomically unstable GU and GU-inf, two Basal/Squamous cell carcinoma (SCC) Ba/Sq and Ba/Sq-inf, and two other groups Mes-like and Small-cell/neuronendocrine (Sc/Ne). \Cref{fig:lit:lund_fig} from \citet{Marzouka2018-ge} offer a good overview of the specific gene expression to each of the Lund subtypes and \cref{tab:lit:lund_genes} is a summary of the highlighted genes for the main groups.
+\citet{Marzouka2018-ge} applied their 10 groups classifier on the MIBC cohort from TCGA as show in \cref{fig:lit:classifier_comp}. There are four Urothelial-like subtypes UroA-Prog, Uro-Inf, UroB and UroC, two genomically unstable GU and GU-inf, two Basal/Squamous cell carcinoma (SCC) Ba/Sq and Ba/Sq-inf, and two other groups Mes-like and Small-cell/neuronendocrine (Sc/Ne). \Cref{fig:lit:lund_fig} from \citet{Marzouka2018-ge} offer a good overview of the specific gene expression to each of the Lund subtypes and \cref{tab:lit:lund_genes} is a summary of the highlighted genes for the main groups.
 
 
-Compared to the other classifiers, the Lund group name the luminal samples Urothelial like and with the addition of the IHC data, the authors were able to find smaller groups which a high concentration of infiltrated cells; see \cref{fig:lit:subtypes_comp} for comparison. The additional knowledge from IHC, makes the study an invaluable resource that enriches the MIBC understanding and understanding. In addition, there are several scores developed by combining multiple gene expression to help the stratification. Basal/Squamous ratio, \textit{ERBB} score or the circuit score are all used to separate the luminal from basal, GU from Uro-b or stromal from the basal, as see in \cref{fig:lit:lund_fig}.
+Compared to the other classifiers, the Lund group name the luminal samples Urothelial like and with the addition of the IHC data, the authors were able to find smaller groups which a high concentration of infiltrated cells; see \cref{fig:lit:classifier_comp} for comparison. The additional knowledge from IHC, makes the study an invaluable resource that enriches the MIBC understanding and understanding. In addition, there are several scores developed by combining multiple gene expression to help the stratification. Basal/Squamous ratio, \textit{ERBB} score or the circuit score are all used to separate the luminal from basal, GU from Uro-b or stromal from the basal, as see in \cref{fig:lit:lund_fig}.
 
 
 \begin{figure}[!htb]   
@@ -146,30 +144,10 @@ The research conducted by \citet{Alexandrov2013-gi} studies the mutational signa
 The high somatic mutation burden is also highlighted by other research \cite{Tcga2014-dr, Robertson2017-mg, Kamoun2020-tj}. The first two studies found that the mutations disrupt the epigenetic machinery. Understanding these anomalies have the potential to lead to new potential targeted treatments.
 
 
-
-
-
-\subsection{Non-cancerous dataset}
-
-% What are the three different types of tissues used?
-
-% From which datasets where those used? Bladder vs Uropathies
-
-% Properties of P0, Abs-Ca and Undifferentiated. Why it is important to include all of this? Abs-Ca related more to Luminal and Undiff more to Basal
-
-% Why are these useful?
-
-
 \subsection{Clinical translation}
 
-% Introducing the delays in translating the subtypes to clinical application
-Importantly \citet{Kamoun2020-tj} admitted that there are delays in translating the different subtypes discovered through the consensus, TCGA to clinical applications. 
 
-The MIBC heterogeneity and the challenging aspect of finding clinical relevant subgroups is also shown in the subsequent work \citet{Robertson2023-na} from the lead author in the TCGA study \cite{Robertson2017-mg}. The more recent study concentrates on a smaller cohort of 82 patients that underwent pembrolizumab treatment\footnote{This is a type of immunotherapy offered to patients with advanced MIBC and metastatic,} with the goal to understand the molecular profiles of the aggressive tumours that did not respond to traditional treatments. The pre-treatment tumour samples were clustered in five different subtypes each with different recurrence rate as seen in \cref{fig:lit:immune_rob}. S3, S2 and S5 exhibited the highest response (A) to the treatment which also had the best \textbf{no} recurrence rate (B). \Cref{fig:lit:immune_rob} (C) shows how the five groups in \cite{Robertson2023-na} are classified by the other classifications (TCGA \cite{Robertson2017-mg}, Consensus \cite{Kamoun2020-tj}, Lund \cite{Marzouka2018-ge} and MD Aderson \cite{Dadhania2016-cb}). Even though \citet{Robertson2023-na} found statistical significance similarities between the immune therapy response groups and the other classification, the five new subtypes exhibit new properties and were not clear situated on the previous groups; as seen in \cref{fig:lit:immune_rob} (C), particularly S3 or S4 subgroups which are not easily identifiable with one of the previous subtypes.
-
-
-
-\begin{figure}[!htb]    
+\begin{figure}[!htbp]    
     \centering
 \includegraphics[width=0.9\textwidth,height=0.9\textheight,keepaspectratio]{Sections/Lit_review/Resources/robetson_summary_immune.png}
     \caption{Adapted version of Figure 1 from \cite{Robertson2023-na} showing the 82 pre-treatment samples clustered in the five discovered groups. A) Showing the response to the immune treatment split in three categories: complete response (CR), partial response (PR) and non-response (NR). S3 having the best response followed by S2 and S5. B) The recurrence rate of the MIBC in the five groups, S5, S2 and S3 showing the highest \textbf{no} recurrence rate C) How are the five groups classified by the other grouping conventions.}
@@ -177,43 +155,34 @@ The MIBC heterogeneity and the challenging aspect of finding clinical relevant s
 \end{figure}
 
 
-\subsection{Conclusion}
+The MIBC heterogeneity and the challenging aspect of finding clinical relevant subgroups is also shown in the subsequent work \citet{Robertson2023-na} from the lead author in the TCGA study \cite{Robertson2017-mg}. The more recent study concentrates on a smaller cohort of 82 patients that underwent pembrolizumab treatment\footnote{This is a type of immunotherapy offered to patients with advanced MIBC and metastatic,} with the goal to understand the molecular profiles of the aggressive tumours that did not respond to traditional treatments. The pre-treatment tumour samples were clustered in five different subtypes each with different recurrence rate as seen in \cref{fig:lit:immune_rob}. S3, S2 and S5 exhibited the highest response (A) to the treatment which also had the best \textbf{no} recurrence rate (B). \Cref{fig:lit:immune_rob} (C) shows how the five groups in \cite{Robertson2023-na} are classified by the other classifications (TCGA \cite{Robertson2017-mg}, Consensus \cite{Kamoun2020-tj}, Lund \cite{Marzouka2018-ge} and MD Aderson \cite{Dadhania2016-cb}). Even though \citet{Robertson2023-na} found statistical significance similarities between the immune therapy response groups and the other classification, the five new subtypes exhibit new properties and were not clear situated on the previous groups; as seen in \cref{fig:lit:immune_rob} (C), particularly S3 or S4 subgroups which are not easily identifiable with one of the previous subtypes.
 
-% Talk about the
+At the moment of writing the thesis (mid 2024), there is an ongoing clinical trial, GUSTO (Gene expression subtypes of Urothelial carcinoma: Stratified Treatment and Oncological outcomes), which uses the TCGA subtypes to determine the treatment for patients suffering of aggressive bladder cancer. The study is based in the UK, it will consist of 320 patients over 3 years, and are using a commercially available called Decipher Bladder\footnote{See \url{https://www.veracyte.com/decipher-bladder/}} but using the TCGA classification and not company's subgrouping\cite{Griffin2024-zr}. The patients will be randomised, some will receive the standard treatment while the others the treatment specific to their disease subtype. There are three different plans for Basal\&Neuronal, Luminal infiltrated, and Luminal Papillary \& Luminal.
+
+The above two translational clinical efforts highlight the weight of the TCGA study from \citet{Robertson2017-mg} in bladder classification. Especially that the GUSTO trial has used the TCGA classifier over the consensus or even Lund cohort which had the IHC information. It also underlines the importance of a good classifier and the importance of having well-define clusters. For example, the LumInf TCGA subtype has its own immunotherapy treatments in the GUSTO trial \citet{Griffin2024-zr} but there is a large variance between the consensus, TCGA and Lund classifiers as seen in \cref{fig:clustering_types}. This is a strong motivator for the project and for combining multiple data types at the computational level.
+
+
+\subsection{Datasets used}
+
+There are two important types of datasets used in this project: the data on non-cancerous bladder from Jack Birch Unit (JBU) and MIBC cohort from The Cancer Genome Atlas (TCGA). The first helps build a representation of the urothelium which is as close as possible to the healthy tissue which is then use to inform the tumour stratification.
+
+The TCGA datasets are central for this project, contributing with the gene expression from RNAsequencing and the somatic mutations from Whole Exome Sequencing (WES). In addition to this, the metadata available is used to compute the different survival rates for the subtypes derived. 
+
+At the moment of writing (mid 2024), the TCGA dataset is publicly available from the Genomics Data Central (GDC) portal\footnote{A new user needs to set an agreement with the GDC in order to have access \url{https://portal.gdc.cancer.gov/}}, while the JBU data on non-cancerous is in the process on getting published and hosted on a portal.
+
+As taking a bladder biopsy is an invasive procedure it is not possible to take samples from healthy patients, thus benign disease were used to form a non-cancerous molecular representation of the bladder. These samples included overactive bladder (OAB), stress urinary incontinence (SUI), non-visible haematuria (NVH), post-prolapse staging, survey after a tension-free vaginal tape (TVT) procedure, and other less normal conditions such as cystitis cystica (CC) and a patient suffering with recurrent UTI (rUTI).
+
+The non-cancerous dataset from JBU compromised 88 samples from which 49 are Abs-Ca differentiated (Diff), 23 P0 and 14 Undifferentiated (UD). The first type of samples are specialised tissue grown in-vitro, developing barrier function (like the bladder) following the Abs-Ca protocol from \cite{Cross2005-fe}. The P0 biopsies were sequenced immediately before doing anything lab work on the tissue. The UD data are processed P0 following \cite{Cross2005-fe} to an undifferentiated state. 
+
+The Abs-Ca samples were grow in the lab to exhibit the 'purer' markers of the urothelium differentiation and molecular properties of the healthy bladder tissue. The P0 samples exhibit the differentiation markers as in the Diff biopsies but it will contain some other cells infiltration, thus making the bladder molecular signal is less clear. By their nature both Abs-Ca and P0 will be closer to Luminal samples in the MIBC. The UD are on the other side of the differentiation spectrum and are closer to Basal MIBC subtypes. Thus, the non-cancerous dataset it has an imbalanced built in, having a higher representation of the differentiated tissue. 
+
+To both dataset the Kallisto method was used to align the RNA-seq reads using genome version GRCh38 with Gencode annotation version 42 which resulted in $\sim33k$ genes for each dataset.
+
+
+\subsection{Summary}
+
 
 \pagebreak
-
-\begin{todolist}
-    \item Overview of the bladder cancer 
-    \begin{todolist}
-        \item [\done] Statistics worlwide/UK/Europe
-        \item [\done] Main causes, metal contamination
-        \item [\done] More prevalent in men
-        \item [\done] NMIBC vs MIBC
-    \end{todolist}
-    \item Why it is so bad? 
-    \begin{todolist}
-        \item [\done] Impact of the quality of life, treatment cost?
-        \item [\done] Metastasis
-    \end{todolist}
-    \item Efforts to solve it and introduce the subtypes problem
-    \item Introduce the consensus, TCGA and Lund
-    \begin{todolist}
-        \item [\done] Table markers for Consensus
-        \item [\done] Table markers for TCGA
-        \item [\done] Table markers for Lund
-        \item [\done] Mutations found and relevant
-    \end{todolist}
-    \item Talk about the current UK trial that is using TCGA subtypes, stressing the importance of finding the right subgroups
-    \item Healthy dataset 
-    \begin{todolist}
-        \item different tissue types
-        \item what are the sources of the dataset
-        \item gene markers for each dataset
-    \end{todolist}
-
-\end{todolist}
-
 
 \subsection{Tables}
 
