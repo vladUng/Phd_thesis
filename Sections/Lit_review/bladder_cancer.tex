@@ -48,7 +48,7 @@ The muscle invasive bladder cancer encompass the T2a, T2b, T3 and T4 stages and 
 
 The patients diagnosed with MIBC undergo cystectomy which removes the entire bladder and has a larger impact to quality of life, while the NIMBC patients have regular cystocopies checkups. Both procedures have a negative impact of the patients and carer's quality of life, and bring an financial burden to them and the healthcare system. Thus, there is a need to develop better diagnosis tools and treatment plants for bladder cancer, especially for the MIBC.
 
-\subsubsection{MIBC subtyping}
+\subsubsection{MIBC subtyping} \label{s:lit:subtypes_mibc}
 
 In this section there are three main studies on MIBC stratification covered, the work from TCGA \citet{Robertson2017-mg}, Lund group \cite{Marzouka2018-ge} and the MIBC consensus \cite{Kamoun2020-tj}. These three studies are particularly important for this project as TCGA is the main tumour dataset used and the consensus is the referential classification on MIBC research. The subtypes derived by the Lund group have been used to verify the results in this project against a non-TCGA based group.
 
@@ -64,18 +64,21 @@ The Sankey plot in figure \cref{fig:lit:classifier_comp} shows the difference in
 \end{figure}
 \FloatBarrier
 
-\paragraph*{TCGA}
+\paragraph*{TCGA} \label{s:lit:tcga_mibc}
 
 % Introduction of TCGA
 There are two comprehensive studies of the muscle-invasive bladder cancer (MIBC) cohort from The Cancer Genome Atlas (TCGA) \citet{Tcga2014-dr} and \citet{Robertson2017-mg}. The first is the initial research analysing the fist batch of patient samples (131) while the other analysed the entire cohort of 412 patient samples. The MIBC cohort from TCGA is an invaluable asset for the research community as a number of sequencing techniques were applied to the samples: mRNAseq (gene expression), WEX and WGS (somatic mutations), microarray-based (copy number variations) as well as metadata about the patients. This cohort is characterised by aggressive tumours, having a high grade muscle invasive and contains 408 tumour samples.
 
+At the pre-processing stage, the under-expressed genes were removed, and only the 25\% with the highest standard deviation were selected, reducing the number of genes to 3347. The authors used agglomerative hierarchical clustering with average linkage and found five clusters. This was supported by another approach Bayesian \acrfull{nmf} \cite{Schmidt2009-zh}.
+
 % Talk about the TCGA subtypes
 In the work of \citet{Robertson2017-mg} multiple data types are analysed separately, centring on the subgroups derived from gene expression and then correlating with the other data analysis. The main result being the stratification of the MIBC into five distinct molecular subtypes: $35\%$- Luminal Papillary (LumP), $19\%$ Luminal infiltrated (LumInf), $6\%$ Luminal, $35\%$ Basal Squamous (Ba/Sq) and $5\%$ Neuronal. The highest 5-year survival is given by the Luminal subgroups while the Neuronal has the worst prognosis. 
+
 
 Throughout their work \citet{Robertson2017-mg} offer a comprehensive description of the genes that are expressed in the their stratification system. The subtypes, gene specific and their function are presented in \cref{tab:lit:tcga_genes}.
 
 
-\paragraph*{Lund}
+\paragraph*{Lund} \label{s:lit:lund_mibc}
 
 % Introduce Lund cohort
 At the Lund University, Sweden, there has been another effort from \citet{Sjodahl2017-xr,Marzouka2018-ge} to stratify the MIBC. The work also known as the Lund classifier, compromised 307 tumour aggressive samples on which microarray sequencing was performed to determine the gene expression. Apart from the different sequencing technology, what sets the Lund cohort apart is the immunohistochemical (IHC) matched (mostly) dataset which informed their previous stratification \citet{Sjodahl2017-xr}, only based on the gene expression,
@@ -99,15 +102,33 @@ Compared to the other classifiers, the Lund group name the luminal samples Uroth
 \FloatBarrier
 
 
-\paragraph*{Consensus}
+\paragraph*{Consensus} \label{s:lit:consensus_mibc}
 
 % Introducing the consensus work
 The TCGA and Lund cohorts are part of the effort from \citet{Kamoun2020-tj} to find a consensus among the multiple studies on MIBC stratification. There a total of six different cohorts used in the consensus and apart from the two already mentioned \citet{Kamoun2020-tj} it also utilises the work of \citet{Mo2018-rl, Damrauer2014-tc, Choi2014-ed, Rebouissou2014-ep}. This resulted in 6 subtypes which can be seen in \cref{fig:2020_consens} with their characteristics. It can be noticed that some subtypes are more prevalent than others, with Luminal Papillary (24\%) and Basal/Squamous (35\%) being most common, followed by Luminal Unstable and Stroma Rich (both 15\%). Moreover, each subtype has a different mutations signature only enforcing the project hypothesis by adding mutation to the RNAseq data will yield better cancer classifications.
 
+% Present the goal of the paper, the challenge of combining multiple datasets 
+There are few points worth emphasising in the consensus paper, first, all the approaches\cite{Mo2018-rl, Damrauer2014-tc, Choi2014-ed, Marzouka2018-ge, Rebouissou2014-ep,Robertson2017-mg} considered were using hierarchical clustering. Secondly, all models are given only RNAseq data\footnote{Robertson et al. use domain knowledge to choose the number of subtypes.} and the studies are not using the same data (except \cite{Robertson2017-mg, Mo2018-rl} which both are using TCGA data). One consequence of using different data sources is that each study proposed a different set of subgroups. 
+
+\begin{figure}[!htb]    
+    \centering
+\includegraphics[width=0.6\textwidth,height=0.6\textheight,keepaspectratio]{Sections/Lit_review/Resources/consensus_network_classifier.jpg}
+    \caption{Grouping the different MIBC classifier using the network approach described in \citet{Guinney2015-fy}. Image adapted from the consensus work \citet{Kamoun2020-tj}.}
+    \label{fig:lit:consensus_network}
+\end{figure}
+
+
+% Solution and inspiration from colorectal research
+To reach the consensus on subtyping, \citet{Kamoun2020-tj} combined all the datasets resulting in 1750 samples and run the models enlisted above. All the output from the approaches enlisted above were analysed together as a network using the methods of the colorectal consensus work from \citet{Guinney2015-fy}. To find how the groups of the MIBC subtypes across the classifications Markov Clustering algorithm (MCL) \citet{Van_Dongen2008-yj} is used; this is a type of the community detection algorithm which is later presented in the thesis, see \cref{s:lit:comm_detect}. The resultant network can be seen in \cref{fig:lit:consensus_network}
+
+
+% Limitations: Small size compared to colorectal; they haven't used other consensus algorithms
+One of the consensus limitations (acknowledged by the authors too) is the variability of the cohorts and their subtype. The MIBC has 1750 samples compared to 4151 samples used in the colorectal cancer consensus work \cite{Guinney2015-fy}, which represent the initial effort to combine multiple disease classifiers. Running the clustering independently on each cohort and not at the cohort level was also a trade-off required by the different sequencing technologies present in the data. 
+
 The main output of this work is an R package\footnote{See the \url{https://github.com/cit-bioinfo/consensusMIBC}.} that can classify a tissue sample based on the expression of 857 genes which were found to cover the properties of the six consensus MIBC subtypes. Initially the authors selected 857 genes that are the most representative for the six subtypes which was computed by using the statistical test LIMMA moderate t-tests\footnote{For more details check section 'Single-sample transcriptomic classifier construction' from the Supplementary document of the consensus. Alternatives approaches for classifications have been discussed by \citet{Eriksson2022-vw}}. The centroids represent the mean value of these genes across the six different datasets used. For each sample to classify, the Pearson correlation is computed and the column (i.e. consensus subtype) with the highest value represents the MIBC group; if the Pearson correlation is $<0.2$ the samples remains unclassified. 
 
 
-TCGA and Lund studies offered a least of the genes specific to each subtype which were summarised in two tables \cref{tab:lit:tcga_genes} and \cref{tab:lit:lund_genes}. In contrast, the MIBC consensus does not provide a clear defined list of genes specific to each subtype, but a classification tool based on selected genes and a summary of the molecular properties as seen in \cref{tab:lit:consensus_genes}. The tool is valuable and useful for the bladder cancer research community, however one can then ask if the lack of a succinct list of genes is not an indirect consequence of the heterogeneity of the disease, and with this the challenges of studying it. 
+TCGA and Lund studies offered a list of the genes specific to each subtype which were summarised in two tables \cref{tab:lit:tcga_genes} and \cref{tab:lit:lund_genes}. In contrast, the MIBC consensus does not provide a clear defined list of genes specific to each subtype, but a classification tool based on selected genes and a summary of the molecular properties as seen in \cref{tab:lit:consensus_genes}. The tool is valuable and useful for the bladder cancer research community, however one can then ask if the lack of a succinct list of genes is not an indirect consequence of the heterogeneity of the disease, and with this the challenges of studying it. 
 
 \begin{figure}[!htb]   
 \centering
