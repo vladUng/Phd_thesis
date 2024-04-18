@@ -1,5 +1,18 @@
-\section{Computational methods} \label{s:lit:computational}
+\subsection{Computational methods} \label{s:lit:computational}
 
+\vspace{3mm}
+% \noindent\rule{17cm}{0.2pt}
+\fbox {
+    \parbox{\linewidth}{
+      \begin{itemize}
+        \item What are the computational methods used for analysing data
+        \item EA, ANN
+        \item Networks
+        \item What method is the most suitable forthe project
+      \end{itemize}
+    }
+}
+\vspace{3mm}
 
 \acrfull{ml} and \acrfull{ai} have become buzz words in the past 10 years which have largely been due to the breakthroughs in difficult problems like Computer Vision\cite{Krizhevsky2012-qa} coupled with the increase in computational power. There is usually confusion between the ML \& AI terms, the former represents a subfield of the AI \cite{Domingos_Pedro2015-xr}. In the "Master Algorithm", \citet{Domingos_Pedro2015-xr} defines that the goal of the AI field is to make computers learn better than humans. This has been turned in popular culture to have three milestones, turned into three stages of AI: narrow, human-level and general AI. Currently, we don't have anything remotely close to human-level and arguably we are a long way\footnote{See paper "Artificial intelligence hits the barrier of meaning" by \citet{Mitchell2019-hv}}. For example, in Computer Vision, the models can detect complex patterns and score high in classifications problems but the algorithm doesn't create any meaning or complex representation of the object classified. These limitations can be seen in the failed promises from Tesla, Waymo and other companies seeking to achieve full self-driving cars\footnote{Dr F. Piekniewski is an AI researcher who has a more cynical view of the AI progress and the big claims some popular tech figures do. Specifically, on self-driving cars, its blog post is interesting \cite{Piekniewski2021-if}.}.  Similarly, for the Large Language Models (LLMs) like ChatGPT or Bard which massively advanced the chatbots but the models still can not form an understanding of the real world. Thus, one can see the AI term as more of an aspiration to which the field aims.
 
@@ -12,9 +25,9 @@ As the name suggests the unsupervised learning is the case where there is no inp
 
 \textbf{Revise this after structuring}. The Chapter starts by covering the clustering techniques (\ref{s:lit:clustering}) to support the concepts in consensus subtyping (\ref{s:lit:rnaSeq}). Popular dimension reduction algorithms are widely in genomics where there is a high number of features and are covered in section \ref{s:lit:dim_red}. This is followed by EA (\cref{s:lit:ea_overview}) and Graph Theory (section \cref{s:lit:graph_overview}) basics in order to support some of the work presented in \cref{s:lit:mutations} and \ref{s:lit:multi-view}. Next \acrlong{ann} are introduced covering concepts like Autoencoders or Spiking Neural Networks, the first is needed for \cref{s:lit:autoencoders}. Lastly, the Neuroevolution \cref{s:lit:neuroevolution} introduces concepts on how to combine the evolutionary with the connectionist approach. 
 
-\subsection{Clustering} \label{s:lit:clustering}
+\subsubsection{Clustering} \label{s:lit:clustering}
 
-Clustering algorithms have many variations and these are best covered in a code sample\cite{Scikit-learn_undated-ax} from the Scikit-learn library\cite{Pedregosa2011-ts}. A selection of the methods which worked on this project are displayed in \cref{fig:clustering_types}. The rows represent different types of datasets and the columns are the algorithms covered in this document: K-means being a general-purpose algorithm, Ward and Agglomerative both being hierarchical clustering, but Agglomerative is peforming pair-wise grouping. It is worth mentioning, that a modified version of the Scikit-learn code was adapted to the project needs, enabling the run pf multiples clustering techniques with varied parameters to the JBU and TCGA datasets. 
+Clustering algorithms have many variations and these are best covered in a code sample \cite{Scikit-learn_undated-ax} from the Scikit-learn library \cite{Pedregosa2011-ts}. A selection of the methods which worked on this project are displayed in \cref{fig:clustering_types}. The rows represent different types of datasets and the columns are the algorithms covered in this document: K-means being a general-purpose algorithm, Ward and Agglomerative both being hierarchical clustering, but Agglomerative is peforming pair-wise grouping. It is worth mentioning, that a modified version of the Scikit-learn code was adapted to the project needs, enabling the run pf multiples clustering techniques with varied parameters to the JBU and TCGA datasets. 
 
 \begin{figure}[!htb]
   \centering\includegraphics[width=0.8\textwidth,height=0.5\textheight,keepaspectratio]{Images/Clustering/scikit_selected.png}
@@ -84,7 +97,7 @@ In addition to the above metrics, there is a popular heuristic procedure, the El
 \FloatBarrier
 
 
-\subsection{Dimension reduction} \label{s:lit:dim_red}
+\subsubsection{Dimension reduction} \label{s:lit:dim_red}
 
 In contrast to many computationally- or physics-focused data analysis problems, biologically derived datasets are characterised by a high number of features (dimension) and a small number of samples. Thus, it is often essential to use dimension reduction, \acrfull{pca} is the standard method that works by projecting the higher dimension to the specified lower dimension. For example, a principal component of a genomic dataset might be linked to biological sex, as it influences many features of a biological system.
 
@@ -94,7 +107,7 @@ Another dimension reduction technique is \acrfull{nmf} which operates on the sam
 
 
 
-\subsection{Evolutionary Algorithms} \label{s:lit:ea_overview}
+\subsubsection{Evolutionary Algorithms} \label{s:lit:ea_overview}
 
 % In the previous section described how graphs are used to analyse the gene interactions and a similar approach but the different algorithm is \acrfull{cgp}. This is part of the \acrfull{ea} family which draws inspiration from the Darwinian evolution.
 
@@ -120,7 +133,7 @@ Defining the fitness function as well as encoding the data for the EA algorithm 
 The MDPFinder model presented in \cref{s:lit:mutations} used a variation of EA, called \acrfull{ga} which is a simpler version of the EA family where individuals resemble the chromosome. \acrfull{cgp} is another EA algorithm which it's used to process graph representation and it overcomes some of the limitations of the simpler EA methods. As we've seen that graph representation it's already been used in gene networks, CGP may represent an interesting venue to follow. 
 
 
-\subsection{Artificial Neural Networks} \label{s:lit:ann_overview}
+\subsubsection{Artificial Neural Networks} \label{s:lit:ann_overview}
 
 As it was mentioned at the beginning of this chapter, the connectionist approach is what drives the current AI hype and it's due to the advances in both algorithms and computational power. The inspiration comes from how the brain draws the information from the external stimuli, stores it in memory and retrieve it. Despite being many unknowns to the brain, the main components that are involved in the learning process are the neurons and the synapses between them\footnote{The neurons and synapses are the main components, but there may be others like dendrites which can also be computational units as seen later in the section.}. The simplest learning rule was introduced by Donald Hebb which states "Neurons that fire together, wire together"\cite{Hebb_Donald1949-nn}. This means that a neuron that fire or its concurrently activated with another one (or in a given time window) the two form a stronger connection. The opposite is true, the synapse is weaken, when two neurons that do not get activated in the same time window.
 
@@ -150,7 +163,7 @@ Autoencoders are the most successful \acrshort{dnn} approaches to genomics probl
 
 
 
-\subsection{Graph Theory} \label{s:lit:graph_overview}
+\subsubsection{Graph Theory} \label{s:lit:graph_overview}
 
 One of the aims of graph theory is to find the influence nodes, which in biology this might be the case of finding the driver genes which are the ones with the biggest impact on the network. In \cref{fig:graphs_basic} it's a simple representation of a graph, where a node (or vertices) is a gene and the edge between them is the connection. 
 
@@ -167,7 +180,7 @@ To establish how genes are linked to a network and interact,  the edges are assi
 % Keep this section simple. It links to parts of your project you haven't discussed yet and so becomes a bit unclear. Effectively you want to state that genes can be linked in a network and that many biological approaches allow measurements of genes. This means you can infer relationships, see how relationships change in disease/perturbation and assess how distinct, but linked-in-the-network perturbations can lead to a common result/phenotype/observation
 
 
-\subsection{Choosing the right ML approach} \label{s:lit:neuroevolution}
+\subsubsection{Choosing the right ML approach} \label{s:lit:neuroevolution}
 
 \Cref{s:lit:ea_overview} covered the basics of the evolutionary approach, and in both \ref{s:lit:ann_overview} \& \ref{s:lit:autoencod_overview} sections it was presented the connectionists' view of ML. These two solve different types of problems, where so far, the EAs are better for search problems and the ANNs for classification. The ANNs work by finding an optimal configuration of the weights and network topology, which can be seen as a search/optimisation problem for the right network configuration. Therefore, there has been work in combining the two approaches in what is called Neuroevolution. Such an approach has been used to process mutations data and it's covered in \cref{s:lit:mutations}.
 

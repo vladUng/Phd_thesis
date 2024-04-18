@@ -1,4 +1,4 @@
-\subsection{Co-expressed networks} \label{s:lit:co_net}
+\subsubsection{Co-expressed networks} \label{s:lit:co_net}
 
 % Challenges in the neworks - or assumptions - decisions
 % Create the network - the use of correlation - what are the advantages?
@@ -29,7 +29,7 @@ To these steps PGCNA also extracts the relevant genes for each communities and u
 
 
  % WGCNA
-\subsubsection{WGCNA} \label{s:lit:WGCNA}
+\paragraph*{WGCNA} \label{s:lit:WGCNA}
 
 One of the most popular gene co-expressed network (GCN) is the Weighted Gene Correlation Network Analysis (WGCNA) by \citet{Langfelder2008-sn}. This paper is an accumulation of different works from Dr Steve Horvath lab which offers a clear and concise methodology to build and analyse a GCN, and more importantly everything is packed in an R package which then other researchers can use. Being a referential work in the field, it follows the steps described above on creating, processing and analysing the graph.
 
@@ -38,11 +38,13 @@ Compared to PGCNA (see \ref{s:lit:pgcna}) where correlation values are unaltered
 WGCNA has been successfully used to a large number of applications from analysing the transcriptome for normal/failing Murine Hearts \citet{Lee2011-wm} or to find the regulatory genes/pathways related with obesity in pigs \citet{Kogelman2014-ea}, and to human cancer \cite{Yang2014-wv, Clarke2013-wd, Care2019-ij}. The wide range shows the versatility of the models and the power of co-expressed networks. However, as it will be seen in the next section and the work of \citet{Care2019-ij}, PGCNA yields more biological significant communities compared to WGCNA (measured by enrichment score and adjusted to community size).
 
 % PGCNA
-\subsubsection{PGCNA} \label{s:lit:pgcna}
+\paragraph*{PGCNA} \label{s:lit:pgcna}
 
 Parsimonious Gene Correlation Network Analysis (PGCNA) by \citet{Care2019-ij}, is a more recent  approach developed with the goal to stratify a disease based on gene expression and aid the researchers to visualise with the genomic data exploration
 
 The authors compares their work with WGCNA and draw inspiration from other techniques that are re-constructing the regulatory network of tissues from microarrays and using Mutual Information (MI) \citet{Margolin2006-mc,Zhang2013-fs} to calculate gene pair-wise relationship. Compared to correlation scores MI is a more general method to describe the dependence between two variables by using information theory concepts, but it is also harder to interpret.
+
+\subsubsection{Network pipeline}
 
 \paragraph*{Building the network} 
 
@@ -70,11 +72,11 @@ To detect the structure after the correlation matrix was reduced the Care et al 
 
 The end goal of PGCNA is to use the network representation to inform disease subtyping, thus there is a need to bridge the gap between the gene representation to samples. This is done by using the module connection values (ModCon) which from each community selects the top 25 most relevant genes. Then, the Module Evaluation Value (MEV) takes the 25 genes and computes the enrichment in the dataset. Lastly, these scores are then used for subtyping.
 
-\paragraph*{Summary on PGCNA}
+\paragraph*{Remarks on PGCNA}
 
 Overall, PGCNA represents a bespoke pipeline for disease subtyping which introduces several key methods to the field. It shows that network and community detection yields the best results, a simple edge pruning performs better than the other techniques and methods to bridge the gap between the gene representation to the samples.
 
-While PGCNA solves some of the challenges that this project faced there are still many left untouched. What is the best way to integrate the effect of the mutations into the network? Would selective edge pruning offer a better representation of the data? And so on. Thus, the work in this project builds on PGCNA and it offers the support for multiple data types integration.
+While PGCNA solves some of the challenges that this project faced there are still many left untouched. How can other data types be integrated into the network approach? \textbf{(see section ..)} Would selective edge pruning offer a better representation of the data? And so on. Thus, the work in this project builds on PGCNA and it offers the support for multiple data types integration.
 
 % Alternatives to co-expressed networks - partial-coor
 \subsubsection{Partial-correlation} \label{s:lit:partial-corr}
@@ -84,7 +86,7 @@ An improvement to the Spearman or Pearson metric is partial-correlation which re
 The partial-correlation is also known as the inverse of the covariate matrix or precision metrics and there has been work to make it more efficient \citet{Ghanbari2019-tq}. However, this is not a widely used metric in building the biological networks. Probably due to the small number of samples over the features and still being a more computational taxing process than the alternatives.
 
 % Bayesian networks
-\subsection{Bayesian approaches} \label{s:lit:bayesian}
+\subsubsection{Bayesian approaches} \label{s:lit:bayesian}
 
 An alternative to co-expressed network is represented by the work \citet{Nakazawa2021-yq} which instead of correlation metric it uses Bayesian methods to construct the network of the cancer. The algorithm was initially introduced by \citet{Imoto2001-uc} which is very computationally heavy, thus the authors are using \citet{Tamada2011-ok} for implementation. Once the cancer’s network is built, the authors adapted the work of \citet{Tanaka2020-mw} to find patient specific subnetworks. Lastly, the patient-specific subnetworks are then clustered using the hierarchical clustering by their similarity and differences.
 
@@ -97,43 +99,44 @@ In summary, the work of \citet{Nakazawa2021-yq} is a comparable Bayesian alterna
 
 
 
-\subsection{Data integration} \label{s:lit:net_data_int}
-\subsubsection{Network propagation} \label{s:lit:net_prop}
+\subsubsection{Data integration} \label{s:lit:net_data_int}
+
+
+\paragraph*{Network propagation} \label{s:lit:net_prop}
 
 An interesting approach to integrate multiple data types into a network is introduced by  \citet{Hofree2013-ld}. The authors created a network from public data on gene interaction networks \cite{Szklarczyk2019-pu, Cerami2011-ql, Lee2011-xj} to which then applied a projection method developed by \citet{Vanunu2010-el} to diffuse the somatic information into the network from gene interactions. The resultant network is then projected to a latent space using netNMF method \citet{Cai2008-fv} which represent the space combining both the mutations and the gene expression. Then hierarchical clustering is applied.
 
 \citet{Hofree2013-ld} have applied the technique to ovarian, uterine and lung cancers cohorts from TCGA. They have explored the effects on the subtypes of these cancers, looked at the impact of synonymous and nonsynonymous mutations and analysed the impact for each of the cancers. In addition, they used replaced the somatic mutations with other data types from TCGA\footnote{CNV, methylation, mRNA expression, microRNA and protein profiles}. From this authors saw that the included data type depends on the disease type.
 
-The pipeline introduced by \citet{Hofree2013-ld} is robust, available to use at \footnote{The Python implementation is available on GitHub but it is not actively maintained \url{https://github.com/idekerlab/pyNBS}} and opens the opportunity to integrate multiple data types into a network. From the applications to the ovarian, uterine and lung cancers the authors found potential interesting biology such as the potential role of FGF pathway in ovarian tumour. Another strength of the method is that it can be interpretable (see Fig 5 from their paper). \textbf{Their work is relevant for our project because…. it depends if I am capable of integrating their method.}
+The pipeline introduced by \citet{Hofree2013-ld} is robust, available to use at\footnote{The Python implementation is available on GitHub but it is not actively maintained \url{https://github.com/idekerlab/pyNBS}} and opens the opportunity to integrate multiple data types into a network. From the applications to the ovarian, uterine and lung cancers the authors found potential interesting biology such as the potential role of \textit{FGF} pathway in ovarian tumour. Another strength of the method is that it can be interoperable (see Fig 5 from their paper).
 
 The method of \citet{He2017-dj} uses a network propagation method to integrate somatic mutations in the network introduced in \citet{Vanunu2010-el} and then further developed by \citet{Hofree2013-ld}. The difference brought by the He is it creates and unweighted graph based on the Spearman correlation of the gene expression, where as \citet{Hofree2013-ld} applies the somatic mutations to gene interaction networks. Thus the latter does not use disease and patient specific information to derive the subtypes. The method of \citet{He2017-dj} outperforms the previous one developed by \citet{Hofree2013-ld}.
 
-
 A more comprehensive review of network based stratification methods inspired from \citet{Hofree2013-ld} and \citet{He2017-dj} can be found in the review from \citet{Petti2023-qo}. This links the work of \citet{Wang2014-wr} which introduced the Similarity Network Fusion (SNF) models to address the limitations of the model in \citet{Hofree2013-ld}. The SNF builds a network for each data type which are then combined them in a single network. This method has also been successfully applied to myeloma subtyping in \citet{Bhalla2021-uv}.
 
+The methods of \citet{Hofree2013-ld, He2017-dj} are tackling the same problem of integrating data into the networks as in this project. but from a different angle. By generating a networks for each individual sample, the authors choose a more complex and computational challenging path. While individual networks are closer to a personalised medicine solution, the approach developed in this project is more suitable to understand the biology of a disease. By integrating the mutation data, and using selective edge pruning for the TF genes, the pipeline developed highlight important genes at the cohort level. This is not directly possible through the approach of \citet{Hofree2013-ld, He2017-dj} which will require more extensive analysis of the networks.
 
 
 
-Other network-based research such as:
-\begin{itemize}
-    \item \citet{Kong2022-gv} (very recent). Not very relevant to us, as they are looking at immune responses (?) no stratification.
-     \item DeRegNet by \citet{Winkler2022-vg}. Essentially this is an improved version of Gene Set Enrichment Analysis (GSEA) by using networks and integrating multiple datasets.
-     \item Breast cancer molecular subtype using Deep Clustering approach by \citet{Rohani2020-px}. The work seems to be only in mutations but it also refers \citet{Curtis2012-ff} in which iCluster was applied for breast cancer subtyping. \citet{Rohani2020-px} are doing more or less what we want to do but just with the mutations data. However, the workflow is very similar to what we were thinking:
-     \begin{itemize}
-         \item Build a network (they've used STRING for gene network interaction)
-         \item Apply mutations to the network
-         \item Dimension reduction with Autoencoders
-         \item Clustering
-         \item They've performed separated gene set enrichment analysis
-     \end{itemize}
-\end{itemize}
 
-
-
+% Other network-based research such as:
+% \begin{itemize}
+%     \item \citet{Kong2022-gv} (very recent). Not very relevant to us, as they are looking at immune responses (?) no stratification.
+%      \item DeRegNet by \citet{Winkler2022-vg}. Essentially this is an improved version of Gene Set Enrichment Analysis (GSEA) by using networks and integrating multiple datasets.
+%      \item Breast cancer molecular subtype using Deep Clustering approach by \citet{Rohani2020-px}. The work seems to be only in mutations but it also refers \citet{Curtis2012-ff} in which iCluster was applied for breast cancer subtyping. \citet{Rohani2020-px} are doing more or less what we want to do but just with the mutations data. However, the workflow is very similar to what we were thinking:
+%      \begin{itemize}
+%          \item Build a network (they've used STRING for gene network interaction)
+%          \item Apply mutations to the network
+%          \item Dimension reduction with Autoencoders
+%          \item Clustering
+%          \item They've performed separated gene set enrichment analysis
+%      \end{itemize}
+% \end{itemize}
 
 % Multi-layer solutions
-\subsubsection{Multi-layer} \label{s:lit:multi-layer}
-\paragraph*{HCNM} \label{s:lit:HCNM}
+\paragraph*{Multi-layer} \label{s:lit:multi-layer}
+
+\subparagraph*{HCNM} \label{s:lit:HCNM}
 
 One way to integrate multiple data-types is to build a separate network for each data type and then connect them through an intra-layer, thus giving rise to a multi-layer network. This is the approach taken by \citet{Vangimalla2021-fc} in the Heterogeneous Correlation Network Model (HCNM) to subtype the breast carcinoma cohort from TCGA using gene expression and DNA methylation. Compared to the WGCNA and PGCNA, the HCNM constructs the gene expression layer with partial-correlation, and the DNA methylation using biweight mid-correlation, a metric popularised by WGCNA. 
 
@@ -168,3 +171,5 @@ Overall, NetICS is available to the general public and it promises good results.
 DrDimont (Drug response prediction from Differential analysis of multi-omics networks) \citet{Hiort2022-lk} is another multi-layer approach used in biological networks. As the name suggested the model predicts the drug response based on combining data from gene expression, proteins, phosposite and metabolimics. For each available data type a separated layer from correlation scores and the edges are reduced by a mechanism similar as in WGCNA. The layers are simply connected through their node names. DrDimont was used to explore the different (known) drug responses to the breast cancer from TCGA.
 
 This shows another application of the network, including WGCNA, to drug discovery. This is a work with strong biological motivation, but the model developed does not incorporate the mutations or Transcription Factors and it does not use any community detection algorithm to find the structures across the layers.
+
+\subsubsection{Summary}

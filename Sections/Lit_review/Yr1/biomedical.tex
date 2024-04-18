@@ -1,5 +1,18 @@
 
-\section{Analysing omics data} \label{s:lit:multi-omics}
+\subsection{Methods for analysing omics data} \label{s:lit:multi-omics}
+
+\vspace{3mm}
+% \noindent\rule{17cm}{0.2pt}
+\fbox {
+    \parbox{\linewidth}{
+      \begin{itemize}
+        \item Gives an overview of the methods used in analysing gene expression and mutation data
+        \item Integrative approaches used
+        \item Covers iClusters and Deep Learning methods
+      \end{itemize}
+    }
+}
+\vspace{3mm}
 
 One of the largest tumour cohort is \acrshort{tcga}\cite{Tcga2018-sj} which consists of roughly 20000 samples across 33 cancer types. An impressive effort, but if one focuses on particular cancer, the available data becomes considerable smaller. For example, the data available for \acrfull{mibc} cancer is 408 samples with a wide-range of molecular information available gene expressions, somatic mutations, copy number variations and metadata \cite{Robertson2017-mg}. This then, becomes a situation of a problem with a low number samples set and large number of features; there are more than 56k genes in a sample, which is usually the other way in the problems addressed in typical ML problems.
 
@@ -13,7 +26,7 @@ However, this suffers from a major assumption given by the dimension reduction a
 
 The previous work done in the field can be categorised based on the data given to the models. This can vary from focusing on how mutations affect the genes pathways, the effect of transcriptomics or processing the signalling pathways. This represents the foundation for multi-modal or in bioinformatics terminology, multi-omics approaches where the hypothesis is different types of data yields better predictions. This project focuses on combining multiple information streams into a single multi-omics approach. The hypothesis is that mutations (covered in \cref{s:lit:mutations}) affect gene expression (\cref{s:lit:rnaSeq}) and considering both will yield a better subtyping of the \acrlong{mibc}.
 
-\subsection{Gene expression data} \label{s:lit:rnaSeq}
+\subsubsection{Gene expression data} \label{s:lit:rnaSeq}
 
 \vspace{3mm}
 % \noindent\rule{17cm}{0.2pt}
@@ -47,7 +60,7 @@ The microarrays data is an older method to obtain genomic information from tissu
 This is not the only use of microarrays data, \citet{Grisci2019-xn} have introduced a neuroevolution model for analysing microarrays. Their research is built on the FS-NEAT\cite{Whiteson2005-dn} which is an idiosyncratic version of the NEAT model (neural Networks through Augmenting Topologies)\cite{Stanley2002-tg} focused on the feature selection (FS). As the name suggests NEAT\cite{Stanley2002-tg} uses evolutionary methods to find the optimal network structure (i.e. topology) of \acrshort{ann} which at the time of the paper was a novel approach\footnote{Previously evolutionary and connectionists approaches were combined only to derive the initial weights of the ANNs.}. The work done by \citet{Grisci2019-xn} is worth considering for their unusual application of neuroevolution to the genomic data. Nevertheless, their dataset is different from the gene expression data available on TCGA as the data used by \citet{Grisci2019-xn} contained observations from the same sample at different times.
 
 
-\subsection{Gene Mutations} \label{s:lit:mutations}
+\subsubsection{Gene Mutations} \label{s:lit:mutations}
 
 \vspace{3mm}
 \fbox {
@@ -86,7 +99,7 @@ It can be seen that there is no Consensus approach in how the mutation data is p
 % The approaches are somewhat analogous, but you need to say how you can use existing "mutation importance" approaches to inform which mutations are most likely to be useful in subtyping...
 % You could make the general point at the start of this whole section that mutations are typically used to look for hotspots, mutational processes, or driver mutations.
 
-\subsection{Integrative approaches} \label{s:lit:multi-view}
+\subsubsection{Integrative approaches} \label{s:lit:multi-view}
 
 \vspace{3mm}
 \fbox {
@@ -155,7 +168,7 @@ PiCnIc (Pipeline for Cancer Inference)\cite{Caravagna2016-vw} is another pipelin
 This section aim was to give an overview of the work done in combining multiple sources of data, to cover how graphs can be used to analyse the gene network and the suggested workflows in multi-omics. The Pipelines covered in this section focused more on analysing the data rather than answering a biological question. The graph theory remains a good candidate to process the overall connections between genes which might be used in conjunction with \acrlong{cgp}.
 
 
-\subsection{iCluster family - Matrix factorisation based} \label{s:lit:iCluster}
+\subsubsection{iCluster family - Matrix factorisation based} \label{s:lit:iCluster}
 
 Matrix factorisation is a widely used mathematical technique for dimension reduction, where the data is decomposed into smaller matrices. Processing smaller matrices has a lower computational cost as can be analysed in parallel. Another reason for dimension reduction and the main one in computational biology is that the decomposed matrices embed latent information about the biological data. In other words, by condensing the initial matrix data to smaller matrices only the relevant information is kept while the noise is discarded. 
 
@@ -167,7 +180,7 @@ In addition, \acrfull{nmf} was used in the referential study of the muscle-invas
 
 Similarly to the workings of the matrix factorisation algorithms, there are the Autoencoders which are trying to find a latent variable space using a more modern approach; i.e. Deep Learning. These also in theory could incorporate multiple data types.
 
-\subsection{Deep Learning  and Genomics} \label{s:lit:dl_genomics}
+\subsubsection{Deep Learning  and Genomics} \label{s:lit:dl_genomics}
 
 \vspace{3mm}
 \fbox {

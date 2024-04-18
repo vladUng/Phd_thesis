@@ -1,6 +1,21 @@
 
-\section{Molecular biology of the bladder}
+\subsection{Bladder cancer}
 
+\vspace{3mm}
+% \noindent\rule{17cm}{0.2pt}
+\fbox {
+    \parbox{\linewidth}{
+      \begin{itemize}
+        \item Introduction to cancer and bladder cancer
+        \item Presenting the existing MIBC classifiers
+        \item Datasets used
+        \item Aims \& objectives of the thesis
+      \end{itemize}
+    }
+}
+\vspace{3mm}
+
+\subsubsection{What is cancer?}
 
 To understand cancer, we need to know how the cells work and replicate in the tissues, which is only possible by studying the constituent blocks that are represented or regulated by proteins, which in turn are created by the instructions from DNA. To find the faulty biological processes the analysis needs to be performed on both the tumorous and healthy cells/tissue enabling the comparison between normal and abnormal behaviour. To do this, scientists use multiple streams of information from molecular biology which includes gene expression (transcriptomics), mutations (genomics), lipidomics, proteomics and others. Through this existing biological data combined with modelling, researchers are creating linkings such as gene network interactions. 
 
@@ -18,15 +33,16 @@ Numerous sources are causing genetic alterations in a healthy organism which can
 
 A driving motivation in cancer research is to learn the gene mechanisms to develop a cure for the disease. Medicine made important progress in cancer research \& diagnosis but cancer remains an unsolved problem. One of the reasons for this is the intricate mechanism of gene interactions that due to its complexity is difficult to understand. On top of that, it is not feasible to collect the ideal data\footnote{The ideal genomic dataset is represented by a large number of tumour samples, matched with a blood sample, and multi-omic sequenced (proteins, RNA, mutations etc.). Multiple samples from the same donor to track genetic changes as the disease progress and map it to the appropriated genes.)} to make accurate predictions; imagine a person suffering from cancer and scientists constantly asking for more data (i.e. biopsy). Thus, due to both ethical and clinical considerations, samples are typically taken at the point of cancer surgery, so repeat samples are usually impracticable . Therefore, it is challenging to determine the exact gene interactions which drive a subtype of cancer and as a matter of fact, any disease. 
 % introducing the datasets and the efforts to get data that may be useful for us. This includes:
+
 %  expression, mutation and signalling 
 Sequencing techniques are becoming more affordable every year, and now companies like 10X Genomics can extract gene expression information at the single cell level. In addition, we get mutation data with base-pair precision; i.e. we know which part of the gene sequence presents an anomaly. Even with the costs lowering every year, sequencing large cohorts is expensive, and there are just a few large studies such as The Cancer Genome Atlas which has been used in this project.
 
-
 \Cref{s:lit:bladder_cancer} introduces the reader to the bladder cancer by providing an overview of the global and local impact of the disease to both the patients and the healthcare system. It also presents the molecular characteristics of the bladder cancer and what is known at the moment of writing. The chapter then continues with an introduction of the non-cancerous dataset with the molecular properties.
 
-\subsection{Bladder Cancer} \label{s:lit:bladder_cancer}
+\subsubsection{Bladder Cancer} \label{s:lit:bladder_cancer}
+
 % Overview of the bladder cancer stats
-According to Cancer Research UK, bladder cancer is the 10th most common cause of cancer and the 11th most common cancer in the UK \cite{Cancer_Research_UK2015-cf}. This is equivalent to $\sim10,000$ cases from which  $\sim5000$ are deaths, with a 5-year survival rate of 52.6\%. In 2008\cite{Ferlay2010-sx} the worldwide estimates for bladder cancer was $\sim380,000$ new cases and $\sim150,000 $deaths per year. In 2020\cite{Sung2021-hn} , there were $\sim573,000$ cases with $\sim212,536$ deaths reported which shows a considerable increase in the cancer cases\footnote{A good resource to get an overview of the prevelance of bladder cancer (and other cancers too) is the website from World Health Organisation, particularly the trends in cancer overtime: \href{https://gco.iarc.fr/en}.}. Men are 3 times more likely to develop bladder cancer and bladder cancer is specific to Western countries \cite{Knowles2015-mu}. 
+According to Cancer Research UK, bladder cancer is the 10th most common cause of cancer and the 11th most common cancer in the UK \cite{Cancer_Research_UK2015-cf}. This is equivalent to $\sim10,000$ cases from which  $\sim5000$ are deaths, with a 5-year survival rate of 52.6\%. In 2008\cite{Ferlay2010-sx} the worldwide estimates for bladder cancer was $\sim380,000$ new cases and $\sim150,000$ deaths per year. In 2020\cite{Sung2021-hn} , there were $\sim573,000$ cases with $\sim212,536$ deaths reported which shows a considerable increase in the cancer cases\footnote{A good resource to get an overview of the prevelance of bladder cancer (and other cancers too) is the website from World Health Organisation, particularly the trends in cancer overtime: \href{https://gco.iarc.fr/en}.}. Men are 3 times more likely to develop bladder cancer and bladder cancer is specific to Western countries \cite{Knowles2015-mu}. 
 
 % Talk about bladder cancer causes, economical burden
 One of the main causes of bladder cancer is caused by smoking, being thought to provoke 50\% of the cases \citet{Knowles2015-mu}. However, the underling biological process on how smoking causes cancer is not understood. Other environment risk factors are metal contamination such as arsenic-water or exposure to ionising radiation \citet{Knowles2015-mu}. 
@@ -140,7 +156,7 @@ TCGA and Lund studies offered a list of the genes specific to each subtype which
 \FloatBarrier
 
 
-\subsubsection{Other omics}
+\subsubsection{Other omics in bladder cancer}
 
 % Some properties of the bladder cancer
 % - highly mutated, a lot of epginetic changes
@@ -165,7 +181,7 @@ The research conducted by \citet{Alexandrov2013-gi} studies the mutational signa
 The high somatic mutation burden is also highlighted by other research \cite{Tcga2014-dr, Robertson2017-mg, Kamoun2020-tj}. The first two studies found that the mutations disrupt the epigenetic machinery. Understanding these anomalies have the potential to lead to new potential targeted treatments.
 
 
-\subsection{Clinical translation}
+\subsubsection{Clinical translation}
 
 
 \begin{figure}[!htbp]    
@@ -183,7 +199,7 @@ At the moment of writing the thesis (mid 2024), there is an ongoing clinical tri
 The above two translational clinical efforts highlight the weight of the TCGA study from \citet{Robertson2017-mg} in bladder classification. Especially that the GUSTO trial has used the TCGA classifier over the consensus or even Lund cohort which had the IHC information. It also underlines the importance of a good classifier and the importance of having well-define clusters. For example, the LumInf TCGA subtype has its own immunotherapy treatments in the GUSTO trial \citet{Griffin2024-zr} but there is a large variance between the consensus, TCGA and Lund classifiers as seen in \cref{fig:clustering_types}. This is a strong motivator for the project and for combining multiple data types at the computational level.
 
 
-\subsection{Datasets used}
+\subsubsection{Datasets used}
 
 There are two important types of datasets used in this project: the data on non-cancerous bladder from Jack Birch Unit (JBU) and MIBC cohort from The Cancer Genome Atlas (TCGA). The first helps build a representation of the urothelium which is as close as possible to the healthy tissue which is then use to inform the tumour stratification.
 
@@ -200,12 +216,12 @@ The Abs-Ca samples were grow in the lab to exhibit the 'purer' markers of the ur
 To both dataset the Kallisto method was used to align the RNA-seq reads using genome version GRCh38 with Gencode annotation version 42 which resulted in $\sim33k$ genes for each dataset.
 
 
-\subsection{Summary}
+\subsubsection{Summary}
 
 
 \pagebreak
 
-\subsection{Tables}
+\subsubsection{Tables}
 
 
 % TCGA table
