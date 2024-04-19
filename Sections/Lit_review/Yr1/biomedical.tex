@@ -26,7 +26,6 @@ However, this suffers from a major assumption given by the dimension reduction a
 
 The previous work done in the field can be categorised based on the data given to the models. This can vary from focusing on how mutations affect the genes pathways, the effect of transcriptomics or processing the signalling pathways. This represents the foundation for multi-modal or in bioinformatics terminology, multi-omics approaches where the hypothesis is different types of data yields better predictions. This project focuses on combining multiple information streams into a single multi-omics approach. The hypothesis is that mutations (covered in \cref{s:lit:mutations}) affect gene expression (\cref{s:lit:rnaSeq}) and considering both will yield a better subtyping of the \acrlong{mibc}.
 
-% Gene expression
 \subsubsection{Gene expression data} \label{s:lit:rnaSeq}
 
 \vspace{3mm}
@@ -60,7 +59,7 @@ The microarrays data is an older method to obtain genomic information from tissu
 % Introducing neuroevolution
 This is not the only use of microarrays data, \citet{Grisci2019-xn} have introduced a neuroevolution model for analysing microarrays. Their research is built on the FS-NEAT\cite{Whiteson2005-dn} which is an idiosyncratic version of the NEAT model (neural Networks through Augmenting Topologies)\cite{Stanley2002-tg} focused on the feature selection (FS). As the name suggests NEAT\cite{Stanley2002-tg} uses evolutionary methods to find the optimal network structure (i.e. topology) of \acrshort{ann} which at the time of the paper was a novel approach\footnote{Previously evolutionary and connectionists approaches were combined only to derive the initial weights of the ANNs.}. The work done by \citet{Grisci2019-xn} is worth considering for their unusual application of neuroevolution to the genomic data. Nevertheless, their dataset is different from the gene expression data available on TCGA as the data used by \citet{Grisci2019-xn} contained observations from the same sample at different times.
 
-% Mutations
+
 \subsubsection{Gene Mutations} \label{s:lit:mutations}
 
 \vspace{3mm}
@@ -100,8 +99,6 @@ It can be seen that there is no Consensus approach in how the mutation data is p
 % The approaches are somewhat analogous, but you need to say how you can use existing "mutation importance" approaches to inform which mutations are most likely to be useful in subtyping...
 % You could make the general point at the start of this whole section that mutations are typically used to look for hotspots, mutational processes, or driver mutations.
 
-
-% Integrative
 \subsubsection{Integrative approaches} \label{s:lit:multi-view}
 
 \vspace{3mm}
@@ -146,8 +143,7 @@ When the gene network interaction is seen as a graph, the connections of a gene 
 A herculean effort by \citet{Xie2021-al} was to quantify and review the work done in the field of Gene Set Analysis. They reviewed 504 papers and looked at its performance based on citations and how it correlates with different approaches and how the models have been benchmarked. In review, the authors are proposing criteria that will increase the quality of the research produced in bioinformatics. Most of them are similar to the guiding principles of a good paper in Machine Learning which is defined by using benchmarks, publishing the code as open-source, use data available, but also suggest to use embed more the domain knowledge.
 
 
-
-\paragraph*{Suggested Pipelines to integrate multiple datasets} \label{s:pipelines}
+\subsubsection*{Suggested Pipelines to integrate multiple datasets} \label{s:pipelines}
 
 
 % Related to GANPA and Cava - GeneSetCluster
@@ -171,7 +167,7 @@ PiCnIc (Pipeline for Cancer Inference)\cite{Caravagna2016-vw} is another pipelin
 
 This section aim was to give an overview of the work done in combining multiple sources of data, to cover how graphs can be used to analyse the gene network and the suggested workflows in multi-omics. The Pipelines covered in this section focused more on analysing the data rather than answering a biological question. The graph theory remains a good candidate to process the overall connections between genes which might be used in conjunction with \acrlong{cgp}.
 
-% iCluster
+
 \subsubsection{iCluster family - Matrix factorisation based} \label{s:lit:iCluster}
 
 Matrix factorisation is a widely used mathematical technique for dimension reduction, where the data is decomposed into smaller matrices. Processing smaller matrices has a lower computational cost as can be analysed in parallel. Another reason for dimension reduction and the main one in computational biology is that the decomposed matrices embed latent information about the biological data. In other words, by condensing the initial matrix data to smaller matrices only the relevant information is kept while the noise is discarded. 
@@ -184,11 +180,46 @@ In addition, \acrfull{nmf} was used in the referential study of the muscle-invas
 
 Similarly to the workings of the matrix factorisation algorithms, there are the Autoencoders which are trying to find a latent variable space using a more modern approach; i.e. Deep Learning. These also in theory could incorporate multiple data types.
 
+\subsubsection{Deep Learning  and Genomics} \label{s:lit:dl_genomics}
+
+\vspace{3mm}
+\fbox {
+    \parbox{\linewidth}{
+      \begin{itemize}
+        \item Autoencoders used with other methods to predict patient survival 
+        \item Autoencoders seems to preserve biological data better than other dimension reduction techniques
+        \item Other deep learning has limited applications to genomics
+      \end{itemize}
+    }
+}
+\vspace{3mm}
+
+Deep Learning has been the steam engine that fueled the recent progress in Machine Learning, but usually, these models are applied to supervised learning problems and require a large number of samples. In comparison, defining better bladder cancer subtypes from the Gene Expression, mutations \& other data is an unsupervised learning problem. On top of that, the current sequencing technologies are not affordable enough to enable large datasets. This means, that, currently, most of the \acrshort{dl} approaches are not (yet) suitable to the specific multi-omics problem except the Autoencoders.
+
+The above statement is further supported by a review paper on "The Application of Deep Learning in Cancer Prognosis" by \citet{Zhu2020-cv}, where on the multi-omics section, no 'traditional' \acrshort{dl} are used except for the Autoencoders. Furthermore, the authors provide suggestions to overcome the limitations of \acrshort{dnn} to the cancer research. The ones relevant to this PhD project are data augmentation or imputation, building the models using more domain knowledge, and the use of one-shot techniques. The first suggestion is already been adopted in the field where many researchers have created synthetic data \cite{Zhao2012-wj,Leiserson2015-yk} following the distributions from realistic datasets. Next, this PhD project benefits of domain knowledge by being supervised by members of the Jack Birch Unit (JBU), which has leading expertise in bladder cancer and data on the normal
+
+The last suggestion, One-Shot learning, is intriguing and worth considering but based on the work done by OpenAI it may have some limitations. In their "One-Shot Imitation Learning" paper, \citet{duan2017-ae} are using domain randomisation to train their robot to perform a task (building a tower from different blocks) in a simulated world. The trained model is then used to replicate a similar task in the real-life after a human performed a building task that was not present in the training phase. It is challenging to see how this can be applied to a multi-omics problem, where the domain expertise is relevant. Possibly, some tweaking to GPT-3\cite{Brown2020-wh} model (from the OpenAI) may be something worth exploring, but that's been used to generate text and is focused on Natural Language Processing problems. A remote application might be to generate synthetic data to test the computational model\footnote{At the moment of writing OpenAI hasn't opened their model, but I believe that similar but less complex models are available that might be used to generate synthetic data.}. Despite the unfavourable prospects, this may represent an exciting venue to follow when there is more progress on this type of model.
+
+There have been attempts to use \acrshort{dl} to predict survival from omics data, but with less success. In their model, Cox-nnet \cite{Ching2018-gq}, the authors feed \acrshort{tcga} dataset to an \acrshort{ann} for 10 cancers to predict the survival rate. This achieves reasonable prediction scores but is not significantly better than the canonical methods. Despite not being tested on other datasets, Ching et al. indicate that Networks with more layers come with the risk of overfitting the dataset.  
 
 
+% Other applications of DL in genomics
+Indeed, most of the \acrshort{dl} paradigms are not directly applicable to the multi-omics problem, but there have been efforts in solving other biological problems. Most notably as well as one of the most recent is the AlphaFold model\cite{Jumper2021-du} (DeepMind) which predicts the protein folding based on the protein sequence with the highest accuracy of a computational model. This is a breakthrough in biology as predicting protein folding has been considered a hard problem to solve.
 
-% Other ML approaches
-\import{Sections/Lit_review/Yr1/}{general_ml.tex}
+
+\paragraph*{Autoencoders} \label{s:lit:autoencoders}
+
+\citet{Chaudhary2018-qj} are using Autoencoders to predict the survival of patients from a particular type of liver cancer, hepatocellular carcinoma (HCC). They have used the RNA-seq, methylation and miRNA data from TCGA to find the correlations between the survival and HCC. Their model reduced the number of features to 100 which were later clustered with K-means and used the standard metrics to measure the performance (Silhouette and Calinski - Harabasz criterion). The authors show that the autoencoders have been more successful than the PCA at preserving the relevant information. However, how PCA was applied to multi-omics data has not been described in detail. A criticism of the work of \citet{Chaudhary2018-qj} is that predicting survival rate is not the most informative as it does not help understanding how to improve the current treatment whereas better cancer subtyping does.
+
+Most importantly, Chaudhary confirms that a DL model using multi-omics data yields a better result than one receiving single-omics data. This is further supported by the Tianle Ma and Aidong Zhang work in \cite{Ma2019-hk}. These can only, strengthen the project's hypothesis that adding mutation data, and other available data will yield better predictions.
+
+The work of \citet{Ma2019-hk} is another instance where Autoencoders are applied to TCGA data. More specifically, the authors used Bladder and Brain Lower Grade Glioma (LGG) on gene expression, miRNA, DNA methylation and protein expression to predict survival events and progression-free intervals. They have also integrated domain knowledge through the molecular interaction network from the STRING database. Their model outperforms the traditional methods and approaches of ML in providing clinical information about tumour events.
+
+Autoencoders have been used for processing somatic mutation datasets. In one of the first pieces of work in this realm, Palazzo et al. \cite{Palazzo2019-hx} use AutoEncoders to represent in lower dimension the somatic mutations from 40 different tumour types/subtypes. The authors acknowledged that their results are promising to preserve biological information in lower dimensions but need further validation.
+
+% is is all very interesting! Can you give specifics, particularly on the bladder work in the previous paragraph - what did they specifically improve, do they link to mRNA subtypes at all etc?
+
+All in all, the work done suggest that Autoencoders are a good dimension reduction technique for multi-omics datasets. Their versatility on the input data represents one of the advantages along with reducing nonlinear patterns. In addition, some of the works suggests that Autoencoders preserve biological knowledge, but it needs further validation to support the assumption. It can be seen that Autoencoders were mostly used to predict the survival of a cancer patient and not to refine the cancer subtyping which is more useful to improve the current treatments. Also, multi-omics data was given to the Autoencoders but not Gene Expression with mutations, which we know have a strong biological correlation between tumours.
 
 
 \subsubsection{Summary}
