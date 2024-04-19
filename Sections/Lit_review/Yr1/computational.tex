@@ -97,6 +97,9 @@ In addition to the above metrics, there is a popular heuristic procedure, the El
 \FloatBarrier
 
 
+
+
+
 \subsubsection{Dimension reduction} \label{s:lit:dim_red}
 
 In contrast to many computationally- or physics-focused data analysis problems, biologically derived datasets are characterised by a high number of features (dimension) and a small number of samples. Thus, it is often essential to use dimension reduction, \acrfull{pca} is the standard method that works by projecting the higher dimension to the specified lower dimension. For example, a principal component of a genomic dataset might be linked to biological sex, as it influences many features of a biological system.
@@ -105,6 +108,23 @@ However, this doesn't accommodate well with non-linear patterns for which \acrfu
 
 Another dimension reduction technique is \acrfull{nmf} which operates on the same principles as PCA which is by finding a matrix of a lower rank with the minimum information loss. This means that the features present in the data are preserved better when reduced to lower dimensions while the ones that do not contribute to the data resolution are discarded. In addition, NMF conserves the non-linear aspects of the data and a Bayesian version was used in the \acrfull{tcga} classification by \citet{Robertson2017-mg}. NMF also were used in the works of propagating (mutation) data into the networks by \citet{Yang2016-dm, Cai2008-fv} and covered in \cref{s:lit:net_prop}.
 
+
+
+\label{s:lit:graph_overview}
+
+One of the aims of graph theory is to find the influence nodes, which in biology this might be the case of finding the driver genes which are the ones with the biggest impact on the network. In \cref{fig:graphs_basic} it's a simple representation of a graph, where a node (or vertices) is a gene and the edge between them is the connection. 
+
+To establish how genes are linked to a network and interact,  the edges are assigned values that enforce the link between nodes (genes) and this data can be put into a table that can be processed by different graph algorithms. As one of the goals of this project is to understand how genes interact and their network effect, \cref{s:lit:multi-view} covers how graph theory is applied in multi-omics. Apart from being able to find the driver genes graphs are a good tool to visualise the gene interactions. 
+
+\begin{figure}[!htb]
+  \centering\includegraphics[width=0.5\textwidth,height=0.5\textheight,keepaspectratio]{Sections/Lit_review/Resources/basic_graphs.png}
+    \caption{Basic graphs.}
+    \label{fig:graphs_basic}
+\end{figure}
+\FloatBarrier
+
+
+% Keep this section simple. It links to parts of your project you haven't discussed yet and so becomes a bit unclear. Effectively you want to state that genes can be linked in a network and that many biological approaches allow measurements of genes. This means you can infer relationships, see how relationships change in disease/perturbation and assess how distinct, but linked-in-the-network perturbations can lead to a common result/phenotype/observation
 
 
 \subsubsection{Evolutionary Algorithms} \label{s:lit:ea_overview}
