@@ -54,7 +54,7 @@ One of the most popular methods (and the simplest) is K-means clustering which t
     Update the centroids based on the mean distance of each cluster
 \end{lstlisting} 
 
-Agglomerative clustering is a type of hierarchical clustering that starts from considering each data point to be its cluster, then, computes higher up groups based on the given linkage method. These algorithms (pseudocode in \cref{code:agg_clustering}) build hierarchical trees and can be seen visually in dendrogram figures (\textbf{like in \cref{fig:dendogram} form Appendix \ref{ap:dendogram}}) which are useful in visualising the clustering evolution. Both K-means and Agglomerative Clustering can use different types of distances, but the latter does not require to set the number of centroids, but the linkage needs to be set. This setting configures the algorithm how the datapoint grouping is performed and the Scikit-learn supports the following\footnote{
+Agglomerative clustering is a type of hierarchical clustering that starts from considering each data point to be its cluster, then, computes higher up groups based on the given linkage method. These algorithms (pseudocode in \cref{code:agg_clustering}) build hierarchical trees and can be seen visually in dendrogram figures which are useful in visualising the clustering evolution. Both K-means and Agglomerative Clustering can use different types of distances, but the latter does not require to set the number of centroids, but the linkage needs to be set. This setting configures the algorithm how the datapoint grouping is performed and the Scikit-learn supports the following\footnote{
   There is a nice visualisation for each of these hierarchical clustering in this \href{https://towardsdatascience.com/machine-learning-algorithms-part-12-hierarchical-agglomerative-clustering-example-in-python-1e18e0075019}{Medium post} }:
 \begin{itemize}
   \item Average - Grouping is done by the average distance between cluster points.
@@ -133,6 +133,7 @@ Defining the fitness function as well as encoding the data for the EA algorithm 
 The MDPFinder model presented in \cref{s:lit:mutations} used a variation of EA, called \acrfull{ga} which is a simpler version of the EA family where individuals resemble the chromosome. \acrfull{cgp} is another EA algorithm which it's used to process graph representation and it overcomes some of the limitations of the simpler EA methods. As we've seen that graph representation it's already been used in gene networks, CGP may represent an interesting venue to follow. 
 
 
+
 \subsubsection{Artificial Neural Networks} \label{s:lit:ann_overview}
 
 As it was mentioned at the beginning of this chapter, the connectionist approach is what drives the current AI hype and it's due to the advances in both algorithms and computational power. The inspiration comes from how the brain draws the information from the external stimuli, stores it in memory and retrieve it. Despite being many unknowns to the brain, the main components that are involved in the learning process are the neurons and the synapses between them\footnote{The neurons and synapses are the main components, but there may be others like dendrites which can also be computational units as seen later in the section.}. The simplest learning rule was introduced by Donald Hebb which states "Neurons that fire together, wire together"\cite{Hebb_Donald1949-nn}. This means that a neuron that fire or its concurrently activated with another one (or in a given time window) the two form a stronger connection. The opposite is true, the synapse is weaken, when two neurons that do not get activated in the same time window.
@@ -162,22 +163,6 @@ Autoencoders are a particular type of Deep Neural Networks and \cref{fig:autoenc
 Autoencoders are the most successful \acrshort{dnn} approaches to genomics problems where they have been used as a dimension reduction technique to solve the dimension curse of genetic data, where few samples are available with a large number of features (genes). This means, that they are not replacing the clustering models but techniques like \acrfull{pca} or \acrfull{nmf}, and will be used in conjunction with clustering techniques.
 
 
-
-\subsubsection{Graph Theory} \label{s:lit:graph_overview}
-
-One of the aims of graph theory is to find the influence nodes, which in biology this might be the case of finding the driver genes which are the ones with the biggest impact on the network. In \cref{fig:graphs_basic} it's a simple representation of a graph, where a node (or vertices) is a gene and the edge between them is the connection. 
-
-To establish how genes are linked to a network and interact,  the edges are assigned values that enforce the link between nodes (genes) and this data can be put into a table that can be processed by different graph algorithms. As one of the goals of this project is to understand how genes interact and their network effect, \cref{s:lit:multi-view} covers how graph theory is applied in multi-omics. Apart from being able to find the driver genes graphs are a good tool to visualise the gene interactions. 
-
-\begin{figure}[!htb]
-  \centering\includegraphics[width=0.5\textwidth,height=0.5\textheight,keepaspectratio]{Sections/Lit_review/Resources/basic_graphs.png}
-    \caption{Basic graphs.}
-    \label{fig:graphs_basic}
-\end{figure}
-\FloatBarrier
-
-
-% Keep this section simple. It links to parts of your project you haven't discussed yet and so becomes a bit unclear. Effectively you want to state that genes can be linked in a network and that many biological approaches allow measurements of genes. This means you can infer relationships, see how relationships change in disease/perturbation and assess how distinct, but linked-in-the-network perturbations can lead to a common result/phenotype/observation
 
 
 \subsubsection{Choosing the right ML approach} \label{s:lit:neuroevolution}

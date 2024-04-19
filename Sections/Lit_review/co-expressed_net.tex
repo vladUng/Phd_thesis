@@ -4,28 +4,19 @@
 % Create the network - the use of correlation - what are the advantages?
 % Reduce the edges - use a threshold 
 
-There are two methods reviewed in this section Weighted Gene Correlation Network Analysis (WGCNA) \citet{Langfelder2008-sn} and Parsimonious Gene Correlation Analysis (PGCNA) \citet{Care2019-ij}. The former represents the first formalisation of the method to analyse correlation networks while the latter is a more recent development and targeted to disease subtyping. Both methods and the others derived are similar in methodology having the following steps:
+There are two methods reviewed in this section: Weighted Gene Correlation Network Analysis (WGCNA) \citet{Langfelder2008-sn} and Parsimonious Gene Correlation Network Analysis (PGCNA) \citet{Care2019-ij}. The former represents the first formalisation of the method to analyse correlation networks, while the latter is a more recent development targeted at disease subtyping. PGCNA was developed with the goal of combining multiple datasets to stratify disease, whereas WGCNA was primarily focused on analysing co-expressed networks. Despite their distinct goals, the two approaches share common steps in the network construction process but with different caveats:
+
 \begin{enumerate}
-    \item Construct network based on the correlation matrix.
-    \begin{itemize}
-        \item WGCNA alters the correlation values to be between 0-1, where as PGCNA does not change the values 
-    \end{itemize}
-    \item Edge reduction with the goal to isolate the signal from the noise and build a network that it is easier to analyse
-    \begin{itemize}
-        \item PGCNA applies and aggressive strategy, while WGCNA impose the correlation values to be above a certain threshold
-    \end{itemize}
-    \item Construct the network from the reduced matrix
-    \item Find the communities in the network
-    \begin{itemize}
-        \item WGCNA on hierarchical clustering (check this) while PGCNA using Louivan \citet{Blondel2008-ik} or Leiden \citet{Traag2019-ne}
-    \end{itemize}
+    \item \textbf{Network Construction:} The network is constructed based on the correlation matrix. In this step, WGCNA modifies the correlation values to fall between 0 and 1, whereas PGCNA maintains the original correlation values without any alterations.
+    
+    \item \textbf{Edge Reduction:} The objective of this step is to distinguish significant signals from noise, thereby simplifying the network analysis. PGCNA adopts an aggressive strategy for edge reduction, while WGCNA only considers correlations that exceed a specified threshold.
+    
+    \item \textbf{Reconstruction from Reduced Matrix:} Following the reduction of edges, the network is reconstructed from the reduced matrix to include only significant correlations.
+    
+    \item \textbf{Community Detection:} In the final step, communities within the network are identified. WGCNA employs hierarchical clustering methods (verification required), while PGCNA uses community detection algorithms such as the Louvain method \citep{Blondel2008-ik} or the Leiden algorithm \citep{Traag2019-ne}.
 \end{enumerate}
 
-To these steps PGCNA also extracts the relevant genes for each communities and uses them to stratify the cancer. In addition, the work from \citet{Care2019-ij} supports multiple datasets.
-
-
-% Another review from 2020 which focuses on network fusion is \citet{Di_Nanni2020-qu} which also covers the work from \citet{Dimitrakopoulos2018-br}.
-
+PGCNA involves additional computational steps that extract the most relevant genes in each community, then find their representation in the gene expression dataset, values which are subsequently clustered to define the subtypes. These steps are discussed in more detail in the PGCNA section \cref{s:lit:pgcna}.
 
 
  % WGCNA
