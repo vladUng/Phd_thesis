@@ -1,6 +1,18 @@
 \subsection{Community detection} \label{s:lit:comm_detect}
 
-In this PhD project there are two different school of thoughts explored for community detection: modularity maximisation and generative models. The first finds communities (or modules or blocks) into the network by maximising the separation between the communities which is measured by a cost function. The search is usually done by moving the nodes between communities until the function converges; see \cref{fig:N_I:leiden-explained}. In the literature there were several methods proposed to maximise the modularity of a graph such as FastUnfold \citet{Blondel2008-ik} (also known as Louvain and it initially used in PGCNA) or Constant Pots Model (CPM or Leiden \citet{Traag2019-ne}, improvement from Louvain). This suite of algorithms usually requires a parameter (e.g. resolution parameter) to guide the models to the number of communities, this is the source of a well-known problem with this class, known as the resolution-limit. The algorithms are restricted to the number of communities and after a certain threshold, the smaller communities are hidden inside the larger ones, see \cref{s:lit:mod_max}.
+\vspace{3mm}
+% \noindent\rule{17cm}{0.2pt}
+\fbox {
+    \parbox{\linewidth}{
+      \begin{itemize}
+        \item Leiden and Louivan
+        \item Stochastic Block Model
+      \end{itemize}
+    }
+}
+\vspace{3mm}
+
+Community detection are an essential part of the network approach developed in this thesis as they are involved in grouping the genes in the network as well as selecting the most representative nodes. In this PhD project there are two different school of thoughts explored for community detection: modularity maximisation and generative models. The first finds communities (or modules or blocks) into the network by maximising the separation between the communities which is measured by a cost function. The search is usually done by moving the nodes between communities until the function converges; see \cref{fig:N_I:leiden-explained}. In the literature there were several methods proposed to maximise the modularity of a graph such as FastUnfold \citet{Blondel2008-ik} (also known as Louvain and it initially used in PGCNA) or Constant Pots Model (CPM or Leiden \citet{Traag2019-ne}, improvement from Louvain). This suite of algorithms usually requires a parameter (e.g. resolution parameter) to guide the models to the number of communities, this is the source of a well-known problem with this class, known as the resolution-limit. The algorithms are restricted to the number of communities and after a certain threshold, the smaller communities are hidden inside the larger ones, see \cref{s:lit:mod_max}.
 
 The second class of community detection algorithms is represented by Stochastic Block Models (SBM) and these works by generating different networks with different partitions by fitting the observed network; see \cref{fig:N_I:dc-sbm_explained}. SBMs were first introduced in the 80's to social networks \citet{Holland1983-eu} but become more popular in 2010 with the work of \citet{Karrer2011-si} and more recently from Tiago Peixoto. They are generally more computational expensive than the modularity maximisation methods but are more suitable to find communities closer to the ground truth; see \cref{s:lit:descriptive_inference}.
 
@@ -8,7 +20,7 @@ The new models introduced by Peixoto are non-parametric, that is they do not req
 
 Another class of methods for community detection algorithms are based on the random walks. The central idea is to analyse the information flow dynamics of a network by randomly going through the graph. There are several methods employing this approach such as InfoMap  \citet{Rosvall2008-kw} or Markov CLustering (MCL) \citet{Van_Dongen2008-yj}. This class is not explored in this project as suffer from the same limitations of modularity based methods\cite{Peixoto2021-jx}, prone to find communities further from the ground truth compared to SBM.
 
-This part of the literature review is structure so that it offers an overview of Leiden and Louivan, representing the mainstream approach to community detection. This is followed by the criticism and limitation of these models based on these studies \cite{Peixoto2021-jx, Peixoto2023-rt, Shemirani2023-ww}. Lastly, the alternative is presented which comes from the SBM models.
+This part of the literature review is structure so that it offers an overview of Leiden and Louivan, representing the mainstream approach to community detection. This is followed by the criticism and limitation of these models based on these studies \cite{Peixoto2021-jx, Peixoto2023-rt, Shemirani2023-ww}. Lastly, the alternative is presented which comes from the SBM models that adddress the limitations of Leiden/Louivan.
 
 
 % Leiden and others
@@ -101,7 +113,7 @@ Compared to the other algorithms SBM are more complex and more computational tax
 
 Leiden and Louivan are widely applied to biological problems, only through PGCNA both were applied to subtyping of the breast, lung and glioblastoma cancer cohorts from TCGA \cite{Tanner2023-wa, Care2019-ij}. In all of these applications, community detection serve a key role in selecting and inferring biological meaning from the networks. Thus, the limitations raised \citet{Peixoto2021-jx,Guimera2004-gv, Peixoto2023-rt} poise a serious challenge to the applicability of Leiden and Louivan in disease subtyping, and in fact in any biological networks. 
 
-To sum it up, both classes of algorithms are applied to a wide range of applications in biology and are available to use. The main difference is that the Leiden, Louivan may generate 'spurious' communities and it will run faster, but SBM family will be slower but closer to the ground truth. In terms of the methods implementation, all three methods Leiden, Louivan and SBM have their own library packages\footnote{Leiden - \url{https://leidenalg.readthedocs.io/en/stable/intro.html}, Louivan - \url{https://python-louvain.readthedocs.io/en/latest/}, SBM - \url{https://graph-tool.skewed.de/}} which are available online. However, SBM's library is by far the most maintained, advanced and complete package.
+To sum it up, both classes of algorithms are applied to a wide range of applications in biology and are available to use. The main difference is that the Leiden, Louivan may generate 'spurious' communities and it will run faster, but SBM family will be slower but closer to the ground truth. In terms of the methods implementation, all three methods Leiden, Louivan and SBM have their own library packages\footnote{Leiden - \url{https://leidenalg.readthedocs.io/en/stable/intro.html}, Louivan - \url{https://python-louvain.readthedocs.io/en/latest/}, SBM - \url{https://graph-tool.skewed.de/}} which are available online. However, SBM's library is by far the most maintained, advanced and complete package for network analysis.
 
 
 
