@@ -29,15 +29,15 @@ The section starts by covering the clustering techniques (\ref{s:lit:clustering}
 
 Clustering algorithms have many variations, and these are best covered in a code sample \cite{Scikit-learn_undated-ax} from the Scikit-learn library \cite{Pedregosa2011-ts}. A selection of the methods that were successfully applied within this project is displayed in \cref{fig:lit:clustering_types}. The rows represent different types of datasets and the columns are the algorithms covered in this document: K-means as a general-purpose algorithm, and both Ward and Agglomerative as hierarchical clustering methods, with Agglomerative performing pairwise grouping. It is worth mentioning that a modified version of the Scikit-learn code was adapted to meet the project's needs, enabling the running of multiple clustering techniques with varied parameters for the TCGA dataset (\ref{}) and networks' outputs (\ref{}).
 
-\begin{figure}[!htb]
+One of the most popular methods (and the simplest) is K-means clustering, which attempts to find patterns in the data by grouping data points by distance. There are variations of the algorithm where datasets are split into multiple batches to improve performance (see \textit{MiniBatch Kmeans} from \cref{fig:clustering_types}); or Fuzzy K-means that output the cluster membership of each data point. This means that apart from the cluster labelling, there is additional information about how close each point is to a cluster\footnote{For example, if there are 3 clusters, a data point might be 90\% in cluster 1, 6\% in cluster 2, and 4\% in cluster 3.}. From the below K-means pseudocode\footnote{Pseudocode is an accessible method to describe an algorithm.} (\cref{code:k-means}), a few things are worth emphasising:
+
+
+\begin{figure}[!t]
   \centering
   \includegraphics[width=0.8\textwidth,height=0.5\textheight,keepaspectratio]{Sections/Lit_review/Resources/clustering_scikit.png}
     \caption{How K-means (MiniBatch version), Spectral Clustering, Wards, Agglomerative Clustering, and Gaussian Mixture Models behave with different types of 2D datasets. Running times shown on the bottom right corner, all algorithms having comparable running times, with K-means being the fastest. Image adapted from \cite{Scikit-learn_undated-ax}}
     \label{fig:lit:clustering_types}
 \end{figure}
-\FloatBarrier
-
-One of the most popular methods (and the simplest) is K-means clustering, which attempts to find patterns in the data by grouping data points by distance. There are variations of the algorithm where datasets are split into multiple batches to improve performance (see \textit{MiniBatch Kmeans} from \cref{fig:clustering_types}); or Fuzzy K-means that output the cluster membership of each data point. This means that apart from the cluster labelling, there is additional information about how close each point is to a cluster\footnote{For example, if there are 3 clusters, a data point might be 90\% in cluster 1, 6\% in cluster 2, and 4\% in cluster 3.}. From the below K-means pseudocode\footnote{Pseudocode is an accessible method to describe an algorithm.} (\cref{code:k-means}), a few things are worth emphasizing:
 
 \begin{itemize}
   \item The number of centroids (K) is defined by the user.
@@ -46,7 +46,7 @@ One of the most popular methods (and the simplest) is K-means clustering, which 
   \item The algorithm converges when the centroids don't significantly change.
 \end{itemize}
 
-\begin{lstlisting}[caption={K-means pseudocode}, label={code:k-means}]
+\begin{lstlisting}[float=!hb, caption={K-means pseudocode}, label={code:k-means}]
   Initialise the centroids at random positions
   while not converged 
     For each data point
@@ -63,14 +63,15 @@ Agglomerative clustering is a type of hierarchical clustering that starts by con
   \item \textbf{Complete} - The opposite to Single linkage, the distance between the two groups is given by the farthest points. This method looks at the outer layer points and may provide a more accurate grouping.
 \end{itemize}
 
+
+Gaussian Mixture Models (GMM) are probabilistic models that assume all data points are generated from a mixture of a finite number of Gaussian distributions with unknown parameters. GMMs accommodate asymmetric clusters compared to K-means which assumes clusters are similar size. Another applied clustering algorithm in the project, Spectral Clustering, transforms the clustering problem into a graph-partitioning problem. It begins by constructing an affinity matrix based on the pairwise similarity of points. It then uses linear algebra to project the data into a latent space from which the clusters are identified using methods like K-means.
+~\\
 \begin{lstlisting}[caption={Agglomerative hierarchical clustering pseudocode}, label={code:agg_clustering}]
   To each data point assign a cluster number
   while more than one cluster
     Group the closest datapoints together 
     Smaller clusters morph together into larger ones
 \end{lstlisting} 
-
-Gaussian Mixture Models (GMM) are probabilistic models that assume all data points are generated from a mixture of a finite number of Gaussian distributions with unknown parameters. GMMs accommodate asymmetric clusters compared to K-means which assumes clusters are similar size. Another applied clustering algorithm in the project, Spectral Clustering, transforms the clustering problem into a graph-partitioning problem. It begins by constructing an affinity matrix based on the pairwise similarity of points. It then uses linear algebra to project the data into a latent space from which the clusters are identified using methods like K-means.
 
 The clustering algorithms presented so far are used throughout the project, initially to establish a referential point independent of the methods used in other MIBC subtyping work \cite{Robertson2017-mg, Marzouka2018-ge, Kamoun2020-tj}. Then, the clustering models were used to stratify the output of the network approach. To measure the performance of these algorithms, the below metrics were used.
 
@@ -94,7 +95,7 @@ One of the challenges in clustering is to measure the performance of grouping as
 In addition to the above metrics, there is a popular heuristic procedure, the Elbow method, which aids in choosing the right number of clusters. In \cref{fig:elbow_method} the y-axis is represented by the distance of the points from their centroids, while the x-axis is the number of clusters. It can be seen that there is a point of inflexion when the number of clusters is set to five and that is considered to be the optimal number of clusters.
 
 \begin{figure}[!htb]
-  \centering\includegraphics[width=0.7\textwidth,height=0.5\textheight,keepaspectratio]{Sections/Lit_review/Resources/elbow_method.png}
+  \centering\includegraphics[width=0.8\textwidth,height=0.8\textheight,keepaspectratio]{Sections/Lit_review/Resources/elbow_method.png}
     \caption{Example of the elbow method, where 5 clusters are the optimal number of clusters. This has been applied on unpublished data of Benign Uropathies from Jack Birch Unit. The green line is the computational time. }
     \label{fig:elbow_method}
 \end{figure}

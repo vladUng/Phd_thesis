@@ -2,23 +2,171 @@
 
 \begin{appendices}
 
-\section{MIBC subtypes}
-    \subsection{TCGA}
-        \begin{figure}[!htb]    
-            \centering
-        \includegraphics[width=0.9\textwidth,height=0.9\textheight,keepaspectratio]{Sections/Lit_review/Resources/TCGA_2017_subtypes.jpg}
-            \caption{Figure 2 from from \cite{Robertson2017-mg} showing the five different molecular subtypes found in the MIBC cohort from TCGA. See \cref{s:lit:tcga_mibc} for a more detailed overviews.}
-            \label{fig:ap:tcga_subtypes}
-        \end{figure}
+\section{MIBC Paper images}
 
+\subsection{TCGA}
+
+\begin{figure}[!htb]    
+    \centering
+\includegraphics[width=0.9\textwidth,height=0.9\textheight,keepaspectratio]{Sections/Lit_review/Resources/TCGA_2017_subtypes.jpg}
+    \caption{Figure 2 from from \cite{Robertson2017-mg} showing the five different molecular subtypes found in the MIBC cohort from TCGA. See \cref{s:lit:tcga_mibc} for a more detailed overviews.}
+    \label{fig:ap:tcga_subtypes}
+\end{figure}
+
+% MIBC subtypes
+\section{MIBC tables subtypes}
+
+\subsection{TCGA}
+
+% TCGA table
+\begin{table}[H]
+\centering
+\caption{The molecular characterisation of the TCGA subgroups taken from the \textit{mRNA Expression-Based Molecular Subtypes} and \textit{Discussion} Figure 2 from \cite{Robertson2017-mg}}
+    \begin{tabularx}{\textwidth}{
+      >{\hsize=.6\hsize\raggedright\arraybackslash}X
+      >{\hsize=.8\hsize\raggedright\arraybackslash}X
+      >{\hsize=.6\hsize\arraybackslash}X
+    }
+    \toprule
+    Subtype & Genes & Description \\
+    \midrule
+    Luminal-papillary (35\%) & \textit{KRT20, PPARG, FOXA1, GATA3, SNX31, UPK1A, UPK2, FGFR3} & 
+    \begin{itemize}[leftmargin=*, nosep, after=\vspace{-\baselineskip}, before=\vspace{-.6\baselineskip}]
+        \item Characterised by \textit{FGFR3} mutations
+        \item Papillary histology
+        \item Low risk of progression
+    \end{itemize} \\
+    \midrule
+    Luminal-infiltrated (19\%) & \textit{CD274, PDCD1LG2, IDO1, CXCL11, L1CAM, SAA1} & 
+    \begin{itemize}[leftmargin=*, nosep, after=\vspace{-\baselineskip}, before=\vspace{-.6\baselineskip}]
+        \item Lowest purity
+        \item High expression of \textit{EMT} and myofibroblast markers, and of the miR-200s (tumour suppressor)
+        \item Medium expression of \textit{CD274, CTLA4} immune markers
+        \item May respond to immune checkpoint therapy
+    \end{itemize} \\
+    \midrule
+    Luminal (6\%) & \textit{KRT20, PPARG, FOXA1, GATA3, SNX31, UPK1A, UPK2, FGFR3} & 
+    \begin{itemize}[leftmargin=*, nosep, after=\vspace{-\baselineskip}, before=\vspace{-.6\baselineskip}]
+        \item New subtype in TCGA
+    \end{itemize} \\
+    \midrule
+    Basal-squamous (35\%) &\textit{ CD44, KRT6A, KRT5, KRT14, COL17A1}; Squamous: \textit{DSC3, GSDMC, TCGM1, PI3, TP63} & 
+    \begin{itemize}[leftmargin=*, nosep, after=\vspace{-\baselineskip}, before=\vspace{-.6\baselineskip}]
+        \item High incidence in women
+        \item Squamous differentiation, and basal keratin expression
+        \item High expression of \textit{CD274, CTLA4} immune markers and may respond immune checkpoint therapy
+    \end{itemize} \\
+    \midrule
+    Neuronal (5\%) &\textit{ MSI1, PLEKHG4B, GNG4, PEG10, RND2, APLP1, SOX2, TUBB2B} & 
+    \begin{itemize}[leftmargin=*, nosep, after=\vspace{-\baselineskip}, before=\vspace{-.6\baselineskip}]
+        \item Expression of neuroendocrine, neuronal gene and high cell-cycle signature of proliferative state
+        \item The most aggressive tumours with the lowest survival rate
+    \end{itemize} \\
+    \bottomrule
+    \end{tabularx}
+    \label{tab:lit:tcga_genes}
+\end{table}
+
+% Lund
 \subsection{Lund}
 
+\begin{table}[H]
+\centering
+\caption{Summary table of the work done for Lund stratification which is primarily based on the Figure 2 from \citet{Marzouka2018-ge} but it also contains some additional information from research group's earlier work from  \citet{Sjodahl2017-xr}. The suffix '-inf' represents the infiltrated nature of the subtype.}
+    \begin{tabularx}{\textwidth}{>{\hsize=.6\hsize\raggedright\arraybackslash}X >{\hsize=\hsize\arraybackslash}X}
+    \toprule
+    Subtype & Description \\
+    \midrule
+    UroA and GU & 
+    \begin{itemize}[leftmargin=*, nosep, after=\vspace{-\baselineskip}]
+        \item The UroA and GU tumours exhibit two signatures known in urothelial cell differentiation 1) \textit{PPARG, FOXA1, GATA3, ELF3} and 2) \textit{UPK1A, UPK1B, UPK2, UPK3A, KRT20}. These are the genes also seen in the Luminal subtypes form TCGA (\textbf{check this}).
+        \item The difference between GU and Uro subtypes is given by the up/down-regulated of \textit{FGFR3, CCND1, E2F3, RB1, CDKN2A}.
+    \end{itemize} \\
+    \midrule
+    Basal/Squamous & 
+    \begin{itemize}[leftmargin=*, nosep, after=\vspace{-\baselineskip}]
+        \item The signatures of \textit{KRT5, KRT14, FOXA1 and GATA3} are definitory for the Basal/Squamous tumours (Ba/Sq). 
+        \item Keratinization signature: \textit{KRT5, KRT6A, KRT6B, KRT6C, KRT14, KRT16}
+        \item Cell adhesion genes \textit{EPCAM, CDH1, CDH3} differentiate the Basal tumours from the squamous.
+        \item The Basal/Squamous are also separated from the Uro and GU subtypes by the difference in expression of the tyrosine kinase receptors \textit{EGFR, ERBB2, ERBB3}.
+    \end{itemize} \\
+    \midrule
+    MES-like & 
+    \begin{itemize}[leftmargin=*, nosep, after=\vspace{-\baselineskip}]
+        \item Similar to Sc/NE-like, but are less infiltrated
+    \end{itemize} \\
+    \midrule
+    Sc/NE-like & 
+    \begin{itemize}[leftmargin=*, nosep, after=\vspace{-\baselineskip}]
+        \item As in the case for Basal, high in \textit{KRT5, KRT14}, low in \textit{FOXA1, GATA3}
+        \item High expression in\textit{ CHGA, SYP, ENO2}
+        \item More infiltrated than the MES-like
+    \end{itemize} \\
+    \bottomrule
+    \end{tabularx}
+    \label{tab:lit:lund_genes}
+\end{table}
 
+
+
+% Consensus
 \subsection{Consensus}
 
 
+\begin{table}[!htb]
+\centering
+\caption{The molecular characterisation of the MIBC subgroups taken based on the consensus work of \cite{Kamoun2020-tj}. It summaries sections\  textit{3.2 and 3.3} from the main paper. LumP, LumNS and LumU exhibit more differentiation status characteristics and contain \textit{PARG/GATA3/FOXA1}-related Lund signature.}
+    \begin{tabularx}{\textwidth}{>{\hsize=.8\hsize\raggedright\arraybackslash}X >{\hsize=\hsize\arraybackslash}X}
+    \toprule
+    Subtype & Description \\
+    \midrule
+    Luminal-papillary (LumP) (24\%) & 
+    \begin{itemize}[leftmargin=*, nosep, after=\vspace{-\baselineskip}]
+        \item High expression of noninvasive Ta pathway signature
+        \item Mutations in \textit{FGFR3, KDM6A}
+    \end{itemize} \\
+    \midrule
+    Luminal non-specified (LumNS) (8\%) & 
+    \begin{itemize}[leftmargin=*, nosep, after=\vspace{-\baselineskip}]
+        \item Elevated stromal infiltration signatures
+        \item \textit{ELF3} mutations, activated by \textit{PPARG//RARG}
+    \end{itemize} \\
+    \midrule
+    Luminal unstable (LumU) (15\%) & 
+    \begin{itemize}[leftmargin=*, nosep, after=\vspace{-\baselineskip}]
+        \item Higher cell activity compared to other luminal tumours
+        \item Mutations in \textit{ERCC2, TP53}
+    \end{itemize} \\
+    \midrule
+    Stroma-rich (15\%) & 
+    \begin{itemize}[leftmargin=*, nosep, after=\vspace{-\baselineskip}]
+        \item Intermediate levels of urothelial differentiation and stromal infiltration
+        \item Overexpression of smooth muscle, endothelial, fibroblast and myofibroblast gene signatures
+        \item Immune infiltration of T and B-cell
+    \end{itemize} \\
+    \midrule
+    Basal/Squamous (35\%) & 
+    \begin{itemize}[leftmargin=*, nosep, after=\vspace{-\baselineskip}]
+        \item Mutations in \textit{KDM6A, RB1}
+        \item Signatures associated with Basal
+        \item Immune infiltration: cytotoxic lymphocytes, natural killer cells
+    \end{itemize} \\
+    \midrule
+    Neuronal (3\%) & 
+    \begin{itemize}[leftmargin=*, nosep, after=\vspace{-\baselineskip}]
+        \item Mutations in \textit{KDM6A, RB1}
+        \item Signatures associated with Basal
+    \end{itemize} \\
+    \bottomrule
+    \end{tabularx}
+    \label{tab:lit:consensus_genes}
+\end{table}
+
+\newpage
+
 
 % List of models
+
 \section{List of Models} \label{ap:tables_models}
 
 \newpage
