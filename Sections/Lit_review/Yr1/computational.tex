@@ -94,7 +94,7 @@ One of the challenges in clustering is to measure the performance of grouping as
 In addition to the above metrics, there is a popular heuristic procedure, the Elbow method, which aids in choosing the right number of clusters. In \cref{fig:elbow_method} the y-axis is represented by the distance of the points from their centroids, while the x-axis is the number of clusters. It can be seen that there is a point of inflexion when the number of clusters is set to five and that is considered to be the optimal number of clusters.
 
 \begin{figure}[!htb]
-  \centering\includegraphics[width=0.7\textwidth,height=0.5\textheight,keepaspectratio]{Images/Clustering/elbow_method.png}
+  \centering\includegraphics[width=0.7\textwidth,height=0.5\textheight,keepaspectratio]{Sections/Lit_review/Resources/elbow_method.png}
     \caption{Example of the elbow method, where 5 clusters are the optimal number of clusters. This has been applied on unpublished data of Benign Uropathies from Jack Birch Unit. The green line is the computational time. }
     \label{fig:elbow_method}
 \end{figure}
@@ -145,7 +145,7 @@ However, these algorithms have a high computational cost and do not usually scal
 As EA resembles the evolutionary process there is also some shared terminology, an individual in the EA context represents a potential solution and a population is a collection of potential solutions. \Cref{fig:ea_basic} describes the algorithmic flow of the evolutionary approach which starts with the initialisation stage, where the individuals are given (usually) random values, followed by the second stage where the fitness of the individuals is measured; i.e. how suitable they are for the problem. If the problem is not solved, then select only the fittest individuals which are then mutated/crossover, introducing variation to the new population. Like in biology, this last step, gives EA a large variety of individuals. This set of steps is run until an individual fits the solution/problem. It is worth mentioning, that the mutation rate, crossover and how the individual is selected, are preset parameters. 
 
 \begin{figure}[!htb]
-  \centering\includegraphics[width=0.4\textwidth,height=0.4\textheight,keepaspectratio]{Images/Resources/EA_basic.png}
+  \centering\includegraphics[width=0.4\textwidth,height=0.4\textheight,keepaspectratio]{Sections/Lit_review/Resources/EA_basic.png}
     \caption{Evolutionary Algorithms algorithm.}
     \label{fig:ea_basic}
 \end{figure}
@@ -162,7 +162,7 @@ The MDPFinder model presented in \cref{s:lit:mutations} used a variation of EA, 
 Artificial Neural Networks (ANN) are the ML strand that have been pushing the AI breakthroughs in the past 20 years. The inspiration comes from how the brain draws the information from the external stimuli, stores it in memory and retrieve it. Despite being many unknowns to the brain, the main components that are involved in the learning process are the neurons and the synapses between them\footnote{The neurons and synapses are the main components, but there may be others like dendrites which can also be computational units as seen later in the section.}. The simplest learning rule was introduced by Donald Hebb which states "Neurons that fire together, wire together"\cite{Hebb_Donald1949-nn}. This means that a neuron that fire or its concurrently activated with another one (or in a given time window) the two form a stronger connection. The opposite is true, the synapse is weaken, when two neurons that do not get activated in the same time window.
 
 \begin{figure}[!htb]
-  \centering\includegraphics[width=0.7\textwidth,height=0.7\textheight,keepaspectratio]{Images/ANN/Basic_ANN.png}
+  \centering\includegraphics[width=0.7\textwidth,height=0.7\textheight,keepaspectratio]{Sections/Lit_review/Resources/Basic_ANN.png}
     \caption{A Simple ANN architecture. }
     \label{fig:ann_basic}
 \end{figure}
@@ -175,7 +175,7 @@ Artificial Neural Networks (ANN) are the ML strand that have been pushing the AI
 Autoencoders are a particular type of Deep Neural Networks and \cref{fig:autoencoders} represents a diagram a simple Autoencoder architecture in which it can be seen that there are 3 main components. The input layer to which the data is fed, for more complex models it has additional hidden layers and with the input, the two layers are known together as the encoder stage. The bottleneck part is where the data is compressed into a lower dimension. Next, a mirror to the encoder, the decoder, is dealing with reconstructing the outputs of the bottleneck into original data; hence, the name. This part of autoencoders is an advantage over the PCA as the original data can be reconstructed from the lower dimension. A derivative of Neural Networks, autoencoders are more suitable to find non-linear patterns in the data as whereas PCA finds only linear patterns. With all these advantages as dimension reduction techniques is not a surprise that there has been some work on applying Autoencoders to genomics (explored further in \cref{s:lit:autoencoders}).
 
 \begin{figure}[!htb]
-  \centering\includegraphics[width=0.8\textwidth,height=0.5\textheight,keepaspectratio]{Images/Autoencoders/simple_autoencoders.png}
+  \centering\includegraphics[width=0.8\textwidth,height=0.5\textheight,keepaspectratio]{Sections/Lit_review/Resources/simple_autoencoders.png}
     \caption{Simple architecture of autoencoders, from \cite{Jordan2018-bc}}
     \label{fig:autoencoders}
 \end{figure}
