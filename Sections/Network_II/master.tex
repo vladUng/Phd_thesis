@@ -1,9 +1,56 @@
 
 \section{Network II}
 
+Changes in the network approach:
+\begin{itemize}
+    \item Community detection - hSBM
+    \item Chosen a TF - 6
+    \item Reward modifier
+    \item MEV take in account both the expression in non-cancerous and tumour
+    \item MEV with the mutations - what are the experiments here?
+    \begin{itemize}
+        \item There is a section in the healthySBM notebook where I am doing a quick comparison (iMev + mutation)
+    \end{itemize}
+    \item Stating the goal of the method
+\end{itemize}
+
+\hfill
+
+Experiments performed:
+\begin{itemize}
+    \item Exploration of the communities in the standard
+    \begin{itemize}
+        \item Abs-Ca, UD and P0
+        \item Abs-Ca split
+        \item Stratification of the benign uropathies 
+        \item Cluster-tree and their significance
+    \end{itemize}
+    \item Community and biological functions 
+    \begin{itemize}
+        \item Apply GO and GSEA to explore their biological functions
+        \item Detail the methods tried and the results found
+        \item Maybe link it back to PGCNA and SCES scores and say that we weren't successfull
+        \item Conclude that it didn't work out
+    \end{itemize}
+    \item Reward network analysis
+    \begin{itemize}
+        \item AHR and finding the correlation with SB's study
+        \item other small communities with high connectivity
+        \item comparison with small vs large communities
+        \item PPARG and RARG enrichment
+        \item Interferon search
+        \item Looking at the genes which are highly connected
+        \item Wobble genes - where do they lie on?
+    \end{itemize}
+    \item Gene selection - v3 and V4
+    \begin{itemize}
+        \item Differences in the gene selection
+        \item comparing with the varied genes
+    \end{itemize}
+\end{itemize}
+
+Essentially there are three biological studies that I can relate: 1) Interferon study 2) AHR study and 3) PPARG and RARG study.
+
 \import{Sections/Network_II/}{h_derived.tex}
 
 \newpage
-
-\newpage
-\import{Sections/Network_II/}{selective_pruning.tex}
