@@ -194,11 +194,47 @@ There are a few genes that have large changes in the comparison shown in \cref{f
     \item \textit{ZBTB7C, MECOM, MSX2, TP63, KLF5, ELF3} - large Basal(4) vs small Basal (5); this comparison shows that the smaller basal has higher enriched of basal markers.
 \end{itemize}
 
-It is know that \textit{MYCL, GRHL3, HOXB6, KLF5, ELF3} are involved in bladder differentiation, \textit{TP63} is a marker for undifferentiated and squamous tumours in MIBC, \textbf{HES2} expressed in bladder cancer The surprising TF is \textit{BNC1} which is completely un-expressed in the luminal tumours and expressed in the Basal subgroups; admittedly not very high as shown in \cref{fig:ap:sel_tfs_mean}. This suggests that many of the mentioned TFs are involved in tissues differentiation ...
 
+It is know that \textit{MYCL, GRHL3, HOXB6, KLF5, ELF3} are involved in bladder differentiation, \textit{TP63} is a marker for undifferentiated and squamous tumours in MIBC, \textbf{HES2} expressed in bladder cancer. The surprising TF is \textit{BNC1} which is completely un-expressed in the luminal tumours and expressed in the Basal subgroups; admittedly not very high as shown in \cref{fig:ap:sel_tfs_mean}. This suggests that many of the mentioned TFs are involved in tissues differentiation..
 
-% Dumbell
+\paragraph*{Differentially expressed analysis}
 
+\begin{figure}[!h]
+    \captionsetup[subfigure]{justification=Centering}
+% Sankey
+\begin{subfigure}[!t]{1.0\textwidth}
+    \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/sel_tfs_pi_1_v2.png}
+    
+    \caption{Pi plot with just the varied genes}
+    
+    \label{fig:N_I:pi_sel_tfs_var}
+\end{subfigure}\hspace{\fill} % maximize horizontal separation
+% Survival
+\begin{subfigure}[!t]{1.0\textwidth}
+    \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/sel_tfs_pi_all_v2.png}
+    
+    \caption{Pi plot with all the 98 TFs}
+    
+    \label{fig:N_I:pi_sel_tfs_all}
+\end{subfigure}\hspace{\fill} % maximize horizontal separation
+
+    \caption{Two Pi plots of the same comparisons, but with different markers shown. The X-axis represents the Pi values from the DEA of the P0 vs AbsCa, the Y-axis from AbsCa vs UD. The markers yellow are the most varied genes seen in \cref{fig:N_I:sel_tfs_var}, the blue the genes highly varied only in the non-cancerous where the green highly varied in the tumour. The rest of the markers in purple are rest of the 98 TFs gene.}
+    
+    \label{fig:N_I:pi_sel_tfs}
+\end{figure}
+
+% Introducing the two pi-plots
+The pi plot in \cref{fig:N_I:pi_sel_tfs} presents the 98 TFs in the context of the non-cancerous tumour dataset from the JBU. The X coordinate is given by the pi value (-$log10(q)*fold\_change$) from the DEA performed between the Undifferentiated (UD) and Abs-Calcium group, where the Y-coordinate is the comparison between UD and P0 (in-situ). The positive values on the X-axis represents the ABS-Ca specific TF, while the negative values the genes closed to UD. Where the negative values on the Y-axis are P0 specific and conversely for the positive values and UD.
+
+% Just the sel tfs - UD and P0
+In \cref{fig:N_I:pi_sel_tfs} plot it can be seen that \textit{BNC1} and \textit{HES2} are UD markers which may also indicate that are specific for squamous markers. \textit{TP63} is another squamous marker\citet{Robertson2017-mg} but it more significant differentiated in the UD vs Abs-Ca comparison. \textit{FOSL1} is a highly varied thast appears to be another undifferentiated markers. \textit{KLF6, JUN} are both \textbf{known genes} in bladder cancer that specific to both P0 and UD.
+
+% Talk about the differentiation markers 
+The P0 - Abs-Ca quadrant contains the genes that are likely involved in the differentiation of the bladder tissue, closer to the x-axis, more specific to the culture mode, conversely to Y-axis to the P0. It is worth noting that most of the genes specific to Abs-Ca model are highly varied in the tumours, which may mean that are more expressed in the Luminal tumours compared to the Basal; \textit{HOXB6, ZNF552, JRK, BHLHe41}. Genes \textit{ZNF750, MSX2, MYCL, GRHL3 and REL} are specific to both P0 and Abs-Ca. Both \textit{MYCL, GRHL3} are known to be differentiation markers. There are also markers that asre specific to P0 samples: \textit{EBF4, MAFK, ARID5B, EGR1, ETS2, MAFF, FOX1, KLF4, NR4A2, ATF3, OVOL1}. 
+
+While \cref{fig:N_I:pi_sel_tfs_var} offer a focused view on the TFs that are varied in the non-cancerous and/or the MIBC cohort from TCGA, \cref{fig:N_I:pi_sel_tfs_all} complements the plot by showing all the 98 TFs. It can be noticed that there are several markers that might be UD specific (negative X-axis) while some additional markers involved in differentiation which do not vary as much. The latter may suggest that these markers are common both in Basal and Luminal tumours. 
+
+It is surprising that there are no TFs shared in the culture quadrant (UD and Abs-Ca) and many TFs in the middle of the Pi plot. The genes at the centre of the pi plot may indicate a list of TFs that are at the core of bladder tissue, regardless if it is differentiated or undifferentiated. (\textbf{Can I test this})
 
 
 \newpage
@@ -217,11 +253,11 @@ It is know that \textit{MYCL, GRHL3, HOXB6, KLF5, ELF3} are involved in bladder 
     \end{todolist}
     \item General stats 
     \begin{todolist}
-        \item Talk about the TF and how these are present in the dataset
-        \item In the cancerous and non-cancerous dataset
+        \item [\done] Talk about the TF and how these are present in the dataset
+        \item [\done] T In the cancerous and non-cancerous dataset
         \item Introduce the Human Transcription Factor list and why we want to prioritise them
-        \item Show some plots about their mutation count, mean expression
-        \item How many these are in the top 5000 genes
+        \item [\done] Show some plots about their mutation count, mean expression
+        \item [\done] T How many these are in the top 5000 genes
     \end{todolist}
     \item Experiments 
     \begin{todolist}
@@ -233,12 +269,18 @@ It is know that \textit{MYCL, GRHL3, HOXB6, KLF5, ELF3} are involved in bladder 
     \end{todolist}
     \item Biological analysis 
     \begin{todolist}
-        \item The DEA
-        \item Morpheus - clustering
-        \item Survival plot
-        \item Comparing CS models - can we use this rather then hierarchical clustering
-        \item Comparing between subtypes
+        \item [\done] The DEA
+        \item [\done] Morpheus - clustering
+        \item [\done] Survival plot
+        \item[\done] T Comparing CS models - can we use this rather then hierarchical clustering
+        \item [\done] Comparing between subtypes        
         \item Significance in terms of the proteins, are those genes find somewhere
+        \item Show the expression of some of the genes in Basal vs Luminal - bar plot
+    \end{todolist}
+    \item Showing the advantages of the network
+    \begin{todolist}
+        \item Can we look at some of these genes that have neighbours? Are any of these useful
+        \item Plotting the correlation distribution of these genes; before and after selective edge pruning
     \end{todolist}
     \item Conclusion
     \begin{todolist}
