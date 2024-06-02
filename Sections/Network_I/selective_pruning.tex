@@ -301,10 +301,11 @@ It is surprising that there are no TFs shared in the culture quadrant (UD and Ab
 Using the above work and the box plots like the ones in \cref{fig:N_I:box_basal, fig:N_I:box_luminal}, two lists of genes specific to Basal/Squamous (Ba/Sq) and Luminal subtypes were created, as shown in \cref{tab:N_I:genes_lum_basal}. A recent study by \citet{Ramal2024-ha}, which investigated the regulatory network in urothelial cells, concluded that the following genes are considered 'novel putative TFs' for luminal differentiation: \textit{\textbf{BHLHE41}, \textbf{MECOM}, \textbf{MYCL}, NCOA1, NR2F2, NR2F6, \textbf{REPIN1}, SREBF1, TBX2, TBX3, TRAFD1, \textbf{ZBTB7C}}. The bold genes are among the 98 TFs identified in this section, while \textit{MECOM, BHLHE41, ZBTB7C} are selected as markers in \cref{tab:N_I:genes_lum_basal}. \textit{GRHL3} is also mentioned in the work by \citet{Ramal2024-ha}, but it has already been determined as a differentiation marker (\textbf{reference here}). \citet{Chen2021-tc} studied the role of \textit{ZBTB7C} across different cancers and its relation to tumour mutational burden, microsatellite instability, and immune cell infiltration.
 
 % Discuss Squamous work
-\citet{Hurst2022-sp} researched the upregulated and downregulated genes involved in the formation of squamous cell carcinoma (SCC), an undifferentiated tissue. Figure 4 from their paper shows the signature genes involved in this process. Among the upregulated genes in \citet{Hurst2022-sp}, the following are found in the 98 TFs: \textit{\textbf{BNC1}, EGR1, \textbf{FOSL1}, \textbf{HES2}, JUN, \textbf{KLF16}, KLF4, NFIL3}. From the list of downregulated genes, the following are found in the 98 TFs: \textit{\textbf{BHLHE41}, ELF3, FOXQ1, \textbf{MECOM}, POGK, REPIN1, ZSCAN16}. The bold genes are represented in \cref{tab:N_I:genes_lum_basal}.
+\citet{Hurst2022-sp} researched the upregulated and downregulated genes involved in the formation of squamous cell carcinoma (SCC), an undifferentiated tissue. Figure 4 from their paper shows the signature genes involved in this process. Among the upregulated genes in \citet{Hurst2022-sp}, the following are found in the 98 TFs: \textit{\textbf{BNC1}, EGR1, \textbf{FOSL1}, \textbf{HES2}, JUN, \textbf{KLF16}, KLF4, NFIL3}. From the list of downregulated genes, the following are found in the 98 TFs: \textit{\textbf{BHLHE41}, ELF3, FOXQ1, \textbf{MECOM}, POGK, REPIN1, ZSCAN16}. The bold genes are the markers chosen as markers for basal and luminal (\cref{tab:N_I:genes_lum_basal}).
 
-Therefore, the 98 transcription factors and the two lists of Ba/Sq and Luminal markers are validated by research from different groups. The expression of these genes across the MIBC, from both the consensus and the subtypes derived from hierarchical clustering, can be seen in \cref{fig:N_I:box_basal, fig:N_I:box_luminal}. This also serves as an encouragement to explore the other genes not matched by other research, as they may exhibit potential for new biological insights.
+Therefore, the 98 transcription factors and the two lists of Ba/Sq and Luminal markers are validated by research from different groups. The expression of these genes across the MIBC, from both the consensus and the subtypes derived from hierarchical clustering, can be seen in \cref{fig:N_I:box_basal,fig:N_I:box_luminal}. This also serves as an encouragement to explore the other genes not matched by other research, as they may exhibit potential for new biological insights.
 
+% Lum-basal markers
 \begin{table}[H]
   \centering
   \begin{tabularx}{\textwidth}{>{\hsize=.25\hsize}X|>{\hsize=.75\hsize}X}
@@ -320,9 +321,7 @@ Therefore, the 98 transcription factors and the two lists of Ba/Sq and Luminal m
   \label{tab:N_I:genes_lum_basal}
 \end{table}
 
-
-
-
+% Basal Markers 
 \begin{figure}[H]
     \captionsetup[subfigure]{justification=Centering}
 % consensus
@@ -347,8 +346,7 @@ Therefore, the 98 transcription factors and the two lists of Ba/Sq and Luminal m
     \label{fig:N_I:box_basal}
 \end{figure}
 
-
-
+% Luminal Markers
 \begin{figure}[H]
     \captionsetup[subfigure]{justification=Centering}
 % consensus
@@ -373,19 +371,152 @@ Therefore, the 98 transcription factors and the two lists of Ba/Sq and Luminal m
     \label{fig:N_I:box_luminal}
 \end{figure}
 
-% Then introduce the Pi plot for SmallBasal vs the others
+% Subtypes analysis
+\paragraph*{Understanding the subtypes} \label{s:N_I:bio_sel_prun}
 
-\paragraph*{Understanding the subtypes}
-
+% Metadata exploration
+To understand better the biology of the small basal group, the metadata from TCGA \citet{Robertson2017-mg} was used. Several metadata features were explored: level of smoking (cigarettes per day), race, metastasis, relation to noninvasive bladder cancer, and histology grade. \Cref{fig:ap:sel_tfs_tcga_metadata} displays this information in the form of multiple histograms, where the x-axes represent the subtypes derived in this section and the y-axes the count of the metadata features. From the figure, there is no immediate characteristic for the small basal group, neither with the Squamous pathology nor with the metastatic status, but most of the patients were smokers. It is worth pointing out that LumInf, Mes-like, and large luminal groups are generally characterised by non-squamous tumours. \Cref{fig:ap:sel_tfs_tcga_meta_mut} shows that there is no immediate relationship with the mutations selected in the TCGA supplementary material, while \cref{fig:ap:sel_tfs_tcga_meta_apobec} shows no relationship with the \textit{APOBEC} mutation.
 
 % Pi plot for Small Ba/Sq
 \begin{figure}[!htb]   
 \centering
-\includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/top_500_Pi_smallBasal.png}
+\includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/pi_gsea/pi_smallBasal.png}
   \caption{Pi plot showing the Small Basal vs Large Basal on the X-axis, and Small-Basal vs Mes-like Y-axis. This plot highlights the genes that are high and significantly expressed in the Small Basal subtype. }
 \label{fig:N_I:pi_smallBasal_comp}
 \end{figure}
 
+% pi plot
+Differentially expressed analysis (DEA) was performed between the MIBC groups derived from the gene expression of the 98 TFs. The comparison enables to compare cancer subtypes beyond the transcription factors, and to find the genes that are significantly expressed to each subtype. For every MIBC group, a pi scatter plot is used as in \cref{fig:N_I:pi_smallBasal_comp}, where there is a quadrant (here - III) that holds the genes specific to that subtype with respect with the compared groups. In \cref{fig:N_I:pi_smallBasal_comp} the small basal (5 from \cref{fig:N_I:sel_tfs_cs_analysis}) is compared against the large basal, on the x-axis, in order to determine the properties over the other basal. The pi-values on the y-axis are the result from small-basal vs mes-like as it was observed that the mes-like group is different from both the luminal\footnote{The purpose of the pi plot was to highlight the specific genes to the small-basal. However, one may think that a more direct comparison of the small-basal with the luminal groups could have been chosen, instead of mes-like DEA. The other pi-plots comparison (like the plots for LumInf \cref{fig:ap:pi_lumInf_mesLike,fig:ap:pi_large_basal},  large luminal \cref{s:ap:sel_prun_pi} - in Appendix) cover the 'basal' vs 'luminal' comparison. }. The light-blue marker in quadrant III represents the referential point to which the genes are 'the most' enriched in the small-basal, and the closest 500 genes to the referential point are coloured in purple. 
+
+
+% Introduce the GSEA
+This distance to the referential point is computed for point in the scatter plot \cref{fig:N_I:pi_smallBasal_comp} and then ranked in descending order. This means that all the points in the pi-plot are ranked by how much these are differentially and significantly are expressed in the small basal group. It also allows to run the pre-rank method for Gene Set Enrichment Analysis (GSEA) using the \textit{GSEAPY} library \citet{Fang2023-ec}. The pre-rank GSEA was configured to 1000 permutations (lowering the chance of misidentifying pathways) and the False Discovery Rate (FDR) of the q-value was kept at 0.05. The same process was repeated for the other subtypes based on their corresponding pi-plots\footnote{The pi-plot figures were also used to verify the results from GSEA. The genes found in the top pathways were plotted back on the plot to check if these are in the quadrant specific to the subtype studied.}; see \cref{s:ap:sel_prun_pi}.
+
+% Why the top terms are kept
+Taking a step back, the input data for GSEA for each subtype is taking the same (large) list of genes but it is ranked differently, giving more importance to the genes specific to the studied subtypes. The GSEA results will then shared a large number of found pathways at each run. To address this, the ten terms with the highest normalised enrichment score (NES) were kept for each MIBC subtype GSEA run. Having a restricted subset of term allows to find the exclusive pathways for a subgroup. Reactome 2023 v2 was used as the database to search for pathways in this section as it contains the up-to-date canonical pathways, it is medium size (1692 gene sets) as well the names are easy to interpret The output from the GSEA can be seeen in which can be seen in the table \cref{tab:N_I:gsea_basal_reactome, tab:N_I:gsea_luminal_reactome}
+
+% GSEA basal table (reactome)
+\begin{table}[H]
+  \centering
+  \scriptsize
+  \begin{tabularx}{\textwidth}{>{\hsize=1.5\hsize}X|>{\hsize=0.4\hsize}X|>{\hsize=0.4\hsize}X|>{\hsize=0.6\hsize}X|>{\hsize=0.4\hsize}X|>{\hsize=0.4\hsize}X}
+    \toprule
+    \textbf{Term} & \textbf{NES} & \textbf{FDR q-val} & \textbf{\# lead} & \textbf{\# matched} & \textbf{ratio} \\
+    \midrule
+    \multicolumn{6}{c}{\textbf{smallBasal}} \\
+    \midrule
+    NFE2L2 REGULATING ANTI OXIDANT DETOXIFICATION ENZYMES & 2.486 & 0 & 13 & 13 & 1 \\
+    \midrule
+    RND1 GTPASE CYCLE & 2.158 & 0 & 31 & 23 & 0.742 \\
+    \midrule
+    REGULATION OF RUNX1 EXPRESSION AND ACTIVITY & 2.114 & 0 & 11 & 8 & 0.727 \\
+    \midrule
+    SIGNALING BY PDGFR IN DISEASE & 2.101 & 0 & 13 & 9 & 0.692 \\
+    \midrule
+    RORA ACTIVATES GENE EXPRESSION & 2.082 & 0 & 15 & 13 & 0.867 \\
+    \midrule
+    GLUTATHIONE CONJUGATION & 2.063 & 0 & 20 & 17 & 0.85 \\
+    \midrule
+    ACYL CHAIN REMODELLING OF PC & 2.061 & 0 & 12 & 12 & 1 \\
+    \midrule
+    DOWNREGULATION OF ERBB2 SIGNALING & 2.034 & 0 & 14 & 14 & 1 \\
+    \midrule
+    SIGNALING BY ERBB2 & 2.034 & 0 & 25 & 25 & 1 \\
+    \midrule
+    ACTIVATION OF GENE EXPRESSION BY SREBF SREBP & 2.021 & 0 & 33 & 25 & 0.758 \\
+    \midrule
+    \multicolumn{6}{c}{\textbf{largeBasal}} \\
+    \midrule
+    INTERLEUKIN 10 SIGNALING & 2.561 & 0 & 37 & 37 & 1 \\
+    \midrule
+    PARASITE INFECTION & 2.545 & 0 & 89 & 84 & 0.944 \\
+    \midrule
+    INTERFERON ALPHA BETA SIGNALING & 2.489 & 0 & 46 & 46 & 1 \\
+    \midrule
+    SIGNALING BY THE B CELL RECEPTOR BCR & 2.482 & 0 & 137 & 111 & 0.81 \\
+    \midrule
+    FCGAMMA RECEPTOR FCGR DEPENDENT PHAGOCYTOSIS & 2.479 & 0 & 102 & 97 & 0.951 \\
+    \midrule
+    INTERLEUKIN 10 SIGNALING & 2.561 & 0 & 37 & 37 & 1 \\
+    \midrule
+    PARASITE INFECTION & 2.545 & 0 & 89 & 84 & 0.944 \\
+    \midrule
+    INTERFERON ALPHA BETA SIGNALING & 2.489 & 0 & 46 & 46 & 1 \\
+    \midrule
+    SIGNALING BY THE B CELL RECEPTOR BCR & 2.482 & 0 & 137 & 111 & 0.81 \\
+    \midrule
+    FCGAMMA RECEPTOR FCGR DEPENDENT PHAGOCYTOSIS & 2.479 & 0 & 102 & 97 & 0.951 \\
+    \bottomrule
+  \end{tabularx}
+  \caption{NES, FDR q-val, and lead gene statistics for smallBasal and largeBasal subtypes.}
+  \label{tab:N_I:gsea_basal_reactome}
+\end{table}
+
+The first part of the table \cref{tab:N_I:gsea_basal_reactome} contains the pathways found for the small basal group which are most involved in the cell functioning. It is striking that in most of the pathways found the lead genes are matched by the 5000 genes closes to the referential point. This denotes that from the 5000 genes there are many which play an important role in multiple pathways. Disruption to the cell cycle may also explain the poor survival prognosis. 
+
+In the second part of the \cref{tab:N_I:gsea_basal_reactome}, the pathways for the larger basal group are presented, which are mostly related to the immune response of the tissue. Especially the high match of the interferon pathways, which is expected as this groups contains the subtypes which were classified in the previous section \ref{} as Medium IFNG and High IFNG.
+
+The table \cref{tab:N_I:gsea_luminal_reactome} contains the pathways found for the larger and infiltrated luminal subtypes. The pathway for latter mostly contains immunogloblin related genes (e.g. \textbf{IGV1-17}) denoting the infiltration of the immune cells in the bladder cancer samples. The pathways found for the large luminal are general and the lead genes of the gene sets have a lower match ratio. Note that there was no unique signature found for Mes-like subgroup. The lack of less indicative pathways for these three groups suggests that these may share characteristics (\textbf{Which can be checked by performing the unique for luminal)}.
+
+% GSEA luminal table (reactome)
+\begin{table}[H]
+  \centering
+  \scriptsize
+  \begin{tabularx}{\textwidth}{>{\hsize=1.5\hsize}X|>{\hsize=0.4\hsize}X|>{\hsize=0.4\hsize}X|>{\hsize=0.6\hsize}X|>{\hsize=0.4\hsize}X|>{\hsize=0.4\hsize}X}
+    \toprule
+    \textbf{Term} & \textbf{NES} & \textbf{FDR q-val} & \textbf{\# lead} & \textbf{\# matched} & \textbf{ratio} \\
+    \midrule
+    \multicolumn{6}{c}{\textbf{lumInf}} \\
+    \midrule
+    SCAVENGING OF HEME FROM PLASMA & 2.396 & 0 & 54 & 47 & 0.87 \\
+    \midrule
+    \multicolumn{6}{c}{\textbf{largeLuminal}} \\
+    \midrule
+    PARACETAMOL ADME & 2.016 & 0.003 & 15 & 15 & 1 \\
+    \midrule
+    EUKARYOTIC TRANSLATION ELONGATION & 1.864 & 0.029 & 73 & 5 & 0.068 \\
+    \midrule
+    SELENOAMINO ACID METABOLISM & 1.86 & 0.02 & 80 & 4 & 0.05 \\
+    \midrule
+    NONSENSE MEDIATED DECAY NMD & 1.832 & 0.025 & 81 & 8 & 0.099 \\
+    \midrule
+    SRP DEPENDENT COTRANSLATIONAL PROTEIN TARGETING TO MEMBRANE & 1.828 & 0.022 & 80 & 6 & 0.075 \\
+    \midrule
+    FORMATION OF WDR5 CONTAINING HISTONE MODIFYING COMPLEXES & 1.827 & 0.018 & 25 & 7 & 0.28 \\
+    \midrule
+    RESPONSE OF EIF2AK4 GCN2 TO AMINO ACID DEFICIENCY & 1.809 & 0.019 & 73 & 4 & 0.055 \\
+    \midrule
+    MITOCHONDRIAL FATTY ACID BETA OXIDATION & 1.789 & 0.023 & 28 & 18 & 0.643 \\
+    \midrule
+    BRANCHED CHAIN AMINO ACID CATABOLISM & 1.777 & 0.024 & 9 & 9 & 1 \\
+    \midrule
+    EUKARYOTIC TRANSLATION INITIATION & 1.77 & 0.025 & 76 & 5 & 0.066 \\
+    \bottomrule
+  \end{tabularx}
+  \caption{NES, FDR q-val, and lead gene statistics for lumInf and largeLuminal subtypes.}
+  \label{tab:N_I:gsea_luminal_reactome}
+\end{table}
+
+
+GSEA was also applied to the hallmark gene set (50 pathways) and the ocogenic signature (189 gene sets), results that can be seen in Appendix \cref{ap:tab:gsea_hallmark,ap:tab:gsea_oncosig}. The GSEA outputs are harder to interpret especially the Onco Signature sets, but it can be observed that most of the unique pathways are found in both small basal and large luminal groups. Considering that the small basal group is considerably smaller than the large luminal, it suggests that the subtype should be study more.
+
+
+% What are these 10 top genes
+Seven out of the ten genes closest to the referential point were found to have biological significance in bladder cancer biology: \textit{GPX2, KRT13, ALDH3A1, KRT15, KRT4, AKR1B10, SOX2, TP63, RAPGEFL1, CAPNS2}. \textit{GPX2} is involved in squamous differentiation \citet{Naiki2018-fp}. Higher expression of \textit{KRT13} is associated with better response to chemotherapy and immunotherapy \citet{Yu2023-db}. The methylation of \textit{ALDH3A1}, along with \textit{HOXA9} and \textit{ISL1}, has been studied in non-muscle invasive bladder cancer and found to be a predictor of disease recurrence \citet{McLean2023-qk}. Additionally, higher expression of \textit{ALDH3A1} in bladder cancer is associated with higher tumour grade and has been studied in cancer stem cells \citet{Kim2013-th}. \textit{KRT4} is a basal keratin marker \citet{Marzouka2018-ge}. Both \textit{AKR1B10} and \textit{SOX2} are associated with cell and cancer aggressiveness \citet{Huang2021-bn, Chiu2020-xh}, while \textit{TP63} is a known squamous marker \citet{Robertson2017-mg}. This evidence supports the poor survival prognosis of the smaller group and indicates that this group warrants further study.
+
+
+
+% Then introduce the GSEA parameters
+
+% Filtering - how it was choosen the 10 and then doing the intersection
+
+% Present all of these pathways 
+%  - Specific to each subtype
+% - small, large, lump, lumInf, mes-like
+
+% Sepcific to luminal and specific to basal
+
+% 
 
 
 \newpage
@@ -407,9 +538,9 @@ Therefore, the 98 transcription factors and the two lists of Ba/Sq and Luminal m
     \begin{todolist}
         \item [\done] Talk about the TF and how these are present in the dataset
         \item [\done] T In the cancerous and non-cancerous dataset
-        \item Introduce the Human Transcription Factor list and why we want to prioritise them
         \item [\done] Show some plots about their mutation count, mean expression
         \item [\done] T How many these are in the top 5000 genes
+        \item Introduce the Human Transcription Factor list and why we want to prioritise them
     \end{todolist}
     \item Experiments 
     \begin{todolist}
@@ -427,17 +558,33 @@ Therefore, the 98 transcription factors and the two lists of Ba/Sq and Luminal m
         \item[\done] T Comparing CS models - can we use this rather then hierarchical clustering
         \item [\done] Comparing between subtypes        
         \item Significance in terms of the proteins, are those genes find somewhere
-        \item Show the expression of some of the genes in Basal vs Luminal - bar plot
+        \item [\done] Show the expression of some of the genes in Basal vs Luminal - bar plot
+        \item [\done] Diff vs undiff
+        \item [\done] Pi Plot for small basal
+        \item [\done] TCGA metadata and the analysis
+        \item GSEA enrichment on the Small Basal
+        \item GSEA enrichment of the other 
     \end{todolist}
     \item Showing the advantages of the network
     \begin{todolist}
         \item Can we look at some of these genes that have neighbours? Are any of these useful
         \item Plotting the correlation distribution of these genes; before and after selective edge pruning
+        \item Showing the neighbours for some of the TFs: BNC1, AHR, HES2
+        \item Show the network for a standard network with Leiden and with SBM
     \end{todolist}
     \item Conclusion
     \begin{todolist}
         \item Integration of the TF works
         \item ModCon and MEV selection works 
         \item
+    \end{todolist}
+    \item Others 
+    \begin{todolist}
+        \item Check figures for being described properly, clear labelling, axis etc.
+        \item Re-do the P0 graphs with the new plot
+        \item Ensure that there is a logical narrative throughout the chapter
+        \item Check for grammar, spelling
+        \item Complement the Discussion
+        \item Check if the introduction needs more addition
     \end{todolist}
 \end{itemize}
