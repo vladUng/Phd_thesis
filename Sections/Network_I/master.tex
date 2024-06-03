@@ -61,3 +61,85 @@ It was also noted that altering the number of edges per TF significantly impacte
 
 Overall, the subsequent section will consider the following changes: 1) Analysing the effect of TFs in the networks to determine the most suitable value; 2) Utilising the entire healthy dataset to enhance gene representation in the tumour network; 3) Applying a different community detection algorithm; and 4) Improving the strategies for weight modifiers.
 
+\newpage
+
+\subsubsection{ToDo}
+
+\begin{itemize}
+    \item Introduction
+    \begin{todolist}
+        \item [\done] Why are we doing the experiments? - Because we want to study of the effect of the TF in the network
+        \item [\done] What are the experiments performed?
+        \item [\done] Community detection comparison
+        \item [\done] Which dataset?
+        \item [\done] How was the gene selection is done - v3 mostly
+        \item [\done] Mention that some of the work done here was presented at the Complex Network conference 
+    \end{todolist}
+    \item General stats 
+    \begin{todolist}
+        \item [\done] Talk about the TF and how these are present in the dataset
+        \item [\done] T In the cancerous and non-cancerous dataset
+        \item [\done] Show some plots about their mutation count, mean expression
+        \item [\done] T How many these are in the top 5000 genes
+        \item Introduce the Human Transcription Factor list and why we want to prioritise them
+    \end{todolist}
+    \item Experiments 
+    \begin{todolist}
+        \item [\done] Using the tumour dataset as a starting point as the P0 wasn't that useful
+        \item [\done] Using SBM for a change from Modularity Class - Comparing the methods
+        \item [\done] Community size vs Modularity score
+        \item [\done] Choosing control TFs 
+        \item [\done] Range for 3-15 - Why choosing this range - all genes are selected by TF
+    \end{todolist}
+    \item Biological analysis 
+    \begin{todolist}
+        \item [\done] The DEA
+        \item [\done] Morpheus - clustering
+        \item [\done] Survival plot
+        \item[\done] T Comparing CS models - can we use this rather then hierarchical clustering
+        \item [\done] Comparing between subtypes        
+        \item Significance in terms of the proteins, are those genes find somewhere
+        \item [\done] Show the expression of some of the genes in Basal vs Luminal - bar plot
+        \item [\done] Diff vs undiff
+        \item [\done] Pi Plot for small basal
+        \item [\done] TCGA metadata and the analysis
+        \item [\done] GSEA enrichment on the Small Basal
+        \item [\done] GSEA enrichment of the other 
+    \end{todolist}
+    \item Showing the advantages of the network
+    \begin{todolist}
+        \item [\done] Can we look at some of these genes that have neighbours? Are any of these useful
+        \item Plotting the correlation distribution of these genes; before and after selective edge pruning
+        \item [\done] Showing the neighbours for some of the TFs: BNC1, AHR, HES2
+        \item Show the network for a standard network with Leiden and with SBM
+    \end{todolist}
+    \item Conclusion
+    \begin{todolist}
+        \item Integration of the TF works
+        \item ModCon and MEV selection works 
+    \end{todolist}
+    \item Others 
+    \begin{todolist}
+        \item Check figures for being described properly, clear labelling, axis etc.
+        \item Re-do the P0 graphs with the new plot
+        \item Ensure that there is a logical narrative throughout the chapter
+        \item Check for grammar, spelling
+        \item Complement the Discussion
+        \item Check if the introduction needs more addition
+    \end{todolist}
+\end{itemize}
+
+\paragraph*{Things to do for paper}
+
+\begin{itemize}
+    \item Subtype exploration
+    \begin{todolist}
+        \item Further explore the unique pathways for the subtypes. A particular focus should be on the other subtypes: mes-like, lumInf (GU) and large luminal
+        \item mes-like shares characteristics with the basal
+        \item explore other values for ranking the most representative genes for a subtype
+    \end{todolist}
+    \item Advantages of the network
+    \begin{todolist}
+        \item Plotting the correlation distribution of these genes; before and after selective edge pruning
+    \end{todolist}
+\end{itemize}

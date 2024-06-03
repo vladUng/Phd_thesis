@@ -269,12 +269,12 @@ Consensus clustering & GE & TCGA & Hierarchical clustering & Bladder cancer \\ \
         \includegraphics[width=\textwidth]{Sections/Network_I/Resources/selective_pruning/sbm_comNum_sel_prun.png}
         \caption{SBM}
         \label{fig:ap:sbm_com_size}
-    \end{subfigure}\hspace{\fill} % maximize horizontal separation
+    \end{subfigure}\hspace{\fill}  
     \begin{subfigure}[!t]{0.5\textwidth}
         \includegraphics[width=\linewidth]{Sections/Network_I/Resources/selective_pruning/leid_comNum_sel_prun.png}
         \caption{Leiden}
             \label{fig:ap:leid_com_size}
-    \end{subfigure}\hspace{\fill} % maximize horizontal separation
+    \end{subfigure}\hspace{\fill}  
 
     \caption{Community size comparison between Leiden and SBM. This serves as a supporting material to the work done in \cref{s:N_I:sel_pruning}}
     \label{fig:ap:com_size_comp}
@@ -312,58 +312,59 @@ Consensus clustering & GE & TCGA & Hierarchical clustering & Bladder cancer \\ \
 
 \begin{figure}[!htb]   
 \centering
-\includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/sel_tfs_mut_meta.png}
-  \caption{Heatmap of binary somatic mutation across.}
-\label{fig:ap:sel_tfs_tcga_meta_mut}
-\end{figure}
-
-\begin{figure}[!htb]   
-\centering
 \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/sel_tfs_apobec_meta.png}
   \caption{Heatmap of the the APOBEC mutations in TCGA.}
 \label{fig:ap:sel_tfs_tcga_meta_apobec}
 \end{figure}
 
+\newpage 
 
+\subsection{TCGA somatic mutation}
 
+\begin{figure}[!htb]   
+\centering
+\includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/sel_tfs_mut_meta.png}
+  \caption{Heatmap of binary somatic mutation across.}
+\label{fig:ap:sel_tfs_tcga_meta_mut}
+\end{figure}
 
+\newpage
 
 % Pi-plots for GSEA
 \subsubsection{Pi-plots for GSEA} \label{s:ap:sel_prun_pi}
 
-\begin{figure}[!h]
-    \captionsetup[subfigure]{justification=Centering}
-    \begin{subfigure}[!t]{0.9\linewidth}
-        \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/pi_gsea/pi_largeBasal.png}
-        \caption{Large Basal}
-    \end{subfigure}\hspace{\fill} % maximize horizontal separation
-    \begin{subfigure}[!t]{0.9\textwidth}
-        \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/pi_gsea/pi_largeLuminal.png}
-        \caption{Large luminal}
-    \end{subfigure}\hspace{\fill} % maximize horizontal separation
-
-    \caption{Pi plots for large basal and luminal explored in \cref{s:N_I:bio_sel_prun} -}
-    \label{fig:ap:pi_large_basal}
-\end{figure}
 
 \begin{figure}[!h]
     \captionsetup[subfigure]{justification=Centering}
-    \begin{subfigure}[!t]{0.9\linewidth}
-        \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/pi_gsea/pi_mesLike.png}
-        \caption{Large Basal}
-    \end{subfigure}\hspace{\fill} % maximize horizontal separation
-    \begin{subfigure}[!t]{0.9\textwidth}
-        \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/pi_gsea/pi_smallBasal.png}
-        \caption{Large luminal}
-    \end{subfigure}\hspace{\fill} % maximize horizontal separation
+\centering
+\begin{subfigure}[!t]{0.49\linewidth}
+    \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/pi_gsea/pi_largeBasal.png}
+    \caption{Large Basal}
+\end{subfigure}
+\centering
+\begin{subfigure}[!t]{0.49\textwidth}
+    \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/pi_gsea/pi_largeLuminal.png}
+    \caption{Large luminal}
+\end{subfigure}
+\centering
+\begin{subfigure}[!t]{0.49\linewidth}
+    \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/pi_gsea/pi_mesLike.png}
+    \caption{Mes-like}
+\end{subfigure}
+\centering
+\begin{subfigure}[!t]{0.49\textwidth}
+    \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/pi_gsea/pi_lumInf.png}
+    \caption{Luminal infiltrated}
+\end{subfigure}\hspace{\fill}  
 
     \caption{Pi plots for mes-like and lumInf from \cref{s:N_I:bio_sel_prun}}
-    \label{fig:ap:pi_lumInf_mesLike}
+    \label{fig:ap:pi_other_values}
 \end{figure}
 
+\newpage
 
 % GSEA - hallmarks
-\subsubsection{GSEA output - Hallmarks} \label{s:ap:hallmarks}
+\subsubsection{GSEA output (Hallmarks)} \label{s:ap:hallmarks}
 
 \begin{table}[H]
   \centering
@@ -403,14 +404,16 @@ Consensus clustering & GE & TCGA & Hierarchical clustering & Bladder cancer \\ \
     BILE ACID METABOLISM & 1.46 & 0.008 & 59 & 19 & 0.322 \\
     \bottomrule
   \end{tabularx}
-  \caption{NES, FDR q-val, and lead gene statistics for different subtypes and terms in bladder cancer biology.}
+  \caption{Normalised Enrichment Score (NES), False Discovery Rate (FDR) q-val, and lead gene statistics for different subtypes. The lead genes from a pathway are selected by GSEAY based on when the NES reached its peak.}
   \label{ap:tab:gsea_hallmark}
 \end{table}
 
-% GSEA - oncoSig
-\subsubsection{GSEA output - OncoSig} \label{s:ap:sel_prun_oncosig}
+\newpage
 
-% Table for hallmarks
+% GSEA - oncoSig
+\subsubsection{GSEA output (OncoSig)} \label{s:ap:sel_prun_oncosig}
+
+% Table for OnCoSig
 \begin{table}[H]
   \centering
   \scriptsize
@@ -470,9 +473,52 @@ Consensus clustering & GE & TCGA & Hierarchical clustering & Bladder cancer \\ \
     MYC UP.V1 DN & 1.613 & 0.002 & 77 & 38 & 0.494 \\
     \bottomrule
   \end{tabularx}
-   \caption{NES, FDR q-val, and lead gene statistics for different subtypes and terms in bladder cancer biology from the OncoSig database.}
+   \caption{Normalised Enrichment Score (NES), False Discovery Rate (FDR) q-val, and lead gene statistics for different subtypes and terms in bladder cancer biology from the OncoSig database. The lead genes from a pathway are selected by GSEAPY based on when the NES reached its peak.}
   \label{ap:tab:gsea_oncosig}
 \end{table}
+
+\newpage
+
+% GSEA plots
+\subsection{GSEA plots top 10 by NES}
+\begin{figure}[!h]
+    \captionsetup[subfigure]{justification=centering}
+    \centering
+    \begin{subfigure}[!t]{0.4\textwidth}
+        \centering
+        \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/gsea/smallBasal_10_top_manTerms.png}
+        \caption{Small Basal}
+        \label{fig:ap:gsea_smallBasal}
+    \end{subfigure}
+    \begin{subfigure}[!t]{0.4\textwidth}
+        \centering
+        \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/gsea/largeBasal_10_top_manTerms.png}
+        \caption{Large Basal}
+        \label{fig:ap:gsea_largeBasal}
+    \end{subfigure} 
+    \begin{subfigure}[!t]{0.4\textwidth}
+        \centering
+        \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/gsea/lumInf_10_top_manTerms.png}
+        \caption{Luminal Infiltrated}
+        \label{fig:ap:gsea_lumInf}
+    \end{subfigure}
+    \begin{subfigure}[!t]{0.4\textwidth}
+        \centering
+        \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/gsea/mesLike_10_top_manTerms.png}
+        \caption{Mes-like}
+        \label{fig:ap:gsea_mesLike}
+    \end{subfigure} 
+    \begin{subfigure}[!t]{0.4\textwidth}
+        \centering
+        \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/gsea/largeLuminal_10_top_manTerms.png}
+        \caption{Large Luminal}
+        \label{fig:ap:gsea_largeLuminal}
+    \end{subfigure}
+    \caption{GSEA output for the Basal groups \cref{s:N_I:bio_sel_prun}}
+    \label{fig:ap:gsea_basal}
+\end{figure}
+
+\newpage
 
 
 \end{appendices}
