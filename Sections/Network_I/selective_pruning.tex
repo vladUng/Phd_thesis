@@ -2,8 +2,10 @@
 
 Through the experiments performed in thisw project and the analysis in the PGCNA paper \cite{Care2019-ij} it was noticed that if a node has too many edges, the network becomes messy and more complicated to analyse. Conversely, if a node has a few edges ($<3$), then the community detection (Leiden \citet{Traag2019-ne}) finds disconnected community. \cite{Care2019-ij} (empirically) found that the appropriate number of edges for a node is 3, and it is the value used throughout the project for the non-transcription factor gene (or 'standard'). 
 
-The project aims to prioritise the transcription factor (TF) over the standard genes as these genes up-regulated the expression of the other genes, thus having a higher biological importance. By allowing more connections for the TF, the minimum degree of the node increases as well as their role in the network, similar to the biology. The experiments, on selective edge pruning, aim to explore and find the appropriate minimum degree for TF genes and how varying it affects the network. The work in this section was presented as a poster at the \textit{\href{https://2023.complexnetworks.org/}{Complex Network Conference in 2023}}.
+% The aim to integrate the TF
+The project aims to integrate the transcription factor (TF) by prioritising over the standard genes as these genes up-regulated the expression of the other genes, thus having a higher biological importance. By allowing more connections for the TF, the minimum degree of the node increases as well as their role in the network, similar to the biology. The experiments, on selective edge pruning, aim to explore and find the appropriate minimum degree for TF genes and how varying it affects the network. The work in this section was presented as a poster at the \textit{\href{https://2023.complexnetworks.org/}{Complex Network Conference in 2023}}.
 
+% The aim to find the better community detection
 A second aim of this section is to compare the Leiden \citet{Traag2019-ne} community detection used in PGCNA with the degree corrected Stochastic Block Model (DC-SBM) from \cite{Karrer2011-si, Peixoto2017-gc}. As it was covered in \cref{s:lit:comm_detect} from Introduction, Leiden is faster and more popular, but it is prone to find patterns in noise, whereas the DC-SBM is slower but it is more error prone in find non-existent communities. The reason for comparing the two is that to decide on the next improvements to the network pipeline. Throughout the project DC-SBM was preferred over the simple SBM \cite{Holland1983-eu} as it accounts for node's degree when it finds the communities, which is crucial for selective edge pruning; for convenience DC-SBM and SBM are used interchangeably.
 
 % Exp Setup
@@ -66,7 +68,7 @@ In summary, by increasing the minimum number of degree, both algorithms perform 
 
 
 % Analysing the TFs
-\subsubsection{Selected TFs} \label{s:sel_tfs}
+\subsubsection{Emerging Transcription Factors} \label{s:N_I:sel_tfs}
 
 
 % Introduce the motivation of using TFs
@@ -198,7 +200,7 @@ It is know that \textit{MYCL, GRHL3, HOXB6, KLF5, ELF3} are involved in bladder 
 This quick analysis on the difference in gene expression between subtypes suggests there is relevant biology to unravel from the subgroups derived using the 98 TFs. This is also supported by the drastic survival rate for the small basal group as seen in \cref{fig:N_I:sel_tfs_survival}. The next section aims to refine the list of 98 TFs as well as to investigate the biology behind each MIBC subtype.
 
 % Biological analysis
-\subsubsection{The biology behind the 98 TFs}
+\subsubsection{The biology behind the emergent TFs} \label{s:N_I:sel_tfs_bio}
 
 The bar plots in \cref{fig:N_I:sel_tfs_var} display the log mean of the gene expression in both non-cancerous and cancerous datasets of the 98 TFs genes. The error bars depicts the standard deviation of expression the genes are in the descending order of the tumour average expressions. The red-bars represent the genes have a high variance\footnote{In this case, a high varied genes is one which has a standard deviation as big as the mean expression} in the either the non-cancerous or tumour dataset and the golden are the genes varied in both. Highly varied genes are the ones highlighted in the bar plot may yield important gene expression markers between the subgroups. The three list of varied genes can be seen \cref{tab:N_I:sel_tfs_var}.
 
@@ -234,7 +236,7 @@ There are few genes that are highly expressed in both the tumours and non-cancer
 It is worth remembering that MIBC is generally divided into Luminal and Basal subgroups, the former exhibiting differentiated status, while the latter an undifferentiated status. The non-cancerous dataset contains samples that are either differentiated (Abs-Ca or in-situ) or undifferentiated. This implies that the TFs with a high mean deviation may play a role in differentiation and also help in understanding the Basal/Luminal differences in MIBC. The molecular particularities in the types of differentiated tissues are next explored.
 
 % Undiff vs Diff
-\paragraph*{Undifferentiated vs Differentiated} 
+\paragraph*{The emergent TFs and bladder differentiation} \label{s:N:sel_tf_diff_status}
 
 \begin{figure}[!h]
     \captionsetup[subfigure]{justification=Centering}
@@ -298,7 +300,9 @@ It is surprising that there are no TFs shared in the culture quadrant (UD and Ab
 
 \Cref{tab:N_I:markers_diff} summarises the TF classification based on the differentiation tissue type: AbsCa (differentiation in culture), P0 (differentiation in tissue) and undifferentiated (culture). The 'transitional' genes in AbsCa-UD, UD-P0 and P0-AbsCa may yield information about the common genes shared between differentiation tissue types.
 
-\paragraph*{Basal and luminal markers}
+
+% Transitioning to cancer
+\paragraph*{The emergent TFs and cancer} \label{s:N_I:sel_tfs_cancer}
 
 
 % Selecting the genes for basal and luminal, expression in both Basal and Luminal
@@ -379,7 +383,7 @@ Using the above work and the box plots like the ones in \cref{fig:N_I:box_basal,
 To leverage the ease for visualising the data in the network, the basal/luminal markers were then searched in a network generated using no weight modifiers (standard), minimum 3 edges per genes and 6 for the TFs, and to which the Stochastic Block Model (SBM) was applied. Neither of the markers, basal/luminal or for differentiated, were not grouped in a single or 2-3 communities, but rather spread across more.
 
 % Neighbours 
-When filtering the network to display the neighbours of a  gene from the basal/luminal markers, it is often the case that markers are linked together, meaning that are co-expressed. \Cref{fig:N_I:net_MSX2} shows the sub-graph for \textit{MSX2} in which other markers such as \textit{FOXQ1, ZBTB7C} are linked directly to the gene. \textit{AHR} is also connected to \textit{MSX2}. \textit{AHR} has been extensively studies in the bladder cancer, urothelium and it is highly mutated in the TCGA cohort. It is also studied in more depth in the next chapter \ref{}. In the sub-network for \textit{BNC1} , \cref{fig:N_I:net_BNC1}, there are less known genes but \textit{CDH3} is a basal marker\citet{Dadhania2016-cb} and \textit{CAV1, CAV2}. 
+When filtering the network to display the neighbours of a  gene from the basal/luminal markers, it is often the case that markers are linked together, meaning that are co-expressed. \Cref{fig:N_I:net_MSX2} shows the sub-graph for \textit{MSX2} in which other markers such as \textit{FOXQ1, ZBTB7C} are linked directly to the gene. \textit{AHR} is also connected to \textit{MSX2}. \textit{AHR} has been extensively studies in the bladder cancer, urothelium and it is highly mutated in the TCGA cohort. It is also studied in more depth in the next chapter \ref{}. In the sub-network for \textit{BNC1} , \cref{fig:N_I:net_BNC1}, there are less known genes but \textit{CDH3} is a basal marker \citet{Dadhania2016-cb} and \textit{CAV1, CAV2}. 
 
 It is worth noting that both genes, have considerable more than 6 neighbours. This suggests that there are many genes that have either \textit{BNC1} or \textit{MSX2} in their top correlated values. The kind of visualisation in \cref{fig:N_I:net_neighbours} is useful to narrow down the search for targets and potential co-expressed genes.
 
@@ -408,12 +412,8 @@ It is worth noting that both genes, have considerable more than 6 neighbours. Th
 
 Therefore, the 98 transcription factors and the two lists of Ba/Sq and Luminal markers are validated by research from different groups. The expression of these genes across the MIBC, from both the consensus and the subtypes derived from hierarchical clustering, can be seen in \cref{fig:N_I:box_basal,fig:N_I:box_luminal}. This also serves as an encouragement to explore the other genes not matched by other research, as they may exhibit potential for new biological insights.
 
-
-
-
-
 % Subtypes analysis
-\paragraph*{Understanding the subtypes} \label{s:N_I:bio_sel_prun}
+\paragraph*{Further exploring the derived subtypes} \label{s:N_I:sel_tfs_subtypes}
 
 % Metadata exploration
 To understand better the biology of the small basal group, the metadata from TCGA \citet{Robertson2017-mg} was used. Several metadata features were explored: level of smoking (cigarettes per day), race, metastasis, relation to noninvasive bladder cancer, and histology grade. \Cref{fig:ap:sel_tfs_tcga_metadata} displays this information in the form of multiple histograms, where the x-axes represent the subtypes derived in this section and the y-axes the count of the metadata features. From the figure, there is no immediate characteristic for the small basal group, neither with the Squamous pathology nor with the metastatic status, but most of the patients were smokers. It is worth pointing out that LumInf, Mes-like, and large luminal groups are generally characterised by non-squamous tumours. \Cref{fig:ap:sel_tfs_tcga_meta_mut} shows that there is no immediate relationship with the mutations selected in the TCGA supplementary material, while \cref{fig:ap:sel_tfs_tcga_meta_apobec} shows no relationship with the \textit{APOBEC} mutation.
@@ -544,9 +544,28 @@ GSEA was also applied to the hallmark gene set (50 pathways) and the oncogenic s
 
 
 % What are these 10 top genes
-Returning to the small group and the pi scatter plot from \cref{fig:pi_smallBasal_comp},
+Returning to the small group and the pi scatter plot from \cref{fig:N_I:pi_smallBasal_comp},
 seven out of the ten genes closest to the referential point were found to have biological significance in bladder cancer biology: \textit{GPX2, KRT13, ALDH3A1, KRT15, KRT4, AKR1B10, SOX2, TP63, RAPGEFL1, CAPNS2}. \textit{GPX2} is involved in squamous differentiation \citet{Naiki2018-fp}. Higher expression of \textit{KRT13} is associated with better response to chemotherapy and immunotherapy \citet{Yu2023-db}. The methylation of \textit{ALDH3A1}, along with \textit{HOXA9} and \textit{ISL1}, has been studied in non-muscle invasive bladder cancer and found to be a predictor of disease recurrence \citet{McLean2023-qk}. Additionally, higher expression of \textit{ALDH3A1} in bladder cancer is associated with higher tumour grade and has been studied in cancer stem cells \citet{Kim2013-th}. \textit{KRT4} is a basal keratin marker \citet{Marzouka2018-ge}. Both \textit{AKR1B10} and \textit{SOX2} are associated with cell and cancer aggressiveness \citet{Huang2021-bn, Chiu2020-xh}, while \textit{TP63} is a known squamous marker \citet{Robertson2017-mg}. This evidence supports the poor survival prognosis of the smaller group and indicates that this group warrants further study.
 
 
-\subsubsection{Remarks}
+\subsubsection{Conclusion}
 
+% Recapitulate the aims and what have been done
+This subsection began with two aims: identifying the appropriate community detection method and exploring the integration of Transcription Factors (TF) into the network. The comparison at the start of the section (\ref{}) demonstrated that, despite the high computational cost of Stochastic Block Models (SBM), they offer more advantages over Modularity Maximisation algorithms such as Leiden. From a network perspective, the selective edge pruning method for integrating TFs was effective, as these nodes exhibited a higher degree. Thus, the two aims of the section were achieved.
+
+% Significance in cancer
+Throughout the selective edge experiments, it was remarkable to find that by using controls and prioritising non-TFs, a subset of 'naturally' well-connected TFs in the tumour dataset could be derived. As the analysis shown throughout \cref{s:N_I:sel_tfs} indicates, the subset of 98 TFs has important biological significance. Hierarchical clustering was applied to this subset of genes, yielding subtypes with significantly different survival outcomes (\cref{fig:N_I:sel_tfs_cs_analysis}). Group 5, or the small basal group of 20 patients, had the worst survival prognosis, with a less than 20\% chance of survival after 1.7 years (20 months). This group exhibited squamous markers, had a low immune response, and 7 out of the 10 most significantly expressed genes were studied in cancer. Some of these 7 genes are responsible for the aggressiveness of the tumours, while others can be targeted to improve treatment response.
+
+% the two lists of basal/luminal
+Using the analysis performed on the non-tumour dataset and the gene expression data from TCGA, the 98 TF genes were reduced to two different lists of markers for basal and luminal subtypes (\cref{tab:N_I:genes_lum_basal}). Many genes from these two lists were validated by other research work, which only confirmed and strengthened our findings.
+
+% the list for non-tumour data
+Extending the findings beyond cancer, some of the 98 TF genes were classified by their expression in the non-tumour dataset. The analysis performed (\cref{s:N:sel_tf_diff_status}) proposes three lists of genes specific to P0, UD, and AbsCa, as well as another three between these categories. This refined list of genes may help biologists better understand urothelium differentiation, which in turn will also aid in elucidating the basal/luminal molecular differences.
+
+While the subset of TFs was informative for the Basal subgroup, it was less successful for the luminal subgroup. The previously derived luminal subtypes (consensus, TCGA, Lund, and the work in the previous chapter) are grouped into one large group. Looking at a known luminal marker, \textit{FGFR3}, it was observed that this gene has a low degree in the network. In addition, some other known markers were left out in the gene selection process (e.g., \textit{PPARG}). This may also be explained by the fact that luminal tumours are molecularly closer to differentiated bladder tissue, compared to the basal subtypes which are undifferentiated urothelium. The high variance introduced by the basal subtype might explain why other known gene markers were missed.
+
+% Limitations
+One of the limitations of the work done in selective edge pruning was that only ten control networks were used for comparison. This was due to the high computational time (a few hours) required to run the SBM, the lengthy process of loading the network output\footnote{During the network runs and SBM, a lot of metadata was saved, which helped to debug, understand, and analyse the networks. This made the network output fairly large, taking a considerable footprint of the RAM. For example, analysing the results for the 10 controls and experiments takes approximately 40GB of RAM.} and the limited time in a PhD project. Another possible limitation is using only 5000 genes for a network using SBM. As will be seen in the next section \ref{}, the stochastic model is capable of finding smaller communities in a large network. This means that more genes can be included, but this will make the network very dense, so extra rules for edge pruning might be needed. However, from a biological perspective, re-running the selective edge pruning on larger networks and more controls may further enforce that there is a subset of TFs that are co-expressed with many genes in bladder cancer.
+
+% Further work
+Considering the limitations, the analysis performed suggests that both the subset of 98 TFs and the subtypes need more in-depth exploration, even selecting a few targeted genes to study the bladder response \textit{in-vitro}. It also suggests that the selective edge pruning is working and exhibits highly relevant biological results.

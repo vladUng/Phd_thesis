@@ -264,9 +264,12 @@ Figure \ref{fig:N_I:p0_mev_rep} shows that representation for each community. In
 
 \subsubsection{Conclusion}
 
-So far in this section all of the experiments were performed with networks that have been minimum 50 connections per Transcription Factor gene. This value was pseudo-random chosen with the hope to prioritise the TFs in the network. Moreover, this was made on the assumption that the Leiden community detection algorithm is agnostic at the nodes' number of connection. Given the poor results in the MIBC subtyping this assumption came to scrutiny. 
+All of the experiments were performed with networks that have been minimum 50 connections per Transcription Factor gene. This value was pseudo-random chosen with the hope to prioritise the TFs in the network. Moreover, this was made on the assumption that the Leiden community detection algorithm is agnostic at the nodes' number of connection. Given the poor results in the MIBC subtyping this assumption came to scrutiny. 
+
 
 Lowering the minimum number of edges per transcription factor (TF) to 10 resulted in significant improvements in performance. This adjustment led to the identification of more communities and an increase in the modularity score across all three networks. Furthermore, the analysis was expanded to consider all expressed genes, rather than focusing solely on the most variable ones. Upon re-analysing the clustering and communities, similar trends were observed. Although the weight modifiers altered the networks and resulted in changes within the communities, they did not significantly affect the MIBC subtypes.
+
+This sections contains the first attempt in the project to integrate the non-healthy molecular information into the MIBC subtyping by building a network on the P0 sample and used the derived communities for MIBC stratification. The networks generated were using the standard, reward and penalised modifiers, with a minimum degree of 3 for standard and 50 for TFs. There are several limitations with the method, the dataset which only consists of P0 samples (only 23), thus the network does not have a representation of the undifferentiated tissue, and the high number of connections per TF skewed the Leiden algorithm as it was shown in a later section \cref{s:N_I:sel_tfs}. In addition, the MEV only uses the gene expression for tumours, without doing a 'full' integration of the two gene expression datasets. While the section did not generate useful biological findings it was crucial in the development process.
 
 
 % % Reason 2 - Scatter biological pathways 

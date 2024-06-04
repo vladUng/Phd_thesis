@@ -53,71 +53,34 @@ The list of Transcription Factors (TFs) is taken from The Human Transcription Fa
 
 \subsection{Discussion}
 
-This chapter presents the initial attempt of this project to apply a network-based approach for stratifying the muscle invasive bladder cancer (MIBC) cohort from the TCGA database. The approach involved integrating multiple data types at the computational stage, including gene expression from both cancerous and non-cancerous tissues, mutation burden, and transcription factors (TFs).
+This chapter presents the initial attempt of this project to apply a network-based approach for stratifying the muscle invasive bladder cancer (MIBC) cohort from the TCGA database. The approach involved integrating multiple data types at the computational stage, including gene expression from both cancerous and non-cancerous tissues, mutation burden, and transcription factors (TFs). The integration occurred at different levels, starting by building a graph from the non-tumour data and then using the representation to derive the MIBC subtypes, as described in \cref{s:N_I:p0}. The edge weights derived from the Spearman correlation are modified based on the mutation burden, and the node degree is limited depending on whether a gene is a transcription factor or not.
 
-Two main co-expressed gene networks were explored: one constructed from tumour samples and the other from healthy tissue samples. The experiments demonstrated that integrating mutations and TFs was successful at the graph level, but had limited impact on MIBC subtyping. Network metrics varied between the modified networks (as shown in Figures \ref{fig:N_I:net_metrics_tum} and \ref{fig:N_I:net_metrics_p0}), and highly mutated genes were observed to change communities (Figure \ref{fig:N_I:p0_mut_burden}). The disease subgroups identified through this network approach showed different results compared to standard approaches, with only minor variations observed between networks modified by weight modifiers. This suggests that the weight modifier strategies, as depicted in Figure \ref{fig:N_I:modifiers}, require further refinement.
 
-It was also noted that altering the number of edges per TF significantly impacted the Leiden algorithm's performance and the number of communities identified. Additionally, as highlighted by\citet{Peixoto2021-jx, Peixoto2023-rt}, models such as Leiden and Louvain are descriptive methods, and the communities they identify do not always reflect the underlying knowledge in the network. Consequently, an alternative community detection method will be explored in the following chapter.
 
-Overall, the subsequent section will consider the following changes: 1) Analysing the effect of TFs in the networks to determine the most suitable value; 2) Utilising the entire healthy dataset to enhance gene representation in the tumour network; 3) Applying a different community detection algorithm; and 4) Improving the strategies for weight modifiers.
+% Weight modifiers need refinement
+Two main co-expressed gene networks were explored: one constructed from tumour samples and the other from healthy tissue samples. The experiments demonstrated that integrating mutations and TFs was successful at the graph level but had limited impact on the MIBC subtypes derived from the network. Network metrics varied between the modified networks (as shown in Figures \ref{fig:N_I:net_metrics_tum} and \ref{fig:N_I:net_metrics_p0}), and highly mutated genes were observed to change communities (Figure \ref{fig:N_I:p0_mut_burden}). The disease subgroups identified through this network approach showed different results compared to standard approaches, with only minor variations observed between networks modified by weight modifiers. This suggests that the weight modifier strategies, as depicted in Figure \ref{fig:N_I:modifiers}, require further refinement.
+
+% P0 not enough
+The networks built from the P0 (\cref{s:N_I:p0}) highlighted the problems introduced to the Leiden algorithm when a subset of genes is allowed a larger number of connections (50). The P0 network is also built on an incomplete representation of the MIBC tumours, as there is no molecular representation of the basal group (undifferentiated). Additionally, the gene expression of the P0 samples is not considered when subtyping the MIBC. These limitations are addressed in the next chapter, where the entire available non-tumour dataset is used and a new version of MEV is introduced.
+
+
+% Community detection
+Varying the number of edges per TF significantly impacts the community detection algorithms, Leiden more than SBM. It was observed that the former finds fewer communities as the nodes' degree is increased, while SBM is more stable. This, along with the work by \citet{Peixoto2021-jx, Peixoto2023-rt}, which shows that Modularity Maximisation methods are prone to finding patterns in noise, made SBM the preferred method in this project. In this chapter, the simple degree-corrected version of SBM was used, but a hierarchical version of it will be used in the next chapter. The hierarchical SBM is more complex and computationally expensive than the standard version, but it does not have a threshold on the number of communities it can find.
+
+
+% Edge pruning successful - decided on the 6TF. also mentioned that the controls used enabled us to find relevant 98 TFs
+All the experiments contributed to advancing the network pipeline to the next iteration in the next chapter, but the selective edge pruning to integrate TF knowledge arguably has the highest biological impact. Through the control experiments, it was observed that there are 98 TFs that are 'naturally' highly connected. The list of genes was further analysed and it was found that there is an MIBC subgroup with a very poor prognosis. The work done in \cref{s:N_I:sel_tfs} shows the impact of changing the number of connections, demonstrating that the edge pruning strategy can lead to relevant biological findings. It also shows how the network can be a useful tool for biologists by selecting sub-graphs based on the genes under study.
+
+
+% Next section
+This chapter explored three types of data integration in a graph: at a network level, edge weights, and the number of connections. The first two strategies need further refining, while for the selective edge pruning, a minimum degree of 6 for TFs and 3 for standard genes was found to be appropriate. The subsequent section will consider the following changes: 1) utilising the entire non-tumour dataset to enhance gene representation in the tumour network; 2) using a hierarchical stochastic block model; and 3) improving the strategies for weight modifiers.
+
 
 \newpage
 
 \subsubsection{ToDo}
 
 \begin{itemize}
-    \item Introduction
-    \begin{todolist}
-        \item [\done] Why are we doing the experiments? - Because we want to study of the effect of the TF in the network
-        \item [\done] What are the experiments performed?
-        \item [\done] Community detection comparison
-        \item [\done] Which dataset?
-        \item [\done] How was the gene selection is done - v3 mostly
-        \item [\done] Mention that some of the work done here was presented at the Complex Network conference 
-    \end{todolist}
-    \item General stats 
-    \begin{todolist}
-        \item [\done] Talk about the TF and how these are present in the dataset
-        \item [\done] T In the cancerous and non-cancerous dataset
-        \item [\done] Show some plots about their mutation count, mean expression
-        \item [\done] T How many these are in the top 5000 genes
-        \item Introduce the Human Transcription Factor list and why we want to prioritise them
-    \end{todolist}
-    \item Experiments 
-    \begin{todolist}
-        \item [\done] Using the tumour dataset as a starting point as the P0 wasn't that useful
-        \item [\done] Using SBM for a change from Modularity Class - Comparing the methods
-        \item [\done] Community size vs Modularity score
-        \item [\done] Choosing control TFs 
-        \item [\done] Range for 3-15 - Why choosing this range - all genes are selected by TF
-    \end{todolist}
-    \item Biological analysis 
-    \begin{todolist}
-        \item [\done] The DEA
-        \item [\done] Morpheus - clustering
-        \item [\done] Survival plot
-        \item[\done] T Comparing CS models - can we use this rather then hierarchical clustering
-        \item [\done] Comparing between subtypes        
-        \item Significance in terms of the proteins, are those genes find somewhere
-        \item [\done] Show the expression of some of the genes in Basal vs Luminal - bar plot
-        \item [\done] Diff vs undiff
-        \item [\done] Pi Plot for small basal
-        \item [\done] TCGA metadata and the analysis
-        \item [\done] GSEA enrichment on the Small Basal
-        \item [\done] GSEA enrichment of the other 
-    \end{todolist}
-    \item Showing the advantages of the network
-    \begin{todolist}
-        \item [\done] Can we look at some of these genes that have neighbours? Are any of these useful
-        \item Plotting the correlation distribution of these genes; before and after selective edge pruning
-        \item [\done] Showing the neighbours for some of the TFs: BNC1, AHR, HES2
-        \item Show the network for a standard network with Leiden and with SBM
-    \end{todolist}
-    \item Conclusion
-    \begin{todolist}
-        \item Integration of the TF works
-        \item ModCon and MEV selection works 
-    \end{todolist}
     \item Others 
     \begin{todolist}
         \item Check figures for being described properly, clear labelling, axis etc.
