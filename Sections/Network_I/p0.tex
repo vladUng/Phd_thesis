@@ -38,25 +38,25 @@ To find the appropriate clustering model and the number of clusters, the previou
     \centering
     \begin{subfigure}[b]{0.49\textwidth}
         \centering
-        \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/P0/top3_cs_gen_p0_tum4K.png}    
+        \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/P0/top3_cs_gen_p0_tum4K_50TF_v3.png}    
         \caption{Cluster model and size}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.49\textwidth}
         \centering
-        \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/P0/top3_cs_model_p0_tum4K.png}
+        \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/P0/top3_cs_model_p0_tum4K_50TF_v3.png}
         \caption{Cluster model}
     \end{subfigure} %
     \hfill
     \begin{subfigure}[b]{0.49\textwidth}
         \centering
-        \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/P0/top3_cs_size_p0_tum4K.png}
+        \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/P0/top3_cs_size_p0_tum4K_50TF_v3.png}
         \caption{Cluster size}
     \end{subfigure}
      \hfill
     \begin{subfigure}[b]{0.49\textwidth}
         \centering
-        \includegraphics[width=\textwidth, keepaspectratio]{Sections/Network_I/Resources/P0/p0_elbowMethod_4K.png}
+        \includegraphics[width=\textwidth, keepaspectratio]{Sections/Network_I/Resources/P0/p0_elbowMethod_4K_v3.png}
         \label{fig:N_I:p0_elbow_method}
         \caption{Elbow method}
     \end{subfigure}
@@ -70,53 +70,53 @@ In this section the above-mentioned clustering methods are applied to the MEV sc
 \begin{figure}[!htb]
     \thispagestyle{plain}
     \centering
-    \begin{subfigure}{1.0\linewidth}
+    \begin{subfigure}{0.49\linewidth}
         \centering
-        \includegraphics[width=1.0\textwidth,height=0.17\textheight]{Sections/Network_I/Resources/P0/Standard_tum4k_sill_spread.png}
+        \includegraphics[width=1.0\textwidth,keepaspectratio]{Sections/Network_I/Resources/P0/std_tum4k_v3_sill_spread.png}
         \caption{Standard network}
     \end{subfigure} %
-
-    \begin{subfigure}{1.0\linewidth}
+    \centering
+    \begin{subfigure}{0.49\linewidth}
         \centering
-        \includegraphics[width=1.0\textwidth,height=0.17\textheight]{Sections/Network_I/Resources/P0/Reward_tum4k_sill_spread.png}
+        \includegraphics[width=1.0\textwidth,keepaspectratio]{Sections/Network_I/Resources/P0/rwd_tum4k_v3_sill_spread.png}
         \caption{Reward network}
     \end{subfigure}
-    
-    \begin{subfigure}{1.0\linewidth}
+    \centering
+    \begin{subfigure}{0.49\linewidth}
         \centering
-        \includegraphics[width=1.0\textwidth,height=0.17\textheight]{Sections/Network_I/Resources/P0/Penalised_tum4k_sill_spread.png}      
+        \includegraphics[width=1.0\textwidth,keepaspectratio]{Sections/Network_I/Resources/P0/pen_tum4k_v3_sill_spread.png}      
         \caption{Penalised network}
     \end{subfigure}
     \caption{Cosine Silhouette score spread across samples over different clustering models with various K.}
     \label{fig:N_I:p0_sillhouette_spread}
 \end{figure}
 
-\begin{figure}[!htb]
-    \hfill
-    \begin{subfigure}{1.0\linewidth}
-        \includegraphics[width=1.0\textwidth,height=0.25\textheight]{Sections/Network_I/Resources/P0/CA_metrics_Std_2_tum_4k.png}
-        \caption{Standard network}
-    \end{subfigure} %
-    \hfill
-    \begin{subfigure}{0.49\linewidth}
-        \includegraphics[width=1.0\textwidth,height=0.25\textheight]{Sections/Network_I/Resources/P0/CA_metrics_Rwd_2_tum_4k.png}
-        \caption{Reward network}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}{0.49\linewidth}
-        \includegraphics[width=1.0\textwidth,height=0.25\textheight]{Sections/Network_I/Resources/P0/CA_metrics_Pen_2_tum_4k.png}
-        \caption{Penalised network}
-    \end{subfigure}
-    \hfill
-    \caption{Clustering metrics for the 3 networks generated from P0 samples.}
-    \label{fig:N_I:p0_choosing_cs}
-\end{figure}
 
 
 % Comment on Top 3 models + cs, models and just CS
 While Figure \ref{fig:N_I:p0_choosing_cs} shows the general trends of the metrics across the 3 different clustering scores, it is not very clear which model with how many clusters performs the best for each network or overall.
 
 Figure \ref{fig:N_I:p0_top_3_metrics} assists the decision making by depicting both the most used cluster model and number of clusters (A), and separately at the cluster model and size in (B) and (C); the colouring scale corresponds to the encounter frequency across network type; e.g. in A) K-means with K=4 appears 3 times in standard network and Spectral Clustering with K=4 two times in all three network types. The colouring strategies helps delineating the configurations for each network. From Figure \ref{fig:N_I:p0_top_3_metrics} A) it can be noticed that the standard network is the only one having a model picked by all three metrics. In B) it is clearer that K-means is the preferred model by both standard and penalised network, while for Reward network both Agg\_Avg and K-means are selected 3 times. In terms of the the cluster sizes, in Figure \ref{fig:N_I:p0_top_3_metrics} C), K=4 is the most common number of subgroups followed by K=5. Overall, the clustering scores suggest that both K-Means and Agg\_Avg have similar performances while the preferred cluster sizes is K=4 followed by K=5. Furthermore, K=4 is the overall choice of clusters numbers through the Elbow approach in Figure \ref{fig:N_I:p0_top_3_metrics} D.
+
+\begin{figure}[!htb]
+    \centering
+    \begin{subfigure}{0.49\linewidth}
+        \includegraphics[width=1.0\textwidth,keepaspectratio]{Sections/Network_I/Resources/P0/CA_metrics_std_tum_4k_v3.png}
+        \caption{Standard network}
+    \end{subfigure} %
+    \centering
+    \begin{subfigure}{0.49\linewidth}
+        \includegraphics[width=1.0\textwidth,keepaspectratio]{Sections/Network_I/Resources/P0/CA_metrics_rwd_tum_4k_v3.png}
+        \caption{Reward network}
+    \end{subfigure}
+    \centering
+    \begin{subfigure}{0.49\linewidth}
+        \includegraphics[width=1.0\textwidth,keepaspectratio]{Sections/Network_I/Resources/P0/CA_metrics_pen_tum_4k_v3.png}
+        \caption{Penalised network}
+    \end{subfigure}
+    \caption{Clustering metrics for the 3 networks generated from P0 samples.}
+    \label{fig:N_I:p0_choosing_cs}
+\end{figure}
 
 
 % Using cosine sillhouette to look at the spread
@@ -129,13 +129,13 @@ The clustering scores and the analysis performed suggests that K-means and Agglo
     \hfill
     \begin{subfigure}[b]{0.49\textwidth}
         \centering
-        \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/P0/Sankey_KM_4K.png}
+        \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/P0/Sankey_KM_4K_v3.png}
         \caption{K-Means}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.49\textwidth}
         \centering
-        \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/P0/Sankey_Avg_4K.png}
+        \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/P0/Sankey_Avg_4K_v3.png}
         \caption{Agglomerative with average linkage}
     \end{subfigure}
     \hfill
@@ -156,7 +156,7 @@ Figure \ref{fig:N_I:p0_sky_leiden} represents an overview of the decisions made 
 
 \begin{figure}[!htb]    
     \centering
-    \includegraphics[width=1.0\textwidth,height=0.7\textheight,keepaspectratio]{Sections/Network_I/Resources/P0/Ldn_Sky_TF_50_RawKMeans_K5.png}
+    \includegraphics[width=1.0\textwidth,height=0.7\textheight,keepaspectratio]{Sections/Network_I/Resources/P0/Ldn_Sky_TF_50_RawKMeans_K5_v3.png}
     \caption{Overview of the MIBC stratification using P0 dataset.}
     \label{fig:N_I:p0_sky_leiden}
 \end{figure}
@@ -173,13 +173,13 @@ Previous results with tumour networks (Section \ref{s:N_I:tum}) showed that the 
     \hfill
     \begin{subfigure}[b]{0.49\textwidth}
         \centering
-        \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/P0/Comms/Sky_Comm_Comp_4K.png}
+        \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/P0/Comms/Sky_Comm_Comp_4K_v3.png}
         \caption{Gene changes}
     \end{subfigure}
     \hfill
      \begin{subfigure}[b]{0.49\textwidth}
             \centering
-            \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/P0/Comms/Mut_Comm_Comp_4K.png}
+            \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/P0/Comms/Mut_Comm_Comp_4K_v3.png}
             \caption{Mutation representation}
     \end{subfigure}
     \hfill
@@ -215,12 +215,12 @@ Figure \ref{fig:N_I:p0_comm_chgs} B) displays the number of mutated genes (Y) in
     \hfill
     \begin{subfigure}[b]{0.49\textwidth}
         \centering
-        \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/P0/Comms/Mut_evo_Std_4k.png}
+        \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/P0/Comms/Mut_evo_Std_4k_v3.png}
         \caption{Standard}
     \end{subfigure}
     \begin{subfigure}[b]{0.49\textwidth}
         \centering
-        \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/P0/Comms/Mut_evo_Rwd_4k.png}
+        \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/P0/Comms/Mut_evo_Rwd_4k_v3.png}
         \caption{Reward}
     \end{subfigure}
     \caption{Mutation burden per communities}
@@ -247,13 +247,13 @@ Figure \ref{fig:N_I:p0_mev_rep} shows that representation for each community. In
     \hfill
     \begin{subfigure}[b]{0.47\textwidth}
         \centering
-        \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/P0/4K_p0_modConMev_rep_standard_4K_50TF.png}
+        \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/P0/4K_p0_modConMev_rep_standard_4K_50TF_v3.png}
         \caption{The most relative varied genes}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.47\textwidth}
         \centering
-        \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/P0/10K_p0_modConMev_rep_standard_4K_50TF.png}
+        \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/P0/13K_p0_modConMev_rep_standard_4K_50TF_v3.png}
         \caption{All the genes expressed}
     \end{subfigure}
     \hfill
@@ -262,7 +262,7 @@ Figure \ref{fig:N_I:p0_mev_rep} shows that representation for each community. In
 \end{figure}
 
 
-\subsubsection{Conclusion}
+\subsubsection{Summary}
 
 All of the experiments were performed with networks that have been minimum 50 connections per Transcription Factor gene. This value was pseudo-random chosen with the hope to prioritise the TFs in the network. Moreover, this was made on the assumption that the Leiden community detection algorithm is agnostic at the nodes' number of connection. Given the poor results in the MIBC subtyping this assumption came to scrutiny. 
 

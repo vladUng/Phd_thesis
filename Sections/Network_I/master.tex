@@ -15,7 +15,7 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Summary}
+\subsection{Overview}
 
 In the previous chapter, standard clustering methods and insights from in situ experiments (\citet{Baker2022-bj}) were utilised to stratify the muscle-invasive bladder cancer (MIBC) cohort from The Cancer Genome Atlas (TCGA). This work uncovered new MIBC subgroups with significant biological differences compared to those identified in the TCGA (\citet{Robertson2017-mg}) and consensus (\citet{Kamoun2020-tj}) stratification. This finding highlights the potential for discovering biologically relevant groups and underscores the need for new methods that combine data at the computational level.
 
@@ -28,7 +28,7 @@ Furthermore, this chapter focuses on understanding how different parameters in t
 
 Overall, the work presented in this section demonstrates the potential of networks in MIBC subtyping. Although the initial methods for data integration show limited impact on disease subtyping, this chapter lays the groundwork for future chapters, where initial assumptions are revised, and new, adapted methods are employed.
 
-\subsubsection{Datasets}
+\subsubsection*{Datasets}
 
 The MIBC cohort from The Cancer Genome Atlas \cite{Robertson2017-mg} and the P0 samples from Jack Birch Unit (JBU) are used. The first dataset is used in the first part of the chapter where a network is created from the genes expressed in the tumours and then subtype the cohort. While in second part, the network is constructed from the genes expressed in the P0 samples which are then used to subgroup the MIBC cohort from TCGA. Both datasets consists of Transcriptions Per Million (TPM) from RNA sequencing (RNAseq). 
 
@@ -53,7 +53,7 @@ The list of Transcription Factors (TFs) is taken from The Human Transcription Fa
 
 \subsection{Discussion}
 
-This chapter presents the initial attempt of this project to apply a network-based approach for stratifying the muscle invasive bladder cancer (MIBC) cohort from the TCGA database. The approach involved integrating multiple data types at the computational stage, including gene expression from both cancerous and non-cancerous tissues, mutation burden, and transcription factors (TFs). The integration occurred at different levels, starting by building a graph from the non-tumour data and then using the representation to derive the MIBC subtypes, as described in \cref{s:N_I:p0}. The edge weights derived from the Spearman correlation are modified based on the mutation burden, and the node degree is limited depending on whether a gene is a transcription factor or not.
+This chapter presents the initial attempt of this project to apply a network-based approach for stratifying the muscle invasive bladder cancer (MIBC) cohort from the TCGA database. The approach involved integrating multiple data types at the computational stage, including gene expression from both cancerous and non-cancerous tissues, mutation burden, and transcription factors (TFs). The integration occurred at different levels, starting by building a graph from the non-tumour data and then using the representation to derive the MIBC subtypes, as described in \cref{s:p0}. The edge weights derived from the Spearman correlation are modified based on the mutation burden, and the node degree is limited depending on whether a gene is a transcription factor or not.
 
 
 
@@ -61,7 +61,7 @@ This chapter presents the initial attempt of this project to apply a network-bas
 Two main co-expressed gene networks were explored: one constructed from tumour samples and the other from healthy tissue samples. The experiments demonstrated that integrating mutations and TFs was successful at the graph level but had limited impact on the MIBC subtypes derived from the network. Network metrics varied between the modified networks (as shown in Figures \ref{fig:N_I:net_metrics_tum} and \ref{fig:N_I:net_metrics_p0}), and highly mutated genes were observed to change communities (Figure \ref{fig:N_I:p0_mut_burden}). The disease subgroups identified through this network approach showed different results compared to standard approaches, with only minor variations observed between networks modified by weight modifiers. This suggests that the weight modifier strategies, as depicted in Figure \ref{fig:N_I:modifiers}, require further refinement.
 
 % P0 not enough
-The networks built from the P0 (\cref{s:N_I:p0}) highlighted the problems introduced to the Leiden algorithm when a subset of genes is allowed a larger number of connections (50). The P0 network is also built on an incomplete representation of the MIBC tumours, as there is no molecular representation of the basal group (undifferentiated). Additionally, the gene expression of the P0 samples is not considered when subtyping the MIBC. These limitations are addressed in the next chapter, where the entire available non-tumour dataset is used and a new version of MEV is introduced.
+The networks built from the P0 (\cref{s:p0}) highlighted the problems introduced to the Leiden algorithm when a subset of genes is allowed a larger number of connections (50). The P0 network is also built on an incomplete representation of the MIBC tumours, as there is no molecular representation of the basal group (undifferentiated). Additionally, the gene expression of the P0 samples is not considered when subtyping the MIBC. These limitations are addressed in the next chapter, where the entire available non-tumour dataset is used and a new version of MEV is introduced.
 
 
 % Community detection
