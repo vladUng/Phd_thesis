@@ -1,7 +1,36 @@
-\subsection{Experiments} 
+\subsection{Experiments - finding the right cluster model} 
 
-\subsubsection{Finding the right model}
+% pca vs non-pca
 
-\subsubsection{Searching for K}
+% cluster model
+
+% cluster size
+
+% The number of components
+
+
+\begin{figure}[H]
+    \captionsetup[subfigure]{justification=Centering}
+    \centering
+    \begin{subfigure}[!t]{0.9\textwidth}
+        \includegraphics[width=\textwidth]{Sections/ClusteringAnalysis/Resources/cs_top3/PCA_top3_Silhoute_cosine.png}
+        \caption{Silhouette using cosine distance}
+        \label{fig:cs:cosine}
+    \end{subfigure}
+    \centering
+    \begin{subfigure}[!t]{0.9\textwidth}
+        \includegraphics[width=\textwidth]{Sections/ClusteringAnalysis/Resources/cs_top3/PCA_top3_Calinski_habrasz.png}
+        \caption{Calinski Harabasz}
+        \label{fig:cs:cal_hab}
+    \end{subfigure}
+    \centering
+    \begin{subfigure}[!t]{0.9\textwidth}
+        \includegraphics[width=\textwidth]{Sections/ClusteringAnalysis/Resources/cs_top3/PCA_top3_Davies_bouldin.png}
+        \caption{Davies Bouldin}
+        \label{fig:cs:dav_boul}
+    \end{subfigure}
+    \caption{The means of the three cluster metrics introduced in \cref{s:lit:clustering_metrics}: Silhouette (cosine), Calinski Harabasz and Davies Bouldin. Each of them asses different aspects of clustering and are used to determined the right clustering model for the MIBC cohort from TCGA. The gene expression is processed according to \cref{s:cs:methods} and PCA with 5 components was applied. }
+    \label{fig:cs:cs_metrics}
+\end{figure}
 
 \subsection{Summary}
