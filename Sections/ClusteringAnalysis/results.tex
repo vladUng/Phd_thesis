@@ -1,5 +1,7 @@
 \subsection{Biological interpretation} \label{s:cs:bio_interp}
 
+
+
 % Introduction our decision that we are going to use the work from Simon
 The first part of the chapter established the clustering configuration, K-means with 5 groups, based on different clustering metrics. In this second part, the work is carried on understanding and establishing the biological aspects of the MIBC subtypes derived which involves comparing our classification with the others in the literature: TCGA \cite{Robertson2017-mg}, Lund \citet{Marzouka2018-ge} and the consensus \citet{Kamoun2020-tj}. It also requires Differentially Expressed Analysis (DEA) see \cref{da} and Gene Set Enrichment Analysis (GSEA) see \cref{asda} to establish the genes that contribute the most.
 
@@ -31,7 +33,7 @@ Comparing with the TCGA \citet{Robertson2017-mg} (and the consensus) it can be n
 The groups derived in this section are also compared with another work \citet{Baker2022-bj} from the Jack Birch Unit (JBU) which was focused on splitting the Basal/Squamous group by the tumour's \acrfull{ifn} response: no response and a high response. The authors identified that patients classified as high \acrshort{ifn} have a better survival prognosis compared to the ones with no immune response. In \cref{fig:cs:ifn_comp} it can be clearly seen that the Small Ba/Sq group contains a large portion of the the \acrshort{ifn} response group from \citet{Baker2022-bj}, while the large basal group a mixed of low and high \acrshort{ifn} samples. Taking the 3 main 'chords' of samples going from the \acrshort{ifn} to the Basal groups (KMeans), the Basal subtype can be further split into 3 as seen in \cref{fig:cs:ifn_three_basal}. The association of the Basal subgroups it is also supported by the Lund classifier \citet{Marzouka2018-ge}, where the Small Ba/sq (or High IFNG) contains the samples of the Ba/Sq-Inf and Mes-like from Lund, while the other two basal (in Basal\_type) are either Ba/Sq or UroB by Lund.
 
 % Introduce the three splits
-\paragraph*{Immune, Stromal and ESTIMATE score}
+\subsubsection{Immune, Stromal and ESTIMATE score}
 
 % Explaining the ESTIMATE score
 In their seminal work, \citet{Yoshihara2013-wq} introduced the ESTIMATE score, which assesses tumour purity based on immune and stromal infiltration. The ESTIMATE score is calculated using gene expression data from a subset of genes that are known to be involved in the immune response and are associated with stromal cells. The ESTIMATE, along with stromal and immune scores, were validated using DNA Copy Number Analysis and computed for the TCGA cohort.
@@ -76,7 +78,7 @@ The scores from \citet{Yoshihara2013-wq} further support their relation with the
     \label{fig:cs:basal_survival}
 \end{figure}
 
-\paragraph*{Differentially Expressed Analysis}
+\subsubsection{Basal exploration}
 
 To further study the subgroups derived, Deferentially Expressed Analysis (DEA) was performed between the MIBC subtypes. The analysis was particularly focused on the Basal groups as the three split was new with some already validated results through other classifications \citet{Baker2022-bj,Marzouka2018-ge}. The Pi-plot in \cref{fig:cs:pi_basal} compares the Low IFNG with the MED IFNG on the Y-axis and the Low IFNG with the High IFNG on the X-axis. 
 
@@ -116,15 +118,109 @@ It can be noticed less common genes between the Med IFNG and the LumInf, in the 
 
 The two figures \cref{fig:cs:pi_basal,fig:cs:pi_basal_inf} further reinforce the existence of the three different immune response by the basal tumours. It shows the genes specific to each of the subtypes, where the High IFNG has very specific immune responses even compared to the LumInf subgroup. The Med IFNG is situated somewhere between a high immune response and no response as seen in the samples from Low IFNG. Basal and Squamous markers are seen in both Low and Med IFNG groups as clearly seen in \cref{fig:cs:pi_basal_inf}, which also have been supported by the ESTIMATE scores \cref{fig:cs:tumour_purity}.
 
+\paragraph*{LumInf}
+
+The previous subsections were focused on understanding the molecular properties of the Basal subgroups which found a particular subtype that is closer to the Luminal infiltrated. This is now explored more in depth in \cref{fig:cs:lumInf}, where DEA and GSEA were performed. To find the molecular particularities of the luminal infiltrated groups, the Pi-plot was constructed using the DEA results from LumInf vs Low IFNG (X-axis) and LumInf vs LumP (Y-axis). The group Low IFNG group was chosen as a representative of the Basal groups as it does not have any immune infiltration which will highlight the LumInf properties, whereas the LumP was chosen to check for the shared luminal features. 
+
+\begin{figure}[!htb]
+    \centering
+    \begin{subfigure}[!t]{0.79\textwidth}
+        \includegraphics[width=\textwidth,keepaspectratio]{Sections/ClusteringAnalysis/Resources/discussion/other_groups/lumInf_pi.png}    
+        \caption{Pi}
+        \label{fig:cs:lumInf_pi}
+    \end{subfigure}
+    \centering
+    \begin{subfigure}[!t]{0.69\textwidth}
+        \includegraphics[width=\textwidth, keepaspectratio]{Sections/ClusteringAnalysis/Resources/discussion/other_groups/lumInf_reactome_10_top.png}
+        \caption{Top 10 GSEA results on the Reactome database.}
+        \label{fig:cs:lumInf_gsea}
+    \end{subfigure} 
+    \centering
+    \caption{Molecular overview of the Luminal Infiltrated (LumInf) group. The pi plot shows the genes specific to the LumInf from the DEA with LowIFNG and LumP, where the GSEA plot shows the top 10 terms in the enrichment analysis.} 
+    \label{fig:cs:lumInf}
+\end{figure}
 
 
+% Commenting the immune aspect of the Pi plot
+The striking group of points in the second quadrant in \cref{fig:cs:lumInf_pi}, specific to the LumInf, contains the immunoglobulin family, denoting the immune infiltration characteristic of the group. This is further enforced by the results from the GSEA, in \cref{fig:cs:lumInf_gsea}, where most of the pathways found in Reactome contains genes involved in the immune response such as \textit{FCGR Activation}, \textit{CD22 mediated BCR regulation} or \textit{creation of c4 and c2 activators}.
+
+% Positive on the X-axis showing the luminal characteristic
+The positive values on the X-axis shows the genes that are deferentially expressed in the LumInf compared to the Low IFNG groups and which have a luminal-like aspect to it. These markers include genes that are known to be luminal markers such as \textit{UPK1A, UPK3A, UPK2} or \textit{PPARG, GATA3}, indicating and confirming the luminal characteristic of the subtype. The negative values on the X-axis are Basal specific markers such as \textit{KRT6A} or \textit{KRT5}. The lack of scatter points and the small scale of the Y-axis denotes that Luminal Infiltrated and Luminal Papillary group have many genes in commune.
+
+The analysis shows and confirms the immune infiltration as well as the luminal molecular characteristics of the LumInf group derived using the methods presented in this section.
+
+\paragraph*{LumP}
 
 
-% Immune response on the other quadrant
+The LumInf group exhibit some of the molecular properties of a luminal subtype but the immune response of the samples is too strong, but the tissues part of the LumP do not suffer from this 'noise'. To understand the molecular properties of the LumP the Pi in \cref{fig:cs:lumP_pi} and the GSEA from \cref{fig:cs:lumP_gsea} are used. To highlight the molecular characteristics of the LumP group, the DEA between LumP and Ne is performed on the Y-axis, while LumP vs Low IFNG on the X-axis. This ensures that if there is any immune response in the LumP it will be seen as both comparison grouped are immune desert. It will also highlight the markers of the luminal group as the Low IFNG and NE have very different molecular properties.
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[!t]{0.79\textwidth}
+        \includegraphics[width=\textwidth,keepaspectratio]{Sections/ClusteringAnalysis/Resources/discussion/other_groups/lump_pi.png}    
+        \caption{Pi}
+        \label{fig:cs:lumP_pi}
+    \end{subfigure}
+    \centering
+    \begin{subfigure}[!t]{0.69\textwidth}
+        \includegraphics[width=\textwidth, keepaspectratio]{Sections/ClusteringAnalysis/Resources/discussion/other_groups/lumP2_reactome_10_top.png}
+        \caption{Top 10 GSEA results on the Reactome database.}
+        \label{fig:cs:lumP_gsea}
+    \end{subfigure} 
+    \centering
+    \caption{Molecular overview of the Luminal Papillary (LumP) group. The pi plot shows the genes specific to LumP from the DEA with LowIFNG and New, where the GSEA plot shows the top 10 terms in the enrichment analysis.} 
+    \label{fig:cs:lump}
+\end{figure}
 
 
+% LumP specific genes
+The points in the first quadrant represents the genes that are specific to the LumP group. It can be seen that there are several set of genes that have a direct or are associated with the bladder differentiation, a trait common to LumP tumours, such as: \textit{PPARG, GATA3, UPK3A, FOXA1}. Less known genes in the context of the MIBC are \textit{VSIG2, PSCA, ADIRF, DHRS2, SPINK1}. Need to look up these genes .... . To further support the non-squamous aspect of the LumP group, there are some genes that are down-regulated in the squamous cell carcinoma (SCC) \citet{Knowles2015-mu} present in the first quadrant.
 
-% Then do the Survial plot and the Sankey to show the final version
+% Common between Ne and Low IFNG
+On the opposite quadrant where the genes specific to the Ne and Low IFNG are contained, there are markers specific toe the Basal (the value closer to the negative X-axis) such as: \textit{KRT6A, KRT6B, KRT14, KRT5}. Also, up-regulated SCC markers are close to X-axis showing that the Low IFNG has stronger SCC markers compared to both the NE and the LumP group. Neuronal markers such as \textit{TUBB2B, GNG4, APLP1} are on the negative side of the Y-axis denoting the Ne-like aspect over the other two groups in the comparison.
+
+% Explore the genes that are common to both the Low IFNG and NE
+\textit{TNC, SPHK1, MT1X, CTHRC1, SLC16A1, FN1, PRRX1} are genes common to both the Low IFNG and the Ne groups
+
+In the GSEA plot the top enriched pathways are down-regulated in the LumP which indicates the strong response of the Ne and Low IFNG groups. The analysis in this subsection highlights the markers for the Luminal groups and enforces the other two subgroups.
+
+\paragraph*{NE}
+
+
+In the TCGA's MIBC cohort the TCGA classifier identified 20 samples as Neuroendocrine like (NE-like), 11 of which are classified as Sc/NE-like by the Lund classifier and only 6 of the initial 20 are NE-like by the consensus which contains more than the 2 mentioned datasets. This indicates there are still a lot of things to decide which forms the NE group. The clustering analysis performed in this section grouped \textbf{32} into what appears to contain most of the NE-like groups from the TCGA and Lund \cref{fig:cs:ifn_comp}.
+
+To further explore the NE group derived in this section the Pi-plot in \cref{fig:cs:ne_pi} contains the DEA comparison of the group with the Low IFNG on the Y axis and with the Luminal Papillary on the horizontal axis. These two comparison groups were used as 'representatives' for the Luminal and Basal subtypes as these have the lowest immune infiltration. Thus, allowing to observe any Basal or Luminal tendencies of the NE samples if were present. As it can be seen in quadrants I and III ,\cref{fig:cs:ne_pi}, there are no or little points shared between the studied group and the Basal/Luminal subtypes. This indicates the different molecular characteristics of the group.
+
+\begin{figure}[!htb]
+    \centering
+    \begin{subfigure}[!t]{0.79\textwidth}
+        \includegraphics[width=\textwidth,keepaspectratio]{Sections/ClusteringAnalysis/Resources/discussion/other_groups/ne_pi.png}    
+        \caption{Pi}
+        \label{fig:cs:ne_pi}
+    \end{subfigure}
+    \centering
+    \begin{subfigure}[!t]{0.59\textwidth}
+        \includegraphics[width=\textwidth, keepaspectratio]{Sections/ClusteringAnalysis/Resources/discussion/other_groups/ne2_reactome_10_top.png}
+        \caption{Top 10 GSEA results on the Reactome database.}
+        \label{fig:cs:ne_gsea}
+    \end{subfigure} 
+    \centering
+    \caption{Molecular overview of the Neuroendocrine-like (Ne) group. The pi plot shows the genes specific to LumP from the DEA with Low IFNG and Medium IFNG, where the GSEA plot shows the top 10 terms in the enrichment analysis.} 
+    \label{fig:cs:ne}
+\end{figure}
+
+
+% Genes associated with the NE
+The second quadrant showcases genes specifically associated with the Neuroendocrine like (NE-like) group, including \textit{TUBB2B} and other neuronal markers such as \textit{MSI1, PLEKHG4B, GNG4, PEG10, RND2, APLP1,} and \textit{SOX2} \citep{Robertson2017-mg}. These genes are significantly expressed in the NE-like group, as illustrated by the referential point \cref{fig:cs:ne_pi}, which marks the extremities on the X and Y axes, representing the most pronounced NE-like characteristics from the two comparative analyses. Beyond \textit{TUBB2B}, several genes near this marker hold substantial biological significance, including \textit{TUBA1A, FGFR1, SLC16A1, FXYD6, CTHRC1,} and \textit{PRRX1}.
+
+\textit{TUBA1A} is highly expressed in bladder cancer, has been identified as a potential therapeutic target \citet{Zhang2019-fk} (see \href{https://www.proteinatlas.org/ENSG00000167552-TUBA1A/tissue}{Human Protein Atlas}). \textit{FGFR1}, part of the FGFR family, is associated with cell proliferation, as evidenced in both \textit{in-vitro} and \textit{in-vivo} experiments \citet{Tomlinson2009-td}. \textit{SLC16A1} has been characterised by \citet{Logotheti2020-ya} as a long non-coding gene that enhances cancer invasiveness. \textit{FXYD6}, related to mental diseases, has shown potential in clinical therapies for a subtype of kidney cancer according to \citet{Gao2014-sq}. In vitro studies suggest \textit{PRRX1} as a therapeutic biomarker for bladder cancer \citet{Huang2022-ez}, with its protein expression being moderately high (see \href{https://www.proteinatlas.org/ENSG00000116132-PRRX1/tissue}{Human Protein Atlas}). Additionally, mouse model research has implicated \textit{CTHRC1} in the proliferation of bladder cancer cells, with high levels correlating with poor prognosis. This protein's high expression is also documented on the \href{https://www.proteinatlas.org/ENSG00000164932-CTHRC1/tissue}{Human Protein Atlas}.
+
+% Lump and Basal
+The Low IFNG and LumP comparison groups are the representatives of the two MIBC major groups, basal and luminal. The genes in the third quadrant contains the ones common to both, while the ones on the axes the specific to the subtype. On the positive vertical axis genes like \textit{UPK2, GATA3, ADIRF, VSIG2} are found which are known to be related with the tissue differentiation or the luminal biology. On the horizontal axis Basal specific markers are displayed such as \textit{KRT5} or SERP family. \textit{AQP3, TP64, FGFR3} are highlighted in the scatter plot as markers which are known to be expressed across the MIBC tumours.
+
+% GSEA
+The GSEA plot in \cref{fig:cs:ne_gsea} shows that there are several pathways related to collagen or lagging strand. Suggesting the involvement of the genes in the Epithelial Mesenchymal Transition (EMT). This was highlighted by the GSEA run on the Hallmark database presented in the Appendix \cref{fig:ap:cs:gsea_ne_hallmark}. The analysis of NE's quadrant indicates the neuronal nature of the subgroups but also highlights the potential of finding new genes specific to the subtype. The overall analysis shows that the studied group exhibit different gene expression compared to the luminal and basal groups. 
+
 
 
 \subsubsection{Summary}
