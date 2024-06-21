@@ -43,13 +43,13 @@ The performance of the five clustering methods across $K\in(4, 13)$ is displayed
 \begin{figure}[!htb]
     \captionsetup[subfigure]{justification=Centering}
     \centering
-    \begin{subfigure}[!t]{0.49\textwidth}
+    \begin{subfigure}[!t]{0.75\textwidth}
         \includegraphics[width=\textwidth]{Sections/ClusteringAnalysis/Resources/cs_top3/top3_cs_gen_top3_heatmap_pca.png}
         \caption{Most frequent cluster model}
         \label{fig:cs:heatmap_gen}
     \end{subfigure}
     \centering
-    \begin{subfigure}[!t]{0.49\textwidth}
+    \begin{subfigure}[!t]{0.75\textwidth}
         \includegraphics[width=\textwidth]{Sections/ClusteringAnalysis/Resources/cs_top3/top3_cs_size_top3_heatmap_pca.png}
         \caption{Most frequent K in top 3}
         \label{fig:cs:heatmap_cs}
@@ -67,7 +67,7 @@ To aid the decision making, the top 3 most performing configuration is displayed
 So far the decision making was made by using the mean of the clustering metrics, while this helped to select the model and the number of clusters, the average does not contain the variation in the scores. To address, the distribution of the Silhouette scores\footnote{The experiment for this is an adapted version of the \href{https://tinyurl.com/sillhouete-distrib}{example} from Scikit-learn library.} was plotted in \cref{fig:cs:sill_distrib} for the K-means model between 3 to 6 clusters. A restricted range of K was used to facilitate the visualisation and the previous results (\cref{fig:cs:cs_metrics}) suggests that there is little benefit for adding more. 
 
 
-\begin{figure}[!t]
+\begin{figure}[H]
     \captionsetup[subfigure]{justification=Centering}
     \centering
     \begin{subfigure}[!t]{0.49\textwidth}
@@ -90,12 +90,12 @@ So far the decision making was made by using the mean of the clustering metrics,
         \caption{K=6}
     \end{subfigure}
     \centering
-    \begin{subfigure}[!t]{0.49\textwidth}
+    \begin{subfigure}[!t]{0.65\textwidth}
         \includegraphics[width=\textwidth, keepaspectratio]{Sections/ClusteringAnalysis/Resources/cs_top3/sill_distrib/sill_neg_above_th.png}
         \caption{Number of samples with negative and above 0.5 Silhouette scores}
     \end{subfigure}
     \centering
-     \begin{subfigure}[!t]{0.49\textwidth}
+     \begin{subfigure}[!t]{0.65\textwidth}
         \includegraphics[width=\textwidth, keepaspectratio]{Sections/ClusteringAnalysis/Resources/cs_top3/sill_distrib/sky_kMeans.png}
         \caption{Comparison across clustering methods}
     \end{subfigure}
