@@ -1,16 +1,33 @@
 \section{Clustering analysis} \label{s:clustering_analysis}
 
+\vspace{3mm}
+% \noindent\rule{17cm}{0.2pt}
+\fbox {
+    \parbox{\linewidth}{
+      \begin{itemize}
+        \item Cluster analysis with K-means  and PCA of the TCGA's MIBC cohort
+        \item Three Basal splits based on the immune response
+        \item Evidence for supporting the the Neuronal-like group
+      \end{itemize}
+    }
+}
+\vspace{3mm}
+
 % Summary
 \subsection{Overview}
 
-What are the goals or the messages that this chapter tries to communicate to the reader?
-\begin{todolist}
-    \item Basal split - showing the potential
-    \item Main goal to show that there is still an opportunity to stratify MIBC by integrate multiple streams of data
-\end{todolist}
+This section covers the work presented at the International Bladder Cancer Network (IBCN) in 2022 and is a major component of a research paper that will be submitted for peer review at the end of the PhD project. It describes the first attempt in the project to stratify the \acrfull{mibc} cohort from TCGA using only the gene expression (TPMs) obtained from RNAseq.
+
+The proposed pipeline employs standard clustering techniques such as K-means, Principal Component Analysis (PCA) for dimension reduction, and clustering metrics. Despite using a standard pipeline, novel subtypes of one of the major MIBC groups, basal, were identified. This has the potential to aid biologists in better understanding the immune response of basal tumours. Indirectly, this demonstrates that there is an opportunity to identify new MIBC subtypes and that even simple methods can yield significant results.
+
+The chapter is structured into two parts: the methods are described in \cref{s:cs:methods}. This includes a justification for choosing K-means as a clustering model, the number of groups, and the rationale for using PCA prior to clustering. The resulting pipeline configurations are presented in \cref{fig:cs:clustering_pipeline}. Kaplan-Meier survival analysis indicated that the derived MIBC subgroups exhibited significantly different survival prognoses, with the Neuronal and the Basal with low Interferon-$\lambda$ having the poorest survival.
+
+The final part of the chapter analyses the groups derived and attributes biological functions using a series of tools: tumour purity scores from \citet{Yoshihara2013-wq}, Interferon-$\gamma$ response \citet{Baker2022-bj}, and other classifications from TCGA, Lund, and consensus \citet{Robertson2017-mg,Marzouka2018-ge,Kamoun2020-tj}. Both Differential Expression Analysis (DEA) and Gene Set Enrichment Analysis (GSEA) are employed to further validate the biological functions associated with the MIBC subgroups.
+
+The in-depth code implementation of the cluster analysis (i.e., methods) run in this chapter can be found in the \textit{ReClassification\_42} Jupyter Notebook and the \textit{modelling.py} script file. All the plots and the code to determine the biological function of the derived MIBC subgroups are located in the \textit{Discussion\_42\_v2} notebook. All files are available at the \href{https://github.com/vladUng/Phd_thesis_exp}{GitHub repository} that accompanies the PhD project.
+
 
 % Methods
-\import{Sections/ClusteringAnalysis/}{methods.tex}
 
 % Experiments
 \import{Sections/ClusteringAnalysis/}{experiments.tex}

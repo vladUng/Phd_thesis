@@ -1,15 +1,34 @@
-\subsection{Experiments} 
+\subsection{Methods} \label{s:cs:methods}
 
-The in-depth code implementation of the experiment run in this section can be found in the \textit{ReClassification\_42 Jupyter Notebook} and the\textit{ modelling.py} script file, in the \href{https://github.com/vladUng/Phd_thesis_exp}{GitHub repository} that accompanies this PhD project. There are five different models that are used to determine the right cluster algorithm, the following configurations that were changed from the default are: 
+
+
+Generally, the clustering analysis can be split into three stages: 1) the data pre-processing 2) choosing the clustering model and 3) choosing the number of clusters. The first part is covered in the following section, \ref{s:cs:pre-processing}, while deciding on the clustering model and its configuration is presented in \cref{s:cs:right_config}.
+
+
+\subsubsection{Pre-processing} \label{s:cs:pre-processing}
+
+% gene filtering
+The RNAseq data consists of a large number of genes, many of which are not uniformly expressed across the samples. In this section, a gene is considered unexpressed if more than 10\% of the samples have a value less than 1.5 TPM. Filtering out genes that meet these unexpressed conditions leaves the TCGA's tumour dataset with approximately 13,000 genes that are expressed in at least 90\% of the samples (approximately 370 samples). The threshold of 10\% is derived from the study by \citet{Robertson2017-mg}, where the authors removed all genes that had 'NA values more than 10\% across samples' (section \textit{Unsupervised mRNA expression clustering}). However, it is important to note that the authors of that study were using RSEM data, not TPMs.
+
+From the resultant dataset, a subset of the most variably expressed genes is selected depending on the experiment. The most variably expressed genes are identified by the highest standard deviation to median ratio, which also takes into account the magnitude of the expression. This method of selection focuses on identifying the genes with the highest relative variability across the samples. This approach differs from that used by \citet{Robertson2017-mg}, which selects the top 25\% of genes based solely on standard deviation, without factoring in the magnitude of gene expression.
+
+
+\subsubsection{Finding the right configuration} \label{s:cs:right_config}
+
+In subsequent experiments, several clustering models were evaluated using the scikit-learn library \cite{Scikit-learn_undated-ax}, as introduced in \cref{s:lit:clustering}. The models tested included K-means, Ward’s, Agglomerative Clustering, Birch, Gaussian Mixture, and Spectral Clustering. The performance of these models was assessed using clustering metrics such as Silhouette with cosine distance, Calinski-Harabasz, and Davies-Bouldin, detailed in \cref{s:lit:clustering_metrics}. Some methods were excluded from this thesis due to poor performance, typically forming only one or two groups despite various configurations.
+
+The following adjustments based on the \citet{Scikit-learn_undated-ax} were made to the default settings of the models to optimise clustering outcomes:
 \begin{itemize}
-    \item \textbf{K-Means -} The maximum iteration was set to 1000
-    \item \textbf{Ward -} Agglomerative clustering, Ward linkage, connectivity matrix is computed with k-neighbours configured to 5 neighbours for each point
-    \item \textbf{Birch -} The birch\_th was set to 1.7
-    \item \textbf{Gaussian Mixture -} The covariant type was set to diagonal and the maximum iteration was set to 500
-    \item \textbf{Spectral Clustering -} The eigenvalue decomposition was configured to arpack and the affinity matrix was constructed based on the nearest neighbours
-\end{itemize}. 
+    \item \textbf{K-Means:} Maximum iterations increased to 1000.
+    \item \textbf{Ward:} Employed agglomerative clustering with Ward linkage and a connectivity matrix computed using 5 nearest neighbours for each point.
+    \item \textbf{Birch:} The threshold parameter `birch\_th` was set to 1.7
+    \item \textbf{Gaussian Mixture:} The covariance type was set to diagonal with maximum iterations capped at 500.
+    \item \textbf{Spectral Clustering:} Eigenvalue decomposition was performed using arpack, and the affinity matrix was based on nearest neighbours.
+\end{itemize}
 
-Before the clustering methods are applied the Principal Component Analysis (PCA) is used to reduce the dimensions of the data. Using PCA improves the performance of the algorithms which can be seen in the metrics scores for PCA transformed data in \cref{fig:cs:cs_metrics} vs th non-PCA \cref{fig:ap:non_pca_metrics} in Appendix. The scale (or Y-axis) of the Silhouette doubles, the Calinski Harabasz triples and Davies-Bouldin halves (lower the better), when the PCA is applied before the clustering methods. The number of components for PCA is set to 4 as it is the number of components after which adds less than 1\% of the PCA variance\footnote{The PCA variance is a measure of the information contained per component}.
+
+Before applying clustering methods, Principal Component Analysis (PCA) is utilized to reduce the data dimensions. This dimensionality reduction significantly enhances the performance of the clustering algorithms, as evidenced by the improved metric scores for PCA-transformed data compared to non-PCA data, shown in \cref{fig:cs:cs_metrics} and \cref{fig:ap:non_pca_metrics} in the Appendix. Specifically, the Silhouette score doubles, indicating a two-fold improvement in cluster tightness and separation. The Calinski-Harabasz score sees a threefold increase, reflecting better-defined clusters, while the Davies-Bouldin score halves, suggesting a better partition (lower is better). The number of PCA components is set to four, marking the threshold beyond which each additional component contributes less than 1\% to the overall PCA variance\footnote{The PCA variance is a measure of the information each component captures}.
+
 
 \begin{figure}[H]
     \captionsetup[subfigure]{justification=Centering}
@@ -31,13 +50,13 @@ Before the clustering methods are applied the Principal Component Analysis (PCA)
         \caption{Davies Bouldin}
         \label{fig:cs:dav_boul}
     \end{subfigure}
-    \caption{The means of the three cluster metrics introduced in \cref{s:lit:clustering_metrics}: Silhouette (cosine), Calinski Harabasz and Davies Bouldin. Each of them asses different aspects of clustering and are used to determined the right clustering model for the MIBC cohort from TCGA. The gene expression is processed according to \cref{s:cs:methods} and PCA with 5 components was applied. For each metric the top 3 most performing models are marked by "X". }
+    \caption{The means of the three cluster metrics introduced in \cref{s:lit:clustering_metrics}: Silhouette (cosine), Calinski Harabasz and Davies Bouldin. The gene expression is processed according to \cref{s:cs:methods} and PCA with 5 components was applied. For each metric the top 3 most performing models are marked by "X". }
     \label{fig:cs:cs_metrics}
 \end{figure}
 
 
 The performance of the five clustering methods across $K\in(4, 13)$ is displayed in
-\cref{fig:cs:cs_metrics}; note lower bound of $K=4$ was chosen as lower K scored better than the others. The number of 'X' markers on top of the bar marks the model's position in top three. From the plots, it can be seen that the K-means generally performs the best across the clustering methods. A general trends across the methods is that their inverse relationship between the algorithm's performance over the number of groups. This is the most evident in the Calinski Harabasz score (\cref{fig:cs:cal_hab}) and in Davies Bouldin index (\cref{fig:cs:dav_boul}), but less pronounced in the Silhouette score (\cref{fig:cs:cosine})
+\cref{fig:cs:cs_metrics}. It was empirically observed that the clustering method scored the best at K$\in{2,3}$, this is expected in a parse dataset like the gene expression of the MIBC where there are no clear defined groups. To avoid getting the best performance at K=2 or K=3, the lower bound was set to 4, while the upper limit at 13 as it was observed that the metrics decrease proportionally with the number of clusters. The number of 'X' markers on top of the bar marks the model's position in top three. From the plots, it can be seen that the K-means generally performs the best across the clustering methods. The inverse relation between the algorithm's performance over the number of groups is the most evident in the Calinski Harabasz score (\cref{fig:cs:cal_hab}) and in Davies Bouldin index (\cref{fig:cs:dav_boul}), but less pronounced in the Silhouette score (\cref{fig:cs:cosine}).
 
 
 \begin{figure}[!htb]
@@ -54,11 +73,13 @@ The performance of the five clustering methods across $K\in(4, 13)$ is displayed
         \caption{Most frequent K in top 3}
         \label{fig:cs:heatmap_cs}
     \end{subfigure}
-    \caption{Most frequent model and K by the clustering metrics. For each heatmap the rows are given by top model/K for that metric, while the X axis contains the methods used. The colouring is done per column, so it can be determine the right configuration per model and for the number of clusters.}
+    \caption{Most frequent model and K by the clustering metrics. For each heatmap the rows are given by top model/K for that metric, while the X axis contains the methods used. The \textbf{colouring is done per column}, so it can be determine the right configuration per model and for the number of clusters. The following shortcuts were used: \textbf{Wrd} - Ward, \textbf{Brch} - Birch, \textbf{GaussianMixture} - Gaussian Mixture Models, \textbf{Spec} - Spectral Clustering.}
     \label{fig:cs:cs_metrics_heatmap}
 \end{figure}
 
 To aid the decision making, the top 3 most performing configuration is displayed per cluster metric in \cref{fig:cs:cs_metrics_heatmap}. The two heat-maps are similar, each column represents the algorithm while the rows the cluster metrics, the colouring is done by the occurrence per algorithm. In the first heatmap, \cref{fig:cs:heatmap_gen} the colour is proportional with the occurrence of the model configuration, while in the second \cref{fig:cs:heatmap_cs} the colouring is given by the number of clusters. This means, that the first plot gives the most popular model configuration per algorithm, while the second the most frequent K. From this, K-Means with 5, Spectral Clustering with 7 clusters and K=5 and K=7 are the most frequent methods/group sizes. 
+
+Less common are the cluster models with high number of clusters such as Wrd\_9, Birch\_11 or GaussianMixture\_8. It can also be noticed that the cluster sizes oscillates between 5-7 groups which is in agreement with the other classification such as TCGA (5) and consensus (6) \citet{Robertson2017-mg,Kamoun2020-tj}.
 
 
 \paragraph*{Silhouette distribution}
@@ -108,29 +129,50 @@ So far the decision making was made by using the mean of the clustering metrics,
 The first two rows on \cref{fig:cs:sill_distrib} present the subplots containing the Silhouette distribution and the 2-d scatter plot of the first two principal components. Generally, a silhouette score above 0.5 is considered a good good and that the sample belongs to its group, values around 0 indicates that the sample can be grouped to multiple clusters, while the negative values denotes the miss-labelled of the samples. Across the top 4 plots, it can be seen that the vast majority of the samples are below the 0.5 threshold. This indicates the lack of clear defined clusters and high heterogeneity of the data which is a known aspect of the MIBC 'molecular profile' (see \cref{s:lit:bladder_cancer}). As it was mentioned before, K=3 has a higher mean score than the other models, but in the top right plot it can be seen that most of the samples are below the 0.5. As the number of K increases, the number of samples with negative or above 0.5 Silhouette scores is fairly stable as seen in the bottom-right bar plot. 
 
 % Commenting the Sankey
-Lastly, the Sankey plot shows the cluster evolution as K it is increased. Initially there are three groups at K=3: Basal, Luminal and luminal infiltrated, but then at K=4, the Basal is split into 4 groups and later into 3 at K=5, which are kept till K=6. The large luminal is split only at K=6, this is surprising as in the previous classifications usually the luminal group split into smaller groups.
+Lastly, the Sankey plot shows the cluster evolution as K it is increased. Initially there are three groups at K=3: Basal, Luminal and luminal infiltrated, but then at K=4, the Basal is split into 4 groups and later into 3 at K=5, which are kept till K=6. The large luminal is split only at K=6, this is surprising as in the previous classifications usually the luminal group split into smaller groups before the basal.
 
-Based on the analysis done in this section, K-means with K=5 and K=6 are the most suitable configuration for the model. However, K-means with K=5 consistently scores higher across the clustering metrics and it is the configuration chosen to go forward over the K=6 which it also splits the luminal large group.
+Based on the analysis done in this section, K-means with K=5 and K=6 are the most suitable configuration for the model. However, K-means with K=5 consistently scores higher across the clustering metrics and it is the configuration chosen to go forward.
 
 \subsubsection{Pipeline}
 
 The pipeline and configuration of the different components can be summarised in the \cref{fig:cs:clustering_pipeline} and has three stages:
 \begin{enumerate}
     \item The data is pre-processed, only the genes that are expressed in 90\% of the samples. \item From this, the top $3500$ with the highest std/median ratio are kept. Ensuring to retain the genes that have a high relative variance across samples. The number of genes represent ~25\% of the filtered dataset and it is a similar size to the data used by \citet{Robertson2017-mg}.
-    \item To the resultant gene set of $408x3500$ (samples, genes) is log2(TPM+1) transformed (dealing with 0 values) and the PCA with 4 components is applied
+    \item To the resultant gene set of $408x3500$ (samples, genes) is log2(TPM+1) transformed (account for $log2$ 0 values) and the PCA with 4 components is applied
     \item On the $408x4$ K-means with K=5 is applied, resulting in the scatter plot at the end of the pipeline.
 \end{enumerate}
-
-\begin{figure}[!htb]    
-    \centering
-    \includegraphics[width=1\textwidth,keepaspectratio]{Sections/ClusteringAnalysis/Resources/clustering_pipeline.png}
-    \caption{Summary of the clustering analysis developed in this section}
-    \label{fig:cs:clustering_pipeline}
-\end{figure}
 
 The clustering analysis established in this part of the thesis is simple using basic clustering and dimension reduction techniques. So far the approach taken was unbiased and the configurations were decided based on established clustering metrics. There was no domain knowledge used, apart from the guiding parameters for the numbers of genes to be kept from the TCGA's MIBC paper from \citet{Robertson2017-mg}. It can be noted that the number of clusters arrived is the same as in the above-mentioned work and that the consensus \citet{Kamoun2020-tj} found 6 subtypes. 
 
 In the following section, the 5 clusters are explored in more depth and put in the context of the other work performed in the Jack Birch Unit \citet{Baker2022-bj}, TCGA \citet{Robertson2017-mg}, Lund classifier \citet{Marzouka2018-ge} and the consensus \citet{Kamoun2020-tj}. It will also cover their clinical implication by performing Kaplan-Meier survival analysis and Defferentialy Expressed Analysis (DEA).
 
 
+% \begin{landscape}
+% \thispagestyle{empty} % Optional: to remove the page number if desired
+% \begin{figure}[!htb]
+%     \includegraphics[height=1\textheight, width=1.0\textwidth,keepaspectratio]{Sections/ClusteringAnalysis/Resources/clustering_pipeline.png}
+%     \caption{Summary of the clustering analysis developed in this section}
+%     \label{fig:cs:clustering_pipeline}
+% \end{figure}
+% \end{landscape}
 
+
+% \begin{figure}[H]    
+% \centering
+% \includegraphics[height=0.9\textheight,keepaspectratio]{Sections/ClusteringAnalysis/Resources/clustering_pipeline_rotated.png}
+%     \caption{\adjustbox{angle=90}{Summary of the clustering analysis developed in this section}}
+%     \label{fig:cs:clustering_pipeline}
+% \end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}[b]{0.75\textwidth}
+        \centering
+    \includegraphics[height=\textheight,keepaspectratio]{Sections/ClusteringAnalysis/Resources/clustering_pipeline.png}
+    \end{minipage}%
+    \begin{minipage}[b]{0.2\textwidth}
+        \centering
+        \rotatebox{90}{\begin{minipage}{\textheight}\caption{Summary of the clustering analysis developed in this section}\end{minipage}}
+    \end{minipage}
+    \label{fig:cs:clustering_pipeline}
+\end{figure}
