@@ -8,19 +8,19 @@
 \begin{figure}[!h]
     \captionsetup[subfigure]{justification=Centering}
     \centering
-    \begin{subfigure}[!t]{0.3\textwidth}
+    \begin{subfigure}[!t]{0.6\textwidth}
         \includegraphics[width=\textwidth]{Sections/ClusteringAnalysis/Resources/cs_top3/nonPCA/non_PCA_top3_Silhoute_cosine.png}
         \caption{Silhouette using cosine distance}
         \label{fig:ap:cosine}
     \end{subfigure}
     \centering
-    \begin{subfigure}[!t]{0.3\textwidth}
+    \begin{subfigure}[!t]{0.6\textwidth}
         \includegraphics[width=\textwidth]{Sections/ClusteringAnalysis/Resources/cs_top3/nonPCA/non_PCA_top3_Calinski_habrasz.png}
         \caption{Calinski Harabasz}
         \label{fig:ap:cal_hab}
     \end{subfigure}
     \centering
-    \begin{subfigure}[!t]{0.3\textwidth}
+    \begin{subfigure}[!t]{0.6\textwidth}
         \includegraphics[width=\textwidth]{Sections/ClusteringAnalysis/Resources/cs_top3/nonPCA/non_PCA_top3_Davies_bouldin.png}
         \caption{Davies Bouldin}
         \label{fig:ap:dav_boul}
@@ -30,13 +30,35 @@
 \end{figure}
 
 
-\subsection{GSEA Ne} \label{s:ap:cs:gsea_ne}
+\subsection{GSEA - Hallmarks database} \label{s:ap:cs:gsea_ne}
 
-\begin{figure}[!htb]    
+\subsubsection{LumInf}
+
+\begin{figure}[H]    
     \centering
-\includegraphics[width=1.0\textwidth,keepaspectratio]{Sections/ClusteringAnalysis/Resources/discussion/other_groups/ne2_hallmark_10_top.png}
-    \caption{The top 10 terms of running GSEA on the Hallmark database. The ranking is using the pi plot from \cref{fig:cs:ne_pi}}
-    \label{fig:ap:cs:gsea_ne_hallmark}
+\includegraphics[width=1.0\textwidth,keepaspectratio]{Sections/ClusteringAnalysis/Resources/discussion/other_groups/lumInf_hallmark_10_top.png}
+    \caption{For the Luminal Infiltrated group derived in \cref{s:cs:bio_interp} and accompanying the analysis in \cref{s:cs:lumInf_interp}. The top 10 terms of running GSEA on the Hallmark database. The ranking is using the pi plot from \cref{fig:cs:lumInf_pi}}
+    \label{fig:ap:cs:gsea_lumInf_hallmark}
 \end{figure}
 
 
+\subsubsection{LumP}
+
+
+\begin{figure}[H]    
+    \centering
+\includegraphics[width=1.0\textwidth,keepaspectratio]{Sections/ClusteringAnalysis/Resources/discussion/other_groups/lumP2_hallmark_10_top.png}
+     \caption{For the Luminal Papillary group derived in \cref{s:cs:bio_interp} and accompanying the analysis in \cref{s:cs:lumP_interp}. The top 10 terms of running GSEA on the Hallmark database. The ranking is using the pi plot from \cref{fig:cs:lumP_pi}}
+    \label{fig:ap:cs:gsea_lump_hallmark}
+\end{figure}
+
+
+\subsubsection{NE-like}
+
+
+\begin{figure}[H]    
+    \centering
+\includegraphics[width=1.0\textwidth,keepaspectratio]{Sections/ClusteringAnalysis/Resources/discussion/other_groups/ne2_hallmark_10_top.png}
+     \caption{For the Neuroendocrine-like group derived in \cref{s:cs:bio_interp} and accompanying the analysis in \cref{s:cs:ne_interp}. The top 10 terms of running GSEA on the Hallmark database. The ranking is using the pi plot from \cref{fig:cs:ne_pi}}
+    \label{fig:ap:cs:gsea_ne_hallmark}
+\end{figure}

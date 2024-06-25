@@ -85,7 +85,7 @@ from \citet{Robertson2017-mg} by the green line, and the other 3 lines are repre
     \label{fig:cs:basal_survival}
 \end{figure}
 
-\subsubsection{Basal exploration}
+\subsubsection{Basal exploration} \label{s:cs:basal_interp}
 
 Differential Expression Analysis (DEA) was employed to further explore the subgroups derived among the MIBC subtypes. The focus was particularly on the Basal groups, as the three-way split introduced novel aspects, some of which had been previously validated through other classifications \citet{Baker2022-bj,Marzouka2018-ge}.
 
@@ -153,12 +153,12 @@ The two figures \cref{fig:cs:pi_basal,fig:cs:pi_basal_inf} further reinforce the
 
 
 
-\paragraph*{LumInf}
+\subsubsection{LumInf} \label{s:cs:lumInf_interp}
 
 The previous subsections were focused on understanding the molecular properties of the Basal subgroups, identifying High IFNG to be 'closer' to the Luminal infiltrated. To elucidate the molecular particularities of the luminal infiltrated groups, the Pi-plot was constructed using the DEA results from LumInf versus Low IFNG on the X-axis and LumInf versus LumP on the Y-axis. The Low IFNG group was chosen as a representative of the Basal groups as it lacks immune infiltration, thereby highlighting the LumInf properties, while LumP was selected to examine shared luminal features.
 
 % Introducing GSEA
-\acrfull{gsea} was run on the REACTOME (see \ref{}) and Hallmarks (see \ref{}) database using GSEApy \citet{Fang2023-ec} package. The ranking was computed by using the referential point in quadrant II (see light blue cross in \cref{lumInf_gsea}) representing the point with the 'strongest' LumInf molecular properties across the two DEA comparisons; this is determined by the maximum point on the X-axis and the minimum on the Y-axis. The distance to all the other points from the referential marker are computed, which are then ranked. This method is widely used in this PhD project as it provides a ranking system in the context of two DEA, focusing on the genes specific to a quadrant, in this case the LumInf. 
+\acrfull{gsea} was run on the REACTOME (see \cref{fig:cs:ne_gsea}) and Hallmarks (see \ref{fig:ap:cs:gsea_ne_hallmark}) database using GSEApy \citet{Fang2023-ec} package. The ranking was computed by using the referential point in quadrant II (see light blue cross in \cref{fig:cs:lumInf_gsea}) representing the point with the 'strongest' LumInf molecular properties across the two DEA comparisons; this is determined by the maximum point on the X-axis and the minimum on the Y-axis. The distance to all the other points from the referential marker are computed, which are then ranked. This method is widely used in this PhD project as it provides a ranking system in the context of two DEA, focusing on the genes specific to a quadrant, in this case the LumInf. 
 
 % Commenting the immune aspect of the Pi plot
 The striking group of points in the second quadrant of \cref{fig:cs:lumInf_pi}, specific to LumInf, includes the immunoglobulin family, denoting the immune infiltration characteristic of the group. This is further substantiated by the results from the GSEA in \cref{fig:cs:lumInf_gsea}, where most pathways found in Reactome involve genes linked to the immune response, such as \textit{FCGR Activation}, \textit{CD22 mediated BCR regulation}, or \textit{creation of C4 and C2 activators}.
@@ -177,19 +177,19 @@ This analysis confirms both the immune infiltration and the luminal molecular ch
         \label{fig:cs:lumInf_pi}
     \end{subfigure}
     \centering
-    \begin{subfigure}[!t]{0.8\textwidth}
+    \begin{subfigure}[!t]{0.9\textwidth}
         \includegraphics[width=\textwidth, keepaspectratio]{Sections/ClusteringAnalysis/Resources/discussion/other_groups/lumInf_reactome_10_top.png}
         \caption{Top 10 GSEA results on the Reactome database.}
         \label{fig:cs:lumInf_gsea}
     \end{subfigure} 
     \centering
-    \caption{Molecular overview of the Luminal Infiltrated (LumInf) group. The Pi plot shows the genes specific to LumInf from the DEA with LowIFNG and LumP, while the GSEA plot displays the top 10 terms in the enrichment analysis.} 
+    \caption{Molecular overview of the Luminal Infiltrated (LumInf) group. The Pi plot shows the genes specific to LumInf from the DEA with LowIFNG and LumP, while the GSEA plot displays the top 10 Reactome terms in the enrichment analysis; \acrshort{gsea} was also applied to Hallmarks database in \cref{fig:ap:cs:gsea_lumInf_hallmark} from Appendix.} 
     \label{fig:cs:lumInf}
 \end{figure}
 
 
 
-\paragraph*{LumP}
+\subsubsection{LumP} \label{s:cs:lumP_interp}
 
 The LumInf group exhibits some of the molecular properties of a luminal subtype, but the immune response of the samples is notably strong. In contrast, the tissues from the LumP group are not affected by this 'noise'. To understand the molecular properties of the LumP group, the Pi plot in \cref{fig:cs:lumP_pi} and the \acrshort{gsea} results in \cref{fig:cs:lumP_gsea} are utilised. To highlight the molecular characteristics of the LumP group, \acrshort{dea} between LumP and Ne is performed on the Y-axis, while LumP versus Low IFNG is shown on the X-axis. This configuration ensures that any immune response in LumP is discernible, as both comparison groups are characterised by a lack of immune activity. It also accentuates the markers of the luminal group, given that Low IFNG and Ne possess distinctly different molecular properties.
 
@@ -213,19 +213,19 @@ In the GSEA plot, the top enriched pathways are down-regulated in the LumP, indi
         \label{fig:cs:lumP_pi}
     \end{subfigure}
     \centering
-    \begin{subfigure}[!t]{0.69\textwidth}
+    \begin{subfigure}[!t]{0.91\textwidth}
         \includegraphics[width=\textwidth, keepaspectratio]{Sections/ClusteringAnalysis/Resources/discussion/other_groups/lumP2_reactome_10_top.png}
         \caption{Top 10 GSEA results on the Reactome database.}
         \label{fig:cs:lumP_gsea}
     \end{subfigure} 
     \centering
-    \caption{Molecular overview of the Luminal Papillary (LumP) group. The Pi plot shows the genes specific to LumP from the DEA with Low IFNG and Ne, where the GSEA plot displays the top 10 terms in the enrichment analysis.} 
+    \caption{Molecular overview of the Luminal Papillary (LumP) group. The Pi plot shows the genes specific to LumP from the DEA with Low IFNG and Ne, where the GSEA plot displays the top 10 terms in the enrichment analysis; \acrshort{gsea} was also applied to Hallmarks database in \cref{fig:ap:cs:gsea_lump_hallmark} from Appendix.} 
     \label{fig:cs:lump}
 \end{figure}
 
 
 
-\paragraph*{NE}
+\subsubsection{NE} \label{s:cs:ne_interp}
 
 
 In the TCGA's MIBC cohort, the TCGA classifier identified 20 samples as Neuroendocrine like (NE-like), 11 of which are also classified as Sc/NE-like by the Lund classifier, and only 6 of the initial 20 are confirmed as NE-like by the consensus, which includes more than the two datasets mentioned. This suggests that considerable uncertainties still exist regarding the criteria that define the NE group. The clustering analysis conducted in this section grouped \textbf{32} samples into what appears to contain most of the NE-like groups from both the TCGA and Lund datasets \cref{fig:cs:ifn_comp}.
@@ -234,19 +234,19 @@ To further explore the NE group derived in this section, the Pi-plot in \cref{fi
 
 \begin{figure}[!htb]
     \centering
-    \begin{subfigure}[!t]{0.79\textwidth}
+    \begin{subfigure}[!t]{1.0\textwidth}
         \includegraphics[width=\textwidth,keepaspectratio]{Sections/ClusteringAnalysis/Resources/discussion/other_groups/ne_pi.png}    
         \caption{Pi}
         \label{fig:cs:ne_pi}
     \end{subfigure}
     \centering
-    \begin{subfigure}[!t]{0.59\textwidth}
+    \begin{subfigure}[!t]{0.9\textwidth}
         \includegraphics[width=\textwidth, keepaspectratio]{Sections/ClusteringAnalysis/Resources/discussion/other_groups/ne2_reactome_10_top.png}
         \caption{Top 10 GSEA results on the Reactome database.}
         \label{fig:cs:ne_gsea}
     \end{subfigure} 
     \centering
-    \caption{Molecular overview of the Neuroendocrine-like (NE) group. The Pi plot displays the genes specific to the NE group from the DEA with Low IFNG and LumP, where the GSEA plot shows the top 10 terms in the enrichment analysis.} 
+    \caption{Molecular overview of the Neuroendocrine-like (NE) group. The Pi plot displays the genes specific to the NE group from the DEA with Low IFNG and LumP, where the GSEA plot shows the top 10 terms in the enrichment analysis; \acrshort{gsea} was also applied to Hallmarks database in \cref{fig:ap:cs:gsea_ne_hallmark} from Appendix.} 
     \label{fig:cs:ne}
 \end{figure}
 
@@ -260,35 +260,3 @@ The Low IFNG and LumP comparison groups represent the two major MIBC categories,
 
 % GSEA
 The GSEA plot in \cref{fig:cs:ne_gsea} reveals several pathways related to collagen or the lagging strand, suggesting the involvement of these genes in Epithelial Mesenchymal Transition (EMT). This is emphasized by the GSEA run on the Hallmark database, presented in the Appendix \cref{fig:ap:cs:gsea_ne_hallmark}, which also identifies pathways involved in the cell cycle. The analysis of the NE quadrant highlights the neuronal nature of the subgroups but also underlines the potential to discover new genes specific to the subtype. Overall, the analysis shows that the studied group exhibits gene expression patterns distinct from those of the luminal and basal groups.
-
-
-\subsubsection{Summary}
-
-The key finding in that by tweaking the gene filtering process and using a simple clustering approach, it was found that the canonical Basal group can be split into two based on the immune response. This shows that even without additional data such as immunochemistry or in-vitro experiments, new subgroups are yet to found with a biological importance.
-
-This is not to say that the additional data does not improve the classification, but the contrary as the Basal group was further divided into three subgroups, one with a much lower survival prognosis. 
-
-% The Basal split into two subgroups is not new, as it was shown in the Lund classification \citet{Marzouka2018-ge} and in-vitro experiments on \acrshort{ifn} from \citet{Baker2022-bj}. In both cases the group with a better immune response had a better survival prognosis.
-
-% Previously, in the Lund classification \citet{Marzouka2018-ge} and in-vitro experiments on \acrshort{ifn} from \citet{Baker2022-bj}, it was shown that the Basal can be split into two. In both cases the group with a better immune response had a better survival prognosis.
-
-\begin{figure}[!htb]
-    \centering
-    \begin{subfigure}[!t]{1.0\textwidth}
-        \includegraphics[width=\textwidth,keepaspectratio]{Sections/ClusteringAnalysis/Resources/discussion/survival_K_6.png}    
-        \caption{Survival Kaplan-Meier}
-        \label{fig:cs:survail_K}
-    \end{subfigure}
-    \centering
-    \begin{subfigure}[!t]{1.0\textwidth}
-        \includegraphics[width=\textwidth,keepaspectratio]{Sections/ClusteringAnalysis/Resources/discussion/KMeans_6_comp.png}
-        \caption{Sankey plot}
-        \label{fig:cs:stroma_basal}
-    \end{subfigure} 
-    \centering
-    \caption{Overview of the MIBC subtypes derived from using K-means K=5 and the \acrshort{ifn} Basal stratification form \citet{Baker2022-bj}. The first plot shows the Kaplan-Meier survival analysis of the 6 subgroups find, Ne and Low IFNG having the poorest prognosis. The Sankey at the bottom shows how the subtypes found are compared with the TCGA \citet{Robertson2017-mg} and Lund \citet{Marzouka2018-ge} classifiers.} 
-    \label{fig:cs:overview_K_means_6}
-\end{figure}
-
-
-\newpage

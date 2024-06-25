@@ -29,6 +29,8 @@ The following adjustments based on the \citet{Scikit-learn_undated-ax} were made
 
 Before applying clustering methods, Principal Component Analysis (PCA) is utilized to reduce the data dimensions. This dimensionality reduction significantly enhances the performance of the clustering algorithms, as evidenced by the improved metric scores for PCA-transformed data compared to non-PCA data, shown in \cref{fig:cs:cs_metrics} and \cref{fig:ap:non_pca_metrics} in the Appendix. Specifically, the Silhouette score doubles, indicating a two-fold improvement in cluster tightness and separation. The Calinski-Harabasz score sees a threefold increase, reflecting better-defined clusters, while the Davies-Bouldin score halves, suggesting a better partition (lower is better). The number of PCA components is set to four, marking the threshold beyond which each additional component contributes less than 1\% to the overall PCA variance\footnote{The PCA variance is a measure of the information each component captures}.
 
+The performance of the five clustering methods across $K\in(4, 13)$ is displayed in
+\cref{fig:cs:cs_metrics}. It was empirically observed that the clustering method scored the best at K$\in{2,3}$, this is expected in a parse dataset like the gene expression of the MIBC where there are no clear defined groups. To avoid getting the best performance at K=2 or K=3, the lower bound was set to 4, while the upper limit at 13 as it was observed that the metrics decrease proportionally with the number of clusters. The number of 'X' markers on top of the bar marks the model's position in top three. From the plots, it can be seen that the K-means generally performs the best across the clustering methods. The inverse relation between the algorithm's performance over the number of groups is the most evident in the Calinski Harabasz score (\cref{fig:cs:cal_hab}) and in Davies Bouldin index (\cref{fig:cs:dav_boul}), but less pronounced in the Silhouette score (\cref{fig:cs:cosine}).
 
 \begin{figure}[H]
     \captionsetup[subfigure]{justification=Centering}
@@ -54,21 +56,18 @@ Before applying clustering methods, Principal Component Analysis (PCA) is utiliz
     \label{fig:cs:cs_metrics}
 \end{figure}
 
-
-The performance of the five clustering methods across $K\in(4, 13)$ is displayed in
-\cref{fig:cs:cs_metrics}. It was empirically observed that the clustering method scored the best at K$\in{2,3}$, this is expected in a parse dataset like the gene expression of the MIBC where there are no clear defined groups. To avoid getting the best performance at K=2 or K=3, the lower bound was set to 4, while the upper limit at 13 as it was observed that the metrics decrease proportionally with the number of clusters. The number of 'X' markers on top of the bar marks the model's position in top three. From the plots, it can be seen that the K-means generally performs the best across the clustering methods. The inverse relation between the algorithm's performance over the number of groups is the most evident in the Calinski Harabasz score (\cref{fig:cs:cal_hab}) and in Davies Bouldin index (\cref{fig:cs:dav_boul}), but less pronounced in the Silhouette score (\cref{fig:cs:cosine}).
-
+To aid the decision making, the top 3 most performing configuration is displayed per cluster metric in \cref{fig:cs:cs_metrics_heatmap}. The two heat-maps are similar, each column represents the algorithm while the rows the cluster metrics, the colouring is done by the occurrence per algorithm. In the first heatmap, \cref{fig:cs:heatmap_gen} the colour is proportional with the occurrence of the model configuration, while in the second \cref{fig:cs:heatmap_cs} the colouring is given by the number of clusters. This means, that the first plot gives the most popular model configuration per algorithm, while the second the most frequent K. From this, K-Means with 5, Spectral Clustering with 7 clusters and K=5 and K=7 are the most frequent methods/group sizes. 
 
 \begin{figure}[!htb]
     \captionsetup[subfigure]{justification=Centering}
     \centering
-    \begin{subfigure}[!t]{0.75\textwidth}
+    \begin{subfigure}[!t]{0.65\textwidth}
         \includegraphics[width=\textwidth]{Sections/ClusteringAnalysis/Resources/cs_top3/top3_cs_gen_top3_heatmap_pca.png}
         \caption{Most frequent cluster model}
         \label{fig:cs:heatmap_gen}
     \end{subfigure}
     \centering
-    \begin{subfigure}[!t]{0.75\textwidth}
+    \begin{subfigure}[!t]{0.65\textwidth}
         \includegraphics[width=\textwidth]{Sections/ClusteringAnalysis/Resources/cs_top3/top3_cs_size_top3_heatmap_pca.png}
         \caption{Most frequent K in top 3}
         \label{fig:cs:heatmap_cs}
@@ -77,15 +76,23 @@ The performance of the five clustering methods across $K\in(4, 13)$ is displayed
     \label{fig:cs:cs_metrics_heatmap}
 \end{figure}
 
-To aid the decision making, the top 3 most performing configuration is displayed per cluster metric in \cref{fig:cs:cs_metrics_heatmap}. The two heat-maps are similar, each column represents the algorithm while the rows the cluster metrics, the colouring is done by the occurrence per algorithm. In the first heatmap, \cref{fig:cs:heatmap_gen} the colour is proportional with the occurrence of the model configuration, while in the second \cref{fig:cs:heatmap_cs} the colouring is given by the number of clusters. This means, that the first plot gives the most popular model configuration per algorithm, while the second the most frequent K. From this, K-Means with 5, Spectral Clustering with 7 clusters and K=5 and K=7 are the most frequent methods/group sizes. 
 
 Less common are the cluster models with high number of clusters such as Wrd\_9, Birch\_11 or GaussianMixture\_8. It can also be noticed that the cluster sizes oscillates between 5-7 groups which is in agreement with the other classification such as TCGA (5) and consensus (6) \citet{Robertson2017-mg,Kamoun2020-tj}.
+
+
+
 
 
 \paragraph*{Silhouette distribution}
 
 % Sillhouette
-So far the decision making was made by using the mean of the clustering metrics, while this helped to select the model and the number of clusters, the average does not contain the variation in the scores. To address, the distribution of the Silhouette scores\footnote{The experiment for this is an adapted version of the \href{https://tinyurl.com/sillhouete-distrib}{example} from Scikit-learn library.} was plotted in \cref{fig:cs:sill_distrib} for the K-means model between 3 to 6 clusters. A restricted range of K was used to facilitate the visualisation and the previous results (\cref{fig:cs:cs_metrics}) suggests that there is little benefit for adding more. 
+Hitherto, decision-making within this study was guided by the average values derived from clustering metrics. While this approach facilitated the initial selection of the most suitable model and the optimal number of clusters, it inherently neglected the variability inherent in the scores. To address this analytical shortfall, the distribution of the Silhouette scores\footnote{This experiment is an adapted version of the \href{https://tinyurl.com/sillhouete-distrib}{example} provided by the Scikit-learn library.} has been graphically represented in \cref{fig:cs:sill_distrib} for the K-means model, spanning 3 to 6 clusters. This constrained range was strategically selected to enhance visual interpretation and is underpinned by preceding results (\cref{fig:cs:cs_metrics}), which indicate marginal gains from augmenting the cluster count beyond this spectrum.
+
+
+The first two rows of \cref{fig:cs:sill_distrib} display the subplots containing the Silhouette distribution and the 2-D scatter plot of the first two principal components. Generally, a Silhouette score above 0.5 is considered good, indicating that the sample is well-matched to its group. Scores around 0 suggest that the sample could belong to multiple clusters, while negative values denote mislabelling of the samples. Across the top four plots, it is apparent that the vast majority of samples fall below the 0.5 threshold, indicating a lack of clearly defined clusters and a high degree of data heterogeneity, a known characteristic of the MIBC 'molecular profile' (see \cref{s:lit:bladder_cancer}). Although K=3 has a higher mean score than other models, the top right plot shows that most samples still score below 0.5 also confirmed in \cref{fig:cs:sill_neg_above_th}.
+
+% Comment on the bar plot and the number of samples
+The bar plot in \cref{fig:cs:sill_neg_above_th} displays the number of samples on the Y-axis for each $K \in [3, 8]$ that either exhibit negative Silhouette scores (red) or are above the 0.5 threshold (green). Across all $K$ values, there are very few samples exceeding the recommended Silhouette threshold, indicating a lack of clearly defined clusters. For selecting the number of well-clustered samples, $K=5$ and $K=6$ show the highest counts of well-clustered samples, with $K=5$ also having an equal number of samples with negative Silhouette scores. The highest instances of mis-clustered samples occur with $K=2$ and $K=3$, which also have the fewest samples above the threshold. \Cref{fig:cs:sill_neg_above_th} suggests that K-means with $K=5$ and $K=6$ performs better than the others.
 
 
 \begin{figure}[H]
@@ -93,45 +100,53 @@ So far the decision making was made by using the mean of the clustering metrics,
     \centering
     \begin{subfigure}[!t]{0.49\textwidth}
         \includegraphics[width=\textwidth]{Sections/ClusteringAnalysis/Resources/cs_top3/sill_distrib/KMeans_3_sill_distrib.png}
-        \caption{K=3}
+        \caption{K=3 (Silhouette Mean: $0.43$)}
     \end{subfigure}
     \centering
     \begin{subfigure}[!t]{0.49\textwidth}
         \includegraphics[width=\textwidth]{Sections/ClusteringAnalysis/Resources/cs_top3/sill_distrib/KMeans_4_sill_distrib.png}
-        \caption{K=4}
+        \caption{K=4 (Mean: $0.37$)}
     \end{subfigure}
     \centering
     \begin{subfigure}[!t]{0.49\textwidth}
         \includegraphics[width=\textwidth]{Sections/ClusteringAnalysis/Resources/cs_top3/sill_distrib/KMeans_5_sill_distrib.png}
-        \caption{K=5}
+        \caption{K=5 (Mean: $0.40$)}
     \end{subfigure}
     \centering
     \begin{subfigure}[!t]{0.49\textwidth}
         \includegraphics[width=\textwidth]{Sections/ClusteringAnalysis/Resources/cs_top3/sill_distrib/KMeans_6_sill_distrib.png}
-        \caption{K=6}
+        \caption{K=6 (Mean: $0.35$)}
     \end{subfigure}
     \centering
-    \begin{subfigure}[!t]{0.65\textwidth}
-        \includegraphics[width=\textwidth, keepaspectratio]{Sections/ClusteringAnalysis/Resources/cs_top3/sill_distrib/sill_neg_above_th.png}
-        \caption{Number of samples with negative and above 0.5 Silhouette scores}
-    \end{subfigure}
-    \centering
-     \begin{subfigure}[!t]{0.65\textwidth}
-        \includegraphics[width=\textwidth, keepaspectratio]{Sections/ClusteringAnalysis/Resources/cs_top3/sill_distrib/sky_kMeans.png}
-        \caption{Comparison across clustering methods}
-    \end{subfigure}
-    \centering
-    \caption{The silhouette distribution of the K-means model for K ranging from 3 to 6. The scatter plot on the right plots the first 2 components of PCA (4 components) coloured by the cluster labels from the method. A good silhouette score is considered to be above 0.5, which is marked on by the red dotted line. The sankey plot shows the comparison across the different configurations of K-Means.}
+    \caption{The silhouette distribution of the K-means model for K ranging from 3 to 6. The scatter plot on the right plots the first 2 components of PCA (4 components) coloured by the cluster labels from the method. A good silhouette score is considered to be above 0.5, which is marked on by the blue dotted line. The red dotted line represents the mean value. The values in the brackets represent the Mean Silhouette values across the samples.}
     \label{fig:cs:sill_distrib}
 \end{figure}
 
 
-The first two rows on \cref{fig:cs:sill_distrib} present the subplots containing the Silhouette distribution and the 2-d scatter plot of the first two principal components. Generally, a silhouette score above 0.5 is considered a good good and that the sample belongs to its group, values around 0 indicates that the sample can be grouped to multiple clusters, while the negative values denotes the miss-labelled of the samples. Across the top 4 plots, it can be seen that the vast majority of the samples are below the 0.5 threshold. This indicates the lack of clear defined clusters and high heterogeneity of the data which is a known aspect of the MIBC 'molecular profile' (see \cref{s:lit:bladder_cancer}). As it was mentioned before, K=3 has a higher mean score than the other models, but in the top right plot it can be seen that most of the samples are below the 0.5. As the number of K increases, the number of samples with negative or above 0.5 Silhouette scores is fairly stable as seen in the bottom-right bar plot. 
+Lastly, the Sankey plot visualises the cluster evolution as $K$ increases. Initially, at $K=3$, three groups are identified: Basal, Luminal, and Luminal Infiltrated. As $K$ increases to 4, the Basal group divides into four subgroups, which then consolidate into three at $K=5$; these subgroups are maintained through $K=6$. Surprisingly, the large Luminal group only splits at $K=6$, which deviates from previous classifications where the Luminal group typically divides into smaller subgroups earlier than the Basal.
 
-% Commenting the Sankey
-Lastly, the Sankey plot shows the cluster evolution as K it is increased. Initially there are three groups at K=3: Basal, Luminal and luminal infiltrated, but then at K=4, the Basal is split into 4 groups and later into 3 at K=5, which are kept till K=6. The large luminal is split only at K=6, this is surprising as in the previous classifications usually the luminal group split into smaller groups before the basal.
+Based on the analysis conducted in this section, $K=5$ and $K=6$ emerge as the most suitable configurations for the model. Specifically, $K=5$ consistently ranks among the top three best-performing models as evidenced in \cref{s:lit:clustering_metrics} and \cref{fig:cs:cs_metrics_heatmap}. Given the clustering metrics, $K=5$ was selected over $K=6$ as the optimal configuration moving forward.
 
-Based on the analysis done in this section, K-means with K=5 and K=6 are the most suitable configuration for the model. However, K-means with K=5 consistently scores higher across the clustering metrics and it is the configuration chosen to go forward.
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[H]{0.8\textwidth}
+        \includegraphics[width=\textwidth, keepaspectratio]{Sections/ClusteringAnalysis/Resources/cs_top3/sill_distrib/sill_neg_above_th.png}
+        \label{fig:cs:sill_neg_above_th}
+        \caption{Number of samples with negative and above 0.5 Silhouette scores}
+    \end{subfigure}
+    \centering
+     \begin{subfigure}[!t]{0.8\textwidth}
+        \includegraphics[width=\textwidth, keepaspectratio]{Sections/ClusteringAnalysis/Resources/cs_top3/sill_distrib/sky_kMeans.png}
+        \caption{Comparison across clustering methods}
+    \end{subfigure}
+    \centering
+    \caption{The bar plot presents the numbers samples that are above a 'good' Silhouette threshold vs the samples with negative values. The sankey plot shows the comparison across the different configurations of K-Means.}
+    \label{fig:cs:sankey_comp}
+\end{figure}
+
+
+
 
 \subsubsection{Pipeline}
 
