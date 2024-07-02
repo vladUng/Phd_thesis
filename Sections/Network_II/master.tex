@@ -1,5 +1,8 @@
 
-\section{Network II}
+\section{Network II} \label{s:N_II}
+
+\subsection{Overview}
+
 
 Changes in the network approach:
 \begin{itemize}
@@ -14,25 +17,18 @@ Changes in the network approach:
     \item Stating the goal of the method
 \end{itemize}
 
-\hfill
+\newpage
 
 Experiments performed:
 \begin{itemize}
-    \item Exploration of the communities in the standard
+    \item Standard Network Analysis
     \begin{itemize}
         \item Abs-Ca, UD and P0
-        \item Abs-Ca split
+        \item Abs-Ca split by gender
         \item Stratification of the benign uropathies 
         \item Cluster-tree and their significance
     \end{itemize}
-    \item Community and biological functions 
-    \begin{itemize}
-        \item Apply GO and GSEA to explore their biological functions
-        \item Detail the methods tried and the results found
-        \item Maybe link it back to PGCNA and SCES scores and say that we weren't successfull
-        \item Conclude that it didn't work out
-    \end{itemize}
-    \item Reward network analysis
+  \item Reward network analysis
     \begin{itemize}
         \item AHR and finding the correlation with SB's study
         \item other small communities with high connectivity
@@ -42,6 +38,13 @@ Experiments performed:
         \item Looking at the genes which are highly connected
         \item Wobble genes - where do they lie on?
     \end{itemize}
+    \item Communities and biological functions 
+    \begin{itemize}
+        \item Apply GO and GSEA to explore their biological functions
+        \item Detail the methods tried and the results found
+        \item Maybe link it back to PGCNA and SCES scores and say that we weren't successful
+        \item Conclude that it didn't work out
+    \end{itemize}
     \item Gene selection - v3 and V4
     \begin{itemize}
         \item Differences in the gene selection
@@ -49,8 +52,28 @@ Experiments performed:
     \end{itemize}
 \end{itemize}
 
-Essentially there are three biological studies that I can relate: 1) Interferon study 2) AHR study and 3) PPARG and RARG study.
 
-\import{Sections/Network_II/}{h_derived.tex}
+\import{Sections/Network_II/}{methods.tex}
+
+\import{Sections/Network_II/}{validation.tex}
+
+
+\import{Sections/Network_II/}{standard_net.tex}
+
+\import{Sections/Network_II/}{reward_net.tex}
+
 
 \newpage
+
+\subsubsection{Discussion}
+From the analysis performed there are some clear findings, there are two patterns in community enrichment across samples and another one which is fuzzier. Apart from this the new subtypes stratify based on the healthy communitiy is different from the previous ones. \textbf{WHY so different? Not sure.} A possible explanation might be that healthy and tumour don't share that many genes. It's also worth mentioning that the reward networks seams to further separate the two main patterns in the community enrichment.
+
+In this version of the network pipeline there are some parts that can be further improved.
+\begin{enumerate}
+    \item The Leiden community detection is flawed from the work from Tiago \cite{Peixoto2021-jx,Fortunato2016-tj}. Thus, we can use the Stochastic Block Model (SBM)\cite{Peixoto2017-ua}to update the network pipeline.
+    \item The healthy datasets is not aligned with the latest gencode version. This was clear from the Community 5 which most of the genes are not found in the tumour dataset. Thus, the healthy datasets needs to remap.
+    \item Gene selection. There is a need to either include more genes or select it differently to have a better representative of the mutated genes in the healthy.
+    \item Modifiers are not powerful enough. There is a need to increase the resolution and maybe encode the oncogene and tumour supresor genes.
+    \item Edge pruning. The current network approach draws inspiration from PGCNA which uses a very aggresive strategy, but we might lose some important information when we do that. SBM may be very sensitive to that and we may need to rethink the decision for TF. Also, an alternative is partial-correlation.
+\end{enumerate}
+
