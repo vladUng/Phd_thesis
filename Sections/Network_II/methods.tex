@@ -1,52 +1,32 @@
 \subsection{Methods} \label{Sec:N_II:methods}
 
-\paragraph*{iNet package}
+% Introduce the new pipeline 
+While in the previous network chapters the graphs were generated using an adapted version of the PGCNA as it was for an initial exploration of the network approach to stratify a disease. However, PGCNA was created with a slightly different purpose to the one in this project and the package provided did not meet some of the requirements defined in this project. The main drawback of using PGCNA is that it was built to support Leiden as a community detection and the code structure was inflexible for enabling data integration. For this reason, a new package was developed in this PhD called \textit{iNet} with the following requirements: 
 
-\paragraph*{Creating the network}
-
+% Goals of the pipeline
 \begin{itemize}
-    \item Gene filtering
-    \item Gene selection
-    \item Selective edge pruning
-    \item Weight modifiers
+    \item Modular - easy to change and adapt the different stages of the network pipeline
+    \item Multiple community detection - apart from Leiden and SBM, it should be easy to adapt for future methods. This also includes the capability to specify the arguments for a community detection algorithm
+    \item Weight modifiers - have the capability to easily add a new function to modify the weights
+    \item Other correlation matrices - allow to easily change the correlation metric from which the co-expressed network is built
+    \item Selective edge pruning - to easily change the genes that are prioritise in selective edge pruning 
+    \item Readability - easy to understand and use by another Python programmer
 \end{itemize}
 
-\paragraph*{Community Detection}
+Apart from following the Object Oriented Programming (OOP), splitting the process into different stages helped meeting the implementation requirements. Without delving into the code there the process is split into following stages:
+\begin{enumerate}
+    \item Filter the data - keep the specified number of the genes with the highest median, median ration
+    \item Build the correlation matrix
+    \item Apply the weight modifiers
+    \item Edge pruning
+    \item Apply community detection algorithm
+    \item Save the results
+\end{enumerate}
 
-\begin{itemize}
-    \item hSBM
-    \item Leiden?
-    \item standard SBM?
-\end{itemize}
-
-
-
-
-
-
-
+% Highlight some of the changes
+Compared to the previous network pipeline, the correlation matrix can be also built from the partial-correlation. The weight modifier function is easy to change and supports the sigmoid function to reward the mutated genes. The edge pruning uses the information from an input file of the genes that are allowed multiple edges. There is more freedom to change the community detection and configure them, for example the Leiden algorithm can be applied with Constant Pots Model as modularity maximisation function.
 
 
-
-
-To test our hypothesis apart from the usual graphs used to analyse the networks (see below the list) there was some biological interpretation performed. This included running GO analysis and understanding which communities contributed to the subtypes.
-
-This section will cover the usual graphs used to analyse the networks.
-\begin{todolist}
-    \item[\done] Leiden Rank compared to the modifiers
-    \item[\done] Sankey plot with stratification with other methods: VU+in-situ + TCGA and consensus
-    \item[\done] Community enrichment patterns
-    \item [\done] Survival plots.
-    \item Survival tables with different checkpoints.
-    \item Show the genes that are not found in community 5. Exhibiting the need for remapping of all the healthy datasets.
-    \item Gene stats stats
-    \begin{todolist}
-        \item How many genes are shared between the tumour and healthy? All healty and all tumour? Selected healthy and all tumour / selected most varied?
-        \item How many of the healthy genes are mutated?
-    \end{todolist}
-    \item [\wontfix] Gene Ontology plots (?)
-    \item  [\wontfix] What are the shared pathway? Are these scattered as in the P0 experiments?
-\end{todolist}
-
-
+% How was tested
+The same aggressive gene filtering was used as in the previous analysis, where all the genes that are expressed in at least 90\% of the samples were included. The new package was tested by comparing the outputs generated with \textit{iNet} against those from the modified PGCNA pipeline. Despite implementation differences, the two pipelines followed the same principles, and the correlation matrices and graphs were consistent. Thus, the \textit{iNet} package was validated against the matrix and graph generated from the previous pipeline.
 

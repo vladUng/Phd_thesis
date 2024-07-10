@@ -3,21 +3,68 @@
 
 \subsection{Overview}
 
+% Presented the previous work on the network
+The previous two chapters presented the first iteration of the network pipeline developed to stratify the \acrfull{mibc} using multiple data types. Data integration occurred at three different stages: 1) non-tumour data at the network level, 2) mutations at the edge weights, and 3) prioritisation of \acrfull{tf} at the degree level. So far, the most successful integration was modelling the number of edges depending on whether a gene is a TF or not, as seen in \cref{s:N_I:sel_pruning}.
+
+
+% Introduction to the limitations - Non-tumour dataset and MEV
+\Cref{s:p0} showed that using only the P0 dataset did not offer a sufficient representation of the non-tumour data, while the weight modifiers in \cref{s:N_I:tum} were not powerful enough to make a change in disease stratification. On top of that, the first version of the network pipeline suffered from some implementation limitations. When using the non-tumour data to build the network, the pipeline selects the genes that are important across the communities, and when it comes to computing the Module Evaluation Value (MEV), the tumour dataset is used. This means that there is a disconnection between the data used to build the network and the one used for tumour stratification, in this case, the TCGA dataset. In this chapter, the limitation is addressed in the new version of the MEV introduced, which takes into account both datasets.
+
+
+% Weight reward changes
+Another limitation in the first version of the network pipeline is how the mutation data is integrated into the network. Two strategies were explored, which either rewarded or penalised the mutated genes. The two modifier functions were designed to double the weight value (reward) or to change the weight to be close to 0 (penalised) for the most mutated genes and leave it unchanged for the rest, as seen in \cref{fig:N_I:modifiers}. \Cref{s:N_I:tum_stratification} showed the effects on the network metrics, but the modifiers had little effect on the tumour stratification (see \textbf{Sankey plot Rwrd vs Pen}). A possible explanation for this is the lack of a gradual increase in the weights for the genes that have a 'medium' mutation burden, and their effects are not picked up by Module Connection (ModCon) (\cref{fig:N_I:tum_leiden_modifiers}). This limitation is addressed in this chapter by introducing a new weight modifier, which is a Sigmoid function, offering a gradual weight increase. This chapter also focuses only on the reward function, as the penalised modifier had poorer performance.
+
+
+% Community detection - hSBM and SBM
+The \acrfull{sbm} and Leiden are the main community detection methods applied in the network pipeline. The SBM is preferred over Leiden as it is less prone to finding communities from noise. The SBM has a theoretical limit on how many groups it can find in a network, as explained in \cref{s:lit:sbm}. To address this, the hierarchical version of SBM is used in the new network pipeline. This comes with higher running times and computational costs but is still manageable on a medium-performance laptop.
+
+
+\subsubsection{Datasets}
+
+% Not sure if I need to re-mention this
+As in the previous sections, the mutation and gene expression data from the \acrshort{tcga} dataset is employed as the tumour dataset. For the non-tumour dataset, the mRNAseq data from the \acrfull{jbu} is used to generate most of the networks in this chapter. This consists of samples that are Abs-Calcium differentiated tissues, undifferentiated tissues, and P0. The list of TFs is taken from the Human Transcription Factors work by \citet{Lambert2018-el}.
+
+
+
+\import{Sections/Network_II/}{methods.tex}
+
+\import{Sections/Network_II/}{validation.tex}
+
+\import{Sections/Network_II/}{standard_net.tex}
+
+\import{Sections/Network_II/}{reward_net.tex}
+
+
+\newpage
+
+\subsubsection{Discussion}
+From the analysis performed there are some clear findings, there are two patterns in community enrichment across samples and another one which is fuzzier. Apart from this the new subtypes stratify based on the healthy community is different from the previous ones. \textbf{WHY so different? Not sure.} A possible explanation might be that healthy and tumour don't share that many genes. It's also worth mentioning that the reward networks seams to further separate the two main patterns in the community enrichment.
+
+In this version of the network pipeline there are some parts that can be further improved.
+\begin{enumerate}
+    \item The Leiden community detection is flawed from the work from Tiago \cite{Peixoto2021-jx,Fortunato2016-tj}. Thus, we can use the Stochastic Block Model (SBM)\cite{Peixoto2017-ua}to update the network pipeline.
+    \item The healthy datasets is not aligned with the latest gencode version. This was clear from the Community 5 which most of the genes are not found in the tumour dataset. Thus, the healthy datasets needs to remap.
+    \item Gene selection. There is a need to either include more genes or select it differently to have a better representative of the mutated genes in the healthy.
+    \item Modifiers are not powerful enough. There is a need to increase the resolution and maybe encode the oncogene and tumour supresor genes.
+    \item Edge pruning. The current network approach draws inspiration from PGCNA which uses a very aggresive strategy, but we might lose some important information when we do that. SBM may be very sensitive to that and we may need to rethink the decision for TF. Also, an alternative is partial-correlation.
+\end{enumerate}
+
+
+\newpage
 
 Changes in the network approach:
-\begin{itemize}
+\begin{todolist}
     \item Community detection - hSBM
     \item Chosen a TF - 6
-    \item Reward modifier
-    \item MEV take in account both the expression in non-cancerous and tumour
+    \item [\done] Reward modifier
+    \item [\done] MEV take in account both the expression in non-cancerous and tumour
     \item MEV with the mutations - what are the experiments here?
     \begin{itemize}
         \item There is a section in the healthySBM notebook where I am doing a quick comparison (iMev + mutation)
+        \item How many of mutated genes are selected between the new and older weigth modifier
     \end{itemize}
     \item Stating the goal of the method
-\end{itemize}
-
-\newpage
+\end{todolist}
 
 Experiments performed:
 \begin{itemize}
@@ -51,29 +98,4 @@ Experiments performed:
         \item comparing with the varied genes
     \end{itemize}
 \end{itemize}
-
-
-\import{Sections/Network_II/}{methods.tex}
-
-\import{Sections/Network_II/}{validation.tex}
-
-
-\import{Sections/Network_II/}{standard_net.tex}
-
-\import{Sections/Network_II/}{reward_net.tex}
-
-
-\newpage
-
-\subsubsection{Discussion}
-From the analysis performed there are some clear findings, there are two patterns in community enrichment across samples and another one which is fuzzier. Apart from this the new subtypes stratify based on the healthy communitiy is different from the previous ones. \textbf{WHY so different? Not sure.} A possible explanation might be that healthy and tumour don't share that many genes. It's also worth mentioning that the reward networks seams to further separate the two main patterns in the community enrichment.
-
-In this version of the network pipeline there are some parts that can be further improved.
-\begin{enumerate}
-    \item The Leiden community detection is flawed from the work from Tiago \cite{Peixoto2021-jx,Fortunato2016-tj}. Thus, we can use the Stochastic Block Model (SBM)\cite{Peixoto2017-ua}to update the network pipeline.
-    \item The healthy datasets is not aligned with the latest gencode version. This was clear from the Community 5 which most of the genes are not found in the tumour dataset. Thus, the healthy datasets needs to remap.
-    \item Gene selection. There is a need to either include more genes or select it differently to have a better representative of the mutated genes in the healthy.
-    \item Modifiers are not powerful enough. There is a need to increase the resolution and maybe encode the oncogene and tumour supresor genes.
-    \item Edge pruning. The current network approach draws inspiration from PGCNA which uses a very aggresive strategy, but we might lose some important information when we do that. SBM may be very sensitive to that and we may need to rethink the decision for TF. Also, an alternative is partial-correlation.
-\end{enumerate}
 
