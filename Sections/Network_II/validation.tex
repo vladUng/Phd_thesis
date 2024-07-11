@@ -53,11 +53,29 @@ The distributions of the closeness metric suggests that the nodes in the modifie
 \end{figure}
 
 
+Through the network metrics analysis it is clear that the weight modifier have an effect on the network, but it is not clear if it is strong enough to influence the Module Connection (ModCon) scores. The 100 genes with the highest ModCon it is used which are then used to stratify the MIBC. \Cref{fig:N_II:modCon_modifiers} addresses this by looking at the distribution of the mutation burden (or mutation count) from TCGA over the normalised ModCon values\footnote{The ModCon scores are normalised as the communities vary in size.}. The comparison is done for both tumour and non-tumour generated networks for the standard (blue), Reward 1 (orange) and Reward 2 (green - Sigmoid) modifiers. 
 
-% Sigmoid function
-% th
+A value of 1 on the X-axis signals a high important gene while 0 the opposite. This means, that the importance increases from left to right. Across all the plots it can be observed that as the node importance increases the mutation burden also increases. This indicates there is a 'natural' trend for the genes which are highly connected (i.e. highly correlated across the network) to also suffer from mutations. Surprisingly for the tumour generated networks (top \cref{fig:N_II:modCon_modifiers}) the modifiers seems to diminush this effect as the Standard (blue) has the highest sum of mutated genes that are also are ranked high in the networks. This pattern is clearly visible across the entire ModConRank Values.
 
-% Comparison between the weight modifiers
+On the bottom plot from \cref{fig:N_II:modCon_modifiers} it can be noticed that the new Reward modifier increases the mutation burden in the genes that are highly connected. This is effect is noticed over the Standard network as well as over the previous weight reward function. 
+
+The two histogram plots, \cref{fig:N_II:modCon_modifiers}, indicates that the sigmoid reward modifier has the intended effect into the network and it shows that the previous reward lack the power to influence the ModCon scores despite having an effect onto the network metrics. In addition, it shows that using weight modifiers in the tumour generated networks has the opposite effect of increasing the ModCon scores for the mutated genes with the Standard network performing the best. This can be explained by the gene expression across tumour has a stronger effect into the network and that the mutation burden can not have a high impact over the gene correlation.
+
+\begin{figure}[!htb]
+    \centering
+    \begin{subfigure}{1.0\linewidth}
+        \includegraphics[width=1.0\textwidth,keepaspectratio]{Sections/Network_II/validation/tum_modCon_hist.png}
+        \caption{Networks generated from the tumour dataset (TCGA)}
+    \end{subfigure} %
+    \centering
+    \begin{subfigure}{1.0\linewidth}
+        \includegraphics[width=1.0\textwidth,keepaspectratio]{Sections/Network_II/validation/non_tum_modCon_hist.png}
+        \caption{Networks generated from the non-tumour dataset (JBU)}
+    \end{subfigure}
+    \centering
+    \caption{The mutation burden from TCGA (Y-axis) over the ModCon Ranking (X-axis) for the three weight modifiers: standard, Reward 1 and Reward 2 (sigmoid). The relation between mutations and node's community relevance is shown for both tumour and non-tumour networks.}
+    \label{fig:N_II:modCon_modifiers}
+\end{figure}
 
 % SBM vs hSBM
 \subsubsection{SBM vs hSBM}
