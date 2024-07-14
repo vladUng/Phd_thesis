@@ -32,13 +32,10 @@ Overall the metrics comparisons shows that the non-tumour network react stronger
 \subsubsection{Comparison between reward functions} \label{s:N_II:reward_comp}
 
 
+
 % Do I need the following two paragraphs?
-A sigmoid function is used as a reward modifier for the revised network pipeline presented in this chapter. The differences in how the weight are changed by the two functions are shown in \textbf{The two modifier functions}. 
+A sigmoid function is used as a reward modifier for the revised network pipeline presented in this chapter. The differences in how the weight are changed by the two functions is shown in \cref{s:N_II:reward}. Here, the effect of the two reward functions on the network is studied.
 
-The effect of the two modifiers can be seen in the networks \ref{}, the standard graphs are used as a control both the non-tumour and tumour datasets.
-
-
-% introduce the kaltz centrality
 In the previous sections the network differences between the Standard and modified networks was studied through the bar plots. The comparisons involved three networks as 3 histograms on a single plot resulted on a cluttered figures. In this section, only the Standard and the Reward with sigmoid function are compared over the five usual clustering metrics utilised in this PhD project as well as the Katz Centrality metrics. The latter is a centrality metric available in the Graph-tool package\footnote{The Katz Centrality metric was available only in the Graph-tool package and not in the iGraph the package used by PGCNA to generated the graph.} which considers both the neighbours of a node as well as their connection over the network. Higher values means that the nodes is important both locally and globally in the network, while lower values are associated with less important roles. 
 
 % Analyse the metrics
@@ -59,12 +56,12 @@ Through the network metrics analysis it is clear that the weight modifier have a
 
 \begin{figure}[H]
     \centering
-    \begin{subfigure}{0.75\linewidth}
+    \begin{subfigure}{1.0\linewidth}
 \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_II/validation/tum_modCon_hist.png}
         \caption{Networks generated from the tumour dataset (TCGA)}
     \end{subfigure} %
     \centering
-    \begin{subfigure}{0.75\linewidth}
+    \begin{subfigure}{1.0\linewidth}
         \includegraphics[width=1.0\textwidth, ,height=1.0\textheight,keepaspectratio]{Sections/Network_II/validation/non_tum_modCon_hist.png}
         \caption{Networks generated from the non-tumour dataset (JBU)}
     \end{subfigure}
