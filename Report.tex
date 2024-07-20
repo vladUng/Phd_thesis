@@ -3,7 +3,7 @@
 % 		Dissertation template
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\documentclass[a4paper, 12pt]{article}
+\documentclass[a4paper, 12pt]{report}
 
 \usepackage{import}
 \usepackage{Utilities/utilities}
@@ -28,7 +28,7 @@
 
 %%%%%%%%%%% Table of Contents, Figures and Images %%%%%%%%%%% 
 
-\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{4}
 % \setcounter{tocdepth}{5}
 
 
@@ -74,6 +74,7 @@
 
 % \newpage
 
+
 \import{Sections/Network_II/}{master.tex}
 
 % \newpage
@@ -86,19 +87,19 @@
 
 % \section{Other applications}
 
-\section{Ethics statement}
+\chapter{Ethics statement}
 
 After consideration of the University's code of practice and principles for good ethical governance, no ethical issues were identified in this project. 
 
 
 \newpage
 
-\import{Sections/}{appendix.tex}
+% \import{Sections/}{appendix.tex}
 
 
 
 \bibliographystyle{IEEEtranN}
-\bibliography{paperpile_2}
+\bibliography{paperpile}
 
 
 \end{document}

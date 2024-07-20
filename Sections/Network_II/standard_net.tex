@@ -1,4 +1,10 @@
-\subsection{Result: Non-tumour split} \label{s:N_II:std}
+\section{Result} \label{s:N_II:results}
+
+\subsection{Analysing the standard network} \label{s:N_II:std_net}
+
+
+% Non-tum split
+\subsubsection{Non-tumour split} \label{s:N_II:std}
 
 % Introduction to the work
 The non-tumour dataset consists of three different tissue types: undifferentiated (UD), AbsCa-differentiated (Abs-Ca) and P0; see \cref{s:lit:datasets_used}. To further test the new version of the network pipeline it was used to stratify the non-tumour dataset with the goal to check if it finds the three groups of samples. 
@@ -60,6 +66,8 @@ The difference in P0 is not as evident as in the Abs-Ca samples split, but it ca
 \end{figure}
 
 
+
+% Abs-Ca splits
 \subsubsection{Abs-Ca splits} \label{s:N_II:diff_split}
 
 % Introduce the Splits
@@ -89,6 +97,8 @@ It is remarkable that the network pipeline, through the ModCon score, is able to
 Another important observation of the selected points in the volcano plot from \cref{fig:N_II:diff_split} is that many of the highlighted genes do not have assigned names, i.e., they follow the pattern 'ENSG...'. This indicates that many of the genes are unknown and have the potential to reveal new biological insights. However, this also means that these genes are challenging to study.
 
 
+
+% P0 split
 \subsubsection{P0 split} \label{s:N_II:p0_split}
 
 % Why doing the P0
@@ -112,6 +122,8 @@ This analysis reinforce the fact that the network pipeline is capable of finding
 
 
 
+
+% Community characterisation
 \subsubsection{Community characterisation} \label{s:N_II:comm_charact}
 
 % Talking about the significance of the finding
@@ -159,7 +171,9 @@ It can be observed that at level three, there are different communities almost c
 \end{figure}
 
 
-\subsection{Result: MIBC split} \label{s:N_II:tum_split}
+
+% 
+\subsubsection{MIBC split} \label{s:N_II:tum_split}
 
 % Introduce the work
 The non-tumour stratification yield some new groups in two of the three datasets used to built the graph but how capable is the standard network to subtype the MIBC cohort from TCGA? This part of the chapter attempts to answer the question by using the same network presented earlier: 5000 most varied genes, 3 edges per standard gene and 6 per TF and using hierarchical SBM. The main difference is that the stratification is performed on the tumour rather then the non-tumour dataset. This means a different dataset is used from which the network was built and the integrative MEV (iMEV) presented in \cref{s:N_II:iMEV} is used.

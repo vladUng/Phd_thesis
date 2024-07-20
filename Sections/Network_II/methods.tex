@@ -1,4 +1,4 @@
-\subsection{Methods} \label{Sec:N_II:methods}
+\section{Methods} \label{Sec:N_II:methods}
 
 % Introduce the new pipeline 
 The same aggressive gene filtering was used as in the previous analysis, where all the genes that are expressed in at least 90\% of the samples were included. While in the previous network chapters the graphs were generated using an adapted version of the PGCNA as it was for an initial exploration of the network approach to stratify a disease. However, PGCNA was created with a slightly different purpose to the one in this project and the package provided did not meet some of the requirements defined in this project. The main drawback of using PGCNA is that it was built to support Leiden as a community detection and the code structure was inflexible for enabling data integration. For this reason, a new package was developed in this PhD called \textit{iNet} with the following requirements: 
@@ -29,7 +29,7 @@ Compared to the previous network pipeline, the correlation matrix can be also bu
 % How was tested
 The new package was tested by comparing the outputs generated with \textit{iNet} against those from the modified PGCNA pipeline. This was possible despite implementation differences as the two pipelines followed the same principles, where a correlation matrices is used to build the graph. This means, that both the correlation matrices and the generated networks could be used to test the implementation.
 
-\subsubsection*{Reward modifier - sigmoid} \label{s:N_II:reward}
+\subsection*{Reward modifier - sigmoid} \label{s:N_II:reward}
 
 In previous chapter two weight modifier introduced with the goal to integrate the mutation count at the weight level; see \cref{fig:N_I:modifiers}. It was observed that both had an effect on the network metrics but with little impact on the MIBC stratification. One possible explanation for this is that the modifiers had a steep increase/decrease over the weights with no intermediate effect to the weights. This means that only a few genes and their connections were affected.
 
@@ -63,7 +63,7 @@ Later in the chapter, \cref{s:N_II:reward_comp}, there is a direct comparison of
 
 
 % iMev
-\subsubsection*{iMev - integrative MEV} \label{s:N_II:iMEV}
+\subsection*{iMev - integrative MEV} \label{s:N_II:iMEV}
 
 Module Evaluation Value or MEV was introduced in the PGCNA work from \citet{Care2019-ij} and covered in the pseudo-algorithm \cref{alg:N_I:mev}. The role of the score is to bridge the gap between the gene to tumour representation by showing how much a sample is enriched by the (selected) gene expression from a community. This is done by summing up the z-scores of the $log_2$ gene expression in the community. Importantly, the gene expression  for the z-score has to always be from the dataset that is stratified which usually is the MIBC cohort from TCGA. This means that when the non-tumour dataset was used to generated the network, in \cref{s:N_II}, the gene expression of the non-tumour samples were not considered to inform the tumour subtyping. This can be accommodated by adapting the z-score.
 

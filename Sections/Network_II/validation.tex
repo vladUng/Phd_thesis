@@ -1,11 +1,11 @@
-\subsection{Validation} \label{s:N_II:validation}
+\section{Validation} \label{s:N_II:validation}
 
 
 This part of the chapter contains different comparisons and network metrics analyses to test and validate the changes made to the network pipeline. The graph changes between a tumour and non-tumour network are presented in \cref{s:N_II:net_comp}, the difference in the two reward functions are explored in \cref{s:N_II:reward_comp} and the effects of the integrative MEV introduced to the MIBC subtypes are covered in \cref{s:N_II:mev_comp}. The difference in the community detection algorithms is not covered as the \acrfull{hsbm} is just a nested SBM which allows to discover more communities than the standard SBM; this was also covered in the work of \citet{Peixoto2014-yb}.
 
 
 % Network validation 
-\subsubsection{Non-tumour vs Tumour Network} \label{s:N_II:net_comp}
+\subsection{Non-tumour vs Tumour Network} \label{s:N_II:net_comp}
 
 To study the differences between the non-tumour and tumour networks the previously used graph metrics (degree, pageRank, closeness, betwenees and IVI)\footnote{Reminder: the degree - node's number of connections; pageRank - node's centrality; closeness - how close the nodes are; betwenees - nodes between; IVI - a combination of network metrics} are shown in \cref{fig:N_II:net_metrics_comp}. There are four networks compared, the standard (red) and reward (green) for tumour derived, and the correspondent for non-tumour (mustard - standard and blue - reward).
 
@@ -29,7 +29,7 @@ Overall the metrics comparisons shows that the non-tumour network react stronger
 
 
 % Reward 1 vs Reward v2
-\subsubsection{Comparison between reward functions} \label{s:N_II:reward_comp}
+\subsection{Comparison between reward functions} \label{s:N_II:reward_comp}
 
 
 
@@ -79,7 +79,7 @@ The two histogram plots, \cref{fig:N_II:modCon_modifiers}, indicates that the si
 
 
 % iMEV comparison
-\subsubsection{MEV comparisons} \label{s:N_II:mev_comp}
+\subsection{MEV comparisons} \label{s:N_II:mev_comp}
 
 Towards the last stages of the network pipeline there is the MEV score which bridges the gap between the gene to sample representation. This chapter introduced a new MEV score that integrates the gene expression from both the tumour and non-tumour as explained in \cref{s:N_II:iMEV}.
 

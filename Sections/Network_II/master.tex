@@ -1,5 +1,5 @@
 
-\section{Network II} \label{s:N_II}
+\chapter{Network II} \label{s:N_II}
 
 
 \vspace{3mm}
@@ -17,7 +17,7 @@
 \vspace{3mm}
 
 
-\subsection{Overview}
+\section{Overview}
 
 % Presented the previous work on the network
 The previous two chapters presented the first iteration of the network pipeline developed to stratify the \acrfull{mibc} using multiple data types. Data integration occurred at three different stages: 1) non-tumour data at the network level, 2) mutations at the edge weights, and 3) prioritisation of \acrfull{tf} at the degree level. All of three integrative methods were successfully used and validated through different graph metrics, but the most successfully from a biological stance was modelling the number of edges depending on whether a gene is a TF or not, as seen in \cref{s:N_I:sel_pruning}.
@@ -37,7 +37,7 @@ The \acrfull{sbm} and Leiden are the main community detection methods applied in
 \textbf{Present the chapter outline}
 
 
-\subsubsection{Datasets}
+\subsection{Datasets}
 
 % Not sure if I need to re-mention this
 As in the previous sections, the mutation and gene expression data from the \acrshort{tcga} dataset is employed as the tumour dataset. For the non-tumour dataset, the mRNAseq data from the \acrfull{jbu} is used to generate most of the networks in this chapter. This consists of samples that are Abs-Calcium differentiated tissues, undifferentiated tissues, and P0. The list of TFs is taken from the Human Transcription Factors work by \citet{Lambert2018-el}.
@@ -55,7 +55,7 @@ As in the previous sections, the mutation and gene expression data from the \acr
 
 \newpage
 
-\subsubsection{Discussion}
+\section{Discussion}
 
 
 
