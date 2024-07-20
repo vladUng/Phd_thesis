@@ -20,11 +20,11 @@
 \subsection{Overview}
 
 % Presented the previous work on the network
-The previous two chapters presented the first iteration of the network pipeline developed to stratify the \acrfull{mibc} using multiple data types. Data integration occurred at three different stages: 1) non-tumour data at the network level, 2) mutations at the edge weights, and 3) prioritisation of \acrfull{tf} at the degree level. So far, the most successful integration was modelling the number of edges depending on whether a gene is a TF or not, as seen in \cref{s:N_I:sel_pruning}.
+The previous two chapters presented the first iteration of the network pipeline developed to stratify the \acrfull{mibc} using multiple data types. Data integration occurred at three different stages: 1) non-tumour data at the network level, 2) mutations at the edge weights, and 3) prioritisation of \acrfull{tf} at the degree level. All of three integrative methods were successfully used and validated through different graph metrics, but the most successfully from a biological stance was modelling the number of edges depending on whether a gene is a TF or not, as seen in \cref{s:N_I:sel_pruning}.
 
 
 % Introduction to the limitations - Non-tumour dataset and MEV
-\Cref{s:p0} showed that using only the P0 dataset did not offer a sufficient representation of the non-tumour data, while the weight modifiers in \cref{s:N_I:tum} were not powerful enough to make a change in disease stratification. On top of that, the first version of the network pipeline suffered from some implementation limitations. When using the non-tumour data to build the network, the pipeline selects the genes that are important across the communities, and when it comes to computing the Module Evaluation Value (MEV), the tumour dataset is used. This means that there is a disconnection between the data used to build the network and the one used for tumour stratification, in this case, the TCGA dataset. In this chapter, the limitation is addressed in the new version of the MEV introduced, which takes into account both datasets.
+\Cref{s:p0} showed that using only the P0 dataset did not offer a sufficient representation of the non-tumour data, while the weight modifiers in \cref{s:N_I:tum} were not powerful enough to make a change in disease stratification. On top of that, the first version of the network pipeline suffered from some implementation limitations. When using the non-tumour data to build the network, the pipeline selects the genes that are the most connected in the communities, which are then used with the \textbf{tumour} expression to the Module Evaluation Value (MEV). This means that there is a decoupling between the data used to build the network and the one used for tumour stratification, in this case, the TCGA dataset. In this chapter, the limitation is addressed in the new version of the MEV introduced, which takes into account both datasets, introduced in \cref{s:N_II:iMEV}.
 
 
 % Weight reward changes
@@ -32,7 +32,9 @@ Another limitation in the first version of the network pipeline is how the mutat
 
 
 % Community detection - hSBM and SBM
-The \acrfull{sbm} and Leiden are the main community detection methods applied in the network pipeline. The SBM is preferred over Leiden as it is less prone to finding communities from noise. The SBM has a theoretical limit on how many groups it can find in a network, as explained in \cref{s:lit:sbm}. To address this, the hierarchical version of SBM is used in the new network pipeline. This comes with higher running times and computational costs but is still manageable on a medium-performance laptop.
+The \acrfull{sbm} and Leiden are the main community detection methods applied in the network pipeline. The SBM is preferred over Leiden as it is less prone to identify communities from noise. The SBM has a theoretical limit on how many groups it can find in a network, as explained in \cref{s:lit:sbm}. To address this, the hierarchical version of SBM is used in the new network pipeline. This comes with higher running times and computational costs but is still manageable on a medium-performance laptop.
+
+\textbf{Present the chapter outline}
 
 
 \subsubsection{Datasets}

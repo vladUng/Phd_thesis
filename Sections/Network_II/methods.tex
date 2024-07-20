@@ -1,11 +1,11 @@
 \subsection{Methods} \label{Sec:N_II:methods}
 
 % Introduce the new pipeline 
-While in the previous network chapters the graphs were generated using an adapted version of the PGCNA as it was for an initial exploration of the network approach to stratify a disease. However, PGCNA was created with a slightly different purpose to the one in this project and the package provided did not meet some of the requirements defined in this project. The main drawback of using PGCNA is that it was built to support Leiden as a community detection and the code structure was inflexible for enabling data integration. For this reason, a new package was developed in this PhD called \textit{iNet} with the following requirements: 
+The same aggressive gene filtering was used as in the previous analysis, where all the genes that are expressed in at least 90\% of the samples were included. While in the previous network chapters the graphs were generated using an adapted version of the PGCNA as it was for an initial exploration of the network approach to stratify a disease. However, PGCNA was created with a slightly different purpose to the one in this project and the package provided did not meet some of the requirements defined in this project. The main drawback of using PGCNA is that it was built to support Leiden as a community detection and the code structure was inflexible for enabling data integration. For this reason, a new package was developed in this PhD called \textit{iNet} with the following requirements: 
 
 % Goals of the pipeline
 \begin{itemize}
-    \item Modular - easy to change and adapt the different stages of the network pipeline
+    \item Modular - easy to change and adapt the different stages of the network pipeline. This  is essential for data integration and future work
     \item Multiple community detection - apart from Leiden and SBM, it should be easy to adapt for future methods. This also includes the capability to specify the arguments for a community detection algorithm
     \item Weight modifiers - have the capability to easily add a new function to modify the weights
     \item Other correlation matrices - allow to easily change the correlation metric from which the co-expressed network is built
@@ -20,19 +20,16 @@ Apart from following the Object Oriented Programming (OOP), splitting the proces
     \item Apply the weight modifiers
     \item Edge pruning
     \item Apply community detection algorithm
-    \item Save the results
+    \item Save the output which are then analysed in separate Jupyter Notebooks
 \end{enumerate}
 
 % Highlight some of the changes
-Compared to the previous network pipeline, the correlation matrix can be also built from the partial-correlation. The weight modifier function is easy to change and supports the sigmoid function to reward the mutated genes. The edge pruning uses the information from an input file of the genes that are allowed multiple edges. There is more freedom to change the community detection and configure them, for example the Leiden algorithm can be applied with Constant Pots Model as modularity maximisation function.
-
+Compared to the previous network pipeline, the correlation matrix can be also built from the partial-correlation. The weight modifier function is easy to change and supports the sigmoid function to reward the mutated genes. The edge pruning uses the information from an input file of the genes that are allowed multiple edges. There is more freedom to change the community detection and configure them, for example the Leiden algorithm can be applied with Constant Pots Model as modularity maximisation function\footnote{Const Pots Model or CPM is an alternative q}.
 
 % How was tested
-The same aggressive gene filtering was used as in the previous analysis, where all the genes that are expressed in at least 90\% of the samples were included. The new package was tested by comparing the outputs generated with \textit{iNet} against those from the modified PGCNA pipeline. Despite implementation differences, the two pipelines followed the same principles, and the correlation matrices and graphs were consistent. Thus, the \textit{iNet} package was validated against the matrix and graph generated from the previous pipeline.
-
+The new package was tested by comparing the outputs generated with \textit{iNet} against those from the modified PGCNA pipeline. This was possible despite implementation differences as the two pipelines followed the same principles, where a correlation matrices is used to build the graph. This means, that both the correlation matrices and the generated networks could be used to test the implementation.
 
 \subsubsection*{Reward modifier - sigmoid} \label{s:N_II:reward}
-
 
 In previous chapter two weight modifier introduced with the goal to integrate the mutation count at the weight level; see \cref{fig:N_I:modifiers}. It was observed that both had an effect on the network metrics but with little impact on the MIBC stratification. One possible explanation for this is that the modifiers had a steep increase/decrease over the weights with no intermediate effect to the weights. This means that only a few genes and their connections were affected.
 
