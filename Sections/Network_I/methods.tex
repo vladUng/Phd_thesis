@@ -1,6 +1,7 @@
-\subsection{Methods} 
+\section{Methods} 
 
-\subsubsection{Network pipeline}
+% Pipeline
+\subsection{Network pipeline}
 
 
 \begin{figure}[!htb]
@@ -29,7 +30,7 @@ For a network of 5K nodes there are $1.24x10^6$ possible edges and keeping all o
 The edge pruning approach from \citet{Care2019-ij} was implemented and adapted to have a preferential treatment for a list of genes that are Human Transcription Factors \cite{Lambert2018-el} (TF). The TFs are genes that have a higher impact on the other genes by regulating their expression. Therefore, the selective edge pruning strategy developed would allow the TFs to have a higher number of edges compared to the standard genes. There are number of experiments performed on finding the right number of connections for TF genes in \cref{s:N_I:sel_pruning}.
 
 % Community detection
-\subsubsection{Community detection}
+\subsection{Community detection}
 
 Once the network is built, a community detection algorithm is applied to find the sub-networks of genes. The purpose is to identify genes that are correlated with each other, which may potentially resemble some parts of the biological process. This hypothesis can be verified using Gene Set Enrichment Analysis (GSEA) or Gene Ontology (GO). It is worth noting that the ideal communities would be defined by biological pathways, but that information is often incomplete and not always available. Thus, the advantage of using a co-expressed network from mRNA gene expression is that it has the potential to be an affordable approximation.
 
@@ -39,7 +40,7 @@ In this project two main classes of community detection algorithms are explored:
 In this project both methods are used. Initially, Leiden with Modularity Score is used in the Tumour (Section \ref{s:N_I:tum}) and in P0 networks (Section \ref{s:p0}). This is then followed by the experiments performed in the next chapter with all the non-tumour samples and the improved network pipeline (\ref{}).
 
 % Finding the relevant genes
-\subsubsection{Important genes in communities}
+\subsection{Important genes in communities}
 
 In the work of \citet{Care2019-ij}, the  Module Connectivity (ModCon) score is computed for each gene to find the important nodes in each community (or Module). The equation can be found in Equation \ref{eq:modcon} where $connectivity$ represents the sum of the genes' edges' weights, $percentileExpression$ is the gene's percentile expression, $VarWithin$ constitutes the median quantile coefficient of dispersion (or the gene expression dispersion within \textit{datasets}), $VarAcross$ is the "median absolute deviation of percentile expression" (or the gene dispersion across \textit{datasets}).
 
@@ -51,7 +52,7 @@ In the work of \citet{Care2019-ij}, the  Module Connectivity (ModCon) score is c
 The PGCNA was developed to support multiple datasets but in this project the majority of the experiments were run with a single dataset, thus $VarAcross$ does not have a large impact on Equation \ref{eq:modcon}. Importantly, in the original formulation of $ModCon$, the connectivity parameter is the summation of the Spearman Correlation values. However, in the weight modifier experiments, where the Spearman Correlation values are strengthen/weaken by the gene's mutation burden the changed correlation are considered.
 
 % Representation of genes across samples & Clustering
-\subsubsection{Sample subtyping} \label{s:N_I:mev}
+\subsection{Sample subtyping} \label{s:N_I:mev}
 
 After the genes are ranked by the importance in the nodes, the top 25-100 genes are selected as representative. The top 25 genes were selected in PGCNA work \cite{Care2019-ij} which worked when the same dataset is used for network and subtyping. However, when the non-tumour graphs were computed, there are situations when the most varied genes in the non-cancerous dataset are not present in the tumours dataset. Thus, more genes (100) were selected for each community. These chosen genes are used to compute the Module Evaluation (MEV) score \citet{Care2019-ij} to find the gene's representation in each of the samples. The MEV is described in the pseudo-code in Algorithm \ref{alg:N_I:mev}.
 

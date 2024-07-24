@@ -1,4 +1,4 @@
-\section{A network approach to subtype MIBC} \label{s:N_I}
+\chapter{A network approach to subtype MIBC} \label{s:N_I}
 
 
 \vspace{3mm}
@@ -15,7 +15,7 @@
 \vspace{3mm}
 
 
-\subsection{Overview}
+% \subsection{Overview}
 
 In the previous chapter, standard clustering methods and insights from in situ experiments (\citet{Baker2022-bj}) were utilised to stratify the muscle-invasive bladder cancer (MIBC) cohort from The Cancer Genome Atlas (TCGA). This work uncovered new MIBC subgroups with significant biological differences compared to those identified in the TCGA (\citet{Robertson2017-mg}) and consensus (\citet{Kamoun2020-tj}) stratification. This finding highlights the potential for discovering biologically relevant groups and underscores the need for new methods that combine data at the computational level.
 
@@ -89,7 +89,7 @@ The MIBC cohort from The Cancer Genome Atlas \cite{Robertson2017-mg} and the P0 
 
 \newpage
 
-\subsection{Discussion}
+\section{Discussion}
 
 This chapter presents the initial attempt of this project to apply a network-based approach for stratifying the muscle invasive bladder cancer (MIBC) cohort from the TCGA database. The approach involved integrating multiple data types at the computational stage, including gene expression from both cancerous and non-cancerous tissues, mutation burden, and transcription factors (TFs). The integration occurred at different levels, starting by building a graph from the non-tumour data and then using the representation to derive the MIBC subtypes, as described in \cref{s:p0}. The edge weights derived from the Spearman correlation are modified based on the mutation burden, and the node degree is limited depending on whether a gene is a transcription factor or not.
 

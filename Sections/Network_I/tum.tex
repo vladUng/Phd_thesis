@@ -1,7 +1,7 @@
 
 
 
-\subsection{Tumour derived network to stratify MIBC} \label{s:N_I:tum}
+\section{Result: Tumour derived network to stratify MIBC} \label{s:N_I:tum}
 
 
 The Parsimonious Gene Correlation Analysis Network Analysis (PGCNA) was used to stratify breast, colon, and glioblastoma cancers \cite{Care2019-ij,Tanner2023-wa} from gene expression data. In this section, the PGCNA is adapted to integrate Transcription Factors (TFs) and mutations at the network construction stage. 
@@ -12,7 +12,7 @@ For this analysis, the top 4,000 most relatively varied genes (based on median/s
 
 The decision to keep 6 edges per TF is based on findings from the experiment detailed in \cref{s:N_I:sel_pruning}. This experiment indicated that allowing more than 6 edges per TF leads to diminished returns and that all TFs are included when more than 10 edges are permitted
 
-\subsubsection{Describing the network} \label{s:N_I:tum_describe}
+\subsection{Describing the network} \label{s:N_I:tum_describe}
 
 \begin{figure}[!htb]    \centering\includegraphics[width=0.9\textwidth,keepaspectratio]{Sections/Network_I/Resources/Methods/modifiers.png}
     \caption{Representing the two weight modifier strategies employed at the network construction stage. The red, reward strategy, awards the genes that have a high burden across the cohort. Conversely, the  penalised strategy decreases the edges' strength for highly mutated genes. In both cases, the non-mutated genes remain unchanged.}
@@ -41,7 +41,7 @@ The different network metrics for standard (red), reward (mustard) and penalised
 There are $\approx30K$ genes in the TCGA's MIBC cohort, from which less than a half ($\approx13K$) are considered expressed by the filtering used in \ref{}; more than 3 samples have TPM values larger than 0.5. From the $\approx13K$ genes there are $\approx10K$ genes which are mutated at least once, but then as the mutation count is increased there are less genes represented as seen in Figure \ref{fig:N_I:mut_rep_tum}. The same trend can be noticed for TFs genes initially being 1027 genes in all the expressed genes, from which about a third are mutated. The striking aspect of the Figure \ref{fig:N_I:mut_rep_tum} is the steep decrease of the genes mutated as the mutation burden is increase. This means that there is a small proportion of the genes that are highly mutated; e.g. for mutation count $>=10$ 386 of the 4000 genes initially used. Consequently, the weight modifiers from Figure \ref{fig:N_I:modifiers} might have a little impact. It might also mean that the gene filtering used is too aggressive. Both aspects are highlighted through some of the results obtained throughout this chapter.
 
 
-\subsubsection{Leiden and MIBC stratification} \label{s:N_I:tum_stratification}
+\subsection{Leiden and MIBC stratification} \label{s:N_I:tum_stratification}
 
 \begin{figure}[!htb]    \centering\includegraphics[width=1.0\textwidth,height=0.6\textheight,keepaspectratio]{Sections/Network_I/Resources/Tum_network/LeidenMetrics_Sankey_TF-6.png}
     \caption{On the top are displayed the community size and Modularity Score. The two metrics used to asses the weight modifiers (Standard, Penalty and Reward) the Leiden algorithm. At the bottom the Sankey plot displays comparison between the MIBC subtyping derived from the different standard classifiers (TCGA \citet{Robertson2017-mg} and consensus \citet{Kamoun2020-tj}), the previous developed subgroups (\ref{}) and the three different networks. }
@@ -60,7 +60,7 @@ However, there are more changes in the Basal (TCGA/consensus) and Neuroendocrine
 
 Overall, the stratification shown in Figure \ref{fig:N_I:tum_leiden_modifiers} shows the potential of the Network approach by finding similar three Basal subgroups as in our previous clustering where both a computational method and domain knowledge from insitu study\citet{Baker2022-bj} were used. Nonetheless, there is little difference between the networks suggesting that there weight modifiers do not have a high impact on MIBC stratification with K-means (K=6).
 
-\subsubsection{Clustering analysis vs network gene selection} \label{s:N_I:cs_vs_gene_sel}
+\subsection{Clustering analysis vs network gene selection} \label{s:N_I:cs_vs_gene_sel}
 
 Crudely simplified the network approach is an advance gene selection mechanism based on multiple data-types: gene co-expression, mutation and transcription factors. Specifically, the Module Connectivity step from Figure \ref{fig:N_I:network_pipeline} picks the genes that have the highest connectivity (see Eq. \ref{eq:modcon}) and varied across the dataset, which are then used for clustering analysis (through MEV). Similarly, in the previous chapter $\approx3K$ top most relative varied genes were used in the K-means clustering analysis. Therefore, there is a need to compare the two gene selection methods and to assess the differences.
 
@@ -77,7 +77,7 @@ The $\approx2.8K$ genes selected through the network are compared with the 3K mo
 
 This comparison shows the power of the network approach which selects not only the highly varied genes but also the ones that have consistent expression values and high mutation burden.
 
-\subsubsection{Summary}
+\subsection{Summary}
 
 The two set of experiments performed in this Section suggest the potential of a network approach to stratify the MIBC. In the first part (Section \ref{s:N_I:tum_stratification}), three networks with different weight modifiers were created and analysed. From the network and community detection metrics (see Figure \ref{fig:N_I:net_metrics_tum} and Figure \ref{fig:N_I:tum_leiden_modifiers}) the there three networks (Standard, Reward and Penalised) perform similarly but, importantly, exhibit different MIBC subgroups from the canonical methods. Following on this, it is explored the differences in the selected genes from the Clustering Analysis and the network approach (depicted in Figure \ref{fig:N_I:network_ca_selection}). This shows that the network is capable to pick genes with a wider a range of properties. Genes with higher mutation, magnitude and the highest variance are selected by the network approach, while the standard approach selects only with the highest relative variance.
 

@@ -1,4 +1,4 @@
-\subsection{Selective edge pruning} \label{s:N_I:sel_pruning}
+\section{Result: Selective edge pruning} \label{s:N_I:sel_pruning}
 
 % The aim to integrate the TF
 The project aims to integrate the transcription factor (TF) by prioritising over the standard genes as these genes up-regulated the expression of the other genes, thus having a higher biological importance. By allowing more connections for the TF, the minimum degree of the node increases as well as their role in the network, similar to the biology. The experiments, on selective edge pruning, aim to explore and find the appropriate minimum degree for TF genes and how varying it affects the network. The work in this section was presented as a poster at the \textit{\href{https://2023.complexnetworks.org/}{Complex Network Conference in 2023}}.
@@ -9,7 +9,7 @@ Through the experiments performed in this project and the analysis in the PGCNA 
 A second aim of this section is to compare the Leiden \citet{Traag2019-ne} community detection used in PGCNA with the degree corrected Stochastic Block Model (DC-SBM) from \cite{Karrer2011-si, Peixoto2017-gc}. As it was covered in \cref{s:lit:comm_detect} from Introduction, Leiden is faster and more popular, but it is prone to find patterns in noise, whereas the DC-SBM is slower but it is more error prone in find non-existent communities. The reason for comparing the two is that to decide on the next improvements to the network pipeline. Throughout the project the degree corrected (DC-SBM) \& hierarchical (hSBM) stochastic block models were preferred over the simple SBM \cite{Holland1983-eu} as it accounts for node's degree when it finds the communities, which is crucial for selective edge pruning; for convenience DC-SBM and SBM are used interchangeably.
 
 % Exp Setup
-\subsubsection{Experiments setup}
+\subsection{Experiments setup}
 
 
 The experiments performed in this section are using the RNAseq gene expression from TCGA's MIBC cohort from TCGA and the transcription factor list was taken from \citet{Lambert2018-el}. As before, the Kallisto method was used to align the RNA-seq reads using genome version GRCh38 with Gencode annotation version 42. The gene selection strategy for the network is followed as in \ref{} where genes are expressed in at least 90\% of the samples and and the top 5000 most varied genes by the median/standard deviation are kept. Out of the 5000 genes used for the network 325 are Human Transcription Factors based on \citet{Lambert2018-el}.
@@ -25,7 +25,7 @@ To account for the random effects of the TFs in the network, there are 10 contro
 
 
 % Com detection comparison
-\subsubsection{Community detection comparison}
+\subsection{Community detection comparison}
 
 % Comment the scores figure
 \Cref{fig:N_I:com_det_met} shows the evolution of the metrics corresponding to the two community detection algorithm. \Cref{fig:N_I:sbm_com_det_met} looks at the evolution of the MDL (or entropy - lower the better) in the communities found with SBM, while \cref{fig:N_I:leid_com_det_met} presents the Modularity Maximisation score (higher the better). The lines/boxes in blue represents the Experiment which prioritises the biological TFs, while the traces in red represents the control with non-TF genes selected. The first to notice is that both algorithm, regardless of the selected genes, perform lower as the minimum degree of the node is increased, suggesting an inverse relationship. This effect was also noticed in the work of \citet{Care2019-ij}. With a large number of edges allowed for the selected genes, there is more information needed to 'describe' the network as see in \cref{fig:N_I:sbm_com_det_met}. The variance of the metric also grows with the increase minimum degree, which is easier to see in the control experiments in Leiden \cref{fig:N_I:leid_com_det_met}.
@@ -65,7 +65,7 @@ In summary, by increasing the minimum degree, both algorithms perform worse rega
 
 
 % Analysing the TFs
-\subsubsection{Emerging Transcription Factors} \label{s:N_I:sel_tfs}
+\subsection{Emerging Transcription Factors} \label{s:N_I:sel_tfs}
 
 % Introduce the motivation of using TFs
 After comparing the two community detection algorithm and deciding on the SBM, it is worth diving in the analysis of the network output. The previous sub-section showed that by prioritising a certain subset of genes, to have a higher minimum degree, has some effects on the network. However, in the network pipeline, not all the genes employed to generate the graph are used for the cancer stratification, but the top 100 selected by ModCon (see \cref{fig:N_I:network_pipeline}). The ModCon score is a score which takes in account a node's number of edges and their weights, thus higher connected genes are selected.
@@ -103,7 +103,7 @@ Taking in account the selective edge pruning and that $\sim60\%$ of the 325 TF g
 In the selective edge pruning strategy introduced by \citet{Care2019-ij} there is no threshold to ensure that the low correlated pair of genes are not cluttering the network and that the most co-expressed pairs are kept. To test this the weight distribution is plot in \cref{fig:N_I:weight_distrib} for a standard network with no weight modifiers, with a minimum 3 edges per standard gene and 6 per TF. It can be seen that the distribution is skewed right, ensuring that most of the genes are highly correlated.
 
 % Clustering
-\paragraph*{Clustering}
+\subsubsection*{Clustering}
 
 
 % Talk about the clustering
@@ -158,7 +158,7 @@ The larger group, consisting of 92 samples, is formed of a mix of samples from M
 The comparison with the other stratification methods shows that clustering the expression of 98 TFs is capable of finding three basal subtypes, two smaller even than the ones found in the previous chapter \ref{}. However, the 98 TFs fail to discriminate the luminal subgroups.
 
 % Survival analysis
-\paragraph*{Survival Analysis}
+\subsubsection*{Survival Analysis}
 
 Survival analysis was conducted on the five groups derived from the 98 transcription factors as shown in \cref{fig:N_I:sel_tfs_survival}. Group 5, identified as the smallest basal group, exhibits the poorest survival prognosis by a significant margin. Notably, the poorest survival in both the TCGA and consensus classification is observed in the Neuroendocrine-like groups, which are not included in Group 5; this is illustrated in the Sankey plot in \cref{fig:N_I:sankey_sel_tfs}. It is striking the poor survival of the group 5, where almost all of the patients are deceased after 3 years. This is a poorer prognosis then the Lund's UroB subtype (see Figure 6 from \citet{Marzouka2018-ge}) and the Low IFNG Basal from \ref{}.
 
@@ -232,7 +232,7 @@ It is worth remembering that MIBC is generally divided into Luminal and Basal su
 
 
 % Undiff vs Diff
-\paragraph*{The emergent TFs and bladder differentiation} \label{s:N:sel_tf_diff_status}
+\subsubsection*{The emergent TFs and bladder differentiation} \label{s:N:sel_tf_diff_status}
 
 \begin{figure}[!h]
     \captionsetup[subfigure]{justification=Centering}
@@ -300,7 +300,7 @@ It is surprising that there are no TFs shared in the culture quadrant (UD and Ab
 
 
 % Transitioning to cancer
-\paragraph*{The emergent TFs and cancer} \label{s:N_I:sel_tfs_cancer}
+\subsubsection*{The emergent TFs and cancer} \label{s:N_I:sel_tfs_cancer}
 
 
 % Selecting the genes for basal and luminal, expression in both Basal and Luminal
@@ -410,7 +410,7 @@ It is worth noting that both genes, have considerable more than 6 neighbours. Th
 Therefore, the 98 transcription factors and the two lists of Ba/Sq and Luminal markers are validated by research from different groups. The expression of these genes across the MIBC, from both the consensus and the subtypes derived from hierarchical clustering, can be seen in \cref{fig:N_I:box_basal,fig:N_I:box_luminal}. This also serves as an encouragement to explore the other genes not matched by other research, as they may exhibit potential for new biological insights.
 
 % Subtypes analysis
-\paragraph*{Further exploring the derived subtypes} \label{s:N_I:sel_tfs_subtypes}
+\subsubsection*{Further exploring the derived subtypes} \label{s:N_I:sel_tfs_subtypes}
 
 % Metadata exploration
 To understand better the biology of the small basal group, the metadata from TCGA \citet{Robertson2017-mg} was used. Several metadata features were explored: level of smoking (cigarettes per day), race, metastasis, relation to noninvasive bladder cancer, and histology grade. \Cref{fig:ap:sel_tfs_tcga_metadata} from Appendix displays this information in the form of multiple histograms, where the x-axes represent the subtypes derived in this section and the y-axes the count of the metadata features. From the figure, there is no immediate characteristic for the small basal group, neither with the Squamous pathology nor with the metastatic status, but most of the patients were smokers. It is worth pointing out that LumInf, Mes-like, and large luminal groups are generally characterised by non-squamous tumours. From Appendix \Cref{fig:ap:sel_tfs_tcga_meta_mut} shows that there is no immediate relationship with the mutations selected in the TCGA supplementary material, while \cref{fig:ap:sel_tfs_tcga_meta_apobec} (appendix) shows no relationship with the \textit{APOBEC} mutation.

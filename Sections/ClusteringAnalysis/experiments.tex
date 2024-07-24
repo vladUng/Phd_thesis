@@ -1,11 +1,12 @@
-\subsection{Methods} \label{s:cs:methods}
+\section{Methods} \label{s:cs:methods}
 
 
 
 Generally, the clustering analysis can be split into three stages: 1) the data pre-processing 2) choosing the clustering model and 3) choosing the number of clusters. The first part is covered in the following section, \ref{s:cs:pre-processing}, while deciding on the clustering model and its configuration is presented in \cref{s:cs:right_config}.
 
 
-\subsubsection{Pre-processing} \label{s:cs:pre-processing}
+% pre-processing
+\subsection{Pre-processing} \label{s:cs:pre-processing}
 
 % gene filtering
 The RNAseq data consists of a large number of genes, many of which are not uniformly expressed across the samples. In this section, a gene is considered unexpressed if more than 10\% of the samples have a value less than 1.5 TPM. Filtering out genes that meet these unexpressed conditions leaves the TCGA's tumour dataset with approximately 13,000 genes that are expressed in at least 90\% of the samples (approximately 370 samples). The threshold of 10\% is derived from the study by \citet{Robertson2017-mg}, where the authors removed all genes that had 'NA values more than 10\% across samples' (section \textit{Unsupervised mRNA expression clustering}). However, it is important to note that the authors of that study were using RSEM data, not TPMs.
@@ -13,7 +14,9 @@ The RNAseq data consists of a large number of genes, many of which are not unifo
 From the resultant dataset, a subset of the most variably expressed genes is selected depending on the experiment. The most variably expressed genes are identified by the highest standard deviation to median ratio, which also takes into account the magnitude of the expression. This method of selection focuses on identifying the genes with the highest relative variability across the samples. This approach differs from that used by \citet{Robertson2017-mg}, which selects the top 25\% of genes based solely on standard deviation, without factoring in the magnitude of gene expression.
 
 
-\subsubsection{Finding the right configuration} \label{s:cs:right_config}
+
+% Right config
+\subsection{Finding the right configuration} \label{s:cs:right_config}
 
 In subsequent experiments, several clustering models were evaluated using the scikit-learn library \cite{Scikit-learn_undated-ax}, as introduced in \cref{s:lit:clustering}. The models tested included K-means, Ward’s, Agglomerative Clustering, Birch, Gaussian Mixture, and Spectral Clustering. The performance of these models was assessed using clustering metrics such as Silhouette with cosine distance, Calinski-Harabasz, and Davies-Bouldin, detailed in \cref{s:lit:clustering_metrics}. Some methods were excluded from this thesis due to poor performance, typically forming only one or two groups despite various configurations.
 
@@ -80,9 +83,6 @@ To aid the decision making, the top 3 most performing configuration is displayed
 Less common are the cluster models with high number of clusters such as Wrd\_9, Birch\_11 or GaussianMixture\_8. It can also be noticed that the cluster sizes oscillates between 5-7 groups which is in agreement with the other classification such as TCGA (5) and consensus (6) \citet{Robertson2017-mg,Kamoun2020-tj}.
 
 
-
-
-
 \paragraph*{Silhouette distribution}
 
 % Sillhouette
@@ -147,8 +147,8 @@ Based on the analysis conducted in this section, $K=5$ and $K=6$ emerge as the m
 
 
 
-
-\subsubsection{Pipeline}
+% pipeline
+\subsection{Pipeline}
 
 The pipeline and configuration of the different components can be summarised in the \cref{fig:cs:clustering_pipeline} and has three stages:
 \begin{enumerate}

@@ -1,4 +1,4 @@
-\subsection{Biological interpretation} \label{s:cs:bio_interp}
+\section{Biological interpretation} \label{s:cs:bio_interp}
 
 
 
@@ -35,7 +35,7 @@ By comparing with the TCGA \citet{Robertson2017-mg} (and the consensus) it can b
 The groups derived in this section are also compared with another work \citet{Baker2022-bj} from the Jack Birch Unit (JBU) which was focused on splitting the Basal/Squamous group by the tumour's \acrfull{ifn} response: no response and a high response. The authors identified that patients classified as high \acrshort{ifn} have a better survival prognosis compared to the ones with no immune response. In \cref{fig:cs:ifn_comp} it can be clearly seen that the Small Ba/Sq group contains a large portion of the the \acrshort{ifn} response group from \citet{Baker2022-bj}, while the large basal group a mixed of low and high \acrshort{ifn} samples. Taking the 3 main 'chords' of samples going from the \acrshort{ifn} to the Basal groups (KMeans), the Basal subtype can be further split into 3 as seen in \cref{fig:cs:ifn_three_basal}. The association of the Basal subgroups it is also supported by the Lund classifier \citet{Marzouka2018-ge}, where the Small Ba/sq (or High IFNG) contains the samples of the Ba/Sq-Inf and Mes-like from Lund, while the other two basal (in Basal\_type) are either Ba/Sq or UroB by Lund.
 
 % Introduce the three splits
-\subsubsection{Immune, Stromal and ESTIMATE score}
+\subsection{Immune, Stromal and ESTIMATE score}
 
 % Explaining the ESTIMATE score
 To further validate the immune characteristics of the subgroups, the ESTIMATE score from \citet{Yoshihara2013-wq} was employed. The authors assesses tumour purity based on immune and stromal infiltration by calculating the gene expression of a subset of genes. These are known to be involved in the immune response and associated with stromal cells. The ESTIMATE, along with stromal and immune scores, were validated using DNA Copy Number Analysis and computed for the TCGA cohort.
@@ -85,7 +85,7 @@ from \citet{Robertson2017-mg} by the green line, and the other 3 lines are repre
     \label{fig:cs:basal_survival}
 \end{figure}
 
-\subsubsection{Basal exploration} \label{s:cs:basal_interp}
+\subsection{Basal exploration} \label{s:cs:basal_interp}
 
 Differential Expression Analysis (DEA) was employed to further explore the subgroups derived among the MIBC subtypes. The focus was particularly on the Basal groups, as the three-way split introduced novel aspects, some of which had been previously validated through other classifications \citet{Baker2022-bj,Marzouka2018-ge}.
 
@@ -153,7 +153,7 @@ The two figures \cref{fig:cs:pi_basal,fig:cs:pi_basal_inf} further reinforce the
 
 
 
-\subsubsection{LumInf} \label{s:cs:lumInf_interp}
+\subsection{LumInf} \label{s:cs:lumInf_interp}
 
 The previous subsections were focused on understanding the molecular properties of the Basal subgroups, identifying High IFNG to be 'closer' to the Luminal infiltrated. To elucidate the molecular particularities of the luminal infiltrated groups, the Pi-plot was constructed using the DEA results from LumInf versus Low IFNG on the X-axis and LumInf versus LumP on the Y-axis. The Low IFNG group was chosen as a representative of the Basal groups as it lacks immune infiltration, thereby highlighting the LumInf properties, while LumP was selected to examine shared luminal features.
 
@@ -189,7 +189,7 @@ This analysis confirms both the immune infiltration and the luminal molecular ch
 
 
 
-\subsubsection{LumP} \label{s:cs:lumP_interp}
+\subsection{LumP} \label{s:cs:lumP_interp}
 
 The LumInf group exhibits some of the molecular properties of a luminal subtype, but the immune response of the samples is notably strong. In contrast, the tissues from the LumP group are not affected by this 'noise'. To understand the molecular properties of the LumP group, the Pi plot in \cref{fig:cs:lumP_pi} and the \acrshort{gsea} results in \cref{fig:cs:lumP_gsea} are utilised. To highlight the molecular characteristics of the LumP group, \acrshort{dea} between LumP and Ne is performed on the Y-axis, while LumP versus Low IFNG is shown on the X-axis. This configuration ensures that any immune response in LumP is discernible, as both comparison groups are characterised by a lack of immune activity. It also accentuates the markers of the luminal group, given that Low IFNG and Ne possess distinctly different molecular properties.
 
@@ -225,7 +225,7 @@ In the GSEA plot, the top enriched pathways are down-regulated in the LumP, indi
 
 
 
-\subsubsection{NE} \label{s:cs:ne_interp}
+\subsection{NE} \label{s:cs:ne_interp}
 
 
 In the TCGA's MIBC cohort, the TCGA classifier identified 20 samples as Neuroendocrine like (NE-like), 11 of which are also classified as Sc/NE-like by the Lund classifier, and only 6 of the initial 20 are confirmed as NE-like by the consensus, which includes more than the two datasets mentioned. This suggests that considerable uncertainties still exist regarding the criteria that define the NE group. The clustering analysis conducted in this section grouped \textbf{32} samples into what appears to contain most of the NE-like groups from both the TCGA and Lund datasets \cref{fig:cs:ifn_comp}.

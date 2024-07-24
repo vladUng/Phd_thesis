@@ -21,3 +21,13 @@
     \caption{Community 25 from the standard network generated from 5000 genes, no weight modifier and to which the \acrshort{hsbm} was applied. The community contains 164 genes from which 50 with the highest ModCon score are highlighted in orange. To aid the visualisation some of the genes were trim, for the ones with longer names the first 5 letters were kept while for 'ENSG...' like nodes the "EN\_" and the last 3 digits were kept.  See \cref{s:N_II:comm_charact} for more details. }
     \label{fig:ap:com_29}
 \end{figure}
+
+\subsection{Reward }
+
+\subsubsection{Mean Degree vs Community size}
+\begin{figure}[!htb]    
+    \centering
+    \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_II/resources/reward/Degree_vs_ComSize.png}
+    \caption{The top bar shows the community size (Y-axis) of the communities while the other plot the mean degree (Y-axis) in a community. This two complementary figures show that communities with a high number of connections are grouped in smaller communities while the large contains nodes with a low node degree. This plot helps the analysis performed in \cref{s:N_II:high_conn}. } 
+    \label{fig:ap:degree_com_size}
+\end{figure}

@@ -1,10 +1,7 @@
-\section{Result} \label{s:N_II:results}
-
-\subsection{Analysing the standard network} \label{s:N_II:std_net}
-
+\section{Result: Standard Network}  \label{s:N_II:std_net}
 
 % Non-tum split
-\subsubsection{Non-tumour split} \label{s:N_II:std}
+\subsection{Non-tumour split} \label{s:N_II:std}
 
 % Introduction to the work
 The non-tumour dataset consists of three different tissue types: undifferentiated (UD), AbsCa-differentiated (Abs-Ca) and P0; see \cref{s:lit:datasets_used}. To further test the new version of the network pipeline it was used to stratify the non-tumour dataset with the goal to check if it finds the three groups of samples. 
@@ -68,7 +65,7 @@ The difference in P0 is not as evident as in the Abs-Ca samples split, but it ca
 
 
 % Abs-Ca splits
-\subsubsection{Abs-Ca splits} \label{s:N_II:diff_split}
+\subsection{Abs-Ca splits} \label{s:N_II:diff_split}
 
 % Introduce the Splits
 Both the heatmap (\cref{fig:N_II:morph_non_tum}) and Sankey plot (\cref{fig:N_II:sankey_comp}) show that the Abs-Ca differentiated samples are split into three different subtypes: 5, 6, and 7. It was mentioned earlier that group 5 consists of paediatric samples, which could explain the separation. To further explore the differences between groups 6 (small Abs-Ca) and 7 (large Abs-Ca), \acrfull{dea} was performed between the samples using the same method as in \cref{method for DEA}.
@@ -99,7 +96,7 @@ Another important observation of the selected points in the volcano plot from \c
 
 
 % P0 split
-\subsubsection{P0 split} \label{s:N_II:p0_split}
+\subsection{P0 split} \label{s:N_II:p0_split}
 
 % Why doing the P0
 In the heatmap from \cref{fig:N_II:morph_non_tum} there is another split of a major differentiated tissue type, P0. This is not as clear as the Abs-Ca groups, but nevertheless present and it can be observed that communities '19', '22', '25' and '29' are driven the separation. To study more the division in the P0 samples, the same approach was taken as in the precedent sub-section, where \acrshort{dea} is applied and the genes selected through ModCon are highlighted in the plot.
@@ -124,7 +121,7 @@ This analysis reinforce the fact that the network pipeline is capable of finding
 
 
 % Community characterisation
-\subsubsection{Community characterisation} \label{s:N_II:comm_charact}
+\subsection{Community characterisation} \label{s:N_II:comm_charact}
 
 % Talking about the significance of the finding
 In the two cases of the P0 and Abs-Ca splits, it can be observed which communities are driving the separation. It can also be noticed that the genes in these communities are found to be significantly expressed when performing the \acrlong{dea}. These two results have a two-fold implication. First, the network pipeline, and implicitly the hierarchical SBM, is able to find communities that are significantly expressed in some groups, demonstrating the power of the method. Secondly, the splits in the Abs-Ca and P0 samples indicate the opportunity to further explore new biological aspects of the differentiated status.
@@ -173,7 +170,7 @@ It can be observed that at level three, there are different communities almost c
 
 
 % 
-\subsubsection{MIBC split} \label{s:N_II:tum_split}
+\subsection{MIBC split} \label{s:N_II:tum_split}
 
 % Introduce the work
 The non-tumour stratification yield some new groups in two of the three datasets used to built the graph but how capable is the standard network to subtype the MIBC cohort from TCGA? This part of the chapter attempts to answer the question by using the same network presented earlier: 5000 most varied genes, 3 edges per standard gene and 6 per TF and using hierarchical SBM. The main difference is that the stratification is performed on the tumour rather then the non-tumour dataset. This means a different dataset is used from which the network was built and the integrative MEV (iMEV) presented in \cref{s:N_II:iMEV} is used.

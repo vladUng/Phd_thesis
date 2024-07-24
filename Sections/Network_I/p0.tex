@@ -1,6 +1,6 @@
 
 
-\subsection{P0 derived network to stratify MIBC} \label{s:p0}
+\section{Result: P0 derived network to stratify MIBC} \label{s:p0}
 
  
 The Jack Birch's Unit holds a large dataset of bladder tissue samples both cancerous and non-cancerous. There are three different types of 'normal'  (i.e. non-cancerous) bladder samples: P0 (23), Abs/Ca-differentiated (49) and undifferentiated (15). The P0 are in situ tissues taken from individual with urinary tract infections (UTIs) unaltered in the lab, the ABS/Ca differentiated are in vitro which have been differentiated by the ABS/Ca protocol and lastly the undifferentiated are in vitro samples which tissues are yet not specialised; covered in \cref{s:lit:datasets_used}.From the previous classifications \citet{Robertson2017-mg, Kamoun2020-tj} it is known that there are 2 major subgroups Luminal (Lum) and Basal (Ba). The former is known to share aspects with the differentiated tissue while the latter with the undifferentiated. 
@@ -16,7 +16,7 @@ In PGCNA \citet{Care2019-ij} the authors select in each community the top 25 gen
 Therefore, in this section the top 4K most-relative varied genes (median/std) from P0 are used to construct the network, the same weight modifiers (Reward and Penalised see Figure \ref{fig:N_I:modifiers}) are employed and 50 edges for the Transcription Factor. For the standard genes 3 edges are kept while for Transcription Factors (TFs) 50. The top 100 genes are selected with ModCon and for MEVs the top 4K most varied genes are used.
 
 % Desribe the network
-\subsubsection{Describing the Network}
+\subsection{Describing the Network}
 
 
 \begin{figure}[!htb]    
@@ -31,7 +31,7 @@ In the previous section \ref{s:N_I:tum_describe}, five different network metrics
 Overall, the network metrics indicate that the Penalised network is different from the other two networks, suggesting that reducing the weights to values close to 0 for highly mutated genes has a greater impact on the network than doubling their values. The largest impact on the network metric is on the closeness, the spread of the nodes' degree and betweenness. A similar behaviour was observed in the tumour networks in the previous section \cref{fig:N_I:net_metrics_tum}.
 
 % Clustering model
-\subsubsection{Choosing Clustering model} \label{s:p0:clustering_analysis}
+\subsection{Choosing Clustering model} \label{s:p0:clustering_analysis}
 
 % Explain what and why are the clustering methods we used
 To find the appropriate clustering model and the number of clusters, the previous work from chapter \cref{s:cs:pre-processing}\footnote{Cluster analysis chapter} was adapted. This involved running Principal Component Analysis (PCA) and K-means to stratify MIBC based on gene expression. Based on three different clustering methods (Silhouette with cosine distance, Calinski-Harabasz, and Davies-Bouldin\footnote{For a refresher on the clustering metrics see \cref{s:lit:clustering_metrics})}, the following clustering models were selected\footnote{Other clustering methods explored included DBSCAN, MeanShift, Affinity Propagation, OPTICS, HDBSCAN, and Fuzzy K-means. The models kept are the ones which gave reasonable results; i.e. not clustering the samples only in 1 cluster or 2 clusters}. All models used the implementation on Scikit-learn \cite{Scikit-learn_undated-ax}: K-means, Agglomerative Clustering with Average linkage (Agg\_Avg), Ward, Gaussian Mixture Model, and Spectral Clustering.
@@ -128,7 +128,7 @@ Two Sankey plots in Figure \ref{fig:N_I:p0_sky_Agg_KMeans} are used to assess th
 The cluster metrics are not informative in determining the number of clusters, the scores decrease proportionally with the number of clusters, resulting in the lowest K giving the best result. Elbow method complements the metrics but it is a heuristic approach. When K=5, for the K-means, the Basal groups seems to be better defined by having a smaller group (4) and a large one (2). For this, and the fact that previous work in the PhD showed that there there should be more groups, K-means with K=5 is preferred over K=4.
 
 % Network comparison
-\subsubsection{Network comparison}
+\subsection{Network comparison}
 
 
 Figure \ref{fig:N_I:p0_sky_leiden} represents an overview of the decisions made in the previous sub-section, K-means (K=5) was found to be the most suitable clustering model. The three networks are compared with the consensus and TCGA classifiers \citet{Kamoun2020-tj, Robertson2017-mg} as well as our subtyping from \ref{}. From the top left figure it can be observed that the number of communities is similar across the three networks, there are 9 or 10 blocks, with a few exceptions. There are significantly less communities compared with the number of subgraphs found in the tumour network; see Figure \ref{fig:N_I:tum_leiden_modifiers}. The small variance of the Modularity score in the Figure on the right suggests that the communities are fairly stable and the penalised network have a lower performance by 0.04.
@@ -148,7 +148,7 @@ It is striking the lack of change across the subtypes derived from the three dif
 Overall, the comparison between classifications shows that the network approaches exhibit different subtypes from the other traditional methods. Several samples change group membership in the three different networks, but there are no large changes. As in the previous subsection, this suggests that the weight modifiers strategies have little effect on the subtyping.
 
 % Community analysis
-\subsubsection{Community analysis}
+\subsection{Community analysis}
 
 Previous results with tumour networks (Section \ref{s:N_I:tum}) showed that the weight modifiers do have an effect on the network metrics but little effect on the MIBC subtyping. A natural next step is to analyse the changes in communities when a modifier is applied. There are a few questions to answers 1) How do the communities change? 2) Is there a difference in mutation burden? 3) How much the gene expression differs? 
 
@@ -218,7 +218,7 @@ Figure \ref{fig:N_I:p0_comm_chgs} B) is a suitable plot to show that most commun
 % Conclusion 1 - Weight modifiers work
 Overall, the community analysis shows that the reward modifier works, there are changes between communities and this is given by the mutated genes, especially the ones with a high burden. However, the modifier does not have enough power to cause large changes which may be due to weight modifier shape see \cref{fig:N_I:modifiers}.
 
-\subsubsection{Gene representation}
+\subsection{Gene representation}
 
 It is worth remembering that the network is built on the P0 data and then the genes extracted from with ModCon are used to stratify the tumour dataset. The two types of data is expected to have differences in gene expression, some of the genes may be expressed in the P0 data but not in the tumour and vice-versa. Therefore, it is important to understand how well the genes selected are represented through the network approach (ModCon and MEV) in the tumour dataset. 
 
@@ -245,7 +245,7 @@ Figure \ref{fig:N_I:p0_mev_rep} shows that representation for each community. In
 \end{figure}
 
 
-\subsubsection{Summary}
+\subsection{Summary}
 
 This section contains the first attempt in the project to integrate the non-healthy molecular information into MIBC subtyping by building a network on the P0 sample and using the derived communities for MIBC stratification. The networks generated utilised the standard, reward, and penalised modifiers, with a minimum degree of 3 for standard genes and 50 for TFs. There are several limitations with the method presented in this section. The dataset consists only of P0 samples (only 23), so the network does not represent the undifferentiated tissue. In addition, the gene expression for both tumour and non-tumour datasets was aggressively filtered by keeping only the genes expressed in 90\% of the samples. This led to a poor representation in the TCGA dataset of the genes selected through the networks.
 
