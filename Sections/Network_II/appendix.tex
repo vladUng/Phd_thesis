@@ -1,9 +1,10 @@
 \section{Network II - Non-tumour split}
 
 
-\subsection{Communities} \label{ap:N_II:coms}
+% Standard 
+\subsection{Standard Network} \label{ap:N_II:coms}
 
-\subsubsection{Community 25}
+\subsubsection*{Community 25}
 
 \begin{figure}[H]    
     \centering
@@ -13,7 +14,7 @@
 \end{figure}
 
 
-\subsubsection{Community 29}
+\subsubsection*{Community 29}
 
 \begin{figure}[H]    
     \centering
@@ -22,8 +23,11 @@
     \label{fig:ap:com_29}
 \end{figure}
 
-\subsection{Reward }
 
+% Reward
+\subsection{Reward Network}
+
+% Mean degree 
 \subsubsection{Mean Degree vs Community size}
 \begin{figure}[!htb]    
     \centering
@@ -31,3 +35,117 @@
     \caption{The top bar shows the community size (Y-axis) of the communities while the other plot the mean degree (Y-axis) in a community. This two complementary figures show that communities with a high number of connections are grouped in smaller communities while the large contains nodes with a low node degree. This plot helps the analysis performed in \cref{s:N_II:high_conn}. } 
     \label{fig:ap:degree_com_size}
 \end{figure}
+
+
+
+% High degree communities
+\subsubsection{High degree communities}
+
+\begin{figure}[H]    
+    \centering
+    \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_II/resources/reward/sel_communities.png}
+    \caption{Graph representation of the communities that have a high number of connections. There are 14 communities with a total of 122 genes found in the reward network built using the pipeline in \cref{s:N_II:methods}. }
+    \label{fig:ap:graph_smallCom}
+\end{figure}
+
+
+
+% cluster analysis
+\subsubsection{Clustering analysis} \label{s:ap:N_II:clustering analysis}
+
+This section covers the clustering analysis performed on the MEV values derived using second version of the network pipeline covered in \cref{s:N_II:rwd}. The aim here is to decide on the clustering model and its configuration. To achieve this the methods from \cref{s:cs:methods} are using which includes the clustering metrics covered in \cref{s:lit:clustering_metrics} and shown in \cref{fig:ap:n_II:cluster_metrics} as well as the Sankey comparison plot in \cref{fig:ap:cs_sankey}.
+
+
+\begin{figure}[H]
+    \captionsetup[subfigure]{justification=Centering}
+    \centering
+    \begin{subfigure}[!t]{1.0\textwidth}
+        \includegraphics[width=\textwidth]{Sections/Network_II/resources/reward/cluster_analysis/allComs_top3_Silhoute_cosine.png}
+        \caption{Silhouette using cosine distance}
+        \label{fig:ap:n_II:cosine}
+    \end{subfigure}
+    \centering
+    \begin{subfigure}[!t]{1.0\textwidth}
+        \includegraphics[width=\textwidth]{Sections/Network_II/resources/reward/cluster_analysis/allComs_top3_Calinski_habrasz.png}
+        \caption{Calinski Harabasz}
+        \label{fig:ap:n_II:cal_hab}
+    \end{subfigure}
+    \centering
+    \begin{subfigure}[!t]{1.0\textwidth}
+        \includegraphics[width=\textwidth]{Sections/Network_II/resources/reward/cluster_analysis/allComs_top3_Davies_bouldin.png}
+        \caption{Davies Bouldin}
+        \label{fig:ap:n_II:dav_boul}
+    \end{subfigure}
+    \caption{The means of the three cluster metrics introduced in \cref{s:lit:clustering_metrics}: Silhouette (cosine), Calinski Harabasz and Davies Bouldin. Each of them asses different aspects of clustering and are used to determined the right clustering model for the MIBC cohort from TCGA. The X across the bar signals the overall ranking across the models: rank 1 - X, rank 2 - XX, rank 3 - XXX. The clusters are derived from using the MEVs for the reward network derived in \cref{s:N_II:rwd}.}
+    \label{fig:ap:n_II:cluster_metrics}
+\end{figure}
+
+
+% Presetn the figure
+The three metrics used to measure the performance of the clustering models are Silhouete with cosine distance, Calinski Habrasz and Davies Bouldin. For $K\in[2,14]$ five different clustering metrics were used: K-Means, Ward, Birch, Gaussian Mixture and Spectral Clustering. The average metric values across the clustering models and configurations are plotted in \cref{fig:ap:n_II:cluster_metrics}. The X across the bar signals the overall ranking across the models: rank 1 - X, rank 2 - XX, rank 3 - XXX.
+
+
+The metrics trends are very similar to what is observed in previous clustering analyses (\cref{fig:cs:metrics,fig:ap:non_pca_metrics}), where the models' performance decreases proportionally with the number of groups. This trend is most visible in \cref{fig:ap:n_II:cal_hab} and \cref{fig:ap:n_II:dav_boul}. It can also be noted that the average Silhouette values are below the 'well-clustered' threshold of 0.5 and are lower compared to the clustering performed on the PCA-applied expression data in \cref{fig:cs:cs_metrics}. As indicated by the 'X' markers, the top-performing models are K-Means, Ward, and Spectral Clustering across all three metrics. The models configured to find 4 groups seem to perform the best, which can be explained by the fact that this is closest to $K=2,3$, which have the highest scoring values; this has been discussed in more detail in the clustering analysis from \cref{s:clustering_analysis}.
+
+% Top table
+The top metrics from \cref{fig:ap:n_II:cluster_metrics} are extracted in the table \cref{tab:ap:N:II:top_3_cs} which clearly shows that $K=4$ is the preferred number of groups with Spectral, K-means and Ward. The comparison of the MIBC stratification in \cref{fig:ap:cs_sankey} shows the three clustering models compared with the TCGA, consensus and the subtypes derived in the first chapter of thesis \cref{s:cs:bio_interp}. Across all the models there is no basal split which can be explained by the low K. It can be notice that Spectral Clustering and Ward have a higher imbalance across the group sizes compared with K-means. The first model having the 0 group which holds most of the luminal samples (TCGA/consensus), while the latter is having a 0 group which contains the Basal Squamous samples and some of the LumP (consensus). For the more balanced size of groups the K-means is preferred over the models.
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{|p{6cm}|p{6cm}|}
+        \hline
+        \textbf{Metric} & \textbf{Cluster model} \\
+        \hline
+        \#1 Silhouette cosine & \rule{0pt}{2.5ex} Spectral 4 \\
+        \hline
+        \#2 Silhouette cosine & \rule{0pt}{2.5ex} Ward 4 \\
+        \hline
+        \#3 Silhouette cosine & \rule{0pt}{2.5ex} K-means 4 \\
+        \hline
+        \#1 Calinski Habrasz & \rule{0pt}{2.5ex} K-means 4 \\
+        \hline
+        \#2 Calinski Habrasz & \rule{0pt}{2.5ex} Gaussian Mixture 4 \\
+        \hline
+        \#3 Calinski Habrasz & \rule{0pt}{2.5ex} Spectral 4 \\
+        \hline
+        \#1 Davies Bouldin & \rule{0pt}{2.5ex} Spectral 4 \\
+        \hline
+        \#2 Davies Bouldin & \rule{0pt}{2.5ex} Ward 4 \\
+        \hline
+        \#3 Davies Bouldin & \rule{0pt}{2.5ex} Spectral 5 \\
+        \hline
+    \end{tabular}
+    \caption{Top three clustering models and their configuration based on the three metrics Silhouette cosine, Calinski Habrasz, and Davies Bouldin. This table is a summary of the pointed configurations in \cref{fig:ap:n_II:cluster_metrics}.}
+    \label{tab:ap:N:II:top_3_cs}
+\end{table}
+
+% Sankey - highlight the imbalance in the groups
+Due to the trends in the metrics decreasing proportionally with the number of groups, further analysis is needed to decide on the optimal value of $K$. For this purpose, K-means clustering with $K \in [2,14]$ was performed, and the number of samples with negative Silhouette values was counted. These subsets of samples represent those which were incorrectly grouped, providing additional information on the clustering performance. The results are plotted in a bar chart in \cref{fig:ap:neg_samples}, where the Y-axis represents the number of negative samples and the X-axis represents the value of $K$ used in K-means clustering.
+
+% Using the negative samples to decide
+In \cref{fig:ap:neg_samples}, the same trend as before can be observed, where performance decreases proportionally with increasing $K$. The best clustering model is when $K=2$, followed by $K=5$ and $K=7$, indicating that these group sizes are the most appropriate for the clustering model. Based on the survival analysis, $K=7$ is chosen as the additional two groups provide higher resolution with minimal negative impact. This is clearly seen in the Kaplan-Meier survival plots for $K=5$ in \cref{fig:N_II:survival_K_5} and $K=7$ in \cref{fig:N_II:survival_K_7}. In the first plot, two survival trends are evident, corresponding to the two main groups, large and luminal. In the second figure, when $K=7$, additional aggressive groups are identified.
+
+Overall, the cluster analysis demonstrates the heterogeneity of the disease by not having clearly separated clusters. It is worth mentioning that hierarchical clustering within the Morpheus software from the Broad Institute was explored as an alternative (based on the work from \cref{s:N_II:std}), but the MIBC group sizes were greatly imbalanced.
+
+\begin{figure}[H]    
+    \centering
+    \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_II/resources/reward/cluster_analysis/cluster_comp.png}
+    \caption{Comparison between the best performing clustering models and configurations from \cref{fig:ap:n_II:cluster_metrics}: K-Means, Spectral Clustering, and Ward with $K=4$. These models are compared with the classifications from TCGA \citep{Robertson2017-mg}, the consensus \citep{Kamoun2020-tj}, and the previous subtypes derived in the first part of the thesis \cref{s:cs:methods}.}
+    \label{fig:ap:cs_sankey}
+\end{figure}
+
+\begin{figure}[H]    
+    \centering
+    \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_II/resources/reward/cluster_analysis/neg_samples.png}
+    \caption{Negative samples of K-means with $K \in [2,14]$ determined using silhouette cosine. The Y-axis represents the number of samples, while the X-axis represents the number of groups set in the clustering model. As expected, the fewest negative samples occur when $K=2$, and these increase proportionally with $K$. When K-means is configured to find 5 and 7 groups, these configurations have the next lowest number of negative silhouette samples.}
+    \label{fig:ap:neg_samples}
+\end{figure}
+
+\begin{figure}[H]    
+    \centering
+    \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_II/resources/reward/cluster_analysis/survival_K_5.png}
+    \caption{Kaplan-Meier survival analysis of the 5 groups derived using the MEV scores (see \cref{s:N_II:rwd}) and K-means with $K=5$ (see \cref{s:ap:N_II:clustering_analysis}). The plot shows the two trends in survival between the three Basal and two Luminal groups. A similar figure with $K=7$ can be seen in \cref{fig:N_II:survival_K_7}.}
+    \label{fig:ap:survival_K_5}
+\end{figure}
+
+

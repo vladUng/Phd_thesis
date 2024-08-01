@@ -19,46 +19,226 @@ The resultant network is shown in \cref{fig:N_II:reward_net} where it can be obs
 The red-lines are the edges from the \textit{AHR} gene to its neighbours gene which are mostly grouped in the largest community, 0. It was also observed that it is usually the case that smaller communities have genes that have a high degree and most of the edges lead to the larger communities. The genes in the large blocks (e.g., 0 or \textbf{100}) are not connected with each other but these nodes seems to be grouped by their links to the genes in the smaller communities; like community \textbf{101} of which \textit{AHR} is part of. 
 
 
-\subsubsection*{Highly connected genes} \label{s:N_II:high_conn}
+% Highly connected genes
+\subsection{High degree genes} \label{s:N_II:high_conn}
 
 % Present the figure
-To further understand the relationship between the size of a community (Y-axis) and nodes' degree (mean values on X-axis) the two metrics were plotted on a scatter plot in \cref{fig:N_II:largeSmall_com}. The markers sizes in the figure are proportional to their mean mutation burden, larger the point is the larger is the average of highly mutated genes across the TCGA. A community is label as a "HighDegree" when the mean degree is in the 70th percentile, while "LowDegree" otherwise. 
+To further understand the relationship between the size of a community (Y-axis) and the nodes' degree (mean values on the X-axis), the two metrics were plotted on a scatter plot in \cref{fig:N_II:largeSmall_com}. The marker sizes in the figure are proportional to their mean mutation burden; the larger the point, the higher the average of highly mutated genes across the TCGA. A community is labelled as "HighDegree" when the mean degree of the genes constituting the groups is in the 70th percentile, and as "LowDegree" otherwise. The 70th percentile was chosen as the threshold because it includes all the smaller communities.
+
 
 \begin{figure}[!htb]    
     \centering
     \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_II/resources/reward/LargeSmall_com.png}
-    \caption{Scatter plot showing the mean degree vs size of the communities found in the reward network. The marker size is proportional to the mean mutation burden in a community. The blocks are classified in two: 'HighDegree' which consists of the communities that have a mean degree in the top 30\% and "LowDegree' the rest of the blocks. Ii can be seen that there is a direct correlation of community size and mean degree.}
+    \caption{Scatter plot showing the mean degree vs size of the communities found in the reward network. The marker size is proportional to the mean mutation burden in a community. The blocks are classified into two categories: 'HighDegree', which consists of the communities that have a mean degree in the top 30\%, and 'LowDegree', which includes the rest of the blocks. It can be seen that there is a direct correlation between community size and mean degree.}
     \label{fig:N_II:largeSmall_com}
 \end{figure}
 
 % Interpret the figure
-By having the communities with high connected genes close to the the X-axis and the other type close to the Y-axis, it indicates the relationship between the group size and degree. This is further confirmed by the negative Spearman correlation shown on the plot with $\rho=-0.8987$ with a $p=5.46e^{-17}$. The positive correlation between the community size and the average mutation count in a group highlights that the well-connected communities have a high mutation burden.
+The positioning of the communities with highly connected genes near the X-axis and the other types near the Y-axis indicates the relationship between group size and degree. This is further confirmed by the negative Spearman correlation shown on the plot with $\rho = -0.8987$ and $p = 5.46 \times 10^{-17}$. The positive correlation between community size and the average mutation count in a group highlights that well-connected communities have a high mutation burden. The multi-plot in Appendix \cref{fig:ap:degree_com_size} provides a clearer depiction of the mean degree and group size of the communities in the reward network, complementing \cref{fig:N_II:largeSmall_com}.
+
 
 % Implication of the finding
-This initial analysis shows the \acrfull{hsbm} separately groups the mutated genes with a high degree from the rest of the nodes. This indicates that the community detection is capable of finding very small communities of just a few nodes from the 5000 genes used to build the network. In addition, the un-connected genes can be grouped together in larger blocks. 
-
-% talk about the source of this imbalance around the communities
-These two observations attest the power of the community detection but it does not explain the size imbalance across communities. The genes that are in small and well-connected communities tend to have a high correlation even in an un-modified network (\textbf{How can I show this}). The selective edge pruning keeps only the 3 or 6 top most correlated genes which is the reason nodes like \textit{AHR} do not have a higher degree in the standard network. As the sigmoid modifier increases the correlation values of mutated genes, the genes which have a reasonable high correlation but they are not in the top selected genes. 
-
-% Example for AHR 
-For example, \textit{AHR} is a mutated gene which is also correlated with the expression of other genes. \textit{AHR} is allowed only 3 or 6 connections, the rest of the connections need to come from the 'other genes'. In the standard network, \textit{AHR} is not in the top correlated values of these 'other genes', but as the sigmoid modifier the \textit{AHR} is pushed in the top. Thus, leading for \textit{AHR} to have a higher degree. This examples illustrated how the weight modifier and the community detection groups these highly connected nodes.
+This initial analysis shows that the \acrfull{hsbm} separately groups the mutated genes with a high degree from the rest of the nodes. This indicates that the community detection is capable of identifying very small communities, consisting of just a few nodes, from the 5000 genes used to build the network. Additionally, the unconnected genes can be grouped together into larger blocks.
 
 
+% Discuss the source of this imbalance around the communities
+These two observations attest the power of the community detection but do not explain the size imbalance across communities. Genes in small, well-connected communities tend to have a high correlation even in an unmodified network (\textbf{How can I show this}). The selective edge pruning retains only the 3 or 6 top most correlated genes, which is why nodes like \textit{AHR} do not have a higher degree in the standard network. As the sigmoid modifier increases the correlation values of mutated genes, genes with reasonably high correlation but not among the top selected genes are affected.
 
 
 \begin{figure}[!htb]    
     \centering
     \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_II/resources/reward/SmallCom_gene_labeled.png}
-    \caption{Mean degree vs size}
+    \caption{The genes (X-axis) and their node degree (Y-axis) in the 14 highly connected communities; the colour is given by their community number. \textit{ELF3, AHR, FGFR3, TP53} are genes that are know to play a role in bladder cancer \citet{Robertson2017-mg} included in these groups showing that the network pipeline can isolate relevant genes based on the expression and their mutation burden.}
     \label{fig:N_II:genes_highConn}
 \end{figure}
 
 
+% Example for AHR 
+For example, \textit{AHR} is a mutated gene that is also correlated with the expression of other genes. \textit{AHR} is allowed only 3 or 6 connections, and the rest of the connections need to come from the 'other genes'. In the standard network, \textit{AHR} is not among the top correlated values of these 'other genes', but with the sigmoid modifier, \textit{AHR} is pushed to the top. Thus, \textit{AHR} attains a higher degree. This example illustrates how the weight modifier and the community detection method group these highly connected nodes.
 
-\subsection{AHR search}
+% Communities with high number of connections 
+Out of the 45 communities found in the reward network, there are 14 which are in 70th percentile by group's mean degree. There are 122 genes across all these communities are plotted on the X-axis in \cref{fig:N_II:genes_highConn} with the corresponding degree on the Y-axis, the bar plots are coloured by the community number. The bar groups are ordered in descending order by genes' degree.
 
-\subsection{PPARG and RARG}
+% Commenting on the plot
+The most connected gene is \textit{ELF3} which is involved in bladder differentiation and is one of the Luminal Non-Specified markers from consensus \citet{Kamoun2020-tj} \& \cref{tab:lit:consensus_genes}. \textit{KLF5} which is the third highest connected gene in community 1 was shown in \cref{s:cs:basal_interp} to be differentially expressed to basal groups, and are associated with differentiation \citet{ad} and \cref{tab:N_I:markers_diff}.  \textit{AHR} mutations are associated with bladder cancer \citet{}, while \textit{FGFR3} is a known luminal marker \citet{Robertson2017-mg}. \textit{TP53} is also involved in bladder cancer \citet{Robertson2017-mg} and controls cell cycle checkpoints.
 
-\subsection{Low connected}
 
-\subsection{Comparison with Standard Network}
+% Highly correlated genes and the genes they contain
+A subgraph formed of only the 14 communities is shown in Appendix \cref{fig:ap:graph_smallCom}. The figure shows that there are communities consisting of only two or three genes. For example, community 7 contains two genes: \textit{ZFP36L2} and \textit{DIAPH2}. The former was found to promote cell aggressiveness in pancreatic cancer in a clinical study by \citet{Yonemori2017-ky} and was also identified through statistical analysis of TCGA's mutation data as a MIBC recurrence indicator by \citet{Han2019-ma}. The role of \textit{DIAPH2} is less known, but it has a high protein expression according to the \href{https://www.proteinatlas.org/ENSG00000147202-DIAPH2/tissue}{Human Protein Atlas}. Another group consists of \textit{LAMA4}, \textit{VPS13D}, and \textit{TRANK1}. The role of \textit{LAMA4} was studied in the context of gastric cancer, and up-regulating its expression led to treatment resistance according to \citet{Peng2020-xe}. The roles of the other two genes are less known. This suggests that the network pipeline is able to isolate both well-studied and potentially new genes into separate groups.
+
+
+% Molecular properties
+\subsection{High degree: mutations and correlations} \label{s:N_II:corr_mut_burden}
+
+% Presenting the genes
+So far a few known genes were mentioned in the analysis but it is unclear if the genes isolated in small communities were chosen by their correlation, mutation burden or both. The plots in \cref{fig:N_II:hist_molecular_highCon,fig:N_II:corr_mut_genes} attempt to answer, the top figure depicts the mutation burden distribution of the highly connected genes versus the rest of the nodes in the network. 
+
+\begin{figure}[!htb]    
+    \centering
+        \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_II/resources/reward/smallCom_MutHist.png}
+        \caption{Distributions of the mutation burden across the high connected genes and the rest.}
+        \label{fig:N_II:hist_molecular_highCon}
+\end{figure}
+
+
+% Commenting on the mutation burden 
+The histogram in \cref{fig:N_II:hist_molecular_highCon} shows that all the genes in the 14 high degree communities are mutated in more than 10 samples across the MIBC TCGA cohort. It also shows that there are no highly mutated genes ($>$30) in the rest of the communities. This plot attests that that high degree communities exclusively contains mutated genes, further validating the data integration.
+
+% Introduce that it is a difference
+The two distributions in \cref{fig:N_II:hist_molecular_highCon} overlap between 10-30, where some of the genes which have an above 10 mutation count are not in the 70th percentile of the communities with the highest mean degree. This indicates that the the correlation values make the difference between the nodes with a higher degree and the rests. This is due to the nodes weights is a the product between the weight modifier (i.e. mutation) and the Spearman correlation, which directly influences the number of connections in the selective edge pruning stage.
+
+% Introduce the work to study the difference
+To validate this hypothesis, the genes with mutations $\in[10,25]$ were selected to match the overlapping area in \cref{fig:N_II:hist_molecular_highCon}. For each of these nodes the Spearman values above 0.5 were kept which indicates that two genes are correlated. The results are shown in \cref{fig:N_II:degree_high_corr}, where each marker is a gene its size proportional to the mutation burden, the X values represents the number of correlations above 0.5 the genes has with the other genes, and the Y values the number of degrees in the reward network; Y-axis is shown in log10. 
+
+\begin{figure}[!htb]    
+    \centering
+    \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_II/resources/reward/Degree_highCorrGenes_labeled.png}
+    \caption{Node's degree and number of high correlated nodes}
+    \label{fig:N_II:degree_high_corr}
+\end{figure}
+
+% Comment the plot 
+The top-right corner in \cref{fig:N_II:degree_high_corr} contains the nodes that are the most connected and have the highest number of correlations above the threshold, while the diagonally opposite corner contains low-correlated genes with few connections. The scatter plot shows that all the markers in the top-right corner are genes with a high number of connections, while in the opposite corner, such nodes are absent. In the bottom-left corner, there are a few genes with a high mutation burden (large marker), but due to the small number of highly correlated genes, the reward modifier does not have enough power to include them in communities with a high mean degree. Conversely, in the bottom-right corner, where there are several markers close to the X-axis, these genes do not have a high mutation burden to obtain more connections. This confirms that the number of connections is a function of both the correlation values and the mutation burden.
+
+% The exception
+While \cref{fig:N_II:degree_high_corr} confirms that the number of connections is a function of both the correlation values and the mutation burden of the genes, there are a few exceptions such as \textit{WNK1}, \textit{RTTN}, and \textit{SYTL2}. These genes exhibit a high number of correlations above 0.5 and a relatively higher number of connections but are not part of the 14 communities with a high mean degree. Their correlation distributions, along with \textit{AHR}'s, are displayed in \cref{fig:N_II:corr_sel_genes}. The histogram indicates that \textit{AHR} and \textit{SYTL2} show more correlations with values above 0.5, as evidenced by the box plot at the top and the X-values in \cref{fig:N_II:degree_high_corr}. Although these two genes have similar distributions, it is noticeable that \textit{AHR} has a greater number of correlations exceeding 0.75, leading to stronger weights. In contrast, \textit{WNK1} and \textit{RTTN} have correlation values that are centred around 0 (\textit{WNK1}) or are skewed to the left (\textit{RTTN}), indicating a tendency towards weaker or negative correlations.
+
+The two plots, \cref{fig:N_II:degree_high_corr,fig:N_II:corr_sel_genes}, confirm that the data integration works and that genes with a high number of connections need to have both a high number of correlations and a high mutation burden. It also shows that the labelling of some genes depends on the weight magnitude, as some genes are not included in the 14 communities with a high mean degree.
+
+
+\begin{figure}[!htb]    
+    \centering
+    \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_II/resources/reward/hist_corr_labels.png}
+    \caption{Histogram of the Spearman correlation distribution of \textit{WNK1, SYTL2, RTTN}, and \textit{AHR}. The focus in this figure is on the values above 0.5, denoting the number of nodes to which the 5 genes have a good correlation. Both \textit{SYTL2} and \textit{AHR} have a large number of genes with correlation $>$0.5 compared to the other two, and the former has more values above 0.75. }
+    \label{fig:N_II:corr_sel_genes}
+\end{figure}
+
+
+% Correlation rank
+\subsection{High degree: correlation rank} \label{s:N_II:corr_rank}
+
+% The mean expression of some of the genes with a high number of connection is small, less than 10 TPMs as seen in \cref{fig:N_II:exp_molecular_highCon}. This suggests that the weight modifier has a large effect on the correlation matrix, bypassing the co-expressed values.
+
+% To further help explaining the large number of connections of a node and to understand how the reward modifier affects the correlations values 
+
+% Understanding this is important as each gene is allowed to keep the 3 or 6 (for TFs) most correlated genes.
+
+% Introduce what I am going to talk about
+It is clear that the reward modifier successfully integrates the mutation burden into the co-expressed gene network. However, it is not clear how the sigmoid function affects the correlation raking, how the values above a certain threshold are influenced to give a node a few hundreds connections when each gene is allowed to keep either the 3 or 6 (for TFs) most correlated genes.
+
+% Why it is important to understand this change
+In the case of the 122 genes, the rest of the connections must come from their neighbours to contain the 122 genes in their top correlation. For example, the most connected gene \textit{ELF3} (a TF) has 985 neighbours and only 6 are being in the gene top correlation. The rest of the 979 gene have \textit{ELF3} in their top ranking. It is important to verify if the 979 genes have \textit{ELF3} already high in their correlation ranking before the reward modifier is applied as it will mean these genes have a weaker co-expression which is only amplified with the reward.
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{0.49\linewidth}
+        \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_II/resources/reward/corr_analysis/ELF3_box.png}
+        \caption{ELF3}
+        \label{fig:N_II:ahr_corr}
+    \end{subfigure}
+    \centering
+    \begin{subfigure}{0.49\linewidth}
+        \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_II/resources/reward/corr_analysis/AHR_box.png}
+        \caption{AHR}
+        \label{fig:N_II:elf3_corr}
+    \end{subfigure} %
+    \centering
+    \begin{subfigure}{0.49\linewidth}
+        \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_II/resources/reward/corr_analysis/FGFR3_box.png}
+        \caption{FGFR3}
+        \label{fig:N_II:ahr_corr}
+    \end{subfigure}
+    \begin{subfigure}{0.49\linewidth}
+        \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_II/resources/reward/corr_analysis/KLF5_box.png}
+        \caption{KLF5}
+        \label{fig:N_II:ahr_corr}
+    \end{subfigure}
+    \caption{Correlation matrix ranking of the neighbours nodes in the reward network of \textit{ELF3, AHR, FGFR3} and \textit{KLF5}. A gene is considered a neighbour   when it has a direct connection with the studied gene (e.g. \textit{AHR}). The four plot shows the high variance of the ranks in correlation matrix and that after the reward modifier is applied these genes are moved in the rank of the studied gene. }
+    \label{fig:N_II:corr_analysis}
+\end{figure}
+
+
+% Explain the correlation rank plots
+To understand this effect to a gene (e.g. \textit{ELF3}), the nodes which are directly connected to \textit{ELF3} in the reward network are 'extract' as neighbour genes. For each of this gene it is computed the ranks in both the unmodified Spearman correlation matrix and in the resultant matrix from applying the reward modifier. Then the rank of the \textit{ELF3} gene is extracted, thus giving a relative indication of how well the two genes are connected.
+
+% Introduce the plots
+The ranks from both the Spearman correlation (red) and matrix changed  by the reward modifier (green) are shown for \textit{ELF3, AHR, FGFR3} and \textit{KLF5} gene in \cref{fig:N_II:corr_analysis}. All of these four genes have a well known function in the bladder tissue, are mutated and are nodes with a high degree. The four figures show that all the ranks in Spearman correlation matrix have a high variance and the four genes are usually within the top $\sim15\%$ (rank $500-600$) of the neighbour's ranking. In addition, the ranks for the reward modified matrix are in 1-7 range\footnote{With the exception of the gene \textit{NCOA1}, in the box plot for \textit{KLF5}, which has is in also top correlation ranks for the \textit{KLF5}. Thus, both genes have each other in their higher correlation ranks.} showing the clear effect on the correlation ranks after the reward modifier is applied. 
+
+% Control
+\subsubsection*{Control}
+
+To clarify the chances of the 122 genes being selected by just the mutation burden, a control network was generated. In this graph, the 122 genes were all assigned a mutation burden of 0, while 122 not-mutated genes (i.e., control gene) were randomly assigned the mutation burden of the highly connected genes; i.e., the genes from \cref{s:N_II:exp_molecular_highCon}. This experiment would help explaining that the reward modifier is the sole reason for why the 122 genes have high degree value. By analysing the control network it was found that none of the 122 genes with high degree from the experiment. The control genes were among the highest connected genes in the control network, denoting that the mutation burden has a large impact on the edge pruning (i.e. the number of edges per gene) but the degree values were not in the range of hundreds as it was the case for the experiment.
+
+Overall, the experiments in this subsection attest that for a gene to have a high number of connections it needs to meet three conditions:
+\begin{itemize}
+    \item To have a high mutation burden, in the genes used for the reward network, the ones mutated in more than 10 samples were prioritised
+    \item The gene has to be co-expressed with a large number of other genes
+    \item Spearman correlation strength affects the gene
+
+\end{itemize}
+
+
+% Gene expression
+\subsection{High degree: gene expression} \label{s:N_II:high_ge}
+
+% Introduce the section
+The previous sections showed that the 14 communities with the highest mean degree contain genes which needs to meet several conditions to get that many connections. Biologically, the gene expression is the proxy to their presence in the tissue and it is the final indicator of their importance in the MIBC.
+
+% The 14 communities gene expression
+The bar plot in \cref{fig:N_II:exp_molecular_highCon} shows the expression across the MIBC cohort of the 122 genes from the highly connected genes with the bar representing the standard deviation. This is a similar plot to \cref{fig:N_I:sel_tfs} (\textbf{check this)} used to refine the  98 TFs from \cref{s:ap:sel_prun}. It shows that most of the genes have a TPM higher than 1, and 39/122 have a TPM less than 10. In addition, the error bars help indicate which genes have a high standard deviation across the samples, an indicator of variability which can help isolating genes specific to subgroups. 
+
+
+\begin{figure}[!htb]    
+    \centering
+    \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_II/resources/reward/smallCom_Exp.png}
+   \caption{Bar plot showing the mean expression of the high connected genes.}
+    \label{fig:N_II:exp_molecular_highCon}
+\end{figure}
+
+% Community 1
+\textit{ELF3}, \textit{KLF5}, and \textit{CDH2} are part of community 1, which has the highest mean degree. The former is an early differentiation marker of urothelium \citep{Bock2014-zy}, while \textit{KLF5} has been associated with AbsCa differentiation earlier in the project \cref{tab:N_I:markers_diff}. \textit{CDH2} is part of the markers for the \acrfull{emt} signature, which is part of the Luminal-Infiltrated subtype in the TCGA cohort \citep{Robertson2017-mg}, see \cref{tab:lit:tcga_genes}.
+
+% Community 2
+Community 2 has the third largest mean degree and contains genes such as \textit{AHR}, \textit{CREBBP}, and \textit{NCOA1}. \textit{AHR} is expressed when a patient is contaminated with dioxin (or Agent Orange), and its inhibition reduces tumour growth \citep{d}, while higher expression is associated with a worse treatment response \citep{Ma2023-uu}. \textit{CREBBP} is involved in chromatin remodelling, and in the in-situ experiments and bioinformatics analysis by \citep{Duex2018-qg}, it was found that targeting this gene has the potential to improve therapy. \textit{NCOA1} is also involved in chromatin remodelling, as noted in the \href{https://www.uniprot.org/uniprotkb/Q15788/entry#function}{Gene Card}.
+
+% Community 3
+\textit{LAMA3} and \textit{LAMA4} are part of the same gene family, and genomic analysis studies by \citep{Ma2024-xc} identified that these two genes are correlated with cell proliferation in bladder cancer. In bioinformatics analysis focusing on cadmium exposure and its effect on bladder cancer, the authors in \citep{Zhang2023-ul} identified the overexpression of \textit{FN1} as a potential indicator of tumour purity and poorer survival prognosis. The relationship between \textit{FN1} and tumour impurity was also observed by \citep{Zhang2023-kv}. \textit{COL7A1} is part of the collagen family, and in the work by \citep{Guo2023-sf}, which focused on this family's role in tumours, it was found to be more associated with squamous subtypes. It is worth mentioning that \textit{COL7A1}, \textit{FN1}, and \textit{LAMA3} are all part of community 10, which has the second highest mean degree.
+
+
+Exploring the three communities with the highest mean degree shows that the genes with a high number of connections have a biological function. Although the other blocks remain unexplored, there are many genes, such as \textit{FGFR3}, \textit{TP63}, and \textit{CDKN2A}, that are known to play a role in bladder cancer \citep{Robertson2017-mg,Kamoun2020-tj-ed}, see \cref{tab:lit:lund_genes} \citep{Marzouka2018-ge}. This demonstrates the power of the network pipeline to isolate genes that have a functional role in bladder cancer, as studied in the literature, and to reveal new associations that have the potential to advance the understanding of bladder biology.
+
+
+% MIBC subtyping
+\subsection{MIBC subtyping}
+
+From the 45 communities in the reward network, the top 100 genes are selected using ModCon and then the iMEV applied (see \cref{s:N_II:iMEV}). On these values a similar clustering analysis as in the earlier chapter is performed (see \cref{s:cs:methods}) and is covered in more depth in the Appendix section 
+\cref{s:ap:N_II:clustering analysis}. K-means with K=7 was chosen to stratify the MIBC and the output is compared with previous classification in \cref{fig:N_II:mibc_comp}
+
+
+\begin{figure}[H]    
+    \centering
+    \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_II/resources/reward/cluster_comp_final.png}
+    \caption{Comparison of the MIBC subtype derived using the second version of the network approach introduced in \cref{s:N_II:rwd}, where the MEVs are grouped with K-means K=7. These subgroups are compared with the classifications from TCGA \citep{Robertson2017-mg}, the consensus \citep{Kamoun2020-tj}, and the previous subtypes derived in \cref{s:cs:methods}.}
+    \label{fig:N_II:mibc_comp}
+\end{figure}
+
+
+\begin{figure}[H]    
+    \centering
+    \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_II/resources/reward/cluster_analysis/survival_K_7.png}
+    \caption{Kaplan-Meir survival analysis of the 7 groups derived using the MEV scores and K-means (see \ref{s:ap:N_II:clustering analysis} for discussion). The plot shows the two trends in survival between the three Basal and two Luminal groups. A similar figure but with K=5 is can be seen in \cref{fig:ap:survival_K_5}. }
+    \label{fig:N_II:survival_K_7}
+\end{figure}
+
+
+
+
+% Comparison with Standard network
+% \subsection{Comparison with Standard Network}
+
+
+% \subsection{AHR search}
+
+% \subsection{PPARG and RARG}
+
+% \subsection{Low connected}
