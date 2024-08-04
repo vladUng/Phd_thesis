@@ -37,7 +37,7 @@ The \acrfull{sbm} and Leiden are the main community detection methods applied in
 \textbf{Present the chapter outline}
 
 
-\subsection{Datasets}
+\subsection*{Datasets}
 
 % Not sure if I need to re-mention this
 As in the previous sections, the mutation and gene expression data from the \acrshort{tcga} dataset is employed as the tumour dataset. For the non-tumour dataset, the mRNAseq data from the \acrfull{jbu} is used to generate most of the networks in this chapter. This consists of samples that are Abs-Calcium differentiated tissues, undifferentiated tissues, and P0. The list of TFs is taken from the Human Transcription Factors work by \citet{Lambert2018-el}.
@@ -52,10 +52,10 @@ As in the previous sections, the mutation and gene expression data from the \acr
 
 \import{Sections/Network_II/}{reward_net.tex}
 
-
-\newpage
-
 \section{Discussion}
+
+\paragraph*{Conclusion}
+
 
 
 
@@ -74,52 +74,67 @@ In this version of the network pipeline there are some parts that can be further
 \end{enumerate}
 
 
-\newpage
+% Conclusion
+The network pipeline introduced in this section founds 7 MIBC groups which exhibit the Basal and Luminal groups as well some infiltrated groups with tendencies to the major groups. The group 5 and group 6 have
 
-Changes in the network approach:
-\begin{todolist}
-    \item Community detection - hSBM
-    \item Chosen a TF - 6
-    \item [\done] Reward modifier
-    \item [\done] MEV take in account both the expression in non-cancerous and tumour
-    \item MEV with the mutations - what are the experiments here?
-    \begin{itemize}
-        \item There is a section in the healthySBM notebook where I am doing a quick comparison (iMev + mutation)
-        \item How many of mutated genes are selected between the new and older weigth modifier
-    \end{itemize}
-    \item Stating the goal of the method
-\end{todolist}
+% Conclusion
+The analysis shows the two trends of the major MIBC subgroups: Basal (1, 5) and Luminal (2,6,3). In addition, there are the samples with a high infiltration 0 and 4, each with a tendency towards the Basal/Luminal types. The 
 
-Experiments performed:
-\begin{itemize}
-    \item Standard Network Analysis
-    \begin{itemize}
-        \item Abs-Ca, UD and P0
-        \item Abs-Ca split by gender
-        \item Stratification of the benign uropathies 
-        \item Cluster-tree and their significance
-    \end{itemize}
-  \item Reward network analysis
-    \begin{itemize}
-        \item AHR and finding the correlation with SB's study
-        \item other small communities with high connectivity
-        \item comparison with small vs large communities
-        \item PPARG and RARG enrichment
-        \item Interferon search
-        \item Looking at the genes which are highly connected
-        \item Wobble genes - where do they lie on?
-    \end{itemize}
-    \item Communities and biological functions 
-    \begin{itemize}
-        \item Apply GO and GSEA to explore their biological functions
-        \item Detail the methods tried and the results found
-        \item Maybe link it back to PGCNA and SCES scores and say that we weren't successful
-        \item Conclude that it didn't work out
-    \end{itemize}
-    \item Gene selection - v3 and V4
-    \begin{itemize}
-        \item Differences in the gene selection
-        \item comparing with the varied genes
-    \end{itemize}
-\end{itemize}
+% Is there anything I can say about group 6?
+
+% Or group 5? - confirmed by the DEA?
+% Lots of ENSG groups
+A Pi-plot was plotted where the specifics of subtype 5 were explored. On the x-axis was the Basal 1 vs Basal 5 and on the Y-axis Basal 0 vs Basal 5. A lot of the genes specific to Basal 5 were un-named such as ENSG... denoting that there is some potential for new biology....
+
+
+
+
+% \newpage
+
+% Changes in the network approach:
+% \begin{todolist}
+%     \item Community detection - hSBM
+%     \item Chosen a TF - 6
+%     \item [\done] Reward modifier
+%     \item [\done] MEV take in account both the expression in non-cancerous and tumour
+%     \item MEV with the mutations - what are the experiments here?
+%     \begin{itemize}
+%         \item There is a section in the healthySBM notebook where I am doing a quick comparison (iMev + mutation)
+%         \item How many of mutated genes are selected between the new and older weigth modifier
+%     \end{itemize}
+%     \item Stating the goal of the method
+% \end{todolist}
+
+% Experiments performed:
+% \begin{itemize}
+%     \item Standard Network Analysis
+%     \begin{itemize}
+%         \item Abs-Ca, UD and P0
+%         \item Abs-Ca split by gender
+%         \item Stratification of the benign uropathies 
+%         \item Cluster-tree and their significance
+%     \end{itemize}
+%   \item Reward network analysis
+%     \begin{itemize}
+%         \item AHR and finding the correlation with SB's study
+%         \item other small communities with high connectivity
+%         \item comparison with small vs large communities
+%         \item PPARG and RARG enrichment
+%         \item Interferon search
+%         \item Looking at the genes which are highly connected
+%         \item Wobble genes - where do they lie on?
+%     \end{itemize}
+%     \item Communities and biological functions 
+%     \begin{itemize}
+%         \item Apply GO and GSEA to explore their biological functions
+%         \item Detail the methods tried and the results found
+%         \item Maybe link it back to PGCNA and SCES scores and say that we weren't successful
+%         \item Conclude that it didn't work out
+%     \end{itemize}
+%     \item Gene selection - v3 and V4
+%     \begin{itemize}
+%         \item Differences in the gene selection
+%         \item comparing with the varied genes
+%     \end{itemize}
+% \end{itemize}
 

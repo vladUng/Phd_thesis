@@ -1,13 +1,27 @@
 \section{Result: Reward network} \label{s:N_II:rwd}
 
+\vspace{3mm}
+% \noindent\rule{17cm}{0.2pt}
+\fbox {
+    \parbox{\linewidth}{
+      \begin{itemize}
+        \item 14 Highly connected communities
+        \item Networks founds 122 genes with high mutation burden and a high number of strong correlations
+        \item New Basal/Luminal groups formed of mostly of ENSG genes
+        \item   
+      \end{itemize}
+    }
+}
+\vspace{3mm}
+
 % Introducing the reward
 The reward network constructed following the pipeline in \cref{s:N_II:methods} uses the sigmoid modifier to reward the genes that are mutated. Compared to the standard network, the correlations (or nodes' weights) of mutated genes are increased proportionally with the mutation burden from TCGA's MIBC cohort. 
 
 
 \begin{figure}[H]    
     \centering
-    \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_II/resources/reward/sigmoid_5K_AHR_sfdp.png}
-    \caption{The reward network constructed from the 5000 most relatively varied genes, 3 edges per standard and 6 for TF, hierarchical SBM is used for community detection. The connections in red represents the the edges between \textit{AHR} and other genes, showing the importance of the gene in the network.}
+    \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_II/resources/reward/sigmoid_5K_Net_II_label_2.png}
+    \caption{The reward network constructed from the 5000 most relatively varied genes, 3 edges per standard and 6 for TF, hierarchical SBM is used for community detection. The connections in red represents the the edges between \textit{AHR} and other genes, showing the importance of the gene in the network. It can also be noticed that there are are some very small communities (e.g. ) compared to very large groups of nodes such as .}
     \label{fig:N_II:reward_net}
 \end{figure}
 
@@ -205,25 +219,38 @@ Community 2 has the third largest mean degree and contains genes such as \textit
 \textit{LAMA3} and \textit{LAMA4} are part of the same gene family, and genomic analysis studies by \citep{Ma2024-xc} identified that these two genes are correlated with cell proliferation in bladder cancer. In bioinformatics analysis focusing on cadmium exposure and its effect on bladder cancer, the authors in \citep{Zhang2023-ul} identified the overexpression of \textit{FN1} as a potential indicator of tumour purity and poorer survival prognosis. The relationship between \textit{FN1} and tumour impurity was also observed by \citep{Zhang2023-kv}. \textit{COL7A1} is part of the collagen family, and in the work by \citep{Guo2023-sf}, which focused on this family's role in tumours, it was found to be more associated with squamous subtypes. It is worth mentioning that \textit{COL7A1}, \textit{FN1}, and \textit{LAMA3} are all part of community 10, which has the second highest mean degree.
 
 
-Exploring the three communities with the highest mean degree shows that the genes with a high number of connections have a biological function. Although the other blocks remain unexplored, there are many genes, such as \textit{FGFR3}, \textit{TP63}, and \textit{CDKN2A}, that are known to play a role in bladder cancer \citep{Robertson2017-mg,Kamoun2020-tj-ed}, see \cref{tab:lit:lund_genes} \citep{Marzouka2018-ge}. This demonstrates the power of the network pipeline to isolate genes that have a functional role in bladder cancer, as studied in the literature, and to reveal new associations that have the potential to advance the understanding of bladder biology.
+Exploring the three communities with the highest mean degree shows that the genes with a high number of connections have a biological function. Although the other blocks remain unexplored, there are many genes, such as \textit{FGFR3}, \textit{TP63}, and \textit{CDKN2A}, that are known to play a role in bladder cancer \cite{Robertson2017-mg,Kamoun2020-tj,Marzouka2018-ge}, see tables with subtypes specific genes \cref{tab:lit:lund_genes,tab:lit:tcga_genes,tab:lit:consensus_genes}. This demonstrates the power of the network pipeline to isolate genes that have a functional role in bladder cancer, as studied in the literature, and to reveal new associations that have the potential to advance the understanding of bladder biology.
 
 
 % MIBC subtyping
 \subsection{MIBC subtyping}
 
-From the 45 communities in the reward network, the top 100 genes are selected using ModCon and then the iMEV applied (see \cref{s:N_II:iMEV}). On these values a similar clustering analysis as in the earlier chapter is performed (see \cref{s:cs:methods}) and is covered in more depth in the Appendix section 
-\cref{s:ap:N_II:clustering analysis}. K-means with K=7 was chosen to stratify the MIBC and the output is compared with previous classification in \cref{fig:N_II:mibc_comp}
+% Introduce and motivate why we are choosing all the communities
+The work presented in this chapter so far has been focused on showing the data integration works as well as to explain that the 14 communities with a high mean degree are biologically functional relevant and are not a computational artefact. Next the new MIBC subgroups are explored with all the communities. While the 122 genes with a high degree are important nodes in the networks, their MEVs do not have enough power to stratify into new subtypes \textbf{(is this good enough?)}.
+
+From the 45 communities in the reward network, the top 100 genes are selected using ModCon and then the iMEV applied (see \cref{s:N_II:iMEV}). On these values a similar clustering analysis as in the earlier chapter is performed (see \cref{s:cs:methods}) and is covered in more depth in the Appendix 
+\cref{s:ap:N_II:clustering analysis}. K-means with K=7 was chosen to stratify the MIBC and the output is compared with previous classification in \cref{fig:N_II:mibc_comp}.
 
 
-\begin{figure}[H]    
+\begin{figure}[!t]    
     \centering
     \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_II/resources/reward/cluster_comp_final.png}
-    \caption{Comparison of the MIBC subtype derived using the second version of the network approach introduced in \cref{s:N_II:rwd}, where the MEVs are grouped with K-means K=7. These subgroups are compared with the classifications from TCGA \citep{Robertson2017-mg}, the consensus \citep{Kamoun2020-tj}, and the previous subtypes derived in \cref{s:cs:methods}.}
+    \caption{Comparison of the MIBC subtype derived using the second version of the network approach introduced in \cref{s:N_II:rwd}, where the MEVs are grouped with K-means K=7. These subgroups are compared with the classifications from TCGA \citep{Robertson2017-mg}, the consensus \citep{Kamoun2020-tj}, and the previous subtypes derived in \cref{s:cs:methods}. The black font text in front of the subtypes from K-means }
     \label{fig:N_II:mibc_comp}
 \end{figure}
 
+% Comment on the comparison
 
-\begin{figure}[H]    
+% Basal groups
+In \cref{fig:N_II:mibc_comp} cluster 1 (79 samples - Network II) contains the largest proportion of the Basal samples out of the Network II subtyping regardless of their \acrfull{ifn} response. Cluster 5 (31 sample) it is also a Basal group which mainly consists of High and Low \acrshort{ifn} samples (CA+IFNG) as well as some Neuroendocrine (Ne) smples; the specific immune response was observed in the DEA from \cref{d}. Both groups (1, 5) have the lowest survival rate over 5 year as seen in \cref{fig:N_II:survival_K_7}, with patients group 1 having a poorer prognosis than the other Basal group. Despite of the Low IFNG and Ne samples which are associated with poorer prognosis, group 5 survival rate is in alignment of the previous work presented in this thesis, \cref{s:cs:basal_interp}, where the patient classified as higher \acrshort{ifn} have better survival chances.
+
+% Luminal infiltrated groups
+The largest group, 0 - 84 samples, it is compromised of some basal samples (TCGA/consensus) as well as LumInf samples by the TCGA or a combination of Stroma-rich, LumNS, Lump. Group 4 (56) is also diverse containing samples from LumInf like groups similar to 0, but the reminder of the samples are classified as LumP by TCGA/Consensus. This may suggests that there are two tendencies in the Luminal infiltrated samples, where the samples from 0 tend towards Basal phenotype while in 4 towards Luminal. The survival plot, \cref{fig:N_II:survival_K_7}, confirms this hypothesis by group 0 (yellow) having a worst prognosis than group 4.
+
+% Luminal Papillary
+Group 3 (67) is mainly compromised of Luminal Papillary (LumP) samples (TCGA, consensus) but also contains samples fron other luminal groups such as Luminal Unstable (LumU) or LumNS (Luminal Non-specified) as well a few Basal. Group 6 (18) and 2 (69) are both compromised of mainly LumP groups with a few small exceptions. The Luminal tendencies is also confirmed by the positive survival rates seen in \cref{fig:N_II:survival_K_7}.
+
+\begin{figure}[!htb]    
     \centering
     \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_II/resources/reward/cluster_analysis/survival_K_7.png}
     \caption{Kaplan-Meir survival analysis of the 7 groups derived using the MEV scores and K-means (see \ref{s:ap:N_II:clustering analysis} for discussion). The plot shows the two trends in survival between the three Basal and two Luminal groups. A similar figure but with K=5 is can be seen in \cref{fig:ap:survival_K_5}. }
@@ -231,14 +258,73 @@ From the 45 communities in the reward network, the top 100 genes are selected us
 \end{figure}
 
 
+% DEA
+\subsection{Differentially Expression Analysis}
+
+% Basal
+\subsubsection*{Basal} \label{s:N_II:basak}
+
+% Introduce Basal 5
+The Basal groups 1 and 5 have the poorest survival prognosis and are both explored in the Pi plot from \cref{fig:N_II:pi_basal_5}. The X-axis represents the pi values from the \acrfull{dea} Basal\_5 \& Basal\_1, while the Y-axis represents Basal\_5 \& LumInf\_0; the pi-plot was introduced in \ref{da}. The points in the third quadrant represent the genes that are most specific to group 5, while the first quadrant contains the genes specific to both clusters 0 and 1. While the focus of the Pi-plot is on Basal\_5, it can be seen that groups 0 and 5 do not share many common genes, and each has its own subset of genes specific to its group when compared to Basal\_5.
+
+% Comment on the Pi-plot
+The 'Ref point' in the bottom left represents the X and Y minimum values, denoting the most 'Basal\_5' specific point. The top 10 closest points to the referential point are displayed, and it can be noticed that most of the genes are "ENSG..." denoting the unexplored aspect of them. However, there are some genes, such as \textit{MT2A}, \textit{MT1X}, and \textit{KRT6B}, which are specific to Basal\_5 in comparison with Basal\_1. \textit{MT2A} was found in in-vitro experiments by \citep{Sung2022-tm} to be a tumour suppressor, as its knockdown increased cell invasion and growth. \textit{MT1X}, along with other metallothioneins (including \textit{MT2A}), was reviewed by \citep{Si2018-ep} and found to have the potential to be biomarkers for cancer diagnosis. \textit{KRT6B} is part of the Keratinization signature specific to the Ba/Sq group; see Lund markers in \cref{tab:lit:lund_genes}.
+
+% Squamous
+Less clear in the Pi-plot is that many markers for upregulated Squamous Cell Carcinoma (SCC) from \citep{Hurst2022-sp} are present on the negative side of the Y-axis, being specific to the Basal group; \textit{HMGA2} is one such marker. On the positive side of the vertical axis are the downregulated SCC markers shown in dark yellow, as well as other genes such as \textit{UPK} and \textit{ELF3}, which are specific to luminal groups; see Lund table \cref{tab:lit:lund_genes}.
+
+% Basal 1
+On the positive side of the X-axis are the markers specific to the Basal\_1 group in comparison with Basal\_5. Only four unnamed "ENSG..." genes are shown for visualisation purposes, but there are more that are significantly expressed in the DEA. There is also a \acrlong{tf}, \textit{NFAT5}, that was previously identified in the selective edge pruning chapter, \cref{s:N_I:sel_pruning}. It can also be noticed that \textit{SPTNB1} and its antisense \textit{SPTNB1-AS2} are present. In a proteogenomic study, \citep{Fanayan2013-uj} focused on colon cancer and found that these genes are potential tumour markers.
+
+% Conclusion
+The pi-plot in \cref{fig:N_II:pi_basal_5} affirms the 'Basalness' of groups 5 and 1, as well as the luminal properties of cluster 0. The analysis also shows that many significantly expressed genes between groups are unnamed. This suggests potential for new biological discoveries.
 
 
-% Comparison with Standard network
-% \subsection{Comparison with Standard Network}
+\begin{figure}[!htb]    
+    \centering
+    \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_II/resources/reward/PI_Basal_5.png}
+    \caption{The Pi plot with the \acrfull{dea} between Basal\_5 and LumInf\_0 (X-axis) and Basal\_5 and Basal\_1 (Y-axis) displays the points in distinct colours representing different known markers, such as Luminal Markers, UPK, Up and Down Regulated genes in Squamous Carcinoma Cells (SCC), the 98 TFs found in previous sections, as well as some of the highly significantly expressed genes in the two comparisons (Up\_LumInf\_0 and Up\_Basal\_1). The "Ref point" represents the minimum X and Y values of the plotted scatter points, denoting the 'most' Basal\_5 group, and the top 50 closest points to it are displayed in orange. Thus, Quadrant III highlights the genes specific to the Basal\_5 group, while Quadrant I contains the genes more common to the other two groups.}
+    \label{fig:N_II:pi_basal_5}
+\end{figure}
 
 
-% \subsection{AHR search}
 
-% \subsection{PPARG and RARG}
+% Luminal
+\subsubsection*{Luminal 6} \label{s:N_II:lum_6}
 
-% \subsection{Low connected}
+Group 6 from \cref{fig:N_II:sankey_comp} is one of the smallest luminal groups found in this project, which also has a good survival prognosis \cref{fig:N_II:survival_K_7}. The pi-plot in \cref{fig:N_II:pi_lum_6} is used to further study the molecular properties of this group. In the pi-plot, the X-axis represents the pi values from the DEA between Lum\_6 and Lum\_3, while the Y-axis represents Lum\_6 and Lum\_2. The first quadrant represents the points that are specific to both Lum\_3 and Lum\_2, while the third quadrant contains all the genes that are specific to cluster 6. The top 10 genes closest to the referential point are shown by the red markers; see \cref{da} for an introduction.
+
+
+% Quadrant 3
+The three studied groups contain samples that were previously classified as luminal. The goal of the pi-plot is to highlight any particular molecular properties of Lum\_6 over the other luminal subtypes, which is clearly shown by the genes displayed in the third quadrant. From the shape of the scatter plot, it can be seen that there are only a few genes close to either the X or Y-axis, indicating that Lum\_6 does not share many genes with the other two groups, especially with group 2, which consists solely of LumP samples (see Sankey \cref{fig:N_II:sankey_comp}). Most of the values specific to group 6 are unnamed 'ENSG...' genes, which indicates the novelty of this finding. Concurrently, this makes it challenging to characterise the subtype.
+
+
+
+% Quadrant 1
+In the diagonally opposite quadrant are the genes that are specific to the other two luminal groups, 2 and 3. There are several luminal markers present, such as PI3K Pathways, genes involved in downregulating squamous cells \citep{Hurst2022-sp}, and the luminal markers from TCGA \cref{tab:lit:tcga_genes}. Most of the genes specific to the top right do not have a determined role in bladder cancer, and there are several unnamed genes (only a few are shown for visualisation purposes). However, there are a few exceptions, such as \textit{HLTF} and \textit{SET2D}, which have known roles in cancer. \textit{HLTF} was studied by \citep{Dhont2016-vf}, who found that when the gene is silenced, it leads to more mutations in the genome, is present in the early stages of cancer, and is correlated with poorer prognosis. Both Lum\_3 and Lum\_2 have poorer survival rates than Lum\_6, which is different from what the study suggests. In a pan-cancer analysis, the authors in \citep{Lu2021-jt} found that \textit{SETD2} mutation is correlated with a higher mutation burden and immune response across the cancer cohorts in TCGA.
+
+% Conclusion
+The analysis shows that Group 6 is different from the other groups by exhibiting strong differentially expressed markers in the DEA comparison with both Lum\_2 and Lum\_3. Unnamed genes were even more present than in the analysis of the basal groups (1, 5) from the previous sections. This indicates that the group has novel biological characteristics that are yet to be discovered.
+
+
+\begin{figure}[H]    
+    \centering
+    \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_II/resources/reward/PI_Lum_6.png}
+    \caption{The Pi plot with the \acrfull{dea} between Lum\_6 and Lum\_3 (X-axis) and Lum\_6 and Lum\_2 (Y-axis) displays the points in distinct colours representing different known markers, such as Luminal Markers, Cell differentiation, PI3K Pathayway, Up and Down Regulated genes in Squamous Carcinoma Cells (SCC), the 98 TFs found in previous sections, as well as some of the highly significantly expressed genes in the two comparisons (Up\_Lum) and the negative values on the X-axis (Negative X). The "Ref point" represents the minimum X and Y values of the plotted scatter points, denoting the 'most' Lum\_6 group, and the top 10 closest points to it are displayed in orange. Thus, Quadrant III highlights the genes specific to the Basal\_6 group, while Quadrant I contains the genes more common to the other two groups. The analysis shows that there are many un-named genes specific to the Luminal 6 groups.}
+    \label{fig:N_II:pi_lum_6}
+\end{figure}
+
+
+\subsubsection{Summary}
+
+
+\begin{itemize}
+    \item data integration works
+    \item The 14 communities and 122 genes founds to be highly connected. These genes need to meet a few conditions
+    \item Non-tumour dataset found different MIBC communities but the new interesting ones have lots of unamed genes.
+    \item signals of the basal/luminal subtypes
+    \item No find of IFNG
+    \item Limitations of this study: 5K genes, most varied/median genes, aggressive filtering. iMEV accounts for the gene expression but not for the mutation count in sample nor for the point mutation.
+    \item Discuss why we haven't done the subtyping based on just the 122 genes. We looked at these genes expression and we tried to apply the hierarchical clustering both by the communities and just by the gene expression but we didn't find anything relevant. Also
+    
+\end{itemize}
