@@ -1,5 +1,5 @@
 
-\subsection{Bladder cancer} \label{s:lit:biology}
+\section{Bladder cancer} \label{s:lit:biology}
 
 \vspace{3mm}
 % \noindent\rule{17cm}{0.2pt}
@@ -14,7 +14,7 @@
 }
 \vspace{3mm}
 
-\subsubsection{What is cancer?}
+\subsection{What is cancer?}
 
 To understand cancer, we need to know how the cells work and replicate in the tissues, which is only possible by studying the constituent blocks that are represented or regulated by proteins, which in turn are created by the instructions from DNA. To find the faulty biological processes the analysis needs to be performed on both the tumorous and healthy cells/tissue enabling the comparison between normal and abnormal behaviour. To do this, scientists use multiple streams of information from molecular biology which includes gene expression (transcriptomics), mutations (genomics), lipidomics, and proteomics. The \textit{in vitro} and \textit{in situ} experiments targeted on a single gene or set of genes, provide additional and invaluable information about the biology of a tissue, cell. Through this existing biological data combined with computational modelling, researchers are creating representations such as gene interactions networks or gene pathways. 
 
@@ -38,7 +38,7 @@ Before delving into the integration of multi-omics data, bladder cancer needs to
 
 
 % Bladder cancer
-\subsubsection{Bladder Cancer} \label{s:lit:bladder_cancer}
+\subsection{Bladder Cancer} \label{s:lit:bladder_cancer}
 
 % Overview of the bladder cancer stats
 According to Cancer Research UK, bladder cancer is the 9th most common cause of cancer death and the 11th most common cancer in the UK \cite{Cancer_Research_UK2015-cf}. This is equivalent to $\sim$10,000 cases from which  $\sim$5000 are deaths, with a 5-year survival rate of 52.6\%. In 2008\cite{Ferlay2010-sx} the global estimate for bladder cancer was $\sim$380,000 new cases and $\sim$150,000 deaths per year. In 2020\cite{Sung2021-hn}, there were $\sim$573,000 cases with $\sim$212,536 deaths reported, which shows a considerable increase in cancer cases\footnote{A good resource to get an overview of the prevalence of bladder cancer (and other cancers too) is the website from World Health Organisation, particularly the trends in cancer overtime: \href{https://gco.iarc.fr/en}.}. It is typically men from Western countries who are three times more likely to develop bladder cancer \cite{Knowles2015-mu}. 
@@ -63,7 +63,7 @@ The muscle invasive bladder cancer encompasses the T2a, T2b, T3 and T4 stages an
 
 Even though the MIBC and NIMBC are bladder cancer, their form and treatment differs. Patients with the more aggressive MIBC undergo cystectomy, a procedure whereby the entire bladder is removed, while NIMBC patients have regular cystoscopies checkups. Both procedures negatively impact the patients' quality of life. Developing better diagnosis, tools and treatment plants for bladder cancer, especially for the MIBC, is therefore imperative. It is the aim of this project to build on the research that has been done so far in bladder cancer in order to develop better ways of subtyping it, focusing particularly on the MIBC.
 
-\subsubsection{MIBC subtyping} \label{s:lit:subtypes_mibc}
+\subsection{MIBC subtyping} \label{s:lit:subtypes_mibc}
 
 This section covers three main studies on MIBC stratification, the work from TCGA \citet{Robertson2017-mg}, Lund group \cite{Marzouka2018-ge} and the MIBC consensus \cite{Kamoun2020-tj}. These three studies are particularly important for this project as TCGA is the main tumour dataset used and the consensus is the referential classification on MIBC research. The subtypes derived by the Lund group have been used to verify the results in this project against a non-TCGA based group.
 
@@ -80,7 +80,7 @@ The Sankey plot (\cref{fig:lit:classifier_comp}) shows the difference in sample 
 
 
 % TCGA
-\paragraph*{TCGA} \label{s:lit:tcga_mibc}
+\subsubsection*{TCGA} \label{s:lit:tcga_mibc}
 
 % Introduction of TCGA
 The MIBC cohort from TCGA is an invaluable asset for the research community as a number of sequencing techniques have been applied to the samples: mRNAseq (gene expression), WEX and WGS (somatic mutations), microarray-based (copy number variations) as well as metadata about the patients. This cohort is characterised by aggressive tumours, having a high grade of muscle invasion and contains 412 tumour samples. There are two comprehensive studies of the muscle-invasive bladder cancer (MIBC) cohort from The Cancer Genome Atlas (TCGA) \citet{Tcga2014-dr} (2014) and \citet{Robertson2017-mg} (2017). The former constitutes the initial research analysing the first batch of patient samples (131) while the latter examines the entire cohort of 412 patient samples. 
@@ -96,7 +96,7 @@ The work of \citet{Robertson2017-mg} offers a comprehensive description of the g
 TCGA is the largest cohort from the MIBC consensus and its subtypes are used in the GUSTO trial presented later on in \cref{s:lit:clinical}. These probably makes the TCGA the most influential cohort in the MIBC research. However, due to the heterogeneous nature of the disease and the differences with the Lund classified (which uses IHC data for subtyping), it is imperative to acknowledge the bias introduced in the MIBC stratification, especially considering that the cohort contains very aggressive tumours.
 
 % Lund
-\paragraph*{Lund} \label{s:lit:lund_mibc}
+\subsubsection*{Lund} \label{s:lit:lund_mibc}
 
 % Introduce Lund cohort
 At Lund University, Sweden, significant efforts have been made by \citet{Sjodahl2017-xr, Marzouka2018-ge} to stratify MIBC. Known as the Lund classifier, the work encompasses 307 aggressive tumour samples on which microarray sequencing was performed to determine gene expression. Apart from the different sequencing technology, what sets the Lund cohort apart is the immunohistochemical (IHC) matched dataset (mostly) used to inform their previous stratification \citet{Sjodahl2017-xr}, which was based solely on gene expression.
@@ -121,7 +121,7 @@ Nevertheless, as with TCGA subtyping, the Lund subgroups are derived mainly from
 
 
 % Consensus
-\paragraph*{Consensus} \label{s:lit:consensus_mibc}
+\subsubsection*{Consensus} \label{s:lit:consensus_mibc}
 
 % Introducing the consensus work
 The TCGA and Lund cohorts are part of the effort from \citet{Kamoun2020-tj} to find a consensus among the multiple studies on MIBC stratification. There are a total of six different cohorts used in the consensus and except for the two already mentioned \citet{Kamoun2020-tj} it also utilises the work of \citet{Mo2018-rl, Damrauer2014-tc, Choi2014-ed, Rebouissou2014-ep}. This resulted in 6 subtypes (\cref{fig:lit:2020_consens}) with their molecular characteristics. It can be noticed that some subtypes are more prevalent than others, with Luminal Papillary (24\%) and Basal/Squamous (35\%) being the most common, followed by Luminal Unstable and Stroma Rich (both 15\%). Moreover, each subtype has a different mutation signature, which serves to enforce the project hypothesis by adding mutation to the RNAseq data, thus yielding better cancer classifications.
@@ -162,7 +162,7 @@ TCGA and Lund studies offered a list of the genes specific to each subtype which
 
 
 % Other omics in bladder cancer
-\subsubsection{Other omics in bladder cancer}
+\subsection{Other omics in bladder cancer}
 
 % Some properties of the bladder cancer
 % - highly mutated, a lot of epginetic changes
@@ -186,7 +186,7 @@ The high somatic mutation burden is also emphasized in stratification studies \c
 \end{figure}
 
 
-\subsubsection{Clinical translation} \label{s:lit:clinical}
+\subsection{Clinical translation} \label{s:lit:clinical}
 
 
 The MIBC heterogeneity and the challenging aspect of finding clinically relevant subgroups is also shown in the subsequent work from \citet{Robertson2023-na}, the lead author in the TCGA study \cite{Robertson2017-mg}. The more recent study concentrates on a smaller cohort of 82 patients that underwent pembrolizumab treatment\footnote{This is a type of immunotherapy offered to patients with advanced MIBC and metastatic,} with the purpose of understanding the molecular profiles of the aggressive tumours that do not respond to traditional treatments. The pre-treatment tumour samples were clustered in five different subtypes each with different recurrence rate (\cref{fig:lit:immune_rob}). S3, S2 and S5 exhibited the highest response (A) to the treatment which also had the best \textbf{no} recurrence rate (B). \Cref{fig:lit:immune_rob} (C) shows how the five groups in \cite{Robertson2023-na} are classified by the other classifications (TCGA \cite{Robertson2017-mg}, Consensus \cite{Kamoun2020-tj}, Lund \cite{Marzouka2018-ge} and MD Aderson \cite{Dadhania2016-cb}). Even though \citet{Robertson2023-na} found statistical significance similarities between the immune therapy response groups and the other classification, the five subtypes exhibit new properties and were not clearly situated in the previous groups (\cref{fig:lit:immune_rob}) (C), particularly S3 or S4 subgroups which are not easily identifiable with one of the previous subtypes. This highlights the challenging aspect of the MIBC stratification.
@@ -205,7 +205,7 @@ There is currently an ongoing clinical trial, GUSTO (Gene expression subtypes of
 The above two translational clinical efforts highlight the weight of the TCGA study from \citet{Robertson2017-mg} in bladder classification, especially given that the GUSTO trial has used the TCGA classifier over the consensus and the Lund cohort, which had the IHC information. It also underlines the importance of a good classifier and of having well-defined clusters. For example, the LumInf TCGA subtype has its own immunotherapy treatments in the GUSTO trial \citet{Griffin2024-zr} but there is a large variance between the consensus, TCGA and Lund classifiers (\cref{fig:lit:classifier_comp}). This is a strong motivator for the project and for combining multiple data types at the computational level.
 
 
-\subsubsection{Datasets used} \label{s:lit:datasets_used}
+\subsection{Datasets used} \label{s:lit:datasets_used}
 
 There are two important types of datasets used in the project: the data on non-cancerous bladder from Jack Birch Unit (JBU) and MIBC cohort from The Cancer Genome Atlas (TCGA). The JBU data, currently in the process of getting published \footnote{In the near feature after this PhD is completed, the data is likely to become available on a public portal}, helps build a representation of the urothelium that closely resembles the healthy tissue, which is used to inform the tumour stratification. The TCGA dataset is publicly available from the Genomics Data Central (GDC) portal\footnote{A new user needs to set an agreement with the GDC in order to have access \url{https://portal.gdc.cancer.gov/}}.
 
@@ -220,7 +220,7 @@ The Abs-Ca samples were grown in the lab to exhibit the 'purer' markers of the u
 To both datasets the Kallisto method was used to align the RNA-seq reads using genome version GRCh38 with Gencode annotation version 42 which resulted in $\sim33k$ genes for each dataset.
 
 
-\subsubsection{Aims \& Objectives} \label{s:lit:aims_objs}
+\subsection{Aims \& Objectives} \label{s:lit:aims_objs}
 
 Multiple studies have been presented throughout this section, all with the singular aim of stratifying muscle-invasive bladder cancer (MIBC) to identify clinically relevant subtypes. The large number of studies addressing the same issue foregrounds the importance of understanding and treating MIBC, highlighting the disease's complexity. Earlier works by the Lund group \cite{Sjodahl2017-xr, Marzouka2018-ge} and TCGA \cite{Tcga2014-dr, Robertson2017-mg} presented subtypes with clear markers. However, in the later MIBC consensus work \cite{Kamoun2020-tj}—which includes the aforementioned studies—there is a less clear description of MIBC subtypes. This ambiguity reinforces the heterogeneity and challenges of studying MIBC.
 

@@ -1,4 +1,4 @@
-\subsection{Computational methods} \label{s:lit:computational}
+\section{Computational methods} \label{s:lit:computational}
 
 \vspace{3mm}
 % \noindent\rule{17cm}{0.2pt}
@@ -25,7 +25,7 @@ The omics data are characterised by having a small number of samples with a rela
 
 This section covers the clustering techniques (\ref{s:lit:clustering}) to support the concepts in consensus subtyping (\ref{s:lit:rnaSeq}). Popular dimension reduction algorithms, covered in \cref{s:lit:dim_red}, are widely used in genomics where there is a high number of features. This is followed by EA (\ref{s:lit:ea_overview}) and Graph Theory (\ref{s:lit:graph_overview}) basics in order to support some of the work covered in the next section.
 
-\subsubsection{Clustering analysis} \label{s:lit:clustering}
+\subsection{Clustering analysis} \label{s:lit:clustering}
 
 Clustering algorithms have many variations, and these are best covered in a code sample \cite{Scikit-learn_undated-ax} from the Scikit-learn library \cite{Pedregosa2011-ts}. A selection of the methods that were successfully applied within this project is displayed in \cref{fig:lit:clustering_types}. The rows represent different types of datasets and the columns are the algorithms covered in this document: K-means as a general-purpose algorithm, and both Ward and Agglomerative as hierarchical clustering methods, with Agglomerative performing pairwise grouping. It is worth mentioning that a modified version of the Scikit-learn code was adapted to meet the project's needs, enabling the running of multiple clustering techniques with varied parameters for the TCGA dataset (\ref{}) and networks' outputs (\ref{}).
 
@@ -76,7 +76,7 @@ Gaussian Mixture Models (GMM) are probabilistic models that assume all data poin
 The clustering algorithms presented so far are used throughout the project, initially to establish a referential point independent of the methods used in other MIBC subtyping work \cite{Robertson2017-mg, Marzouka2018-ge, Kamoun2020-tj}. Then, the clustering models are used to stratify the output of the network approach. To measure the performance of these algorithms, the below metrics are used.
 
 
-\subsubsection*{Clustering metrics} \label{s:lit:clustering_metrics}
+\subsection*{Clustering metrics} \label{s:lit:clustering_metrics}
 
 One of the challenges in clustering is to measure the performance of grouping as there is no labelling or prior information on how the grouping should look like. This project uses the canonical metrics which are supported by Scikit-learn\cite{Pedregosa2011-ts,Scikit-learn_undated-ax}. These are:
 \begin{itemize}
@@ -102,7 +102,7 @@ In addition to the above metrics, there is a popular heuristic procedure, the El
 \FloatBarrier
 
 
-\subsubsection{Dimension reduction} \label{s:lit:dim_red}
+\subsection{Dimension reduction} \label{s:lit:dim_red}
 
 In contrast to many computationally- or physics-focused data analysis problems, biologically derived datasets are characterised by a high number of features (dimensions) and a small number of samples, making it necessary to use dimension reduction. \acrfull{pca} is the standard method which operates by projecting the higher dimension to the specified lower dimension. For example, a principal component of a genomic dataset might be linked to biological sex, as this influences many features of a biological system.
 
@@ -113,7 +113,7 @@ Another dimension reduction technique is \acrfull{nmf} which operates on the sam
 PCA is extensively used in this project, initially to reduce the data in \ref{} (subtypes section), and subsequently as a proxy metric to gauge the amount of variance contained in a subset of genes. This approach has been particularly useful in the network chapters, where multiple graphs are generated, each outputting a different subset of genes for clustering the MIBC.
 
 
-\subsubsection{Graphs} \label{s:lit:graph_overview}
+\subsection{Graphs} \label{s:lit:graph_overview}
 
 Genes impact each other, and there is a relationship between different subsets that give rise to pathways necessary for various functions in the tissue. The key aspect in genetics is the interdependence between elements. Traditional clustering analysis such as hierarchical clustering does not take these relationships into account, partly due to the fact that they are unknown, and that the computational models do not have that layer of information built-in. Co-expressed networks are one way to model such connections by computing the pairwise correlation of gene expression to determine the strength of connections; the research done in this area is presented in \cref{s:lit:co_net}. The gene relationships can be represented in a graph or network, where a node (or vertex) represents a gene and an edge represents the connection between them (see \cref{fig:graphs_basic}).
 
@@ -130,7 +130,7 @@ One aspect of graph analysis is to identify influential nodes, which in biology 
 The challenge with graphs is that they are less developed and can be computationally taxing. For example, community detection is a hot topic because there is no established method for identifying groups of nodes, and some popular methods can find patterns in noise. These issues are discussed at length in \cref{s:lit:comm_detect}.
 
 
-\subsubsection{Evolutionary Algorithms} \label{s:lit:ea_overview}
+\subsection{Evolutionary Algorithms} \label{s:lit:ea_overview}
 
 % In the previous section described how graphs are used to analyse the gene interactions and a similar approach but the different algorithm is \acrfull{cgp}. This is part of the \acrfull{ea} family which draws inspiration from the Darwinian evolution.
 
@@ -156,7 +156,7 @@ Defining the fitness function as well as encoding the data for the EA algorithm 
 The MDPFinder model (\cref{s:lit:mutations}) used a variation of EA called \acrfull{ga} which is a simpler version of the EA family where individuals resemble the chromosome. \acrfull{cgp} is another EA algorithm which is used to process graph representation and it overcomes some of the limitations of the simpler EA methods. 
 
 
-\subsubsection{Artificial Neural Networks} \label{s:lit:ann_overview}
+\subsection{Artificial Neural Networks} \label{s:lit:ann_overview}
 
 Artificial Neural Networks (ANN) are the ML strand that have been pushing the AI breakthroughs in the past 20 years. The inspiration comes from how the brain draws the information from external stimuli, stores it in its memory and retrieves it. The main components that are involved in the learning process are the neurons and the synapses between them\footnote{The neurons and synapses are the main components, but there may be others like dendrites which can also be computational units as seen later in the section.}. The simplest learning rule, introduced by Donald Hebb, states that "Neurons that fire together, wire together"\cite{Hebb_Donald1949-nn}. This means that a neuron that fires or is concurrently activated with another one (or in a given time window) forms a stronger connection. The opposite is true, the synapse weakens when two neurons do not get activated in the same time window. 
 
@@ -183,7 +183,7 @@ Autoencoders are a particular type of Deep Neural Networks and \cref{fig:autoenc
 Autoencoders are the most successful \acrshort{dnn} approach to problems in genomics where they have been used as a dimension reduction technique to solve the dimension curse of genetic data caused by the scarcity of samples available with a large number of features (genes). This means that they are not replacing clustering models but techniques such as \acrfull{pca} or \acrfull{nmf}, and are typically used in conjunction with clustering techniques.
 
 
-\subsubsection{Summary} \label{s:lit:choosing_ml}
+\subsection{Summary} \label{s:lit:choosing_ml}
 
 \Cref{s:lit:ea_overview} covered the basics of the evolutionary approach, and in both \ref{s:lit:ann_overview} and \ref{s:lit:autoencod_overview} sections, the connectionists' view of ML was presented. These two methodologies address different types of problems: EAs are more suited for search problems, while ANNs excel in classification tasks. ANNs operate by optimising the configuration of weights and network topology, which can be seen as a search/optimisation challenge to find the right network configuration. 
 

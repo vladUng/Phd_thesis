@@ -1,4 +1,4 @@
-\subsection{Community detection} \label{s:lit:comm_detect}
+\section{Community detection} \label{s:lit:comm_detect}
 
 \vspace{3mm}
 % \noindent\rule{17cm}{0.2pt}
@@ -24,7 +24,7 @@ This part of the literature review is structured so that it offers an overview o
 
 
 % Leiden and others
-\subsubsection{Modularity maximisation} \label{s:lit:mod_max}
+\subsection{Modularity maximisation} \label{s:lit:mod_max}
 
 % Overview of the algorithms
 Louivan \citet{Blondel2008-ik} and Leiden \citet{Traag2019-ne} are relatively simple algorithms with a similar strategy as in the agglomerative hierarchical clustering, where each node (gene) has its own partition, then these are moved until the optimal partition is found. \Cref{fig:N_I:leiden-explained} from \cite{Traag2019-ne} shows how the Leiden algorithm works: at the first stage (a) each node has its own partition, these nodes are clustered together (b) which gives rise to the communities (c). As it can be seen in c, the three partitions in c may contain sub-communities, and in the next refinement phase the nodes are moved until the optimal configuration is found.
@@ -71,7 +71,7 @@ Leiden is a culmination of previous efforts to improve Louivan\cite{Ozaki2016-dl
 Algorithms like Leiden or Louivan based on the earlier of work from Mark Newman \cite{Newman2004-dd, Newman2006-fa} are known as modularity maximisation methods or assortative community structure. These algorithms suffer from resolution limit\cite{Fortunato2007-gh, Peixoto2021-jx} which refers to the cap of $\sqrt{2E}$ communities that a model can find; where $E$ is the total number of edges. A consequence of this is that the modularity maximisation methods cannot find smaller communities even when there is statistical evidence for it. In comparison, the generative models like Stochastic Block Model are not restricted by this (there are also some limits to how many communities can be found in \cref{s:lit:sbm} but that was addressed with hierarchical SBM).
 
 % Critiques for Leiden
-\subsubsection{Descriptive vs Inference} \label{s:lit:descriptive_inference}
+\subsection{Descriptive vs Inference} \label{s:lit:descriptive_inference}
 
 % Comparative studies
 The work of \citet{Shemirani2023-ww} is used to find short-segment shared by a group of people who are distantly related, with the goal offinding rare traits and disease in biobanks. For these kind of applications, community detection algorithms are used and the authors compare multiple popular methods Leiden, Louivan, InfoMap \citet{Rosvall2008-kw} and Markov Clustering (MCL) \citet{Van_Dongen2008-yj}. Despite being a different problem from the one addressed in this PhD, the work of \citet{Shemirani2023-ww} is relevant as it offers a comparison between the different community detection algorithms. Leiden and Louivan generally have higher Modularity scores but The MCL and InfoMap are closer to the ground-truth communities. The authors' reason that that is due to the resolution limit and the Leiden, Louivan are not able to find smaller communities. This reinforces, the problem described above and raised by Tiago \citet{Peixoto2021-jx} and others \cite{Fortunato2007-gh, Traag2019-ne} - also covered in the next section (\cref{s:lit:descriptive_inference}).
@@ -83,7 +83,7 @@ The source of the major flaw of the modularity maximisation based models such as
 While the study in 2021 \citet{Peixoto2021-jx} compares the two algorithm classes at the theoretical and foundational levels, with occasional direct comparison to the number of communities discovered by each method. In 2023 \citet{Peixoto2023-rt}, the authors overcome the technical challenge of comparing the two methods by a common score and introduced minimum description length as a common metric. This is derived from information theory which quantifies the information in a network through the use of entropy. The main takeaway of \citet{Peixoto2023-rt} is that the authors demonstrated that the modularity maximisation methods are a special case of generative models and provided evidence that stochastic block models are more suitable to find communities than the others.
 
 % SBM
-\subsubsection{A generative approach} \label{s:lit:sbm}
+\subsection{A generative approach} \label{s:lit:sbm}
 
 
 Stochastic Block Model (SBM) work by generating partitions (or blocks) that best explain the observed network (i.e. co-expressed networks). The implication is that the observed network can be reconstructed from different network blocks and the challenge is to find these blocks with minimum difference between observed and generated. If the network is randomly generated then there are no possible communities to reconstruct the original network. This is different from the Leiden or Louivan methods which shuffle nodes around until the partitions are found which describe the best the given network, and can find communities in randomness. 
@@ -108,7 +108,7 @@ On the second row of \cref{fig:N_I:dc-sbm_explained}, the process is repeated an
 Compared to the other algorithms SBM are more complex and more computationally taxing. However, based on the experiments performed in this project, the computational time is not as high as the one from iCluster\citet{Mo2013-zi}. In addition, the standard SBM \citet{Peixoto2019-fg, Peixoto2017-gc, Peixoto2017-ua, Karrer2011-si} have their own limitation in terms of how many communities they can find, which is caped at $\sqrt{N}$, where $N$ is the number of nodes. In \citet{Peixoto2014-yb} this issue is addressed by proposing a hierarchical Stochastic Block Model (hSBM). The central idea is to re-apply SBM once the limit of partitions is found, thus increasing the number of partitions found. As expected, this comes with an additional computational cost.
 
 % Summary
-\subsubsection{Summary}
+\subsection{Summary}
 
 
 Leiden and Louivan are widely applied to biological problems. Through PGCNA, both were applied to the subtyping of the breast, lung and glioblastoma cancer cohorts from TCGA \cite{Tanner2023-wa, Care2019-ij}. In all of these applications, community detection serve a key role in selecting and inferring biological meaning from the networks. Thus, the limitations raised \citet{Peixoto2021-jx,Guimera2004-gv, Peixoto2023-rt} pose a serious challenge to the applicability of Leiden and Louivan in disease subtyping, and in fact in any biological network. 

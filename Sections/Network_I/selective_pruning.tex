@@ -196,7 +196,7 @@ It is know that \textit{MYCL, GRHL3, HOXB6, KLF5, ELF3} are involved in bladder 
 This preliminary analysis of the differences in gene expression between subtypes indicates the presence of significant biological insights to be uncovered from the subgroups derived using the 98 TFs. This is further supported by the notable survival disparity observed in the small basal group, as shown in \cref{fig:N_I:sel_tfs_survival}. The subsequent section aims to refine the list of 98 TFs and to investigate the underlying biology of each MIBC subtype.
 
 % Biological analysis
-\subsubsection{The biology behind the emergent TFs} \label{s:N_I:sel_tfs_bio}
+\subsection{The biology behind the emergent TFs} \label{s:N_I:sel_tfs_bio}
 
 The bar plots in \cref{fig:N_I:sel_tfs_var} display the log mean of the gene expression in both non-cancerous and cancerous datasets of the 98 TFs genes. The error bars depict the standard deviation of expression and the genes are in the descending order of the tumour average expressions. The red-bars represent the genes have a high variance\footnote{In this case, a high varied genes is one which has a standard deviation as big as the mean expression} in the either the non-cancerous or tumour dataset and the golden are the genes varied in both. Highly varied genes are the ones highlighted in the bar plot may yield important gene expression markers between the subgroups. The three list of varied genes can be seen \cref{tab:N_I:sel_tfs_var}.
 
@@ -232,7 +232,7 @@ It is worth remembering that MIBC is generally divided into Luminal and Basal su
 
 
 % Undiff vs Diff
-\subsubsection*{The emergent TFs and bladder differentiation} \label{s:N:sel_tf_diff_status}
+\subsection*{The emergent TFs and bladder differentiation} \label{s:N:sel_tf_diff_status}
 
 \begin{figure}[!h]
     \captionsetup[subfigure]{justification=Centering}
@@ -545,7 +545,7 @@ Returning to the small group and the pi scatter plot from \cref{fig:N_I:pi_small
 seven out of the ten genes closest to the referential point were found to have biological significance in bladder cancer biology: \textit{GPX2, KRT13, ALDH3A1, KRT15, KRT4, AKR1B10, SOX2, TP63, RAPGEFL1, CAPNS2}. \textit{GPX2} is involved in squamous differentiation \citet{Naiki2018-fp}. Higher expression of \textit{KRT13} is associated with better response to chemotherapy and immunotherapy \citet{Yu2023-db}. The methylation of \textit{ALDH3A1}, along with \textit{HOXA9} and \textit{ISL1}, has been studied in non-muscle invasive bladder cancer and found to be a predictor of disease recurrence \citet{McLean2023-qk}. Additionally, higher expression of \textit{ALDH3A1} in bladder cancer is associated with higher tumour grade and has been studied in cancer stem cells \citet{Kim2013-th}. \textit{KRT4} is a basal keratin marker \citet{Marzouka2018-ge}. Both \textit{AKR1B10} and \textit{SOX2} are associated with cell and cancer aggressiveness \citet{Huang2021-bn, Chiu2020-xh}, while \textit{TP63} is a known squamous marker \citet{Robertson2017-mg}. This evidence supports the poor survival prognosis of the smaller group and indicates that this group warrants further study.
 
 
-\subsubsection{Summary}
+\subsection{Summary}
 
 % Recapitulate the aims and what have been done
 This subsection began with two aims: identifying the appropriate community detection method and exploring the integration of Transcription Factors (TF) into the network. The comparison at the start of the section (\ref{}) demonstrated that, despite the high computational cost of Stochastic Block Models (SBM), they offer more advantages over Modularity Maximisation algorithms such as Leiden. From a network perspective, the selective edge pruning method for integrating TFs was effective, as these nodes exhibited a higher degree. Thus, the two aims of the section were achieved.

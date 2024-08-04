@@ -1,5 +1,5 @@
 
-\subsection{Methods for analysing omics data} \label{s:lit:multi-omics}
+\section{Methods for analysing omics data} \label{s:lit:multi-omics}
 
 \vspace{3mm}
 % \noindent\rule{17cm}{0.2pt}
@@ -27,7 +27,7 @@ Such instances impose a great challenge as the model needs to avoid dismissing g
 The previous work done in the field can be categorised based on the data given to the models. 
 It starts with a review of the work done in analysing gene expression data in \ref{s:lit:rnaSeq}. followed by presenting efforts in finding the relevant mutant genes in \ref{s:lit:mutations} and then on the integrative approaches with a focus on iCluster \ref{s:lit:multi-view}. The section briefly touches on the work in genomics which uses Machine Learning (\ref{s:lit:dl_genomics}) and concludes with a critical discussion on which method is the most suitable for the project.
 
-\subsubsection{Gene expression data} \label{s:lit:rnaSeq}
+\subsection{Gene expression data} \label{s:lit:rnaSeq}
 
 \vspace{3mm}
 % \noindent\rule{17cm}{0.2pt}
@@ -59,7 +59,7 @@ The microarrays data is an older method to obtain genomic information from the t
 % Introducing neuroevolution
 By combining ANN and EA, \citet{Grisci2019-xn} have introduced a neuroevolution model for analysing microarrays. Their research is built on the FS-NEAT\cite{Whiteson2005-dn} which is an idiosyncratic version of the NEAT model (Neural Networks through Augmenting Topologies)\cite{Stanley2002-tg} focused on the feature selection (FS). The central idea of the NEAT family is to use evolutionary methods to find the optimal initial network structure, which then can be used for classification of the gene expression. This is a different approach from what has been presented so far, but it is not suitable for the project as it relies on knowing the subtypes a priori.
 
-\subsubsection{Gene Mutations} \label{s:lit:mutations}
+\subsection{Gene Mutations} \label{s:lit:mutations}
 
 \vspace{3mm}
 \fbox {
@@ -92,7 +92,7 @@ There is no consensus on how the mutation data is processed, as in the case with
 Whereas most of the research efforts presented here differs in terms of aims from the current project, \citet{Zhao2012-wj} share some similarities. Instead of basing the method on the gene expression, \citet{Zhao2012-wj} first analyse the mutations and then use the gene expression. In this thesis, a representation is first built on the gene expression and then the mutation information is added. The network approach presented in this thesis offers an easier option to integrate other data types such as Transcription Factors.
 
 
-\subsubsection{Integrative approaches} \label{s:lit:multi-view}
+\subsection{Integrative approaches} \label{s:lit:multi-view}
 
 \vspace{3mm}
 \fbox {
@@ -133,7 +133,7 @@ A herculean effort by \citet{Xie2021-al} was to quantify and review the work don
 % Cava et al. \cite{Cava2018-rv} builds on LEGO/GANPA to integrate multiplex networks with the goal of the network drivers in pan-cancer. 
 
 
-\subsubsection*{Existing pipelines to integrate multiple datasets} \label{s:pipelines}
+\subsection*{Existing pipelines to integrate multiple datasets} \label{s:pipelines}
 
 
 % Related to GANPA and Cava - GeneSetCluster
@@ -151,7 +151,7 @@ PiCnIc (Pipeline for Cancer Inference) \cite{Caravagna2016-vw} is another pipeli
 
 The aim of this section was to give an overview of the work done in combining multiple sources of data, to cover how graphs can be used to analyse the gene network and the suggested workflows in multi-omics. The Pipelines covered in this section focused more on analysing the data rather than answering a biological question targeted to disease subtyping or finding potential genes for targeted genes. Drawing on the literature review, it is evident that networks are a popular method for analysing biological data.
 
-\subsubsection{iCluster family - Matrix factorisation based} \label{s:lit:iCluster}
+\subsection{iCluster family - Matrix factorisation based} \label{s:lit:iCluster}
 
 Matrix factorisation is a widely used mathematical technique for dimension reduction where the data is decomposed into smaller matrices. Processing smaller matrices has a lower computational cost as it can be analysed in parallel. Another reason for dimension reduction, and the main one in computational biology, is that the decomposed matrices embed latent information about the biological data. In other words, by condensing the initial matrix data into smaller matrices only the relevant information is kept while the noise is discarded. 
 
@@ -165,7 +165,7 @@ iCluster family is by far the most popular integrative method. It was also used 
 
 Similarly to the workings of the matrix factorisation algorithms, there are the Autoencoders which are trying to find a latent variable space using a more modern approach, namely Deep Learning. Theoretically, these could incorporate multiple data types.
 
-\subsubsection{Deep Learning  and Genomics} \label{s:lit:dl_genomics}
+\subsection{Deep Learning  and Genomics} \label{s:lit:dl_genomics}
 
 \vspace{3mm}
 \fbox {
@@ -207,7 +207,7 @@ Autoencoders have been used for processing somatic mutation datasets. In one of 
 The work mentioned above suggests that Autoencoders are a good dimension reduction technique for multi-omics datasets. Their versatility on the input data is one of the advantages along with reducing nonlinear patterns. In addition, some of the work suggests that Autoencoders preserve biological knowledge, but this needs further validation to support the assumption. As the above discussion indicates, Autoencoders were mostly used to predict the survival of a cancer patient and not to refine the cancer subtyping which is more useful to improve the current treatments. Furthermore, multi-omics data was given to the Autoencoders and not Gene Expression with mutations, which we know have a strong biological correlation between tumours.
 
 % Summary
-\subsubsection{Summary}
+\subsection{Summary}
 
 The purpose of this section has been to provide an overview of the methods used to analyse gene expression, mutations, and integrative approaches. For analysing gene expression alone, the most popular method is hierarchical clustering, as used by most of the work in the MIBC consensus \cite{Kamoun2020-tj}. \Cref{s:lit:mutations} surveys the methods used in processing mutation data with models such as MDPFinder \cite{Zhao2012-wj} and Dendrix \cite{Vandin2012-cf}. The prevalent approach in these studies is to apply stochastic or greedy methods to identify the subset of relevant mutations. \Cref{s:lit:multi-view} provides an overview of graph/network theory approaches to genomics with the aim of identifying and weighing the connections between genes. This is followed by \cref{s:pipelines}, which catalogues proposed pipelines for analysing genomic data whereby researchers introduce a series of computational steps to apply multiple data types. Lastly, the application of Deep Learning to genetic data is covered, with a focus on Autoencoders. A summary of the models reviewed can be seen in Appendix \cref{ap:tables_models} where \cref{tab:data_used} lists the approaches used. In Appendix \cref{tab:approaches}, the same models are examined, but with the datasets and goals of the research detailed.
 

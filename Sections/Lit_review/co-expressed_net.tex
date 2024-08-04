@@ -1,4 +1,4 @@
-\subsubsection{Co-expressed networks} \label{s:lit:co_net}
+\subsection{Co-expressed networks} \label{s:lit:co_net}
 
 \vspace{3mm}
 % \noindent\rule{17cm}{0.2pt}
@@ -51,7 +51,7 @@ An improvement to the Spearman or Pearson metric is partial-correlation which re
 
 The partial-correlation is also known as the inverse of the covariate matrix or precision metrics and there has been work to make it more efficient \citet{Ghanbari2019-tq}. However, this is not a widely used metric in building the biological networks arguably due to the small number of samples over the features and the more computationally taxing process to the alternatives.
 
-\subsubsection{Network pipeline}
+\subsection{Network pipeline}
 
 \vspace{3mm}
 % \noindent\rule{17cm}{0.2pt}
@@ -102,7 +102,7 @@ While PGCNA solves many of the challenges that this project has faced there are 
 
 
 % Bayesian networks
-\subsubsection{Bayesian approaches} \label{s:lit:bayesian}
+\subsection{Bayesian approaches} \label{s:lit:bayesian}
 
 An alternative to co-expressed network is provided by the work of \citet{Nakazawa2021-yq} which uses Bayesian methods, rather than the correlation metric, to construct the network of the cancer. The computationally heavy algorithm, initially introduced by \citet{Imoto2001-uc}, uses \citet{Tamada2011-ok} for implementation. Once the cancer’s network is built, the authors adapted the work of \citet{Tanaka2020-mw} to find patient specific subnetworks. Lastly, the patient-specific subnetworks are then clustered using the hierarchical clustering by their similarity and differences.
 
@@ -115,7 +115,7 @@ In summary, the work of \citet{Nakazawa2021-yq} represents a comparable Bayesian
 
 
 
-\subsubsection{Data integration} \label{s:lit:net_data_int}
+\subsection{Data integration} \label{s:lit:net_data_int}
 
 \vspace{3mm}
 % \noindent\rule{17cm}{0.2pt}
@@ -209,7 +209,7 @@ DrDimont (Drug response prediction from Differential analysis of multi-omics net
 
 This shows another application of the network, including WGCNA, to drug discovery. This is a work with strong biological motivation, but the model developed does not incorporate the mutations or Transcription Factors nor does it use community detection algorithms to find the structures across the layers.
 
-\subsubsection{Summary}
+\subsection{Summary}
 
 
 This section has explored some of the popular methods to build network and how these models were applied to a variety of diseases. The co-expressed networks covered, WGCNA \cite{Langfelder2008-sn}, the most popular method, and PGCNA \cite{Care2019-ij} introducing a newer correlation based networks. HCNM \cite{Vangimalla2021-fc} and iHNMMO \citet{Peng2017-ik} create multi-layer networks each being a representation of the data types. While DrDimont \cite{Hiort2022-lk} and NetICS \citet{Dimitrakopoulos2018-br} uses differentially expressed analysis results between either healthy-disease or disease-drug response to build the networks. Partial-correlation has also been used in the network construction phase by \citet{De_la_Fuente2004-ts} as well as Bayesian approaches probabilistic methods by \cite{Nakazawa2021-yq, Tamada2011-ok, Tanaka2020-mw}.
