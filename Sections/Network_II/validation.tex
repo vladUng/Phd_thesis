@@ -1,7 +1,7 @@
 \section{Validation} \label{s:N_II:validation}
 
 
-This part of the chapter contains different comparisons and network metrics analyses to test and validate the changes made to the network pipeline. The graph changes between a tumour and non-tumour network are presented in \cref{s:N_II:net_comp}, the difference in the two reward functions are explored in \cref{s:N_II:reward_comp} and the effects of the integrative MEV introduced to the MIBC subtypes are covered in \cref{s:N_II:mev_comp}. The difference in the community detection algorithms is not covered as the \acrfull{hsbm} is just a nested SBM which allows to discover more communities than the standard SBM; this was also covered in the work of \citet{Peixoto2014-yb}.
+This part of the chapter contains different comparisons and network metrics analyses to test and validate the changes made to the network pipeline. The graph changes between a tumour and non-tumour network are presented in \cref{s:N_II:net_comp}, the difference in the two reward functions are presented in \cref{s:N_II:reward_comp} and the effects of the integrative MEV introduced to the MIBC subtypes are covered in \cref{s:N_II:mev_comp}. The difference in the community detection algorithms is not covered as the \acrfull{hsbm} is just a nested SBM which allows to discover more communities than the standard SBM; the comparison between Leiden and SBM was covered in \cref{s:gene_sel}.
 
 
 % Network validation 
@@ -13,12 +13,12 @@ To study the differences between the non-tumour and tumour networks the previous
 In the pageRank and degree metrics, the non-tumour networks seems to be elongated on the Y-axis, denoting a a high variance between the nodes. This is further enforced by the reward modifier, suggesting that there is a subset of nodes that have a high number of connections and are central to the network. Compared to the non-tumour, the TCGA derived graphs have nodes have similar values for centrality and degree. 
 
 % Closeness & betweneess
-A distinct feature of the tumour networks is that there the there are a subset of genes that are close together given by the closeness plot. The reward non-tumour network has the nodes closer compared with the standard, indicating the reward modifier 'brings' the node closer. Another distinct feature of the tumour networks is that the two networks genes with high betweenness values. Again, the reward modifier amplifies this compared to the standard (this is not very clear).
+A distinct feature of the tumour networks is that there the there is a subset of genes that are adjacent given by the closeness plot. The reward non-tumour network has the nodes closer compared with the standard, indicating the reward modifier 'brings' the node closer. Another distinct feature of the tumour networks is that these are characterised by a high value in betweeness, suggesting that there are several important nodes into the network.. Again, the reward modifier amplifies this compared to the standard.
 
 % IVI
 The IVI distribution for the two tumour networks are largely similar, but there is a noticeable difference between the non-tumour standard and reward graphs. It can be seen that the when the weight modifier is applied, the metric's distribution is sparser, havig a subset of genes that have higher values.
 
-Overall the metrics comparisons shows that the non-tumour network react stronger to the reward modifiers and that there is a subset of genes that are more central and have a large number of connections.
+Overall the metrics comparisons shows that the non-tumour network react stronger to the sigmoid modifier and that there is a subset of genes that are more central and have a large number of connections; this is explored in more detail in \cref{s:N_II:high_conn}.
 
 \begin{figure}[!htb]    
     \centering
@@ -34,7 +34,7 @@ Overall the metrics comparisons shows that the non-tumour network react stronger
 
 
 % Do I need the following two paragraphs?
-A sigmoid function is used as a reward modifier for the revised network pipeline presented in this chapter. The differences in how the weight are changed by the two functions is shown in \cref{s:N_II:reward}. Here, the effect of the two reward functions on the network is studied.
+A sigmoid function is used as a reward modifier for the revised network pipeline presented in this chapter. The differences in how the weights are changed by the two functions is shown in \cref{s:N_II:reward}. The networks effects of the two reward functions on the network is studied in this section.
 
 In the previous sections the network differences between the Standard and modified networks was studied through the bar plots. The comparisons involved three networks as 3 histograms on a single plot resulted on a cluttered figures. In this section, only the Standard and the Reward with sigmoid function are compared over the five usual clustering metrics utilised in this PhD project as well as the Katz Centrality metrics. The latter is a centrality metric available in the Graph-tool package\footnote{The Katz Centrality metric was available only in the Graph-tool package and not in the iGraph the package used by PGCNA to generated the graph.} which considers both the neighbours of a node as well as their connection over the network. Higher values means that the nodes are important both locally and globally in the network, while lower values are associated with less important roles. 
 
@@ -52,17 +52,19 @@ The distributions of the closeness metric suggests that the nodes in the modifie
 \end{figure}
 
 
-Through the network metrics analysis it is clear that the weight modifier have an effect on the network, but it is not clear if it is strong enough to influence the Module Connection (ModCon) scores. The 100 genes with the highest ModCon it is used which are then used to stratify the MIBC. \Cref{fig:N_II:modCon_modifiers} addresses this by looking at the distribution of the mutation burden (or mutation count) from TCGA over the normalised ModCon values\footnote{The ModCon scores are normalised as the communities vary in size.}. The comparison is done for both tumour and non-tumour generated networks for the standard (blue), Reward 1 (orange) and Reward 2 (green - Sigmoid) modifiers. 
+Through the network metrics analysis it is clear that the weight modifier have an effect on the network, but it is not evident if it is strong enough to influence the Module Connection (ModCon) scores. The 100 genes with the highest ModCon are selected which are the ones also used to stratify the MIBC. \Cref{fig:N_II:modCon_modifiers} addresses this by looking at the distribution of the mutation burden (or mutation count) from TCGA over the normalised ModCon values\footnote{The ModCon scores are normalised as the communities vary in size.}. 
+
+For each community the 100 chosen genes are then ranked by their ModCon score which are then normalised\footnote{The ModCon Ranks are normalised in order to account for community size imbalance}. A value of 1 on the X-axis signals a high important gene while 0 the opposite. This means, that the importance increases from left to right. The comparison is done for both tumour and non-tumour generated networks for the standard (blue), Reward 1 (orange) and Reward 2 (green - Sigmoid) modifiers. 
 
 \begin{figure}[H]
     \centering
     \begin{subfigure}{1.0\linewidth}
-\includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_II/validation/tum_modCon_hist.png}
+\includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_II/validation/tum_modCon_hist_2.png}
         \caption{Networks generated from the tumour dataset (TCGA)}
     \end{subfigure} %
     \centering
     \begin{subfigure}{1.0\linewidth}
-        \includegraphics[width=1.0\textwidth, ,height=1.0\textheight,keepaspectratio]{Sections/Network_II/validation/non_tum_modCon_hist.png}
+        \includegraphics[width=1.0\textwidth, ,height=1.0\textheight,keepaspectratio]{Sections/Network_II/validation/non_tum_modCon_hist_2.png}
         \caption{Networks generated from the non-tumour dataset (JBU)}
     \end{subfigure}
     \centering
@@ -70,12 +72,10 @@ Through the network metrics analysis it is clear that the weight modifier have a
     \label{fig:N_II:modCon_modifiers}
 \end{figure}
 
+% Discuss the impact of Reward v1
+The two histograms in \cref{fig:N_II:modCon_modifiers} show that the sigmoid modifier (Reward v2) has the intended effect on the ModCon. In both cases, the cumulative mutation burden of the selected genes increases with the ModCon ranks. In contrast, the previous modifier (Reward v1) results in a steep increase towards the higher-ranked nodes, while at the lower ranks, only a few genes are mutated. The steep increase in the first version of the weight modifier also leads to having the most mutated genes at high ModCon across the three networks.
 
-A value of 1 on the X-axis signals a high important gene while 0 the opposite. This means, that the importance increases from left to right. Across all the plots it can be observed that as the node importance increases the mutation burden also increases. This indicates there is a 'natural' trend for the genes which are highly connected (i.e. highly correlated across the network) to also suffer from mutations. Surprisingly for the tumour generated networks (top \cref{fig:N_II:modCon_modifiers}) the modifiers seems to diminush this effect as the Standard (blue) has the highest sum of mutated genes that are also are ranked high in the networks. This pattern is clearly visible across the entire ModConRank Values.
-
-On the bottom plot from \cref{fig:N_II:modCon_modifiers} it can be noticed that the new Reward modifier increases the mutation burden in the genes that are highly connected. This is effect is noticed over the Standard network as well as over the previous weight reward function. 
-
-The two histogram plots, \cref{fig:N_II:modCon_modifiers}, indicates that the sigmoid reward modifier has the intended effect into the network and it shows that the previous reward lack the power to influence the ModCon scores despite having an effect onto the network metrics. In addition, it shows that using weight modifiers in the tumour generated networks has the opposite effect of increasing the ModCon scores for the mutated genes with the Standard network performing the best. This can be explained by the gene expression across tumour has a stronger effect into the network and that the mutation burden can not have a high impact over the gene correlation.
+Overall, the two histograms in \cref{fig:N_II:modCon_modifiers} demonstrate the effects of the weight modifiers and confirm the intended behaviour of the sigmoid version. It is also worth noting the difference between the tumour and non-tumour datasets. The former has a high concentration of the mutation burden at the high ranks of the ModCon scores, indicating that gene expression reflects tumour abnormalities.
 
 
 % iMEV comparison

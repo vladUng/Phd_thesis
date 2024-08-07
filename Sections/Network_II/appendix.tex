@@ -31,12 +31,12 @@
 
 % Mean degree 
 \subsection{Mean Degree vs Community size}
-\begin{figure}[!htb]    
+\begin{sidewaysfigure}   
     \centering
     \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_II/resources/reward/Degree_vs_ComSize.png}
     \caption{The top bar shows the community size (Y-axis) of the communities while the other plot the mean degree (Y-axis) in a community. This two complementary figures show that communities with a high number of connections are grouped in smaller communities while the large contains nodes with a low node degree. This plot helps the analysis performed in \cref{s:N_II:high_conn}. } 
     \label{fig:ap:degree_com_size}
-\end{figure}
+\end{sidewaysfigure}
 
 
 
@@ -78,10 +78,9 @@ This section covers the clustering analysis performed on the MEV values derived 
         \caption{Davies Bouldin}
         \label{fig:ap:n_II:dav_boul}
     \end{subfigure}
-    \caption{The means of the three cluster metrics introduced in \cref{s:lit:clustering_metrics}: Silhouette (cosine), Calinski Harabasz and Davies Bouldin. Each of them asses different aspects of clustering and are used to determined the right clustering model for the MIBC cohort from TCGA. The X across the bar signals the overall ranking across the models: rank 1 - X, rank 2 - XX, rank 3 - XXX. The clusters are derived from using the MEVs for the reward network derived in \cref{s:N_II:rwd}.}
+    \caption{The means of the three cluster metrics introduced in \cref{s:lit:clustering_metrics}: Silhouette (cosine), Calinski Harabasz and Davies Bouldin. Each of them assess different aspects of clustering and are used to determine the right clustering model for the MIBC cohort from TCGA. The X across the bar signals the overall ranking across the models: rank 1 - X, rank 2 - XX, rank 3 - XXX. The clusters are derived from using the MEVs for the reward network derived in \cref{s:N_II:rwd}.}
     \label{fig:ap:n_II:cluster_metrics}
 \end{figure}
-
 
 % Presetn the figure
 The three metrics used to measure the performance of the clustering models are Silhouete with cosine distance, Calinski Habrasz and Davies Bouldin. For $K\in[2,14]$ five different clustering metrics were used: K-Means, Ward, Birch, Gaussian Mixture and Spectral Clustering. The average metric values across the clustering models and configurations are plotted in \cref{fig:ap:n_II:cluster_metrics}. The X across the bar signals the overall ranking across the models: rank 1 - X, rank 2 - XX, rank 3 - XXX.

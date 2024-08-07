@@ -1,7 +1,7 @@
 \section{Methods} \label{s:N_II:methods}
 
 % Introduce the new pipeline 
-The same aggressive gene filtering was used as in the previous analysis, where all the genes that are expressed in at least 90\% of the samples were included. While in the previous network chapters the graphs were generated using an adapted version of the PGCNA as it was for an initial exploration of the network approach to stratify a disease. However, PGCNA was created with a slightly different purpose to the one in this project and the package provided did not meet some of the requirements defined in this project. The main drawback of using PGCNA is that it was built to support Leiden as a community detection and the code structure was inflexible for enabling data integration. For this reason, a new package was developed in this PhD called \textit{iNet} with the following requirements: 
+In the previous network chapters the graphs were generated using an adapted version of the PGCNA as it was for an initial exploration of the network approach to stratify a disease. The previous chapter represented an exploration of the network approach to stratify the MIBC and it used the PGCNA package to build the networks. However, PGCNA was created with the goal to integrate multiple gene expression datasets at the network construction stage which is different from this project's goals. The main drawback of using PGCNA is that it was built to support Leiden as a community detection and the code structure was inflexible for enabling data integration. For this reason, a new package was developed in this PhD called \textit{iNet} with the following requirements: 
 
 % Goals of the pipeline
 \begin{itemize}
@@ -24,7 +24,7 @@ Apart from following the Object Oriented Programming (OOP), splitting the proces
 \end{enumerate}
 
 % Highlight some of the changes
-Compared to the previous network pipeline, the correlation matrix can be also built from the partial-correlation. The weight modifier function is easy to change and supports the sigmoid function to reward the mutated genes. The edge pruning uses the information from an input file of the genes that are allowed multiple edges. There is more freedom to change the community detection and configure them, for example the Leiden algorithm can be applied with Constant Pots Model as modularity maximisation function\footnote{Const Pots Model or CPM is an alternative q}.
+Compared to the previous network pipeline, the correlation matrix can be also be built from other correlation metrics such as the partial-correlation. The weight modifier function is easy to change and supports the sigmoid function to reward the mutated genes. The edge pruning uses the information from an input file of the genes that are allowed multiple edges. There is more freedom to change the community detection and configure them, apart from the \acrfull{sbm} support, the Leiden algorithm can be applied with Constant Pots Model as modularity maximisation function\footnote{Const Pots Model or CPM is an alternative cost function}.
 
 % How was tested
 The new package was tested by comparing the outputs generated with \textit{iNet} against those from the modified PGCNA pipeline. This was possible despite implementation differences as the two pipelines followed the same principles, where a correlation matrices is used to build the graph. This means, that both the correlation matrices and the generated networks could be used to test the implementation.
@@ -40,15 +40,15 @@ In previous chapter two weight modifier introduced with the goal to integrate th
 \text{f}(w) = \frac{\max(w) + w}{\max(w)}
 \end{equation}
 
-The reward function is preferred over the penalised modifier as it did not contained isolated notes. The initial version of the reward modifier is described by \cref{eq:norm3_func}, where w is the $log_2$ transformed of the mutation burden shifted by 1 (to avoid undefined values at 0) see \cref{eq:w}. $x$ represents the mutation burden taken from the TCGA dataset.  The behaviour of the function is shown by the red line in \cref{fig:N_II:modifiers_comp} which has an arc-like behaviour, where most of the mutated genes increase the weights value up to $50\%$ (value of $1.5$). The figure also shows that genes with high mutation burden do not have a proportional impact on the weight modifier.
+The reward function is preferred over the penalised modifier as it did not contained isolated nodes. The initial version of the reward modifier is described by \cref{eq:norm3_func}, where w is the $log_2$ transformed of the mutation burden shifted by 1 (to avoid undefined values at 0 see \cref{eq:w}. $x$ represents the mutation burden taken from the TCGA dataset.  The behaviour of the function is shown by the red line in \cref{fig:N_II:modifiers_comp} which has an arc-like behaviour, where most of the mutated genes increase the weights value up to $50\%$ (value of $1.5$). The figure also shows that genes with high mutation burden do not have a proportional impact on the weight modifier.
+
+To accommodate the limitation of the previous function, a new reward function is introduced in this chapter as seen in \cref{eq:sig_func} which is modelled after the logistic function (with the sigmoid function being a special case of this). In this new reward function, $x$ represents the input variable, and $x_0$ shifts the function along the x-axis. The mutation counts are scaled to the range $[-12, 12]$, with $x_0 = -8$, and the constant $+1$ in \cref{eq:sig_func} keeps the values in the range $[1, 2]$. The parameters were determined empirically to ensure that the function meets the desired shape of a gradual increase.
 
 \begin{equation} \label{eq:sig_func}
 \text{f}(x) =  \frac{1}{1 + e^{-(x - x_0)}} + 1, \text{ where } x_0=-8
 \end{equation}
 
-To accommodate the limitation of the previous function, a new reward function is introduced in this chapter as seen in \cref{eq:sig_func} which is modelled after the logistic function (with the sigmoid function being a special case of this). In this new reward function, $x$ represents the input variable, and $x_0$ shifts the function along the x-axis. The mutation counts are scaled to the range $[-12, 12]$, with $x_0 = -8$, and the constant $+1$ in \cref{eq:sig_func} keeps the values in the range $[1, 2]$. The parameters were determined empirically to ensure that the function meets the desired shape.
-
-The behaviour of the logistic reward function is represented by the green line in \cref{fig:N_II:modifiers_comp}. From the figure it can be noticed the gradual increase of the weight modifier with the mutational burden. Highly mutated genes sch as \textit{FGFR3, KMT2C, PIK3CA} have a much higher impact on the weights compared to the previous weight function. 
+The behaviour of the logistic reward function is represented by the green line in \cref{fig:N_II:modifiers_comp}. From the figure it can be noticed the gradual increase of the weight modifier with the mutational burden. Highly mutated genes sch as \textit{FGFR3, KMT2C, PIK3CA} have a much higher impact on the weights compared to the previous weight function. It also worth noting that a 50\% increase of the a weight value happens at a point of $\sim30$ mutation burden.
 
 Later in the chapter, \cref{s:N_II:reward_comp}, there is a direct comparison of the network metrics across both tumour and non-tumour of the two modifier functions.
 
@@ -58,8 +58,6 @@ Later in the chapter, \cref{s:N_II:reward_comp}, there is a direct comparison of
     \caption{The two reward modifiers explored in this project: Reward v1 (red) and Reward v2 (sigmoid). Both are shown over the mutation burden from TCGA. The points correspond to both of the plots but only shown on the Reward 2 line to avoid clutter. A value on the Y-axis of $1.2$ will mean that the weight is increased by $20\%$ where of $2$ will result in doubling it as it is the case for the highly mutated $TP53$. }
     \label{fig:N_II:modifiers_comp}
 \end{figure}
-
-
 
 
 % iMev

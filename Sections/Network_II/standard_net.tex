@@ -5,7 +5,7 @@
 \fbox {
     \parbox{\linewidth}{
       \begin{itemize}
-        \item New Abs-Ca and P0 splits
+        \item Found communities that are responsible for splitting the Abs-Ca and P0 datasets
         \item ModCon genes are significantly expressed in the new non-tumour splits
         \item First attempt to stratify the MIBC using the non-tumour molecular representation
       \end{itemize}
@@ -20,7 +20,7 @@
 The non-tumour dataset consists of three different tissue types: undifferentiated (UD), AbsCa-differentiated (Abs-Ca) and P0; see \cref{s:lit:datasets_used} for an introduction to the datasets. The new network pipeline version it was applied to the non-tumour dataset to test if it can stratify the data into the three tissue differentiated status.
 
 % Introduce the methods used to get the groups
-To achieve this, the same filtering as in \cref{s:cs:pre-processing} was used to select the 5000 most varied genes, then the network pipeline is applied. The output which consists of the MEVs was then analysed with both the cluster analysis described in \cref{s:cs:methods} and the Morpheus \ref{}. Due the small number of samples (88) the Morpheus software was preferred to visualise and perform the hierarchical clustering, with average linkage and cosine distance. Applying quantile normalisation on the dataset aid the visualisation of the heatmap and resulted in \cref{fig:N_II:morph_non_tum}. There are four metadata shown at the top of the figure: 
+To achieve this, the same filtering as in \cref{s:cs:pre-processing} was used to select the 5000 most varied genes, then the network pipeline is applied. The output which consists of the MEVs was then analysed with both the cluster analysis described in \cref{s:cs:methods} and the Morpheus \cite{Broad-InstituteUnknown-kn}. Due the small number of samples (88) the Morpheus software was preferred to visualise and perform the hierarchical clustering, with average linkage and cosine distance. Applying quantile normalisation on the dataset aid the visualisation of the heatmap and resulted in \cref{fig:N_II:morph_non_tum}. There are four metadata shown at the top of the figure: 
 \begin{itemize}
     \item gender: Male (M), F (Female)
     \item \acrfull{nhu}: Abs-Calcium (Abs-Ca), undifferentiated (UD) and in-situ (P0)
@@ -32,7 +32,7 @@ To achieve this, the same filtering as in \cref{s:cs:pre-processing} was used to
 % Heatmap -
 From the heatmap in \cref{fig:N_II:morph_non_tum} it can be seen that the hierarchical clustering finds the three distinct groups of tissue differentiation, which further validates the approach. On top of that, as the dendrogram cut is increased to 7, there are other subgroups: a male subtype by cluster 5 and two main subtypes of the differentiated samples (6 and 7); see \cref{fig:N_II:sankey_comp}. The P0 subgroups are also split into two if the dendrogram cut is further increased, while there are 3 P0 samples which are clustered differently from the rest of the P0 samples. 
 
-\begin{figure}[!htb]    
+\begin{figure}[!t]    
     \centering
     \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_II/resources/non_tum/non_tum_split.png}
     \caption{Sankey plot that shows the non-tumour dataset split compared with the NHU differentiated status, subset and gender. It shows that the new network pipeline can find the three distinct differentiated tissues.}
@@ -40,42 +40,22 @@ From the heatmap in \cref{fig:N_II:morph_non_tum} it can be seen that the hierar
 \end{figure}
 
 % Explain the P0
-The three 'isolated' P0 samples: Y2306, Y2439 and Y2383 had a high immune response which was highlighted by \textbf{...}. The male predominant group (5): Y815A-Bl, Y836B-Bl, Y499B-Bl, Y929B-Bl are paediatric samples which may explain why were grouped. However, Y719B-Bl is also a male paediatric sample but was grouped with the large differentiated subtype (7); see the only male sample on the right hand side of the heatmap. \acrfull{dea} and \acrfull{gsea} was used to determine if there are any chromosome Y specific signatures in this group but without any success; see \cref{appendix  for this}.
+The three 'isolated' P0 samples: Y2306, Y2439 and Y2383 had a high immune response which was highlighted by \textbf{...}. The male predominant group (5): Y815A-Bl, Y836B-Bl, Y499B-Bl, Y929B-Bl are paediatric samples which may explain why were grouped separately. However, Y719B-Bl is also a male paediatric sample but was grouped with the large differentiated subtype (7); see the only male sample on the right hand side of the heatmap. \acrfull{dea} and \acrfull{gsea} was used to determine if there are any chromosome Y specific signatures in this group but without any success.
 
 % Talk about the male differentiated samples that are pedriatic
 The Abs-Ca samples are split into a smaller (14 samples) and a large (28 samples) group; see \cref{fig:N_II:sankey_comp}. From inspecting the heatmap, \cref{fig:N_II:morph_non_tum}, the smaller differentiated group is enriched in communities 19, 1 and 29 while the large group is not. Group 7 (large group) is also enriched in communities 25 and 22,  but 6 (smaller group) has a low expression of these communities. This means, that enrichment in communities 19, 1, 29, 25 and 22 establish the differences between the two differentiated groups. This is further explored in \cref{s:N_II:diff_split}.
 
-% P0 difference
-The difference in P0 is not as evident as in the Abs-Ca samples split, but it can be seen that the smaller P0 group is enriched in 25 while the larger P0 is less so. In addition, the genes from community 19, 29 are more expressed in the larger P0 group compared to the smaller subtype. This indicate that communities 25, 19 and 29 play a role in making the difference. The difference in the P0 samples are further explored in \cref{s:N_II:p0_split}.
 
+\begin{sidewaysfigure}
+    \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_II/resources/non_tum/rotated_healthy_std_3.1.png}
 
-% \begin{figure}[H]    
-%     \centering
-%     \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_II/resources/non_tum/norm_healthy_std_3.1.png}
-%     \caption{Heatmap showing both the groups in the non-tumour dataset and the clustered communities. Hierarchical clustering with average linkage and cosine distance is applied on the MEVs resulted from the network pipeline. There are four metadata shown at the top: Gender, NHU differentiation, subset name and the Diagnosis. }
-%     \label{fig:N_II:morph_non_tum}
-% \end{figure}
-
-
-\begin{figure}[H]
-    \centering
-    \begin{minipage}[t]{1.0\textwidth}
-        \centering
-   \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_II/resources/non_tum/rotated_healthy_std_3.1.png}
-
-    \end{minipage}%
-    \begin{minipage}[b]{0.2\textwidth}
-        \centering
-        \rotatebox{90}{
-        \begin{minipage}{\textheight}
-        \caption{Heatmap showing both the groups in the non-tumour dataset and the clustered communities. Hierarchical clustering with average linkage and cosine distance is applied on the MEVs resulted from the network pipeline. There are four metadata shown at the top: Gender, NHU differentiation, subset name and the Diagnosis. }
-        \end{minipage}
-        }
-    \end{minipage}
+    \caption{Heatmap showing both the groups in the non-tumour dataset and the clustered communities. Hierarchical clustering with average linkage and cosine distance is applied on the MEVs resulted from the network pipeline. There are four metadata shown at the top: Gender, NHU differentiation, subset name and the Diagnosis. }
     \label{fig:N_II:morph_non_tum}
-\end{figure}
+\end{sidewaysfigure}
 
 
+% P0 difference
+The difference in P0 is not as evident as in the Abs-Ca samples split, but it can be seen that the smaller P0 group is enriched in 25 while the larger P0 is less so. In addition, the genes from community 19, 29 are more expressed in the larger P0 group compared to the smaller subtype. This indicate that communities 25, 19 and 29 play a role in making the difference; the differences in P0 is explored in \cref{s:N_II:p0_split}.
 
 % Abs-Ca splits
 \subsection{Abs-Ca splits} \label{s:N_II:diff_split}
@@ -85,7 +65,7 @@ Both the heatmap (\cref{fig:N_II:morph_non_tum}) and Sankey plot (\cref{fig:N_II
 
 
 % Describe the DEA
-The results of the \acrshort{dea} can be seen in \cref{fig:N_II:diff_split}, where the X-axis represents the difference in gene expression ($log_2(\text{fold\_change})$), while the Y-axis shows the significance of the change given by $-log_{10}(q)$. As the name suggests, "Point(s) of interest" are the genes that are outside of the $log_2(\text{fold\_change})$ bounds (\textbf{$+/-1$ - check}) and have a high expression difference, making them worth considering for future analysis. The 'Dataset' includes all the other points common to both groups. The '19', '1', '29', '25', and '22' coloured points represent the genes selected by ModCon for each respective community.
+The results of the \acrshort{dea} can be seen in \cref{fig:N_II:diff_split}, where the X-axis represents the difference in gene expression ($log_2(\text{fold\_change})$), while the Y-axis shows the significance of the change given by $-log_{10}(q)$. As the name suggests, "Point(s) of interest" are the genes that are outside of the $log_2(\text{fold\_change})$ bounds (\textbf{$+/-1$}) and have a high expression difference, making them worth considering for future analysis. The 'Dataset' includes all the other points common to both groups. The '19', '1', '29', '25', and '22' coloured points represent the genes selected by ModCon for each corresponding community.
 
 % Analysis of the volcano plot
 In \cref{fig:N_II:diff_split}, the left-hand side represents the genes that are highly expressed in the larger Abs-Ca group, while the right-hand side shows the genes specific to the small Abs-Ca group. From left to right, it can be noticed that the genes selected by communities 25 (green) and 22 (purple) are specific to the larger Abs-Ca group, which is highlighted by the heatmap in \cref{fig:N_II:morph_non_tum}. However, some of the genes in community 25 do not have a much higher expression in the large Abs-Ca group, as they are closer to the middle. On the other side, genes specific to community 19 are specific to the smaller Abs-Ca group. Genes from communities 29 and 1 are more expressed in the small Abs-Ca group but are at the threshold level of not having a high expression difference.
@@ -100,13 +80,13 @@ It is remarkable that the network pipeline, through the ModCon score, is able to
 % Talk about ENSG
 Another important observation of the selected points in the volcano plot from \cref{fig:N_II:diff_split} is that many of the highlighted genes do not have assigned names, i.e., they follow the pattern 'ENSG...'. This indicates that many of the genes are unknown and have the potential to reveal new biological insights. However, this also means that these genes are challenging to study.
 
-\begin{figure}[H]    
+
+\begin{sidewaysfigure}   
     \centering
     \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_II/resources/non_tum/diff_split_dea.png}
     \caption{Volcano plot showing the \acrfull{dea} for the comparison between groups 6 (small Abs-Ca) and 7 (large Abs-Ca). The X-axis represents the difference in gene expression, $log_2(\text{fold\_change})$, while the Y-axis shows the significance of the change given by $-log_{10}(q)$. The genes on the right-hand side of the plot are those significantly expressed in the larger Abs-Ca group, while the points on the left-hand side are specific to the smaller Abs-Ca group.}
     \label{fig:N_II:diff_split}
-\end{figure}
-
+\end{sidewaysfigure}
 
 
 % P0 split
@@ -124,15 +104,12 @@ The volcano plot confirms that the genes from communities 19 and 29 are up-regul
 This analysis reinforce the fact that the network pipeline is capable of finding communities which drive separation in well-known groups. It also shows that ModCon extracts genes that are significantly expressed in the group division.
 
 
-\begin{figure}[H]    
+\begin{sidewaysfigure}    
     \centering
     \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_II/resources/non_tum/p0_split_dea.png}
     \caption{Volcano plot showing the \acrfull{dea} for the comparison between the P0 split shown in the heatmap from \cref{fig:N_II:morph_non_tum}. The X-axis represents the difference in gene expression, $log_2(\text{fold\_change})$, while the Y-axis shows the significance of the change given by $-log_{10}(q)$. The genes on the right-hand side of the plot are those significantly expressed in the larger P0 group, while the points on the left-hand side are specific to the smaller P0 group.}
     \label{fig:N_II:p0_split}
-\end{figure}
-
-
-
+\end{sidewaysfigure}
 
 % Community characterisation
 \subsection{Community characterisation} \label{s:N_II:comm_charact}
@@ -141,16 +118,8 @@ This analysis reinforce the fact that the network pipeline is capable of finding
 In the two cases of the P0 and Abs-Ca splits, it can be observed which communities are driving the separation. It can also be noticed that the genes in these communities are found to be significantly expressed when performing the \acrlong{dea}. These two results have a two-fold implication. First, the network pipeline, and implicitly the hierarchical SBM, is able to find communities that are significantly expressed in some groups, demonstrating the power of the method. Secondly, the splits in the Abs-Ca and P0 samples indicate the opportunity to further explore new biological aspects of the differentiated status.
 
 % Talk about the misfit communities
-From the heatmap (\cref{fig:N_II:morph_non_tum}) and the two volcano plots (\cref{s:N_II:diff_split,fig:N_II:p0_split}), it can be noticed that a few communities have a stronger influence on the splits. Communities 19 and 29 are specific to the small Abs-Ca and the small P0 groups, while community 25 is specific to the large Abs-Ca and small P0 groups. It can be seen in the clustering of the communities in \cref{fig:N_II:morph_non_tum} that these are clustered separately or with weaker communities (1 and 29, and 25 and 22).
+From the heatmap (\cref{fig:N_II:morph_non_tum}) and the two volcano plots (\cref{fig:N_II:diff_split,fig:N_II:p0_split}), it can be noticed that a few communities have a stronger influence on the splits. Communities 19 and 29 are specific to the small Abs-Ca and the small P0 groups, while community 25 is specific to the large Abs-Ca and small P0 groups. It can be seen in the clustering of the communities in \cref{fig:N_II:morph_non_tum} that these are clustered separately or with weaker communities (1 and 29, and 25 and 22).
 
-
-
-\begin{figure}[H]    
-    \centering
-    \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_II/resources/non_tum/19_com.png}
-    \caption{Community 19 from the standard network generated from 5000 genes, no weight modifier and to which the \acrshort{hsbm} was applied. The community contains 123 genes from which 50 with the highest ModCon score are highlighted in orange. To aid the visualisation some of the genes were trim, for the ones with longer names the first 5 letters were kept while for 'ENSG...' like nodes the "EN\_" and the last 3 digits were kept. }
-    \label{fig:N_II:19_com}
-\end{figure}
 
 
 % Linking the Volcano plots with the network.
@@ -161,6 +130,13 @@ Community 19 seems to be the leading driver of the splits, and to showcase the v
 % Community characterisation
 Apart from the differences in the P0 and Abs-Ca samples, the heatmap shows that the communities can be labelled as tissue-specific. For example, communities 0, 2, 3, 4, 5, 7, and 6 are all more enriched in the P0 samples, while communities 11, 12, 34, 10, 14, 9, 13, 21 are enriched in the UD samples. Towards the bottom of the heatmap, communities 20, 26, 28, 31, 27, 24, 30, and 32 are enriched in differentiated tissue. Communities 19 and 29, which drive the Abs-Ca/P0 split, do not belong to any group and are classified as 'Misfit,' while community 18 is enriched in both UD and P0 samples.
 
+
+\begin{figure}[H]    
+    \centering
+    \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_II/resources/non_tum/19_com.png}
+    \caption{Community 19 from the standard network generated from 5000 genes, no weight modifier and to which the \acrshort{hsbm} was applied. The community contains 123 genes from which 50 with the highest ModCon score are highlighted in orange. To aid the visualisation some of the genes were trim, for the ones with longer names the first 5 letters were kept while for 'ENSG...' like nodes the "EN\_" and the last 3 digits were kept. }
+    \label{fig:N_II:19_com}
+\end{figure}
 
 % Why I am putting this here
 Assigning them a tissue function may help in further analysis of the MIBC subtypes. To further validate them, DEA was performed between the three datasets: Abs-Ca, UD, and P0. For each community, the genes selected by ModCon (top 100) were plotted against the volcano plots, as in \cref{fig:N_II:p0_split,s:N_II:diff_split}. This allows for confirmation of the 'trends' in the communities. The results can be seen in the cluster tree in \cref{fig:N_II:cluster_tree}, generated using \textit{clustree} package \cite{Zappia2018-bt}.
@@ -199,29 +175,17 @@ The heatmap in \cref{fig:N_II:tum_morph} demonstrates that MIBC is categorised i
 Shifting the focus on the communities, the previous highlighted 19, 25 and 29 have a less clearer impact on the tumour stratification. These groups may be involved in the split of the luminal group \cref{fig:N_II:tum_morph}, but there are clearer communities that make the separation. For example, community 9, 13, 15, 21 classified as UD, are more enriched\footnote{By this I mean, the genes that are present in mentioned communities are more expressed in one group than the other} in the Basal than the Luminal groups while 8 (diff), 16 (p0), 17 (p0) are specific to the Luminal group and not to the Basal. Communities 1, 29, 25, 27 (diff) seems to be specific the Luminal group on the left-hand side with a low expression in all the Basal group. 
 
 % Conclusion
-The heatmap in \cref{fig:N_II:tum_morph} indicates that most of the diff and P0 communities are specific to the Luminal groups which are known to be closer to the healthy bladder differentiated tissue. While the UD modules are enriched in the Basal subtype which have an undifferentiated, squamous phenotype. However, there are a few exceptions , for example communities 4,5, 10, and 12 are generally enriched in all the samples apart from a few scatter across the heatmap the luminal group on the most left. Community 7 which was attributed P0 is hard to attribute a specific MIBC group, suggesting that it may contain genes expressed across all the subtypes.
+The heatmap in \cref{fig:N_II:tum_morph} indicates that most of the diff and P0 communities are specific to the Luminal groups which are known to be closer to the healthy bladder differentiated tissue. While the UD modules are enriched in the Basal subtype which have an undifferentiated, squamous phenotype. However, there are a few exceptions , for example communities 4, 5, 10, and 12 are generally enriched in all the samples apart from a few scatter across the heatmap the luminal group on the most left. Community 7 which was attributed P0 is hard to attribute a specific MIBC group, suggesting that it may contain genes expressed across all the subtypes.
 
 Overall the analysis shows the potential of the network approach and using communities found in a non-tumour network and then used to stratify the MIBC. While these are not powerful enough the further stratify the MIBC in new groups, it shows that the communities can be used to focus the analysis. For example, one possible next step is to further investigate what are the genes in communities 4, 5, 10 and 12 as well as what makes the most left luminal community to be separated. However, due to the limited time in the PhD the efforts were concentrated on improving the reward modifier which is explored in the next section.
 
-
-\begin{figure}[H]
-    \centering
-    \begin{minipage}[t]{1.0\textwidth}
-        \centering
-    \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_II/resources/non_tum/iMev_3_3_cs_13.png}
-
-    \end{minipage}%
-    \begin{minipage}[b]{0.2\textwidth}
-        \centering
-        \rotatebox{90}{
-        \begin{minipage}{\textheight}
-        \caption{Heatmap showing both the MIBC subtypes and the grouped communities by applying the hierarchical clustering with average linkage and cosine distance on the MEVs. There are four metadata shown at the top: gender (Female/Male), race (asian, black/afro-american and white), and the three referential classifier used in the project: Lund \citet{Marzouka2018-ge}, consensus\citet{Kamoun2020-tj}, TCGA \citet{Robertson2017-mg} as well as the work form the first chapter \cref{s:cs:bio_interp}. A dendrogram cut of 10 for samples and 6 for communities was used as higher values lead to more smaller communities. On the right hand side the "Diff Type" represents the community labelling from \cref{s:N_II:comm_charact}.}
-        \end{minipage}
-        }
-    \end{minipage}
+\begin{sidewaysfigure}[ht]
+    \includegraphics[width=1.0\textwidth,keepaspectratio]{Sections/Network_II/resources/non_tum/iMev_3_3_cs_13_horiz.png}
+    
+    \caption{Heatmap showing both the MIBC subtypes and the grouped communities by applying the hierarchical clustering with average linkage and cosine distance on the MEVs. There are four metadata shown at the top: gender (Female/Male), race (asian, black/afro-american and white), and the three referential classifier used in the project: Lund \citet{Marzouka2018-ge}, consensus\citet{Kamoun2020-tj}, TCGA \citet{Robertson2017-mg} as well as the work form the first chapter \cref{s:cs:bio_interp}. A dendrogram cut of 10 for samples and 6 for communities was used as higher values lead to more smaller communities. On the right hand side the "Diff Type" represents the community labelling from \cref{s:N_II:comm_charact}.
+    }
     \label{fig:N_II:tum_morph}
-\end{figure}
-
+\end{sidewaysfigure}
 
 
 \subsection{Summary}
@@ -237,6 +201,7 @@ It is also important to highlight that most of the genes responsible for the spl
 % MIBC result
 This results section presents the first attempt to use the network representation of the non-tumour dataset to stratify \acrfull{mibc}. The two main groups, Basal and Luminal, were identified using the network approach, as well as some smaller groups, such as the Stroma-rich group. The MIBC stratification reveals different subtypes with more subgroups in the Luminal group compared to the subgroups found in the previous chapter (\cref{s:clustering_analysis}), which identified a three-way Basal split based on \acrfull{ifn}.
 
+The network approach enables tracing the communities responsible for splitting both the Abs-Ca and P0 datasets as well as the MIBC. This is a remarkable and powerful feature of the method developed in this project, as it eases the process of interpreting and understanding the newly discovered groups. It also encourages further development of such methods to enable additional data integration, as discussed in the next section.
 
 % Summary
 Overall, this results chapter represents a concentrated effort on the non-tumour dataset, validating and showcasing the advantages of the new network pipeline. In doing so, two new splits in the AbsCa and P0 datasets have been identified, which may help reveal new biology. It also demonstrates that the network approach has the potential to identify new MIBC groups. The next chapter will focus on the integration of mutation data and the stratification of MIBC.
