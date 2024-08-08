@@ -11,9 +11,11 @@
 \begin{figure}[H]    
     \centering
     \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_II/resources/non_tum/25_com.png}
-    \caption{Community 25 from the standard network generated from 5000 genes, no weight modifier and to which the \acrshort{hsbm} was applied. The community contains 180 genes from which 50 with the highest ModCon score are highlighted in orange. To aid the visualisation some of the genes were trim, for the ones with longer names the first 5 letters were kept while for 'ENSG...' like nodes the "EN\_" and the last 3 digits were kept. See \cref{s:N_II:comm_charact} for more details. }
-    \label{fig:ap:com_29}
+    \caption{Community 25 (along with 19 and 29) drives the splits in the tissue differentiation datasets. This community is enriched in the large Abs-Ca and the small P0 subgroups from \cref{fig:N_II:non_tum_sankey_comp}. The community contains 180 genes from which 50 with the highest ModCon score are highlighted in orange. To aid the visualisation some of the genes were trim, for the ones with longer names the first 5 letters were kept while for 'ENSG...' like nodes the "EN\_" and the last 3 digits were kept. See \cref{s:N_II:comm_charact} for more details, community 19 (\cref{fig:N_II:19_com}) and 29 (\cref{fig:ap:com_29}). }
+    \label{fig:ap:com_25}
 \end{figure}
+
+
 
 % 29
 \subsection*{Community 29}
@@ -21,9 +23,10 @@
 \begin{figure}[H]    
     \centering
     \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_II/resources/non_tum/29_com.png}
-    \caption{Community 25 from the standard network generated from 5000 genes, no weight modifier and to which the \acrshort{hsbm} was applied. The community contains 164 genes from which 50 with the highest ModCon score are highlighted in orange. To aid the visualisation some of the genes were trim, for the ones with longer names the first 5 letters were kept while for 'ENSG...' like nodes the "EN\_" and the last 3 digits were kept.  See \cref{s:N_II:comm_charact} for more details. }
+    \caption{Community 29 (along with 19 and 25) drives the splits in the tissue differentiation datasets. This community is enriched in the small Abs-Ca and the large P0 subgroups from \cref{fig:N_II:non_tum_sankey_comp}. The community contains 164 genes from which 50 with the highest ModCon score are highlighted in orange. To aid the visualisation some of the genes were trim, for the ones with longer names the first 5 letters were kept while for 'ENSG...' like nodes the "EN\_" and the last 3 digits were kept.  See the network representation of community 19 (\cref{fig:ap:com_19}) and 29 (\cref{fig:ap:com_29}).}
     \label{fig:ap:com_29}
 \end{figure}
+
 
 
 % Reward
@@ -55,8 +58,16 @@
 % cluster analysis
 \subsection{Clustering analysis} \label{s:ap:N_II:clustering analysis}
 
-This section covers the clustering analysis performed on the MEV values derived using second version of the network pipeline covered in \cref{s:N_II:rwd}. The aim here is to decide on the clustering model and its configuration. To achieve this the methods from \cref{s:cs:methods} are using which includes the clustering metrics covered in \cref{s:lit:clustering_metrics} and shown in \cref{fig:ap:n_II:cluster_metrics} as well as the Sankey comparison plot in \cref{fig:ap:cs_sankey}.
+This section covers the clustering analysis performed on the MEV values derived using second version of the network pipeline covered in \cref{s:N_II:rwd}. The aim here is to find the appropriate the clustering model and its configuration. To achieve this the methods from \cref{s:cs:methods} are used which includes the clustering metrics covered in \cref{s:lit:clustering_metrics} and shown in \cref{fig:ap:n_II:cluster_metrics} as well as the Sankey comparison plot in \cref{fig:ap:cs_sankey}.
 
+% Presetn the figure
+The three metrics used to measure the performance of the clustering models are Silhouete with cosine distance, Calinski Habrasz and Davies Bouldin. For $K\in[2,14]$ five different clustering metrics were used: K-Means, Ward, Birch, Gaussian Mixture and Spectral Clustering. The average metric values across the clustering models and configurations are plotted in \cref{fig:ap:n_II:cluster_metrics}. The X across the bar signals the overall ranking across the models: rank 1 - X, rank 2 - XX, rank 3 - XXX.
+
+
+The metrics trends are similar to what is observed in previous clustering analyses (\cref{fig:cs:cs_metrics,fig:ap:non_pca_metrics}), where the models' performance decreases proportionally with the number of groups. This trend is most visible in \cref{fig:ap:n_II:cal_hab} and \cref{fig:ap:n_II:dav_boul}. It can also be noted that the average Silhouette values are below the 'well-clustered' threshold of 0.5 and are lower compared to the clustering performed on the PCA-applied expression data in \cref{fig:cs:cs_metrics}. As indicated by the 'X' markers, the top-performing models are K-Means, Ward, and Spectral Clustering across all three metrics. The models configured to find 4 groups seem to perform the best, which can be explained by the fact that this is closest to $K=2,3$, which have the highest scoring values; this has been discussed in more detail in the clustering analysis from \cref{s:clustering_analysis}.
+
+% Top table
+The top metrics from \cref{fig:ap:n_II:cluster_metrics} are extracted in the table \cref{tab:ap:N:II:top_3_cs} which clearly shows that $K=4$ is the preferred number of groups with Spectral, K-means and Ward. The comparison of the MIBC stratification in \cref{fig:ap:cs_sankey} shows the three clustering models compared with the TCGA, consensus and the subtypes derived in the first chapter of thesis \cref{s:cs:bio_interp}. Across all the models there is no basal split which can be explained by the low K. It can be noticed that Spectral Clustering and Ward have a higher imbalance across the group sizes compared with K-means. The first model having the 0 group which holds most of the luminal samples (TCGA/consensus), while the latter is having a 0 group which contains the Basal Squamous samples and some of the LumP (consensus). For the more balanced size of groups the K-means is preferred over the models.
 
 \begin{figure}[H]
     \captionsetup[subfigure]{justification=Centering}
@@ -82,14 +93,6 @@ This section covers the clustering analysis performed on the MEV values derived 
     \label{fig:ap:n_II:cluster_metrics}
 \end{figure}
 
-% Presetn the figure
-The three metrics used to measure the performance of the clustering models are Silhouete with cosine distance, Calinski Habrasz and Davies Bouldin. For $K\in[2,14]$ five different clustering metrics were used: K-Means, Ward, Birch, Gaussian Mixture and Spectral Clustering. The average metric values across the clustering models and configurations are plotted in \cref{fig:ap:n_II:cluster_metrics}. The X across the bar signals the overall ranking across the models: rank 1 - X, rank 2 - XX, rank 3 - XXX.
-
-
-The metrics trends are very similar to what is observed in previous clustering analyses (\cref{fig:cs:metrics,fig:ap:non_pca_metrics}), where the models' performance decreases proportionally with the number of groups. This trend is most visible in \cref{fig:ap:n_II:cal_hab} and \cref{fig:ap:n_II:dav_boul}. It can also be noted that the average Silhouette values are below the 'well-clustered' threshold of 0.5 and are lower compared to the clustering performed on the PCA-applied expression data in \cref{fig:cs:cs_metrics}. As indicated by the 'X' markers, the top-performing models are K-Means, Ward, and Spectral Clustering across all three metrics. The models configured to find 4 groups seem to perform the best, which can be explained by the fact that this is closest to $K=2,3$, which have the highest scoring values; this has been discussed in more detail in the clustering analysis from \cref{s:clustering_analysis}.
-
-% Top table
-The top metrics from \cref{fig:ap:n_II:cluster_metrics} are extracted in the table \cref{tab:ap:N:II:top_3_cs} which clearly shows that $K=4$ is the preferred number of groups with Spectral, K-means and Ward. The comparison of the MIBC stratification in \cref{fig:ap:cs_sankey} shows the three clustering models compared with the TCGA, consensus and the subtypes derived in the first chapter of thesis \cref{s:cs:bio_interp}. Across all the models there is no basal split which can be explained by the low K. It can be notice that Spectral Clustering and Ward have a higher imbalance across the group sizes compared with K-means. The first model having the 0 group which holds most of the luminal samples (TCGA/consensus), while the latter is having a 0 group which contains the Basal Squamous samples and some of the LumP (consensus). For the more balanced size of groups the K-means is preferred over the models.
 
 \begin{table}[h!]
     \centering
@@ -124,9 +127,9 @@ The top metrics from \cref{fig:ap:n_II:cluster_metrics} are extracted in the tab
 Due to the trends in the metrics decreasing proportionally with the number of groups, further analysis is needed to decide on the optimal value of $K$. For this purpose, K-means clustering with $K \in [2,14]$ was performed, and the number of samples with negative Silhouette values was counted. These subsets of samples represent those which were incorrectly grouped, providing additional information on the clustering performance. The results are plotted in a bar chart in \cref{fig:ap:neg_samples}, where the Y-axis represents the number of negative samples and the X-axis represents the value of $K$ used in K-means clustering.
 
 % Using the negative samples to decide
-In \cref{fig:ap:neg_samples}, the same trend as before can be observed, where performance decreases proportionally with increasing $K$. The best clustering model is when $K=2$, followed by $K=5$ and $K=7$, indicating that these group sizes are the most appropriate for the clustering model. Based on the survival analysis, $K=7$ is chosen as the additional two groups provide higher resolution with minimal negative impact. This is clearly seen in the Kaplan-Meier survival plots for $K=5$ in \cref{fig:N_II:survival_K_5} and $K=7$ in \cref{fig:N_II:survival_K_7}. In the first plot, two survival trends are evident, corresponding to the two main groups, large and luminal. In the second figure, when $K=7$, additional aggressive groups are identified.
+In \cref{fig:ap:neg_samples}, the same trend as before can be observed, where performance decreases proportionally with increasing $K$. The best clustering model is when $K=2$, followed by $K=5$ and $K=7$, indicating that these group sizes are the most appropriate for the clustering model. Based on the survival analysis, $K=7$ is chosen as the additional two groups provide higher resolution with minimal negative impact. This is clearly seen in the Kaplan-Meier survival plots for $K=5$ in \cref{fig:ap:survival_K_5} and $K=7$ in \cref{fig:N_II:survival_K_7}. In the first plot, two survival trends are evident, corresponding to the two main groups, large and luminal. In the second figure, when $K=7$, additional aggressive groups are identified.
 
-Overall, the cluster analysis demonstrates the heterogeneity of the disease by not having clearly separated clusters. It is worth mentioning that hierarchical clustering within the Morpheus software from the Broad Institute was explored as an alternative (based on the work from \cref{s:N_II:std}), but the MIBC group sizes were greatly imbalanced.
+Overall, the cluster analysis demonstrates the heterogeneity of the disease by not having clearly separated clusters. It is worth mentioning that hierarchical clustering within the Morpheus software \cite{Broad-InstituteUnknown-kn} was explored as an alternative (based on the work from \cref{s:N_II:std}), but the MIBC group sizes were greatly imbalanced.
 
 \begin{figure}[H]    
     \centering

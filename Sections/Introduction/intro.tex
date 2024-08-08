@@ -1,5 +1,5 @@
 
-\section{Introduction}
+\chapter{Introduction}
 
 In recent human history there has been tremendous progress in sciences and the benefits can be coupled with the increase in life expectancy. About 150 years ago an average person would live up to 30 years, but now we're expecting to reach an average age of 70 years, and better prospects are in high-income countries like U.K. or Japan, as seen in Figure \ref{fig:life_expectancy}. Most of the technologies played a role in the increased welfare of the world population, but the advances in healthcare and our biological understanding had directly improved life expectancy. As cancer is typically a disease of ageing and as the world's population grows older a side effect is that more people get cancer in modern times.
 
@@ -25,39 +25,99 @@ The purpose of this report is to introduce the reader to the research in multi-o
   \end{figure}
   \FloatBarrier
 
-  % \begin{figure}[!htb]
-%     \hspace*{-1.5cm}    
-%     \centering
-%     \begin{subfigure}{.6\textwidth}
-%         \centering
-%         \includegraphics[width=0.8\linewidth]{Images/Resources/life-expectancy.png}
-%         \caption{Life expectancy according to Our World in Data \cite{World_in_Data_undated-gc} }
-%         \label{fig:life_expectancy}
-%     \end{subfigure}%
-%     \begin{subfigure}{.6\textwidth}
-%         \centering
-%         \includegraphics[width=0.8\linewidth, ]{Images/Resources/cancer-deaths-rate-and-age-standardized-rate-index.png}
-%         \caption{Life expectancy according to Our World in Data \cite{World_in_Data_undated-gc}.}
-%         \label{fig:cancer_death}
-%     \end{subfigure}
-%     \caption{Overview of the cancer and life-expectancy in modern world.}
-%     \label{fig:our_world_in_data}
-% \end{figure}
+
+\newpage
+
+\subsection{Overview of the cancer stratification}
+
+\begin{itemize}
+    \item Introducing the problem of cancer stratification and why it is important
+    \item Present bladder cancer, muscle invasive bladder cancer (MIBC) and non-muscle invasive bladder cancer (NMIBC)
+\end{itemize}
+
+\subsection{Motivation}
+
+\begin{itemize}
+    \item Introduce the different classifiers to stratify MIBC (e.g., Lund, TCGA, consensus)
+    \item Limitations of the current approaches
+    \begin{itemize}
+        \item Performing separate analysis for each data type and then combined the outputs 
+        \item If there are integrated at the computational stage (iCluster) these are hard to interpret and find which genes contributed to each subtype.
+    \end{itemize}
+    \item Technological progress    
+    \begin{itemize}
+        \item The RNAseq data becomes cheape
+    \end{itemize}
+\end{itemize}
 
 
+Explain the potential of the network approaches to integrate the data.
+\begin{itemize}
+    \item A model estimation for genes interactions through node’s edges
+    \item The edges can be modified to include other information such as mutations.
+    \item It can be interpreted and understood 
+    Visualisation
+\end{itemize}
 
-% \begin{figure}[!htb]
-%     \centering\includegraphics[width=0.8\textwidth,height=0.3\textheight,keepaspectratio]{Images/Resources/life-expectancy.png}
-%       \caption{Life expectancy according to World in Data \cite{World_in_Data_undated-no}}
-%       \label{fig:life_expectancy}
-%   \end{figure}
-%   \FloatBarrier
+Challenges with the network approaches
+\begin{itemize}
+    \item Representation based on genes.
+    \item Methods less developed to interpret them. 
+\end{itemize}
+
+\subsection{Hypothesis} 
+
+Combining multiple data types at the computational stage will improve cluster stratification. This in turn it will enable a greater understanding of the cancer's biology and potentially will lead to better treatments.
 
 
-% \begin{figure}[!htb]
-%     \centering\includegraphics[width=0.8\textwidth,height=0.3\textheight,keepaspectratio]{Images/Resources/cancer-deaths-rate-and-age-standardized-rate-index.png}
-%       \caption{Life expectancy according to World in Data \cite{World_in_Data_undated-gc}}
-%       \label{fig:cancer_death}
-%   \end{figure}
-%   \FloatBarrier
+\subsection{Novelty} 
 
+
+\begin{itemize}
+    \item Only RNAseq data
+    \begin{itemize}
+        \item Basal split of the TCGA dataset using K-means 
+        \item Aligned with INF$\gamma$ experiments
+    \end{itemize}
+    \item Combination of computational approach and biological healthy data
+    \begin{itemize}
+        \item Modifying a network's weights to integrate other data types is something that hasn’t been done before nor the modifications of number of connections with the goal to stratify a cancer 
+        \item Using healthy data to generate a network and then subtype the tumour is also a new approach to stratify a cancer
+    \end{itemize}
+\end{itemize}
+
+
+Contribution to knowledge. There are several Python scripts developed throughout the project to aid the data exploration and analysis, the biological interpretation and visualising other data types on Gephi (network visualiser):
+\begin{itemize}
+    \item The scripts developed to analyse networks
+    \item The pipelines developed to analyse the data
+\end{itemize}
+
+
+\subsection{Datasets used} 
+
+\begin{itemize}
+    \item Introduce the datasets used: TCGA, JBU's datasets on healthy tissue
+    \item Describe what type data we have: RNAseq and WES
+\end{itemize}
+
+
+\subsection{Thesis overview } 
+
+
+The goal of this section is to briefly describe each chapter and highlight the important findings in each.
+
+\begin{itemize}
+    \item Literature Review
+    \item Clustering Analysis
+    \item iCluster (?)
+    \item Network I - PGCNA
+    \begin{itemize}
+        \item PGCNA standard vs the clustering analysis
+        \item PGCNA with mutations
+    \end{itemize}
+    \item Network II - perturbations
+    \begin{itemize}
+        \item Constructing a network from perturbations
+    \end{itemize}
+\end{itemize}

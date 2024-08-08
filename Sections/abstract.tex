@@ -1,0 +1,32 @@
+\thispagestyle{plain}
+\begin{center}
+    \Large        
+    \textbf{Abstract}
+    \vspace{0.2cm}
+\end{center}
+
+
+% The aim of the project
+Traditional stratification methods for muscle-invasive bladder cancer (MIBC) stratification often rely on a single omics approach, such as gene expression or mutation profiles, to derive subtypes. This project introduces a novel co-expressed network pipeline that allows the integration of multiple data types at multiple levels of the networks, with the goal of improving MIBC stratification. The research focuses on the MIBC cohort from The Cancer Genome Atlas (TCGA) and the non-tumour dataset available from the Jack Birch Unit (JBU).
+
+%%%%%% Cluster analysis %%%%%%
+The first chapter of the thesis employs aggressive gene filtering, retaining genes that are highly expressed in approximately 90\% of the TCGA samples, along with a simple clustering analysis. This method identifies five groups, two of which are Basal groups with different Interferon-$\gamma$ (IFN-$\gamma$) response. This is consistent with the in-vitro work in JBU which combined with the clustering analysis the Basal can be further split into three groups. The samples in with the lowest IFN-$\gamma$ also have the poorest survival rate. This shows that a standard clustering analysis can reveal new Basal groups in the TCGA's MIBC cohort.
+
+%%%%%% Network I %%%%%%
+% Novelty: 
+% 
+% Selective edge pruning - finding 98 TFs which one of the lowest survival Basal group
+The integrative co-expressed network approach is introduced in the second chapter to address the limitations of the current MIBC classifications. The novel method integrates the mutation burden by modelling the nodes' weights and the transcription factors (TFs) through selective edge pruning. The selective edge pruning reveals a subset of 98 TFs with an important role in both tissue differentiation and MIBC classification. The expression of the 98 TFs was used to stratify the MIBC, revealing a Basal group of 20 samples with one of the lowest survival rates found in the literature. The group exhibits squamous markers, has a low immune response, and some of the significantly expressed genes are responsible for the aggressiveness of the tumours, while others can be targeted to improve treatment response.
+
+%%%%%% Network II %%%%%%
+% Novelty
+%
+% highly connected communities and the high connected genes of 122
+The network pipeline was further improved in the final results chapter, which builds the co-expressed network from the expression data of non-tumour tissue samples, which was then used to stratify the MIBC. The method showed that some of the communities found with the hierarchical Stochastic Block Model (hSBM) can be traced to splitting the non-tumour datasets into new groups, with the potential of revealing new biology for bladder tissue differentiation. The new weight modifiers and the hSBM revealed a group of communities with highly connected genes that meet the following conditions: high mutation burden and strong co-expression with other genes.
+
+%%%%%% Conclusion %%%%%%
+% The data integration occurred at several stages, the mutation burden at the weight's level where the TFs at the node's degree and expression of both the non-tumour and tumour both at the disease stratification.
+
+Throughout the various integration methods and the network approach, different subsets of genes and new MIBC groups were found. This highlights that networks are a powerful bioinformatics tool for understanding cancer biology.
+
+\newpage

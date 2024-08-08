@@ -36,7 +36,7 @@ From the heatmap in \cref{fig:N_II:morph_non_tum} it can be seen that the hierar
     \centering
     \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_II/resources/non_tum/non_tum_split.png}
     \caption{Sankey plot that shows the non-tumour dataset split compared with the NHU differentiated status, subset and gender. It shows that the new network pipeline can find the three distinct differentiated tissues.}
-    \label{fig:N_II:sankey_comp}
+    \label{fig:N_II:non_tum_sankey_comp}
 \end{figure}
 
 % Explain the P0
@@ -118,7 +118,7 @@ This analysis reinforce the fact that the network pipeline is capable of finding
 In the two cases of the P0 and Abs-Ca splits, it can be observed which communities are driving the separation. It can also be noticed that the genes in these communities are found to be significantly expressed when performing the \acrlong{dea}. These two results have a two-fold implication. First, the network pipeline, and implicitly the hierarchical SBM, is able to find communities that are significantly expressed in some groups, demonstrating the power of the method. Secondly, the splits in the Abs-Ca and P0 samples indicate the opportunity to further explore new biological aspects of the differentiated status.
 
 % Talk about the misfit communities
-From the heatmap (\cref{fig:N_II:morph_non_tum}) and the two volcano plots (\cref{fig:N_II:diff_split,fig:N_II:p0_split}), it can be noticed that a few communities have a stronger influence on the splits. Communities 19 and 29 are specific to the small Abs-Ca and the small P0 groups, while community 25 is specific to the large Abs-Ca and small P0 groups. It can be seen in the clustering of the communities in \cref{fig:N_II:morph_non_tum} that these are clustered separately or with weaker communities (1 and 29, and 25 and 22).
+From the heatmap (\cref{fig:N_II:morph_non_tum}) and the two volcano plots (\cref{fig:N_II:diff_split,fig:N_II:p0_split}), it can be noticed that a few communities have a stronger influence on the splits. Communities 19 and 29 are specific to the small Abs-Ca and the large P0 groups, while community 25 is specific to the large Abs-Ca and small P0 groups. It can be seen in the clustering of the communities in \cref{fig:N_II:morph_non_tum} that these are clustered separately or with weaker communities (1 and 29, and 25 and 22).
 
 
 
@@ -134,9 +134,10 @@ Apart from the differences in the P0 and Abs-Ca samples, the heatmap shows that 
 \begin{figure}[H]    
     \centering
     \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_II/resources/non_tum/19_com.png}
-    \caption{Community 19 from the standard network generated from 5000 genes, no weight modifier and to which the \acrshort{hsbm} was applied. The community contains 123 genes from which 50 with the highest ModCon score are highlighted in orange. To aid the visualisation some of the genes were trim, for the ones with longer names the first 5 letters were kept while for 'ENSG...' like nodes the "EN\_" and the last 3 digits were kept. }
+    \caption{Community 19 (along with 29 and 25) drives the splits in the tissue differentiation datasets. This community is enriched in the small Abs-Ca and the large P0 subgroups from \cref{fig:N_II:non_tum_sankey_comp}. The standard network is generated from 5000 genes, with no weight modifier, and the \acrshort{hsbm} was applied. The community contains 123 genes, of which the 50 with the highest ModCon scores are highlighted in orange. To aid visualisation, some of the gene names were trimmed: for those with longer names, the first 5 letters were kept, while for 'ENSG...' like nodes, "EN\_" and the last 3 digits were retained. See the network representation of community 25 (\cref{fig:ap:com_25}) and 29 (\cref{fig:ap:com_29}).}
     \label{fig:N_II:19_com}
 \end{figure}
+
 
 % Why I am putting this here
 Assigning them a tissue function may help in further analysis of the MIBC subtypes. To further validate them, DEA was performed between the three datasets: Abs-Ca, UD, and P0. For each community, the genes selected by ModCon (top 100) were plotted against the volcano plots, as in \cref{fig:N_II:p0_split,s:N_II:diff_split}. This allows for confirmation of the 'trends' in the communities. The results can be seen in the cluster tree in \cref{fig:N_II:cluster_tree}, generated using \textit{clustree} package \cite{Zappia2018-bt}.
