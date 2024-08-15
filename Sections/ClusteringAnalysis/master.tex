@@ -5,31 +5,46 @@
 \fbox {
     \parbox{\linewidth}{
       \begin{itemize}
-        \item Cluster analysis with K-means  and PCA of the TCGA's MIBC cohort
-        \item Three Basal splits based on the immune response
-        \item Evidence for supporting the the Neuronal-like group
+        % \item Cluster analysis with K-means  and PCA of the TCGA's MIBC cohort
+        % \item Three Basal splits based on the immune response
+        % \item Evidence for supporting the the Neuronal-like group
+        \item Develop and implement a clustering analysis pipeline
+        \item Apply the clustering method just to the RNAseq data from the TCGA's MIBC cohort
+        \item Establish the referential MIBC subgroups used throughout the project
       \end{itemize}
     }
 }
 \vspace{3mm}
 
 % Summary
-% \subsection{Overview}
+\section{Introduction}
 
-This section covers the work presented at the International Bladder Cancer Network (IBCN) in 2022 and is a major component of a research paper that will be submitted for peer review at the end of the PhD project. It describes the first attempt in the project to stratify the \acrfull{mibc} cohort from TCGA using only the gene expression (TPMs) obtained from RNAseq.
+This section covers the work presented at the International Bladder Cancer Network (IBCN) in 2022, which describes the first attempt in the project to stratify the \acrfull{mibc} cohort from TCGA using only gene expression (TPMs) obtained from RNAseq. The aim of this work is to develop and implement a method to determine MIBC subgroups using standard clustering techniques applied solely to RNAseq data. This can then serve as both a starting point and a referential framework for the project.
 
-The proposed pipeline utilises standard clustering techniques, including K-means for clustering, Principal Component Analysis (PCA) for dimension reduction, and various clustering metrics. Despite relying on standard methods, novel subtypes within the major MIBC basal group were identified, potentially aiding biologists in better understanding the immune responses of basal tumours. This indirectly highlights the opportunity to identify new MIBC subtypes, demonstrating that even straightforward methods can yield significant results.
+The introduced pipeline utilises standard clustering techniques, including K-means for clustering, Principal Component Analysis (PCA) for dimension reduction, and various clustering metrics. Despite relying on standard methods, novel subtypes within the major MIBC basal group were identified, potentially aiding biologists in better understanding the immune responses of basal tumours. This indirectly highlights the opportunity to identify new MIBC subtypes.
+
+The chapter is structured into two main parts: the methods are detailed in \cref{s:cs:methods}, which includes justifications for selecting K-means as the clustering model, determining the number of groups, and applying PCA prior to clustering. The configurations of the resulting pipeline are displayed in \cref{fig:cs:clustering_pipeline}. Kaplan-Meier survival analysis has shown that the derived MIBC subgroups exhibit significantly different survival prognoses, with the Neuronal and Basal groups with low Interferon-$\lambda$ demonstrating the poorest survival outcomes.
+
+The final part of the chapter analyses and validates the derived groups, attributing biological functions using a series of tools: tumour purity scores from \citet{Yoshihara2013-wq}, Interferon-$\gamma$ response \citet{Baker2022-bj}, and other classifications from TCGA, Lund, and consensus \citep{Robertson2017-mg,Marzouka2018-ge,Kamoun2020-tj}. Both Differential Expression Analysis (DEA) and Gene Set Enrichment Analysis (GSEA) are employed to further validate the biological functions associated with the MIBC subgroups.
+
+% Where to find the code
+The code implementation of the cluster analysis (i.e., methods) used in this chapter can be found in the \textit{ReClassification\_42} Jupyter Notebook and the \textit{modelling.py} script file. All the plots and the code to determine the biological functions of the derived MIBC subgroups are located in the \textit{Discussion\_42\_v2} notebook. All files are available in the \href{https://github.com/vladUng/Phd_thesis_exp}{GitHub repository} that accompanies this PhD project.
 
 
+\section{Aims}
 
-The chapter is structured into two main parts: the methods are detailed in \cref{s:cs:methods}, which includes justifications for selecting K-means as the clustering model, the number of groups, and the application of PCA prior to clustering. The configurations of the resulting pipeline are displayed in \cref{fig:cs:clustering_pipeline}. Kaplan-Meier survival analysis has shown that the derived MIBC subgroups exhibit significantly different survival prognoses, with the Neuronal and Basal groups with low Interferon-$\lambda$ demonstrating the poorest survival outcomes.
+The aims of this section are:
+\begin{itemize}
+    \item Establish a clustering analysis pipeline for determining MIBC subgroups
+    \item Identify the optimal clustering configuration for determining MIBC subtypes
+    \item Determine the metrics that can be used to evaluate and validate the groups
+    \item Develop reusable methods to support future research in the other chapters
+\end{itemize}
 
-The final part of the chapter analyses and validates the groups derived and attributes biological functions using a series of tools: tumour purity scores from \citet{Yoshihara2013-wq}, Interferon-$\gamma$ response \citet{Baker2022-bj}, and other classifications from TCGA, Lund, and consensus \citet{Robertson2017-mg,Marzouka2018-ge,Kamoun2020-tj}. Both Differential Expression Analysis (DEA) and Gene Set Enrichment Analysis (GSEA) are employed to further validate the biological functions associated with the MIBC subgroups.
-
-The in-depth code implementation of the cluster analysis (i.e., methods) run in this chapter can be found in the \textit{ReClassification\_42} Jupyter Notebook and the \textit{modelling.py} script file. All the plots and the code to determine the biological function of the derived MIBC subgroups are located in the \textit{Discussion\_42\_v2} notebook. All files are available at the \href{https://github.com/vladUng/Phd_thesis_exp}{GitHub repository} that accompanies the PhD project.
 
 
 % Methods
+% \import{Sections/ClusteringAnalysis/}{methods.tex}
 
 % Experiments
 \import{Sections/ClusteringAnalysis/}{experiments.tex}
@@ -41,7 +56,8 @@ The in-depth code implementation of the cluster analysis (i.e., methods) run in 
 \section{Discussion}
 
 % Basal groups
-The main finding in this section is the identification of three Basal groups with differing immune responses. This discovery was facilitated by initially employing a standard clustering approach and subsequently comparing the results with existing MIBC classifications \citet{Baker2022-bj,Marzouka2018-ge}. Group-specific marker genes were identified using a suite of tools: DEA, pi-plots, GSEA, and other metadata available on TCGA.
+\subsection*{New MIBC groups}
+The main finding in this section is the identification of three Basal groups with differing immune responses. This discovery was facilitated by initially employing a  clustering approach and subsequently comparing the results with existing MIBC classifications \citet{Baker2022-bj,Marzouka2018-ge}. Group-specific marker genes were identified using a suite of tools: DEA, pi-plots, GSEA, and other metadata available on TCGA.
 
 % High and Medium IFNG
 Both the High and Medium IFNG groups exhibit an \acrshort{ifn} response, highlighted by the expression of the \acrshort{ifn} signature from \citet{Baker2022-bj}. The two differ in that the High IFNG samples display a distinct immunoglobulin response, aligning them more closely with samples classified as Luminal Infiltrated. In contrast, the Low and Medium IFNG groups show stronger expression of basal/squamous subtypes compared to the third Basal group. Beyond the immune response differences, the DEA between Low/Med IFNG reveals few genes that are significantly expressed in the Low IFNG group. Some of these genes, highlighted in the analysis performed in \cref{s:cs:basal_interp}, may require further biological investigation, given the poor survival prognosis associated with Low IFNG.
@@ -57,9 +73,8 @@ The other two groups identified in this chapter, Luminal Papillary and Luminal I
 
 
 % Say that the output is in the figure
-The results of this chapter are summarised in \cref{fig:cs:overview_K_means_6}, which displays the Kaplan-Meier survival analysis of the six groups at the top, and the Sankey diagram comparing our findings with the TCGA and Lund classifiers \citet{Robertson2017-mg,Marzouka2018-ge}. \cref{fig:cs:overview_survival} clearly shows that the Low IFNG and Neuronal-like groups have the poorest survival outcomes, while the LumP group exhibits the most favourable survival rates.
-
-
+The results of this chapter are summarised in \cref{fig:cs:overview_K_means_6}, which displays the Kaplan-Meier survival analysis of the six groups at the top, and the Sankey diagram comparing our findings with the TCGA and Lund classifiers \citet{Robertson2017-mg,Marzouka2018-ge}. \cref{fig:cs:overview_survival} clearly shows that the Low IFNG and Neuronal-like groups have the poorest survival outcomes, while the LumP group exhibits the most favourable survival rates. The genes which were significantly expressed for each of the subtype are displayed in \cref{tab:cs:genes_summaries}.
+ 
 \begin{figure}[!htb]
     \centering
     \begin{subfigure}[!t]{1.0\textwidth}
@@ -80,14 +95,25 @@ The results of this chapter are summarised in \cref{fig:cs:overview_K_means_6}, 
 
 
 % Talk about gene filtering
-This chapter employed an aggressive gene filtering approach by retaining genes expressed in at least 90\% of the samples. In contrast, the 'standard' method in the field involves removing genes from analysis that are expressed in less than 10\% of samples, making it more permissive. The aggressive filtering approach is an indirect finding of this chapter, as it enabled the clustering analysis to establish novel Basal groups based on their immune response.
+
 
 % Talk about the implications of gene filtering
-Applying a permissive gene filtering retains genes that are unexpressed in more than 10\% of the samples yet expressed in the remainder; these instances are characterised by high variance. Conversely, the aggressive gene filtering adopted here retains genes that are highly expressed across the samples, thus preserving a 'core' subset of genes across the MIBC subtypes. Consequently, the pre-processed data used for clustering analysis incorporated these 'core' genes, which contained immune response signals for the various Basal groups. This approach significantly impacts gene expression analysis as it underscores how different methods of gene filtering can lead to the discovery of new disease subtypes. Furthermore, it builds on previous work by \citet{Marzouka2018-ge,Baker2022-bj}, which differentiated the Basal group based on immune/infiltration responses using immunohistochemical (IHC) and \textit{in-vitro} experiments, respectively.
+\subsection*{Aggressive gene filtering}
 
-There are two main takeaways for the MIBC analysis, a change in gene filtering can have a large impact on the subgroups found and can yield novel subgroups. By using additional knowledge in some previous work \citet{Marzouka2018-ge,Baker2022-bj} new MIBC subtypes can be find. This attests that integrating additional data types may yield to a more complete molecular representation of the bladder cancer.
+This chapter employed an aggressive gene filtering approach by retaining genes expressed in at least 90\% of the samples or 367 tumours. In contrast, the 'standard' method in the field involves removing genes from analysis that are expressed in less than 10\% of samples, making it more permissive. The aggressive filtering approach is an indirect finding of this chapter, as it enabled the clustering analysis to establish novel Basal groups based on their immune response. This was possible as the immune activated genes tend to left out by the permissive filtering with the gene selection by highest variance. 
+
+Applying a permissive gene filtering approach retains genes that are unexpressed in more than 10\% of the samples (i.e., 4 tumours), allowing for a highly varied set of genes in the dataset. Conversely, the aggressive gene filtering adopted here retains genes that are expressed in at least 367 of the 408 samples, thus preserving a 'core' subset of genes across the MIBC subtypes. The pre-processed data used for clustering analysis incorporated these 'core' genes, which included immune response signals for the various Basal groups.
+
+This approach challenges, but also complements, the canonical methods for filtering expressed genes by demonstrating that an alternative strategy can lead to the discovery of new disease subtypes. In particular, the Basal subgroups on the \acrshort{ifn} response spectrum exhibit new biological differences and align with other research from \citep{Marzouka2018-ge,Baker2022-bj}.
+
+The aggressive filtering approach is also important for the subsequent chapters \cref{s:N_I, s:N_II}, where a network representation of the non-tumour samples is used to inform MIBC stratification. This type of filtering is preferred as it selects the 'core' expressed genes across the samples and allows for the integration of mutation data, mimicking disruptions in the healthy bladder.
 
 
-% Mention the methods that it will be useful for the following work
-Apart from the novel Low IFNG group and the biological findings, this chapter represents the first attempt in the project to stratify the MIBC. The methods and visualisations tools are used throughout the project to perform cluster analysis and to interpret the new MIBC subgroups introduced in the following chapters.
+% \footnote{Permissive filtering refers when the genes kept are expressed in at least 10\% of the samples. For example, in the 408 sample dataset used, 4 samples represent 10\%  and 367 samples 90\% of the dataset. The aggressive gene filtering keeps the genes that are expressed in \textbf{at least} 367 samples while the permissive case least 4 samples. This means, that permissive filtering allows for more variation which may be the case  }
 
+\section{Conclusion \& main findings}
+
+There are two main takeaways from the MIBC analysis. First, a change in gene filtering can have a significant impact on the subgroups identified, potentially revealing novel subgroups. The analysis shows that the group with the lowest \acrfull{ifn} response has the poorest survival rate and is characterised by squamous markers. Understanding this group and further studying it may lead to more targeted treatments. The three basal groups were identified using previous research on the \acrshort{ifn} response of the Basal group \citep{Marzouka2018-ge,Baker2022-bj}, suggesting that integrating additional data types may provide a more comprehensive molecular representation of bladder cancer.
+
+% Mention the methods that will be useful for the following work
+In addition to identifying the novel Low IFNG group and its biological significance, this chapter represents the project's first attempt to stratify MIBC. The methods and visualisation tools developed here will be utilised throughout the project to perform cluster analysis and interpret the new MIBC subgroups introduced in the following chapters.

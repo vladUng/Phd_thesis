@@ -10,7 +10,9 @@
 Traditional stratification methods for muscle-invasive bladder cancer (MIBC) stratification often rely on a single omics approach, such as gene expression or mutation profiles, to derive subtypes. This project introduces a novel co-expressed network pipeline that allows the integration of multiple data types at multiple levels of the networks, with the goal of improving MIBC stratification. The research focuses on the MIBC cohort from The Cancer Genome Atlas (TCGA) and the non-tumour dataset available from the Jack Birch Unit (JBU).
 
 %%%%%% Cluster analysis %%%%%%
-The first chapter of the thesis employs aggressive gene filtering, retaining genes that are highly expressed in approximately 90\% of the TCGA samples, along with a simple clustering analysis. This method identifies five groups, two of which are Basal groups with different Interferon-$\gamma$ (IFN-$\gamma$) response. This is consistent with the in-vitro work in JBU which combined with the clustering analysis the Basal can be further split into three groups. The samples in with the lowest IFN-$\gamma$ also have the poorest survival rate. This shows that a standard clustering analysis can reveal new Basal groups in the TCGA's MIBC cohort.
+% The first chapter of the thesis employs aggressive gene filtering, retaining genes that are highly expressed in approximately 90\% of the TCGA samples, along with a simple clustering analysis.
+A clustering analysis was performed on the gene expression data of the MIBC cohort from TCGA to establish the starting point for disease stratification in this project. Despite following a standard clustering approach, two of the five identified groups were Basal groups with different Interferon-$\gamma$ (IFN-$\gamma$) responses. This finding is consistent with the in-vitro work conducted at JBU, which, when combined with the clustering analysis, allows the Basal group to be further divided into three subgroups. The samples with the lowest IFN-$\gamma$ response also have the poorest survival rate. This demonstrates that even a standard clustering analysis can reveal new Basal groups within TCGA's MIBC cohort.
+
 
 %%%%%% Network I %%%%%%
 % Novelty: 
@@ -22,7 +24,9 @@ The integrative co-expressed network approach is introduced in the second chapte
 % Novelty
 %
 % highly connected communities and the high connected genes of 122
-The network pipeline was further improved in the final results chapter, which builds the co-expressed network from the expression data of non-tumour tissue samples, which was then used to stratify the MIBC. The method showed that some of the communities found with the hierarchical Stochastic Block Model (hSBM) can be traced to splitting the non-tumour datasets into new groups, with the potential of revealing new biology for bladder tissue differentiation. The new weight modifiers and the hSBM revealed a group of communities with highly connected genes that meet the following conditions: high mutation burden and strong co-expression with other genes.
+The network pipeline was further improved in the final chapter, where a co-expressed network was built from the expression data of non-tumour samples and subsequently used to stratify MIBC. The method demonstrated that some of the communities identified using the Stochastic Block Model (SBM) could be traced to the splitting of non-tumour datasets into new groups, with the potential to reveal new insights into bladder tissue differentiation. The new weight modifiers and the SBM revealed a group of communities with highly connected genes in the network and with various roles in tumours. These genes met the following conditions: high mutation burden and strong co-expression with other genes.
+
+
 
 %%%%%% Conclusion %%%%%%
 % The data integration occurred at several stages, the mutation burden at the weight's level where the TFs at the node's degree and expression of both the non-tumour and tumour both at the disease stratification.
