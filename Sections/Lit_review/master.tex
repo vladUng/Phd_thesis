@@ -1,31 +1,33 @@
 
 
-\chapter{Introduction}
+\chapter{Introduction} \cref{s:lit_review_intro}
 
 
 The goal of this PhD project is to advance current methods for bladder cancer subtyping by utilising multiple data types, aiming to bridge the gap between tumour subgroups and clinical translation. This involves building an understanding of multiple (and overlapping) fields such as bladder cancer, clustering analysis, networks, and multi-omics integration. The project tackles several problems: \textbf{clustering analysis}—how are the tumour subgroups discovered? \textbf{data representation}—what constitutes a biologically accurate (or close) representation of the molecular biology that enables integrating different layers of information? \textbf{data reduction}—how can the signal be isolated from the noise? How do different \textbf{gene selection} strategies influence the output?
 
-Answering these questions requires a wide range of knowledge, which is why the Introduction is structured into five distinct sections. It starts with an introduction (\cref{s:lit:bladder_cancer}) to cancer, specifically focusing on the more aggressive type, muscle-invasive bladder cancer (MIBC). This section covers the motivation of the project, highlighting the need to integrate multiple data types and addressing the challenges posed by bladder cancer as a difficult disease to treat and understand. It also discusses the standard methods used to stratify MIBC.
+Answering these questions requires a wide range of knowledge, which is why the Introduction is structured into five distinct sections. It starts with an introduction (\cref{s:lit:biology}) to cancer, specifically focusing on the more aggressive type, muscle-invasive bladder cancer (MIBC), in \cref{s:lit:bladder_cancer}. This first section covers the motivation of the project, highlighting the need to integrate multiple data types and addressing the challenges posed by bladder cancer as a difficult disease to treat and understand. It also introduces the previous research efforts the standard methods used to stratify the MIBC.
 
-\textbf{Check the following paragraph - I am not sure this should be there }
-\Cref{s:lit:computational} lays the foundational knowledge for the methods discussed in the subsequent chapter, \cref{s:lit:multi-view}. It begins with clustering analysis methods (\cref{s:lit:clustering}), which were used in the first results chapter (\cref{s:clustering_analysis}), and then continues with other popular Machine Learning (ML) methods. Given the objectives defined for this project, this section concludes by posing the following question: What is the most suitable computational approach for MIBC stratification given the constraints of the problem?
+\Cref{s:lit:computational} lays the foundational knowledge for the methods applied throughout the project, see results chapters \cref{s:clustering_analysis,s:N_I,s:N_II}. It introduces the datasets used in the project in \cref{s:lit:datasets_used}, the clustering analysis methods used in \cref{s:lit:clustering}, the concept of a graphs and how to describe them in \cref{s:lit:graph_overview} as well as the tools to analyse the novel MIBC found \cref{s:lit:gene_analysis,s:lit:survival}. 
 
-The next section, \cref{s:lit:multi-omics}, reviews various methods used to analyse gene expression (\cref{s:lit:rnaSeq}), mutations (\cref{s:lit:mutations}), and other omics data. It includes integrative approaches using networks (\cref{s:lit:multi-view}) and iCluster (\cref{s:lit:iCluster}), as well as attempts to use Deep Learning in genomics (\cref{s:lit:dl_genomics}). This section critically analyses the work in the field, aligning different methods with the project's aims and objectives. It concludes that networks are the computational approach for this project and have the potential to address the research questions posed in the project.
+% \textbf{Given the objectives defined for this project, this section concludes by posing the following question: What is the most suitable computational approach for MIBC stratification given the constraints of the problem?}
 
-While the second (\cref{s:lit:computational}) and third sections (\cref{s:lit:multi-view}) focus on reviewing methods from an 'unbiased' computational approach and from a biological angle, the last two sections concentrate on the main method used in this PhD thesis: networks. These applications and types are presented in \cref{s:lit:nets_bio}, extensively discussing different models for determining sample subgroups using networks. It covers the work on co-expressed networks focusing on the most popular model, WGCNA \cite{Langfelder2008-sn}, and the improvement of this through PGCNA \cite{Care2019-ij}, followed by Bayesian methods and data integration with networks.
+In the following section, \ref{s:lit:multi-omics}, various methods are reviewed that analyse gene expression (\cref{s:lit:rnaSeq}), mutations (\cref{s:lit:mutations}), and other omics data. It includes integrative approaches using networks (\cref{s:lit:multi-view}) and iCluster (\cref{s:lit:iCluster}), as well as attempts to use Deep Learning in genomics (\cref{s:lit:dl_genomics}). This section critically analyses the work in the field, aligning different methods with the project's aims and objectives. It concludes that networks are the computational approach for this project and have the potential to address the research questions posed in the project.
+
+While the second and third sections  (\cref{s:lit:computational,s:lit:multi-omics}) focus on introducing and review methods from both a computational approach and biological angle, the last two sections concentrate on the delving deeper into the main method used in this PhD thesis: networks. These applications and types are presented in \cref{s:lit:nets_bio}, extensively discussing different models for determining sample subgroups using networks. It covers the work on co-expressed networks focusing on the most popular model, WGCNA \cite{Langfelder2008-sn}, and the improvement of this through PGCNA \cite{Care2019-ij}, followed by Bayesian methods and data integration with networks.
 
 Community detection algorithms are covered in the final section (\cref{s:lit:comm_detect}), as these represent a crucial part of the project. The focus is on the Leiden and Louvain algorithms, representing one school of thought regarded as the descriptive method, while the other is represented by inference approaches such as the Stochastic Block Model.
-.
+
+
 
 \import{Sections/Lit_review/}{bladder_cancer.tex}
 
 \pagebreak
 
-\import{Sections/Lit_review/Yr1/}{master.tex}
+\import{Sections/Lit_review/Methods/}{master.tex}
 
 \newpage
 
-\import{Sections/Lit_review/Yr1/}{biomedical.tex}
+\import{Sections/Lit_review/}{biomedical_applications.tex}
 
 
 \pagebreak
