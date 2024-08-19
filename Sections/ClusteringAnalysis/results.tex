@@ -89,17 +89,11 @@ from \citet{Robertson2017-mg} by the green line, and the other 3 lines are repre
 \end{figure}
 
 % Basal
-\subsection{Understanding the Basal subgroups} \label{s:cs:basal_interp}
+\subsection{Basal subgroups} \label{s:cs:basal_interp}
 
-With different survival rate across the Basal subtypes it is important to further explore the subgroups derived from the clustering analysis, see \cref{fig:cs:clustering_pipeline}). \acrfull{dea} was used to understand the particularities of which group with a focus Basal groups, as the three-way split introduced novel aspects, some of which had been previously validated through other classifications \citet{Baker2022-bj,Marzouka2018-ge}.
+With different survival rate across the Basal subtypes it is important to further explore the subgroups derived from the clustering analysis, see \cref{fig:cs:clustering_pipeline}. \acrfull{dea} was used to understand the particularities of each group using the Pi-plots and the \acrfull{gsea} introduced in \cref{s:lit:pi,s:lit:gsea}. The three-way split introduced novel aspects, some of which had been previously validated through other classifications \citet{Baker2022-bj,Marzouka2018-ge}. 
 
-% Intro to pi plots
-To delve deeper into the molecular characteristics, the Pi scatter plot is utilised as shown in \cref{fig:cs:pi_basal}. This figure integrates two distinct DEAs, with one represented on each axis, by calculating the pi values as outlined in \cref{s:cs:pi_val}. Here, the $q-value$ represents the significance of the expression difference as determined by sleuth, and the $FC$ denotes the fold-change between the two compared groups. Consequently, the pi-values encapsulate both the gene difference and its statistical significance.
-
-
-\begin{equation} \label{s:cs:pi_val}
-    pi = - log_{10}(q_{val}) * log_{2}(FC)
-\end{equation} 
+\paragraph*{Low IFNG}
 
 % Low IFNG
 The Low IFNG group has the poorest survival prognosis making it the focus of the Basal comparisons. The Pi-plot in \cref{fig:cs:pi_basal} contrasts the Low IFNG with the Med IFNG on the Y-axis and the Low IFNG with the High IFNG on the X-axis. The initial observation from the scatter plot is the sparse presence of markers in the quadrant specific to Low IFNG, indicating that few genes distinctly characterise Low IFNG in comparison to the other Basal subtypes. This is specifically highlighted by the small scale of the Y-axis, where the Med and Low IFNG are compared, showing \textit{GSTM3} as being distinct for the latter.
@@ -128,7 +122,9 @@ Some of the genes on the positive side of Y-axis in \cref{fig:cs:pi_basal}, \tex
 \end{figure}
 
 % Specific to the low over the high 
-In \cref{fig:cs:basal_comp_zoom}, on the negative side of the horizontal axis, it ca be seen the markers that are significantly differently expressed in the Low IFNG over the High IFNG group. Most of the genes are Squamous/Basal markers.
+On the negative side of the horizontal axis, in \cref{fig:cs:basal_comp_zoom}, it ca be seen the markers that are significantly differently expressed in the Low IFNG over the High IFNG group. Most of the genes are Squamous/Basal markers.
+
+\paragraph*{High and Medium IFNG}
 
 % High IFNG and MEDIUM 
 In the diagonally opposite quadrant (II) in \cref{fig:cs:basal_comp} are genes involved in both High and Medium IFNG Basal groups, which contain considerably more markers than the Low IFNG's quadrant. On the positive X-axis, most of the genes are part of the Immunoglobulin family (\textit{IG-}), and are associated with macrophages and monocytes, all known to be related to the immune response. This confirms that High IFNG is the strongest Basal subgroup associated with the immune response. The \acrshort{ifn} response markers from \citet{Baker2022-bj} are enriched in both Med and High IFNG subtypes, as shown by the purple markers.
@@ -150,6 +146,8 @@ The first quadrant in \cref{fig:cs:pi_basal_inf} contains markers that are speci
 
 
 % Medium and LumInf
+\paragraph*{Relationship to Luminal Infiltrated}
+
 From \cref{fig:cs:pi_basal_inf} it can be observed that there are fewer common genes between the Med IFNG and the LumInf in the fourth quadrant. Some of the genes on the negative side of the Y-axis, which are specific to Med IFNG over High IFNG, are involved in squamous or basal tissue, such as \textit{ZBTB7C, ZNF750, KRT13, \textbf{KLF5}, SPRR1A}. The genes specific to Ba/Sq are even more prevalent in the third quadrant, between Low and Med IFNG, where many of the common genes are well-known squamous or basal markers: \textit{DSC3, KRT6A, KRT5, TP63}, and the \textit{SERPIN} and \textit{SPR} families.
 
 The two figures \cref{fig:cs:pi_basal,fig:cs:pi_basal_inf} further reinforce the existence of three distinct immune responses by the basal tumours. They highlight the genes specific to each subtype, where High IFNG exhibits very specific immune responses, even compared to the LumInf subgroup. Med IFNG is positioned between a high immune response and no response, as seen in the samples from Low IFNG. Basal and squamous markers are evident in both Low and Med IFNG groups, as clearly demonstrated in \cref{fig:cs:pi_basal_inf}, and are supported by the ESTIMATE scores in \cref{fig:cs:tumour_purity}.
@@ -207,7 +205,6 @@ In the opposite quadrant, where the genes specific to Ne and Low IFNG are contai
 % Explore the genes that are common to both the Low IFNG and NE
 In the GSEA plot, the top enriched pathways are down-regulated in the LumP, indicating a strong response from the Ne and Low IFNG groups. The analysis in this subsection highlights the markers for the Luminal groups and reinforces the characteristics of the other two subgroups. It also shows that there are a few genes that are significantly expressed and common to both Low IFNG and NE-like groups, which is further explored in the next subsection.
 
-
 \begin{figure}[H]
     \centering
     \captionsetup{font=small} 
@@ -223,7 +220,7 @@ In the GSEA plot, the top enriched pathways are down-regulated in the LumP, indi
         \label{fig:cs:lumP_gsea}
     \end{subfigure} 
     \centering
-    \caption{Molecular overview of the Luminal Papillary (LumP) group. The Pi plot shows the genes specific to LumP from the DEAs against the Basal Low IFNG (X-axis) and Neuroendocrine (Ne) groups. The points are coloured distinctly to represent the 98 \acrlong{tf} (Selected TF - next section \cref{s:N_I:sel_tfs}) and known markers presented in \cref{tab:ap:pi_genes_1,tab:ap:pi_genes_2}. Quadrant I highlights the genes specific to the LumP group, which consist of luminal markers (UPKs); the top 10 closest points to the 'Ref point' are displayed in orange. The GSEA plot displays the top 10 Reactome terms in the enrichment analysis, which primarily shows a lack of enrichment in the pathways found in the Low IFNG and Ne groups.}
+    \caption{Molecular overview of the \acrfull{lump} group. The Pi plot shows the genes specific to LumP from the DEAs against the Basal Low IFNG (X-axis) and \acrlong{ne} groups. The points are coloured distinctly to represent the 98 \acrlong{tf} (next section \cref{s:N_I:sel_tfs}) and known markers presented in \cref{tab:ap:pi_genes_1,tab:ap:pi_genes_2}. Quadrant I highlights the genes specific to the LumP group, which consist of luminal markers (\textit{UPKs}); the top 10 closest points to the 'Ref point' are displayed in orange. The GSEA plot displays the top 10 Reactome terms in the enrichment analysis, which primarily shows a lack of enrichment in the pathways found in the Low IFNG and Ne groups.}
     \label{fig:cs:lump}
 \end{figure}
 

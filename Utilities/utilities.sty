@@ -146,6 +146,23 @@
 \titleformat{\paragraph}[hang]{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
 \titlespacing*{\paragraph}{0pt}{3.25ex plus 1ex minus .2ex}{0.5em}
 
+\usepackage{fancyhdr}
+
+% Turn on the style
+\pagestyle{fancy}
+% Clear the header and footer
+\fancyhf{} % clear all header and footer fields
+% \fancyhead[L]{\leftmark} % display section title on the left side of the header
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\renewcommand{\sectionmark}[1]{\markright{#1}}
+
+\fancyhead[L]{\nouppercase{\leftmark}} % display section title on the left side of the header
+\fancyhead[R]{\nouppercase{\rightmark}} % display subsection title on the right side of the header
+
+% Set the right side of the footer to be the page number
+\fancyfoot[R]{\thepage}
+
+
 
 
 \makeglossaries
