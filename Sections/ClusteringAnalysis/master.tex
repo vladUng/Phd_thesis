@@ -23,7 +23,7 @@ This section covers the work presented at the International Bladder Cancer Netwo
 
 The introduced pipeline utilises standard clustering techniques, including K-means for clustering, Principal Component Analysis (PCA) for dimension reduction, and various clustering metrics. Despite relying on standard methods, novel subtypes within the major MIBC basal group were identified, potentially aiding biologists in better understanding the immune responses of basal tumours. This indirectly highlights the opportunity to identify new MIBC subtypes.
 
-The chapter is structured into two main parts: the methods are detailed in \cref{s:cs:methods}, which includes justifications for selecting K-means as the clustering model, determining the number of groups, and applying PCA prior to clustering. The configurations of the resulting pipeline are displayed in \cref{fig:cs:clustering_pipeline}. Kaplan-Meier survival analysis has shown that the derived MIBC subgroups exhibit significantly different survival prognoses, with the Neuronal and Basal groups with low Interferon-$\lambda$ demonstrating the poorest survival outcomes.
+The chapter is structured into two main parts: the methods are detailed in \cref{s:cs:methods}, which includes justifications for selecting K-means as the clustering model, determining the number of groups, and applying PCA prior to clustering. The configurations of the resulting pipeline are displayed in \cref{fig:cs:clustering_pipeline}. Kaplan-Meier survival analysis has shown that the derived MIBC subgroups exhibit significantly different survival prognoses, with the Neuronal and Basal groups with low Interferon-$\lambda$ showing the poorest survival outcomes.
 
 The final part of the chapter analyses and validates the derived groups, attributing biological functions using a series of tools: tumour purity scores from \citet{Yoshihara2013-wq}, Interferon-$\gamma$ response \citet{Baker2022-bj}, and other classifications from TCGA, Lund, and consensus \citep{Robertson2017-mg,Marzouka2018-ge,Kamoun2020-tj}. Both Differential Expression Analysis (DEA) and Gene Set Enrichment Analysis (GSEA) are employed to further validate the biological functions associated with the MIBC subgroups.
 
@@ -36,9 +36,9 @@ The code implementation of the cluster analysis (i.e., methods) used in this cha
 The aims of this section are:
 \begin{itemize}
     \item Establish a clustering analysis pipeline for determining MIBC subgroups
-    \item Identify the optimal clustering configuration for determining MIBC subtypes
+    \item Identify the clustering configuration for determining the MIBC subtypes from gene expression
     \item Determine the metrics that can be used to evaluate and validate the groups
-    \item Develop reusable methods to support future research in the other chapters
+    \item Develop reusable methods to support future research in the following chapters
 \end{itemize}
 
 
@@ -57,7 +57,8 @@ The aims of this section are:
 
 % Basal groups
 \subsection*{New MIBC groups}
-The main finding in this section is the identification of three Basal groups with differing immune responses. This discovery was facilitated by initially employing a  clustering approach and subsequently comparing the results with existing MIBC classifications \citet{Baker2022-bj,Marzouka2018-ge}. Group-specific marker genes were identified using a suite of tools: DEA, pi-plots, GSEA, and other metadata available on TCGA.
+
+Three novel Basal group proportional with the \acrfull{ifn} response were found in this chapter. This discovery was facilitated by initially employing a  clustering approach and subsequently comparing the results with existing MIBC classifications \citet{Baker2022-bj,Marzouka2018-ge}. Group-specific marker genes were identified using a suite of tools: DEA, pi-plots, GSEA, and other metadata available on TCGA.
 
 % High and Medium IFNG
 Both the High and Medium IFNG groups exhibit an \acrshort{ifn} response, highlighted by the expression of the \acrshort{ifn} signature from \citet{Baker2022-bj}. The two differ in that the High IFNG samples display a distinct immunoglobulin response, aligning them more closely with samples classified as Luminal Infiltrated. In contrast, the Low and Medium IFNG groups show stronger expression of basal/squamous subtypes compared to the third Basal group. Beyond the immune response differences, the DEA between Low/Med IFNG reveals few genes that are significantly expressed in the Low IFNG group. Some of these genes, highlighted in the analysis performed in \cref{s:cs:basal_interp}, may require further biological investigation, given the poor survival prognosis associated with Low IFNG.
@@ -73,7 +74,7 @@ The other two groups identified in this chapter, Luminal Papillary and Luminal I
 
 
 % Say that the output is in the figure
-The results of this chapter are summarised in \cref{fig:cs:overview_K_means_6}, which displays the Kaplan-Meier survival analysis of the six groups at the top, and the Sankey diagram comparing our findings with the TCGA and Lund classifiers \citet{Robertson2017-mg,Marzouka2018-ge}. \cref{fig:cs:overview_survival} clearly shows that the Low IFNG and Neuronal-like groups have the poorest survival outcomes, while the LumP group exhibits the most favourable survival rates. The genes which were significantly expressed for each of the subtype are displayed in \cref{tab:cs:genes_summaries}.
+The results of this chapter are summarised in \cref{fig:cs:overview_K_means_6}, which displays the Kaplan-Meier survival analysis of the six groups at the top, and the Sankey diagram comparing our findings with the TCGA and Lund classifiers \citet{Robertson2017-mg,Marzouka2018-ge}. \Cref{fig:cs:overview_survival} clearly shows that the Low IFNG and Neuronal-like groups have the poorest survival outcomes, while the LumP group exhibits the most favourable survival rates. The genes which were significantly expressed for each of the subtype are displayed in \cref{tab:cs:genes_summaries}.
  
 \begin{figure}[!htb]
     \centering
@@ -102,7 +103,7 @@ The results of this chapter are summarised in \cref{fig:cs:overview_K_means_6}, 
 
 This chapter employed an aggressive gene filtering approach by retaining genes expressed in at least 90\% of the samples or 367 tumours. In contrast, the 'standard' method in the field involves removing genes from analysis that are expressed in less than 10\% of samples, making it more permissive. The aggressive filtering approach is an indirect finding of this chapter, as it enabled the clustering analysis to establish novel Basal groups based on their immune response. This was possible as the immune activated genes tend to left out by the permissive filtering with the gene selection by highest variance. 
 
-Applying a permissive gene filtering approach retains genes that are unexpressed in more than 10\% of the samples (i.e., 4 tumours), allowing for a highly varied set of genes in the dataset. Conversely, the aggressive gene filtering adopted here retains genes that are expressed in at least 367 of the 408 samples, thus preserving a 'core' subset of genes across the MIBC subtypes. The pre-processed data used for clustering analysis incorporated these 'core' genes, which included immune response signals for the various Basal groups.
+The canonical approach is to apply a permissive gene filtering approach retains genes that are unexpressed in more than 10\% of the samples (i.e., 4 tumours), allowing for a highly varied set of genes in the dataset. Conversely, the aggressive gene filtering adopted here retains genes that are expressed in at least 367 of the 408 samples, thus preserving a 'core' subset of genes across the MIBC subtypes. The pre-processed data used for clustering analysis incorporated these 'core' genes, which included immune response signals for the various Basal groups.
 
 This approach challenges, but also complements, the canonical methods for filtering expressed genes by demonstrating that an alternative strategy can lead to the discovery of new disease subtypes. In particular, the Basal subgroups on the \acrshort{ifn} response spectrum exhibit new biological differences and align with other research from \citep{Marzouka2018-ge,Baker2022-bj}.
 
