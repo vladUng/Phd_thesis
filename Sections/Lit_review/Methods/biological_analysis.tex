@@ -6,7 +6,7 @@ Throughout the project there are different methods on finding the \acrfull{mibc}
 
 % Highlight the flow
 % Who introduced the method
-The \acrshort{dea} is the most important tool as it allows to determine the genes that are specific to a subtype compare to the other. The values derived using the method are used to create the Volcano plots, see \cref{s:lit:dea}, allowing statistical analysis of the gene expression between two groups. The results of the \acrshort{dea} can also be used to compute the pi-values \citet{Xiao2014-zn} which allows the comparison of four groups in one plot; see \cref{s:lit:pi_e}. Subsequently, the pi-value plots can be used to compute ranking for specific groups which can be used to perform \acrlong{gsea}; see \cref{s:lit:gsea}.
+The \acrshort{dea} is the most important tool as it allows to determine the genes that are specific to a subtype compare to the other. The values derived using the method are used to create the Volcano plots, see \cref{s:lit:dea}, allowing statistical analysis of the gene expression between two groups. The results of the \acrshort{dea} can also be used to compute the pi-values \citet{Xiao2014-zn} which allows the comparison of four groups in one plot; see \cref{s:lit:pi}. Subsequently, the pi-value plots can be used to compute ranking for specific groups which can be used to perform \acrlong{gsea}; see \cref{s:lit:gsea}.
 
 
 % DEA
@@ -20,7 +20,7 @@ The project employed the sleuth method introduced by \citet{Pimentel2017-xp} for
 The $-log_{10}$ transformed \textit{p}-values constitute the Y-axis in a volcano plot, while the X-axis displays the $log_{2}$ transformed fold-change in gene expression between the two groups. This means that the volcano plot, as shown in \cref{fig:lit:dea_eg}, displays the magnitude of gene expression change on the horizontal axis and the significance of that change on the vertical axis.
 
 % Interpretation
-In \cref{fig:lit:dea_eg}, two sides of the plot represent the two compared subgroups: "Abs-Ca large" and "Abs-Ca small." The further up a gene is on the left side, the more differentially expressed it is in the "Abs-Ca large" group; conversely, genes in the right corner are more differentially expressed in the "Abs-Ca small" group. The scale of the axes is particularly important, especially for the horizontal axis, where larger differences in gene expression lead to a larger scale. The dotted lines represent the threshold (-1, 1), which for $log_{2}$ transformed values, indicates a doubling or halving of gene expression. The "Point(s) of interest" are those that lie outside these lines, while the points in dark blue indicate genes with no expression difference between the two groups.
+In \cref{fig:lit:dea_eg}, two sides of the plot represent the two compared subgroups: "Abs-Ca large" and "Abs-Ca small." The further up a gene is on the left side, the more differentially expressed it is in the "Abs-Ca large" group; conversely, genes in the right corner are more differentially expressed in the "Abs-Ca small" group. The scale of the axes is particularly important, especially for the horizontal axis, where larger differences in gene expression lead to a larger scale. The dotted lines represent the threshold (-1, 1), which for $log_{2}$ transformed values, indicates a doubling or halving of gene expression. The s"Point(s) of interest" are those that lie outside these lines, while the points in dark blue indicate genes with no expression difference between the two groups.
 
 In summary, the volcano plot is a powerful tool for identifying genes that have both a large expression difference (X-axis) and a statistically significant difference (Y-axis). The plot was used to analyse the Abs-Ca differentiated split tumours in \cref{fig:N_II:diff_split} and the fresh-sequenced samples (P0) in \cref{fig:N_II:p0_split}.
 
@@ -57,7 +57,7 @@ The pi-plots were extensively used in the project starting with the analysis of 
 \begin{figure}[!htb]    
     \centering
     \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/sel_tfs_pi_all_var_rect.png}
-    \caption{This is an annotated version of the Pi plot in \cref{fig:N_II:pi_sel_tfs_var} which is used to explain this type of figure.}
+    \caption{This is an annotated version of the Pi plot in \cref{fig:N_I:pi_sel_tfs_var} which is used to explain this type of figure.}
     \label{fig:lit:pi_eg}
 \end{figure}
 
@@ -103,7 +103,7 @@ This project employs Kaplan-Meier survival analysis \citep{Kaplan1958-iy} to est
 % Interpret the plot
 The plot in \cref{fig:lit:surival_eg} indicates that patients in group 5 have the lowest survival prognosis, while those in group 13 have a better prognosis. The Kaplan-Meier survival plot is a valuable tool for assessing the significance of the new groups. In this case, all but 15\% of the patients in group 5 are deceased after 20 months, highlighting the potential impact of understanding this group on improving outcomes for bladder cancer patients.
 
-The Kaplan-Meier survival analysis was used extensively throughout the project, beginning with the cluster analysis in \cref{s:clustering_analysis}, as shown in \cref{fig:cs:basal_survival, fig:cs:overview_survival}, followed by the selective edge pruning work in \cref{s:N_I:sel_pruning}, as illustrated in \cref{fig:N_I:sel_tfs_survival}, and finally in assessing the prognosis of the MIBC subtypes using the most advanced network configuration in \cref{s:N_II}, as presented in \cref{fig:N_II:survival_K_7}.
+The Kaplan-Meier survival analysis was used extensively throughout the project, beginning with the cluster analysis in \cref{s:clustering_analysis}, as shown in \cref{fig:cs:basal_survival,fig:cs:overview_survival}, followed by the selective edge pruning work in \cref{s:N_I:sel_pruning}, as illustrated in \cref{fig:N_I:sel_tfs_survival}, and finally in assessing the prognosis of the MIBC subtypes using the most advanced network configuration in \cref{s:N_II}, as presented in \cref{fig:N_II:survival_K_7}.
 
 
 \begin{figure}[!htb]

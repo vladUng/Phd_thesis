@@ -58,7 +58,7 @@ Optimising the modularity function is classified as an NP-hard problem, meaning 
 \end{equation}
 
 % CPM 
-\citet{Traag2019-ne} addresses the Louivan`s limitations of finding disconnected communities and badly connected communities by introducing a new cost function, Constant Pots Model (CPM) in \cref{eq:CPM}, and a new search algorithm, Leiden. The equation \cref{eq:CPM} is similar to \cref{eq:modularity} but the expected number of connections in a community is given by combinations $(\begin{array}{c}{n}_{c}\\ 2\end{array})$, where $n_c$ is the number of edges in community c. Both modularity functions are explored in this project (see Section \ref{} along with the Stochastic Block Model).
+\citet{Traag2019-ne} addresses the Louivan`s limitations of finding disconnected communities and badly connected communities by introducing a new cost function, Constant Pots Model (CPM) in \cref{eq:CPM}, and a new search algorithm, Leiden. The equation \cref{eq:CPM} is similar to \cref{eq:modularity} but the expected number of connections in a community is given by combinations $(\begin{array}{c}{n}_{c}\\ 2\end{array})$, where $n_c$ is the number of edges in community c. The modularity maximisation function is explored in this project in \cref{s:p0,s:N_I:tum} along with the Stochastic Block Model in \cref{s:N_I:sel_pruning,s:N_II}.
 
 \begin{equation} \label{eq:CPM}
     {\mathcal H} ={\sum }_{c}[{e}_{c}-\gamma (\begin{array}{c}{n}_{c}\\ 2\end{array})],

@@ -1,11 +1,11 @@
 % Clustering analysis
 \subsection{Clustering analysis} \label{s:lit:clustering}
 
-\subsubsection{Models} \label{s:lit:clustering}
+\subsubsection*{Models} \label{s:lit:cs_models}
 
 Clustering algorithms have many variations, and these are best covered in a code sample \cite{Scikit-learn_undated-ax} from the Scikit-learn library \cite{Pedregosa2011-ts}. A selection of the methods that were successfully applied within this project is displayed in \cref{fig:lit:clustering_types}. The rows represent different types of datasets and the columns are the algorithms covered in this document: K-means as a general-purpose algorithm, and both Ward and Agglomerative as hierarchical clustering methods, with Agglomerative performing pairwise grouping. It is worth mentioning that a modified version of the Scikit-learn code was adapted to meet the project's needs, enabling the running of multiple clustering techniques with varied parameters for the TCGA dataset (see \cref{s:cs:right_config}) and networks' outputs (\cref{s:N_I:methods}).
 
-One of the most popular methods (and the simplest) is K-means clustering, which attempts to find patterns in the data by grouping data points by distance. There are variations of the algorithm where datasets are split into multiple batches to improve performance (see \textit{MiniBatch Kmeans} from \cref{fig:clustering_types}); or Fuzzy K-means that output the cluster membership of each data point. This means that apart from the cluster labelling, there is additional information about how close each point is to a cluster\footnote{For example, if there are 3 clusters, a data point might be 90\% in cluster 1, 6\% in cluster 2, and 4\% in cluster 3.}. From the below K-means pseudocode\footnote{Pseudocode is an accessible method to describe an algorithm.} (\cref{code:k-means}), it is worth emphasising the following:
+One of the most popular methods (and the simplest) is K-means clustering, which attempts to find patterns in the data by grouping data points by distance. There are variations of the algorithm where datasets are split into multiple batches to improve performance (see \textit{MiniBatch Kmeans} from \cref{fig:lit:clustering_types}); or Fuzzy K-means that output the cluster membership of each data point. This means that apart from the cluster labelling, there is additional information about how close each point is to a cluster\footnote{For example, if there are 3 clusters, a data point might be 90\% in cluster 1, 6\% in cluster 2, and 4\% in cluster 3.}. From the below K-means pseudocode\footnote{Pseudocode is an accessible method to describe an algorithm.} (\cref{code:k-means}), it is worth emphasising the following:
 
 
 \begin{figure}[!t]
@@ -63,11 +63,11 @@ The clustering algorithms presented so far are used throughout the project, init
 
 
 % Clustering metrics
-\subsubsection{Cluster metrics} \label{s:lit:clustering_metrics}
+\subsubsection*{Cluster metrics} \label{s:lit:clustering_metrics}
 
 One of the challenges in clustering is to measure the performance of grouping as there is no labelling or prior information on how the grouping should look like. This project uses the canonical metrics which are supported by Scikit-learn\cite{Pedregosa2011-ts,Scikit-learn_undated-ax}: Silhouette Coefficient, Calinski-Harabasz and Davies-Bouldin. 
 
-All three scores are used across all the results chapter, in the clustering analysis (\cref{s:cs:right_config, fig:cs:sill_distrib}), first network approach developed in \cref{s:p0:clustering_analysis} and the the final network pipeline in \cref{s:ap:N_II:clustering analysis}.
+All three scores are used across all the results chapter, in the clustering analysis (\cref{s:cs:right_config,fig:cs:sill_distrib}), first network approach developed in \cref{s:p0:clustering_analysis} and the the final network pipeline in \cref{s:ap:N_II:clustering analysis}.
 
 
 \paragraph*{Silhouette Coefficient} \label{s:lit:silhouette}

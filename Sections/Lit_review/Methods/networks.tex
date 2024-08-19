@@ -21,7 +21,7 @@ A sub-field of graph theory and a crucial aspect in this project is finding comm
 % The challenge with graphs is that they are less developed and can be computationally taxing. For example, community detection is a hot topic because there is no established method for identifying groups of nodes, and some popular methods can find patterns in noise. These issues are discussed at length in \cref{s:lit:comm_detect}.
 
 
-\subsubsection{Network metrics} \label{s:lit:net_metrics}
+\subsubsection*{Network metrics} \label{s:lit:net_metrics}
 
 % Introduce the network metrics
 In graph theory there are several methods to determine the role of the nodes into a network by considering different properties such as the number of edges, paths between the nodes, the strength of the connections, their centrality and others.
@@ -40,8 +40,8 @@ There are three centrality metrics used in this project: closeness \citet{Opsahl
 In addition, the Integrated Value of Influence (IVI) \cite{Salavaty2020-wo} combines six different network metrics, including degree and betweenness centrality, as well as others like Neighbourhood Connectivity, which helps overcome the positional bias issue associated with betweenness centrality. The remaining three metrics—ClusterRank, local H-index, and Collective Influence—further complement the description of the network. The authors describe all six metrics and justify their use in their research \citet{Salavaty2020-wo}. The central idea of IVI is that it provides an integrated network score to account for both the local and global influence of a node within a network. Higher IVI values indicate that a node is more important at both local and global levels.
 
 
-\subsubsection{Software used} \label{s:lit:net_software}
+\subsubsection*{Software used} \label{s:lit:net_software}
 
-All the scores presented in this section are used to describe and understand the various networks generated throughout the project; see \cref{fig:N_I:net_metrics_p0, fig:N_I:net_metrics_tum} from \cref{s:N_I} and \cref{fig:N_II:net_metrics_comp, fig:N_II:net_metric_sig_std} from \cref{s:N_II}. 
+All the scores presented in this section are used to describe and understand the various networks generated throughout the project; see \cref{fig:N_I:net_metrics_p0,fig:N_I:net_metrics_tum} from \cref{s:N_I} and \cref{fig:N_II:net_metrics_comp,fig:N_II:net_metric_sig_std} from \cref{s:N_II}. 
 
 In the first network chapter, \cref{s:N_I}, the Python version of iGraph \citet{Csardi2006-ez} is used to build the network, but it does not support the Katz centrality measure. However, in the second chapter, \cref{s:N_II}, and in the work on the Stochastic Block Model in \cref{s:N_I:sel_pruning}, the graph-tool Python package \citep{Peixoto2014-ls} is used, which supports Katz centrality.
