@@ -1,6 +1,6 @@
 
 
-\section{Result: P0 derived network to stratify MIBC} \label{s:p0}
+\section{Validation: P0 network to stratify MIBC} \label{s:p0}
 
  
 The Jack Birch's Unit holds a large dataset of bladder tissue samples both cancerous and non-cancerous. There are three different types of 'normal'  (i.e. non-cancerous) bladder samples: P0 (23), Abs/Ca-differentiated (49) and undifferentiated (15). The P0 are in situ tissues taken from individual with urinary tract infections (UTIs) unaltered in the lab, the ABS/Ca differentiated are in vitro which have been differentiated by the ABS/Ca protocol and lastly the undifferentiated are in vitro samples which tissues are yet not specialised; covered in \cref{s:lit:datasets_used}.From the previous classifications \citet{Robertson2017-mg, Kamoun2020-tj} it is known that there are 2 major subgroups Luminal (Lum) and Basal (Ba). The former is known to share aspects with the differentiated tissue while the latter with the undifferentiated. 
@@ -41,18 +41,18 @@ To find the appropriate clustering model and the number of clusters, the previou
     \begin{subfigure}[!t]{0.49\textwidth}
         \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/P0/top3_cs_gen_p0_tum4K_50TF_v3.png}    
         \caption{Cluster model and size}
+        \label{fig:N_I:p0_metr_model_size}
     \end{subfigure}
-    \centering
     \begin{subfigure}[!t]{0.49\textwidth}
         \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/P0/top3_cs_model_p0_tum4K_50TF_v3.png}
         \caption{Cluster model}
+        \label{fig:N_I:p0_metr_model}
     \end{subfigure} 
-    \centering
     \begin{subfigure}[!t]{0.49\textwidth}
         \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/P0/top3_cs_size_p0_tum4K_50TF_v3.png}
         \caption{Cluster size}
+        \label{fig:N_I:p0_metr_size}
     \end{subfigure}
-    \centering
     \begin{subfigure}[!t]{0.49\textwidth}
         \includegraphics[width=\textwidth, keepaspectratio]{Sections/Network_I/Resources/P0/p0_elbowMethod_4K_v3.png}
         \label{fig:N_I:p0_elbow_method}
@@ -69,61 +69,58 @@ While \cref{fig:ap:p0_choosing_cs} shows the general trends of the metrics acros
 
 \begin{figure}[!htb]
 
-    \thispagestyle{plain}
     \centering
-    \begin{subfigure}{0.49\linewidth}
-        \centering
+    \begin{subfigure}{1.0\linewidth}
         \includegraphics[width=1.0\textwidth,keepaspectratio]{Sections/Network_I/Resources/P0/std_tum4k_v3_sill_spread.png}
         \caption{Standard network}
+        \label{fig:N_I:p0_sill_std}
     \end{subfigure} %
     \centering
-    \begin{subfigure}{0.49\linewidth}
-        \centering
+    \begin{subfigure}{1.0\linewidth}
         \includegraphics[width=1.0\textwidth,keepaspectratio]{Sections/Network_I/Resources/P0/rwd_tum4k_v3_sill_spread.png}
         \caption{Reward network}
+        \label{fig:N_I:p0_sill_rwd}
     \end{subfigure}
     \centering
-    \begin{subfigure}{0.49\linewidth}
-        \centering
+    \begin{subfigure}{1.0\linewidth}
         \includegraphics[width=1.0\textwidth,keepaspectratio]{Sections/Network_I/Resources/P0/pen_tum4k_v3_sill_spread.png}      
         \caption{Penalised network}
+        \label{fig:N_I:p0_sill_pen}
     \end{subfigure}
     \caption{Cosine Silhouette score spread across samples over different clustering models with various K.}
     \label{fig:N_I:p0_sillhouette_spread}
 \end{figure}
 
 % Comment on Top 3 models + cs, models and just CS
-Figure \ref{fig:N_I:p0_top_3_metrics} assists decision making by depicting both the most used cluster model and number of clusters (A), and separately the cluster model and size in (B) and (C); the colouring scale corresponds to the encounter frequency across network type (i.e. per column). For example, in A) K-means with K=4 appears three times across the reward graph, and Spectral Clustering with K=4 appears two times in all three network types. The colouring strategies help delineate the configurations for each network.
+\Cref{fig:N_I:p0_top_3_metrics} assists decision making by depicting both the most used cluster model and number of clusters in \cref{fig:N_I:p0_metr_model_size}, and separately the cluster model and size in \cref{fig:N_I:p0_metr_model,fig:N_I:p0_metr_size}; the colouring scale corresponds to the encounter frequency across network type (i.e. per column). For example, in \cref{fig:N_I:p0_metr_model_size} K-means with K=4 appears three times across the reward graph, and Spectral Clustering with K=4 appears two times in all three network types. The colouring strategies help delineate the configurations for each network.
 
-From \cref{fig:N_I:p0_top_3_metrics} A), which shows the combined model and K, it can be observed that the reward network is the only one having a model picked by all three metrics. In B), Agg\_Avg scores very high in the cosine metric, while K-means generally performs better according to the other metrics. From \cref{fig:N_I:p0_top_3_metrics}, K=4 is the preferred number of clusters for the reward and penalised networks, while the standard network oscillates between 4 and 5. Overall, the clustering scores suggest that both K-means and Agg\_Avg have similar performances, with the preferred cluster size being K=4, followed by K=5. Furthermore, K=4 is the overall choice of cluster numbers through the heuristic approach of the elbow method in Figure \ref{fig:N_I:p0_top_3_metrics} D.
+From \cref{fig:N_I:p0_metr_model_size}, which shows the combined model and K, it can be observed that the reward network is the only one having a model picked by all three metrics. In \cref{fig:N_I:p0_metr_model}, Agg\_Avg scores very high in the cosine metric, while K-means generally performs better according to the other metrics. \Cref{fig:N_I:p0_metr_size}, K=4 is the preferred number of clusters for the reward and penalised networks, while the standard network oscillates between 4 and 5. Overall, the clustering scores suggest that both K-means and Agg\_Avg have similar performances, with the preferred cluster size being K=4, followed by K=5. Furthermore, K=4 is the overall choice of cluster numbers through the heuristic approach of the elbow method in \cref{fig:N_I:p0_elbow_method} 
 
 
 % Using cosine sillhouette to look at the spread
-The lack of an obvious cluster model shows the challenge of working with gene expression datasets. It also shows the limitation of using average scores for clustering metrics. Thus, the Silhouette cosine score is selected\footnote{For the same reason as we chosen it as a main metric in the last chapter. Compared with the other metrics the Silhouette score uses cosine as a distance which is more suitable for high dimension data.} to explore the variance across samples in Figure \ref{fig:N_I:p0_sillhouette_spread}. With the exception of the Agg\_Avg and K-means the other clustering models have a higher spread of the silhouette across the different cluster size.
+The lack of an obvious cluster model shows the challenge of working with gene expression datasets. It also shows the limitation of using average scores for clustering metrics. Thus, the Silhouette cosine score is selected\footnote{For the same reason as we chosen it as a main metric in the last chapter. Compared with the other metrics the Silhouette score uses cosine as a distance which is more suitable for high dimension data.} to explore the variance across samples in Figure \cref{fig:N_I:p0_sillhouette_spread}. With the exception of the Agg\_Avg and K-means the other clustering models have a higher spread of the silhouette across the different cluster size.
 
 % narrowing done to the 2 clustering models
-The clustering scores and the analysis performed suggests that K-means and Agglomerative Clustering with average linkage perform better than the rest as in the top 3 models used in Figure \ref{fig:N_I:p0_top_3_metrics} B) and the silhouette spread in Figure \ref{fig:N_I:p0_sillhouette_spread}. The Elbow method Figure \ref{fig:N_I:p0_top_3_metrics} D) and the other metrics suggests that K=4 is the right choice. This is different from what is expected as in the earlier work \ref{dda}\footnote{Subtypes section} at least five clusters were found, using computational methods and K=6 with biological knowledge (IFNg groups). On top of that, this is is the next K considered as K=2,3 were not considered as these will always exhibit the best K.
+The clustering scores and the analysis performed suggests that K-means and Agglomerative Clustering with average linkage perform better than the rest as in the top 3 models used in \cref{fig:N_I:p0_metr_model} and the silhouette spread in Figure \cref{fig:N_I:p0_sillhouette_spread}. The Elbow method form \cref{fig:N_I:p0_elbow_method} and the other metrics suggests that K=4 is the right choice. This is different from what is expected as in the earlier work \cref{s:clustering_analysis} at least five clusters were found, using computational methods and K=6 with biological knowledge (IFNg groups). On top of that, this is is the next K considered as K=2,3 were not considered as these will always exhibit the best K.
 
 \begin{figure}[!htb]
-    \hfill
-    \begin{subfigure}[b]{0.49\textwidth}
-        \centering
+    \centering
+    \begin{subfigure}[b]{0.8\textwidth}
         \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/P0/Sankey_KM_4K_v3.png}
+        \label{fig:N_I:p0_sky_KM}
         \caption{K-Means}
     \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.49\textwidth}
-        \centering
+    \begin{subfigure}[b]{0.8\textwidth}
         \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/P0/Sankey_Avg_4K_v3.png}
         \caption{Agglomerative with average linkage}
+        \label{fig:N_I:p0_sky_AGG}
     \end{subfigure}
-    \hfill
     \caption{Sankey plots for the two best performing models. }
     \label{fig:N_I:p0_sky_Agg_KMeans}
 \end{figure}
 
 
-Two Sankey plots in Figure \ref{fig:N_I:p0_sky_Agg_KMeans} are used to assess the differences in the MIBC subtyping between the two best clustering model and the two cluster sizes\footnote{The standard networks were the ones only used for comparison to simplify the process.}. There is a striking difference between the two clustering models, Agg\_Avg finds disproportionate clusters while the K-means finds similar size groups. This, together with the High IFNG subgroup found by K-means suggests that this clustering model is the appropriate choice. 
+Two Sankey plots in \cref{fig:N_I:p0_sky_Agg_KMeans} are used to assess the differences in the MIBC subtyping between the two best clustering model and the two cluster sizes\footnote{The standard networks were the ones only used for comparison to simplify the process.}. There is a striking difference between the two clustering models, Agg\_Avg finds disproportionate clusters while the K-means finds similar size groups. This, together with the High IFNG subgroup found by K-means suggests that this clustering model is the appropriate choice. 
 
 The cluster metrics are not informative in determining the number of clusters, the scores decrease proportionally with the number of clusters, resulting in the lowest K giving the best result. Elbow method complements the metrics but it is a heuristic approach. When K=5, for the K-means, the Basal groups seems to be better defined by having a smaller group (4) and a large one (2). For this, and the fact that previous work in the PhD showed that there there should be more groups, K-means with K=5 is preferred over K=4.
 
@@ -131,7 +128,7 @@ The cluster metrics are not informative in determining the number of clusters, t
 \subsection{Network comparison}
 
 
-Figure \ref{fig:N_I:p0_sky_leiden} represents an overview of the decisions made in the previous sub-section, K-means (K=5) was found to be the most suitable clustering model. The three networks are compared with the consensus and TCGA classifiers \citet{Kamoun2020-tj, Robertson2017-mg} as well as our subtyping from \ref{}. From the top left figure it can be observed that the number of communities is similar across the three networks, there are 9 or 10 blocks, with a few exceptions. There are significantly less communities compared with the number of subgraphs found in the tumour network; see Figure \ref{fig:N_I:tum_leiden_modifiers}. The small variance of the Modularity score in the Figure on the right suggests that the communities are fairly stable and the penalised network have a lower performance by 0.04.
+\Cref{fig:N_I:p0_sky_leiden} represents an overview of the decisions made in the previous sub-section, K-means (K=5) was found to be the most suitable clustering model. The three networks are compared with the consensus and TCGA classifiers \citet{Kamoun2020-tj, Robertson2017-mg} as well as our subtyping from the cluster analysis section \cref{s:clustering_analysis}. From the top left figure it can be observed that the number of communities is similar across the three networks, there are 9 or 10 blocks, with a few exceptions. There are significantly less communities compared with the number of subgraphs found in the tumour network; see Figure \ref{fig:N_I:tum_leiden_modifiers}. The small variance of the Modularity score in the Figure on the right suggests that the communities are fairly stable and the penalised network have a lower performance by 0.04.
 
 \begin{figure}[!t]    
     \centering
@@ -152,71 +149,71 @@ Overall, the comparison between classifications shows that the network approache
 
 Previous results with tumour networks (Section \ref{s:N_I:tum}) showed that the weight modifiers do have an effect on the network metrics but little effect on the MIBC subtyping. A natural next step is to analyse the changes in communities when a modifier is applied. There are a few questions to answers 1) How do the communities change? 2) Is there a difference in mutation burden? 3) How much the gene expression differs? 
 
-\begin{figure}[!htb]
-    \hfill
-    \begin{subfigure}[b]{0.49\textwidth}
-        \centering
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[!t]{1.0\textwidth}
         \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/P0/Comms/Sky_Comm_Comp_4K_v3.png}
         \caption{Gene changes}
+        \label{fig:N_I:p0_chg_sankey}
     \end{subfigure}
-    \hfill
-     \begin{subfigure}[b]{0.49\textwidth}
-            \centering
-            \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/P0/Comms/Mut_Comm_Comp_4K_v3.png}
-            \caption{Mutation representation}
+    \begin{subfigure}[!t]{1.0\textwidth}
+        \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/P0/Comms/Mut_Comm_Comp_4K_v3.png}
+        \caption{Mutation representation}
+        \label{fig:N_I:p0_chg_mut}
     \end{subfigure}
-    \hfill
-    \hfill
-    \begin{subfigure}[b]{0.47\textwidth}
-        \centering
-        \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/P0/Comms/P0_standard_4K_50TF_med.png}
-        \caption{Standard expression values}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.47\textwidth}
-        \centering
-        \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/P0/Comms/P0_norm3_4K_50TF_med.png}
-        \caption{Reward expression values}
-    \end{subfigure}
-    \hfill
-    \caption{Gene communities changes.}
-    \label{fig:N_I:p0_comm_chgs}
+    \caption{Gene communities changes}
+    \label{fig:N_I:p0_comm_chgs_1}
 \end{figure}
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[!t]{1.0\textwidth}
+    \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/P0/Comms/P0_standard_4K_50TF_med.png}
+        \caption{Standard expression values}
+        \label{fig:N_I:p0_chg_std_exp}
+    \end{subfigure}
+    \begin{subfigure}[!t]{1.0\textwidth}
+        \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/P0/Comms/P0_norm3_4K_50TF_med.png}
+            \caption{Reward expression values}
+            \label{fig:N_I:p0_chg_rwd_exp}
+    \end{subfigure}
+    \caption{Gene communities changes.}
+    \label{fig:N_I:p0_comm_chgs_2}
+\end{figure}
+
 
 
 % How the communities are sincronise
 To facilitate analysis, and guided by the Modularity Score, the standard and reward networks have been selected for community comparison; network of 4K genes, with 50 edges for TF and 3 per standard gene. A common challenge in unsupervised learning is the inconsistency in group labelling across different models. Typically, groups are labelled in descending order of their size. However, this approach leads to discrepancies in community labels between the standard and reward networks, complicating the analysis. To address this, community labels are synchronised by using the standard network as a reference for community numbering. Each community in the standard network is then paired with the most similar community in the reward network, based on the highest representation (i.e., the number of genes). This corresponding community in the reward network is then assigned the label from the standard network for consistency.
 
 % Reward modifier is not powerful enough
-The sankey in \cref{fig:N_I:p0_comm_chgs} in A) shows 
-how the genes change communities from the standard to the reward network. The biggest change is represented by the lack of community 10 in the reward network, otherwise the communities remarkable simillar. Figures \ref{fig:N_I:p0_comm_chgs} C), D) show the median gene expression across the communities for the two networks. Communities 1 and two are almost unchanged in the reward network while in the others the spread of the median expression is affected. The largest difference is in community 9 and 3.  
+The sankey in \cref{fig:N_I:p0_chg_sankey} in shows how the genes change communities from the standard to the reward network. The biggest change is represented by the lack of community 10 in the reward network, otherwise the communities remarkable simillar. Figures \cref{fig:N_I:p0_chg_rwd_exp,fig:N_I:p0_chg_std_exp} show the median gene expression across the communities for the two networks. Communities 1 and two are almost unchanged in the reward network while in the others the spread of the median expression is affected. The largest difference is in community 9 and 3.  
 
-Figure \ref{fig:N_I:p0_comm_chgs} B) displays the number of mutated genes (Y) in each reward network's community. For each group it can be usually notice that the there are a large number of mutated genes from the same community. Community 1 has a large number of mutations in the standard network and it receives a few more mutated genes from com 2 (standard). Community 4 has lots of mutated genes in the standard but it receives a few from com 6 as well. Communities 8 and 9 have few mutated genes which can be in part explained by their relative small size. Overall, the reward modifier is the trigger of the community changes but it is not powerful enough to set off large community migrations.
+Figure \ref{fig:N_I:p0_chg_mut} displays the number of mutated genes (Y) in each reward network's community. For each group it can be usually notice that the there are a large number of mutated genes from the same community. Community 1 has a large number of mutations in the standard network and it receives a few more mutated genes from com 2 (standard). Community 4 has lots of mutated genes in the standard but it receives a few from com 6 as well. Communities 8 and 9 have few mutated genes which can be in part explained by their relative small size. Overall, the reward modifier is the trigger of the community changes but it is not powerful enough to set off large community migrations.
+
+
+Figure \ref{fig:N_I:p0_chg_mut} is a suitable plot to show that most communities have a higher number of mutated genes between the weight modifiers, but it is not suitable too check if the reward modifier affected the genes with the higher mutation burden. Thus, are the genes with the highest mutation count grouped together? In \cref{fig:N_I:p0_mut_burden} it shows the mutation burden across communities. In the standard, communities 1, 2, 3, 4 and 5 have the highest number of genes mutated and it can be noticed that all have the same trend a sharp decline after mutation burden $>1$; community 4 having the highest number of highly mutated genes. Similar trends can be noticed in the reward network but communities 2,3,4 have a similar slope. In addition, community 9 has just a few mutation with low burden, while 6 and 7 are better separated in the reward. This changes suggests that the highly mutated genes are the ones changing communities.
+
+
+% Conclusion 1 - Weight modifiers work
+Overall, the community analysis shows that the reward modifier works, there are changes between communities and this is given by the mutated genes, especially the ones with a high burden. However, the modifier does not have enough power to cause large changes which may be due to weight modifier shape see \cref{fig:N_I:modifiers}.
 
 
 \begin{figure}[!htb]
-    \hfill
-    \begin{subfigure}[b]{0.49\textwidth}
-        \centering
+    \centering
+    \begin{subfigure}[b]{1.0\textwidth}
         \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/P0/Comms/Mut_evo_Std_4k_v3.png}
+        \label{fig:N_I:p0_std_mut_burden}
         \caption{Standard}
     \end{subfigure}
-    \begin{subfigure}[b]{0.49\textwidth}
-        \centering
+    \begin{subfigure}[b]{1.0\textwidth}
         \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/P0/Comms/Mut_evo_Rwd_4k_v3.png}
         \caption{Reward}
+        \label{fig:N_I:p0_rwd_mut_burden}
     \end{subfigure}
     \caption{Mutation burden per communities}
     \label{fig:N_I:p0_mut_burden}
 \end{figure}
 
-
-% 
-Figure \ref{fig:N_I:p0_comm_chgs} B) is a suitable plot to show that most communities have a higher number of mutated genes between the weight modifiers, but it is not suitable too check if the reward modifier affected the genes with the higher mutation burden. Thus, are the genes with the highest mutation count grouped together? In Figure \ref{fig:N_I:p0_mut_burden} it shows the mutation burden across communities. In the standard, communities 1, 2, 3, 4 and 5 have the highest number of genes mutated and it can be noticed that all have the same trend a sharp decline after mutation burden $>1$; community 4 having the highest number of highly mutated genes. Similar trends can be noticed in the reward network but communities 2,3,4 have a similar slope. In addition, community 9 has just a few mutation with low burden, while 6 and 7 are better separated in the reward. This changes suggests that the highly mutated genes are the ones changing communities.
-
-
-% Conclusion 1 - Weight modifiers work
-Overall, the community analysis shows that the reward modifier works, there are changes between communities and this is given by the mutated genes, especially the ones with a high burden. However, the modifier does not have enough power to cause large changes which may be due to weight modifier shape see \cref{fig:N_I:modifiers}.
 
 \subsection{Gene representation}
 
@@ -224,22 +221,21 @@ It is worth remembering that the network is built on the P0 data and then the ge
 
 
 % Conclusion 2 - Poor representation
-Figure \ref{fig:N_I:p0_mev_rep} shows that representation for each community. In Figure \ref{fig:N_I:p0_mev_rep} A) shows the genes selected are represented in the most varied genes (in TCGA) while B) in all $\sim13K$ most expressed genes. From the two sub-figures it can be clearly seen that using just the most varied genes was missing a large number of genes. Nevertheless, there are is still a few genes missing when all the expressed genes are used. One possible explanation is that a larger dataset is needed to form the network which includes a molecular representation of the basal groups; i.e. undifferentiated samples from non-tumours. Another reason for this is that the gene filtering using in \cref{c} is too aggressive, too many genes are discarded which will lead of a poor mismatch between tumour and non-tumour expressed genes. The difference in gene filtering is discussed in section \cref{das} (section in the last chapter).
+\Cref{fig:N_I:p0_mev_rep} shows that representation for each community. In \cref{fig:N_I:p0_mev_sel_rep} shows the genes selected are represented in the most varied genes (in TCGA) while \cref{fig:N_I:p0_mev_all_rep} in all $\sim13K$ most expressed genes. From the two sub-figures it can be clearly seen that using just the most varied genes was missing a large number of genes. Nevertheless, there are is still a few genes missing when all the expressed genes are used. One possible explanation is that a larger dataset is needed to form the network which includes a molecular representation of the basal groups; i.e. undifferentiated samples from non-tumours. Another reason for this is that the gene filtering using in \cref{s:cs:pre-processing} is too aggressive, too many genes are discarded which will lead of a poor mismatch between tumour and non-tumour expressed genes. The difference in gene filtering is discussed in section \cref{s:N_II} (section in the last chapter).
 
 \begin{figure}[!htb]
-    \hfill
+    \centering
     \begin{subfigure}[b]{0.47\textwidth}
-        \centering
         \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/P0/4K_p0_modConMev_rep_standard_4K_50TF_v3.png}
         \caption{The most relative varied genes}
+        \label{fig:N_I:p0_mev_sel_rep}
     \end{subfigure}
-    \hfill
     \begin{subfigure}[b]{0.47\textwidth}
         \centering
         \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/P0/13K_p0_modConMev_rep_standard_4K_50TF_v3.png}
         \caption{All the genes expressed}
+        \label{fig:N_I:p0_mev_all_rep}
     \end{subfigure}
-    \hfill
     \caption{Genes found in the tumour dataset for each network community. The top 100 genes are selected by ModCon score. A) Is when the tumour dataset is restricted to the top most varied genes B) Includes all the expressed genes in the tumour dataset. }
     \label{fig:N_I:p0_mev_rep}
 \end{figure}

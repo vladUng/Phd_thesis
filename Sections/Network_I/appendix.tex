@@ -28,18 +28,17 @@
 
 % Comunity sizes
 \begin{figure}[!h]
-    \captionsetup[subfigure]{justification=Centering}
-    \begin{subfigure}[!t]{0.5\textwidth}
+    \centering
+    \begin{subfigure}[!t]{1.0\textwidth}
         \includegraphics[width=\textwidth]{Sections/Network_I/Resources/selective_pruning/sbm_comNum_sel_prun.png}
         \caption{SBM}
         \label{fig:ap:sbm_com_size}
-    \end{subfigure}\hspace{\fill}  
-    \begin{subfigure}[!t]{0.5\textwidth}
+    \end{subfigure} 
+    \begin{subfigure}[!t]{1.0\textwidth}
         \includegraphics[width=\linewidth]{Sections/Network_I/Resources/selective_pruning/leid_comNum_sel_prun.png}
         \caption{Leiden}
-            \label{fig:ap:leid_com_size}
+        \label{fig:ap:leid_com_size}
     \end{subfigure}\hspace{\fill}  
-
     \caption{Community size comparison between Leiden and SBM. This serves as a supporting material to the work done in \cref{s:N_I:sel_pruning}}
     \label{fig:ap:com_size_comp}
 \end{figure}
@@ -99,30 +98,35 @@
 
 
 \begin{figure}[!h]
-    \captionsetup[subfigure]{justification=Centering}
-\centering
-\begin{subfigure}[!t]{0.49\linewidth}
-    \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/pi_gsea/pi_largeBasal.png}
-    \caption{Large Basal}
-\end{subfigure}
-\centering
-\begin{subfigure}[!t]{0.49\textwidth}
-    \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/pi_gsea/pi_largeLuminal.png}
-    \caption{Large luminal}
-\end{subfigure}
-\centering
-\begin{subfigure}[!t]{0.49\linewidth}
-    \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/pi_gsea/pi_mesLike.png}
-    \caption{Mes-like}
-\end{subfigure}
-\centering
-\begin{subfigure}[!t]{0.49\textwidth}
-    \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/pi_gsea/pi_lumInf.png}
-    \caption{Luminal infiltrated}
-\end{subfigure}\hspace{\fill}  
-
+    \centering
+    \begin{subfigure}[!t]{1.0\linewidth}
+        \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/pi_gsea/pi_largeBasal.png}
+        \caption{Large Basal}
+        \label{fig:ap:pi_basal}
+    \end{subfigure}
+    \begin{subfigure}[!t]{1.0\textwidth}
+        \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/pi_gsea/pi_largeLuminal.png}
+        \caption{Large luminal}
+        \label{fig:ap:pi_lum}
+    \end{subfigure}
     \caption{Pi plots for mes-like and lumInf from \cref{s:N_I:sel_tfs_subtypes}}
-    \label{fig:ap:pi_other_values}
+    \label{fig:ap:pi_other_values_I}
+\end{figure}
+
+\begin{figure}[!h]
+    \centering
+    \begin{subfigure}[!t]{1.0\textwidth}
+        \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/pi_gsea/pi_mesLike.png}
+        \caption{Mes-like}
+        \label{fig:ap:mes_like}
+    \end{subfigure}
+    \begin{subfigure}[!t]{1.0\textwidth}
+        \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/pi_gsea/pi_lumInf.png}
+        \caption{Luminal infiltrated}
+        \label{fig:ap:lumInf}
+    \end{subfigure} 
+    \caption{Pi plots for mes-like and lumInf from \cref{s:N_I:sel_tfs_subtypes}}
+    \label{fig:ap:pi_other_values_II}
 \end{figure}
 
 \newpage
@@ -244,43 +248,82 @@
 \newpage
 
 % GSEA plots
-\section{GSEA plots top 10 by NES}
-\begin{figure}[!h]
-    \captionsetup[subfigure]{justification=centering}
+\section{GSEA plots top 10 by Enrichment score}
+
+
+
+\begin{figure}[!htb]
     \centering
-    \begin{subfigure}[!t]{0.4\textwidth}
-        \centering
-        \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/gsea/smallBasal_10_top_manTerms.png}
-        \caption{Small Basal}
-        \label{fig:ap:gsea_smallBasal}
-    \end{subfigure}
-    \begin{subfigure}[!t]{0.4\textwidth}
-        \centering
-        \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/gsea/largeBasal_10_top_manTerms.png}
-        \caption{Large Basal}
-        \label{fig:ap:gsea_largeBasal}
-    \end{subfigure} 
-    \begin{subfigure}[!t]{0.4\textwidth}
-        \centering
-        \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/gsea/lumInf_10_top_manTerms.png}
-        \caption{Luminal Infiltrated}
-        \label{fig:ap:gsea_lumInf}
-    \end{subfigure}
-    \begin{subfigure}[!t]{0.4\textwidth}
-        \centering
-        \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/gsea/mesLike_10_top_manTerms.png}
-        \caption{Mes-like}
-        \label{fig:ap:gsea_mesLike}
-    \end{subfigure} 
-    \begin{subfigure}[!t]{0.4\textwidth}
-        \centering
-        \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/gsea/largeLuminal_10_top_manTerms.png}
-        \caption{Large Luminal}
-        \label{fig:ap:gsea_largeLuminal}
-    \end{subfigure}
-    \caption{GSEA output for the Basal groups \cref{s:N_I:sel_tfs_subtypes}}
-    \label{fig:ap:gsea_basal}
+    \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/gsea/smallBasal_10_top_manTerms.png}
+    \caption{Small Basal}
+    \label{fig:ap:gsea_smallBasal}
 \end{figure}
+
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/gsea/largeBasal_10_top_manTerms.png}
+    \caption{GSEA output of the Basal group sfor the groups derived using Selective Edge pruning in  \cref{s:N_I:sel_tfs_subtypes}}
+    \label{fig:ap:gsea_largeBasal}
+\end{figure}
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/gsea/lumInf_10_top_manTerms.png}
+    \caption{GSEA output of the Luminal Infiltrated group for the groups derived using Selective Edge pruning in  \cref{s:N_I:sel_tfs_subtypes}}
+    \label{fig:ap:gsea_lumInf}
+\end{figure}
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/gsea/mesLike_10_top_manTerms.png}
+    \caption{GSEA output of the Mes-like group for the groups derived using Selective Edge pruning in  \cref{s:N_I:sel_tfs_subtypes}}
+    \label{fig:ap:gsea_mesLike}
+\end{figure}
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/gsea/largeLuminal_10_top_manTerms.png}
+    \caption{GSEA output of the Luminal group for the groups derived using Selective Edge pruning in  \cref{s:N_I:sel_tfs_subtypes}}
+    \label{fig:ap:gsea_largeLuminal}
+\end{figure}
+
+% \begin{figure}[!h]
+%     \captionsetup[subfigure]{justification=centering}
+%     \centering
+%     \begin{subfigure}[!t]{0.4\textwidth}
+%         \centering
+%         \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/gsea/smallBasal_10_top_manTerms.png}
+%         \caption{Small Basal}
+%         \label{fig:ap:gsea_smallBasal}
+%     \end{subfigure}
+%     \begin{subfigure}[!t]{0.4\textwidth}
+%         \centering
+%         \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/gsea/largeBasal_10_top_manTerms.png}
+%         \caption{Large Basal}
+%         \label{fig:ap:gsea_largeBasal}
+%     \end{subfigure} 
+%     \begin{subfigure}[!t]{0.4\textwidth}
+%         \centering
+%         \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/gsea/lumInf_10_top_manTerms.png}
+%         \caption{Luminal Infiltrated}
+%         \label{fig:ap:gsea_lumInf}
+%     \end{subfigure}
+%     \begin{subfigure}[!t]{0.4\textwidth}
+%         \centering
+%         \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/gsea/mesLike_10_top_manTerms.png}
+%         \caption{Mes-like}
+%         \label{fig:ap:gsea_mesLike}
+%     \end{subfigure} 
+%     \begin{subfigure}[!t]{0.4\textwidth}
+%         \centering
+%         \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/gsea/largeLuminal_10_top_manTerms.png}
+%         \caption{Large Luminal}
+%         \label{fig:ap:gsea_largeLuminal}
+%     \end{subfigure}
+%     \caption{GSEA output for the groups derived using Selective Edge pruning in  \cref{s:N_I:sel_tfs_subtypes}}
+%     \label{fig:ap:gsea_basal}
+% \end{figure}
 
 \newpage
 

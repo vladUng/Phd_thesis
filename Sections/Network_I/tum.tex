@@ -1,7 +1,7 @@
 
 
 
-\section{Result: Tumour derived network to stratify MIBC} \label{s:N_I:tum}
+\section{Validation: Tumour network to stratify MIBC} \label{s:N_I:tum}
 
 
 The Parsimonious Gene Correlation Analysis Network Analysis (PGCNA) was used to stratify breast, colon, and glioblastoma cancers \cite{Care2019-ij,Tanner2023-wa} from gene expression data. In this section, the PGCNA is adapted to integrate Transcription Factors (TFs) and mutations at the network construction stage. 
@@ -14,7 +14,7 @@ The decision to keep 6 edges per TF is based on findings from the experiment det
 
 \subsection{Describing the network} \label{s:N_I:tum_describe}
 
-\begin{figure}[!htb]    \centering\includegraphics[width=0.9\textwidth,keepaspectratio]{Sections/Network_I/Resources/Methods/modifiers.png}
+\begin{figure}[!htb]    \centering\includegraphics[width=1.0\textwidth,keepaspectratio]{Sections/Network_I/Resources/Methods/modifiers.png}
     \caption{Representing the two weight modifier strategies employed at the network construction stage. The red, reward strategy, awards the genes that have a high burden across the cohort. Conversely, the  penalised strategy decreases the edges' strength for highly mutated genes. In both cases, the non-mutated genes remain unchanged.}
     \label{fig:N_I:modifiers}
 \end{figure}
@@ -43,8 +43,10 @@ There are $\approx30K$ genes in the TCGA's MIBC cohort, from which less than a h
 
 \subsection{Leiden and MIBC stratification} \label{s:N_I:tum_stratification}
 
-\begin{figure}[!htb]    \centering\includegraphics[width=1.0\textwidth,height=0.6\textheight,keepaspectratio]{Sections/Network_I/Resources/Tum_network/LeidenMetrics_Sankey_TF-6.png}
-    \caption{On the top are displayed the community size and Modularity Score. The two metrics used to asses the weight modifiers (Standard, Penalty and Reward) the Leiden algorithm. At the bottom the Sankey plot displays comparison between the MIBC subtyping derived from the different standard classifiers (TCGA \citet{Robertson2017-mg} and consensus \citet{Kamoun2020-tj}), the previous developed subgroups (\ref{}) and the three different networks. }
+\begin{figure}[!htb]    
+    \centering
+    \includegraphics[width=1.0\textwidth,keepaspectratio]{Sections/Network_I/Resources/Tum_network/LeidenMetrics_Sankey_TF-6.png}
+    \caption{On the top are displayed the community size and Modularity Score. The two metrics used to asses the weight modifiers (Standard, Penalty and Reward) the Leiden algorithm. At the bottom the Sankey plot displays comparison between the MIBC subtyping derived from the different standard classifiers (TCGA \citep{Robertson2017-mg} and consensus \citep{Kamoun2020-tj}), the previous developed subgroups with the cluster analysis \cref{s:clustering_analysis} and the three different networks. }
     \label{fig:N_I:tum_leiden_modifiers}
 \end{figure}
 
@@ -58,16 +60,17 @@ At the bottom of \cref{fig:N_I:tum_leiden_modifiers} the Sankey plot shows the d
 
 However, there are more changes in the Basal (TCGA/consensus) and Neuroendocrine (Ne). The Standard and Reward are consistent in finding the same 3 groups (\textbf{5, 4 and 2}) where \textbf{5} is a mixed of LumInf/NS and High IFNg,\textbf{4} is mainly Low IFNG and a few NE samples while \textbf{2} is a combination of High and Medium IFNg. This may suggest that cluster 4 represents the tumours which are more basal (de-differentiated), while \textbf{5} the tumours with high infiltration and immune response and cluster \textbf{2} the samples between the two. In the Penalised network sub-grouping the cluster \textbf{5} remains the same, but \textbf{4} and \textbf{1} are changed. The former contains more of the LumP and Low IFNG samples, while the latter hold most of the IFNG samples. This suggest that the Penalised network stratification perform worst.
 
-Overall, the stratification shown in Figure \ref{fig:N_I:tum_leiden_modifiers} shows the potential of the Network approach by finding similar three Basal subgroups as in our previous clustering where both a computational method and domain knowledge from insitu study\citet{Baker2022-bj} were used. Nonetheless, there is little difference between the networks suggesting that there weight modifiers do not have a high impact on MIBC stratification with K-means (K=6).
+Overall, the stratification shown in Figure \ref{fig:N_I:tum_leiden_modifiers} shows the potential of the Network approach by finding similar three Basal subgroups as in our previous clustering where both a computational method and domain knowledge from \textit{in-situ study} \citet{Baker2022-bj} were used. Nonetheless, there is little difference between the networks suggesting that there weight modifiers do not have a high impact on MIBC stratification with K-means (K=6).
 
 \subsection{Clustering analysis vs network gene selection} \label{s:N_I:cs_vs_gene_sel}
 
 Crudely simplified the network approach is an advance gene selection mechanism based on multiple data-types: gene co-expression, mutation and transcription factors. Specifically, the Module Connectivity step from Figure \ref{fig:N_I:network_pipeline} picks the genes that have the highest connectivity (see Eq. \ref{eq:modcon}) and varied across the dataset, which are then used for clustering analysis (through MEV). Similarly, in the previous chapter $\approx3K$ top most relative varied genes were used in the K-means clustering analysis. Therefore, there is a need to compare the two gene selection methods and to assess the differences.
 
-The comparison is performed only using the TCGA's MIBC dataset to avoid differences between the tumour and healthy samples. The network was constructed from the 5K most varied genes, no weight modifier and the minimum degree for TFs  was set to 6\footnote{The Selective Edge pruning experiments from Section \ref{} showed diminished returns from allowing more than 6 edges per TF.} and 3 to the standard genes. For a network formed of 5K genes, the ModCon (=100 for each community) selects in total $\approx2.8K$ genes.
+The comparison is performed only using the TCGA's MIBC dataset to avoid differences between the tumour and healthy samples. The network was constructed from the 5K most varied genes, no weight modifier and the minimum degree for TFs  was set to 6\footnote{The Selective Edge pruning experiments from \cref{s:N_I:sel_pruning} showed diminished returns from allowing more than 6 edges per TF.} and 3 to the standard genes. For a network formed of 5K genes, the ModCon (=100 for each community) selects in total $\approx2.8K$ genes.
 
 
-\begin{figure}[!t]    \centering\includegraphics[width=1.0\textwidth,height=0.7\textheight,keepaspectratio]{Sections/Network_I/Resources/Tum_network/ClusteringAnalysis_vs_Network_3.png}
+\begin{figure}[!t]    
+    \centering\includegraphics[width=1.0\textwidth,keepaspectratio]{Sections/Network_I/Resources/Tum_network/ClusteringAnalysis_vs_Network_3.png}
     \caption{Network selection vs. Clustering Analysis. Red points are represented by the genes selected exclusively by the highest median standard deviation ratio, the green by the network and mustard by both approaches. The size of the points is the median expression of the genes in TCGA. To avoid log values of 0 the mutations count were offset by one.}
     \label{fig:N_I:network_ca_selection}
 \end{figure}
@@ -79,7 +82,7 @@ This comparison shows the power of the network approach which selects not only t
 
 \subsection{Summary}
 
-The two set of experiments performed in this Section suggest the potential of a network approach to stratify the MIBC. In the first part (Section \ref{s:N_I:tum_stratification}), three networks with different weight modifiers were created and analysed. From the network and community detection metrics (see Figure \ref{fig:N_I:net_metrics_tum} and Figure \ref{fig:N_I:tum_leiden_modifiers}) the there three networks (Standard, Reward and Penalised) perform similarly but, importantly, exhibit different MIBC subgroups from the canonical methods. Following on this, it is explored the differences in the selected genes from the Clustering Analysis and the network approach (depicted in Figure \ref{fig:N_I:network_ca_selection}). This shows that the network is capable to pick genes with a wider a range of properties. Genes with higher mutation, magnitude and the highest variance are selected by the network approach, while the standard approach selects only with the highest relative variance.
+The two set of experiments performed in this Section suggest the potential of a network approach to stratify the MIBC. In the first part (\cref{s:N_I:tum_stratification}), three networks with different weight modifiers were created and analysed. From the network and community detection metrics (see \cref{fig:N_I:net_metrics_tum} and Figure \cref{fig:N_I:tum_leiden_modifiers}) the there three networks (Standard, Reward and Penalised) perform similarly but, importantly, exhibit different MIBC subgroups from the canonical methods. Following on this, it is explored the differences in the selected genes from the Clustering Analysis and the network approach (depicted in \cref{fig:N_I:network_ca_selection}). This shows that the network is capable to pick genes with a wider a range of properties. Genes with higher mutation, magnitude and the highest variance are selected by the network approach, while the standard approach selects only with the highest relative variance.
 
 Both experiments show the advantages of the network approach in finding new potential cancer subgroups. However, the data integration strategy in this section does not exhibit the desired results.
 

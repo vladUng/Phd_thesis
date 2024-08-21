@@ -327,53 +327,59 @@ Using the above work and the box plots like the ones in \cref{fig:N_I:box_basal,
 \citet{Hurst2022-sp} researched the upregulated and downregulated genes involved in the formation of squamous cell carcinoma (SCC), an undifferentiated tissue. Figure 4 from their paper shows the signature genes involved in this process. Among the upregulated genes in \citet{Hurst2022-sp}, the following are found in the 98 TFs: \textit{\textbf{BNC1}, EGR1, \textbf{FOSL1}, \textbf{HES2}, JUN, \textbf{KLF16}, KLF4, NFIL3}. From the list of downregulated genes, the following are found in the 98 TFs: \textit{\textbf{BHLHE41}, ELF3, FOXQ1, \textbf{MECOM}, POGK, REPIN1, ZSCAN16}. The bold genes are the markers chosen as markers for basal and luminal (\cref{tab:N_I:genes_lum_basal}).
 
 
-% Basal Markers 
+% % Basal Markers 
 \begin{figure}[H]
     \captionsetup[subfigure]{justification=Centering}
-% consensus
-\begin{subfigure}[!t]{0.49\textwidth}
-    \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/log2_consensus_basal.png}
-    
-    \caption{Consensus}
-    
-    \label{fig:N_I:box_basal_consensus}
-\end{subfigure}
-% Dendrogram
-\begin{subfigure}[!t]{0.49\textwidth}
-    \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/log2_dendrogram_basla.png}
-    
-    \caption{Basal}
-    
-    \label{fig:N_I:box_basal_dendrogram}
-\end{subfigure}
-
+    % consensus
+    \begin{subfigure}[!t]{0.49\textwidth}
+        \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/log2_consensus_basal.png}
+        \caption{Consensus}
+        \label{fig:N_I:box_basal_consensus}
+    \end{subfigure}
+    \begin{subfigure}[!t]{0.49\textwidth}
+        \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/log2_dendrogram_basla.png}
+        \caption{Basal}
+        \label{fig:N_I:box_basal_dendrogram}
+    \end{subfigure}
     \caption{Box plots showing the $log2(TPM+1)$ of the \textbf{basal} markers over the consensus and groups derived from the hierarchical clustering applied in this chapter.}
-    
     \label{fig:N_I:box_basal}
 \end{figure}
+
+
+% \begin{sidewaysfigure}[H]
+%   \centering
+%   % consensus
+%   \begin{subfigure}[!t]{1.0\textwidth}
+%       \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/log2_consensus_basal.png}
+%       \caption{Consensus}
+%       \label{fig:N_I:box_basal_consensus}
+%   \end{subfigure}
+%   % Dendrogram
+%   \begin{subfigure}[!t]{1.0\textwidth}
+%       \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/log2_dendrogram_basla.png}
+%       \caption{Basal}
+%       \label{fig:N_I:box_basal_dendrogram}
+%   \end{subfigure}
+%   \caption{Box plots showing the $log2(TPM+1)$ of the \textbf{basal} markers over the consensus and groups derived from the hierarchical clustering applied in this chapter.}
+%   \label{fig:N_I:box_basal}
+% \end{sidewaysfigure}
 
 % Luminal Markers
 \begin{figure}[H]
     \captionsetup[subfigure]{justification=Centering}
-% consensus
-\begin{subfigure}[!t]{0.49\textwidth}
-    \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/log2_consensus_lum.png}
-    
-    \caption{Consensus}
-    
-    \label{fig:N_I:box_luminal_consensus}
-\end{subfigure}
-\begin{subfigure}[!t]{0.49\textwidth}
-    \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/log2_dendrogram_lum.png}
-    
-    \caption{Basal}
-    
-    \label{fig:N_I:box_luminal_dendrogram}
-\end{subfigure}
-
-    \caption{Box plots showing the $log2(TPM+1)$ of the \textbf{luminal markers} over the consensus and groups derived from the hierarchical clustering applied in this chapter.}
-    
-    \label{fig:N_I:box_luminal}
+  % consensus
+  \begin{subfigure}[!t]{0.49\textwidth}
+      \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/log2_consensus_lum.png}
+      \caption{Consensus}
+      \label{fig:N_I:box_luminal_consensus}
+  \end{subfigure}
+  \begin{subfigure}[!t]{0.49\textwidth}
+      \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/log2_dendrogram_lum.png}
+      \caption{Basal}
+      \label{fig:N_I:box_luminal_dendrogram}
+  \end{subfigure}
+  \caption{Box plots showing the $log2(TPM+1)$ of the \textbf{luminal markers} over the consensus and groups derived from the hierarchical clustering applied in this chapter.}
+  \label{fig:N_I:box_luminal}
 \end{figure}
 
 
@@ -424,7 +430,7 @@ To understand better the biology of the small basal group, the metadata from TCG
 \end{figure}
 
 % pi plot
-Differentially expressed analysis (DEA) was performed between the MIBC groups derived from the gene expression of the 98 TFs. The analysis enables to compare cancer subtypes beyond the transcription factors, and to find the genes that are significantly expressed to each subtype. For every MIBC group, a pi scatter plot is used as in \cref{fig:N_I:pi_smallBasal_comp}, where there is a quadrant (here - III) that holds the genes specific to that subtype with respect with the compared groups. In \cref{fig:N_I:pi_smallBasal_comp} the small basal (5 from \cref{fig:N_I:sel_tfs_cs_analysis}) is compared against the large basal, on the x-axis, in order to determine the properties over the other basal. The pi-values on the y-axis are the result from small-basal vs mes-like as it was observed that the mes-like group is different from both the luminal\footnote{The purpose of the pi plot was to highlight the specific genes to the small-basal. However, one may think that a more direct comparison of the small-basal with the luminal groups could have been chosen, instead of mes-like DEA. The other pi-plots comparison (like the plots for LumInf,  large luminal \cref{fig:ap:pi_other_values} - in Appendix) cover the 'basal' vs 'luminal' comparison. }. The light-blue marker in quadrant III represents the referential point to which the genes are 'the most' enriched in the small-basal, and the closest 500 genes to the referential point are coloured in purple. 
+Differentially expressed analysis (DEA) was performed between the MIBC groups derived from the gene expression of the 98 TFs. The analysis enables to compare cancer subtypes beyond the transcription factors, and to find the genes that are significantly expressed to each subtype. For every MIBC group, a pi scatter plot is used as in \cref{fig:N_I:pi_smallBasal_comp}, where there is a quadrant (here - III) that holds the genes specific to that subtype with respect with the compared groups. In \cref{fig:N_I:pi_smallBasal_comp} the small basal (5 from \cref{fig:N_I:sel_tfs_cs_analysis}) is compared against the large basal, on the x-axis, in order to determine the properties over the other basal. The pi-values on the y-axis are the result from small-basal vs mes-like as it was observed that the mes-like group is different from both the luminal\footnote{The purpose of the pi plot was to highlight the specific genes to the small-basal. However, one may think that a more direct comparison of the small-basal with the luminal groups could have been chosen, instead of mes-like DEA. The other pi-plots comparison (like the plots for LumInf,  large luminal \cref{fig:ap:pi_other_values_I,fig:ap:pi_other_values_II} - in Appendix) cover the 'basal' vs 'luminal' comparison. }. The light-blue marker in quadrant III represents the referential point to which the genes are 'the most' enriched in the small-basal, and the closest 500 genes to the referential point are coloured in purple. 
 
 
 % Introduce the GSEA
@@ -494,7 +500,7 @@ The first part of the table \cref{tab:N_I:gsea_basal_reactome} contains the path
 strong signal of the \textit{p53} pathway as seen in \cref{fig:N_I:gsea_p53_smallBasal} but it is not unique to the smaller group.
 
 % large basal commenting
-In the second part of the \cref{tab:N_I:gsea_basal_reactome}, the pathways for the larger basal group are presented, which are mostly related to the immune response of the tissue. Especially the high match of the interferon pathways, which is expected as this groups contains the subtypes which were classified in the previous section \ref{} as Medium IFNG and High IFNG. There was no unique signature found for Mes-like subgroup as the subtype shares pathways with the basal groups (interferon alpha, gamma pathways) as seen in the GSEA outputs from appendix \cref{fig:ap:gsea_largeBasal,fig:ap:gsea_mesLike}.
+In the second part of the \cref{tab:N_I:gsea_basal_reactome}, the pathways for the larger basal group are presented, which are mostly related to the immune response of the tissue. Especially the high match of the interferon pathways, which is expected as this groups contains the subtypes which were classified in the previous section \cref{s:clustering_analysis} as Medium IFNG and High IFNG. There was no unique signature found for Mes-like subgroup as the subtype shares pathways with the basal groups (interferon alpha, gamma pathways) as seen in the GSEA outputs from appendix \cref{fig:ap:gsea_largeBasal,fig:ap:gsea_mesLike}.
 
 The table \cref{tab:N_I:gsea_luminal_reactome} contains the pathways found for the larger and infiltrated luminal subtypes. The pathway for latter mostly contains immunoglobulin related genes (e.g. \textit{IGV1-17}) denoting the infiltration of the immune cells in the bladder cancer samples. The pathways found for the large luminal are general and the lead genes have a low match ratio with the most 5000 most representative genes. This suggests that there is a less of a clear signal for a pathway to be enriched which might be explained by the size of the luminal group. 
 
