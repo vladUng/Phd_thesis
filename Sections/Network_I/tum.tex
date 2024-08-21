@@ -1,25 +1,16 @@
-
-
-
 \section{Validation: Tumour network to stratify MIBC} \label{s:N_I:tum}
 
-
-\acrlong{PGCNA} was used to stratify breast, colon, and glioblastoma cancers  from gene expression data \citet{Care2019-ij,Tanner2023-wa}. In this section, the PGCNA is adapted to integrate \acrfull{tfs} and mutations at the network construction stage. 
+\acrlong{pgcna} was used to stratify breast, colon, and glioblastoma cancers  from gene expression data \citet{Care2019-ij,Tanner2023-wa}. In this section, the PGCNA is adapted to integrate \acrfull{tf} and mutations at the network construction stage. 
 
 Apart from exploring the network approach to MIBC subtyping the work presented is also compared to the standard stratification methods. This comparison involves contrasting two gene selection mechanisms: the network-based approach and the selection of the most variable genes, thereby highlighting the potential of graph methods.
 
-For this analysis, the top 4,000 most relatively varied genes (based on median/std) from the TCGA dataset are used to construct the network. Two modifiers, 'Reward' and 'Penalised' (as shown in Figure \ref{fig:N_I:modifiers}), are applied to the gene weights. In the standard gene selection, 3 edges per gene are retained, while for TFs, 6 edges per TF are maintained. The top 100 genes are selected using ModCon, and for MEVs, the tumour dataset is utilised.
+For this analysis, the top 4,000 most relatively varied genes (based on median/std) from the TCGA dataset are used to construct the network. Two modifiers, 'Reward' and 'Penalised' (as shown in \cref{fig:N_I:modifiers}), are applied to the gene weights. In the standard gene selection, 3 edges per gene are retained, while for TFs, 6 edges per TF are maintained. The top 100 genes are selected using ModCon, and for MEVs, the tumour dataset is utilised.
 
 The decision to keep 6 edges per TF is based on findings from the experiment detailed in \cref{s:N_I:sel_pruning}. This experiment indicated that allowing more than 6 edges per TF leads to diminished returns and that all TFs are included when more than 10 edges are permitted
 
 \subsection{Describing the network} \label{s:N_I:tum_describe}
 
-\begin{figure}[!htb]    \centering\includegraphics[width=1.0\textwidth,keepaspectratio]{Sections/Network_I/Resources/Methods/modifiers.png}
-    \caption{Representing the two weight modifier strategies employed at the network construction stage. The red, reward strategy, awards the genes that have a high burden across the cohort. Conversely, the  penalised strategy decreases the edges' strength for highly mutated genes. In both cases, the non-mutated genes remain unchanged.}
-    \label{fig:N_I:modifiers}
-\end{figure}
 
-The network weights are modified to integrated the mutation burden across the TCGA cohort into the network. The changes are applied after the Spearman correlation matrix is computed but before the edge pruning. The reward strategy \textit{'promotes'} the genes which are highly mutated across tumours by increasing their weight, conversely the penalised strategy \textit{'punishes'} the genes that are highly mutated. The two modifiers are described in Figure \ref{fig:N_I:modifiers} where the highest mutated genes (e.g. \textit{TP53}, \textit{TTN}) are the most penalised/rewarded, while the weight values for un-mutated genes remain unchanged. It is worth mentioning, that there is no need to adapt the ModCon as the weight changes will affect the connectivity parameters from Equation \ref{eq:modcon}.
 
 \begin{figure}[!t]  
 \centering
@@ -28,7 +19,7 @@ The network weights are modified to integrated the mutation burden across the TC
     \label{fig:N_I:net_metrics_tum}
 \end{figure}
 
-The node degree represents the number of connections a node has, a higher number, the more important the node is to the network. However, it is not only important how many connections there are but also to which nodes are these linked to for which PageRank\cite{Brin1998-mc} accounts. Thus, degree and PageRank are used in this project to described the network's centrality. The closeness and betweeness metrics are employed to describe the closeness and the intermediate steps between the nodes. In addition, the Integrated Value of Influence (IVI) \cite{Salavaty2020-wo} combines multiple metrics and it is used to score the nodes have both a local and global influence to the network, higher values will mean that the node is more important at both local and global levels.
+The node degree represents the number of connections a node has, a higher number, the more important the node is to the network. However, it is not only important how many connections there are but also to which nodes are these linked to for which PageRank \citep{Brin1998-mc} accounts. Thus, degree and PageRank are used in this project to described the network's centrality. The closeness and betweeness metrics are employed to describe the closeness and the intermediate steps between the nodes. In addition, the Integrated Value of Influence (IVI) \cite{Salavaty2020-wo} combines multiple metrics and it is used to score the nodes have both a local and global influence to the network, higher values will mean that the node is more important at both local and global levels.
 
 The different network metrics for standard (red), reward (mustard) and penalised (green) are shown in Figure \ref{fig:N_I:net_metrics_tum}. The network metrics are generally similar across the different type modifiers with the exception of the penalised network where the nodes' degree is negatively affected and the the nodes are usually closer to each other (higher closeness values). This is due to the penalised function which almost prunes the connections for the highly mutated genes.
 
