@@ -1,8 +1,4 @@
-
-
-\section{Validation: P0 network to stratify MIBC} \label{s:p0}
-
- 
+\section{Validation: P0 networks} \label{s:p0}
 
 
 In this section only the P0 dataset is used to construct a healthy network representing the co-expressed genes network in an unaltered bladder tissue. The network is built based on the pipeline described in Figure \ref{fig:N_I:network_pipeline} where instead of the tumour's gene expression the P0's RNAseq data is used, but the mutation burden for the modifiers is still from TCGA. This means that the Module Connectivity (ModCon) selects the genes which are most representative of the communities in the healthy network. These selected genes are used to compute the Module Evaluation Value score using the gene expression from TCGA. In short, this is a method to select the genes most representative for the P0 samples and how their expression in the tumours dataset inform the MIBC subtyping. 
@@ -16,7 +12,7 @@ In PGCNA \citet{Care2019-ij} the authors select in each community the top 25 gen
 Therefore, in this section the top 4K most-relative varied genes (median/std) from P0 are used to construct the network, the same weight modifiers (Reward and Penalised see Figure \ref{fig:N_I:modifiers}) are employed and 50 edges for the Transcription Factor. For the standard genes 3 edges are kept while for Transcription Factors (TFs) 50. The top 100 genes are selected with ModCon and for MEVs the top 4K most varied genes are used.
 
 % Desribe the network
-\subsection{Describing the Network}
+\subsection{Network description}
 
 
 \begin{figure}[!htb]    

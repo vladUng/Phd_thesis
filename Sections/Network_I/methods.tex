@@ -67,7 +67,7 @@ In the work of \citet{Care2019-ij}, the  Module Connectivity (ModCon) score is c
 The PGCNA was developed to support multiple datasets but in this project the majority of the experiments were run with a single dataset, thus $VarAcross$ does not have a large impact on \cref{eq:modcon}. Importantly, in the original formulation of $ModCon$, the connectivity parameter is the summation of the Spearman Correlation values. However, in the weight modifier experiments, where the Spearman Correlation values are strengthen/weaken by the gene's mutation burden the changed correlation are considered.
 
 % Representation of genes across samples & Clustering
-\subsection{Sample subtyping} \label{s:N_I:mev}
+\subsection{Bridging the gap to samples} \label{s:N_I:mev}
 
 After the genes are ranked by the importance in the nodes, the top 25-100 genes are selected as representative. The top 25 genes were selected in PGCNA work \citep{Care2019-ij} which worked when the same dataset is used for network and subtyping. However, when the non-tumour graphs were computed, there are situations when the most varied genes in the non-cancerous dataset are not present in the tumours dataset. Thus, more genes (100) were selected for each community. These chosen genes are used to compute the Module Evaluation (MEV) score \citep{Care2019-ij} to find the gene's representation in each of the samples. The MEV is described in the pseudo-code in \cref{alg:N_I:mev}.
 
@@ -86,3 +86,11 @@ After the genes are ranked by the importance in the nodes, the top 25-100 genes 
 \end{algorithm}
 
 The output of the \cref{alg:N_I:mev} is a $MxN$ matrix, where $M$ is the number of communities and $N$ the number of samples in the targeted dataset. On this matrix clustering analysis can then be applied to find the cancer subtypes. Thus, the methods and analysis tools developed in the previous chapter on cluster analysis,\cref{s:clustering_analysis}, can be applied to find the right cluster configuration (see \cref{s:p0:clustering_analysis})
+
+
+\subsection{Implementation details} \label{s:N_I:implementation}
+
+The experiments performed in this section are using a modified version of the PGCNA packaged developed by \citet{Care2019-ij}. It is worth noting that PGCNA was developed to support gene expression integration at the network level i.e., use the median expression across the given datasets. For the needs of the project this was not needed and a single gene expression is used to created the networks but with the new data integration. 
+
+% Changes made
+Initially the correlation values between genes is changed based on the weight modifiers proposed in \cref{fig:N_I:modifiers} and their effect are explored in both tumour and P0 networks in \cref{s:N_I:tum,s:p0}. Then, the number of edges is selectively altered for a given subset of genes (i.e., TFs) and the experiments for this are covered in \cref{s:N_I:sel_pruning}. 
