@@ -1,77 +1,6 @@
-\section{Result: Selective edge pruning} \label{s:N_I:sel_pruning}
 
-% The aim to integrate the TF
-While the last two sections studied the effects of the weight modifier into both the networks and the derived MIBC, this section aims to investigate the data integration through selective edge pruning. The objective is prioritise the \acrfull{tf} over the standard genes as these up-regulated the expression of the other genes leading to higher biological influence. By allowing more connections for the TF, the minimum degree of the node increases as well as their role in the network, similar to the biology. The experiments, on selective edge pruning, aim to explore and find the appropriate minimum degree for TF genes and how varying it affects the network. The work in this section was presented as a poster at the \textit{\href{https://2023.complexnetworks.org/}{Complex Network Conference in 2023}}.
-
-Through the experiments performed in this project and the analysis in the PGCNA work \citep{Care2019-ij} it was noticed that if a node has too many edges, the network becomes very dense and more complicated to analyse. Conversely, if a node has a few edges ($<3$), then the community detection (Leiden \cite{Traag2019-ne}) finds disconnected community. \citet{Care2019-ij} (empirically) found that the appropriate number of edges for a node is 3, and it is the value used throughout the project for the non-transcription factor gene (or 'standard'). 
-
-% The aim to find the better community detection
-An objective adopted for this section therefore was to compare the Leiden \citep{Traag2019-ne} community detection used in PGCNA with the degree corrected Stochastic Block Model (DC-SBM) from \citet{Karrer2011-si, Peixoto2017-gc}. As it was covered in \cref{s:lit:comm_detect} from Introduction, Leiden is faster and more popular, but it is prone to find patterns in noise, whereas the DC-SBM is slower but it is more error proof to find non-existent communities. Throughout the project the degree corrected (DC-SBM) \& hierarchical (hSBM) stochastic block models were preferred over the simple SBM \citep{Holland1983-eu} as it accounts for the node degree when it finds the communities, which is crucial for selective edge pruning; for convenience DC-SBM and SBM are used interchangeably.
-
-% Exp Setup
-\subsection{Experimental setup}
-
-
-The experiments performed in this section are using the RNAseq gene expression from TCGA's MIBC cohort from TCGA and the transcription factor list was taken from \citet{Lambert2018-el}. As before, the Kallisto method was used to align the RNA-seq reads using genome version GRCh38 with Gencode annotation version 42. The gene selection strategy for the network is followed as in \cref{s:cs:methods} where genes are expressed in at least 90\% of the samples and and the top 5000 most varied genes by the median/standard deviation are kept. Out of the 5000 genes used for the network 325 are Human Transcription Factors based on \citet{Lambert2018-el}.
-
-% Leiden and SBM configuration
-The same network pipeline as described in \cref{fig:N_I:network_pipeline} was applied where at the community detection step both Leiden and DC-SBM are used and compared in the following sections. Leiden was run using Modularity Maximisation cost function and iterate over 10 times at each run. The degree-corrected Stochastic Block Model was used, with 700 iterations ($n\_iter=700$), the entire graph was sweeps up to 10 times ($mc\_iter = 10 sweeps$) and the distribution of the data was set to real exponential\footnote{As in the \href{https://graph-tool.skewed.de/static/doc/demos/inference/inference.html}{Graph-tool documentation} the distribution of the edge covariance can be specified given the bounds of the data, as seen in the referenced guide.} ($distribution = real\_exponential$). The number of iterations and swept insured that a detailed search for the communities is performed while keeping the computational times relatively low. The 'real-exponential' parameter it is used for edge weights that range from $[0, \infty]$ which is the case for the Spearman correlation values.
-
-% Metrics
-The performance of the Leiden algorithm is assessed by the Modularity Maximisation (described in \cref{s:lit:mod_max}), which measures the separation between the communities; higher values indicate better performance. SBM performance is measured by the Minimum Description Length (MDL), which measures the minimum information needed to describe the data; lower values indicate better performance. The number of communities found by the two community detection algorithms was also used as a heuristic to assess performance; it is generally thought that more communities indicate better performance \citep{Care2019-ij}. Unfortunately, at the time of running this experiment, there was no common metric available to compare the performance of the two methods. However, in the summer of 2023, \cite{Peixoto2023-mw}, Tiago Peixoto published research that adapted MDL to Modularity models (like Leiden).
-
-%Choosing the Control TF
-To account for the random effects of the TFs in the network, there are 10 control experiments with 325 non-TFs randomly selected and allowed a minimum degree from 3-15. The lower bound is given by the value used for the standard genes, while the higher limit was decided empirically as all the prioritised subsets are used for stratification (see \cref{fig:N_I:sel_tfs}); i.e. selected by ModCon based on their network importance. This set of experiments led to the identification of a subset of TFs with high biological significance, as discussed in \cref{s:N_I:sel_tfs}.
-
-
-% Com detection comparison
-\subsection{Community detection comparison}
-
-% Introduce the plots
-\Cref{fig:N_I:com_det_met} shows the evolution of the metrics corresponding to the two community detection algorithms. \Cref{fig:N_I:sbm_com_det_met} looks at the evolution of the MDL (or entropy - lower the better) in the communities found with SBM, while \cref{fig:N_I:leid_com_det_met} presents the Modularity Maximisation score (higher the better). The lines/boxes in blue represents the Experiment which prioritises the biological TFs, while the traces in red represents the control with non-TF genes selected. 
-
-% Comment the scores figure
-The first to notice is that both community detection methods, regardless of the selected genes, perform lower as the minimum degree of the node is increased. This indicates an inverse relationship between the minimum degree for TFs and the performance of the two algorithms, the effect was also noticed in the work of \citet{Care2019-ij}. This can be explained that with a larger number of edges allowed in the network, the graphs become more complex and more information is needed to 'describe' or reconstruct the network; supported by the ascending trend of the MDL in \cref{fig:N_I:sbm_com_det_met}. The variance of the metric also grows with the increase minimum degree, which is easier to see in the control experiments in Leiden \cref{fig:N_I:leid_com_det_met}.
-
-
-\begin{figure}[!h]
-    \centering
-    \begin{subfigure}[!t]{1.0\textwidth}
-        \includegraphics[width=\textwidth]{Sections/Network_I/Resources/selective_pruning/com_comp/sbm_ent_sel_prun.png}
-        \caption{SBM}
-        \label{fig:N_I:sbm_com_det_met}
-    \end{subfigure}\hspace{\fill} 
-    \begin{subfigure}[!t]{1.0\textwidth}
-        \includegraphics[width=\linewidth]{Sections/Network_I/Resources/selective_pruning/com_comp/leid_mod_sel_prun.png}
-        \caption{Leiden}
-        \label{fig:N_I:leid_com_det_met}
-    \end{subfigure}
-    \caption{Metrics comparison between Minimum Description Length (MDL) - entropy- in SBM (lower the better) and Modularity Maximisation in Leiden (higher the better). As the minimum degree for the increases both community detection suffer a decrease in the performance. The error bars in the control is given by the standard deviations.}
-    \label{fig:N_I:com_det_met}
-\end{figure}
-
-% Introduce the figure
-\Cref{fig:N_I:comp_size_com_det} presents the effects of increasing the minimum degree to the community sizes for Leiden and SBM where the blue traces represent the experiments performed while the red the controls. 
-
-% Comment com_size figure
-The immediate difference between Leiden and SBM is that the former finds consistently considerably more communities than the latter. It can be noticed that SBM has an upward trend proportional with the minimum degree of the nodes, this highlighted by the control experiments. In \cref{fig:N_I:comp_size_com_det}, Leiden appears to find the same number of clusters, but in the \cref{fig:ap:leid_com_size} from Appendix, where the Leiden traces are plot separately, it can be noticed that Leiden tends to finds less communities as the minimum degree is increased. 
-
-\begin{figure}[!t]   
-\centering
-\includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/com_comp/sbm_Leiden_combNum.png}
-  \caption{Community size for Leiden and Stochastic Block Model. Blue lines are represented by the experiments run with biological TFs while the red ones are the controls, with non-TF genes. The error bars in the control is given by the standard deviations. Another version of the plot where the trends of the two method are separated can be seen in \cref{fig:ap:leid_com_size} from Appendix.}
-\label{fig:N_I:comp_size_com_det}
-\end{figure}
-
-% Variance and that SBM is probabilistic
-Growing the number of nodes also increases the variance in the number of communities found by the two methods. This can be more clearly seen in \cref{fig:ap:com_size_comp}, which also shows that SBM has a higher variance compared to Leiden. However, due to the probabilistic nature of SBM and the fact that each set of communities is found after 700 iterations, it is possible to observe module oscillations as well as changes in gene memberships. This helps identify genes that change community membership as well as the 'stable' genes.
-
-% Summary
-In summary, by increasing the minimum degree, both algorithms perform worse regardless of whether the prioritised genes are selected at random or have biological significance (i.e., TFs). SBM finds more communities compared to Leiden but has a higher variance. Given the probabilistic nature of SBM, additional useful information can be extracted from the network like gene membership. For these reasons, and because SBM does not find patterns in noise, the stochastic model is the preferred method in this project.
-
-
-% Analysing the TFs
-\subsection{Emerging Transcription Factors} \label{s:N_I:sel_tfs}
+% Emerging TFs
+\section{Emerging Transcription Factors} \label{s:N_I:sel_tfs}
 
 % Introduce the motivation of using TFs
 After comparing the two community detection algorithm and deciding on the SBM, it is worth diving in the analysis of the network output. The previous sub-section showed that by prioritising a certain subset of genes, to have a higher minimum degree, has some effects on the network. However, in the network pipeline, not all the genes employed to generate the graph are used for the cancer stratification, but the top 100 selected by ModCon (see \cref{fig:N_I:network_pipeline}). The ModCon score is a score which takes in account a node's degree and their weights, thus well connected genes are selected.
@@ -82,10 +11,10 @@ After comparing the two community detection algorithm and deciding on the SBM, i
 
 
 \begin{figure}[!b]   
-\centering
-\includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/com_comp/ctrls_min_dig_mev.png}
-  \caption{The percentages of the Transcription Factors selected by ModCon from the communities found with \acrlong{sbm} as the minimum degree increases. By having $\sim60\%$ of the Transcription Factors selected by ModCon the plot shows there is a subset of TFs that are 'naturally' highly correlated with other genes. }
-\label{fig:N_I:sel_tfs}
+    \centering
+    \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/com_comp/ctrls_min_dig_mev.png}
+      \caption{The percentages of the Transcription Factors selected by ModCon from the communities found with \acrlong{sbm} as the minimum degree increases. By having $\sim60\%$ of the Transcription Factors selected by ModCon the plot shows there is a subset of TFs that are 'naturally' highly correlated with other genes. }
+    \label{fig:N_I:sel_tfs}
 \end{figure}
 
 % Biological relevance
@@ -109,7 +38,7 @@ Taking in account the selective edge pruning and that $\sim60\%$ of the 325 TF g
 In the selective edge pruning strategy introduced by \citet{Care2019-ij} there is no threshold to ensure that the low correlated pair of genes are not cluttering the network and that the most co-expressed pairs are kept. To test this the weight distribution is plot in \cref{fig:N_I:weight_distrib} for a standard network with no weight modifiers, with a minimum 3 edges per standard gene and 6 per TF. It can be seen that the distribution is skewed right, ensuring that most of the genes are highly correlated.
 
 % Clustering
-\subsubsection*{Clustering}
+\subsection{Clustering analysis}
 
 
 % Talk about the clustering
@@ -144,7 +73,7 @@ A dendrogram cut of 15 was chosen as it split both the Luminal and Basal Groups 
 The groups smaller than 1\% of the cohort size (equivalent to 4 samples) are removed, resulting in a dataset of 378 samples grouped into 5 major groups. These subtypes are compared in \cref{fig:N_I:sankey_sel_tfs_vuCs,fig:N_I:sankey_sel_tfs} with previous work from Lund \citep{Marzouka2018-ge}, TCGA \citep{Robertson2017-mg}, consensus \citep{Kamoun2020-tj}, and the subtyping clusters found in the previous chapter on clustering analysis \cref{s:clustering_analysis}. 
 
 % Luminal groups
-In the comparison (\cref{fig:N_I:sankey_sel_tfs_vuCs}) with the consensus and the clusters from the previous section \ref{}, it can be noticed that there is a large luminal group (13) consisting of 202 samples. The group contains most, if not all, of the samples from LumP, Stroma-rich, LumU, and LumNS (consensus) and the LumInf/NS and LumP (KMeans\_6). This is also the case in \cref{fig:N_I:sankey_sel_tfs}, where group 13 contains the LumInf, LumP, LumNS (TCGA) and the UroA-Prog, Uro-Inf, and UroC from Lund. The smaller luminal group (12) consists mostly of the samples from LumU, Stroma-rich from TCGA (\cref{fig:N_I:sankey_sel_tfs_vuCs}) or the consensus LumInf/LumP (TCGA) or the Genomically Unstable (GU) and GU-infiltrated from Lund. 
+In the comparison (\cref{fig:N_I:sankey_sel_tfs_vuCs}) with the consensus and the clusters from the previous section \cref{s:clustering_analysis}, it can be noticed that there is a large luminal group (13) consisting of 202 samples. The group contains most, if not all, of the samples from LumP, Stroma-rich, LumU, and LumNS (consensus) and the LumInf/NS and LumP (KMeans\_6). This is also the case in \cref{fig:N_I:sankey_sel_tfs}, where group 13 contains the LumInf, LumP, LumNS (TCGA) and the UroA-Prog, Uro-Inf, and UroC from Lund. The smaller luminal group (12) consists mostly of the samples from LumU, Stroma-rich from TCGA (\cref{fig:N_I:sankey_sel_tfs_vuCs}) or the consensus LumInf/LumP (TCGA) or the Genomically Unstable (GU) and GU-infiltrated from Lund. 
 
 % Basal subgroups
 The larger group, consisting of 92 samples, is formed of a mix of samples from Medium, High, and Low IFNG (KMeans\_6) and Ba/Sq samples from the consensus. The medium-sized group is a combination of the High IFNG and Ne subgroups from KMeans\_6, while the smaller-sized group is formed of Low IFNG and Med IFNG. Switching to the comparison with TCGA/Lund (\cref{fig:N_I:sankey_sel_tfs}), it can be noticed that the large basal group (4) contains most of the Ba/Sq (TCGA) or Ba/Sq and Ba/Sq-infiltrated (Lund) samples. The medium-sized (3) basal cluster contains most of the Mes-like samples (Lund), while the smaller group (5) consists of UroB and Ba/Sq (Lund) samples. Thus, the MIBC stratification on the 98 TFs exhibits one major (large) basal group (4), a medium-sized (3) group which contains the Mes-like samples from the Lund classifier or the samples from High IFNG, and the small basal group (5) consisting of low IFNG samples or a combination of the UroB and Ba/Sq samples. It is worth mentioning that the UroB (Lund) and Low IFNG have a low survival prognosis, while High IFNG has a good prognosis.
@@ -153,7 +82,7 @@ The larger group, consisting of 92 samples, is formed of a mix of samples from M
 The comparison with the other stratification methods shows that clustering the expression of 98 TFs is capable of finding three basal subtypes, two smaller even than the ones found in the previous cluster analysis from \ref{s:clustering_analysis}. However, the 98 TFs fail to discriminate the luminal subgroups.
 
 % Survival analysis
-\subsubsection*{Survival Analysis}
+\subsection{Survival Analysis}
 
 Survival analysis was conducted on the five groups derived from the 98 transcription factors as shown in \cref{fig:N_I:sel_tfs_survival}. Group 5, identified as the smallest basal group, exhibits the poorest survival prognosis by a significant margin. Notably, the poorest survival in both the TCGA and consensus classification is observed in the Neuroendocrine-like groups, which are not included in Group 5; this is illustrated in the Sankey plot in \cref{fig:N_I:sankey_sel_tfs}. It is striking the poor survival of the group 5, where almost all of the patients are deceased after 3 years. This is a poorer prognosis then the Lund's UroB subtype (see Figure 6 from \citet{Marzouka2018-ge}) and the Low IFNG Basal from \ref{}.
 
@@ -202,8 +131,11 @@ This preliminary analysis of the differences in gene expression between subtypes
 
 \newpage
 
+
+
+
 % Biological analysis
-\subsection{The biology behind the emergent TFs} \label{s:N_I:sel_tfs_bio}
+\section{Result: the biology behind the emergent TFs} \label{s:N_I:sel_tfs_bio}
 
 The bar plots in \cref{fig:N_I:sel_tfs_var} display the log mean of the gene expression in both non-cancerous and cancerous datasets of the 98 TFs genes. The error bars depict the standard deviation of expression and the genes are in the descending order of the tumour average expressions. The red-bars represent the genes have a high variance\footnote{In this case, a high varied genes is one which has a standard deviation as big as the mean expression} in the either the non-cancerous or tumour dataset and the golden are the genes varied in both. Highly varied genes are the ones highlighted in the bar plot may yield important gene expression markers between the subgroups. The three list of varied genes can be seen \cref{tab:N_I:sel_tfs_var}.
 
@@ -237,9 +169,8 @@ There are few genes that are highly expressed in both the tumours and non-cancer
 
 It is worth remembering that MIBC is generally divided into Luminal and Basal subgroups, the former exhibiting differentiated status, while the latter an undifferentiated status. The non-cancerous dataset contains samples that are either differentiated (Abs-Ca or in-situ) or undifferentiated. This implies that the TFs with a high mean deviation may play a role in differentiation and also help in understanding the Basal/Luminal differences in MIBC. The molecular particularities in the tissue types of differentiation tissues are next explored.
 
-
 % Undiff vs Diff
-\subsection*{The emergent TFs and bladder differentiation} \label{s:N:sel_tf_diff_status}
+\subsection{In bladder differentiation} \label{s:N:sel_tf_diff_status}
 
 \begin{figure}[!h]
     \captionsetup[subfigure]{justification=Centering}
@@ -307,7 +238,7 @@ It is surprising that there are no TFs shared in the culture quadrant (UD and Ab
 
 
 % Transitioning to cancer
-\subsubsection*{The emergent TFs and cancer} \label{s:N_I:sel_tfs_cancer}
+\subsection{In muscle-invasive bladder cancer} \label{s:N_I:sel_tfs_cancer}
 
 
 % Selecting the genes for basal and luminal, expression in both Basal and Luminal
@@ -388,6 +319,7 @@ Using the above work and the box plots like the ones in \cref{fig:N_I:box_basal,
   \label{fig:N_I:box_luminal}
 \end{figure}
 
+\subsection{Returning to the network}
 
 % Network stats
 To leverage visualising aspect of the network, the basal/luminal markers were then searched in the experiment 5K genes network generated using no weight modifiers (standard), minimum 3 edges per genes and 6 for the TFs, and to which the Stochastic Block Model (SBM) was applied. Neither of the markers, basal/luminal or for differentiated, were not grouped in a single or 2-3 communities, but rather spread across several.
@@ -421,160 +353,3 @@ It is worth noting that both genes, have considerable more than 6 neighbours. Th
 
 Therefore, the 98 transcription factors and the two lists of Ba/Sq and Luminal markers are validated by research from different groups. The expression of these genes across the MIBC, from both the consensus and the subtypes derived from hierarchical clustering, can be seen in \cref{fig:N_I:box_basal,fig:N_I:box_luminal}. This also serves as an encouragement to explore the other genes not matched by other research, as they may exhibit potential for new biological insights.
 
-% Subtypes analysis
-\subsubsection*{Further exploring the derived subtypes} \label{s:N_I:sel_tfs_subtypes}
-
-% Metadata exploration
-To understand better the biology of the small basal group, the metadata from TCGA \citet{Robertson2017-mg} was used. Several metadata features were explored: level of smoking (cigarettes per day), race, metastasis, relation to noninvasive bladder cancer, and histology grade. \Cref{fig:ap:sel_tfs_tcga_metadata} from Appendix displays this information in the form of multiple histograms, where the x-axes represent the subtypes derived in this section and the y-axes the count of the metadata features. From the figure, there is no immediate characteristic for the small basal group, neither with the Squamous pathology nor with the metastatic status, but most of the patients were smokers. It is worth pointing out that LumInf, Mes-like, and large luminal groups are generally characterised by non-squamous tumours. From Appendix \Cref{fig:ap:sel_tfs_tcga_meta_mut} shows that there is no immediate relationship with the mutations selected in the TCGA supplementary material, while \cref{fig:ap:sel_tfs_tcga_meta_apobec} (appendix) shows no relationship with the \textit{APOBEC} mutation.
-
-% Pi plot for Small Ba/Sq
-\begin{figure}[!htb]   
-\centering
-\includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/pi_gsea/pi_smallBasal.png}
-  \caption{Pi plot showing the Small Basal vs Large Basal on the X-axis, and Small-Basal vs Mes-like Y-axis. This plot highlights the genes that are high and significantly expressed in the Small Basal subtype. }
-\label{fig:N_I:pi_smallBasal_comp}
-\end{figure}
-
-% pi plot
-Differentially expressed analysis (DEA) was performed between the MIBC groups derived from the gene expression of the 98 TFs. The analysis enables to compare cancer subtypes beyond the transcription factors, and to find the genes that are significantly expressed to each subtype. For every MIBC group, a pi scatter plot is used as in \cref{fig:N_I:pi_smallBasal_comp}, where there is a quadrant (here - III) that holds the genes specific to that subtype with respect with the compared groups. In \cref{fig:N_I:pi_smallBasal_comp} the small basal (5 from \cref{fig:N_I:sel_tfs_cs_analysis}) is compared against the large basal, on the x-axis, in order to determine the properties over the other basal. The pi-values on the y-axis are the result from small-basal vs mes-like as it was observed that the mes-like group is different from both the luminal\footnote{The purpose of the pi plot was to highlight the specific genes to the small-basal. However, one may think that a more direct comparison of the small-basal with the luminal groups could have been chosen, instead of mes-like DEA. The other pi-plots comparison (like the plots for LumInf,  large luminal \cref{fig:ap:pi_other_values_I,fig:ap:pi_other_values_II} - in Appendix) cover the 'basal' vs 'luminal' comparison. }. The light-blue marker in quadrant III represents the referential point to which the genes are 'the most' enriched in the small-basal, and the closest 500 genes to the referential point are coloured in purple. 
-
-
-% Introduce the GSEA
-The distance to the referential marker is computed for each point in the scatter plot \cref{fig:N_I:pi_smallBasal_comp} and then ranked in descending order. This means that all the points in the pi-plot are ranked by how much these are differentially and significantly are expressed in the small basal group. It also allows to run the pre-rank method for Gene Set Enrichment Analysis (GSEA) using the \textit{GSEAPY} library \citet{Fang2023-ec}. The pre-rank GSEA was configured to 1000 permutations (lowering the chance of misidentifying pathways) and the False Discovery Rate (FDR) of the q-value was kept at 0.05. The same process was repeated for the other subtypes based on their corresponding pi-plots\footnote{The pi-plot figures were also used to verify the results from GSEA. The genes found in the top pathways were plotted back on the plot to check if these are in the quadrant specific to the subtype studied.}; see \cref{s:ap:sel_prun_pi}.
-
-% Why the top terms are kept
-Taking a step back, the input data for GSEA for each subtype is taking the same (large) list of genes but it is ranked differently, giving more importance to the genes specific to the studied subtypes. The GSEA results will then shared a large number of found pathways at each run. To address this, the ten terms with the highest normalised enrichment score (NES) were kept for each MIBC subtype GSEA run. Having a restricted subset of term allows to find the exclusive pathways for a subgroup. Reactome 2023 v2 was used as the database to search for pathways in this section as it contains the up-to-date canonical pathways, it is medium size (1692 gene sets) as well the names are easier to interpret The output from the GSEA can be seeen in which can be seen in the tables \cref{tab:N_I:gsea_basal_reactome,tab:N_I:gsea_luminal_reactome}.
-
-% GSEA basal table (reactome)
-\begin{table}[H]
-  \centering
-  \scriptsize
-  \begin{tabularx}{\textwidth}{>{\hsize=1.7\hsize}X|>{\hsize=0.4\hsize}X|>{\hsize=0.4\hsize}X|>{\hsize=0.6\hsize}X|>{\hsize=0.4\hsize}X|>{\hsize=0.15\hsize}X}
-    \toprule
-    \textbf{Term} & \textbf{NES} & \textbf{FDR q-val} & \textbf{\# lead} & \textbf{\# matched} & \textbf{ratio} \\
-    \midrule
-    \multicolumn{6}{c}{\textbf{smallBasal}} \\
-    \midrule
-    NFE2L2 REGULATING ANTI OXIDANT DETOXIFICATION ENZYMES & 2.486 & 0 & 13 & 13 & 1 \\
-    \midrule
-    RND1 GTPASE CYCLE & 2.158 & 0 & 31 & 23 & 0.742 \\
-    \midrule
-    REGULATION OF RUNX1 EXPRESSION AND ACTIVITY & 2.114 & 0 & 11 & 8 & 0.727 \\
-    \midrule
-    SIGNALING BY PDGFR IN DISEASE & 2.101 & 0 & 13 & 9 & 0.692 \\
-    \midrule
-    RORA ACTIVATES GENE EXPRESSION & 2.082 & 0 & 15 & 13 & 0.867 \\
-    \midrule
-    GLUTATHIONE CONJUGATION & 2.063 & 0 & 20 & 17 & 0.85 \\
-    \midrule
-    ACYL CHAIN REMODELLING OF PC & 2.061 & 0 & 12 & 12 & 1 \\
-    \midrule
-    DOWNREGULATION OF ERBB2 SIGNALING & 2.034 & 0 & 14 & 14 & 1 \\
-    \midrule
-    SIGNALING BY ERBB2 & 2.034 & 0 & 25 & 25 & 1 \\
-    \midrule
-    ACTIVATION OF GENE EXPRESSION BY SREBF SREBP & 2.021 & 0 & 33 & 25 & 0.758 \\
-    \midrule
-    \multicolumn{6}{c}{\textbf{largeBasal}} \\
-    \midrule
-    INTERLEUKIN 10 SIGNALING & 2.561 & 0 & 37 & 37 & 1 \\
-    \midrule
-    PARASITE INFECTION & 2.545 & 0 & 89 & 84 & 0.944 \\
-    \midrule
-    INTERFERON ALPHA BETA SIGNALING & 2.489 & 0 & 46 & 46 & 1 \\
-    \midrule
-    SIGNALING BY THE B CELL RECEPTOR BCR & 2.482 & 0 & 137 & 111 & 0.81 \\
-    \midrule
-    FCGAMMA RECEPTOR FCGR DEPENDENT PHAGOCYTOSIS & 2.479 & 0 & 102 & 97 & 0.951 \\   
-    \bottomrule
-  \end{tabularx}
-  \caption{Normalised Enrichment Score (NES), False Discovery Rate (FDR) q-val, and lead gene statistics for the two basal groups. The lead genes from a pathway are selected by GSEAPY based on when the NES reached its peak.}
-  \label{tab:N_I:gsea_basal_reactome}
-\end{table}
-
-The GSEA output tables contain the Normalised enrichment score (NES), the False-Discovery Rate (FDR) of the q-value and lead genes statistics. A gene or a subset of genes are considered lead genes the ones where the enrichment score peaked. The 5000 closest genes to the referential point for each subtype (see \cref{fig:N_I:pi_smallBasal_comp}) are then intersected wit the lead genes, given the '\# matched' and 'ratio' columns in the tables \cref{tab:N_I:gsea_basal_reactome,tab:N_I:gsea_luminal_reactome} and the GSEA results for hallmarks and Onco Signature database from Appendix \cref{ap:tab:gsea_hallmark,ap:tab:gsea_oncosig}.
-
-\begin{figure}[!htb]   
-\centering
-\includegraphics[width=0.7\textwidth,height=0.7\textheight,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/gsea/REACTOME_TRANSCRIPTIONAL_REGULATION_BY_TP53.png}
-  \caption{GSEA plot for the p53 pathway found in the smaller basal group. While there is a strong enrichment of this pathway is not unique to this group.}
-\label{fig:N_I:gsea_p53_smallBasal}
-\end{figure}
-
-% Small basal commenting
-The first part of the table \cref{tab:N_I:gsea_basal_reactome} contains the pathways found for the small basal group which are most involved in the cell functioning. It is striking that in most of the pathways found the lead genes are matched by the 5000 genes closest to the referential point. This denotes that from the 5000 genes there are many which play an important role in multiple pathways. Disruption to the cell cycle may also explain the poor survival prognosis. As seen in the GSEA plot from \cref{fig:ap:gsea_smallBasal}, the enrichment score is high but not many genes are hit in the high ranked genes (i.e. top 5000) and the most hit pathways is "NFE2L2 regulating anti oxidant detoxification enzymes". In the previous analysis done in this section suggested that \textit{TP53} is a marker for the smaller group. There is a 
-strong signal of the \textit{p53} pathway as seen in \cref{fig:N_I:gsea_p53_smallBasal} but it is not unique to the smaller group.
-
-% large basal commenting
-In the second part of the \cref{tab:N_I:gsea_basal_reactome}, the pathways for the larger basal group are presented, which are mostly related to the immune response of the tissue. Especially the high match of the interferon pathways, which is expected as this groups contains the subtypes which were classified in the previous section \cref{s:clustering_analysis} as Medium IFNG and High IFNG. There was no unique signature found for Mes-like subgroup as the subtype shares pathways with the basal groups (interferon alpha, gamma pathways) as seen in the GSEA outputs from appendix \cref{fig:ap:gsea_largeBasal,fig:ap:gsea_mesLike}.
-
-The table \cref{tab:N_I:gsea_luminal_reactome} contains the pathways found for the larger and infiltrated luminal subtypes. The pathway for latter mostly contains immunoglobulin related genes (e.g. \textit{IGV1-17}) denoting the infiltration of the immune cells in the bladder cancer samples. The pathways found for the large luminal are general and the lead genes have a low match ratio with the most 5000 most representative genes. This suggests that there is a less of a clear signal for a pathway to be enriched which might be explained by the size of the luminal group. 
-
-% GSEA luminal table (reactome)
-\begin{table}[!t]
-  \centering
-  \scriptsize
-  \begin{tabularx}{\textwidth}{>{\hsize=1.7\hsize}X|>{\hsize=0.4\hsize}X|>{\hsize=0.4\hsize}X|>{\hsize=0.6\hsize}X|>{\hsize=0.4\hsize}X|>{\hsize=0.15\hsize}X}
-    \toprule
-    \textbf{Term} & \textbf{NES} & \textbf{FDR q-val} & \textbf{\# lead} & \textbf{\# matched} & \textbf{ratio} \\
-    \midrule
-    \multicolumn{6}{c}{\textbf{lumInf}} \\
-    \midrule
-    SCAVENGING OF HEME FROM PLASMA & 2.396 & 0 & 54 & 47 & 0.87 \\
-    \midrule
-    \multicolumn{6}{c}{\textbf{largeLuminal}} \\
-    \midrule
-    PARACETAMOL ADME & 2.016 & 0.003 & 15 & 15 & 1 \\
-    \midrule
-    EUKARYOTIC TRANSLATION ELONGATION & 1.864 & 0.029 & 73 & 5 & 0.068 \\
-    \midrule
-    SELENOAMINO ACID METABOLISM & 1.86 & 0.02 & 80 & 4 & 0.05 \\
-    \midrule
-    NONSENSE MEDIATED DECAY NMD & 1.832 & 0.025 & 81 & 8 & 0.099 \\
-    \midrule
-    SRP DEPENDENT COTRANSLATIONAL PROTEIN TARGETING TO MEMBRANE & 1.828 & 0.022 & 80 & 6 & 0.075 \\
-    \midrule
-    FORMATION OF WDR5 CONTAINING HISTONE MODIFYING COMPLEXES & 1.827 & 0.018 & 25 & 7 & 0.28 \\
-    \midrule
-    RESPONSE OF EIF2AK4 GCN2 TO AMINO ACID DEFICIENCY & 1.809 & 0.019 & 73 & 4 & 0.055 \\
-    \midrule
-    MITOCHONDRIAL FATTY ACID BETA OXIDATION & 1.789 & 0.023 & 28 & 18 & 0.643 \\
-    \midrule
-    BRANCHED CHAIN AMINO ACID CATABOLISM & 1.777 & 0.024 & 9 & 9 & 1 \\
-    \midrule
-    EUKARYOTIC TRANSLATION INITIATION & 1.77 & 0.025 & 76 & 5 & 0.066 \\
-    \bottomrule
-  \end{tabularx}
-  \caption{Normalised Enrichment Score (NES), False Discovery Rate (FDR) q-val, and lead gene statistics for the large, infiltrated and mes-like group. The lead genes from a pathway are selected by GSEAPY based on when the NES reached its peak.}
-  \label{tab:N_I:gsea_luminal_reactome}
-\end{table}
-
-GSEA was also applied to the hallmark gene set (50 pathways) and the oncogenic signature (189 gene sets), results that can be seen in Appendix \cref{ap:tab:gsea_hallmark,ap:tab:gsea_oncosig}. The GSEA outputs are harder to interpret especially the Onco Signature sets, but it can be observed that most of the unique pathways are found in both small basal and large luminal groups. Considering that the small basal group is considerably smaller than the large luminal, it suggests that the subtype should be study more.
-
-
-% What are these 10 top genes
-Returning to the small group and the pi scatter plot from \cref{fig:N_I:pi_smallBasal_comp},
-seven out of the ten genes closest to the referential point were found to have biological significance in bladder cancer biology: \textit{GPX2, KRT13, ALDH3A1, KRT15, KRT4, AKR1B10, SOX2, TP63, RAPGEFL1, CAPNS2}. \textit{GPX2} is involved in squamous differentiation \citet{Naiki2018-fp}. Higher expression of \textit{KRT13} is associated with better response to chemotherapy and immunotherapy \citet{Yu2023-db}. The methylation of \textit{ALDH3A1}, along with \textit{HOXA9} and \textit{ISL1}, has been studied in non-muscle invasive bladder cancer and found to be a predictor of disease recurrence \citet{McLean2023-qk}. Additionally, higher expression of \textit{ALDH3A1} in bladder cancer is associated with higher tumour grade and has been studied in cancer stem cells \citet{Kim2013-th}. \textit{KRT4} is a basal keratin marker \citet{Marzouka2018-ge}. Both \textit{AKR1B10} and \textit{SOX2} are associated with cell and cancer aggressiveness \citet{Huang2021-bn, Chiu2020-xh}, while \textit{TP63} is a known squamous marker \citet{Robertson2017-mg}. This evidence supports the poor survival prognosis of the smaller group and indicates that this group warrants further study.
-
-
-\subsection{Summary}
-
-% Recapitulate the aims and what have been done
-This subsection began with two aims: identifying the appropriate community detection method and exploring the integration of Transcription Factors (TF) into the network. The comparison at the start of the section (\ref{}) demonstrated that, despite the high computational cost of Stochastic Block Models (SBM), they offer more advantages over Modularity Maximisation algorithms such as Leiden. From a network perspective, the selective edge pruning method for integrating TFs was effective, as these nodes exhibited a higher degree. Thus, the two aims of the section were achieved.
-
-% Significance in cancer
-Throughout the selective edge experiments, it was remarkable to find that by using controls and prioritising non-TFs, a subset of 'naturally' well-connected TFs in the tumour dataset could be derived. The analysis in this section indicates that the subset of 98 TFs has important biological significance. Hierarchical clustering was applied to this subset of genes, yielding subtypes with significantly different survival outcomes (\cref{fig:N_I:sel_tfs_cs_analysis}). Group 5, or the small basal group of 20 patients, had the worst survival prognosis, with a less than 20\% chance of survival after 1.7 years (20 months). This group exhibited squamous markers, had a low immune response, and 7 out of the 10 most significantly expressed genes were studied in cancer. Some of these 7 genes are responsible for the aggressiveness of the tumours, while others can be targeted to improve treatment response.
-
-% the two lists of basal/luminal
-Using the analysis performed on the non-tumour dataset and the gene expression data from TCGA, the 98 TF genes were reduced to two different lists of markers for basal and luminal subtypes (\cref{tab:N_I:genes_lum_basal}). Many genes from these two lists were validated by other research work, which only confirmed and strengthened our findings.
-
-% the list for non-tumour data
-Extending the findings beyond cancer, some of the 98 TF genes were classified by their expression in the non-tumour dataset. The analysis performed (\cref{s:N:sel_tf_diff_status}) proposes three lists of genes specific to P0, UD, and AbsCa, as well as another three between these categories. This refined list of genes may help biologists better understand urothelium differentiation, which in turn will also aid in elucidating the basal/luminal molecular differences.
-
-While the subset of TFs was informative for the Basal subgroup, it was less successful for the luminal subgroup. The previously derived luminal subtypes (consensus, TCGA, Lund, and the work in the previous chapter) are grouped into one large group. Looking at a known luminal marker, \textit{FGFR3}, it was observed that this gene has a low degree in the network. In addition, some other known markers were left out in the gene selection process (e.g., \textit{PPARG}). This may also be explained by the fact that luminal tumours are molecularly closer to differentiated bladder tissue, compared to the basal subtypes which are undifferentiated urothelium. The high variance introduced by the basal subtype might explain why other known gene markers were missed.
-
-% Limitations
-One of the limitations of the work done in selective edge pruning was that only ten control networks were used for comparison. This was due to the high computational time (a few hours) required to run the SBM, the lengthy process of loading the network output\footnote{During the network runs and SBM, a lot of metadata was saved, which helped to debug, understand, and analyse the networks. This made the network output fairly large, taking a considerable footprint of the RAM. For example, analysing the results for the 10 controls and experiments takes approximately 40GB of RAM.} and the limited time in a PhD project. Another possible limitation is using only 5000 genes for a network using SBM. As it will be seen in the next section \ref{}, the stochastic model is capable of finding smaller communities in a large network. This means that more genes can be included, but this will make the network very dense, so extra rules for edge pruning might be needed. However, from a biological perspective, re-running the selective edge pruning on larger networks and more controls may further enforce that there is a subset of TFs that are co-expressed with many genes in bladder cancer.
-
-% Further work
-Considering the limitations, the analysis performed suggests that both the subset of 98 TFs and the subtypes need more in-depth exploration, even selecting a few targeted genes to study the bladder response \textit{in-vitro}. It also suggests that the selective edge pruning is working and exhibits highly relevant biological results.

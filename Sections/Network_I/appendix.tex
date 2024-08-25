@@ -48,7 +48,7 @@ The clustering process involves running \acrfull{pca} and K-means to stratify MI
 The clustering methods were applied to the MEV scores derived from the three networks (standard, reward, and penalised) with cluster sizes (K) ranging from 3 to 9, and the same clustering metrics were used to assess performance\footnote{Models with 2 or 3 clusters were not considered, as the metrics tend to give higher scores for models with 2 or 3 clusters}. Initially, the distributions of the three clustering metrics across the three P0-derived networks were used to inform the choice of clustering configuration, as was done in the analysis presented in the first chapter \cref{s:cs:right_config} - \cref{fig:cs:cs_metrics}. However, this approach proved challenging to present in this thesis and to isolate the prevailing trends for selecting the optimal clustering configuration across all three networks. Instead, using heatmaps of the top 3 best-performing clustering models was found to be more suitable for making global decisions, as shown in \cref{fig:N_I:p0_top_3_metrics_I,fig:N_I:p0_top_3_metrics_II}.
 
 % Choosing the clustering model
-\subsubsection{Choosing the clustering model} \label{s:ap:p0_clustering}
+\subsubsection*{Choosing the clustering model} \label{s:ap:p0_clustering}
 
 Throughout the clustering configuration, K-means with K=4 consistently emerges as the top-performing clustering model across the subtypes from the three networks, as shown in \cref{fig:N_I:p0_metr_model_size}. This is followed by Spectral Clustering with K=4. In the heatmap displaying the frequency of the models, K-means consistently appears as the top-performing model, ranking in the top 3 of the clustering metrics across all networks 4 times. This is followed by Agglomerative Clustering, which appears 3 times in the top 3 within the reward and penalised networks; see \cref{fig:N_I:p0_metr_model}. The prevailing number of clusters, regardless of the clustering model, is K=4 across all MIBC subtyping derived from all networks, as indicated in \cref{fig:N_I:p0_metr_size}. This finding is further supported by the elbow method heuristic in \cref{fig:N_I:p0_elbow_method}.
 
@@ -73,7 +73,7 @@ The clustering scores and analysis suggest that K-means with K=4 is the best-per
 \end{figure}
 
 % MIBC comparison
-\subsubsection{MIBC comparison}
+\subsubsection*{MIBC comparison}
 
 
 To simplify the comparison, and given that the standard and reward networks are similar in performance, the MIBC subtypes comparison is performed only on the subgroups derived from the standard network. For the clustering model, K-means is used with K=4 and K=5, as the latter is the next best-performing group size across the standard and reward networks. Additionally, this number of groups aligns with the findings from the previous clustering analysis in \cref{s:cs:right_config}.
@@ -140,10 +140,3 @@ The figure displays how many of the genes selected from the standard P0 network 
     \caption{Genes found in the tumour dataset for the communities across the standard network derived from the P0 samples. The two plots show that using just the top 4000 most varied genes in tumour lead to a poor representation in the genes used to compute the MEVs.}
     \label{fig:ap:std_p0_mev_rep}
 \end{figure}
-
-
-\newpage 
-
-
-% It is too much of a big tex
-\import{Sections/Network_I/}{appendix_sel_pruning.tex}
