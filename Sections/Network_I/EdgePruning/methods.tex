@@ -13,3 +13,11 @@ The performance of the Leiden algorithm is assessed by the Modularity Maximisati
 To account for the random effects of the TFs in the network, there are 10 control experiments with 325 non-TFs randomly selected and allowed a minimum degree from 3-15. The lower bound is given by the value used for the standard genes, while the higher limit was decided empirically as all the prioritised subsets are used for stratification (see \cref{fig:N_I:sel_tfs}); i.e. selected by ModCon based on their network importance. This set of experiments led to the identification of a subset of TFs with high biological significance, as discussed in \cref{s:N_I:sel_tfs}.
 
 
+% Community detection
+\subsection{Community detection} \label{s:N_I:methods_comm_detection}
+
+Once the network is built, a community detection algorithm is applied to find the sub-networks of genes. The purpose is to identify genes that are correlated with each other, which may resemble some parts of the biological process. This hypothesis can be verified using Gene Set Enrichment Analysis (GSEA) or Gene Ontology (GO). It is worth noting that the ideal communities would be defined by biological pathways, but that information is often incomplete and not always available. Thus, the advantage of using a co-expressed network from mRNA gene expression is that it has the potential to be an affordable approximation.
+
+In this project two main classes of community detection algorithms are explored: Leiden and Stochastic Block Model (SBM). The first algorithm is a popular method used to find partitions, blocks (=communities) used in the work of \citet{Care2019-ij}. However, Leiden may find non-existent structure in the data as explained in \citet{Peixoto2021-jx}. The SBM introduced by \citet{Peixoto2019-fg} addresses this issues by employing a Bayesian approach to find the blocks in the networks; both algorithms are covered in more depth in \cref{s:lit:comm_detect}.
+
+In this project both methods are used. Initially, Leiden with Modularity Score is used in the Tumour (see \cref{s:N_I:tum}) and in P0 networks (see \cref{s:p0}). This is then followed by the experiments performed in the next chapter with all the non-tumour samples and the improved network pipeline in the last results chapter \cref{s:N_II}.

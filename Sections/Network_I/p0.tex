@@ -5,17 +5,18 @@ This section presents the experiments on the second hypothesis made at the start
 
 % Implication on the network pipeline
 % Limitation of using this method as only a gene selection method
-Having a non-tumour network it means that the Module Connectivity (ModCon) selects the genes that are most representative of the communities in the P0 samples. These genes are then used to compute the Module Evaluation Value (MEV) score using the gene expression from TCGA. In short, this is a method to select the genes most representative for the P0 samples and how their expression in the tumours dataset inform the MIBC subtyping.
+Having a non-tumour network it means that the Module Connectivity (ModCon) selects the genes that are most representative of the communities in the P0 samples. These genes are then used to compute the Module Evaluation Value (MEV) score using the gene expression from TCGA. In short, this is a method to select the genes most representative for the freshly isolated samples, being the closest molecular depiction of the bladder tissue, and how their expression in the tumours dataset inform the MIBC subtyping.
 
 % Caution on the small datasets
 It is worth noting that there are only 23 P0 samples and this may not offer enough statistical power to find communities with specific biological functions. In addition, the Basal may be under-represented by the lack of undifferentiated tissue samples. Nevertheless, P0 tissue samples are the closest to a healthy bladder having the potential to unravel new biology.
 
 % Why choosing the high number of TFs
+\textbf{Trying to make the case for 50 TF but it is not great}
 The minimum degree for TFs was pseudo-empirically chosen by generating several networks with TF degrees ranging from 10 to 100 (in increments of 25) and visualising them in Gephi. It was observed that networks with a higher number of edges were very nested and harder to analyse, yielding lower scores. Initially, it was assumed that the Leiden algorithm would not be heavily influenced by allowing TFs (approximately 325 of 4,000 genes) more links. To put this in perspective, the Spearman correlation matrix is 4,000x4,000, and each gene has 3,999 correlations. Thus, keeping 100 edges per TF does not seem excessive.
 
 % However, the experiments in this section and the work in \cref{s:ap:sel_prun} will show that allowing such a large number of TF has a big impact on the number of communities.
 
-In PGCNA \citet{Care2019-ij} the authors select in each community the top 25 genes with the highest ModCon score. This was the initial value used in the P0 experiments too but then it was noticed that many genes are missed, where communities in the healthy were not expressed in tumours. Thus, it was increased to 100. On top of that, when computing the MEV scores using the tumour gene expression it was used only the top 4000 most varied genes in the MIBC. This aggressive strategy for MEV was to include the genes that are both the most varied in the tumour and P0 samples, the results for this are covered in \cref{s:N_I:gene_rep}.
+In PGCNA \citet{Care2019-ij} select in each community the top 25 genes with the highest ModCon score. This was the initial value used in the P0 experiments too but many genes are missed, where communities in the healthy were not expressed in tumours. Thus, it was increased to 100. On top of that, when computing the MEV scores using the tumour gene expression it was used only the top 4000 most varied genes in the MIBC. This aggressive strategy for MEV was to include the genes that are both the most varied in the tumour and P0 samples, the results for this are covered in \cref{s:N_I:gene_rep}.
 
 Therefore, in this section the top 4K most-relative varied genes (median/std) from P0 are used to construct the network, the same weight modifiers (Reward and Penalised see Figure \ref{fig:N_I:modifiers}) are employed and 50 edges for the Transcription Factor. For the standard genes 3 edges are kept while for Transcription Factors (TFs) 50. The top 100 genes are selected with ModCon and for MEVs the top 4K most varied genes are used.
 
@@ -47,12 +48,13 @@ There is a noticeable difference between the graphs derived from the P0 dataset 
 
 Overall, the P0 networks have nodes with a larger number of connections and are closer together compared to the tumour networks. The three graphs in this section share a subset of highly connected genes, as seen in the PageRank and Degree plots from \cref{fig:N_I:net_metrics_p0}. This can be explained by the \acrfull{tf} genes which were allowed at least 50 connections per node compared to 3 for the standard genes. The penalised network is notably different from the other two networks, suggesting that reducing the weights to values close to 0 for highly mutated genes has a greater impact on the network than rewarding them by doubling their values.
 
+\textbf{David's comment So this section is about the consequences of you reward/penalty weight modification strategy? Is this not tangential to the main issue? If you are adopting the reward penalty strategy then is this kind of discussion needed here, it could put doubt in the reader that you have a well defined computational framework.}
 
 % Network comparison
 \subsection{Network comparison}
 
 % Introducing
-\Cref{fig:N_I:p0_sky_leiden} represents an overview of the MIBC groups derived from the thee non-tumour networks, results which are put in the context of the other classifications: consensus \citep{Kamoun2020-tj}, TCGA sub-grouping \citep{Robertson2017-mg} and the previous work on clustering analysis (see \cref{s:clustering_analysis}. K-means with K=5 was applied across all three networks and for a more in-depth analysis see \cref{s:ap:P0_cs_analysis} from Appendix.
+\Cref{fig:N_I:p0_sky_leiden} represents an overview of the MIBC groups derived from the thee non-tumour networks, results which are put in the context of the other classifications: consensus \citep{Kamoun2020-tj}, TCGA sub-grouping \citep{Robertson2017-mg} and the previous work on clustering analysis (see \cref{s:clustering_analysis}). K-means with K=5 was applied across all three networks and for a more in-depth analysis see \cref{s:ap:P0_cs_analysis} from Appendix.
 
 % Present the results
 The Leiden algorithm identifies a similar range of communities across all three networks, with between 9 and 11 communities found in each case. This is more than half the number of blocks found in the networks created from the tumour dataset (\cref{fig:N_I:tum_leiden_modifiers}), which also exhibited greater variability. The difference might be explained by the fact that malignant tumours exhibit significant dysregulation of normal cellular processes, whereas in the benign samples from P0, these processes are less disrupted.
@@ -92,7 +94,7 @@ The largest change in communities is represented by the lack of block 10 in the 
 % Link it with the mutations
 As it was mentioned earlier if there is any membership change across the blocks of nodes it has to come from the mutated genes. For each group it can be usually notice that the there are a large number of mutated genes from the same community. In the reward network community 1 has a large number of mutations which was also presented the standard network (red dotted) and it receives a few more mutated genes from community 2 (blue); shown in \cref{fig:N_I:p0_chg_mut}. Community 4 from the modifier graph retain most of the mutated genes from the standard (community 5 - orange) with some additional genes from community 6 (purple). Blocks 8 and 9 have a few mutated genes which can be in part explained by their small group size. 
 
-Overall, the two plots show that the reward modifier triggers gene community migrations between the two graphs which further proves that the data integration does happen in the modified network. However, as it was shown by the Sankey there are no large changes across the blocks which may explain why the MIBC groups do not change with the different networks.
+Overall, the analysis suggests that the reward modifier triggers gene community migrations between the two graphs which further proves that the data integration does happen in the modified network. However, as it was shown by the Sankey there are no large changes across the blocks which may explain why the MIBC groups do not change with the different networks.
 
 % Comment on the sankey and the mutations
 \begin{figure}[!htb]
@@ -127,6 +129,8 @@ With few gene changes across the communities in the two graphs, there is also li
 
 % Conclusion 1 - Weight modifiers work
 Overall, the community analysis shows that the reward modifier works, there are changes between communities and this is given by the mutated genes, especially the ones with a high burden. However, the modifier does not have enough power to cause large changes which may be due to weight modifier shape see \cref{fig:N_I:modifiers} which increases the weight values abruptly without intermediate changes.
+
+\textbf{DH: This a negative perspective to end on. Are you saying the P0 genes are not that representative? }
 
 \begin{figure}[!htb]
     \centering

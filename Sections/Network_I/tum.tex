@@ -1,6 +1,7 @@
 \section{Validation: Tumour networks} \label{s:N_I:tum}
 
-This first validation section explores the initial hypothesis on data integration, specifically that modelling the edges' weights proportional to mutation burden will result in changes both in the network and the MIBC subgroups. To test this hypothesis, an existing network pipeline, \acrfull{pgcna} \citep{Care2019-ij}, was used to stratify the MIBC cohort from TCGA. This method, which has previously been applied to stratify breast, colon, and glioblastoma cancers from gene expression data \citep{Care2019-ij,Tanner2023-wa}, is discussed in more depth in \cref{s:lit:pgcna}.
+
+This first validation section explores the initial hypothesis on data integration, specifically that modelling the edges' weights proportional to mutation burden will result in changes both in the network and the MIBC subgroups. To test this hypothesis, the graph method described (\cref{fig:N_I:network_pipeline}) is used to build a co-expressed graph from the gene expression of the MIBC samples which in turn it is used to stratify the TCGA cohort.
 
 % Mention the stratification with the other methods
 In addition to exploring the network approach to MIBC subtyping, the results are also compared to standard stratification methods: TCGA \citep{Robertson2017-mg} and the consensus \citep{Kamoun2020-tj}. Beyond comparing the derived subgroups, this comparison involves contrasting two gene selection mechanisms: the network-based approach and the selection of the most variable genes, thereby highlighting the potential of graph-based methods.
@@ -9,9 +10,9 @@ In addition to exploring the network approach to MIBC subtyping, the results are
 This section explores two network sizes: 4,000 and 5,000 nodes. The first network, comprising 4,000 genes, is used to study the effects of the weight modifiers on the network, as it rounds up to the 3,500 genes used in the clustering analysis section, \cref{s:clustering_analysis}. This network covers the work on network metrics and tumour stratification in \cref{s:N_I:tum_describe,s:N_I:tum_stratification}. A larger network of 5,000 genes is used in \cref{s:N_I:cs_vs_gene_sel}, as the Module Connective (ModCon) step selects approximately 2,800 genes, a value comparable to the 3,500 genes in the clustering analysis section.
 
 % Specifics of the network
-For both networks, the genes used are selected based on relative variance (median/std) from the TCGA dataset. Two modifiers, 'Reward' and 'Penalised,' are applied to the gene weights following the weight modifier in \cref{fig:N_I:modifiers}. Across all networks created in this section, 3 edges per gene are retained, while for TFs, 6 edges per TF are maintained. The top 100 genes are selected using ModCon, and the tumour dataset is utilised for MEV calculation.
+For both networks, the genes used are selected based on relative variance (median/std) from the TCGA dataset. Two modifiers, 'reward' and 'penalised,' are applied to the gene weights following the weight modifier in \cref{fig:N_I:modifiers}. Across all networks created in this section, 3 edges per gene are retained, while for TFs, 6 edges per TF are maintained. The top 100 genes are selected using ModCon, and the tumour dataset is utilised for MEV calculation.
 
-The decision to keep 6 edges per TF is based on findings from the experiment detailed in \cref{s:N_I:sel_pruning}. This experiment indicated that allowing more than 6 edges per TF leads to diminished returns and that all TFs are included when more than 10 edges are permitted
+% The decision to keep 6 edges per TF is based on findings from the experiment detailed in \cref{s:N_I:sel_pruning}. This experiment indicated that allowing more than 6 edges per TF leads to diminished returns and that all TFs are included when more than 10 edges are permitted
 
 \subsection{Network description} \label{s:N_I:tum_describe}
 
@@ -44,7 +45,7 @@ To further understand how the network is affected by the weight modifiers it is 
 From the $\approx13K$ genes there are $\approx10K$ genes which are mutated at least once but then as the mutation count is increased there are fewer genes represented as seen in \cref{fig:N_I:mut_rep_tum}. The same trend can be noticed for TFs genes initially being 1027 genes in all the expressed genes, from which about a quarter (265) are mutated; the bottom bar plot in \cref{fig:N_I:mut_rep_tum}.
 
 % Implications
-The striking aspect of the \cref{fig:N_I:mut_rep_tum} is the inverse relationship of the number of abnormal genes with the mutation burden, e.g. mutation count $>=10$ there are 386 of the 4000 genes initially used ($\sim10\%$) and 36 out of the 265 TFs ($\sim14\%$). The trend can be noticed in both all the 4000 genes and the TFs but the latter has a higher representation of the mutated genes, see \cref{fig:N_I:prct_mut_rep_tum}. Of particular importance is the dysregulation of TF which up or down regulated of others gene expression.
+The striking aspect of the \cref{fig:N_I:mut_rep_tum} is the inverse relationship of the number of abnormal genes with the mutation burden, e.g., for mutation burden $>=10$, there are 386 of the 4000 genes initially used for building the network ($\sim10\%$) and 36 out of the 265 TFs ($\sim14\%$). The trend can be noticed in both all the 4000 genes and the TFs but the latter has a higher representation of the mutated genes, see \cref{fig:N_I:prct_mut_rep_tum}. Of particular importance is the dysregulation of TF which up or down regulated of others gene expression.
 
 \begin{figure}[!htb]    
     \centering
@@ -54,14 +55,15 @@ The striking aspect of the \cref{fig:N_I:mut_rep_tum} is the inverse relationshi
 \end{figure}
 
 % Linking it back to the weight modifiers
-Consequently, the weight modifiers from  \cref{fig:N_I:modifiers} might have a little impact. It might also mean that the gene filtering used is too aggressive. Both aspects are highlighted through some of the results obtained throughout this chapter.
+\textbf{is this strill true? - I think the effect of the weight modifiers can be seen}
+Consequently, the weight modifiers from  \cref{fig:N_I:modifiers} might have little impact. It might also mean that the gene filtering used is too aggressive. Both aspects are highlighted through some of the results obtained throughout this chapter.
 
 % Leiden stratification
 \subsection{Leiden and MIBC stratification} \label{s:N_I:tum_stratification}
 
 % Introducing the algorithm and why I am doing this
 % Justify the use of K-means with K = 6
-The Leiden algorithm, with Modularity Maximisation set as the quality function, was applied ten times to networks built from the 4,000 most varied genes, with a minimum degree of 3 for standard genes and 6 for TFs\footnote{See \cref{s:N_I:sel_tfs} for the experiments and data that support the configuration of 6 edges per TF.}. After applying ModCon to the important genes from the network, K-means clustering (K=6) was performed on the MEV values to identify MIBC subtypes. The group size of 6 was chosen to maintain consistency with previous findings (i.e., the clustering analysis from \cref{s:clustering_analysis}), where 6 groups of MIBC were identified, and to avoid introducing additional variables into the comparisons\footnote{A more in-depth clustering analysis is performed on the MEV scores for the P0 network in \cref{s:p0:clustering_analysis}.}. The goal of this set of experiments was to understand the changes in the MIBC subtypes resulting from the different weight modifiers.
+The Leiden algorithm, with Modularity Maximisation set as the quality function, was applied ten times to study the variability of the community detection algorithm. The three graphs: standard, reward and penalised, were built from the 4,000 most varied genes, with a minimum degree of 3 for standard genes and 6 for TFs\footnote{See \cref{s:N_I:sel_tfs} for the experiments and data that support the configuration of 6 edges per TF.}. After applying ModCon to the important genes from the network, K-means clustering (K=6) was performed on the MEV values to identify MIBC subtypes. The group size of 6 was chosen to maintain consistency with previous findings (i.e., the clustering analysis from \cref{s:clustering_analysis}), where 6 groups of MIBC were identified, and to avoid introducing additional variables into the comparisons\footnote{A more in-depth clustering analysis is performed on the MEV scores for the P0 network in \cref{s:p0:clustering_analysis}.}. The goal of this set of experiments was to understand the changes in the MIBC subtypes resulting from the different weight modifiers.
 
 
 % Talk about the number of communities
@@ -111,7 +113,7 @@ Overall, the stratification shown in \cref{fig:N_I:tum_leiden_modifiers} shows t
 \subsection{Clustering analysis vs network gene selection} \label{s:N_I:cs_vs_gene_sel}
 
 % Network as a gene selction
-The network pipeline developed in this section can be thought as advance gene selection mechanism based on multiple data-types: gene co-expression, mutation and transcription factors. Specifically, the ModCon step from  \cref{fig:N_I:network_pipeline} picks the genes that have the highest connectivity (see \cref{eq:modcon}) and varied across the dataset, which are then used for clustering analysis (through MEV). Similarly, in the previous chapter $\approx3K$ top most relative varied genes were used in the K-means clustering analysis. Therefore, there is a need to compare the two gene selection methods and to assess the differences.
+The network pipeline developed in this section can be thought as a sophisticated gene selection mechanism based on multiple data-types: gene co-expression, mutation and transcription factors. Specifically, the ModCon step from  \cref{fig:N_I:network_pipeline} picks the genes that have the highest connectivity (see \cref{eq:modcon}) and varied across the dataset, which are then used for clustering analysis (through MEV). Similarly, in the previous chapter $\approx3K$ top most relative varied genes were used in the K-means clustering analysis. Therefore, there is a need to compare the two gene selection methods and to assess the differences.
 
 % What's the comparison
 The comparison is performed only using the TCGA's MIBC dataset to avoid gene expression differences introduced by the healthy samples. The network was constructed from the 5K most varied genes, no weight modifier and the minimum degree for TFs  was set to 6\footnote{The Selective Edge pruning experiments from \cref{s:N_I:sel_pruning} showed diminished returns from allowing more than 6 edges per TF.} and 3 to the standard genes. For a network formed of 5K genes, the ModCon (=100 for each community) selects in total $\approx2.8K$ genes which is comparable with the 3K most relative varied genes. Note, in the cluster analysis work from \cref{s:clustering_analysis} 3500 genes were used. So, the network size was increased and the number of genes selected was reduced so that the gene sets are comparable.
@@ -125,7 +127,7 @@ The comparison is performed only using the TCGA's MIBC dataset to avoid gene exp
 % Interpret the results
 Between the two sets of genes there are 2053 different genes and 747 shared which are all shown in the variance vs. mutation burden scatter plot from \cref{fig:N_I:network_ca_selection}. As expected the genes selected only by relative variance are skewed to the right picking the highly mutated genes that also have a high variance. By contrast, the network approach not only selects most of the varied genes but also some of the highest mutated genes despite having low variance. The points' size is relative to the median expression in the TCGA cohort and from the Figure \ref{fig:N_I:network_ca_selection} it can be seen that the canonical gene selection does not include the highly expressed genes as the network does.
 
-This comparison shows the power of the network approach which selects not only the highly varied genes but also the ones that have consistent expression values and high mutation burden.
+This comparison shows the power of the network approach which selects not only the highly varied genes but also the ones that have consistent expression values and high mutation burden. This means that the graph method is capable of selecting genes with more diverse molecular properties compared to the other methods, which may lead to newer and different MIBC subgroups.
 
 \subsection{Summary}
 
