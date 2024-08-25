@@ -1,24 +1,24 @@
 \section{Result: Selective edge pruning} \label{s:N_I:sel_pruning}
 
 % The aim to integrate the TF
-The project aims to integrate the transcription factor (TF) by prioritising over the standard genes as these genes up-regulated the expression of the other genes, thus having a higher biological importance. By allowing more connections for the TF, the minimum degree of the node increases as well as their role in the network, similar to the biology. The experiments, on selective edge pruning, aim to explore and find the appropriate minimum degree for TF genes and how varying it affects the network. The work in this section was presented as a poster at the \textit{\href{https://2023.complexnetworks.org/}{Complex Network Conference in 2023}}.
+While the last two sections studied the effects of the weight modifier into both the networks and the derived MIBC, this section aims to investigate the data integration through selective edge pruning. The objective is prioritise the \acrfull{tf} over the standard genes as these up-regulated the expression of the other genes leading to higher biological influence. By allowing more connections for the TF, the minimum degree of the node increases as well as their role in the network, similar to the biology. The experiments, on selective edge pruning, aim to explore and find the appropriate minimum degree for TF genes and how varying it affects the network. The work in this section was presented as a poster at the \textit{\href{https://2023.complexnetworks.org/}{Complex Network Conference in 2023}}.
 
-Through the experiments performed in this project and the analysis in the PGCNA paper \cite{Care2019-ij} it was noticed that if a node has too many edges, the network becomes very dense and more complicated to analyse. Conversely, if a node has a few edges ($<3$), then the community detection (Leiden \citet{Traag2019-ne}) finds disconnected community. \citet{Care2019-ij} (empirically) found that the appropriate number of edges for a node is 3, and it is the value used throughout the project for the non-transcription factor gene (or 'standard'). 
+Through the experiments performed in this project and the analysis in the PGCNA work \citep{Care2019-ij} it was noticed that if a node has too many edges, the network becomes very dense and more complicated to analyse. Conversely, if a node has a few edges ($<3$), then the community detection (Leiden \cite{Traag2019-ne}) finds disconnected community. \citet{Care2019-ij} (empirically) found that the appropriate number of edges for a node is 3, and it is the value used throughout the project for the non-transcription factor gene (or 'standard'). 
 
 % The aim to find the better community detection
-A second aim of this section is to compare the Leiden \citet{Traag2019-ne} community detection used in PGCNA with the degree corrected Stochastic Block Model (DC-SBM) from \cite{Karrer2011-si, Peixoto2017-gc}. As it was covered in \cref{s:lit:comm_detect} from Introduction, Leiden is faster and more popular, but it is prone to find patterns in noise, whereas the DC-SBM is slower but it is more error prone in find non-existent communities. The reason for comparing the two is that to decide on the next improvements to the network pipeline. Throughout the project the degree corrected (DC-SBM) \& hierarchical (hSBM) stochastic block models were preferred over the simple SBM \cite{Holland1983-eu} as it accounts for node's degree when it finds the communities, which is crucial for selective edge pruning; for convenience DC-SBM and SBM are used interchangeably.
+An objective adopted for this section therefore was to compare the Leiden \citep{Traag2019-ne} community detection used in PGCNA with the degree corrected Stochastic Block Model (DC-SBM) from \citet{Karrer2011-si, Peixoto2017-gc}. As it was covered in \cref{s:lit:comm_detect} from Introduction, Leiden is faster and more popular, but it is prone to find patterns in noise, whereas the DC-SBM is slower but it is more error proof to find non-existent communities. Throughout the project the degree corrected (DC-SBM) \& hierarchical (hSBM) stochastic block models were preferred over the simple SBM \citep{Holland1983-eu} as it accounts for the node degree when it finds the communities, which is crucial for selective edge pruning; for convenience DC-SBM and SBM are used interchangeably.
 
 % Exp Setup
-\subsection{Experiments setup}
+\subsection{Experimental setup}
 
 
-The experiments performed in this section are using the RNAseq gene expression from TCGA's MIBC cohort from TCGA and the transcription factor list was taken from \citet{Lambert2018-el}. As before, the Kallisto method was used to align the RNA-seq reads using genome version GRCh38 with Gencode annotation version 42. The gene selection strategy for the network is followed as in \ref{} where genes are expressed in at least 90\% of the samples and and the top 5000 most varied genes by the median/standard deviation are kept. Out of the 5000 genes used for the network 325 are Human Transcription Factors based on \citet{Lambert2018-el}.
+The experiments performed in this section are using the RNAseq gene expression from TCGA's MIBC cohort from TCGA and the transcription factor list was taken from \citet{Lambert2018-el}. As before, the Kallisto method was used to align the RNA-seq reads using genome version GRCh38 with Gencode annotation version 42. The gene selection strategy for the network is followed as in \cref{s:cs:methods} where genes are expressed in at least 90\% of the samples and and the top 5000 most varied genes by the median/standard deviation are kept. Out of the 5000 genes used for the network 325 are Human Transcription Factors based on \citet{Lambert2018-el}.
 
-%Leiden and SBM configuration
-The same network pipeline as described in \cref{fig:N_I:network_pipeline} was applied. Both Leiden and DC-SBM are applied and compared in the following sections. Leiden was run using Modularity Maximisation cost function and iterate over 10 times at each run. The degree-corrected Stochastic Block Model was used, with 700 iterations ($n\_iter=700$), the entire graph was swept up to 10 times ($mc\_iter = 10 sweeps$) and the distribution of the data was set to real exponential\footnote{As in the \href{https://graph-tool.skewed.de/static/doc/demos/inference/inference.html}{Graph-tool documentation} the distribution of the edge covariance can be specified given the bounds of the data, as seen in the referenced guide.} ($distribution = real\_exponential$). The number of iterations and swept insured that a detailed search for the communities is performed while keeping the computational times low. The 'real-exponential' parameter it is used for edge weights that range from $[0, \infty]$.
+% Leiden and SBM configuration
+The same network pipeline as described in \cref{fig:N_I:network_pipeline} was applied where at the community detection step both Leiden and DC-SBM are used and compared in the following sections. Leiden was run using Modularity Maximisation cost function and iterate over 10 times at each run. The degree-corrected Stochastic Block Model was used, with 700 iterations ($n\_iter=700$), the entire graph was sweeps up to 10 times ($mc\_iter = 10 sweeps$) and the distribution of the data was set to real exponential\footnote{As in the \href{https://graph-tool.skewed.de/static/doc/demos/inference/inference.html}{Graph-tool documentation} the distribution of the edge covariance can be specified given the bounds of the data, as seen in the referenced guide.} ($distribution = real\_exponential$). The number of iterations and swept insured that a detailed search for the communities is performed while keeping the computational times relatively low. The 'real-exponential' parameter it is used for edge weights that range from $[0, \infty]$ which is the case for the Spearman correlation values.
 
 % Metrics
-The performance of the Leiden algorithm is measured by the Modularity Maximisation (described in \cref{s:lit:mod_max}), which measures the separation between the communities; higher values indicate better performance. SBM performance is measured by the Minimum Description Length (MDL), which measures the minimum information needed to describe the data; lower values indicate better performance. The number of communities found by the two community detection algorithms was also used as a heuristic to assess performance; it is generally thought that more communities indicate better performance \cite{Care2019-ij}. Unfortunately, at the time of running this experiment, there was no common metric used to compare the performance of the two methods. However, in the summer of 2023, \cite{Peixoto2023-mw}, Tiago Peixoto published research that adapted MDL to Modularity models (like Leiden).
+The performance of the Leiden algorithm is assessed by the Modularity Maximisation (described in \cref{s:lit:mod_max}), which measures the separation between the communities; higher values indicate better performance. SBM performance is measured by the Minimum Description Length (MDL), which measures the minimum information needed to describe the data; lower values indicate better performance. The number of communities found by the two community detection algorithms was also used as a heuristic to assess performance; it is generally thought that more communities indicate better performance \citep{Care2019-ij}. Unfortunately, at the time of running this experiment, there was no common metric available to compare the performance of the two methods. However, in the summer of 2023, \cite{Peixoto2023-mw}, Tiago Peixoto published research that adapted MDL to Modularity models (like Leiden).
 
 %Choosing the Control TF
 To account for the random effects of the TFs in the network, there are 10 control experiments with 325 non-TFs randomly selected and allowed a minimum degree from 3-15. The lower bound is given by the value used for the standard genes, while the higher limit was decided empirically as all the prioritised subsets are used for stratification (see \cref{fig:N_I:sel_tfs}); i.e. selected by ModCon based on their network importance. This set of experiments led to the identification of a subset of TFs with high biological significance, as discussed in \cref{s:N_I:sel_tfs}.
@@ -27,33 +27,39 @@ To account for the random effects of the TFs in the network, there are 10 contro
 % Com detection comparison
 \subsection{Community detection comparison}
 
+% Introduce the plots
+\Cref{fig:N_I:com_det_met} shows the evolution of the metrics corresponding to the two community detection algorithms. \Cref{fig:N_I:sbm_com_det_met} looks at the evolution of the MDL (or entropy - lower the better) in the communities found with SBM, while \cref{fig:N_I:leid_com_det_met} presents the Modularity Maximisation score (higher the better). The lines/boxes in blue represents the Experiment which prioritises the biological TFs, while the traces in red represents the control with non-TF genes selected. 
+
 % Comment the scores figure
-\Cref{fig:N_I:com_det_met} shows the evolution of the metrics corresponding to the two community detection algorithm. \Cref{fig:N_I:sbm_com_det_met} looks at the evolution of the MDL (or entropy - lower the better) in the communities found with SBM, while \cref{fig:N_I:leid_com_det_met} presents the Modularity Maximisation score (higher the better). The lines/boxes in blue represents the Experiment which prioritises the biological TFs, while the traces in red represents the control with non-TF genes selected. The first to notice is that both algorithm, regardless of the selected genes, perform lower as the minimum degree of the node is increased, suggesting an inverse relationship. This effect was also noticed in the work of \citet{Care2019-ij}. With a large number of edges allowed for the selected genes, there is more information needed to 'describe' the network as see in \cref{fig:N_I:sbm_com_det_met}. The variance of the metric also grows with the increase minimum degree, which is easier to see in the control experiments in Leiden \cref{fig:N_I:leid_com_det_met}.
+The first to notice is that both community detection methods, regardless of the selected genes, perform lower as the minimum degree of the node is increased. This indicates an inverse relationship between the minimum degree for TFs and the performance of the two algorithms, the effect was also noticed in the work of \citet{Care2019-ij}. This can be explained that with a larger number of edges allowed in the network, the graphs become more complex and more information is needed to 'describe' or reconstruct the network; supported by the ascending trend of the MDL in \cref{fig:N_I:sbm_com_det_met}. The variance of the metric also grows with the increase minimum degree, which is easier to see in the control experiments in Leiden \cref{fig:N_I:leid_com_det_met}.
 
 
 \begin{figure}[!h]
     \centering
     \begin{subfigure}[!t]{1.0\textwidth}
-        \includegraphics[width=\textwidth]{Sections/Network_I/Resources/selective_pruning/sbm_ent_sel_prun.png}
+        \includegraphics[width=\textwidth]{Sections/Network_I/Resources/selective_pruning/com_comp/sbm_ent_sel_prun.png}
         \caption{SBM}
         \label{fig:N_I:sbm_com_det_met}
     \end{subfigure}\hspace{\fill} 
     \begin{subfigure}[!t]{1.0\textwidth}
-        \includegraphics[width=\linewidth]{Sections/Network_I/Resources/selective_pruning/leid_mod_sel_prun.png}
+        \includegraphics[width=\linewidth]{Sections/Network_I/Resources/selective_pruning/com_comp/leid_mod_sel_prun.png}
         \caption{Leiden}
         \label{fig:N_I:leid_com_det_met}
     \end{subfigure}
-    \caption{Metrics comparison between Minimum Description Length (MDL) - entropy- in SBM (lower the better) and Modularity Maximisation in Leiden (higher the better). As the minimum degree for the increases both community detection suffer a decrease in the performance. he error bars in the control is given by the standard deviations.}
+    \caption{Metrics comparison between Minimum Description Length (MDL) - entropy- in SBM (lower the better) and Modularity Maximisation in Leiden (higher the better). As the minimum degree for the increases both community detection suffer a decrease in the performance. The error bars in the control is given by the standard deviations.}
     \label{fig:N_I:com_det_met}
 \end{figure}
 
-% Comment com_size figure
-In \cref{fig:N_I:comp_size_com_det} it is presented the effect to the of increasing the minimum degree to the community sizes to the two community detection algorithms. The blue traces represent the Experiments performed while the red controls. The immediate difference between Leiden and SBM is that the former finds consistently considerably more communities than the latter. It can be noticed that SBM has an upward trend proportional with the minimum degree of the nodes, this highlighted by the control experiments. In \cref{fig:N_I:comp_size_com_det}, Leiden appears to find the same number of clusters, but in the \cref{fig:ap:leid_com_size} from Appendix, where the Leiden traces are plot separately, it can be notice that Leiden tends to finds less communities as the minimum degree it is increased. 
+% Introduce the figure
+\Cref{fig:N_I:comp_size_com_det} presents the effects of increasing the minimum degree to the community sizes for Leiden and SBM where the blue traces represent the experiments performed while the red the controls. 
 
-\begin{figure}[!htb]   
+% Comment com_size figure
+The immediate difference between Leiden and SBM is that the former finds consistently considerably more communities than the latter. It can be noticed that SBM has an upward trend proportional with the minimum degree of the nodes, this highlighted by the control experiments. In \cref{fig:N_I:comp_size_com_det}, Leiden appears to find the same number of clusters, but in the \cref{fig:ap:leid_com_size} from Appendix, where the Leiden traces are plot separately, it can be noticed that Leiden tends to finds less communities as the minimum degree is increased. 
+
+\begin{figure}[!t]   
 \centering
-\includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/sbm_Leiden_combNum.png}
-  \caption{Community size for Leiden and Stochastic Block Model. Blue lines are represented by the experiments run with biological TFs while the red ones are the controls, with non-TF genes. The error bars in the control is given by the standard deviations.}
+\includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/com_comp/sbm_Leiden_combNum.png}
+  \caption{Community size for Leiden and Stochastic Block Model. Blue lines are represented by the experiments run with biological TFs while the red ones are the controls, with non-TF genes. The error bars in the control is given by the standard deviations. Another version of the plot where the trends of the two method are separated can be seen in \cref{fig:ap:leid_com_size} from Appendix.}
 \label{fig:N_I:comp_size_com_det}
 \end{figure}
 
@@ -68,23 +74,23 @@ In summary, by increasing the minimum degree, both algorithms perform worse rega
 \subsection{Emerging Transcription Factors} \label{s:N_I:sel_tfs}
 
 % Introduce the motivation of using TFs
-After comparing the two community detection algorithm and deciding on the SBM, it is worth diving in the analysis of the network output. The previous sub-section showed that by prioritising a certain subset of genes, to have a higher minimum degree, has some effects on the network. However, in the network pipeline, not all the genes employed to generate the graph are used for the cancer stratification, but the top 100 selected by ModCon (see \cref{fig:N_I:network_pipeline}). The ModCon score is a score which takes in account a node's number of edges and their weights, thus higher connected genes are selected.
+After comparing the two community detection algorithm and deciding on the SBM, it is worth diving in the analysis of the network output. The previous sub-section showed that by prioritising a certain subset of genes, to have a higher minimum degree, has some effects on the network. However, in the network pipeline, not all the genes employed to generate the graph are used for the cancer stratification, but the top 100 selected by ModCon (see \cref{fig:N_I:network_pipeline}). The ModCon score is a score which takes in account a node's degree and their weights, thus well connected genes are selected.
 
 % Presentin the Graph of sel TF-s. 
 % -- all TF are included when minimum degree is set to 15 and there is no added benefit when TF = 6
 \Cref{fig:N_I:sel_tfs} show the percentages of the TF genes (325 in total) that are selected by the ModCon score to stratify the disease. SBM community detection was used with both selected genes that are TF and non-TF 325 genes as control, the latter was run 10 times. It can be seen a clear difference between the Experiment and the Control traces, where the genes in the Experiment, with a real biological value, gradually increase with the minimum degree values. All the TF genes are included when the minimum degree of a TF reaches to 15 and the biggest percentage included after TF passes minimum degree of 6. Therefore, this value was chosen for selective edge pruning.
 
 
-\begin{figure}[!ht]   
+\begin{figure}[!b]   
 \centering
-\includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/ctrls_min_dig_mev.png}
-  \caption{The percentages of the Transcription Factors selected by ModCon as the minimum degree increases.}
+\includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/com_comp/ctrls_min_dig_mev.png}
+  \caption{The percentages of the Transcription Factors selected by ModCon from the communities found with \acrlong{sbm} as the minimum degree increases. By having $\sim60\%$ of the Transcription Factors selected by ModCon the plot shows there is a subset of TFs that are 'naturally' highly correlated with other genes. }
 \label{fig:N_I:sel_tfs}
 \end{figure}
 
 % Biological relevance
 % -- Because 50% of the TF naturally emerges and used for subtyping
-On contrast to the Experiment trace, the Control appears to have a constant number of biological TFs selected by ModCon, of $\sim60\%$. This means that there are a subset of the TFs which are consistently picked by ModCon (i.e. with a high connectivity) despite other than 325 TFs were allowed a high number of connections. 
+On contrast to the Experiment trace, the Control appears to have a constant number of biological TFs selected by ModCon, of $\sim60\%$. This means that there is a subset of TFs which are consistently selected by ModCon (i.e. with a high connectivity) despite other than 325 TFs were allowed a high number of connections. 
 
 % Highlighting the importance
 To explain this behaviour, it is worth re-surfacing the selective edge pruning process. For each gene in the correlation matrix only the 3 highest correlated genes are kept for standard genes or 6 for the selected genes to prioritise. Thus, a gene can have a starting degree either of 3 or 6. For a node $A$ to have higher a degree, it needs that other genes to have node A in their top correlation. For example, if node $A$ is a non-TF gene and it has a degree value of 10, it means that 7 other genes have node $A$ in their top correlations
@@ -95,7 +101,7 @@ Taking in account the selective edge pruning and that $\sim60\%$ of the 325 TF g
 \begin{figure}[!ht]   
 \centering
 \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/weight_distrib.png}
-  \caption{The weight distribution of the edges weights in a standard network (no weight modifier), with 3 edges for non-TF and 6 for TF genes.}
+  \caption{The weight distribution of the edges weights in a standard network (no weight modifier), with 3 edges for non-TF and 6 for TF genes. The distribution is skewed to the left showing that the selective edge prune keeps only the highly correlated pairs of genes.}
 \label{fig:N_I:weight_distrib}
 \end{figure}
 
@@ -114,39 +120,28 @@ A dendrogram cut of 15 was chosen as it split both the Luminal and Basal Groups 
 
 \begin{figure}[!t]
 \centering
-    \captionsetup[subfigure]{justification=Centering}
-% Sankey - consensus and K-means comparison
-\begin{subfigure}[!t]{0.49\textwidth}
-    \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/sankey_sel_tfs_VU_CS.png}
-    
-    \caption{Sankey plot comparison between the hierarchical clustering from \cref{fig:ap:morph_sel_tfs}, consensus \cite{Kamoun2020-tj} and clustering performed in the earlier chapter \cref{s:lit:clustering}.}
-    
-    \label{fig:N_I:sankey_sel_tfs_vuCs}
-\end{subfigure}
-\hfil %necessary to have the two subpltos near each other
-% Sankey - TCGA and Lun comparison  
-\begin{subfigure}[!t]{0.49\textwidth}
-    \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/sankey_sel_tfs.png}
-    
-    \caption{Sankey plot comparison between the hierarchical clustering from \cref{fig:ap:morph_sel_tfs}, TCGA \cite{Robertson2017-mg} and Lund \cite{Marzouka2018-ge}.}
-    
-    \label{fig:N_I:sankey_sel_tfs}
-\end{subfigure}
-% Survival
-\centering
-\begin{subfigure}[!t]{0.7\textwidth}
-    \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]
-    {Sections/Network_I/Resources/selective_pruning/survival_sel_tfs_cs.png}
-    \caption{Kaplan-Meier survival analysis of the groups found with the 98 TFs. }
-    \label{fig:N_I:sel_tfs_survival}
-\end{subfigure} 
-
-    \caption{Cluster analysis of the subgroups derived using the found 98 TFs. The top row represent the subtype comparison with previous works while the bottom figure is Kaplan-Meier survival plot. The white text on the Sankey plots represents the size of the groups.}
+    \centering
+    % Sankey - consensus and K-means comparison
+    \begin{subfigure}[!t]{1.0\textwidth}
+        \includegraphics[width=1.0\textwidth,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/sel_tfs/sankey_sel_tfs_VU_CS.png}
+        \caption{Sankey plot comparison between the hierarchical clustering from \cref{fig:ap:morph_sel_tfs}, consensus \cite{Kamoun2020-tj} and clustering performed in the earlier chapter \cref{s:lit:clustering}.}
+        \label{fig:N_I:sankey_sel_tfs_vuCs}
+    \end{subfigure}
+    % Sankey - TCGA and Lun comparison  
+    \begin{subfigure}[!t]{1.0\textwidth}
+        \includegraphics[width=1.0\textwidth,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/sel_tfs/sankey_sel_tfs.png}
+        \caption{Sankey plot comparison between the hierarchical clustering from \cref{fig:ap:morph_sel_tfs}, TCGA \cite{Robertson2017-mg} and Lund \cite{Marzouka2018-ge}.}
+        \label{fig:N_I:sankey_sel_tfs}
+    \end{subfigure}
+    % Survival
+    \centering
+    \caption{Cluster analysis of the subgroups derived using the found 98 TFs. The white text on the Sankey plots represents the size of the groups.}
     \label{fig:N_I:sel_tfs_cs_analysis}
 \end{figure}
+
  
 % Describe Sankey
-The groups smaller than 1\% of the cohort size (equivalent to 4 samples) are removed, resulting in a dataset of 378 samples grouped into 5 major groups. These subtypes are compared in \cref{fig:N_I:sankey_sel_tfs_vuCs,fig:N_I:sankey_sel_tfs} with previous work from Lund \citet{Marzouka2018-ge}, TCGA \citet{Robertson2017-mg}, consensus \citet{Kamoun2020-tj}, and the subtyping clusters found in the previous chapter \ref{}. 
+The groups smaller than 1\% of the cohort size (equivalent to 4 samples) are removed, resulting in a dataset of 378 samples grouped into 5 major groups. These subtypes are compared in \cref{fig:N_I:sankey_sel_tfs_vuCs,fig:N_I:sankey_sel_tfs} with previous work from Lund \citep{Marzouka2018-ge}, TCGA \citep{Robertson2017-mg}, consensus \citep{Kamoun2020-tj}, and the subtyping clusters found in the previous chapter on clustering analysis \cref{s:clustering_analysis}. 
 
 % Luminal groups
 In the comparison (\cref{fig:N_I:sankey_sel_tfs_vuCs}) with the consensus and the clusters from the previous section \ref{}, it can be noticed that there is a large luminal group (13) consisting of 202 samples. The group contains most, if not all, of the samples from LumP, Stroma-rich, LumU, and LumNS (consensus) and the LumInf/NS and LumP (KMeans\_6). This is also the case in \cref{fig:N_I:sankey_sel_tfs}, where group 13 contains the LumInf, LumP, LumNS (TCGA) and the UroA-Prog, Uro-Inf, and UroC from Lund. The smaller luminal group (12) consists mostly of the samples from LumU, Stroma-rich from TCGA (\cref{fig:N_I:sankey_sel_tfs_vuCs}) or the consensus LumInf/LumP (TCGA) or the Genomically Unstable (GU) and GU-infiltrated from Lund. 
@@ -155,7 +150,7 @@ In the comparison (\cref{fig:N_I:sankey_sel_tfs_vuCs}) with the consensus and th
 The larger group, consisting of 92 samples, is formed of a mix of samples from Medium, High, and Low IFNG (KMeans\_6) and Ba/Sq samples from the consensus. The medium-sized group is a combination of the High IFNG and Ne subgroups from KMeans\_6, while the smaller-sized group is formed of Low IFNG and Med IFNG. Switching to the comparison with TCGA/Lund (\cref{fig:N_I:sankey_sel_tfs}), it can be noticed that the large basal group (4) contains most of the Ba/Sq (TCGA) or Ba/Sq and Ba/Sq-infiltrated (Lund) samples. The medium-sized (3) basal cluster contains most of the Mes-like samples (Lund), while the smaller group (5) consists of UroB and Ba/Sq (Lund) samples. Thus, the MIBC stratification on the 98 TFs exhibits one major (large) basal group (4), a medium-sized (3) group which contains the Mes-like samples from the Lund classifier or the samples from High IFNG, and the small basal group (5) consisting of low IFNG samples or a combination of the UroB and Ba/Sq samples. It is worth mentioning that the UroB (Lund) and Low IFNG have a low survival prognosis, while High IFNG has a good prognosis.
 
 % Summary of the comparison
-The comparison with the other stratification methods shows that clustering the expression of 98 TFs is capable of finding three basal subtypes, two smaller even than the ones found in the previous chapter \ref{}. However, the 98 TFs fail to discriminate the luminal subgroups.
+The comparison with the other stratification methods shows that clustering the expression of 98 TFs is capable of finding three basal subtypes, two smaller even than the ones found in the previous cluster analysis from \ref{s:clustering_analysis}. However, the 98 TFs fail to discriminate the luminal subgroups.
 
 % Survival analysis
 \subsubsection*{Survival Analysis}
@@ -167,12 +162,13 @@ The largest luminal group (13) demonstrates the best overall prognosis, followed
 % Giving context to the results
 The clustering analysis shows that the by only using 98 genes, the main groups, Basal and Luminal, are discovered. The survival analysis indicates that these subtypes have significantly different survival prognosis. The gene expression heatmap from \cref{fig:ap:morph_sel_tfs} reveals that there some highly varied genes\footnote{This is given by the rows that are either completely blue or red (\textit{BNC1, FOXJ3, ELF3}), suggesting that there }, which was also previously observed in \cref{fig:N_I:sel_tfs_var}. 
 
-\begin{figure}[!ht]   
-\centering
-\includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/dumbell_sel_tfs.png}
-  \caption{Comparison of the mean across the subtypes derived with the 98 TFs. Each point represents the $log2(mean\_TPM+1)$ and the subplots are in descending order of the fold change.}
-\label{fig:N_I:dumbell_sel_tfs}
-\end{figure}
+
+\begin{figure}[!t]
+    \centering
+    \includegraphics[width=1.0\textwidth,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/sel_tfs/survival_sel_tfs_cs.png}
+    \caption{Kaplan-Meier survival analysis of the MIBC subtypes derived from the expression of the 98 TFs. The multivariate long rank test found a significant difference of 0.000140 between the survival of the five groups. Group 5 have one of the lowest survival prognosis seen in the literature. }
+    \label{fig:N_I:sel_tfs_survival}
+\end{figure} 
 
 
 % the biggest change
@@ -195,6 +191,17 @@ It is know that \textit{MYCL, GRHL3, HOXB6, KLF5, ELF3} are involved in bladder 
 
 This preliminary analysis of the differences in gene expression between subtypes indicates the presence of significant biological insights to be uncovered from the subgroups derived using the 98 TFs. This is further supported by the notable survival disparity observed in the small basal group, as shown in \cref{fig:N_I:sel_tfs_survival}. The subsequent section aims to refine the list of 98 TFs and to investigate the underlying biology of each MIBC subtype.
 
+% \begin{figure}[!ht]   
+\begin{sidewaysfigure}
+
+    \centering
+    \includegraphics[width=1.0\textwidth,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/dumbell_sel_tfs.png}
+      \caption{Comparison of the mean across the subtypes derived with the 98 TFs. Each point represents the $log2(mean\_TPM+1)$ and the subplots are in descending order of the fold change.}
+    \label{fig:N_I:dumbell_sel_tfs}
+\end{sidewaysfigure}
+
+\newpage
+
 % Biological analysis
 \subsection{The biology behind the emergent TFs} \label{s:N_I:sel_tfs_bio}
 
@@ -203,7 +210,7 @@ The bar plots in \cref{fig:N_I:sel_tfs_var} display the log mean of the gene exp
 % Variance
 \begin{figure}[!htb]   
 \centering
-\includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/sel_tfs_var_tum_healthy.png}
+\includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/sel_tfs/sel_tfs_var_tum_healthy.png}
   \caption{Bar plot of the log mean expression in both non-cancerous and tumour datasets with the error bars accounting for standard deviation. The genes are ordered in descending order by the mean values in the non-cancerous dataset. Red bars represents genes that have a high variance in the corresponding dataset, while the golden shows the TFs in both tumour and non-cancerous.}
 \label{fig:N_I:sel_tfs_var}
 \end{figure}
@@ -237,7 +244,7 @@ It is worth remembering that MIBC is generally divided into Luminal and Basal su
 \begin{figure}[!h]
     \captionsetup[subfigure]{justification=Centering}
 \begin{subfigure}[!t]{1.0\textwidth}
-    \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/sel_tfs_pi_all_var_rect.png}
+    \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/sel_tfs/sel_tfs_pi_all_var_rect.png}
     
     \caption{Pi plot with just the varied genes}
     
@@ -245,7 +252,7 @@ It is worth remembering that MIBC is generally divided into Luminal and Basal su
 \end{subfigure}\hspace{\fill} % maximize horizontal separation
 
 \begin{subfigure}[!t]{1.0\textwidth}
-    \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/sel_tfs_pi_all_tissueDiff.png}
+    \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/sel_tfs/sel_tfs_pi_all_tissueDiff.png}
     
     \caption{Pi plot with all the 98 TFs}
     
