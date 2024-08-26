@@ -4,6 +4,10 @@
 % Leiden vs SBM
 \section{Leiden vs SBM} \label{s:ap:leiden_sbm}
 
+The below figures are supporting the work presented in \cref{s:N_I:sel_tf_com_det} where the two set of traces, one for Leiden (\cref{fig:ap:sbm_com_size}) and one for SBM (\cref{fig:ap:sbm_com_size}), are shown in a single figure in \cref{fig:N_I:comp_size_com_det}. 
+
+The advantage of showing the two figures separately is that the variance in the community size is illustrated clearly as well as the difference in the number of communities found.
+
 % Comunity sizes
 \begin{figure}[!h]
     \centering
@@ -17,33 +21,49 @@
         \caption{Leiden}
         \label{fig:ap:leid_com_size}
     \end{subfigure}\hspace{\fill}  
-    \caption{Community size comparison between Leiden and SBM. This serves as a supporting material to the work done in \cref{s:N_I:sel_pruning}}
+    \caption{Community size comparison between Leiden and SBM. This serves as a supporting material to the work done in \cref{s:N_I:sel_pruning}. It shows that SBM tends to find more communities compared to Leiden.}
     \label{fig:ap:com_size_comp}
 \end{figure}
 
+% Cluster analysis
+\section{Cluster analysis} \label{s:ap:sel_tfs_cs}
 
-\section{Clustering dendrogram} \label{s:ap:dendrogram}
+The clustering analysis below supports the MIBC groups found using the expression of the 98 TFs genes which are highly correlated with other genes in the tumour network, see \cref{s:N_I:sel_tfs_mibc}.
+
+% Talk about the clustering
+Hierarchical clustering was applied to the tumour expression of the 98 TFs after 11 samples previously identified as outliers were removed\footnote{In this context, outliers are samples that cluster in 1-3 groups, making it hard to interpret the dendrogram from the hierarchical clustering}, leaving 392 samples for clustering. The tumour\footnote{TCGA's MIBC cohort} data was log2(TPM+1) transformed, normalised by the quantiles, and then agglomerative clustering with average linkage was applied on the 1-Pearson correlation distance\footnote{In this case, for both clustering and visualisation, Morpheus from the Broad Institute was used \cite{Broad-InstituteUnknown-kn}}. This method was preferred over those developed in the previous chapter because the number of genes was small and the heatmap from Morpheus is a useful tool for showing the gene expression specific to a group. The heatmap and the output are shown in \cref{fig:ap:morph_sel_tfs} in the Appendix.
+
+% describe morpheus
+A dendrogram cut of 15 was chosen as it split both the Luminal and Basal Groups and there are relatively small groups. From the heatmap \cref{fig:ap:morph_sel_tfs} it can be noticed that there is a large group of Luminal samples and a smaller one. The Basal group is split into three subgroups, a large one, a medium size which groups most of the Mes-like tumours from Lund classifier and a smaller ones which has a lower Infiltration/Stromal/Estimate scores compared to the other 2 Basal groups. Apart from these 2 groups, there are outliers samples that are grouped in 1 or 2 clusters, suggesting that they have particular molecular profiles.
+
+The groups smaller than 1\% of the cohort size (equivalent to 4 samples) are removed, resulting in a dataset of 378 samples grouped into 5 major groups. 
+
 
 %  Morpheus hierarchical clustering
-\begin{figure}[!htb]   
-\centering
-\includegraphics[width=1.0\textwidth,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/15_CS_norm_sel_tfs.png}
-  \caption{Hierarchical clustering of the 98 TFs found in \cref{s:N_I:sel_tfs}. The columns at the top of the heatmap represents the previous classification (TCGA \cite{Robertson2017-mg}, Consensus \cite{Kamoun2020-tj}, Lund \cite{Marzouka2018-ge} and the stratification from \cref{s:clustering_analysis}) as well as the Immune, Stromal and ESTIMATE scores available with the TCGA cohort.}
-\label{fig:ap:morph_sel_tfs}
-\end{figure}
+% \begin{figure}[!htb]   
+\begin{sidewaysfigure}
+    \centering
+    \includegraphics[width=1.0\textwidth,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/15_CS_norm_sel_tfs.png}
+      \caption{Hierarchical clustering of the 98 TFs found in \cref{s:N_I:sel_tfs}. The columns at the top of the heatmap represents the previous classification (TCGA \cite{Robertson2017-mg}, Consensus \cite{Kamoun2020-tj}, Lund \cite{Marzouka2018-ge} and the stratification from \cref{s:clustering_analysis}) as well as the Immune, Stromal and ESTIMATE scores available with the TCGA cohort.}
+    \label{fig:ap:morph_sel_tfs}
+\end{sidewaysfigure}
 
+% tumour vs non-tumour
 \section{Tumour vs Non-tumour gene expression} \label{s:ap:tum_vs_non-tumour}
 
+
+The scatter plot complements the work in \cref{s:N_I:sel_tfs_bio} which explores the 98 TFs in both tumour and non-tumour datasets.
 
 \Cref{fig:ap:sel_tfs_mean} depicts the mean expression of the 98 TFs genes found in the previous subsection. The log plot shows the non-cancerous mean on the y-axis and the tumour mean expression on the x-axis, the size and colour of the points is proportional to the mutation burden across the MIBC cohort from TCGA. The genes higher on the y-axis have a higher expression in the non-cancerous, similarly for x-axis, further on the right hand side, higher average value in the tumour cohort. \textit{ELF3} it is on the top right corner meaning that it is expressed both in the tumour and non-cancerous datasets, and it is also highly mutated in MIBC. \textit{BNC1} is on he left corner, having lower expression across the samples.
 
 % Tum vs non-cancerous dataset.
-\begin{figure}[!htb]   
-\centering
-\includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/sel_tfs/sel_tfs_mean_tum_healthy.png}
-  \caption{Selected TFs expression in the MIBC TCGA cohort and in the non-cancerous. Both the colour and size of the points are proportional to the mutation burden in the TCGA cohort.}
-\label{fig:ap:sel_tfs_mean}
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=1.0\textwidth,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/sel_tfs/sel_tfs_mean_tum_healthy.png}
+    \caption{Selected TFs expression in the MIBC TCGA cohort and in the non-cancerous. Both the colour and size of the points are proportional to the mutation burden in the TCGA cohort.}
+    \label{fig:ap:sel_tfs_mean}
 \end{figure}
+
 
 
 % Metadata of the hierarchical clustering
@@ -66,20 +86,32 @@
 
 \newpage 
 
-% TCGA somatic mutations
-\section{TCGA somatic mutation} \label{s:ap:sel_prun_mut}
+\section{Basal and Luminal markers on consensus subgroups} \label{s:ap:sel_prun_markers}
 
-\begin{figure}[!htb]   
-    \centering
-    \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/sel_tfs/sel_tfs_mut_meta.png}
-      \caption{Heatmap of binary somatic mutation across.}
-    \label{fig:ap:sel_tfs_tcga_meta_mut}
+% The Basal/Luminal Markers in the consensus
+\begin{figure}[H]
+    \captionsetup[subfigure]{justification=Centering}
+  % consensus
+  \begin{subfigure}[!t]{1.0\textwidth}
+    \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/log2_consensus_basal.png}
+    \caption{Basal}
+    \label{fig:ap:box_basal_consensus}
+    \end{subfigure}
+  \begin{subfigure}[!t]{1.0\textwidth}
+      \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/log2_consensus_lum.png}
+      \caption{Luminal}
+      \label{fig:ap:box_luminal_consensus}
+  \end{subfigure}
+  \caption{Box plots showing the $log2(TPM+1)$ of the \textbf{luminal markers} over the consensus and groups derived from the hierarchical clustering applied in this chapter.}
+  \label{fig:ap:box_consensus}
 \end{figure}
 
-\newpage
+
 
 % Pi-plots for GSEA
 \section{Pi-plots for GSEA} \label{s:ap:sel_prun_pi}
+
+This section contains the Pi-plots for each of the MIBC subtypes derived from the gene expression of the 98 TFs from \cref{s:N_I:sel_tfs}. The method on how the DEA was performed and the Pi-plots generated can be found in \cref{s:lit:dea,s:lit:pi,s:lit:gsea}.
 
 
 \begin{figure}[H]
@@ -163,74 +195,76 @@
 
 \newpage
 
-% GSEA - oncoSig
-\section{GSEA output (OncoSig)} \label{s:ap:sel_prun_oncosig}
+% % GSEA - oncoSig
+% \section{GSEA output (OncoSig)} \label{s:ap:sel_prun_oncosig}
 
-% Table for OnCoSig
-\begin{table}[H]
-  \centering
-  \scriptsize
-  \begin{tabularx}{\textwidth}{>{\hsize=1.5\hsize}X|>{\hsize=0.4\hsize}X|>{\hsize=0.4\hsize}X|>{\hsize=0.6\hsize}X|>{\hsize=0.4\hsize}X|>{\hsize=0.4\hsize}X}
-    \toprule
-    \textbf{Term} & \textbf{NES} & \textbf{FDR q-val} & \textbf{\# lead genes} & \textbf{\# matchedl} & \textbf{ratio matched} \\
-    \midrule
-    \multicolumn{6}{c}{\textbf{smallBasal}} \\
-    \midrule
-    SINGH KRAS DEPENDENCY SIGNATURE & 2.121 & 0 & 17 & 10 & 0.588 \\
-    \midrule
-    TBK1.DF DN & 2.105 & 0 & 206 & 132 & 0.641 \\
-    \midrule
-    EIF4E DN & 2.084 & 0 & 53 & 44 & 0.83 \\
-    \midrule
-    PGF UP.V1 UP & 2.002 & 0 & 111 & 67 & 0.604 \\
-    \midrule
-    ERBB2 UP.V1 DN & 1.877 & 0 & 110 & 67 & 0.609 \\
-    \midrule
-    GCNP SHH UP LATE.V1 UP & 1.863 & 0 & 120 & 52 & 0.433 \\
-    \midrule
-    P53 DN.V1 UP & 1.862 & 0 & 68 & 65 & 0.956 \\
-    \midrule
-    RB P130 DN.V1 DN & 1.862 & 0 & 82 & 52 & 0.634 \\
-    \midrule
-    \multicolumn{6}{c}{\textbf{largeBasal}} \\
-    \midrule
-    CSR LATE UP.V1 UP & 2.382 & 0 & 115 & 86 & 0.748 \\
-    \midrule
-    TBK1.DF UP & 2.332 & 0 & 173 & 135 & 0.78 \\
-    \midrule
-    CSR EARLY UP.V1 UP & 2.326 & 0 & 110 & 74 & 0.673 \\
-    \midrule
-    \multicolumn{6}{c}{\textbf{mesLike}} \\
-    \midrule
-    CORDENONSI YAP CONSERVED SIGNATURE & 2.49 & 0 & 48 & 39 & 0.812 \\
-    \midrule
-    LEF1 UP.V1 UP & 2.423 & 0 & 125 & 110 & 0.88 \\
-    \midrule
-    RB P107 DN.V1 UP & 2.316 & 0 & 84 & 71 & 0.845 \\
-    \midrule
-    LTE2 UP.V1 DN & 2.265 & 0 & 118 & 86 & 0.729 \\
-    \midrule
-    \multicolumn{6}{c}{\textbf{lumInf}} \\
-    \midrule
-    BCAT.100 UP.V1 UP & 2.067 & 0 & 24 & 22 & 0.917 \\
-    \midrule
-    CSR LATE UP.V1 DN & 1.964 & 0 & 70 & 49 & 0.7 \\
-    \midrule
-    AKT UP.V1 DN & 1.889 & 0 & 90 & 66 & 0.733 \\
-    \midrule
-    ESC J1 UP LATE.V1 UP & 1.828 & 0 & 81 & 67 & 0.827 \\
-    \midrule
-    \multicolumn{6}{c}{\textbf{largeLuminal}} \\
-    CSR EARLY UP.V1 DN & 1.679 & 0.002 & 73 & 32 & 0.438 \\
-    \midrule
-    MYC UP.V1 DN & 1.613 & 0.002 & 77 & 38 & 0.494 \\
-    \bottomrule
-  \end{tabularx}
-   \caption{Normalised Enrichment Score (NES), False Discovery Rate (FDR) q-val, and lead gene statistics for different subtypes and terms in bladder cancer biology from the OncoSig database. The lead genes from a pathway are selected by GSEAPY based on when the NES reached its peak.}
-  \label{ap:tab:gsea_oncosig}
-\end{table}
+% % Table for OnCoSig
+% \begin{table}[H]
+%   \centering
+%   \scriptsize
+%   \begin{tabularx}{\textwidth}{>{\hsize=1.5\hsize}X|>{\hsize=0.4\hsize}X|>{\hsize=0.4\hsize}X|>{\hsize=0.6\hsize}X|>{\hsize=0.4\hsize}X|>{\hsize=0.4\hsize}X}
+%     \toprule
+%     \textbf{Term} & \textbf{NES} & \textbf{FDR q-val} & \textbf{\# lead genes} & \textbf{\# matchedl} & \textbf{ratio matched} \\
+%     \midrule
+%     \multicolumn{6}{c}{\textbf{smallBasal}} \\
+%     \midrule
+%     SINGH KRAS DEPENDENCY SIGNATURE & 2.121 & 0 & 17 & 10 & 0.588 \\
+%     \midrule
+%     TBK1.DF DN & 2.105 & 0 & 206 & 132 & 0.641 \\
+%     \midrule
+%     EIF4E DN & 2.084 & 0 & 53 & 44 & 0.83 \\
+%     \midrule
+%     PGF UP.V1 UP & 2.002 & 0 & 111 & 67 & 0.604 \\
+%     \midrule
+%     ERBB2 UP.V1 DN & 1.877 & 0 & 110 & 67 & 0.609 \\
+%     \midrule
+%     GCNP SHH UP LATE.V1 UP & 1.863 & 0 & 120 & 52 & 0.433 \\
+%     \midrule
+%     P53 DN.V1 UP & 1.862 & 0 & 68 & 65 & 0.956 \\
+%     \midrule
+%     RB P130 DN.V1 DN & 1.862 & 0 & 82 & 52 & 0.634 \\
+%     \midrule
+%     \multicolumn{6}{c}{\textbf{largeBasal}} \\
+%     \midrule
+%     CSR LATE UP.V1 UP & 2.382 & 0 & 115 & 86 & 0.748 \\
+%     \midrule
+%     TBK1.DF UP & 2.332 & 0 & 173 & 135 & 0.78 \\
+%     \midrule
+%     CSR EARLY UP.V1 UP & 2.326 & 0 & 110 & 74 & 0.673 \\
+%     \midrule
+%     \multicolumn{6}{c}{\textbf{mesLike}} \\
+%     \midrule
+%     CORDENONSI YAP CONSERVED SIGNATURE & 2.49 & 0 & 48 & 39 & 0.812 \\
+%     \midrule
+%     LEF1 UP.V1 UP & 2.423 & 0 & 125 & 110 & 0.88 \\
+%     \midrule
+%     RB P107 DN.V1 UP & 2.316 & 0 & 84 & 71 & 0.845 \\
+%     \midrule
+%     LTE2 UP.V1 DN & 2.265 & 0 & 118 & 86 & 0.729 \\
+%     \midrule
+%     \multicolumn{6}{c}{\textbf{lumInf}} \\
+%     \midrule
+%     BCAT.100 UP.V1 UP & 2.067 & 0 & 24 & 22 & 0.917 \\
+%     \midrule
+%     CSR LATE UP.V1 DN & 1.964 & 0 & 70 & 49 & 0.7 \\
+%     \midrule
+%     AKT UP.V1 DN & 1.889 & 0 & 90 & 66 & 0.733 \\
+%     \midrule
+%     ESC J1 UP LATE.V1 UP & 1.828 & 0 & 81 & 67 & 0.827 \\
+%     \midrule
+%     \multicolumn{6}{c}{\textbf{largeLuminal}} \\
+%     CSR EARLY UP.V1 DN & 1.679 & 0.002 & 73 & 32 & 0.438 \\
+%     \midrule
+%     MYC UP.V1 DN & 1.613 & 0.002 & 77 & 38 & 0.494 \\
+%     \bottomrule
+%   \end{tabularx}
+%    \caption{Normalised Enrichment Score (NES), False Discovery Rate (FDR) q-val, and lead gene statistics for different subtypes and terms in bladder cancer biology from the OncoSig database. The lead genes from a pathway are selected by GSEAPY based on when the NES reached its peak.}
+%   \label{ap:tab:gsea_oncosig}
+% \end{table}
 
-\newpage
+% \newpage
+
+
 
 % GSEA plots
 \section{GSEA plots top 10 by Enrichment score}
@@ -272,43 +306,5 @@
     \caption{GSEA output of the Luminal group for the groups derived using Selective Edge pruning in  \cref{s:N_I:sel_tfs_subtypes}}
     \label{fig:ap:gsea_largeLuminal}
 \end{figure}
-
-% \begin{figure}[!h]
-%     \captionsetup[subfigure]{justification=centering}
-%     \centering
-%     \begin{subfigure}[!t]{0.4\textwidth}
-%         \centering
-%         \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/gsea/smallBasal_10_top_manTerms.png}
-%         \caption{Small Basal}
-%         \label{fig:ap:gsea_smallBasal}
-%     \end{subfigure}
-%     \begin{subfigure}[!t]{0.4\textwidth}
-%         \centering
-%         \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/gsea/largeBasal_10_top_manTerms.png}
-%         \caption{Large Basal}
-%         \label{fig:ap:gsea_largeBasal}
-%     \end{subfigure} 
-%     \begin{subfigure}[!t]{0.4\textwidth}
-%         \centering
-%         \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/gsea/lumInf_10_top_manTerms.png}
-%         \caption{Luminal Infiltrated}
-%         \label{fig:ap:gsea_lumInf}
-%     \end{subfigure}
-%     \begin{subfigure}[!t]{0.4\textwidth}
-%         \centering
-%         \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/gsea/mesLike_10_top_manTerms.png}
-%         \caption{Mes-like}
-%         \label{fig:ap:gsea_mesLike}
-%     \end{subfigure} 
-%     \begin{subfigure}[!t]{0.4\textwidth}
-%         \centering
-%         \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/gsea/largeLuminal_10_top_manTerms.png}
-%         \caption{Large Luminal}
-%         \label{fig:ap:gsea_largeLuminal}
-%     \end{subfigure}
-%     \caption{GSEA output for the groups derived using Selective Edge pruning in  \cref{s:N_I:sel_tfs_subtypes}}
-%     \label{fig:ap:gsea_basal}
-% \end{figure}
-
 
 

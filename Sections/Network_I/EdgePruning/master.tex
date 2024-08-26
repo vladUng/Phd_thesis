@@ -1,16 +1,38 @@
 \chapter{Selective edge pruning} \label{s:N_I:sel_pruning}
+\vspace{3mm}
+\fbox{
+    \parbox{0.95\linewidth}{
+      \begin{itemize}
+        \item Finding the minimum degree for TFs 
+        \item Subset of 98 are highly connected in the network
+        \item Basal samples with the lowest survival rate
+      \end{itemize}
+    }
+}
+\vspace{3mm}
 
 \section{Introduction}
 
 % The aim to integrate the TF
 While the last two sections studied the effects of the weight modifier into both the networks and the derived MIBC, this section aims to investigate the data integration through selective edge pruning. The objective is prioritise the \acrfull{tf} over the standard genes as these up-regulated the expression of the other genes leading to higher biological influence. By allowing more connections for the TF, the minimum degree of the node increases as well as their role in the network, similar to the biology. The experiments, on selective edge pruning, aim to explore and find the appropriate minimum degree for TF genes and how varying it affects the network. The work in this section was presented as a poster at the \textit{\href{https://2023.complexnetworks.org/}{Complex Network Conference in 2023}}.
 
-Through the experiments performed in this project and the analysis in the PGCNA work \citep{Care2019-ij} it was noticed that if a node has too many edges, the network becomes very dense and more complicated to analyse. Conversely, if a node has a few edges ($<3$), then the community detection (Leiden \cite{Traag2019-ne}) finds disconnected community. \citet{Care2019-ij} (empirically) found that the appropriate number of edges for a node is 3, and it is the value used throughout the project for the non-transcription factor gene (or 'standard'). 
-
 % The aim to find the better community detection
-An objective adopted for this section therefore was to compare the Leiden \citep{Traag2019-ne} community detection used in PGCNA with the degree corrected Stochastic Block Model (DC-SBM) from \citet{Karrer2011-si, Peixoto2017-gc}. As it was covered in \cref{s:lit:comm_detect} from Introduction, Leiden is faster and more popular, but it is prone to find patterns in noise, whereas the DC-SBM is slower but it is more error proof to find non-existent communities. Throughout the project the degree corrected (DC-SBM) \& hierarchical (hSBM) stochastic block models were preferred over the simple SBM \citep{Holland1983-eu} as it accounts for the node degree when it finds the communities, which is crucial for selective edge pruning; for convenience DC-SBM and SBM are used interchangeably.
+An objective adopted for this section therefore was to compare the Leiden \citep{Traag2019-ne} community detection used in PGCNA with the degree corrected Stochastic Block Model (DC-SBM) from \citet{Karrer2011-si, Peixoto2017-gc}. As it was covered in \cref{s:lit:comm_detect} from Background, Leiden is faster and more popular, but it is prone to find patterns in noise, whereas the DC-SBM is slower but it is more error proof to find non-existent communities. Throughout the project the degree corrected (DC-SBM) \& hierarchical (hSBM) stochastic block models were preferred over the simple SBM \citep{Holland1983-eu} as it accounts for the node degree when it finds the communities, which is crucial for selective edge pruning; for convenience DC-SBM and SBM are used interchangeably.
+
+% Mention that there are 98 TFs
+While investigating the minimum degree for TFs it was found that there are subset of TFs that are constantly highly connected even in the control experiments. The expression of this subset of gene is analysed in the context of both the non-tumour and tumour datasets and used to stratify the MIBC cohort from TCGA. Survival analysis and \acrfull{dea} is then used to further understand these subgroups with a focus on the basal samples with the poorest survival.
+
+% 
+% Through the experiments performed in this project and the analysis in the PGCNA work \citep{Care2019-ij} it was noticed that if a node has too many edges, the network becomes very dense and more complicated to analyse. Conversely, if a node has a few edges ($<3$), then the community detection (Leiden \cite{Traag2019-ne}) finds disconnected community. \citet{Care2019-ij} (empirically) found that the appropriate number of edges for a node is 3, and it is the value used throughout the project for the non-transcription factor gene (or 'standard'). 
 
 \section{Aims}
+
+This part of the project aims to:
+\begin{itemize}
+    \item Find the minimum degree for TFs
+    \item Understand the biological role of the 98 TFs which are constantly connected
+    \item Investigate the subgroups derived from the expression of the 98 genes
+\end{itemize}
 
 
 \import{Sections/Network_I/EdgePruning}{methods.tex}
