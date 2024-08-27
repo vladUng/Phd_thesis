@@ -3,7 +3,7 @@
 \section{Emerging Transcription Factors} \label{s:N_I:sel_tfs}
 
 % Introduce the motivation of using TFs
-After comparing the two community detection algorithm and deciding on the SBM, it is worth diving in the analysis of the network output. The previous sub-section showed that by prioritising a certain subset of genes, to have a higher minimum degree, has some effects on the network. However, in the network pipeline, not all the genes employed to generate the graph are used for the cancer stratification, but the top 100 selected by ModCon (see \cref{fig:N_I:network_pipeline}). It is worth point out that ModCon score is a score which takes in account a node degree, its weights as well as the median expression and the dispersion of the  the gene in the dataset used to build the network.
+After comparing the two community detection algorithms and selecting SBM, it is important to delve into the analysis of the network output. Previous work in this thesis demonstrated that allowing a higher minimum degree for a specific subset of TFs affects the graph metrics and community detection methods. However, in the network pipeline, not all the genes used to generate the graph are employed for cancer stratification; instead, the top 100 genes are selected by ModCon (see \cref{fig:N_I:network_pipeline}). It is important to remember that the ModCon score considers a node’s degree, its edge weights, as well as the median expression and dispersion of the gene in the dataset used to build the network; see \cref{s:N_I:methods_modcon} for a more detailed description.
 
 
 \begin{figure}[!b]   
@@ -17,7 +17,7 @@ After comparing the two community detection algorithm and deciding on the SBM, i
 % -- all TF are included when minimum degree is set to 15 and there is no added benefit when TF = 6
 \Cref{fig:N_I:sel_tfs} show the percentages of the TF genes (325 in total) that are selected by the ModCon score to stratify the disease. SBM community detection was used with both selected genes that are TF and non-TF 325 genes as control, the latter was run 10 times.
 
-It can be seen a clear difference between the Experiment and the Control traces, where the genes in the Experiment, with a real biological value, gradually increase with the minimum degree values, while the controls are at similar levels of $\sim60\%$. All the TF genes are included when the minimum degree of a TF reaches to 15 and the biggest percentage included after TF passes minimum degree of 6. For this reason and that the SBM performance is affected as the minimum degree increase, the value of 6 for the minimum number of edges was chosen for selective edge pruning.
+There is a clear difference between the Experiment and the Control traces, where the genes in the Experiment, with a real biological value, gradually increase with the minimum degree values, while the controls remain at a similar level of $\sim60\%$. All the TF genes are included when the minimum degree of a TF reaches to 15 and the biggest percentage included after TF passes minimum degree of 6. For this reason and that the SBM performance is affected as the minimum degree increase, the value of 6 for the minimum number of edges was chosen for selective edge pruning.
 
 
 % Biological relevance
@@ -27,10 +27,10 @@ On contrast to the Experiment trace, the Control appears to have a constant numb
 % Biological significance
 Taking in account the selective edge pruning and that $\sim60\%$ of the 325 TF genes are selected by ModCon, when the TF are \textbf{explicitly} not prioritised, it is remarkable to have a subset of genes that emerged as being highly connected. To further refine the list, the intersection of genes across the controls is taken and this leads to a list of 98 TF, that are constantly highly connected across the controls. 
 
-\begin{figure}[!t]   
+\begin{figure}[!b]   
 \centering
 \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/weight_distrib.png}
-  \caption{The weight distribution of the edges weights in a standard network (no weight modifier), with 3 edges for non-TF and 6 for TF genes. The distribution is skewed to the left showing that the selective edge prune keeps only the highly correlated pairs of genes.}
+  \caption{The weight distribution of the edges weights in a standard network (no weight modifier), with 3 edges for non-TF and 6 for TF genes. The distribution is skewed to the left showing that the selective edge prune keeps only the highly correlated pairs of genes with Spearman correlation over 0.5. }
 \label{fig:N_I:weight_distrib}
 \end{figure}
 
@@ -46,7 +46,7 @@ Overall this section showed that the genes selected through ModCon are affected 
 % MIBC comparison
 \subsection{Subset of TFs: MIBC comparison} \label{s:N_I:sel_tfs_mibc}
 
-The analysis so far indicates that the 98 TFs have a higher role than the other genes used to build the graph. To further understand their function the tumour expression of the 98 TFs is used to stratify the MIBC which resulted in five major groups, see the details of the clustering in the work from Appendix \cref{s:ap:sel_tfs_cs}.
+The analysis so far indicates that the 98 genes are a subset of TFs which are highly correlation with the other genes in the network, even when other subsets of nodes are allowed a higher minimum degree. To further understand their function the tumour expression of the 98 TFs is used to stratify the MIBC which resulted in five major groups, see the details of the clustering in the work from Appendix \cref{s:ap:sel_tfs_cs}.
 
 \begin{figure}[!htb]
     \centering
@@ -70,32 +70,30 @@ The analysis so far indicates that the 98 TFs have a higher role than the other 
 \paragraph*{Basal}
 
 % Basal subgroups
-There are three basal subgroups: a main subtype containing most of the previously classified samples as basal, group 3 that consists of the High IFNG samples, and group 5 of the Low IFNG samples; see \cref{fig:N_I:sankey_sel_tfs_vuCs}. Based on previous work in the project, group 3 is likely to exhibit a high immune response with a higher survival rate compared with groups 5 and 4.
+There are three basal subgroups: a main subtype containing most of the previously classified samples as basal, group 3 that consists of the High IFNG samples, and group 5 of the Low IFNG samples; see \cref{fig:N_I:sankey_sel_tfs_vuCs}. Based on previous work in the project, group 3 is likely to exhibit a high immune response compared with groups 5 and 4.
+
+There are three basal subgroups: a main subtype containing most of the previously classified basal samples, group 3, which consists of High IFNG samples, and group 5, which includes Low IFNG samples; see \cref{fig:N_I:sankey_sel_tfs_vuCs}. Based on previous analyses in the project (Basal subtypes from cluster analysis in \cref{s:cs:basal_interp}), group 3 is likely to exhibit a higher immune response compared with groups 5 and 4.
 
 % Comparing with Lund
-Comparing these groups with the TCGA and Lund classifiers (\cref{fig:N_I:sankey_sel_tfs}), it is evident that the larger basal group (4) contains most of the Ba/Sq or Ba/Sq and Ba/Sq-infiltrated samples. The medium-sized group 3 contains most of the Mes-like samples, while the smaller group 5 consists of UroB and Ba/Sq samples. Notably, the UroB and Low IFNG groups have a poor survival prognosis, while the High IFNG samples in group 3 are associated with a more favourable prognosis.
+When comparing these groups with the TCGA and Lund classifiers (\cref{fig:N_I:sankey_sel_tfs}), it is evident that the larger basal group (4) contains most of the Ba/Sq or Ba/Sq-infiltrated samples. The medium-sized group 3 primarily consists of Mes-like samples, while the smaller group 5 comprises UroB and Ba/Sq samples. Notably, the UroB and Low IFNG groups have a poor survival prognosis, whereas the High IFNG samples in group 3 are associated with a more favourable prognosis, as observed in the cluster analysis chapter (\cref{s:clustering_analysis}) and consistent with the Lund classifier \citep{Marzouka2018-ge}.
 
-The two Sankey plots suggest that group 4 is primarily composed of Ba/Sq samples, group 3 includes patients classified as Ba/Sq with immune infiltration, and group 5 comprises Ba/Sq samples with no immune response, previously classified as UroB. According to MIBC analysis (\cref{s:clustering_analysis}) and the work of \citet{Marzouka2018-ge}, group 3 is expected to have the highest survival rate, group 5 the lowest, and group 4 an intermediate prognosis. This is later confirmed by the Kaplan-Meier survival analysis in \cref{fig:N_I:sel_tfs_survival}.
-
+Overall, the Sankey plots suggest that group 4 is largely composed of Ba/Sq samples, group 3 includes patients classified as Ba/Sq with immune infiltration, and group 5 consists of Ba/Sq samples with no immune response, previously classified as UroB. These findings align with the expected survival outcomes: group 3 is anticipated to have the highest survival rate, group 5 the lowest, and group 4 an intermediate prognosis. This is further confirmed by the Kaplan-Meier survival analysis presented in \cref{fig:N_I:sel_tfs_survival}.
 
 % Luminal groups
 \paragraph*{Luminal}
 
-Using the gene expressions of the 98 TFs lead to a large Luminal group of 202 samples The group contains most, if not all, of the samples from LumP, Stroma-rich, LumU, and LumNS (from consensus) and the LumInf/NS and LumP (from KMeans\_6). This is also the case in \cref{fig:N_I:sankey_sel_tfs}, where group 13 contains the LumInf, LumP, LumNS (TCGA) and the UroA-Prog, Uro-Inf, and UroC from Lund. The smaller luminal group (12) consists mostly of the samples from LumU, Stroma-rich from TCGA (\cref{fig:N_I:sankey_sel_tfs_vuCs}) or the consensus LumInf/LumP (TCGA) or the Genomically Unstable (GU) and GU-infiltrated from Lund.
-
-
-Using the gene expression profiles of the 98 TFs resulted in a large Luminal group comprising 202 samples. This group includes most, if not all, of the samples classified as LumP, Stroma-rich, LumU, and LumNS in the consensus classification, as well as LumInf/NS and LumP from the KMeans\_6 clustering. Similarly, in \cref{fig:N_I:sankey_sel_tfs}, group 13 encompasses the LumInf, LumP, and LumNS subtypes from TCGA, along with the UroA-Prog, Uro-Inf, and UroC subtypes from Lund. The smaller Luminal group (12) primarily consists of samples from LumU and Stroma-rich subtypes in TCGA (\cref{fig:N_I:sankey_sel_tfs_vuCs}), or the LumInf/LumP subtypes from the consensus TCGA classification, and the Genomically Unstable (GU) and GU-infiltrated subtypes from Lund.
-
+There is a large Luminal group of 202 samples which contains most, if not all, of the tumour previously classified as LumP, Stroma-rich, LumU, and LumNS (from consensus) and as LumInf/NS and LumP (from KMeans\_6). This is also the case in \cref{fig:N_I:sankey_sel_tfs}, where group 13 contains the LumInf, LumP, LumNS (TCGA) and the UroA-Prog, Uro-Inf, and UroC from Lund. The smaller luminal group (12) consists mostly of the samples from LumU, Stroma-rich from TCGA (\cref{fig:N_I:sankey_sel_tfs_vuCs}) or the consensus LumInf/LumP (TCGA) or the Genomically Unstable (GU) and GU-infiltrated from Lund.
 
 % Summary of the comparison
-The comparison with the other stratification methods shows that clustering the expression of 98 TFs is capable of finding three basal subtypes, two smaller even than the ones found in the previous cluster analysis from \cref{s:clustering_analysis}. However, the 98 TFs fail to discriminate the luminal subgroups.
+The comparison with the other stratification methods shows that clustering the expression of 98 TFs is capable of finding three basal subtypes, two smaller even than the ones found in the previous cluster analysis from \cref{s:clustering_analysis}. However, the 98 TFs fail to discriminate between luminal subgroups.
 
 % Survival analysis
 \subsection{Survival Analysis}
 
-Survival analysis was conducted on the five groups derived from the 98 transcription factors as shown in \cref{fig:N_I:sel_tfs_survival}. Group 5, identified as the smallest basal group, exhibits the poorest survival prognosis by a significant margin. Notably, the poorest survival in both the TCGA and consensus classification is observed in the Neuroendocrine-like groups, which are not included in Group 5; this is illustrated in the Sankey plot in \cref{fig:N_I:sankey_sel_tfs}. It is striking the poor survival of the group 5, where almost all of the patients are deceased after 3 years. This is a poorer prognosis then the Lund's UroB subtype (see Figure 6 from \citet{Marzouka2018-ge}) and the Low IFNG Basal from \cref{s:cs:basal_interp}.
+The Kaplan-Meier Survival analysis was conducted on the five groups derived from the 98 transcription factors as shown in \cref{fig:N_I:sel_tfs_survival}. Group 5, identified as the smallest basal group, exhibits the poorest survival prognosis by a significant margin. Notably, the poorest survival in both the TCGA and consensus classification is observed in the Neuroendocrine-like groups, which are not included in Group 5; see Sankey plot in \cref{fig:N_I:sankey_sel_tfs}. It is striking the poor survival of the group 5, where almost all of the patients are deceased after 3 years, it has a worst survival even then the UroB group from the Lund classifier (see survival plot in \cref{fig:N_I:sel_tfs_comp_leiden}) and the Low IFNG Basal from \cref{s:cs:basal_interp}.
 
-The largest luminal group (13) demonstrates the best overall prognosis, followed by the medium-sized basal cluster or Mes-like (3). The luminal infiltrated group (12) shows survival trends similar to clusters 3, 4, and 12, but the survival prognosis deteriorates over a five-year period. The multivariate log-rank test, yielding a $p<0.005$, confirms the statistical significance of the differences in survival among the five groups.
+The largest luminal group (13) demonstrates the most favourable prognosis, followed by the medium-sized basal cluster, basal 4 (3). Basal group 3 exhibits the best survival rate at the five-year mark compared to the other two basal groups (4 and 5), though the difference between groups 3 and 4 is not as pronounced as initially hypothesised. The luminal infiltrated group (12) shows survival trends similar to clusters 3, 4, and 13, but its survival prognosis deteriorates over the five-year period. The multivariate log-rank test, yielding a $p<0.005$, confirms the statistical significance of the differences in survival among the five groups.
+
 
 % Giving context to the results
 The clustering analysis shows that the by only using 98 genes, the main groups, Basal and Luminal, are discovered. The survival analysis indicates that these subtypes have significantly different survival prognosis. The gene expression heatmap from \cref{fig:ap:morph_sel_tfs} reveals that there some highly varied genes\footnote{This is given by the rows that are either completely blue or red (\textit{BNC1, FOXJ3, ELF3}), suggesting that there }, which are later confirmed by the bar plot from \cref{fig:N_I:sel_tfs_var}. 
@@ -133,7 +131,7 @@ Group 5 and UroB exhibit similar trends, with Group 5 consistently showing a wor
 The dumbbell figure in \cref{fig:N_I:dumbell_sel_tfs} exhibit the difference in expression between subgroups. Each point represents the $log2(mean\_TPM+1)$ and the subplots are in descending order of the fold change between the averages of the two groups.
 
 % Basal and Luminal signal
-The expression difference between the group 4 and 13 show the basal/luminal difference in the gene expression of the 98 TFs, where the largest change is on \textit{BNC1} is expressed in the basal group but not in the luminal; see plot A from \cref{fig:N_I:dumbell_sel_tfs}. There also other genes like \textit{GRHL3} or \textit{MYCL} known as differentiation markers, \textbf{are there any papers on this?}
+The expression difference between the group 4 and 13 show the basal/luminal difference in the gene expression of the 98 TFs, where the largest change is on \textit{BNC1} is expressed in the basal group but not in the luminal; see plot A from \cref{fig:N_I:dumbell_sel_tfs}. Known as differentiation markers are also present which include genes like \textit{GRHL3} \citep{Ramal2024-ha} or \textbf{\textit{MYCL}} 
 
 % BNC1
 The plot B shows that group 13 and 12 have similar expression in the 98 TFs, with cluster 13 having a considerably higher expression in the \textit{TP63}. \Cref{fig:N_I:dumbell_sel_tfs} A) and C) shows that \textit{BNC1} is absent in both Luminal groups. This gene also is low expressed in the basal subtypes comparison with the mes-like group in D) and E). \textit{BNC1} is a squamous cell marker as shown by the work of \citet{Hurst2022-sp}
@@ -154,14 +152,14 @@ The group 5 is formed out of mostly samples from the Low IFNG group from previou
         \midrule
         Basal 5 and Luminal infiltrated 12 (C) & \textit{TP63, BNC1, HES2, MSX2, MYCL, HOXB6, IRF6, GRHL3} & Squamous markers (\textit{TP64, BNC1}) higher expressed in Basal 5 \\
         \midrule
-        Mes-like 3 and Luminal 13 (D) & \textit{TP63, MYCL, GRHL3, ELF3, BNC1, ZNF750, ZBTB7C, MYCL} & Ba/Sq markers \textit{TP63, ZBTB7C, BNC1} more pronounced in the Mes-like 3 group over the Luminal \\
+        Mes-like 3 and Luminal 13 (D) & \textit{TP63, MYCL, GRHL3, ELF3, BNC1, ZNF750, ZBTB7C, MYCL} & Ba/Sq markers \textit{(TP63, ZBTB7C, BNC1)} more pronounced in the Mes-like 3 group over the Luminal \\
         \midrule
-        Mes-like 3 and  Basal 5 (E) & \textit{GRHL3, TP64, HES2, IRF6, ZBTB7C, ZNF750, BNC1, OVOL1} & Ba/Sq markers (\textit{TP63, ZBTB7C, BNC1} more pronounced in Basal 5 \\
+        Mes-like 3 and  Basal 5 (E) & \textit{GRHL3, TP64, HES2, IRF6, ZBTB7C, ZNF750, BNC1, OVOL1} & Ba/Sq markers (\textit{TP63, ZBTB7C, BNC1}) more pronounced in Basal 5 \\
         \midrule
         Basal 4 and 5 (F) & \textit{ZBTB7C, MECOM, MSX2, TP63, KLF5, ELF3} & The Ba/Sq markers are stronger in the Basal 5 \\
         \bottomrule
     \end{tabularx}
-    \caption{Summary of the gene expression comparisons from \cref{fig:N_I:dumbell_sel_tfs}. The main takeaway is that the Basal groups 4 and 5 exhibit Ba/Sq markers the latter having a strong expression. Mes-like  }
+    \caption{Summary of the gene expression comparisons from \cref{fig:N_I:dumbell_sel_tfs}. The main takeaway is that the Basal groups 4 and 5 exhibit Ba/Sq markers with strong expression.}
     \label{tab:N_I:dumbel_summarry}
 \end{table}
 

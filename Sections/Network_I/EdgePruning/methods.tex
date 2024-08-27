@@ -3,12 +3,12 @@
 
 
 % Leiden and SBM configuration
-The same network pipeline as described in \cref{fig:N_I:network_pipeline} was applied on the gene expression of the MIBC cohort from TCGA. The gene selection strategy for the network is followed as in the clustering analysis chapter, \cref{s:cs:methods}, where genes are considered expressed in at least 90\% of the samples and and the top 5000 most varied genes by the median/standard deviation are kept. Out of the 5000 genes used for the network 325 are Human Transcription Factors based on \citet{Lambert2018-el}.
+The same network pipeline as described in \cref{fig:N_I:network_pipeline} was applied on the gene expression of the MIBC cohort from TCGA. The gene selection strategy for the network is followed as in the clustering analysis chapter, \cref{s:cs:methods}, where genes are considered expressed in at least 90\% of the samples. From this are selected the top 5000 most varied genes by the median/standard deviation to build the network. A larger number (compared to 3500) of genes was used to build graph as to have a wider representation of the datasets. Out of the 5000 genes used for the network 325 are Human Transcription Factors based on \citet{Lambert2018-el}.
  
 % Community detection
-\subsection*{Community detection} \label{s:N_I:methods_comm_detection}
+\subsection*{Community detection} \label{s:N_I:sel_tfs_methods_comm_detection}
 
- Two classes of community defections methods are used and compared: Leiden with  and \acrfull{dc-sbm}. The former is a more deterministic algorithm and it was run using Modularity Maximisation cost function and iterated over 10 times at each run across the experiment. The \acrshort{dc-sbm} using a probabilistic approach to find the blocks it was run with 700 iterations ($n\_iter=700$), the entire graph was sweep up to 10 times ($mc\_iter = 10 sweeps$) and the distribution of the data was set to real exponential\footnote{As in the \href{https://graph-tool.skewed.de/static/doc/demos/inference/inference.html}{Graph-tool documentation} the distribution of the edge covariance can be specified given the bounds of the data, as seen in the referenced guide.} ($distribution = real\_exponential$). The number of iterations and swept insured that a detailed search for the communities is performed while keeping the computational times relatively low. The 'real-exponential' parameter it is used for edge weights that range from $[0, \infty]$ which is the case for the Spearman correlation values.
+ Two classes of community defections methods are used and compared: Leiden with  and \acrfull{dc-sbm}. The former is a deterministic algorithm and it was run using Modularity Maximisation cost function and iterated over 10 times at each run across the experimentw. The \acrshort{dc-sbm} is using a probabilistic approach to find the blocks, it was run with 700 iterations ($n\_iter=700$), the entire graph was sweep up to 10 times ($mc\_iter = 10 sweeps$) and the distribution of the data was set to real exponential\footnote{As in the \href{https://graph-tool.skewed.de/static/doc/demos/inference/inference.html}{Graph-tool documentation} the distribution of the edge covariance can be specified given the bounds of the data, as seen in the referenced guide.} ($distribution = real\_exponential$). The number of iterations and swept insured that a detailed search for the communities is performed while keeping the computational times relatively low. The 'real-exponential' parameter it is used for edge weights that range from $[0, \infty]$ which is the case for the Spearman correlation values.
 
 
 % Metrics
@@ -20,7 +20,7 @@ At the time of running this set of experiment, there was no common metric availa
 %Choosing the Control TF
 \subsection*{Control}
 
-To account for the random effects of the TFs in the network, there are 10 control experiments with 325 non-TFs randomly selected and allowed a minimum degree from 3-15. The lower bound is given by the value used for the standard genes, while the higher limit was decided empirically as all the prioritised subsets are used for stratification (see \cref{fig:N_I:sel_tfs}); i.e. selected by ModCon based on their network importance. This set of experiments led to the identification of a subset of TFs with high biological significance, as discussed in \cref{s:N_I:sel_tfs}.
+To account for the random effects of the TFs in the network, there are 10 control experiments with 325 non-TFs randomly selected and allowed a minimum degree from 3-15. The lower bound is given by the value used for the standard genes, while the higher limit was decided empirically as all the prioritised subsets are used for stratification (see \cref{fig:N_I:sel_tfs}); i.e. selected by ModCon based on their network importance. This set of experiments led to the identification of a subset of TFs with high biological significance, as discussed in \cref{s:N_I:sel_tfs,s:N_I:sel_tfs_bio}.
 
 
 

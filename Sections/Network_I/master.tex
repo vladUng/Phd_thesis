@@ -19,12 +19,11 @@
 
 In the previous chapter, standard clustering methods and insights from in situ experiments (\citet{Baker2022-bj}) were utilised to stratify the muscle-invasive bladder cancer (MIBC) cohort from The Cancer Genome Atlas (TCGA). This work revealed new MIBC subgroups with significant biological differences compared to those identified in the TCGA (\citet{Robertson2017-mg}) and consensus (\citet{Kamoun2020-tj}) stratification. This finding highlights the potential for discovering biologically relevant groups and underscores the need for new integrative methods that combine data at the computational level.
 
-Network/Graph methods have been previously used to stratify other cancers (glioblastoma - \citet{Care2019-ij}), and the co-expressed network represents a method that enables further data integration, such as mutations or \acrfull{tf}s. Additionally, building a relational representation between the genes aligns the analysis more closely with biological processes. Networks also serve as powerful visualisation tools, enhancing the understanding of complex processes or issues, such as benign tumours in bladder cancer.
+Network/Graph methods have been previously used to stratify other cancers (glioblastoma - \citet{Care2019-ij}), and the co-expressed network constitute a method that enables further data integration, such as mutations or \acrfull{tf}. Additionally, building a relational representation between the genes aligns the analysis more closely with biological processes. Networks also serve as powerful visualisation tools, enhancing the understanding of complex processes or issues, such as the molecular depiction of a cancerous tissue from gene expression.
 
+This chapter aims to investigates how mutations and transcription factors can be integrated into a network with the aim to uncover new MIBC subgroups. Apart from building the graph there is a need to develop the tools and methods to analyse the vast amount of results, highlighting the challenges inherent in working with unsupervised learning, particularly in the context of highly heterogeneous data.
 
-This chapter aims to investigates how mutations and transcription factors can be integrated into a network approach, aiming to uncover new MIBC subgroups. This involves developing tools and methods to analyse the vast amount of results, highlighting the challenges inherent in working with unsupervised learning, particularly in the context of highly heterogeneous data.
-
-Two networks are constructed: one from the tumour dataset (Section \ref{s:N_I:tum}) and another from the healthy dataset (Section \ref{s:p0}). The experiments with the tumour network aim to demonstrate the potential of the network approach and to draw comparisons with the findings from the previous chapter. The experiments with the healthy network investigate how non-cancerous information can inform MIBC stratification, thus performing an integration at the graph level.
+There are two networks are constructed: one from the tumour dataset (Section \ref{s:N_I:tum}) and another from the healthy dataset (Section \ref{s:p0}). The goal of the first network type is to demonstrate the potential of the network approach and to draw comparisons with the findings from the previous chapter. The experiments with the non-tumour network investigate how non-cancerous information can inform MIBC stratification, thus performing an integration at the graph level.
 
 Overall, the work presented demonstrates the potential of networks in MIBC subtyping. This is enforced by the analysis and biological findings in \cref{s:N_I:sel_tfs} which found a subset of TFs that have a high impact on both tumour and non-tumour tissues. However, the initial methods for data integration show limited impact on disease subtyping, this chapter lays the groundwork for future chapters, where initial assumptions are revised, and new, adapted methods are employed.
 
@@ -33,9 +32,9 @@ Overall, the work presented demonstrates the potential of networks in MIBC subty
 % Datasets
 \subsection*{Datasets}
 
-The MIBC cohort from The Cancer Genome Atlas \citep{Tcga2018-sj} and the P0 samples from the Jack Birch Unit (JBU) are used in this chapter build two different types of networks. The tumour dataset is used in the first part of the chapter to test if the integration of the mutations (from TCGA as well) amplify the signal in the tumours and lead to different MIBC subgroups; see \cref{s:N_I:tum}. The gene expressions from freshly isolated samples (or P0) are used to build the co-expressed networks \cref{s:p0} on which the mutations were integrated (using the TCGA data) from which the other MIBC subgroups were derived.
+The MIBC cohort from The Cancer Genome Atlas \citep{Tcga2018-sj} and the P0 samples from the Jack Birch Unit (JBU) are used in this chapter for building two different types of networks. The tumour dataset is used in the first part of the chapter to test if the integration of the mutations (from TCGA as well) amplify the signal in the tumours and lead to different MIBC subgroups; see \cref{s:N_I:tum}. The gene expressions from freshly isolated samples (or P0) are used to build the co-expressed networks \cref{s:p0} on which the mutations were integrated (using the TCGA data) from which the other MIBC subgroups were derived.
 
-Mutation information is obtained from Whole Exome Sequencing (WES) of the MIBC cohort from TCGA, focusing specifically on the mutation count, i.e., the frequency of gene mutations across the tumour biopsies . The list of Transcription Factors (TFs) is taken from The Human Transcription Factors study by \citet{Lambert2018-el}. The different aspects of the datasets are discussed in the background section \cref{s:lit:datasets_used}.
+Mutation information is obtained from Whole Exome Sequencing (WES) of the MIBC cohort from TCGA, focusing specifically on the mutation count, i.e., the frequency of gene mutations across the tumour biopsies . The list of Transcription Factors is taken from The Human Transcription Factors study by \citet{Lambert2018-el}. The different aspects of the datasets are discussed in the background \cref{s:lit:datasets_used}.
 
 
 % \textbf{Taken From P0 - Don't think I needed it}
@@ -45,9 +44,10 @@ Mutation information is obtained from Whole Exome Sequencing (WES) of the MIBC c
 % Aims
 \section{Aims}
 
-The aim of this chapter is to test the data integration hypothesis using both tumour and non-tumour networks:
+The aim of this chapter is to validate the data integration hypothesis using both tumour and non-tumour networks:
+
 \begin{itemize}
-    \item The edges weights can be modelled proportional to the gene mutational burden
+    \item The edge weights of a node can be modelled proportional to its mutational burden
     \item The number of connection (or degree) can be used to prioritised a subset of genes over the others
     \item A non-tumour graph representation can inform the MIBC stratification 
 \end{itemize}
@@ -109,22 +109,26 @@ The aim of this chapter is to test the data integration hypothesis using both tu
 
 \section{Discussion}
 
-This chapter presents a novel network approach developed to integrate both transcription factors and mutations into a co-expressed network which is then used for stratifying the \acrlong{mibc}. The two main parts, \cref{s:N_I:tum,s:p0}, showed that that including the additional information has an impact on the network metrics and communities across the networks. Through the two sections, there are found different MIBC subtypes from the ones from the literature.
 
-The integration occurred at different levels, starting by building a graph from the non-tumour data and then using the representation to derive the MIBC subtypes, as described in \cref{s:p0}. The edge weights derived from the Spearman correlation are modified based on the mutation burden, and the node degree is limited depending on whether a gene is a transcription factor or not.
+This chapter presents a novel network approach developed to integrate both transcription factors and mutations into a co-expressed network which is then used for stratifying the \acrlong{mibc}. The research presented showed that modelling the edge weights proportional to gene mutation burden affect the network metrics, community detection methods and the MIBC subgroups. The selective edge pruning  acted as another data integration which influence the network metrics. Lastly, the early non-tumour network representation to inform MIBC stratification showed potential.
+
+From the two set of networks the tumour derived seemed more responsive to the data integrated compared to the ones derived from the P0 samples. This might be explained by a limitation of the Leiden algorithm when a subset of genes is allowed a larger number of connections (50). Additionally, the P0 network is constructed from an incomplete representation of MIBC tumours, as it lacks a molecular representation of the basal (undifferentiated) group. Furthermore, when gap between the gene to sample representation is bridged only the expression in tumour is considered to stratify the MIBC without taking in account the abundance across the P0 samples. These limitations are addressed in the next chapter, where the entire available non-tumour dataset is utilised, and a new version of MEV is introduced.
+
+
+% Main takeaway 
+Overall the experiment using both the tumour and P0 derived networks validates the initial hypothesis data integration can happen by modelling the number of edges and their weights. In addition, the non-tumour graphs showed that it is possible to form a non-tumour representation from which the MIBC can be derived. Next chapter explores in more depth the effects of selective edge pruning and differences between community detection algorithms into the tumour network
+
+% The integration occurred at different levels, starting by building a graph from the non-tumour data and then using the representation to derive the MIBC subtypes, as described in \cref{s:p0}. The edge weights derived from the Spearman correlation are modified based on the mutation burden, and the node degree is limited depending on whether a gene is a transcription factor or not.
 
 % \textbf{DH: You could highlight the novelty in your approach here as well. }
 
 % \textbf{DH: about hte initial attempt - Wouldn't say this, just say it is your network approach. Initial attempt suggests something that will be improved upon, could bring results into question?}
 
 % Weight modifiers need refinement
-Two main co-expressed gene networks were explored: one constructed from tumour samples and the other from non-tumour tissue samples. The experiments demonstrated that integrating mutations and TFs was successful at the graph level but had limited impact on the MIBC subtypes derived from the network. Network metrics varied between the modified networks (as shown in \cref{fig:N_I:net_metrics_tum,fig:N_I:net_metrics_p0}), and highly mutated genes were observed to change communities ( \cref{fig:N_I:p0_mut_burden}). The disease subgroups identified through this network approach showed different results compared to standard approaches, with only minor variations observed between networks modified by weight modifiers. This suggests that the weight modifier strategies, as depicted in \cref{fig:N_I:modifiers}, require further refinement.
+% Two main co-expressed gene networks were explored: one constructed from tumour samples and the other from non-tumour tissue samples. The experiments demonstrated that integrating mutations and TFs was successful at the graph level but had limited impact on the MIBC subtypes derived from the. Network metrics varied between the modified networks (as shown in \cref{fig:N_I:net_metrics_tum,fig:N_I:net_metrics_p0}), and highly mutated genes were observed to change communities ( \cref{fig:N_I:p0_mut_burden}). The disease subgroups identified through this network approach showed different results compared to standard approaches, with only minor variations observed between networks modified by weight modifiers. This suggests that the weight modifier strategies, as depicted in \cref{fig:N_I:modifiers}, require further refinement.
 
-\textbf{Reading this you could say - so why is it included? What is the narrative here? The thesis does not need to contain absolutely everything you did. Think about the key message you want to convey and what is needed to convey this.}
+% \textbf{Reading this you could say - so why is it included? What is the narrative here? The thesis does not need to contain absolutely everything you did. Think about the key message you want to convey and what is needed to convey this.}
 
 % P0 not enough
-The networks built from the P0 (\cref{s:p0}) highlighted the problems introduced to the Leiden algorithm when a subset of genes is allowed a larger number of connections (50). The P0 network is also built on an incomplete representation of the MIBC tumours, as there is no molecular representation of the basal group (undifferentiated). Additionally, the gene expression of the P0 samples is not considered when subtyping the MIBC. These limitations are addressed in the next chapter, where the entire available non-tumour dataset is used and a new version of MEV is introduced.
 
-% Main takeaway 
-Overall the experiment using both the tumour and P0 derived networks validates the initial hypothesis that data integration can happen by modelling the number of edges and their weights. In addition, the non-tumour graphs showed that it is possible to form a non-tumour representation from which the MIBC can be derived. Next chapter explores in more depth the effects of selective edge pruning and differences between community detection algorithms into the tumour network
 

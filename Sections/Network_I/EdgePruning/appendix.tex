@@ -44,7 +44,8 @@ The groups smaller than 1\% of the cohort size (equivalent to 4 samples) are rem
 \begin{sidewaysfigure}
     \centering
     \includegraphics[width=1.0\textwidth,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/15_CS_norm_sel_tfs.png}
-      \caption{Hierarchical clustering of the 98 TFs found in \cref{s:N_I:sel_tfs}. The columns at the top of the heatmap represents the previous classification (TCGA \cite{Robertson2017-mg}, Consensus \cite{Kamoun2020-tj}, Lund \cite{Marzouka2018-ge} and the stratification from \cref{s:clustering_analysis}) as well as the Immune, Stromal and ESTIMATE scores available with the TCGA cohort.}
+      \caption{Hierarchical clustering of the 98 TFs found in \cref{s:N_I:sel_tfs}. 
+      Their gene expression was log2(TPM+1) transformed, normalised by the quantiles, and then agglomerative clustering with average linkage was applied on the 1-Pearson correlation distance. The columns at the top of the heatmap represents the previous classification (TCGA \cite{Robertson2017-mg}, Consensus \cite{Kamoun2020-tj}, Lund \cite{Marzouka2018-ge} and the stratification from \cref{s:clustering_analysis}) as well as the Immune, Stromal and ESTIMATE scores available with the TCGA cohort.}
     \label{fig:ap:morph_sel_tfs}
 \end{sidewaysfigure}
 
@@ -73,16 +74,16 @@ The scatter plot complements the work in \cref{s:N_I:sel_tfs_bio} which explores
     \captionsetup[subfigure]{justification=Centering}
   % consensus
   \begin{subfigure}[!t]{0.95\textwidth}
-    \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/log2_consensus_basal.png}
+    \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/box_plots/consensus_basal.png}
     \caption{Basal}
     \label{fig:ap:box_basal_consensus}
     \end{subfigure}
   \begin{subfigure}[!t]{0.95\textwidth}
-      \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/log2_consensus_lum.png}
+      \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/box_plots/consensus_lum.png}
       \caption{Luminal}
       \label{fig:ap:box_luminal_consensus}
   \end{subfigure}
-  \caption{Box plots showing the $log2(TPM+1)$ of the \textbf{luminal markers} over the consensus and groups derived from the hierarchical clustering applied in this chapter.}
+  \caption{Box plots showing the TPM spread of the over the consensus MIBC \citet{Kamoun2020-tj}. Supporting the work done in \cref{fig:N_I:box_debdrogram}.}
   \label{fig:ap:box_consensus}
 \end{figure}
 
