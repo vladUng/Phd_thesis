@@ -65,39 +65,19 @@ The scatter plot complements the work in \cref{s:N_I:sel_tfs_bio} which explores
 \end{figure}
 
 
-
-% Metadata of the hierarchical clustering
-\section{TCGA metadata and the clusters based on the 98 TFs} \label{s:ap:sel_prun_tcga_meta}
-
-
-\begin{figure}[!htb]   
-    \centering
-    \includegraphics[width=1.0\textwidth,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/sel_tfs/sel_tfs_tcga_meta.png}
-      \caption{The metadata from TCGA \cite{Robertson2017-mg} across the subtypes derived from applying hierarchical clustering on the expression of the 98 TFs from \cref{fig:N_I:sel_tfs}. }
-    \label{fig:ap:sel_tfs_tcga_metadata}
-\end{figure}
-
-\begin{figure}[!htb]   
-    \centering
-    \includegraphics[width=1.0\textwidth,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/sel_tfs/sel_tfs_apobec_meta.png}
-      \caption{Heatmap of the the APOBEC mutations in TCGA.}
-    \label{fig:ap:sel_tfs_tcga_meta_apobec}
-\end{figure}
-
-\newpage 
-
+% Basal/consensus subgroups
 \section{Basal and Luminal markers on consensus subgroups} \label{s:ap:sel_prun_markers}
 
 % The Basal/Luminal Markers in the consensus
-\begin{figure}[H]
+\begin{figure}[!htb]
     \captionsetup[subfigure]{justification=Centering}
   % consensus
-  \begin{subfigure}[!t]{1.0\textwidth}
+  \begin{subfigure}[!t]{0.95\textwidth}
     \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/log2_consensus_basal.png}
     \caption{Basal}
     \label{fig:ap:box_basal_consensus}
     \end{subfigure}
-  \begin{subfigure}[!t]{1.0\textwidth}
+  \begin{subfigure}[!t]{0.95\textwidth}
       \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/log2_consensus_lum.png}
       \caption{Luminal}
       \label{fig:ap:box_luminal_consensus}
@@ -108,25 +88,60 @@ The scatter plot complements the work in \cref{s:N_I:sel_tfs_bio} which explores
 
 
 
+
 % Pi-plots for GSEA
 \section{Pi-plots for GSEA} \label{s:ap:sel_prun_pi}
 
-This section contains the Pi-plots for each of the MIBC subtypes derived from the gene expression of the 98 TFs from \cref{s:N_I:sel_tfs}. The method on how the DEA was performed and the Pi-plots generated can be found in \cref{s:lit:dea,s:lit:pi,s:lit:gsea}.
+This section supports the results from \cref{s:N_I:sel_tfs_subtypes} and it contains the Pi-plots for each of the MIBC subtypes derived from the gene expression of the 98 TFs from \cref{s:N_I:sel_tfs}. The method on how the DEA was performed and the Pi-plots generated can be found in \cref{s:lit:dea,s:lit:pi,s:lit:gsea}. Below are some notes on choosing the comparison across the four pi plots:
+
+\paragraph*{Basal 4}
+
+\begin{itemize}
+    \item This is the largest basal group (\cref{fig:N_I:sankey_sel_tfs}).
+    \item It contains samples that were primarily classified as Ba/Sq by previous stratification methods \citep{Robertson2017-mg,Kamoun2020-tj,Marzouka2018-ge}.
+    \item The comparison with the two luminal groups aimed to identify any infiltration trends within Basal 4 and any Ba/Sq-specific markers.
+    \item \textbf{Result:} The group has fewer genes in common with the luminal-infiltrated group than expected. Lum 13 exhibits a strong gene expression difference when compared with the large basal group, particularly with values on the negative Y-axis.
+\end{itemize}
+    
+\paragraph*{Luminal 13 (Lum 13)}
+
+\begin{itemize}
+    \item This is the largest luminal group (\cref{fig:N_I:sankey_sel_tfs}).
+    \item It consists of most of the luminal samples \citep{Robertson2017-mg,Kamoun2020-tj,Marzouka2018-ge}.
+    \item The comparison with Basal 5 and Basal 4 was intended to highlight the luminal markers specific to this group.
+    \item \textbf{Result:} In \cref{fig:ap:pi_lum}, Lum 13 exhibits a strong gene expression difference, especially when compared with Basal 5. The two basal groups show some common markers.
+\end{itemize}
+
+\paragraph*{Mes 3}
+
+\begin{itemize}
+    \item This group consists of samples classified as Mes-like by the Lund classifier \citep{Marzouka2018-ge}.
+    \item The comparison with Lum 13 and Lum 12 aimed to identify any basal markers specific to Mes 3.
+    \item \textbf{Result:} The Pi plot in \cref{fig:ap:mes_like} shows a strong difference between the luminal groups and Mes-like, which is expected given that some of the samples were previously classified as basal. The luminal groups share several genes.
+\end{itemize}
+
+\paragraph*{Luminal 12 (Lum 12)}
+ 
+\begin{itemize}
+    \item This group contains a large share of samples previously classified as luminal infiltrated \cite{Robertson2017-mg,Kamoun2020-tj}.
+    \item The comparison with Basal 5 emphasizes the luminal markers specific to Lum 13, while the comparison with Basal 4 checks for shared immune genes.
+    \item \textbf{Result:} The group exhibits a strong gene expression difference with the basal groups. As seen in \cref{fig:ap:lumInf}, there are not many immune markers shared between Basal 4 and Lum 13.
+\end{itemize}
 
 
 \begin{figure}[H]
     \centering
     \begin{subfigure}[!t]{1.0\linewidth}
         \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/pi_gsea/pi_largeBasal.png}
-        \caption{Large Basal}
+        \caption{Basal 4 - the largest basal group}
         \label{fig:ap:pi_basal}
     \end{subfigure}
     \begin{subfigure}[!t]{1.0\textwidth}
         \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/pi_gsea/pi_largeLuminal.png}
-        \caption{Large luminal}
+        \caption{Lum 13 - biggest luminal group}
         \label{fig:ap:pi_lum}
     \end{subfigure}
-    \caption{Pi plots for mes-like and lumInf from \cref{s:N_I:sel_tfs_subtypes}}
+    \caption{Pi plots basal 4 and lum 13 from \cref{s:N_I:sel_tfs_subtypes} which were used used to rank the genes for the GSEA in \cref{s:ap:sel_tfs_gsea_reactome}.}
     \label{fig:ap:pi_other_values_I}
 \end{figure}
 
@@ -134,22 +149,70 @@ This section contains the Pi-plots for each of the MIBC subtypes derived from th
     \centering
     \begin{subfigure}[!t]{1.0\textwidth}
         \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/pi_gsea/pi_mesLike.png}
-        \caption{Mes-like}
+        \caption{Mes 3}
         \label{fig:ap:mes_like}
     \end{subfigure}
     \begin{subfigure}[!t]{1.0\textwidth}
         \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/pi_gsea/pi_lumInf.png}
-        \caption{Luminal infiltrated}
+        \caption{Luminal 12 - or luminal infiltrated}
         \label{fig:ap:lumInf}
     \end{subfigure} 
-    \caption{Pi plots for mes-like and lumInf from \cref{s:N_I:sel_tfs_subtypes}}
+    \caption{Pi plots mes 3 and lum 12 from \cref{s:N_I:sel_tfs_subtypes} which were used used to rank the genes for the GSEA in \cref{s:ap:sel_tfs_gsea_reactome}.}
     \label{fig:ap:pi_other_values_II}
 \end{figure}
 
 \newpage
 
+
+% GSEA plots
+\section{GSEA plots top 10 - Reactome} \label{s:ap:sel_tfs_gsea_reactome}
+
+This section supports the results presented in \cref{s:N_I:sel_tfs_mibc}, where the five subtypes were derived using the gene expression of the 98 TFs identified through selective edge pruning, as discussed in \cref{s:N_I:sel_tfs}. The Pi plots used to rank the data can be seen in \cref{s:ap:sel_prun_pi}. This section contains the GSEA results with the top 10 terms for each group.
+
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/gsea/smallBasal_10_top_manTerms.png}
+    \caption{Top 10 GSEA terms with Reactome database for the Basal 5 group. Results interpretation in \cref{s:N_I:sel_tfs_mibc,s:ap:sel_prun_pi}.}
+    \label{fig:ap:gsea_smallBasal}
+\end{figure}
+
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/gsea/largeBasal_10_top_manTerms.png}
+    \caption{Top 10 GSEA terms with Reactome database for the Basal 4 group. Results interpretation in \cref{s:N_I:sel_tfs_mibc,s:ap:sel_prun_pi}.}
+    \label{fig:ap:gsea_largeBasal}
+\end{figure}
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/gsea/mesLike_10_top_manTerms.png}
+    \caption{Top 10 GSEA terms with Reactome database for the Mes 3 group. Results interpretation in \cref{s:N_I:sel_tfs_mibc,s:ap:sel_prun_pi}.}
+    \label{fig:ap:gsea_mesLike}
+\end{figure}
+
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/gsea/largeLuminal_10_top_manTerms.png}
+    \caption{Top 10 GSEA terms with Reactome database for the Lum 13 group. Results interpretation in \cref{s:N_I:sel_tfs_mibc,s:ap:sel_prun_pi}.}
+    \label{fig:ap:gsea_largeLuminal}
+\end{figure}
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/gsea/lumInf_10_top_manTerms.png}
+    \caption{Top 10 GSEA terms with Reactome database for the Lum 12 group. Results interpretation in \cref{s:N_I:sel_tfs_mibc,s:ap:sel_prun_pi}.}
+    \label{fig:ap:gsea_lumInf}
+\end{figure}
+
+
 % GSEA - hallmarks
 \section{GSEA output (Hallmarks)} \label{s:ap:hallmarks}
+
+This section supports the results presented in \cref{s:N_I:sel_tfs_mibc}, where the five subtypes were derived using the gene expression of the 98 TFs identified through selective edge pruning, as discussed in \cref{s:N_I:sel_tfs}. The Pi plots used to rank the data can be seen in \cref{s:ap:sel_prun_pi}. In contrast to the main section, this GSEA analysis was performed using the Hallmark database.
+
 
 \begin{table}[H]
   \centering
@@ -193,118 +256,33 @@ This section contains the Pi-plots for each of the MIBC subtypes derived from th
   \label{ap:tab:gsea_hallmark}
 \end{table}
 
-\newpage
+% Other supporting material
+\section{Other supporting materials}
 
-% % GSEA - oncoSig
-% \section{GSEA output (OncoSig)} \label{s:ap:sel_prun_oncosig}
-
-% % Table for OnCoSig
-% \begin{table}[H]
-%   \centering
-%   \scriptsize
-%   \begin{tabularx}{\textwidth}{>{\hsize=1.5\hsize}X|>{\hsize=0.4\hsize}X|>{\hsize=0.4\hsize}X|>{\hsize=0.6\hsize}X|>{\hsize=0.4\hsize}X|>{\hsize=0.4\hsize}X}
-%     \toprule
-%     \textbf{Term} & \textbf{NES} & \textbf{FDR q-val} & \textbf{\# lead genes} & \textbf{\# matchedl} & \textbf{ratio matched} \\
-%     \midrule
-%     \multicolumn{6}{c}{\textbf{smallBasal}} \\
-%     \midrule
-%     SINGH KRAS DEPENDENCY SIGNATURE & 2.121 & 0 & 17 & 10 & 0.588 \\
-%     \midrule
-%     TBK1.DF DN & 2.105 & 0 & 206 & 132 & 0.641 \\
-%     \midrule
-%     EIF4E DN & 2.084 & 0 & 53 & 44 & 0.83 \\
-%     \midrule
-%     PGF UP.V1 UP & 2.002 & 0 & 111 & 67 & 0.604 \\
-%     \midrule
-%     ERBB2 UP.V1 DN & 1.877 & 0 & 110 & 67 & 0.609 \\
-%     \midrule
-%     GCNP SHH UP LATE.V1 UP & 1.863 & 0 & 120 & 52 & 0.433 \\
-%     \midrule
-%     P53 DN.V1 UP & 1.862 & 0 & 68 & 65 & 0.956 \\
-%     \midrule
-%     RB P130 DN.V1 DN & 1.862 & 0 & 82 & 52 & 0.634 \\
-%     \midrule
-%     \multicolumn{6}{c}{\textbf{largeBasal}} \\
-%     \midrule
-%     CSR LATE UP.V1 UP & 2.382 & 0 & 115 & 86 & 0.748 \\
-%     \midrule
-%     TBK1.DF UP & 2.332 & 0 & 173 & 135 & 0.78 \\
-%     \midrule
-%     CSR EARLY UP.V1 UP & 2.326 & 0 & 110 & 74 & 0.673 \\
-%     \midrule
-%     \multicolumn{6}{c}{\textbf{mesLike}} \\
-%     \midrule
-%     CORDENONSI YAP CONSERVED SIGNATURE & 2.49 & 0 & 48 & 39 & 0.812 \\
-%     \midrule
-%     LEF1 UP.V1 UP & 2.423 & 0 & 125 & 110 & 0.88 \\
-%     \midrule
-%     RB P107 DN.V1 UP & 2.316 & 0 & 84 & 71 & 0.845 \\
-%     \midrule
-%     LTE2 UP.V1 DN & 2.265 & 0 & 118 & 86 & 0.729 \\
-%     \midrule
-%     \multicolumn{6}{c}{\textbf{lumInf}} \\
-%     \midrule
-%     BCAT.100 UP.V1 UP & 2.067 & 0 & 24 & 22 & 0.917 \\
-%     \midrule
-%     CSR LATE UP.V1 DN & 1.964 & 0 & 70 & 49 & 0.7 \\
-%     \midrule
-%     AKT UP.V1 DN & 1.889 & 0 & 90 & 66 & 0.733 \\
-%     \midrule
-%     ESC J1 UP LATE.V1 UP & 1.828 & 0 & 81 & 67 & 0.827 \\
-%     \midrule
-%     \multicolumn{6}{c}{\textbf{largeLuminal}} \\
-%     CSR EARLY UP.V1 DN & 1.679 & 0.002 & 73 & 32 & 0.438 \\
-%     \midrule
-%     MYC UP.V1 DN & 1.613 & 0.002 & 77 & 38 & 0.494 \\
-%     \bottomrule
-%   \end{tabularx}
-%    \caption{Normalised Enrichment Score (NES), False Discovery Rate (FDR) q-val, and lead gene statistics for different subtypes and terms in bladder cancer biology from the OncoSig database. The lead genes from a pathway are selected by GSEAPY based on when the NES reached its peak.}
-%   \label{ap:tab:gsea_oncosig}
-% \end{table}
-
-% \newpage
-
-
-
-% GSEA plots
-\section{GSEA plots top 10 by Enrichment score}
-
-
-
-\begin{figure}[!htb]
+\begin{sidewaysfigure}
     \centering
-    \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/gsea/smallBasal_10_top_manTerms.png}
-    \caption{Small Basal}
-    \label{fig:ap:gsea_smallBasal}
-\end{figure}
+    \includegraphics[width=1.0\textwidth,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/sel_tfs/sel_tfs_tcga_meta.png}
+      \caption{The metadata from TCGA \cite{Robertson2017-mg} across the subtypes derived from applying hierarchical clustering on the expression of the 98 TFs from \cref{fig:N_I:sel_tfs}. The figure supports the analysis performed in \cref{s:N_I:sel_tfs_metadata}.}
+    \label{fig:ap:sel_tfs_tcga_metadata}
+\end{sidewaysfigure}[!htb]   
+
+% \begin{figure}[!htb]   
+%     \centering
+%     \includegraphics[width=1.0\textwidth,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/sel_tfs/sel_tfs_apobec_meta.png}
+%       \caption{Heatmap of the the APOBEC mutations in TCGA.}
+%     \label{fig:ap:sel_tfs_tcga_meta_apobec}
+% \end{figure}
+
+\newpage 
 
 
-\begin{figure}[!htb]
+
+% Somatic mutations
+% \section{TCGA somatic mutation} \label{s:ap:sel_prun_mut}
+
+\begin{sidewaysfigure}
     \centering
-    \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/gsea/largeBasal_10_top_manTerms.png}
-    \caption{GSEA output of the Basal group sfor the groups derived using Selective Edge pruning in  \cref{s:N_I:sel_tfs_subtypes}}
-    \label{fig:ap:gsea_largeBasal}
-\end{figure}
-
-\begin{figure}[!htb]
-    \centering
-    \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/gsea/lumInf_10_top_manTerms.png}
-    \caption{GSEA output of the Luminal Infiltrated group for the groups derived using Selective Edge pruning in  \cref{s:N_I:sel_tfs_subtypes}}
-    \label{fig:ap:gsea_lumInf}
-\end{figure}
-
-\begin{figure}[!htb]
-    \centering
-    \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/gsea/mesLike_10_top_manTerms.png}
-    \caption{GSEA output of the Mes-like group for the groups derived using Selective Edge pruning in  \cref{s:N_I:sel_tfs_subtypes}}
-    \label{fig:ap:gsea_mesLike}
-\end{figure}
-
-\begin{figure}[!htb]
-    \centering
-    \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/gsea/largeLuminal_10_top_manTerms.png}
-    \caption{GSEA output of the Luminal group for the groups derived using Selective Edge pruning in  \cref{s:N_I:sel_tfs_subtypes}}
-    \label{fig:ap:gsea_largeLuminal}
-\end{figure}
-
-
+\includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/sel_tfs/sel_tfs_mut_meta.png}
+      \caption{Heatmap of binary somatic mutation across across the groups derived using the selective edge pruning. The figure show that there is no hint of relation between the subgroups and the mutations. The figure supports the analysis performed in \cref{s:N_I:sel_tfs_metadata}}
+    \label{fig:ap:sel_tfs_tcga_meta_mut}
+\end{sidewaysfigure}

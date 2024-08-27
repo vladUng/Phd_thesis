@@ -48,36 +48,59 @@ This part of the project aims to:
 \subsection{Summary}
 
 % Recapitulate the aims and what have been done
-This subsection began with two aims: identifying the appropriate community detection method and exploring the integration of Transcription Factors (TF) into the network. The comparison at the start of the section (\ref{}) demonstrated that, despite the high computational cost of Stochastic Block Models (SBM), they offer more advantages over Modularity Maximisation algorithms such as Leiden. From a network perspective, the selective edge pruning method for integrating TFs was effective, as these nodes exhibited a higher degree. Thus, the two aims of the section were achieved.
+This subsection began with two aims: identifying the appropriate community detection method and exploring the integration of Transcription Factors (TF) into the network. The comparison at the start of the section (\ref{}) demonstrated that, despite the high computational cost of Stochastic Block Models (SBM), they offer more advantages over Modularity Maximisation algorithms such as Leiden. From a network perspective, the selective edge pruning method to integrating TFs is effective, as those nodes exhibited a higher degree. Therefore, the two aims of were achieved.
 
 % Significance in cancer
-Throughout the selective edge experiments, it was remarkable to find that by using controls and prioritising non-TFs, a subset of 'naturally' well-connected TFs in the tumour dataset could be derived. The analysis in this section indicates that the subset of 98 TFs has important biological significance. Hierarchical clustering was applied to this subset of genes, yielding subtypes with significantly different survival outcomes (\cref{fig:N_I:sel_tfs_cs_analysis}). Group 5, or the small basal group of 20 patients, had the worst survival prognosis, with a less than 20\% chance of survival after 1.7 years (20 months). This group exhibited squamous markers, had a low immune response, and 7 out of the 10 most significantly expressed genes were studied in cancer. Some of these 7 genes are responsible for the aggressiveness of the tumours, while others can be targeted to improve treatment response.
+Throughout the selective edge experiments, it was remarkable to find that by using controls and prioritising non-TFs, a subset of 'naturally' well-connected TFs in the tumour dataset could be derived. The analysis in this section indicates that the subset of 98 TFs has important biological significance. Hierarchical clustering was applied to this subset of genes, yielding subtypes with significantly different survival outcomes (\cref{fig:N_I:sel_tfs_cs_analysis}).  From the five newly found groups the basal 5 has the lowest survival with squamous markers and the basal 3 resembles the mesenchymal group from Lund cohort.
+
+While the subset of TFs was informative for the Basal subgroup, it was less successful for the luminal subgroup. The previously derived luminal subtypes (consensus, TCGA, Lund, and the work in the previous chapter) are grouped into one large group. Looking at a known luminal marker, \textit{FGFR3}, it was observed that this gene has a low degree in the network. In addition, some other known markers were left out in the gene selection process (e.g., \textit{PPARG}). This may also be explained by the fact that luminal tumours are "molecularly closer" to differentiated bladder tissue, compared to the basal subtypes which are undifferentiated urothelium. The high variance introduced by the basal subtype might explain why other known gene markers were missed.
+
+\section{Discussion}
+
+% Main results
+Selective edge pruning has proven to be more than just a technique for integrating additional data into the network; it is also a novel method for identifying highly correlated genes in gene expression data. By combining experiments with controls (random genes), selective edge pruning, along with ModCon, successfully extracted 98 TFs (out of the 325 in the 5000-node network), which were then further analysed. Analysis of this subset of genes revealed five distinct MIBC groups, including three basal subtypes, a large luminal group, and a luminal-infiltrated group.
+
+% Gene expression
+The analysis of the 98 TFs identified a basal group (Basal 5) consisting of 20 patients with less than a 20\% chance of survival after 1.7 years (20 months), representing one of the poorest prognoses observed in the project. This group exhibited squamous markers, had a low immune response, and 7 out of the 10 most significantly expressed genes had previously been studied in cancer. Some of these 7 genes are associated with the aggressiveness of the tumours, while others could be targeted to improve treatment response.
+
+% Other groups
+Another subgroup, Basal 3, consisting of 30 samples, was identified, which included tumours previously classified as Mes-like by the Lund classifier \citep{Marzouka2018-ge}. Both Basal 3 and Basal 5 exhibit similar survival prognoses, although Basal 3 has a more favourable outlook than Basal 5. The significance of identifying a subtype similar to the Mes-like group from the Lund classifier lies in the fact that only the gene expression of the 98 TFs was used, without the \acrlong{ihc} data employed in the Lund cohort. This underscores the critical influence of the TF subset on bladder tumours.
+
+
+
+% New markers
+\subsubsection*{Potential new markers}
 
 % the two lists of basal/luminal
-Using the analysis performed on the non-tumour dataset and the gene expression data from TCGA, the 98 TF genes were reduced to two different lists of markers for basal and luminal subtypes (\cref{tab:N_I:genes_lum_basal}). Many genes from these two lists were validated by other research work, which only confirmed and strengthened our findings.
+Using the analysis performed on the non-tumour dataset and the gene expression data from TCGA, the 98 TF genes were reduced to two different lists of markers for basal and luminal subtypes (\cref{tab:N_I:genes_lum_basal}). Many genes from these two lists were validated by other research work, which strengthened the selective edge pruning as a method for extracting highly connected genes.
 
 % the list for non-tumour data
 Extending the findings beyond cancer, some of the 98 TF genes were classified by their expression in the non-tumour dataset. The analysis performed (\cref{s:N:sel_tf_diff_status}) proposes three lists of genes specific to P0, UD, and AbsCa, as well as another three between these categories. This refined list of genes may help biologists better understand urothelium differentiation, which in turn will also aid in elucidating the basal/luminal molecular differences.
 
-While the subset of TFs was informative for the Basal subgroup, it was less successful for the luminal subgroup. The previously derived luminal subtypes (consensus, TCGA, Lund, and the work in the previous chapter) are grouped into one large group. Looking at a known luminal marker, \textit{FGFR3}, it was observed that this gene has a low degree in the network. In addition, some other known markers were left out in the gene selection process (e.g., \textit{PPARG}). This may also be explained by the fact that luminal tumours are molecularly closer to differentiated bladder tissue, compared to the basal subtypes which are undifferentiated urothelium. The high variance introduced by the basal subtype might explain why other known gene markers were missed.
 
-\section{Discussion}
+% Comm detection
+\subsection*{Community detection}
 
+Varying the number of edges per TF significantly impacts the community detection algorithms, Leiden more than SBM. It was observed that the former finds fewer communities as the nodes' degree is increased, while SBM is more stable. This, along with the work from \citet{Peixoto2021-jx, Peixoto2023-rt}, which shows that Modularity Maximisation methods are prone to finding patterns in noise, made SBM the preferred method in this project. In this chapter, the simple degree-corrected version of SBM was used, but a hierarchical version of it will be used in the next chapter. The hierarchical SBM is more complex and computationally expensive than the standard version, but it does not have a threshold on the number of communities it can find; limit discussed in \cref{s:lit:sbm}.
 
-% Community detection comparison
-Varying the number of edges per TF significantly impacts the community detection algorithms, Leiden more than SBM. It was observed that the former finds fewer communities as the nodes' degree is increased, while SBM is more stable. This, along with the work by \citet{Peixoto2021-jx, Peixoto2023-rt}, which shows that Modularity Maximisation methods are prone to finding patterns in noise, made SBM the preferred method in this project. In this chapter, the simple degree-corrected version of SBM was used, but a hierarchical version of it will be used in the next chapter. The hierarchical SBM is more complex and computationally expensive than the standard version, but it does not have a threshold on the number of communities it can find.
-
-
-% Edge pruning successful - decided on the 6TF. also mentioned that the controls used enabled us to find relevant 98 TFs
-All the experiments contributed to advancing the network pipeline to the next iteration in the next chapter, but the selective edge pruning to integrate TF knowledge arguably has the highest biological impact. Through the control experiments, it was observed that there are 98 TFs that are 'naturally' highly connected. The list of genes was further analysed and it was found that there is an MIBC subgroup with a very poor prognosis. The work done in \cref{s:N_I:sel_tfs} shows the impact of changing the number of connections, demonstrating that the edge pruning strategy can lead to relevant biological findings. It also shows how the network can be a useful tool for biologists by selecting sub-graphs based on the genes under study.
-
-
-
-% Limitations
-One of the limitations of the work done in selective edge pruning was that only ten control networks were used for comparison. This was due to the high computational time (a few hours) required to run the SBM, the lengthy process of loading the network output\footnote{During the network runs and SBM, a lot of metadata was saved, which helped to debug, understand, and analyse the networks. This made the network output fairly large, taking a considerable footprint of the RAM. For example, analysing the results for the 10 controls and experiments takes approximately 40GB of RAM.} and the limited time in a PhD project. Another possible limitation is using only 5000 genes for a network using SBM. As it will be seen in the next chapter \cref{s:N_II}, the stochastic model is capable of finding smaller communities in a large network. This means that more genes can be included, but this will make the network very dense, so extra rules for edge pruning might be needed. However, from a biological perspective, re-running the selective edge pruning on larger networks and more controls may further enforce that there is a subset of TFs that are co-expressed with many genes in bladder cancer.
 
 % Further work
 Considering the limitations, the analysis performed suggests that both the subset of 98 TFs and the subtypes need more in-depth exploration, even selecting a few targeted genes to study the bladder response \textit{in-vitro}. It also suggests that the selective edge pruning is working and exhibits highly relevant biological results.
 
+\subsection* {Limitations}
 
-This and previous chapters explored three types of data integration in a graph: at a network level, edge weights, and the number of connections. The first two strategies need further refining, while for the selective edge pruning, a minimum degree of 6 for TFs and 3 for standard genes was found to be appropriate. The subsequent section will consider the following changes: 1) ease the filtering for the expressed genes 2) utilising the entire non-tumour dataset to enhance gene representation in the tumour network; 3) using a hierarchical stochastic block model; and 4) improving the strategies for weight modifiers.
+One of the limitations of the work done in selective edge pruning was that only ten control networks were used for comparison. This was due to the high computational time (a few hours) required to run the SBM, the lengthy process of loading the network output\footnote{During the network runs and SBM, a lot of metadata was saved, which helped to debug, understand, and analyse the networks. This made the network output fairly large, taking a considerable footprint of the RAM. For example, analysing the results for the 10 controls and experiments takes approximately 40GB of RAM.} and the limited time in a PhD project. Another possible limitation is using only 5000 genes for a network using SBM. As it will be seen in the next chapter \cref{s:N_II}, the stochastic model is capable of finding smaller communities in a large network. This means that more genes can be included, but this will make the network very dense, so extra rules for edge pruning might be needed. However, from a biological perspective, re-running the selective edge pruning on larger networks and more controls may further enforce that there is a subset of TFs that are co-expressed with many genes in bladder cancer.
+
+
+This and the previous chapter explored three types of data integration in a graph: at a network level, edge weights, and the number of connections. The first two strategies need further refining, while for the selective edge pruning, a minimum degree of 6 for TFs and 3 for standard genes was found to be appropriate. The subsequent section will consider the following changes:  q) utilising the entire non-tumour dataset to enhance gene representation in the tumour network; 3) using a hierarchical stochastic block model; and 4) improving the strategies for weight modifiers.
+
+
+\subsection*{Novelty summary}
+
+The following novel work was presented in this chapter:
+\begin{itemize}
+    \item Selective edge pruning as a method to find highly correlated genes
+    \item 98 TFs which drive a three way basal split
+    \item One of the lowest basal survival groups - including samples that were previously classified as Ba/Sq and not Ne
+    \item Selective edge pruning integrated the TFs into a network a
+\end{itemize}

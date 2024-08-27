@@ -39,7 +39,7 @@ It is worth remembering that MIBC is generally divided into Luminal and Basal su
 There are few genes that are highly expressed in both the tumours and non-cancerous datasets such as \textit{ELF3, KLF5} or \textit{JUN}. A scatter plot version of the bar plot can be seen in \cref{fig:ap:sel_tfs_mean} from Appendix, where the x-axis represents the non-cancerous mean, y-axis the tum mean and the size and colour the mutation burden of the genes.
 
 % Undiff vs Diff
-\subsection{Bladder tissue differentiation} \label{s:N:sel_tf_diff_status}
+\subsection{In bladder tissue differentiation} \label{s:N:sel_tf_diff_status}
 
 
 To further understand the role of the 98 TFs in the bladder tissue differentiation the Pi plot introduced in \cref{s:lit:pi} are used explore the \acrfull{dea} across three tissue differentiation datasets, shown in \cref{fig:N_I:pi_sel_tfs_var}. The pi values are computed using the DEA between the Abs-Ca differentiated and P0 (X-axis) and UD (Y-axis) samples. There are shown only the 98 TFs found classified by their varince.
@@ -94,8 +94,9 @@ It is surprising that there are no TFs shared in the culture quadrant (UD and Ab
 
 \newpage
 
+
 % Transitioning to cancer
-\subsection{Muscle-invasive bladder cancer} \label{s:N_I:sel_tfs_cancer}
+\subsection{In muscle-invasive bladder cancer} \label{s:N_I:sel_tfs_cancer}
 
 
 % Selecting the genes for basal and luminal, expression in both Basal and Luminal
@@ -146,11 +147,21 @@ A recent study by \citet{Ramal2024-ha}, which investigated the regulatory networ
 \end{figure}
 
 
+
 % Subtypes analysis
-\subsection{Gene Set Enrichment Analysis} \label{s:N_I:sel_tfs_subtypes}
+\subsection{Differentially expressed analysis} \label{s:N_I:sel_tfs_subtypes}
+
+This section expands the analysis of the 98 TFs and their impact on MIBC by performing \acrfull{dea}, followed by the use of a Pi plot to rank the genes for \acrfull{gsea}. An introduction to these methods can be found in \cref{s:lit:dea,s:lit:pi,s:lit:gsea}. For each of the five MIBC subtypes identified earlier—basal 3, basal 4, basal 5, luminal 13, and luminal 12—a Pi plot was created, which is available in Appendix \cref{s:ap:sel_prun_pi}. 
+
+It is important to note that the input data for GSEA across all subtypes uses the same comprehensive list of genes but ranks them differently, prioritising genes specific to each studied subtype. As a result, the GSEA output includes pathways shared across the subtypes. To address this, the top ten \textbf{unique} pathways with the highest normalised enrichment score (NES) and a significant FDR q-value were retained for each MIBC group.
+
+No unique signature was found for the mes 3 subgroup, as it shared several pathways with the basal 4 (e.g., interferon alpha and gamma pathways), as shown in the GSEA outputs in Appendix \cref{fig:ap:gsea_largeBasal,fig:ap:gsea_mesLike}.
+
+The outputs of the GSEA runs using the Reactome database are summarised in two tables: one for the basal groups (\cref{tab:N_I:gsea_basal_reactome}) and another for the luminal groups (\cref{tab:N_I:gsea_luminal_reactome}). The top 10 terms, whether unique to the MIBC group or not, are listed in the Appendix \cref{s:ap:sel_tfs_gsea_reactome}.
 
 
-This section expands the analysis of the 98 TFs and their impact on MIBC by performing \acrfull{dea}, followed by the use of a Pi plot to rank the genes for \acrfull{gsea}; an introduction to these methods can be found in \cref{s:lit:dea,s:lit:pi,s:lit:gsea}. For each of five MIBC subtypes determined earlier: basal 3, basal 4, basal 5, luminal 13 and luminal 12 a pi plot is created which can be found in Appendix \cref{s:ap:sel_prun_pi}.
+% Basal 5
+\subsubsection*{Basal 5}
 
 
 % Pi plot for Small Ba/Sq
@@ -161,24 +172,41 @@ This section expands the analysis of the 98 TFs and their impact on MIBC by perf
     \label{fig:N_I:pi_smallBasal_comp}
 \end{figure}
 
-% Intro to the small basal
-In \cref{fig:N_I:pi_smallBasal_comp} the small basal (5 from \cref{fig:N_I:sel_tfs_cs_analysis}) is compared against the large basal, on the x-axis, in order to determine the properties over the other basal. The pi-values on the y-axis are the result from small-basal vs mes-like as it was observed that the mes-like group is different from both the luminal\footnote{The purpose of the pi plot was to highlight the specific genes to the small-basal. However, one may think that a more direct comparison of the small-basal with the luminal groups could have been chosen, instead of mes-like DEA. The other pi-plots comparison (like the plots for LumInf,  large luminal \cref{fig:ap:pi_other_values_I,fig:ap:pi_other_values_II} - in Appendix) cover the 'basal' vs 'luminal' comparison. }. 
+% Why we chosen those comparisons
+Basal 5 has the lower survival prognosis seen for a subtype in this project and to understand what it differentiates from the other groups \cref{fig:N_I:pi_smallBasal_comp} was used. The Pi-plot consists on the DEA between the Basal 4 (X-axis) and Mes 3 (Y-Axis).
 
+% 7 out of 10 biology
+From the plot it was found that seven out of the ten genes closest to the referential point were found to have biological significance in bladder cancer biology: \textit{GPX2, KRT13, ALDH3A1, KRT15, KRT4, AKR1B10, SOX2, TP63, RAPGEFL1, CAPNS2}. \textit{GPX2} is involved in squamous differentiation \citet{Naiki2018-fp}. 
 
-% What are these 10 top genes
-\paragraph*{Basal 5 top 10}
-
-Returning to the small group and the pi scatter plot from \cref{fig:N_I:pi_smallBasal_comp}, seven out of the ten genes closest to the referential point were found to have biological significance in bladder cancer biology: \textit{GPX2, KRT13, ALDH3A1, KRT15, KRT4, AKR1B10, SOX2, TP63, RAPGEFL1, CAPNS2}. \textit{GPX2} is involved in squamous differentiation \citet{Naiki2018-fp}. 
-
+% In more depth
 Higher expression of \textit{KRT13} is associated with better response to chemotherapy and immunotherapy \citep{Yu2023-db}. The methylation of \textit{ALDH3A1}, along with \textit{HOXA9} and \textit{ISL1}, has been studied in non-muscle invasive bladder cancer and found to be a predictor of disease recurrence \citep{McLean2023-qk}. Additionally, higher expression of \textit{ALDH3A1} in bladder cancer is associated with higher tumour grade and has been studied in cancer stem cells \citet{Kim2013-th}. \textit{KRT4} is a basal keratin marker \citep{Marzouka2018-ge}. Both \textit{AKR1B10} and \textit{SOX2} are associated with cell and cancer aggressiveness \citep{Huang2021-bn, Chiu2020-xh}, while \textit{TP63} is a known squamous marker \citep{Robertson2017-mg}. 
 
 This evidence supports the poor survival prognosis of the smaller group and indicates that this group warrants further study.
 
+% Small basal commenting
+\paragraph*{GSEA}
+
+The first part of the table \cref{tab:N_I:gsea_basal_reactome} contains the pathways found for the small basal group which are most involved in the cell functioning. It is striking that in most of the pathways found the lead genes are matched by the 5000 genes closest to the referential point. This denotes that from the 5000 genes there are many which play an important role in multiple pathways. Disruption to the cell cycle may also explain the poor survival prognosis. 
+
+As seen in the GSEA plot from \cref{fig:ap:gsea_smallBasal}, the enrichment score is high but not many genes are hit in the high ranked genes (i.e. top 5000) and the most hit pathways is "NFE2L2 regulating anti oxidant detoxification enzymes". The previous analysis in this section hinted that \textit{TP53} is higher expressed in the smaller group. 
 
 % Why the top terms are kept
-\subsubsection* {GSEA}
+\subsubsection* {Basal 4}
 
-It is worth noting, the input data for GSEA for each subtype is taking the same (large) list of genes but it is ranked differently, giving more importance to the genes specific to the studied subtypes. The GSEA results will then shared a large number of found pathways at each run. To address this, the ten terms with the highest normalised enrichment score (NES) were kept for each MIBC subtype GSEA run. Having a restricted subset of term allows to find the exclusive pathways for a subgroup. Reactome 2023 v2 was used as the database to search for pathways in this section as it contains the up-to-date canonical pathways, it is medium size (1692 gene sets) as well the names are easier to interpret The output from the GSEA can be seen in which can be seen in the tables \cref{tab:N_I:gsea_basal_reactome,tab:N_I:gsea_luminal_reactome}.
+% large basal commenting
+In the second part of the \cref{tab:N_I:gsea_basal_reactome}, the pathways for the larger basal group are presented, which are mostly related to the immune response of the tissue. Especially the high match of the interferon pathways, which is expected as this groups contains the subtypes which were classified in the previous section \cref{s:clustering_analysis} as Medium IFNG and High IFNG. 
+
+
+\subsubsection*{Luminal}
+
+The table \cref{tab:N_I:gsea_luminal_reactome} contains the pathways found for the larger and infiltrated luminal subtypes. The pathway for latter mostly contains immunoglobulin related genes (e.g. \textit{IGV1-17}) denoting the infiltration of the immune cells in the bladder cancer samples. The pathways found for the large luminal are general and the lead genes have a low match ratio with the most 5000 most representative genes. This suggests that there is a less of a clear signal for a pathway to be enriched which might be explained by the size of the luminal group. 
+
+\subsubsection*{GSEA with hallmarks}
+
+
+GSEA was also applied to the hallmark gene set (50 pathways) results that can be seen in Appendix \cref{ap:tab:gsea_hallmark}. The GSEA outputs are harder to interpret especially but it can be observed that most of the unique pathways are found in both small basal and large luminal groups. Considering that the small basal group is considerably smaller than the large luminal, it indicates that the subtype should be study more.
+
+
 
 % GSEA basal table (reactome)
 \begin{table}[H]
@@ -223,29 +251,14 @@ It is worth noting, the input data for GSEA for each subtype is taking the same 
     FCGAMMA RECEPTOR FCGR DEPENDENT PHAGOCYTOSIS & 2.479 & 0 & 102 & 97 & 0.951 \\   
     \bottomrule
   \end{tabularx}
-  \caption{Normalised Enrichment Score (NES), False Discovery Rate (FDR) q-val, and lead gene statistics for the two basal groups. The lead genes from a pathway are selected by GSEAPY based on when the NES reached its peak.}
+  \caption{Normalised Enrichment Score (NES), False Discovery Rate (FDR) q-val, and lead gene statistics for the two basal groups.The lead genes from a pathway are selected by GSEAPY based on when the NES reached its peak; see \cref{s:lit:gsea} for how GSEA was run. }
   \label{tab:N_I:gsea_basal_reactome}
 \end{table}
 
-The GSEA output tables contain the Normalised enrichment score (NES), the False-Discovery Rate (FDR) of the q-value and lead genes statistics. A gene or a subset of genes are considered lead genes the ones where the enrichment score peaked. The 5000 closest genes to the referential point for each subtype (see \cref{fig:N_I:pi_smallBasal_comp}) are then intersected wit the lead genes, given the '\# matched' and 'ratio' columns in the tables \cref{tab:N_I:gsea_basal_reactome,tab:N_I:gsea_luminal_reactome} and the GSEA results for hallmarks.
-
-
-% Small basal commenting
-\paragraph*{Basal 5}
-
-The first part of the table \cref{tab:N_I:gsea_basal_reactome} contains the pathways found for the small basal group which are most involved in the cell functioning. It is striking that in most of the pathways found the lead genes are matched by the 5000 genes closest to the referential point. This denotes that from the 5000 genes there are many which play an important role in multiple pathways. Disruption to the cell cycle may also explain the poor survival prognosis. As seen in the GSEA plot from \cref{fig:ap:gsea_smallBasal}, the enrichment score is high but not many genes are hit in the high ranked genes (i.e. top 5000) and the most hit pathways is "NFE2L2 regulating anti oxidant detoxification enzymes". In the previous analysis done in this section suggested that \textit{TP53} is a marker for the smaller group. 
-
-% large basal commenting
-\paragraph*{Basal 4}
-
-In the second part of the \cref{tab:N_I:gsea_basal_reactome}, the pathways for the larger basal group are presented, which are mostly related to the immune response of the tissue. Especially the high match of the interferon pathways, which is expected as this groups contains the subtypes which were classified in the previous section \cref{s:clustering_analysis} as Medium IFNG and High IFNG. There was no unique signature found for Mes-like subgroup as the subtype shares pathways with the basal groups (interferon alpha, gamma pathways) as seen in the GSEA outputs from appendix \cref{fig:ap:gsea_largeBasal,fig:ap:gsea_mesLike}.
-
-\paragraph*{Luminal}
-
-The table \cref{tab:N_I:gsea_luminal_reactome} contains the pathways found for the larger and infiltrated luminal subtypes. The pathway for latter mostly contains immunoglobulin related genes (e.g. \textit{IGV1-17}) denoting the infiltration of the immune cells in the bladder cancer samples. The pathways found for the large luminal are general and the lead genes have a low match ratio with the most 5000 most representative genes. This suggests that there is a less of a clear signal for a pathway to be enriched which might be explained by the size of the luminal group. 
+\newpage
 
 % GSEA luminal table (reactome)
-\begin{table}[!t]
+\begin{table}[H]
   \centering
   \scriptsize
   \begin{tabularx}{\textwidth}{>{\hsize=1.9\hsize}X|>{\hsize=0.4\hsize}X|>{\hsize=0.3\hsize}X|>{\hsize=0.3\hsize}X|>{\hsize=0.5\hsize}X|>{\hsize=0.25\hsize}X}
@@ -279,16 +292,19 @@ The table \cref{tab:N_I:gsea_luminal_reactome} contains the pathways found for t
     EUKARYOTIC TRANSLATION INITIATION & 1.77 & 0.025 & 76 & 5 & 0.066 \\
     \bottomrule
   \end{tabularx}
-  \caption{Normalised Enrichment Score (NES), False Discovery Rate (FDR) q-val, and lead gene statistics for the large, infiltrated and mes-like group. The lead genes from a pathway are selected by GSEAPY based on when the NES reached its peak.}
+  \caption{Normalised Enrichment Score (NES), False Discovery Rate (FDR) q-val, and lead gene statistics for the large, infiltrated and mes-like group. The lead genes from a pathway are selected by GSEAPY based on when the NES reached its peak; see \cref{s:lit:gsea} for how GSEA was run.}
   \label{tab:N_I:gsea_luminal_reactome}
 \end{table}
 
-GSEA was also applied to the hallmark gene set (50 pathways) results that can be seen in Appendix \cref{ap:tab:gsea_hallmark}. The GSEA outputs are harder to interpret especially but it can be observed that most of the unique pathways are found in both small basal and large luminal groups. Considering that the small basal group is considerably smaller than the large luminal, it indicates that the subtype should be study more.
+
+\newpage
 
 % Metadata exploration
 \subsection{TCGA metadata exploration} \label{s:N_I:sel_tfs_metadata}
 
-To understand better the biology of the small basal group, the metadata from TCGA \citet{Robertson2017-mg} was used. Several metadata features were explored: level of smoking (cigarettes per day), race, metastasis, relation to noninvasive bladder cancer, and histology grade. \Cref{fig:ap:sel_tfs_tcga_metadata} from Appendix displays this information in the form of multiple histograms, where the x-axes represent the subtypes derived in this section and the y-axes the count of the metadata features. From the figure, there is no immediate characteristic for the small basal group, neither with the Squamous pathology nor with the metastatic status, but most of the patients were smokers. It is worth pointing out that LumInf, Mes-like, and large luminal groups are generally characterised by non-squamous tumours. From Appendix \Cref{fig:ap:sel_tfs_tcga_meta_mut} shows that there is no immediate relationship with the mutations selected in the TCGA supplementary material, while \cref{fig:ap:sel_tfs_tcga_meta_apobec} (appendix) shows no relationship with the \textit{APOBEC} mutation.
+To understand better the biology of the small basal group, the metadata from TCGA \citep{Cancer_Genome_Atlas_Research_Network2014-xp} was used. Several metadata features were explored: level of smoking (cigarettes per day), race, metastasis, relation to noninvasive bladder cancer, and histology grade. \Cref{fig:ap:sel_tfs_tcga_metadata} from Appendix displays this information in the form of multiple histograms, where the x-axes represent the subtypes derived in this section and the y-axes the count of the metadata features. From the figure, there is no immediate characteristic for the small basal group, neither with the Squamous pathology nor with the metastatic status, but most of the patients were smokers. It is worth pointing out that LumInf, Mes-like, and large luminal groups are generally characterised by non-squamous tumours. 
+
+From the appendix \Cref{fig:ap:sel_tfs_tcga_meta_mut} shows that there is no immediate relationship with the mutations selected in the TCGA supplementary material.
 
 
 % Linking to communities
@@ -298,7 +314,7 @@ To understand better the biology of the small basal group, the metadata from TCG
 To leverage visualising aspect of the network, the basal/luminal markers were then searched in the experiment 5K genes network generated using no weight modifiers (standard), minimum 3 edges per genes and 6 for the TFs, and to which the Stochastic Block Model (SBM) was applied. Neither of the markers, basal/luminal or for differentiated, were not grouped in a single or 2-3 communities, but rather spread across several.
 
 
-\begin{figure}[!b]
+\begin{figure}[!t]
     \centering
     \begin{subfigure}[!t]{0.49\textwidth}
         \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/net/net_MSX2.png}
