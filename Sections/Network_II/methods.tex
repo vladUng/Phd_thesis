@@ -1,7 +1,8 @@
 \section{Methods} \label{s:N_II:methods}
 
 % Introduce the new pipeline 
-In the previous network chapters the graphs were generated using an adapted version of the PGCNA as it was for an initial exploration of the network approach to stratify a disease. The previous chapter represented an exploration of the network approach to stratify the MIBC and it used the PGCNA package to build the networks. However, PGCNA was created with the goal to integrate multiple gene expression datasets at the network construction stage which is different from this project's goals. The main drawback of using PGCNA is that it was built to support Leiden as a community detection and the code structure was inflexible for enabling data integration. For this reason, a new package was developed in this PhD called \textit{iNet} with the following requirements: 
+% In the previous network chapters the graphs were generated using an adapted version of the PGCNA as it was for an initial exploration of the network approach to stratify a disease. 
+The previous chapter represented an exploration and testing of the integrative network approach to stratify the MIBC and the implementation used a modified version of PGCNA package to build the networks. However, PGCNA was created with the goal to integrate multiple gene expression datasets at the network construction stage which is different from this project's goals. The main drawback of using PGCNA is that it was built to support Leiden as a community detection and the code structure was inflexible for enabling data integration. For this reason, a new package was developed in this PhD called \textit{iNet} with the following requirements: 
 
 % Goals of the pipeline
 \begin{itemize}
@@ -13,9 +14,9 @@ In the previous network chapters the graphs were generated using an adapted vers
     \item Readability - easy to understand and use by another Python programmer
 \end{itemize}
 
-Apart from following the Object Oriented Programming (OOP), splitting the process into different stages helped meeting the implementation requirements. Without delving into the code the process is split into following stages:
+Apart from following the Object Oriented Programming (OOP), splitting the process into different stages helped meeting the implementation requirements. Without delving into the code is split into following stages:
 \begin{enumerate}
-    \item Filter the data - keep the specified number of the genes with the highest median, median ration
+    \item Filter the data - keep the specified number of the genes with the highest median, median ratio
     \item Build the correlation matrix
     \item Apply the weight modifiers
     \item Edge pruning
@@ -31,16 +32,17 @@ The new package was tested by comparing the outputs generated with \textit{iNet}
 
 \subsection*{Reward modifier - sigmoid} \label{s:N_II:reward}
 
-In previous chapter two weight modifier introduced with the goal to integrate the mutation count at the weight level; see \cref{fig:N_I:modifiers}. It was observed that both had an effect on the network metrics but with little impact on the MIBC stratification. One possible explanation for this is that the modifiers had a steep increase/decrease over the weights with no intermediate effect to the weights. This means that only a few genes and their connections were affected.
+In previous chapter two different edges weight modifiers were introduced with the goal to integrate the mutation count at the weight level; see \cref{fig:N_I:modifiers}. It was observed that both had an effect on the network metrics but with little impact on the MIBC stratification. One possible explanation for this is that the modifiers had a steep increase/decrease over the weights with no intermediate effect to the weights. This means that only a few genes and their connections were affected.
+
+The reward function is preferred over the penalised modifier as it did not contain isolated nodes. The initial version of the reward modifier is described by \cref{eq:norm3_func}, where w is the $log_2$ transformed of the mutation burden shifted by 1 (to avoid undefined values at 0 see \cref{eq:w}. $x$ represents the mutation burden taken from the TCGA dataset.  The behaviour of the function is shown by the red line in \cref{fig:N_II:modifiers_comp} which has an arc-like behaviour, where most of the mutated genes increase the weights value up to $50\%$ (value of $1.5$). The figure also shows that genes with high mutation burden do not have a proportional impact on the weight modifier.
 
 \begin{equation} \label{eq:w}
     w(x) = \log_2(x+1)
 \end{equation}
+
 \begin{equation} \label{eq:norm3_func}
 \text{f}(w) = \frac{\max(w) + w}{\max(w)}
 \end{equation}
-
-The reward function is preferred over the penalised modifier as it did not contained isolated nodes. The initial version of the reward modifier is described by \cref{eq:norm3_func}, where w is the $log_2$ transformed of the mutation burden shifted by 1 (to avoid undefined values at 0 see \cref{eq:w}. $x$ represents the mutation burden taken from the TCGA dataset.  The behaviour of the function is shown by the red line in \cref{fig:N_II:modifiers_comp} which has an arc-like behaviour, where most of the mutated genes increase the weights value up to $50\%$ (value of $1.5$). The figure also shows that genes with high mutation burden do not have a proportional impact on the weight modifier.
 
 To accommodate the limitation of the previous function, a new reward function is introduced in this chapter as seen in \cref{eq:sig_func} which is modelled after the logistic function (with the sigmoid function being a special case of this). In this new reward function, $x$ represents the input variable, and $x_0$ shifts the function along the x-axis. The mutation counts are scaled to the range $[-12, 12]$, with $x_0 = -8$, and the constant $+1$ in \cref{eq:sig_func} keeps the values in the range $[1, 2]$. The parameters were determined empirically to ensure that the function meets the desired shape of a gradual increase.
 
@@ -48,7 +50,7 @@ To accommodate the limitation of the previous function, a new reward function is
 \text{f}(x) =  \frac{1}{1 + e^{-(x - x_0)}} + 1, \text{ where } x_0=-8
 \end{equation}
 
-The behaviour of the logistic reward function is represented by the green line in \cref{fig:N_II:modifiers_comp}. From the figure it can be noticed the gradual increase of the weight modifier with the mutational burden. Highly mutated genes sch as \textit{FGFR3, KMT2C, PIK3CA} have a much higher impact on the weights compared to the previous weight function. It also worth noting that a 50\% increase of the a weight value happens at a point of $\sim30$ mutation burden.
+The behaviour of the logistic reward function is represented by the green line in \cref{fig:N_II:modifiers_comp}. From the figure it can be noticed the gradual increase of the weight modifier with the mutational burden. Highly mutated genes sch as \textit{FGFR3, KMT2C, PIK3CA} have a much higher impact on the weights compared to the previous weight function. It also worth noting that a 50\% increase of the weight value happens at a point of $\sim30$ mutation burden.
 
 Later in the chapter, \cref{s:N_II:reward_comp}, there is a direct comparison of the network metrics across both tumour and non-tumour of the two modifier functions.
 
