@@ -1,5 +1,6 @@
-\chapter{Network II - Non-tumour split}
+\chapter{Network II}
 
+\newpage
 \section{Validation} \label{ap:N_II:validation}
 
 \subsection{MIBC comparison} \label{ap:N_II:val_mibc_comp}
@@ -7,14 +8,14 @@
 Below MIBC comparison figure complements the work from \cref{s:N_II:mev_comp}. K-means with K=7 was chosen as this was the cluster configuration found in the cluster analysis performed on the MEVs derived from the reward network in \cref{s:ap:N_II:clustering analysis}.
 
 
-\begin{figure}[!b]
+\begin{figure}[H]
     \centering
-    \begin{subfigure}{1.0\linewidth}
+    \begin{subfigure}{0.9\linewidth}
         \includegraphics[width=1.0\textwidth,keepaspectratio]{Sections/Network_II/validation/mevs_comp_std_K_7.png}
         \caption{Standard networks}
     \end{subfigure} %
     \centering
-    \begin{subfigure}{1.0\linewidth}
+    \begin{subfigure}{0.9\linewidth}
         \includegraphics[width=1.0\textwidth,keepaspectratio]{Sections/Network_II/validation/mevs_comp_rwd_K_7.png}
         \caption{Reward v2 networks}
     \end{subfigure}
@@ -27,14 +28,12 @@ Below MIBC comparison figure complements the work from \cref{s:N_II:mev_comp}. K
 % Standard 
 \section{Standard Network} \label{ap:N_II:coms}
 
-\newpage
-
 % 25
 \subsection*{Community 25}
 
 \begin{figure}[H]    
     \centering
-    \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_II/resources/non_tum/25_com.png}
+    \includegraphics[width=0.9\textwidth,keepaspectratio]{Sections/Network_II/resources/non_tum/25_com.png}
     \caption{Community 25 (along with 19 and 29) drives the splits in the tissue differentiation datasets. This community is enriched in the large Abs-Ca and the small P0 subgroups from \cref{fig:N_II:non_tum_sankey_comp}. The community contains 180 genes from which 50 with the highest ModCon score are highlighted in orange. To aid the visualisation some of the genes were trim, for the ones with longer names the first 5 letters were kept while for 'ENSG...' like nodes the "EN\_" and the last 3 digits were kept. See \cref{s:N_II:comm_charact} for more details, community 19 (\cref{fig:N_II:19_com}) and 29 (\cref{fig:ap:com_29}). }
     \label{fig:ap:com_25}
 \end{figure}
@@ -44,9 +43,9 @@ Below MIBC comparison figure complements the work from \cref{s:N_II:mev_comp}. K
 % 29
 \subsection*{Community 29}
 
-\begin{figure}[H]    
+\begin{figure}[!htb]    
     \centering
-    \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_II/resources/non_tum/29_com.png}
+    \includegraphics[width=0.9\textwidth,keepaspectratio]{Sections/Network_II/resources/non_tum/29_com.png}
     \caption{Community 29 (along with 19 and 25) drives the splits in the tissue differentiation datasets. This community is enriched in the small Abs-Ca and the large P0 subgroups from \cref{fig:N_II:non_tum_sankey_comp}. The community contains 164 genes from which 50 with the highest ModCon score are highlighted in orange. To aid the visualisation some of the genes were trim, for the ones with longer names the first 5 letters were kept while for 'ENSG...' like nodes the "EN\_" and the last 3 digits were kept.  See the network representation of community 19 (\cref{fig:N_II:19_com}) and 29 (\cref{fig:ap:com_29}).}
     \label{fig:ap:com_29}
 \end{figure}
@@ -57,11 +56,10 @@ Below MIBC comparison figure complements the work from \cref{s:N_II:mev_comp}. K
 \section{Reward Network}
 
 % Mean degree 
-\subsection{Mean Degree vs Community size}
 \begin{sidewaysfigure}   
     \centering
     \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_II/resources/reward/Degree_vs_ComSize.png}
-    \caption{The top bar shows the community size (Y-axis) of the communities while the other plot the mean degree (Y-axis) in a community. This two complementary figures show that communities with a high number of connections are grouped in smaller communities while the large contains nodes with a low node degree. This plot helps the analysis performed in \cref{s:N_II:high_conn}. } 
+    \caption{The top bar shows the community size (Y-axis) of the communities while the other plot the mean degree (Y-axis) in a community. This two complementary figures show that communities with a high number of connections are grouped in smaller communities while the large contains nodes with a low node degree. This plot complements the analysis performed in \cref{s:N_II:high_conn}. There is an inverse relationship between the community size and the number of connections.} 
     \label{fig:ap:degree_com_size}
 \end{sidewaysfigure}
 
@@ -69,6 +67,8 @@ Below MIBC comparison figure complements the work from \cref{s:N_II:mev_comp}. K
 
 % High degree communities
 \subsection{High degree communities}
+
+The figure below represents the network representation of the small communities (\(<10\) nodes) with a high degree. These genes are explored in more details in \cref{s:N_II:high_conn} and show that are highly and strongly correlated with other genes, and have a high mutation burden. 
 
 \begin{figure}[H]    
     \centering

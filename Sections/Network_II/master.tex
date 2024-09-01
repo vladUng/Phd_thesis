@@ -20,11 +20,15 @@
 \section{Overview}
 
 % Presented the previous work on the network
-The previous two chapters presented the first iteration of the network pipeline developed to stratify the \acrfull{mibc} using multiple data types. Data integration occurred at three different stages: 1) non-tumour data at the network level, 2) mutation burden at the edge weights, and 3) prioritisation of \acrfull{tf} at the degree level. All three integrative methods were successfully used and validated through different graph metrics, but from a biological stance the most successfully strategy resulted from modifying the number of edges as covered in the selective edge pruning \cref{s:N_I:sel_pruning}.
+The previous two chapters presented the first iteration of the network pipeline developed to stratify the \acrfull{mibc} using multiple data types. Data integration occurred at three different stages: 1) non-tumour data at the network level, 2) mutation burden at te edge weights, and 3) prioritisation of \acrfull{tf} at the degree level. All three integrative methods were successfully used and validated through different graph metrics, but from a biological stance the most successfully strategy resulted from modifying the number of edges as covered in the selective edge pruning \cref{s:N_I:sel_pruning}.
+
+
+% Introduce the new network pipeline as an advanced version
+Building on the previous work presented in this project, this chapter enhances the network pipeline through several key advancements: 1) integrating all three datasets—P0, Abs-Ca, and UD—to construct a comprehensive network representation, 2) introducing a new weight modifier that gradually incorporates mutation burden, 3) presenting an integrative module evaluation value (iMEV) that considers gene expression across both tumour and non-tumour datasets, and 4) employing the \acrfull{hsbm}, which is not constrained by a predefined number of communities, allowing for a more flexible and detailed analysis.
 
 
 % Introduction to the limitations - Non-tumour dataset and MEV
-\Cref{s:p0} showed that using only the P0 dataset did not offer a sufficient representation of the non-tumour data, while the weight modifiers in \cref{s:N_I:tum} were not powerful enough to make a change in disease stratification. On top of that, the first version of the network pipeline suffered from some implementation limitations. When using the non-tumour data to build the network, the pipeline selects the genes that are the most connected in the communities, which are then used with the \textbf{tumour} expression to the Module Evaluation Value (MEV). This means that there is a decoupling between the data used to build the network and the one used for tumour stratification, in this case, the TCGA dataset. The limitation is addressed in the new version of the MEV introduced, which takes into account both datasets, introduced in \cref{s:N_II:iMEV}.
+\Cref{s:p0} showed that using only the P0 dataset did not offer a sufficient representation of the non-tumour data, while the weight modifiers in \cref{s:N_I:tum} were not powerful enough to make a change in disease stratification. When using the non-tumour data to build the network, the pipeline selects the genes that are the most connected in the communities, which are then used with the \textbf{tumour} expression to the Module Evaluation Value (MEV). This means that there is a decoupling between the data used to build the network and the one used for tumour stratification, in this case, the TCGA dataset. The limitation is addressed in the new version of the MEV introduced, which takes into account both datasets, introduced in \cref{s:N_II:iMEV}.
 
 
 % Weight reward changes
@@ -46,9 +50,6 @@ The aims of this chapter is to advance the previously introduced network method 
     \item All non-tumour datasets - Three different gene expression datasets are used to build network: differentiated (ABS-Ca), undifferentiated and freshly isolated samples (P0)
     \item hierarchical Stochastic Block Model (hSBM)
 \end{itemize}
-
-The objectives for th
-
 
 \subsection*{Datasets}
 
