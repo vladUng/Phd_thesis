@@ -57,7 +57,7 @@ This part of the project aims to:
 \subsection{Summary}
 
 % Recapitulate the aims and what have been done
-This subsection began with two aims: identifying the appropriate community detection method and exploring the integration of Transcription Factors (TF) into the network. The comparison at the start of the section (\ref{}) demonstrated that, despite the high computational cost of Stochastic Block Models (SBM), they offer more advantages over Modularity Maximisation algorithms such as Leiden. From a network perspective, the selective edge pruning method to integrating TFs is effective, as those nodes exhibited a higher degree. Therefore, the two aims of were achieved.
+This subsection began with two aims: identifying the appropriate community detection method and exploring the integration of Transcription Factors (TF) into the network. The comparison at the start of the section (\ref{s:N_I:sel_tf_com_det}) demonstrated that, despite the high computational cost of Stochastic Block Models (SBM), they offer more advantages over Modularity Maximisation algorithms such as Leiden. From a network perspective, the selective edge pruning method to integrating TFs is effective, as those nodes exhibited a higher degree. Therefore, the two aims of were achieved.
 
 % Significance in cancer
 Throughout the selective edge experiments, it was remarkable to find that by using controls and prioritising non-TFs, a subset of 'naturally' well-connected TFs in the tumour dataset could be derived. The analysis in this section indicates that the subset of 98 TFs has important biological significance. Hierarchical clustering was applied to this subset of genes, yielding subtypes with significantly different survival outcomes (\cref{fig:N_I:sel_tfs_cs_analysis}).  From the five newly found groups the basal 5 has the lowest survival with squamous markers and the basal 3 resembles the mesenchymal group from Lund cohort.
@@ -88,7 +88,7 @@ Extending the findings beyond cancer, some of the 98 TF genes were classified by
 
 
 % Comm detection
-\subsection*{Community detection}
+\subsubsection*{Community detection}
 
 Varying the number of edges per TF significantly impacts the community detection algorithms, Leiden more than SBM. It was observed that the former finds fewer communities as the nodes' degree is increased, while SBM is more stable. This, along with the work from \citet{Peixoto2021-jx, Peixoto2023-rt}, which shows that Modularity Maximisation methods are prone to finding patterns in noise, made SBM the preferred method in this project. In this chapter, the simple degree-corrected version of SBM was used, but a hierarchical version of it will be used in the next chapter. The hierarchical SBM is more complex and computationally expensive than the standard version, but it does not have a threshold on the number of communities it can find; limit discussed in \cref{s:lit:sbm}.
 

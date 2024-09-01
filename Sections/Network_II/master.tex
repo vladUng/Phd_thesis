@@ -76,10 +76,10 @@ The analysis of the standard network showed that the P0 \& Abs-Ca datasets can b
 
 %%% General Remarks
 % Many ENSG genes - due to the non-tumour 
-Many "ENSG..." genes were found throughout all the subgroups, either of the MIBC or of the non-tumour dataset.The presence of the large number of unnamed genes can be explained by the usage of the non-tumour dataset to form the molecular representation. It is also noting that the gene filtering keeps the ones that are expressed in at least 90\% of the samples. This means, that there are many 'core genes' that play an important role in the bladder differentiation as well as in the MIBC subtypes, indicating the potential for novel bladder molecular biology. 
+Many of the Ensembl genes were found throughout all the subgroups, either of the MIBC or of the non-tumour dataset. The presence of the large number of unnamed genes can be explained by the usage of the non-tumour dataset to form the molecular representation. It is also noting that the gene filtering keeps the ones that are expressed in at least 90\% of the samples. This means, that there are many 'core genes' that play an important role in the bladder differentiation as well as in the MIBC subtypes, indicating the potential for novel bladder molecular biology. 
 
 % Both find Basal and Luminal signals
-In the first results section the MIBC is stratified using the standard network without any integration of the mutation but using the iMEV which uses the expression from both the tumour and non-tumour dataset. The subtyping with the reward network resulted from integrating the mutation burden through edges' weights. In both instances \footnote{And as a matter of fact in all the previous work done in this PhD and the other classification}, the two 'signals' from Basal and Luminal are present throughout the subgroups; see \cref{s:lit:datasets_used}. The same signals which are presents are the previous sub-groupings in this project as well as in previous MIBC classifications \citet{Robertson2017-mg, Kamoun2020-tj, Marzouka2018-ge}.
+In the first results section the MIBC is stratified using the standard network without any integration of the mutation but using the iMEV which uses the expression from both the tumour and non-tumour dataset. The subtyping with the reward network resulted from integrating the mutation burden through edges' weights. In both instances \footnote{And as a matter of fact in all the previous work done in this PhD and the other classification}, the two 'signals' from Basal and Luminal are present throughout the subgroups; see \cref{s:lit:datasets_used}. The same signals which are presents are the previous sub-groupings in this project as well as in previous MIBC classifications \citep{Robertson2017-mg, Kamoun2020-tj, Marzouka2018-ge}.
 
 % No IFNG 
 When using the non-tumour graph representation, the previous Basal split based on the \acrfull{ifn} is not found. This is explained by the fact that the samples in the non-tumour dataset do not show an \acrshort{ifn} response as it is specific to MIBC tumours treated with Bacillus Calmette–Guérin (BCG) that induce inflamatory response \citep{Baker2022-bj}. However, when a more detailed clustering analysis is performed with the reward network, it was found that one of the immune infiltrated subgroups have a tendency towards Basal.
@@ -97,11 +97,11 @@ This chapter brings the following contributions to the field:
     \item A simple method to integrate mutation burden into the graph via the reward modifier.
     \item Identification of a subset of genes and communities with a high mutation burden, which are highly and strongly co-expressed with other genes.
     \item Utilisation of \acrfull{hsbm} in the network pipeline, which is able to find small communities in a network of 5000 nodes.
-    \item Identification of 7 new MIBC groups, within which Basal and Luminal 'signals' are observed.
+    \item Identification of seven new MIBC groups, within which Basal and Luminal 'signals' are observed.
     \item Discovery of new Basal and Luminal subdivisions: the former with a low survival rate and the latter with the highest survival rate over 5 years. Both are characterised by unnamed genes.
     \item Identifying new splits in the Abs-Ca and P0 datasets
     \item An explainable computational solution which allows tracing the end result (i.e. subtyping) to network communities and implicitly to a subset of genes
-    \item Across the analysis, many differentially expressed genes were found to be unnamed 'ENSG...' genes, highlighting the potential for discovering new biological insights.
+    \item Across the analysis, many differentially expressed genes were found to be Ensembl genes, highlighting the potential for discovering new biological insights.
     \item Development of a Python package that creates the network, which is planned to be released to the research community.
 \end{itemize}
 
