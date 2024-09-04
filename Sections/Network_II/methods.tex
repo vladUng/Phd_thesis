@@ -78,7 +78,7 @@ To calculate the z-score for the tumour dataset the equation in \cref{eq:N_II:z_
 z = \frac{x_{tum} - \mu_{non\_tum}}{\sigma_{non\_tum}}
 \end{equation}
 
-The integrate the two gene expression datasets, the MEV score is changed to consider the expression trend in the non-tumour dataset but to use the sample observation from the tumour dataset; described by \cref{eq:N_II:i_z_score}. The change occurs at the mean and standard deviation which are now computed for the non-tumour samples or the dataset that it is used to generate the network; the observed samples, $x_{tum}$ remains unchanged. The modification of the z-score brings the distribution characteristics of the non-tumour dataset (or the data used to create the network) into the equation of computing the MEV. In other words, the equation \cref{s:N_II:i_z_score} is computing how far is the gene expression in a tumour tumour sample with respect to the mean and standard deviation of the non-tumour.
+The integrate the two gene expression datasets, the MEV score is changed to consider the expression trend in the non-tumour dataset but to use the sample observation from the tumour dataset; described by \cref{eq:N_II:i_z_score}. The change occurs at the mean and standard deviation which are now computed for the non-tumour samples or the dataset that it is used to generate the network; the observed samples, $x_{tum}$ remains unchanged. The modification of the z-score brings the distribution characteristics of the non-tumour dataset (or the data used to create the network) into the equation of computing the MEV. In other words, the equation \cref{eq:N_II:i_z_score} is computing how far is the gene expression in a tumour tumour sample with respect to the mean and standard deviation of the non-tumour.
 
 
 

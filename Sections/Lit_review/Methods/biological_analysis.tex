@@ -14,23 +14,24 @@ The \acrshort{dea} is the most important tool as it allows to determine the gene
 
 
 % Intro to the volcano plot
-The project employed the sleuth method introduced by \citep{Pimentel2017-xp} for differential analysis of the RNAseq data. This method takes as input a file containing the samples, their cluster labels, and the paths to the raw RNAseq reads. It returns the \textit{q} and \textit{p} values for each gene, indicating the significance of the expression differences.
+The project employed the sleuth method from \citeauthor{Pimentel2017-xp} to perform differential expression analysis between two sample groups. This method takes as input a file containing the samples, their cluster labels, and the paths to the raw RNAseq reads. It returns the \textit{p} and \textit{q} (corrected p-value) values for each gene, indicating the significance of the expression differences.
 
 % How the Volcano figure is constructed
 The $-log_{10}$ transformed \textit{p}-values constitute the Y-axis in a volcano plot, while the X-axis displays the $log_{2}$ transformed fold-change in gene expression between the two groups. This means that the volcano plot, as shown in \cref{fig:lit:dea_eg}, displays the magnitude of gene expression change on the horizontal axis and the significance of that change on the vertical axis.
 
 % Interpretation
-In \cref{fig:lit:dea_eg}, two sides of the plot represent the two compared subgroups: "Abs-Ca large" and "Abs-Ca small" from the experiments in \cref{s:N_II:std_net}. The further up a gene is on the left side, the more differentially expressed it is in the "Abs-Ca large" group; conversely, genes in the right corner are more differentially expressed in the "Abs-Ca small" group. The scale of the axes is particularly important, especially for the horizontal axis, where larger differences in gene expression lead to a larger scale. The dotted lines represent the threshold $[-1, 1]$, which for $log_{2}$ transformed values, indicates a doubling or halving in gene expression. The "Point(s) of interest" are those that lie outside these lines, while the points in dark blue indicate genes with no expression difference between the two groups.
+In the example Volcano plot from \cref{fig:lit:dea_eg}, the two sides of the plot represent the two compared subgroups: subtype 1 on the right-hand side and subtype 2 on the left-hand side. The further up a gene is on the left side, the more differentially expressed it is in subtype 1, e.g., "Gene A" or "Gene P." Conversely, "Gene M" is specific to subtype 2. "Gene L" is an example of a gene that has higher expression in subtype 1 but is not significantly expressed.
+
+The scale of the axes is particularly important, especially for the horizontal axis, where larger differences in gene expression lead to a larger scale. The vertical dotted lines represent the threshold $[-1, 1]$, which for $log_{2}$ transformed values, indicates a doubling or halving of gene expression. The "Point(s) of interest" are those that lie outside these lines, while the points in dark blue indicate genes with no significant expression difference between the two groups.
 
 In summary, the volcano plot is a powerful tool for identifying genes that have both a large expression difference (X-axis) and a statistically significant difference (Y-axis). The plot was used to analyse the Abs-Ca differentiated split tumours in \cref{fig:N_II:diff_split} and the fresh-sequenced samples (P0) in \cref{fig:N_II:p0_split}.
 
 \begin{figure}[H] 
     \centering
-    \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_II/resources/non_tum/diff_split_dea.png}
-    \caption{This is an annotated version of the Volcano plot in \cref{fig:N_II:diff_split} used for explanation purposes.}
+    \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Lit_review/Resources/volcano_explainer.png}
+    \caption[Volcano example]{Example of a Volcano plot between two}
     \label{fig:lit:dea_eg}
 \end{figure}
-
 
 
 % Pi 
@@ -44,20 +45,17 @@ The volcano plots are a great tool to understand the gene expression differences
 \end{equation} 
 
 % Describe the comparison
-By compressing the \acrshort{dea} results into one score enables four group comparison, two on each of the axis of a scatter plot as seen in \cref{fig:lit:pi_eg}. The X-axis holds the pi values of the DEA between the P0 (group I) on the negative and Abs-Ca (group II) on the positive side. The  negative side y-values denote the genes specific to UD while the positive for Abs-Ca. As in the case with the Volcano plots, the scale of the axis is important and denotes the strength in the difference between the compared groups. This is highlighted by difference in shape by the coloured rectangles which are all within $+/-5\%$ of the axes and are a visual cue for the genes that are very close to the axis.
+By compressing the \acrshort{dea} results into one score enables four group comparison, two on each of the axis of a scatter plot as seen in \cref{fig:lit:pi_eg}. The X-axis holds the pi values for subtype 4 on the positive and subtype 3 on the negative side. On the vertical axis the positive side marks points for subtype 1 and negative for subtype 2. As in the case with the Volcano plots, the scale of the axis is important and denotes the strength in the difference between the compared groups. This is highlighted by difference in shape by the coloured rectangles which are all within $+/-5\%$ of the axes and are a visual cue for the genes that are very close to the axis.
 
 % Talk about the quadrant
-As indicated by coloured rectangles, in \cref{fig:lit:pi_eg}, the closer to the axis a point is the more specific to that group is. The values between the coloured rectangles are part of a quadrant, starting from the right corner are marked by Roman numbers (I, II, III, IV) represents the specific between two groups. In the case of \cref{fig:lit:pi_eg}, the first quadrant holds the genes that are specific to the Abs-Ca in the comparison with P0 (X) and with UD (Y). In quadrant II, the genes specific to the Abs-Ca over P0 and UD with respect to Abs-Ca. Quadrant III to both UD \& P0, and quadrant IV to P0 \& Abs-Ca.
-
-% Quadrants
-The figure from \cref{fig:lit:pi_eg} has three distinct groups, where Abs-Ca, an in-vitro tissue differentiated protocol, is compared on the X-axis against the P0 and on the Y-axis against the UD, an in-vitro tissue undifferentiated protocol. In this particular example, quadrant I holds the genes that are specific to the Abs-Ca group, giving a good characterisation of this particular tissue differentiated samples. The other quadrants represents the genes that are specific to the other two groups in the relation with Abs-Ca.
+As indicated by coloured rectangles, in \cref{fig:lit:pi_eg}, the closer to the axis a point is the more specific to that group is. The values between the coloured rectangles are part of a quadrant, starting from the right corner are marked by Roman numbers (I, II, III, IV) represents the specific between two groups; shown in green text. For example, "Gene C" is specific to both subtype 4 and 2, whereas "Gene E" to groups 2 and 3. 
 
 The pi-plots were extensively used in the project starting with the analysis of the MIBC groups from \cref{s:cs:bio_interp}, to the subtypes founds using a subset of \acrlong{tf}s in \cref{s:N_I:sel_pruning} and the clusters derived with the latest version of the network approach in \cref{s:N_II:dea_rwd}.
 
 \begin{figure}[!htb]    
     \centering
-    \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/sel_tfs/sel_tfs_pi_all_var_rect.png}
-    \caption{This is an annotated version of the Pi plot in \cref{fig:N_I:pi_sel_tfs_var} which is used to explain this type of figure.}
+    \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Lit_review/Resources/pi_explainer.png}
+    \caption[Pi plot example]{Example of pi-plot which it is used to compare the results of DEA comparison between 4 groups.}
     \label{fig:lit:pi_eg}
 \end{figure}
 
@@ -65,33 +63,33 @@ The pi-plots were extensively used in the project starting with the analysis of 
 \subsubsection{Gene Set Enrichment Analysis} \label{s:lit:gsea}
 
 % Introduction to GSEA
-The volcano and pi plots introduced earlier are tools to identify genes specific to different groups, which are then used to perform \acrfull{gsea} using the GSEApy package by \citep{Fang2023-ec} and the REACTOME database \cite{Milacic2024-yt} \footnote{The reactome version \textit{c2.cp.reactome.v2023.2.Hs.symbols }was used in this project}.
+The volcano and pi plots introduced earlier are tools to identify genes specific to different groups but usually there are still many genes left to explored. \acrfull{gsea} is another tool that can be used to find biologically relevant groups of genes which are different in the DEA. 
 
 % How GSEA works
 GSEA works by ranking all genes in your dataset according to a predefined metric (such as expression level or statistical significance) and then assessing whether the members of a given gene set (e.g., from the REACTOME database) are randomly distributed throughout the ranked list or primarily found at the top or bottom. If many of the high-ranked genes correspond to the top genes in a REACTOME pathway, it indicates positive enrichment of that pathway. Conversely, if many lower-ranked genes match the top genes in a REACTOME pathway, it suggests that the pathway is depleted in the given group.
 
 % Ranking system
-In the pi-plot from \cref{fig:lit:pi_eg}, quadrant I represents genes specific to the Abs-Ca group. To determine whether any of these genes are enriched in a REACTOME pathway, they must first be ranked. The blue cross, referred to as the 'Ref point,' represents the referential point, which consists of the maximum value on the X-axis (the most significantly expressed gene in comparison with P0) and the maximum on the Y-axis (the most significantly expressed gene in comparison with Abs-Ca). This point thus represents the 'most significantly expressed' coordinates across the two comparisons. The distances of all other points from this referential marker are computed, and the genes are then ranked. 
+In the pi-plot from \cref{fig:lit:pi_eg}, quadrant I represents genes specific to the subtype 1 and subtype 2. To determine whether any of these genes are enriched in a REACTOME pathway, they must first be ranked. The blue cross, referred to as the 'Ref point,' represents the referential point, which consists of the maximum value on the X-axis (the most significantly expressed in subtype 4 over subtype 3) and the maximum on the Y-axis (the most significantly expressed gene in comparison subtype 1 over group 2). This point thus represents the 'most significantly expressed' coordinates across the two comparisons. The distances of all other points from this referential marker are computed, and the genes are then ranked. 
 
 
-\begin{figure}[!htb]
+\begin{figure}[!b]
     \centering
     \includegraphics[width=0.8\textwidth, keepaspectratio]{Sections/ClusteringAnalysis/Resources/discussion/other_groups/lumInf_reactome_10_top.png}
-        \caption{Top 10 GSEA results on the Reactome database.}
-    \caption{Enrichment for the analysis in \cref{fig:cs:lumInf} used in the background chapter to showcase the \acrshort{gsea} . The group studied is the Luminal Infiltrated (LumInf) in quadrant III.}
+    \caption[GSEA plot example]{Enrichment for the analysis in \cref{fig:cs:lumInf} used in the background chapter to showcase the \acrshort{gsea} . The group studied is the Luminal Infiltrated (LumInf) in quadrant III.}
     \label{fig:lit:gsea_eg}
 \end{figure}
 
 % Introduce the plot
-The ranking system orders the genes in the pi-plot according to their expression difference and statistical significance. The ordered genes are then inputted to the GSEApy software which searches for pathways in the REACTOME database, producing a figure like \cref{fig:lit:gsea_eg}. \textbf{Note}, the GSEA in this case is run for the Luminal infiltrated group using the pi plot from \cref{s:cs:lumInf_interp} rather then the Abs-Ca group presented earlier in \cref{fig:lit:pi_eg}; this is because the GSEA did not return any significant enrichment scores for the Abs-Ca group.
+The ranking system orders the genes in the pi-plot according to their expression difference and statistical significance. The ordered genes are then inputted to the GSEApy software which searches for pathways in the REACTOME database, producing a figure like \cref{fig:lit:gsea_eg}. 
 
 % Describe the plot
 The enrichment plot in \cref{fig:lit:gsea_eg} consists of two figures that share the same X-axis, which represents the gene ranking in ascending order, with the lowest-ranked gene closest to the referential point. The top figure plots the enrichment score (left Y-axis) of the pathways identified, while the bottom figure indicates the positions of the matched genes in the rank. The enrichment plot highlights the top 10 pathways with the highest enrichment scores, all of which have a significance level below 0.05. It is worth noting that the pathway names are abbreviated and trimmed (the "REACTOME" prefix removed) to fit the legend.
 
 % Interpret the plot
-The interpretation of enrichment analysis is performed by considering the collection of pathways identified rather than focusing on individual pathways. This is because genes can have different functions across various pathways, making it challenging to isolate a single pathway. For example, in \cref{fig:lit:gsea_eg}, multiple pathways are involved in immune-related functions, such as \textit{"FCCR Activation"}, \textit{"CD22 Mediated BCR Regulation"}, and \textit{"Antigen Activates B Cell Receptor..."}. Overall, the \acrshort{gsea} confirms the immune characteristics of the Luminal Infiltrated group, as identified in the clustering analysis in \cref{s:clustering_analysis}.
+Overall, the \acrshort{gsea} shows that Subtype 1 and Subtype 4 exhibit immune markers. The interpretation of enrichment analysis is performed by considering the collection of pathways identified rather than focusing on individual pathways. This is because genes can have different functions across various pathways, making it challenging to isolate a single pathway. For example, in \cref{fig:lit:gsea_eg}, multiple pathways are involved in immune-related functions, such as \textit{"FCCR Activation"}, \textit{"CD22 Mediated BCR Regulation"}, and \textit{"Antigen Activates B Cell Receptor..."}. 
 
-The GSEA was used to complement the Pi and Volcano plots in the second results chapters, \cref{s:N_I:sel_pruning}, where the subtypes were derived using a subset of \acrlong{tf}.
+The GSEA was used to complement the Pi and Volcano plots in the second results chapter, \cref{s:N_I:sel_pruning}, where the subtypes were derived using a subset of \acrlong{tf}. In this project, \acrfull{gsea} was run using the GSEApy package \citep{Fang2023-ec} and the REACTOME database \cite{Milacic2024-yt}\footnote{The Reactome version \textit{c2.cp.reactome.v2023.2.Hs.symbols} was used in this project.}.
+
 
 \subsection{Survival Analysis} \label{s:lit:survival}
 
@@ -110,7 +108,7 @@ The Kaplan-Meier survival analysis was used extensively throughout the project, 
 \begin{figure}[!htb]
     \centering
     \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]
-    {Sections/Network_I/Resources/selective_pruning/sel_tfs/survival_sel_tfs_cs.png}
-    \caption{Kaplan-Meier survival analysis of the MIBC groups identified using the 98 TFs from \cref{s:N_I:sel_pruning}.}
+{Sections/Network_I/Resources/selective_pruning/sel_tfs/survival_sel_tfs_cs.png}
+    \caption[Example of Kaplam-Meier]{Kaplan-Meier survival analysis of the MIBC groups identified using the 98 TFs from \cref{s:N_I:sel_pruning}.}
     \label{fig:lit:surival_eg}
 \end{figure}

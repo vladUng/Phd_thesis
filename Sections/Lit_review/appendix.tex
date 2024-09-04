@@ -4,29 +4,13 @@
 
 \section{Introduction}
 
-
-\begin{figure}[!htb]
-    \centering
-    \includegraphics[width=1.0\textwidth,keepaspectratio]{Images/life-expectancy.png}
-    \caption{Life expectancy according to World in Data between 1845 - 2015 \citep{World_in_Data_undated-no}}
-      \label{fig:life_expectancy}
-  \end{figure}
-
-\begin{figure}[!htb]
-    \centering
-    \includegraphics[width=1.0\textwidth,keepaspectratio]{Images/cancer-deaths-rate-and-age-standardized-rate-index.png}
-      \caption{Changes in cancer mortality between 1990 and 2017. \cite{World_in_Data_undated-gc}}
-      \label{fig:cancer_death}
-\end{figure}
-
-
 % TCGA
 \section{TCGA}
 
 \begin{figure}[!htb]    
     \centering
 \includegraphics[width=1.0\textwidth,keepaspectratio]{Sections/Lit_review/Resources/TCGA_2017_subtypes.jpg}
-    \caption{Figure 2 from the work of \citet{Robertson2017-mg} showing the five different molecular subtypes found in the MIBC cohort from TCGA: \acrfull{lum}, \acrfull{luminf}, \acrfull{ba/sq}, \acrfull{ne} and \acrfull{lump}. The subgroups are presented in more detail in \cref{s:lit:tcga_mibc}. }
+    \caption[Summary of the TCGA subgroups]{Figure 2 reproduced from \citet{Robertson2017-mg} showing the five different molecular subtypes found in the MIBC cohort from TCGA: \acrfull{lum}, \acrfull{luminf}, \acrfull{ba/sq}, \acrfull{ne} and \acrfull{lump}. The subgroups are presented in more detail in \cref{s:lit:tcga_mibc}. }
     \label{fig:ap:tcga_subtypes}
 \end{figure}
 
@@ -79,7 +63,7 @@
     \end{itemize} \\
     \bottomrule
     \end{tabularx}
-    \caption{The molecular characterisation of the TCGA subgroups taken from the \textit{mRNA Expression-Based Molecular Subtypes} and \textit{Discussion} Figure 2 from the work of \cite{Robertson2017-mg}. The TCGA's subtyping of the MIBC is covered in more depth in \cref{s:lit:tcga_mibc}.}
+    \caption[Summary table of the TCGA subtypes]{The molecular characterisation of the TCGA subgroups taken from the \textit{mRNA Expression-Based Molecular Subtypes} and \textit{Discussion} Figure 2 from the work of \cite{Robertson2017-mg}. The TCGA's subtyping of the MIBC is covered in more depth in \cref{s:lit:tcga_mibc}.}
     \label{tab:lit:tcga_genes}
 \end{table}
 
@@ -119,7 +103,7 @@
     \end{itemize} \\
     \bottomrule
     \end{tabularx}
-    \caption{Summary table of the work done for Lund stratification which is primarily based on the Figure 2 from \citet{Marzouka2018-ge} but it also contains some additional information from research group's earlier work from  \citet{Sjodahl2017-xr}. The suffix '-inf' represents the infiltrated nature of the subtype. The Lund taxonomy of the MIBC is covered in more depth in \cref{s:lit:lund_mibc}.}
+    \caption[Summary table of the Lund subtypes]{Summary table of the work done for Lund stratification which is primarily based on the Figure 2 from \citet{Marzouka2018-ge} but it also contains some additional information from research group's earlier work from  \citet{Sjodahl2017-xr}. The suffix '-inf' represents the infiltrated nature of the subtype. The Lund taxonomy of the MIBC is covered in more depth in \cref{s:lit:lund_mibc}.}
     \label{tab:lit:lund_genes}
 \end{table}
 
@@ -174,7 +158,7 @@
     \end{itemize} \\
     \bottomrule
     \end{tabularx}
-    \caption{The molecular characterisation of the MIBC subgroups taken based on the consensus work of \cite{Kamoun2020-tj}. It summaries sections\  textit{3.2 and 3.3} from the main paper. LumP, LumNS and LumU exhibit more differentiation status characteristics and contain \textit{PARG/GATA3/FOXA1}-related Lund signature. The Consensus work on MIBC is covered in more depth in \cref{s:lit:consensus_mibc}.}
+    \caption[Summary table of the Consensus subtypes]{The molecular characterisation of the MIBC subgroups taken based on the consensus work of \cite{Kamoun2020-tj}. It summaries sections\  textit{3.2 and 3.3} from the main paper. LumP, LumNS and LumU exhibit more differentiation status characteristics and contain \textit{PARG/GATA3/FOXA1}-related Lund signature. The Consensus work on MIBC is covered in more depth in \cref{s:lit:consensus_mibc}.}
     \label{tab:lit:consensus_genes}
 \end{table}
 
@@ -219,7 +203,7 @@
     Consensus clustering & x &  &  &  & Hierarchical clustering \\ \hline
     \citet{Capecci2020-uj} &  & x & x &  & SNN and EA \\ \hline
     MutsigCV &  &  & x &  & Stats \\ \hline
-    \caption{Computational models explored in this literature review with the type of data used and the approaches.}
+    \caption[Summary of the computational models explored]{Computational models explored in this literature review with the type of data used and the approaches.}
     \label{tab:data_used}
 \end{longtable}
 \end{center}
@@ -253,10 +237,11 @@ Comet  & GE + Mut & TCGA & Submatrix, Markov Chain Monte Carlo & breast \& gastr
 TCGA clustering & GE & TCGA & Hierarchical clustering & Bladder cancer  \\ \hline
 Consensus clustering & GE & TCGA & Hierarchical clustering & Bladder cancer \\ \hline
 \citet{Capecci2020-uj} & GE + Mut & TCGA & SNN and EA & Skin dermatitis  \\ \hline
-\caption{Datasets: Kyoto Encyclopedia of Genes and Genomes (KEGG) \cite{Kanehisa2017-wj}, The Cancer Genome Atlas (TCGA) \cite{Tcga2018-sj}, \citet{Thomas2007-yj} - "High-throughput oncogene mutation profiling in human cancer", The Gene Expression Omnibus (GEO) \cite{Clough2016-zc, Davis2007-at}, International Cancer Genome Consortium (ICGC) \cite{International_Cancer_Genome_Consortium2010-ca}, Search Tool for Retrieval of Interacting Genes/Proteins(STRING) \cite{Szklarczyk2019-pu}.}
+\caption[Summary of the models explored and the datasets used]{Summary of the models explored and the dataset to which they were applied to. Datasets: Kyoto Encyclopedia of Genes and Genomes (KEGG) \cite{Kanehisa2017-wj}, The Cancer Genome Atlas (TCGA) \cite{Tcga2018-sj}, \citet{Thomas2007-yj} - "High-throughput oncogene mutation profiling in human cancer", The Gene Expression Omnibus (GEO) \cite{Clough2016-zc, Davis2007-at}, International Cancer Genome Consortium (ICGC) \cite{International_Cancer_Genome_Consortium2010-ca}, Search Tool for Retrieval of Interacting Genes/Proteins(STRING) \cite{Szklarczyk2019-pu}.}
 \label{tab:approaches}
 \end{longtable}
 }
+
 
 % % Dendogram example
 % \section{Dendrogram} \label{ap:dendogram}
