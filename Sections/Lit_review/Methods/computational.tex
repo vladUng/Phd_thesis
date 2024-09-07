@@ -3,20 +3,21 @@
 
 \subsubsection*{Models} \label{s:lit:cs_models}
 
-Clustering algorithms have many variations, and these are covered the code sample \cite{Scikit-learn_undated-ax} from the Scikit-learn library \citep{Pedregosa2011-ts} from which a selection of methods are applied in this project; their applications through different datasets is displayed in \cref{fig:lit:clustering_types}. The rows represent different types of datasets and the columns are the algorithms covered in the project: K-means as a general-purpose algorithm, and both Ward and Agglomerative as hierarchical clustering methods, Gaussian Mixture Models and Spectral Clustering. It is worth mentioning that a modified version of the Scikit-learn code was adapted to meet the project's needs, enabling the running of multiple clustering techniques with varied parameters for the TCGA dataset (see \cref{s:cs:right_config}) and networks' outputs (\cref{s:N_I:methods}).
+Clustering algorithms have many variations, and these are covered the code sample\footnote{See \href{https://scikit-learn.org/stable/modules/clustering.html}{blog post}.} from the Scikit-learn library \citep{Pedregosa2011-ts} from which a selection of methods are applied in this project; their applications on different datasets is displayed in \cref{fig:lit:clustering_types}. The rows represent different types of datasets and the columns are the algorithms covered in the project: K-means as a general-purpose algorithm, and both Ward and Agglomerative as hierarchical clustering methods, Gaussian Mixture Models and Spectral Clustering. It is worth mentioning that a modified version of the Scikit-learn code was adapted to meet the project's needs, enabling the running of multiple clustering techniques with varied parameters for the TCGA dataset (see \cref{s:cs:right_config}) and networks' outputs (\cref{s:ap:p0_clustering,s:ap:N_II:clustering analysis}).
 
-One of the most popular methods (and the simplest) is K-means clustering, which attempts to find patterns in the data by grouping data points by distance. There are variations of the algorithm where datasets are split into multiple batches to improve performance (see \textit{MiniBatch Kmeans} from \cref{fig:lit:clustering_types}); or Fuzzy K-means \citep{Bezdek1984-ao} that output the cluster membership of each data point. This means that apart from the cluster labelling, there is additional information about how close each point is to a cluster\footnote{For example, if there are 3 clusters, a data point might be 90\% in cluster 1, 6\% in cluster 2, and 4\% in cluster 3.}. 
-The pseudocode\footnote{Pseudocode is an accessible method to describe an algorithm.} for K-means is shown in \cref{code:k-means} and below are a few aspects of the model that are worth emphasising:
+\paragraph*{K-means}
+
+One of the most popular methods (and the simplest) is K-means clustering, which attempts to find patterns in the data by grouping data points their proximity. There are variations of the algorithm where datasets are split into multiple batches to improve performance (see \textit{MiniBatch K-means} from \cref{fig:lit:clustering_types}); or Fuzzy K-means \citep{Bezdek1984-ao} that output the cluster membership of each data point. This means that apart from the cluster labelling, there is additional information about how close each point is to a cluster\footnote{For example, if there are 3 clusters, a data point might be 90\% in cluster 1, 6\% in cluster 2, and 4\% in cluster 3.}. The pseudocode\footnote{Pseudocode is an accessible method to describe an algorithm.} for K-means is shown in \cref{code:k-means} and below are a few aspects of the model that are worth emphasising:
 \begin{figure}[!t]
   \centering
   \includegraphics[width=0.8\textwidth,height=0.5\textheight,keepaspectratio]{Sections/Lit_review/Resources/clustering_scikit.png}
-    \caption[Clustering models on different datasets]{How K-means (MiniBatch version), Spectral Clustering, Wards, Agglomerative Clustering, and Gaussian Mixture Models behave with different types of 2D datasets. Running times shown on the bottom right corner, all algorithms having comparable running times, with K-means being the fastest. Image adapted from \citep{Scikit-learn_undated-ax}}
+    \caption[Clustering models on different datasets]{How K-means (MiniBatch version), Spectral Clustering, Wards, Agglomerative Clustering, and Gaussian Mixture Models behave with different types of 2D datasets. Running times shown on the bottom right corner, all algorithms having comparable running times, with K-means being the fastest. Image adapted from \citet{Scikit-learn_undated-ax}/}
     \label{fig:lit:clustering_types}
 \end{figure}
 
 \begin{itemize}
   \item The number of centroids (K) is defined by the user.
-  \item The distance between two points can be of different types; the Euclidean is common, but for higher dimensions, cosine is more suitable.
+  \item The distance between two points can be of different types; the Euclidean is the most common, but for higher dimensions, cosine is more suitable.
   \item Even though the centroids are randomly initialised, new values are computed at each step by averaging the distance of the points in that cluster to the old centroid.
   \item The algorithm converges when the centroids do not significantly change.
 \end{itemize}
@@ -34,7 +35,10 @@ The pseudocode\footnote{Pseudocode is an accessible method to describe an algori
 \end{lstlisting}
 
 
-Agglomerative clustering is a type of hierarchical clustering that starts by considering each data point as its cluster and then computes higher up groups based on the given linkage method. These algorithms (pseudocode in \cref{code:agg_clustering}) build hierarchical trees and the output is visually represented by dendrogram figures, which are useful in visualising the clustering evolution. Both K-means and Agglomerative Clustering can use different types of distances, but the latter does not require specifying the number of groups. However, the dendrogram  and the type of linkage method have to be set, configurations which influences algorithm, Scikit-learn supports the following parameters\footnote{There is a nice visualisation for each of these hierarchical clustering in this \href{https://towardsdatascience.com/machine-learning-algorithms-part-12-hierarchical-agglomerative-clustering-example-in-python-1e18e0075019}{Medium post}}:
+\paragraph*{Agglomerative clustering}
+
+Agglomerative clustering is a type of hierarchical clustering that starts by considering each data point as its cluster and then computes higher up groups based on the given linkage method. These algorithms (pseudocode in \cref{code:agg_clustering}) build hierarchical trees and the output is visually represented by dendrogram figures, which are useful in visualising the clustering evolution. Both K-means and Agglomerative Clustering can use different types of distances, but the latter does not require specifying the number of groups. However, the dendrogram and the type of linkage method have to be set, configurations which influences algorithm, Scikit-learn supports the following parameters\footnote{There is a nice visualisation for each of these hierarchical clustering in this \href{https://towardsdatascience.com/machine-learning-algorithms-part-12-hierarchical-agglomerative-clustering-example-in-python-1e18e0075019}{Medium post}}:
+
 \begin{itemize}
   \item \textbf{Average} - Grouping is done by the average distance between cluster points.
   \item \textbf{Ward} - Merging clusters by the sum of squared distances. This linkage minimises the variance and is similar to K-means.
@@ -42,8 +46,10 @@ Agglomerative clustering is a type of hierarchical clustering that starts by con
   \item \textbf{Complete} - The opposite to Single linkage, the distance between the two groups is given by the farthest points. This method looks at the outer layer points and may provide a more accurate grouping.
 \end{itemize}
 
+The hierarchical clustering does not require the specification of the number of groups to be found in the dataset, but usually in practice the user needs to choose a dendrogram cut. This refers to how many groups are chosen from the hierarchical clustering, which is similar to the $K$ parameter in other algorithms for cluster size.
 
-\begin{lstlisting}[float=!h, caption={Agglomerative hierarchical clustering pseudocode}, label={code:agg_clustering}]
+
+\begin{lstlisting}[float=!htb, caption={Agglomerative hierarchical clustering pseudocode}, label={code:agg_clustering}]
   1. Assign each data point to its own cluster
   2. while there is more than one cluster do
      a. Compute the distance between each pair of clusters
@@ -54,6 +60,8 @@ Agglomerative clustering is a type of hierarchical clustering that starts by con
   4. The final cluster can be represented as a dendrogram
 \end{lstlisting}
 
+\paragraph*{GMM and others}
+
 Gaussian Mixture Models (GMM) are probabilistic models that assume all data points are generated from a mixture of a finite number of Gaussian distributions with unknown parameters. GMMs accommodate asymmetric clusters compared to K-means which assumes clusters are similar in size. Another applied clustering algorithm in the project, Spectral Clustering, transforms the clustering problem into a graph-partitioning problem. It begins by constructing an affinity matrix based on the pairwise similarity of points. It then uses linear algebra to project the data into a latent space from which the clusters are identified using methods such as K-means.
 
 The clustering algorithms presented so far are used throughout the project, initially to establish a referential point independent of the methods used in other MIBC subtyping classifications \citep{Robertson2017-mg, Marzouka2018-ge, Kamoun2020-tj}. Then, the clustering models are used to stratify the output of the network approach.
@@ -62,20 +70,20 @@ The clustering algorithms presented so far are used throughout the project, init
 % Clustering metrics
 \subsubsection*{Cluster metrics} \label{s:lit:clustering_metrics}
 
-One of the challenges in unsupervised learning is to measuring clustering performance as there is no labelling or prior information on how the grouping should look like. This project uses the canonical metrics which are supported by Scikit-learn \citep{Pedregosa2011-ts,Scikit-learn_undated-ax}: Silhouette Coefficient, Calinski-Harabasz and Davies-Bouldin \citep{Rousseeuw1987-wy,Calinski1974-uu,Davies1979-tn}. 
+One of the challenges in unsupervised learning is to measuring clustering performance as there is no labelling or prior information on the expected groups. This project uses the canonical metrics which are supported by Scikit-learn \citep{Pedregosa2011-ts,Scikit-learn_undated-ax}: Silhouette Coefficient, Calinski-Harabasz and Davies-Bouldin \citep{Rousseeuw1987-wy,Calinski1974-uu,Davies1979-tn}. 
 
 All three scores are used across all the results chapter, in the clustering analysis (\cref{s:cs:right_config,fig:cs:sill_distrib}), first network approach developed in \cref{s:ap:p0_clustering} and the the more advanced network pipeline in \cref{s:ap:N_II:clustering analysis}.
 
 
 \paragraph*{Silhouette Coefficient} \label{s:lit:silhouette}
 
-The Silhouette Coefficient was introduced by \citet{Rousseeuw1987-wy} with the goal of helping to find the appropriate clustering configuration. The score takes into account both how close and how separated the groups are, and it does not require knowing the number of clusters in advance. For each point (or sample), a silhouette value is calculated using \cref{eq:cs:sil}, where \(a\) is the average distance from the sample to all other points within its cluster, while \(b\) is the average distance from the sample to points in the nearest other cluster. Thus, \(a\) measures the cohesion (how close the points in the cluster are), and \(b\) measures the separation from other clusters. The cosine distance is used throughout this project to compute the distances for the Silhouette scores.
+The Silhouette Coefficient was introduced by \citet{Rousseeuw1987-wy} with the goal of finding the appropriate clustering configuration. The score takes into account both how close and how separated the groups are, and it does not require knowing the number of clusters in advance. For each point (or sample), a silhouette value is calculated using \cref{eq:cs:sil}, where \(a\) is the average distance from the sample to all other points within its cluster, while \(b\) is the average distance from the sample to points in the nearest other cluster. Thus, \(a\) measures the cohesion (how close the points in the cluster are), and \(b\) measures the separation from other clusters. The cosine distance is used throughout this project to compute the distances for the Silhouette scores.
 
 \begin{equation} \label{eq:cs:sil}
     s = \frac{b - a}{\max(a, b)}
 \end{equation}
 
-In the work that introduced the Silhouette score \citep{Rousseeuw1987-wy}, the author indicates that positive values (closer to 1) indicate well-separated groups, while negative values denote mis-clustering of the samples, and scores around 0 suggest that a sample could belong to multiple clusters. As a midpoint between 0 and 1, Silhouette values \(>0.5\) are considered to indicate well-clustered data points.
+In the work that introduced the Silhouette score \citep{Rousseeuw1987-wy}, the author indicates that positive values (closer to 1) indicate well-separated groups, while negative values denote mis-clustering of the samples, and scores around 0 suggest that a sample could belong to multiple clusters. As a midpoint between 0 and 1, Silhouette values \(>\)0.5 are considered to indicate well-clustered data points.
 
 
 \paragraph*{Calinski-Harabasz} \label{s:lit:cal_harab}

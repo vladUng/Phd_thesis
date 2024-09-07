@@ -2,7 +2,7 @@
 
 
 % Introduce the methods
-Throughout the project there are used different methods to find \acrfull{mibc} subgroups from the network approach followed by the clustering analysis (\cref{s:N_I,s:N_II}) or by just applying clustering models in \cref{s:clustering_analysis}. In all cases there are new subgroups that require interpretation with the goal to both biologically validate as well as to find new markers or functions. To achieve this three methods are used: \acrfull{dea}, pi-plots and \acrfull{gsea} which are all covered in the following subsections. 
+Throughout the project there are different methods used to find \acrfull{mibc} subgroups from the network approach followed by the clustering analysis (\cref{s:N_I,s:N_II}) or by just applying clustering models in \cref{s:clustering_analysis}. In all cases there are new subgroups that require interpretation with the goal to both biologically validate as well as to find new markers or functions. To achieve this three methods are used: \acrfull{dea}, pi-plots and \acrfull{gsea} which are all covered in the following subsections. 
 
 % Highlight the flow
 % Who introduced the method
@@ -24,12 +24,12 @@ In the example Volcano plot from \cref{fig:lit:dea_eg}, the two sides of the plo
 
 The scale of the axes is particularly important, especially for the horizontal axis, where larger differences in gene expression lead to a larger scale. The vertical dotted lines represent the threshold $[-1, 1]$, which for $log_{2}$ transformed values, indicates a doubling or halving of gene expression. The "Point(s) of interest" are those that lie outside these lines, while the points in dark blue indicate genes with no significant expression difference between the two groups.
 
-In summary, the volcano plot is a powerful tool for identifying genes that have both a large expression difference (X-axis) and a statistically significant difference (Y-axis). The plot was used to analyse the Abs-Ca differentiated split tumours in \cref{fig:N_II:diff_split} and the fresh-sequenced samples (P0) in \cref{fig:N_II:p0_split}.
+In summary, the volcano plot is a powerful tool for identifying genes that have both a large expression difference (X-axis) and a statistically significant difference (Y-axis). The plot was used to analyse the ABS-Ca differentiated split in \cref{fig:N_II:diff_split} and the division in the P0 samples in \cref{fig:N_II:p0_split}.
 
 \begin{figure}[H] 
     \centering
     \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Lit_review/Resources/volcano_explainer.png}
-    \caption[Volcano example]{Example of a Volcano plot between two}
+    \caption[Volcano example]{A toy example where the DEA results from two subtypes are shown. The genes specific to Subtype 1 are on the left-hand side, while those for Subtype 2 are on the right-hand side. Higher on the Y-axis indicates more significant changes, while further along the horizontal axis (in either direction) denotes a larger gene expression difference (in $log_2(FC)$).}
     \label{fig:lit:dea_eg}
 \end{figure}
 
@@ -38,7 +38,7 @@ In summary, the volcano plot is a powerful tool for identifying genes that have 
 \subsubsection{Pi plot} \label{s:lit:pi}
 
 % Introduce to pi
-The volcano plots are a great tool to understand the gene expression differences between two groups but are limited to the comparison size. To account for that \cite{Xiao2014-zn} introduced a new metric, pi-values (or $\pi$), which combines both the significance and the gene expression difference in one value using \cref{eq:lit:pi_val}. The $q-value$ represents the significance of the expression difference (from sleuth), and the $FC$ denotes the fold-change between the two compared groups. 
+The volcano plots are a great tool to understand the gene expression differences between two groups but are limited to the comparison size. To account for that \cite{Xiao2014-zn} introduced a new metric, pi-values (or $\pi$), which combines both the significance and the gene expression difference in one value using \cref{eq:lit:pi_val}. The adjusted p-value, $q-value$, represents the significance of the expression difference (from sleuth), and the $FC$ denotes the fold-change between the two compared groups. 
 
 \begin{equation} \label{eq:lit:pi_val}
     pi = - log_{10}(q_{val}) * log_{2}(FC)
@@ -55,7 +55,7 @@ The pi-plots were extensively used in the project starting with the analysis of 
 \begin{figure}[!htb]    
     \centering
     \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Lit_review/Resources/pi_explainer.png}
-    \caption[Pi plot example]{Example of pi-plot which it is used to compare the results of DEA comparison between 4 groups.}
+    \caption[Pi plot example]{Example of pi-plot which it is used to compare the results from DEA between 4 groups. Each quadrant holds the genes specific of two groups, for example QI contains the genes that are specific to  Subtype 1 over Subtype 2 and of Subtype 4 over Subtype 3. Closer the point is to the centre the more common the gene is to all four groups.}
     \label{fig:lit:pi_eg}
 \end{figure}
 
@@ -63,7 +63,7 @@ The pi-plots were extensively used in the project starting with the analysis of 
 \subsubsection{Gene Set Enrichment Analysis} \label{s:lit:gsea}
 
 % Introduction to GSEA
-The volcano and pi plots introduced earlier are tools to identify genes specific to different groups but usually there are still many genes left to explored. \acrfull{gsea} is another tool that can be used to find biologically relevant groups of genes which are different in the DEA. 
+The volcano and pi plots introduced earlier are tools to identify genes specific to different groups but usually there are still many genes left to explored. \acrlong{gsea} is another tool that can be used to find biologically relevant groups of genes which are different in the DEA. 
 
 % How GSEA works
 GSEA works by ranking all genes in your dataset according to a predefined metric (such as expression level or statistical significance) and then assessing whether the members of a given gene set (e.g., from the REACTOME database) are randomly distributed throughout the ranked list or primarily found at the top or bottom. If many of the high-ranked genes correspond to the top genes in a REACTOME pathway, it indicates positive enrichment of that pathway. Conversely, if many lower-ranked genes match the top genes in a REACTOME pathway, it suggests that the pathway is depleted in the given group.
@@ -107,8 +107,7 @@ The Kaplan-Meier survival analysis was used extensively throughout the project, 
 
 \begin{figure}[!htb]
     \centering
-    \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]
-{Sections/Network_I/Resources/selective_pruning/sel_tfs/survival_sel_tfs_cs.png}
-    \caption[Example of Kaplam-Meier]{Kaplan-Meier survival analysis of the MIBC groups identified using the 98 TFs from \cref{s:N_I:sel_pruning}.}
+    \includegraphics[width=1.0\textwidth, keepaspectratio]{Sections/ClusteringAnalysis/Resources/discussion/survival_K_6.png}
+    \caption[Example of Kaplam-Meier]{Kaplan-Meier survival analysis of the MIBC groups identified using the clustering analysis in \cref{s:clustering_analysis}. For example the survival rate of Ne is worst than the others, by having $\sim$30\% at 30 months (2 years and a half).}
     \label{fig:lit:surival_eg}
 \end{figure}
