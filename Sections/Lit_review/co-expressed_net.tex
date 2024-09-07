@@ -24,7 +24,7 @@ There are two methods reviewed in this section: \acrlong{wgcna} (WGCNA - \citet{
     \item \textbf{Community Detection:} In the final step, communities within the network are identified. WGCNA employs hierarchical clustering methods, while PGCNA uses community detection algorithms such as Louvain \citep{Blondel2008-ik} or Leiden \citep{Traag2019-ne}.
 \end{enumerate}
 
-PGCNA involves additional computational steps that extract the most relevant genes in each community, then find their representation in the gene expression dataset, values which are subsequently clustered to define the subtypes. These steps are discussed in more detail in the PGCNA \cref{s:lit:pgcna}.
+\gls{PGCNA} involves additional computational steps that extract the most relevant genes in each community, then find their representation in the gene expression dataset, values which are subsequently clustered to define the subtypes. These steps are discussed in more detail in the PGCNA \cref{s:lit:pgcna}.
 
 
  % WGCNA
@@ -34,7 +34,7 @@ One of the most popular \acrfull{gcna} is the WGCNA by \citet{Langfelder2008-sn}
 
 Compared to PGCNA (see \cref{s:lit:pgcna}) where correlation values are unaltered, in WGCNA the values are scaled from 0-1 at the cost of losing information resolution but of improving the graph processing. To reduce the number of edges, the authors sets a threshold to the correlation values (default to $0.02$) and for community detection they apply topological overlap which has been described in \cite{Zhang2005-xq} and applied in \citep{Yip2007-mr, Li2007-vz, Ravasz2002-au}. The discovered modules are then clustered using hierarchical clustering.
 
-WGCNA has been successfully used to a large number of applications from analysing the transcriptome for normal/failing Murine Hearts \citep{Lee2011-wm} or to find the regulatory genes/pathways related with obesity in pigs \citep{Kogelman2014-ea}, and to human cancer \citep{Yang2014-wv, Clarke2013-wd, Care2019-ij}. The wide range shows the versatility of the model and the power of co-expressed networks. However, as it will be shown in the next section and in the work of \citet{Care2019-ij}, PGCNA yields more biologically significant communities compared to WGCNA (measured by enrichment score and adjusted to community size).
+\gls{WGCNA} has been successfully used to a large number of applications from analysing the transcriptome for normal/failing Murine Hearts \citep{Lee2011-wm} or to find the regulatory genes/pathways related with obesity in pigs \citep{Kogelman2014-ea}, and to human cancer \citep{Yang2014-wv, Clarke2013-wd, Care2019-ij}. The wide range shows the versatility of the model and the power of co-expressed networks. However, as it will be shown in the next section and in the work of \citet{Care2019-ij}, PGCNA yields more biologically significant communities compared to WGCNA (measured by enrichment score and adjusted to community size).
 
 % PGCNA
 \paragraph*{PGCNA} \label{s:lit:pgcna}
@@ -83,7 +83,7 @@ To detect the network sub-structures after the correlation matrix was reduced, t
 
 \paragraph*{Bridging the gap between genes and sample}
 
-The end goal of PGCNA is to use the network representation to inform disease subtyping. There is therefore a need to bridge the gap between the gene representation and samples. This is done by using the module connection values (ModCon) which selects the top 25 most relevant genes from each community regardless of its size. The Module Evaluation Value (MEV) takes the 25 genes and computes the enrichment in the dataset which are then used for subtyping. Both ModCon and MEV scores are used and adapted to the project aims and covered in more details in \cref{s:N_I:methods_modcon, s:N_I:mev}.
+The end goal of PGCNA is to use the network representation to inform disease subtyping. There is therefore a need to bridge the gap between the gene representation and samples. This is done by using the module connection values (ModCon) which selects the top 25 most relevant genes from each community regardless of its size. The \gls{MEV} (MEV) takes the 25 genes and computes the enrichment in the dataset which are then used for subtyping. Both ModCon and MEV scores are used and adapted to the project aims and covered in more details in \cref{s:N_I:methods_modcon, s:N_I:mev}.
 
 \paragraph*{Measuring success} 
 
