@@ -8,8 +8,7 @@
         \item Reviewing the project aims
         \item Challenges
         \item Contribution to MIBC research
-        \item Limitations
-        \item Future work
+        \item Limitations \& Future work
       \end{itemize}
     }
 }
@@ -18,13 +17,13 @@
 
 \section{Meeting the aims}
 
-This PhD project had three aims: 1) create a method that allows the integration of multiple data types, 2) use the non-tumour gene expression to inform tumour stratification, and 3) enable researchers to trace the biological mechanism behind each subtype.
+This PhD project had three aims: 1) develop an integrative method for multi-omics data, 2) use the non-tumour gene expression to inform tumour stratification, and 3) enable researchers to trace the biological mechanism behind each subtype.
 
 % Summary of the method
-The \textbf{iNet} pipeline introduced in \cref{s:N_I} and then further refined in \cref{s:N_II}, is a network approach that allows the integration of multiple data types: 1) using \textbf{edges weight} modifiers to integrate mutation burden 2) selective edge pruning, which allows \gls{TF} to have a higher \textbf{number of eges}, and 3) using gene expression from freshly isolated samples to build a co-expressed \textbf{network}. 
+The \textbf{iNet} pipeline, introduced in \cref{s:N_I} and further refined in \cref{s:N_II}, is a network-based approach that integrates multiple data types. It incorporates: 1) \textbf{edge weight} modifiers to account for mutation burden, 2) selective edge pruning to allow \acrlong{tf} to have a higher \textbf{degree}, and 3) gene expression data from healthy samples to construct a co-expressed \textbf{network}.
 
 % Effects on the network show that the data was integrated successfully computationally
-Throughout the thesis, the effects of the data integration were verified at the network level by analysing the changes in the network metric using different parameters for selective edge pruning or edge weight modifier strategies. It was also observed that both selective edge pruning and weight modifier influence the community detection algorithm, which in turn has an impact on the stratification of the MIBC. The co-expressed networks built from the non-tumour and tumour datasets were different in terms of network metrics, the number of communities, and the MIBC subgroups derived.
+Throughout the thesis, the effects of the data integration were verified at the network level by analysing the changes in the network metrics (see \cref{s:lit:net_metrics}) using different parameters for selective edge pruning or edge weight modifier strategies. It was also observed that both selective edge pruning and weight modifier influence the community detection algorithm, which in turn has an impact on the stratification of the MIBC. The co-expressed networks built from the non-tumour and tumour datasets were different in terms of network metrics, the number of communities, and the MIBC subgroups derived.
 
 % Community detection - traceability
 Community detection plays an essential role in analysing the co-expressed network as it finds groups of genes in the co-expressed networks, which are then used to stratify the MIBC. Through these communities, traceability is achieved, and it has been shown to link MIBC divisions to some of the communities, work which was covered in more detail in \cref{s:N_II:std_net}.
@@ -36,22 +35,23 @@ To conclude, all three aims were tested and achieved computationally. The networ
 \section{Challenges}
 
 % Challenge of unsupervised learning
-The main challenge of the project was measuring the success of the changes in computational methods which is also one of the challenges in unsupervised learning applications. The lack of ground truth characterises such applications, and not knowing what to expect from the new subgroups makes it challenging to evaluate changes in the network pipeline.
+% The main challenge of the project was measuring the success of the refinements in computational methods which is also one of the challenges in unsupervised learning applications. To measure the impact of the changes in the network, clustering metrics were used that do not require the ground truth such as the Silhouette score or network metrics. These tools help verify whether modifications to the methods affect the output. However, they do not provide any indication of whether the changes made to the network have a natural biological impact. To address this, domain knowledge or further analysis was employed.
 
-% Lack of validation from standard metrics 
-To measure the impact of the changes in the network clustering metrics were used that do not require such as the Silhouette score or network metrics. These tools help verify whether modifications to the methods affect the output. However, they do not provide any indication of whether the changes made to the network have a natural biological impact. To address this, domain knowledge or further analysis was employed.
+% The main challenge of the project was measuring the success of the refinements in the computational framework, which is also one of the challenges in unsupervised learning applications. To measure the changes in the network pipeline, clustering metrics that do not require ground truth (e.g., Silhouette score) or network metrics (e.g., degree, closeness) were used. These tools help verify whether method modifications affect the graphs and the \gls{MIBC} subgroups. However, they do not provide any indication of whether the changes made to the network have a biological impact. To address this, domain knowledge or further analysis was employed.
+
+% One of the primary challenges we faced in the project was assessing the effectiveness of the refinements in our computational methods, especially in unsupervised learning applications. To gauge the impact of the changes in the network pipeline, we utilised clustering metrics like the Silhouette score, which do not rely on ground truth, as well as network metrics such as degree and closeness. While these tools helped us understand how method modifications influenced the graphs and MIBC subgroups, they did not reveal whether the network changes had a biological impact. To address this, we turned to domain knowledge and additional analysis.
+
+One of the primary challenges in the project was assessing the effectiveness of the refinements in the computational methods, particularly in unsupervised learning applications. Clustering metrics such as the Silhouette score, which does not rely on ground truth, were utilised to gauge the impact of the changes in the network pipeline, along with network metrics such as degree and closeness. While these tools helped to understand how method modifications influenced the graphs and \gls{MIBC} subgroups, they did not reveal whether the network changes had a biological impact. To address this, domain knowledge and additional analysis were employed.
+
 
 % Closest to ground truth 
 The closest approximations to ground truth were the previous classifications from TCGA, Lund, and the consensus. However, it was recognised that these classifications are incomplete, as the subtypes have not yet translated into improved clinical outcomes, and they were derived only from gene expression, except for the Lund classifier, which also used \acrlong{ihc}. While these classifications served as a method to check for MIBC trends identified by various changes in the network pipeline, they fall short of providing more information when new subgroups are discovered, such as the High IFNG or Basal 5 subtypes. The only exception was the work on \gls{IFN} from our lab \citep{Baker2022-bj}, which, in addition to helping with MIBC splits, also provided domain knowledge that could be used to validate new groups.
 
 % Analyses used 
-An additional complexity to the analysis was added by the high heterogeneity of bladder tumour, and to validate new subtypes and understand their biological significance, methods such as \acrlong{dea}, \acrlong{gsea}, and Kaplan-Meier survival analysis were employed. The verification prorcess revealed novel biological insights and contributed with list of genes of potential markers.
-
-In most cases, this validation process led to the discovery of new genes with the potential to reveal novel biological insights, contributing to a list of potential new markers. Additionally, the high heterogeneity of bladder tumours added to the complexity of the analysis.
+The high heterogeneity of bladder tumour added extra complexity to the analysis, and to validate new subtypes and understand their biological significance, methods such as \acrlong{dea}, \acrlong{gsea}, and Kaplan-Meier survival analysis were employed. In most cases, this validation process led to the discovery of new genes with the potential to reveal novel biological insights, contributing to a list of potential new markers. 
 
 % Impact of the development
 In summary, measuring the success of methodological changes required extensive analysis to determine if they had a biological impact. While this process advances the understanding of bladder tissue (both cancerous and non-cancerous), it slows the development of methods and makes MIBC stratification a challenging problem to research.
-
 
 % Contributon to Knowledge
 \section{Advancing MIBC research}
@@ -66,18 +66,18 @@ Using a standard clustering approach on TCGA's MIBC cohort, the research present
 \subsection*{Work on the \acrlong{tf}}
 
 % Selective edge pruning
-Using the selective edge pruning and the control networks, it was found that there is a subset of 98 TFs which have a strong correlation with other genes; \cref{s:N_I:sel_tfs}. Using the RNAseq data from TCGA to stratify the MIBC cohort, a new basal group, Basal 5, with less than a 20\% chance of survival after 1.7 years, this being the poorest prognosis seen in the thesis and possibly in the literature. Basal 3 was another basal group with a poor prognosis, which contained samples previously classified as \gls{MES-LIKE} \citep{Marzouka2018-ge}.
+Using the selective edge pruning and the control networks, it was found that there is a subset of 98 TFs which have a strong correlation with other genes; \cref{s:N_I:sel_pruning}. Using the tumour gene expression of the 98 TFs to stratify the MIBC cohort, a new group, Basal 5, with less than a 20\% chance of survival after 1.7 years, this being the poorest prognosis seen in the thesis and possibly in the literature. Basal 3 was another basal group with a poor prognosis, which contained samples previously classified as \gls{MES-LIKE} \citep{Marzouka2018-ge}.
 
 % Basla 5
-The Basal 5 subtype consists of 20 samples previously classified as basal \citep{Kamoun2020-tj,Robertson2017-mg} or UroB \citep{Marzouka2018-ge}, the latter having poor survival prognosis. It is worth noting that none of the samples in the Basal 5 were previously classified as \acrlong{ne}\footnote{\acrlong{ne} have the worst poor survival in the consensus and TCGA classifications \citep{Kamoun2020-tj,Robertson2017-mg}}. The group exhibits squamous markers and has a low immune response, and some of the significantly expressed genes are responsible for the aggressiveness of the tumours, while others can be targeted to improve treatment response.
+The Basal 5 subtype consists of 20 samples ($\sim$4\% of the cohort) previously classified as basal \citep{Kamoun2020-tj,Robertson2017-mg} or UroB \citep{Marzouka2018-ge}, the latter having poor survival prognosis. It is worth noting that none of the samples in the Basal 5 were previously classified as \acrlong{ne}\footnote{\acrlong{ne} have the worst poor survival in the consensus and TCGA classifications \citep{Kamoun2020-tj,Robertson2017-mg}}. The group exhibits squamous markers and has a low immune response, and some of the significantly expressed genes are responsible for the aggressiveness of the tumours, while others can be targeted to improve treatment response.
 
 % Selective edge pruning + controls as a method to find TFs
-The biological findings indicate that the selective edge pruning and the control networks can potentially represent a new method to find relevant \acrfull{tf} in a gene expression dataset. The method can help the researchers reduce the list of potential gene regulatory networks, focusing on the co-expressed ones.
+The biological findings indicate that the selective edge pruning and the control networks can potentially represent a new method to find relevant \gls{TF} in a gene expression dataset. The technique can help the researchers reduce the list of potential gene regulatory networks, focusing on the co-expressed ones.
 
 % High degree
 \subsection*{Subset of genes with high degree}
 
-The sigmoid weight modifier (or reward v2) used in the non-tumour network representation led to a selection of 122 genes with the following properties: 1) high mutation burden, 2) co-expressed with other genes, and 3) their Spearman correlation values are strong (\(>0.5\)); see \cref{s:N_II}. All the genes in this subset had a high degree value and were grouped into small-sized communities with less than 10 nodes. In addition, most genes have recognisable biological functions in the bladder, cancerous or non-cancerous.
+The sigmoid weight modifier (or reward v2) used in the non-tumour network representation led to a selection of 122 genes with the following properties: 1) high mutation burden, 2) co-expressed with other genes, and 3) their Spearman correlation values are strong (\(>\)0.5); see \cref{s:N_II}. All the genes in this subset had a high degree value and were grouped into small-sized communities with less than 10 nodes. In addition, most genes have recognisable biological functions in the bladder, cancerous or non-cancerous.
 
 It is remarkable that the network approach, including the \acrshort{hsbm}, can isolate genes with a functional role into small communities. An implication is that networks with more genes can be used in the network approach. This is important as gene filtering is usually required before constructing the network; thus, biases or assumptions are imposed on the network before the analysis.
 
@@ -85,6 +85,17 @@ It is remarkable that the network approach, including the \acrshort{hsbm}, can i
 \subsection*{Ensembl genes}
 
 Analysing the networks built from all the non-tumour samples showed that several communities of Ensembl genes contributed to the Abs-Ca and P0 splits, as well as to the division of TCGA's MIBC cohort. The presence of these Ensembl genes is specific to the non-tumour dataset, indicating that many poorly described genes may play an important role in bladder biology. Despite their lack of protein-coding function, recent research suggests that \acrlong{lncRNA} are implicated in gene regulatory mechanisms and chromatin remodeling \citep{Statello2021-md}, both of which are relevant to bladder cancer. This underscores the utility of a network-based approach in identifying lncRNAs, thereby imparting an additional layer of insight into bladder cancer research.
+
+\subsection*{Gene filtering} \label{s:discussion:gene_filt}
+
+The goal stratifying the \acrshort{mibc} is to identify a group of genes specific to each subtype that treatments can then target. The analysis starts with $\sim$33,000 genes from which the unexpressed genes are removed and then a selection of the highest varied genes are clustered by different techniques.
+
+The canonical approach to remove unexpressed genes is to apply a permissive gene filtering, retaining the genes that are expressed in at least 10\% of the samples (4 tumours of 408), allowing for high variance. Conversely, the aggressive gene filtering adopted in this project retains genes expressed in at least 90\% of the samples (367 of the 408 tumours), thus preserving a 'core' subset of genes across the \gls{MIBC} subtypes.
+
+Permissive filtering is more commonly used in disease subtyping, as it retains genes with high variance, which may only be expressed in a specific group of samples. However, as demonstrated in this project, using aggressive gene filtering leads to the identification of new Basal divisions that were previously found by using \acrshort{ihc} data in the Lund cohort \citep{Marzouka2018-ge} or focused studies on the \acrshort{ifn} response in the urothelium.
+
+This approach challenges, but also complements, the canonical methods for filtering expressed genes by demonstrating that an alternative strategy can lead to discovering new disease subtypes. In particular, the Basal subgroups on the \acrshort{ifn} response spectrum exhibit new biological differences and align with other research from \citep{Marzouka2018-ge,Baker2022-bj}.
+
 
 % Nework for stratifications
 \subsection*{Network as a tool for MIBC subtyping}
@@ -96,18 +107,19 @@ While there is no sufficient evidence to determine the success of the network pi
 The network approach suffered from a few limitations, which are addressed below. Addressing them will be part of future work to refine the methods.
 
 
+
 % Limitations
 \section{Limitations} \label{s:limitations}
 
 % Datasets
 \subsection*{Datasets}
 
-The TCGA and non-tumour datasets are invaluable assets to bladder research, but both samples have some aspects that need consideration. The MIBC cohort from TCGA is compromised of biopsies that are considered to be predominantly aggressive forms of MIBC and come mostly from males (\(\sim74\%\)). and are predominently white (\(\sim80\%\)).
+The TCGA and non-tumour datasets are invaluable assets to bladder research, but both samples have some aspects that need consideration. The MIBC cohort from TCGA is compromised of biopsies that are considered to be predominantly aggressive forms of MIBC and come mostly from males (\(\sim\)74\%). and are predominantly white (\(\sim\)80\%).
 
 % Talk
-The samples from the non-tumour datasets consist mostly of tissues from female donors (\(\sim90\%\)), and some of them are even paediatric. In the analysis performed, no biological sex difference was observed, not even in one of the Abs-Ca or P0 splits, and the predominantly female samples might impact TCGA's MIBC cohort, which is a male-dominated dataset.
+The samples from the non-tumour datasets consist mostly of tissues from female donors (\(\sim\)90\%), and some of them are paediatric. In the analysis performed, no biological sex difference was observed, not even in one of the ABS-Ca or P0 splits, and the predominantly female samples might impact TCGA's MIBC cohort, which is a male-dominated dataset.
 
-Another difference between the two datasets is that the stroma cells are removed in the non-tumour samples to form a cleaner representation of the bladder tissue. In addition, the samples from the non-tumour dataset do not exhibit \acrfull{ifn} response. However, among the previous MIBC stratification, the stroma infiltration characterises groups or, as it was shown \acrshort{ifn} response. This means that the non-tumour network representation cannot find stroma-like MIBC or high immune infiltration subgroups.
+Another difference between the two datasets is that the stroma cells are removed in the non-tumour samples to form a cleaner representation of the bladder tissue. In addition, the samples from the non-tumour dataset do not exhibit \acrlong{ifn} response. However, among the previous MIBC stratification, the stroma infiltration characterises groups or, as it was shown \acrshort{ifn} response. This means that the non-tumour network representation cannot find stroma-like MIBC or high immune infiltration subgroups.
 
 
 \subsection*{ModCon and MEV}
@@ -115,31 +127,8 @@ Another difference between the two datasets is that the stroma cells are removed
 One limitation of the network approach is that ModCon does not account for community size imbalance. This issue was most noticeable in the MIBC subtypes derived from the network, where there are small communities of highly connected nodes; see \cref{s:N_II:high_conn}. ModCon selects 100 genes regardless of the community size, and the MEV score is calculated as the sum of the z-scores of the genes selected by ModCon.
 
 % Implications
-When a community size is less than 100 nodes, the MEV score of the smaller community (\(<100\) nodes) is inherently smaller than that of larger communities. Consequently, smaller communities containing important genes may have a lesser impact on the MIBC stratification.
+When a community size is less than 100 nodes, the MEV score of the smaller community (\(<\)100 nodes) is inherently smaller than that of larger communities. Consequently, smaller communities containing important genes may have a lesser impact on the MIBC stratification.
 
-
-\subsection*{Basal predominant novelty} \label{s:discussion:gene_filt}
-
-% basal the most disrupted
-Finding subgroups within samples previously classified as the basal group is a recurring outcome in the analyses conducted throughout this project. One possible explanation is that basal tissues are more similar to undifferentiated bladder tissue, making them more distinct than luminal-type samples, closer to fully differentiated bladder tissue. Consequently, when the non-tumour network is used to stratify MIBC, the basal samples' most notable changes (or variations) occur. While this explanation might account for the patterns observed in the network representations, it does not apply to the clustering analysis, where \acrshort{ifn} heterogeneity was found across the basal subtypes.
-
-% Gene filtering
-The aggressive gene filtering to remove the unexpressed genes from the dataset might be another possible reason for the basal bias. With aggressive filtering, a gene is considered expressed if it is present in 90\% of the samples; in other words, any gene is discarded if it is \textbf{not} expressed in 10\% (i.e. four samples for TCGA) of the cohort. The permissive filter does the opposite; it considers unexpressed genes when it is not found in 90\% of the cohort or in 367 samples. 
-
-Permissive filtering is more used in this field as it keeps the genes with a high variance. However, as this project showed, using an aggressive gene filtering leads to new Basal divisions that were previously found by using \acrshort{ihc} data in Lund cohort \citep{Marzouka2018-ge} or focused studies on the \acrshort{ifn} response in urothelium.
-
-The MIBC patients are treated using BCG vaccines and can induce an \acrshort{ifn} response \citep{Baker2022-bj}. The genes ' variance is relatively low since the immune response is present in a large portion of the basal samples (i.e., High and Med IFNG). When using a permissive gene filtering approach, the \acrshort{ifn} gene signature dominates the most varied genes. However, with aggressive gene filtering, which imposes strict limits on gene expression, these highly varied genes selected through permissive filtering are excluded. As a result, this filtering method reveals the \acrlong{ifn} gamma response, which shows the rank comparison of the two filtering strategies in \cref{fig:ifng_rank_genes}.
-
-% Implication of the finding
-Finding the \acrlong{ifn} gene signature in the higher ranks of the aggressive filtering but not in the permissive filtering indicates that both approaches reveal different aspects of the same dataset. The permissive strategy promotes genes with high variance, potentially leading to subgroups with significantly different expression patterns. In contrast, aggressive gene filtering promotes gene signatures that are consistently expressed in a larger group of samples and exhibit less variation across the entire cohort.
-
-
-\begin{figure}[!htb]
-    \centering
-    \includegraphics[width=1.0\textwidth,keepaspectratio]{Sections/Gene_Sel/ifng_ranks.png}
-    \caption[Std/median ranks of the genes in \acrlong{ifn} signature]{The \acrshort{ifn} gene signature \citep{Baker2022-bj} ranked by standard deviation and median in two processed datasets. The first dataset is processed using permissive gene filtering, while the second uses aggressive gene filtering. The bar plot demonstrates that the gene signature is 'hidden' in lower ranks when applying permissive strategy, whereas the aggressive filtering reveals the \acrshort{ifn} gene signature.}
-      \label{fig:ifng_rank_genes}
-\end{figure}
 
 \subsection*{Building co-expressed networks}
 

@@ -43,7 +43,7 @@
 \pagenumbering{Roman}
 
 \import{Sections/}{abstract.tex}
-\import{Sections/}{acknowledgments.tex}
+% \import{Sections/}{acknowledgments.tex}
 
 
 \tableofcontents
@@ -58,13 +58,11 @@
 % \printglossary[type=acronym,style=long,nonumberlist]
 \clearpage
 
-\printglossary[type=\acronymtype,nonumberlist]
 
 \printglossary[nonumberlist]
 
-
+\printglossary[type=\acronymtype,nonumberlist]
 \newpage
-
 
 \pagenumbering{arabic}
 % \newpage
@@ -74,9 +72,9 @@
 \import{Sections/}{intro.tex}
 
 \import{Sections/Lit_review/}{master.tex}
-% \import{Sections/ClusteringAnalysis/}{master.tex}
-% \import{Sections/Network_I/}{master.tex}
-% \import{Sections/Network_I/EdgePruning}{master.tex}
+\import{Sections/ClusteringAnalysis/}{master.tex}
+\import{Sections/Network_I/}{master.tex}
+\import{Sections/Network_I/EdgePruning}{master.tex}
 \import{Sections/Network_II/}{master.tex}
 
 \import{Sections/}{discussion.tex}

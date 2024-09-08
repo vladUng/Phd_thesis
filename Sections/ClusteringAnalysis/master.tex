@@ -101,16 +101,26 @@ The results of this chapter are summarised in \cref{fig:cs:overview_K_means_6}, 
 % Talk about the implications of gene filtering
 \subsection*{Aggressive gene filtering}
 
+% The canonical approach is to apply a permissive gene filtering approach retains genes that are unexpressed in more than 10\% of the samples (i.e., 4 tumours), allowing for a highly varied set of genes in the dataset. Conversely, the aggressive gene filtering adopted here retains genes that are expressed in at least 367 of the 408 samples, thus preserving a 'core' subset of genes across the MIBC subtypes. The pre-processed data used for clustering analysis incorporated these 'core' genes, which included immune response signals for the various Basal groups.
+
 This chapter employed an aggressive gene filtering approach by retaining genes expressed in at least 90\% of the samples or 367 tumours. In contrast, the 'standard' method in the field involves removing genes from analysis that are expressed in less than 10\% of samples, making it more permissive. The aggressive filtering approach is an indirect finding of this chapter, as it enabled the clustering analysis to establish novel Basal groups based on their immune response. This was possible as the immune activated genes tend to left out by the permissive filtering with the gene selection by highest variance. 
 
-The canonical approach is to apply a permissive gene filtering approach retains genes that are unexpressed in more than 10\% of the samples (i.e., 4 tumours), allowing for a highly varied set of genes in the dataset. Conversely, the aggressive gene filtering adopted here retains genes that are expressed in at least 367 of the 408 samples, thus preserving a 'core' subset of genes across the MIBC subtypes. The pre-processed data used for clustering analysis incorporated these 'core' genes, which included immune response signals for the various Basal groups.
+The MIBC patients are treated using BCG vaccines and can induce an \acrshort{ifn} response \citep{Baker2022-bj}. The genes variance is relatively low since the immune response is present in a large portion of the basal samples (i.e., High and Med IFNG). When using a permissive gene filtering approach, the \acrshort{ifn} gene signature dominates the most varied genes. However, with aggressive gene filtering, which imposes strict limits on gene expression, these highly varied genes selected through permissive filtering are excluded. As a result, this filtering method reveals the \acrlong{ifn} gamma response, which shows the rank comparison of the two filtering strategies in \cref{fig:ifng_rank_genes}.
 
-This approach challenges, but also complements, the canonical methods for filtering expressed genes by demonstrating that an alternative strategy can lead to the discovery of new disease subtypes. In particular, the Basal subgroups on the \acrshort{ifn} response spectrum exhibit new biological differences and align with other research from \citep{Marzouka2018-ge,Baker2022-bj}.
+% Implication of the finding
+Finding the \acrlong{ifn} gene signature in the higher ranks of the aggressive filtering but not in the permissive filtering indicates that both approaches reveal different aspects of the same dataset. The permissive strategy promotes genes with high variance, potentially leading to subgroups with significantly different expression patterns. In contrast, aggressive gene filtering promotes gene signatures that are consistently expressed in a larger group of samples and exhibit less variation across the entire cohort.
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=1.0\textwidth,keepaspectratio]{Sections/Gene_Sel/ifng_ranks.png}
+    \caption[Std/median ranks of the genes in \acrlong{ifn} signature]{The \acrshort{ifn} gene signature \citep{Baker2022-bj} ranked by standard deviation and median in two processed datasets. The first dataset is processed using permissive gene filtering, while the second uses aggressive gene filtering. The bar plot demonstrates that the gene signature is 'hidden' in lower ranks when applying permissive strategy, whereas the aggressive filtering reveals the \acrshort{ifn} gene signature.}
+      \label{fig:ifng_rank_genes}
+\end{figure}
+
+
+The aggressive filtering approach is an indirect finding of this chapter, as it enabled the clustering analysis to establish novel Basal groups based on their immune response. This was possible as the immune activated genes tend to left out by the permissive filtering with the gene selection by highest variance. 
 
 The aggressive filtering approach is also important for the subsequent chapters \cref{s:N_I,s:N_II}, where a network representation of the non-tumour samples is used to inform MIBC stratification. This type of filtering is preferred as it selects the 'core' expressed genes across the samples and allows for the integration of mutation data, mimicking disruptions in the healthy bladder.
-
-
-% \footnote{Permissive filtering refers when the genes kept are expressed in at least 10\% of the samples. For example, in the 408 sample dataset used, 4 samples represent 10\%  and 367 samples 90\% of the dataset. The aggressive gene filtering keeps the genes that are expressed in \textbf{at least} 367 samples while the permissive case least 4 samples. This means, that permissive filtering allows for more variation which may be the case  }
 
 \section{Conclusion \& main findings} 
 
