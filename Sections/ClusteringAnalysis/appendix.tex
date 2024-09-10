@@ -12,7 +12,7 @@ This section presents the cluster metric plots (Davies Bouldin, Calinski Harabas
 \begin{figure}[!htb]    
     \centering
     \includegraphics[width=1.0\textwidth,keepaspectratio]{Sections/ClusteringAnalysis/Resources/cs_top3/non_PCA_top3_Davies_bouldin.png}
-    \caption{The means of the cluster metrics introduced by Davies-Bouldin, as described in \cref{s:lit:clustering_metrics}. For each metric, the top 3 performing models are marked by "X". Gaussian Mixture Model is abbreviated as GM, and Spectral Clustering as SC. Spectral Clustering with K=4 and K-means with K=4 are the two best-performing models. The difference between this plot and the one in \cref{fig:cs:dav_boul} is that the gene expression data here is not PCA-transformed. Overall, the non-PCA experiments perform worse compared with the PCA-transformed data in Davies-Bouldin scores and the other two cluster metrics in \cref{fig:ap:non_pca_metrics}.}
+    \caption[Non-PCA transformed data: Davies Bouldin]{The means of the cluster metrics introduced by Davies-Bouldin, as described in \cref{s:lit:clustering_metrics}. For each metric, the top 3 performing models are marked by "X". Gaussian Mixture Model is abbreviated as GM, and Spectral Clustering as SC. Spectral Clustering with K=4 and K-means with K=4 are the two best-performing models. The difference between this plot and the one in \cref{fig:cs:dav_boul} is that the gene expression data here is not PCA-transformed. Overall, the non-PCA experiments perform worse compared with the PCA-transformed data in Davies-Bouldin scores and the other two cluster metrics in \cref{fig:ap:non_pca_metrics}.}
     \label{fig:ap:non_pca_dav_boul}
 \end{figure}
 
@@ -31,14 +31,12 @@ This section presents the cluster metric plots (Davies Bouldin, Calinski Harabas
         \caption{Calinski Harabasz}
         \label{fig:ap:cal_hab}
     \end{subfigure}
-    \caption{The means of the three cluster metrics introduced in \cref{s:lit:clustering_metrics}: Silhouette (cosine) and Calinski-Harabasz. For each metric, the top 3 performing models are marked by "X". Gaussian Mixture Model is abbreviated as GM, and Spectral Clustering as SC. K-means with K=4 and K=5 are the best-performing clustering configurations. The difference between this plot and the one in \cref{fig:cs:cs_metrics} is that the gene expression data here is not PCA-transformed. Overall, the non-PCA experiments perform worse compared to the PCA-transformed data in the two presented metrics and in the Davies-Bouldin score shown in \cref{fig:ap:non_pca_dav_boul}.}
+    \caption[Non-PCA transformed data: Silhouette and Calinski-Harabasz]{The means of the three cluster metrics introduced in \cref{s:lit:clustering_metrics}: Silhouette (cosine) and Calinski-Harabasz. For each metric, the top 3 performing models are marked by "X". Gaussian Mixture Model is abbreviated as GM, and Spectral Clustering as SC. K-means with K=4 and K=5 are the best-performing clustering configurations. The difference between this plot and the one in \cref{fig:cs:cs_metrics} is that the gene expression data here is not PCA-transformed. Overall, the non-PCA experiments perform worse compared to the PCA-transformed data in the two presented metrics and in the Davies-Bouldin score shown in \cref{fig:ap:non_pca_dav_boul}.}
     \label{fig:ap:non_pca_metrics}
 \end{figure}
 
 % Table of genes used in the Pi-plot
 \section{Genes from Pi plot} \label{s:ap:pi_genes} 
-
-
 
 
 \begin{table}[H]
@@ -77,7 +75,7 @@ This section presents the cluster metric plots (Davies Bouldin, Calinski Harabas
         \textbf{Up Reg SCC} & BCL11B, BHLHE40, BNC1, EGR1, FOSL1, HES2, HMGA2, HOXD11, IRX3, JUN, KLF10, KLF13, KLF16, KLF4, MAFB, MYC, NFIL3, PITX1, SNAI2, SOX15, SOX7, TEAD4, TFAP2A, TIGD1, TRPS1, TWIST1, ZFPM2, ZNF598 & Up-regulated in \acrfull{scc} \citep{Hurst2022-sp} \\
         \bottomrule
     \end{tabularx}
-    \caption{Gene markers used across the different Pi and Volcano plots to highlight different functions (Part 1). These were shown across various plots in the new MIBC found using the clustering analysis in \cref{s:cs:bio_interp} and the groups derived from the network approach in \cref{s:N_II:dea_rwd}. }
+    \caption[Gene markers used in pi-plots - part 1]{Gene markers used across the different Pi and Volcano plots to highlight different functions (Part 1). These were shown across various plots in the new MIBC found using the clustering analysis in \cref{s:cs:bio_interp} and the groups derived from the network approach in \cref{s:N_II:dea_rwd}. }
     \label{tab:ap:pi_genes_1}
 \end{table}
 
@@ -100,7 +98,7 @@ This section presents the cluster metric plots (Davies Bouldin, Calinski Harabas
         \textbf{ig\_fam} & IGHG1, IGHG3, IGHJ2, IGHJ3, IGHJ4, IGHM, IGHV1-69D, IGHV2-70, IGHV3-11, IGHV3-15, IGHV4-39, IGKC, IGKJ1, IGKJ4, IGKV1-5, IGKV1-6, IGKV1-9, IGKV1D-39, IGKV2-28, IGKV4-1, IGLC1, IGLC2, IGLC3, IGLJ2, IGLJ3, IGLV1-40, IGLV1-44, IGLV3-19 & Immunoglobulin family, empirically observed across the \acrlong{dea} experiments from \cref{s:cs:basal_interp} \\
         \bottomrule
     \end{tabularx}
-    \caption{Gene markers used across the different Pi and Volcano plots to highlight different functions (Part 2). These were shown across various plots in the new MIBC found using the clustering analysis in \cref{s:cs:bio_interp} and the groups derived from the network approach in \cref{s:N_II:dea_rwd}.}
+    \caption[Gene markers used in pi-plots - part 2]{Gene markers used across the different Pi and Volcano plots to highlight different functions (Part 2). These were shown across various plots in the new MIBC found using the clustering analysis in \cref{s:cs:bio_interp} and the groups derived from the network approach in \cref{s:N_II:dea_rwd}.}
     \label{tab:ap:pi_genes_2}
 \end{table}
 
@@ -113,7 +111,7 @@ This section presents the cluster metric plots (Davies Bouldin, Calinski Harabas
 \begin{figure}[H]    
     \centering
 \includegraphics[width=1.0\textwidth,keepaspectratio]{Sections/ClusteringAnalysis/Resources/discussion/other_groups/ne2_hallmark_10_top.png}
-     \caption{For the Neuroendocrine-like group derived in \cref{s:cs:bio_interp} and accompanying the analysis in \cref{s:cs:ne_interp}. The top 10 terms of running GSEA on the Hallmark database. The gene ranking for GSEA is using distance from the 'Ref point' in \cref{fig:cs:ne_pi} to all the other genes. The closest points to the 'Ref point' also have the highest ranking for GSEA. The results show that there pathways involved in cell-cycle for the closest genes to the 'Ref point'. See \cref{fig:cs:ne_gsea} for the GSEA results when using the Reactome database. }
+     \caption[GSEA markers for Ne-like group]{For the Neuroendocrine-like group derived in \cref{s:cs:bio_interp} and accompanying the analysis in \cref{s:cs:ne_interp}. The top 10 terms of running GSEA on the Hallmark database. The gene ranking for GSEA is using distance from the 'Ref point' in \cref{fig:cs:ne_pi} to all the other genes. The closest points to the 'Ref point' also have the highest ranking for GSEA. The results show that there pathways involved in cell-cycle for the closest genes to the 'Ref point'. See \cref{fig:cs:ne_gsea} for the GSEA results when using the Reactome database. }
     \label{fig:ap:cs:gsea_ne_hallmark}
 \end{figure}
 

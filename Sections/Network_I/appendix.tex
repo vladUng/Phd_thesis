@@ -9,7 +9,7 @@
 \begin{figure}[H]    
     \centering
     \includegraphics[width=1.0\textwidth,keepaspectratio]{Sections/Network_I/Resources/Tum_network/MutTF_representation_4K-all.png}
-    \caption{How many genes are mutated in the 4K most varied genes compared to all the expressed genes. First plot includes all the genes expressed in  and non-TF, while the bottom only the TFs. Overall the figure shows that there are a few genes with a high mutation burden included in the 4000 genes used to build the networks.}
+    \caption[Mutation representation in most varied genes]{How many genes are mutated in the 4K most varied genes compared to all the expressed genes. First plot includes all the genes expressed in  and non-TF, while the bottom only the TFs. Overall the figure shows that there are a few genes with a high mutation burden included in the 4000 genes used to build the networks.}
     \label{fig:N_I:mut_rep_tum}
 \end{figure}
 
@@ -39,7 +39,7 @@ The clustering process involves running \acrfull{pca} and K-means to stratify MI
         \caption{Cluster model}
         \label{fig:N_I:p0_metr_model}
     \end{subfigure} 
-    \caption{Clustering models for each network type with the top three clustering scores. Colouring scale corresponds to the encounter frequency \textbf{per network type}; i.e. the count restarts for every network. A) looks at the overall most common clustering model configuration. B) at the most common clustering model. The two heatmaps show that K-means with K=4 is the overall most performing clustering model. Agglomerative Clustering with average linkage and Spectral Clustering are the following candidates.}
+    \caption[Heatmap: choosing clustering model for P0 mevs]{Clustering models for each network type with the top three clustering scores. Colouring scale corresponds to the encounter frequency \textbf{per network type}; i.e. the count restarts for every network. A) looks at the overall most common clustering model configuration. B) at the most common clustering model. The two heatmaps show that K-means with K=4 is the overall most performing clustering model. Agglomerative Clustering with average linkage and Spectral Clustering are the following candidates.}
     \label{fig:N_I:p0_top_3_metrics_I}
 \end{figure}
 
@@ -68,7 +68,7 @@ The clustering scores and analysis suggest that K-means with K=4 is the best-per
         \label{fig:N_I:p0_elbow_method}
         \caption{Elbow method}
     \end{subfigure}
-    \caption{Clustering models for each network type with the top three clustering scores. Colouring scale corresponds to the encounter frequency \textbf{per network type}; i.e. the count restarts for every network. A) the most likely cluster size. B) Elbow method. The two plots show that the K=4 is the common clustering configuration across all three networks by the three clustering metrics and the elbow method heurestic. }
+    \caption[Choosing $K$ for MEVs for P0 network]{Clustering models for each network type with the top three clustering scores. Colouring scale corresponds to the encounter frequency \textbf{per network type}; i.e. the count restarts for every network. A) the most likely cluster size. B) Elbow method. The two plots show that the K=4 is the common clustering configuration across all three networks by the three clustering metrics and the elbow method heurestic. }
     \label{fig:N_I:p0_top_3_metrics_II}
 \end{figure}
 
@@ -86,7 +86,7 @@ When the group size is increased to K=5, a subgroup of Basal groups (cluster 4) 
     \centering
     \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/P0/clustering/Sankey_KM_4K_v3.png}
     \caption{K-Means}
-    \caption{Sankey plots for the best performing clustering model in the standard P0 network with K=4 and K=5. The derived subgroups are also compared with the previous work in the field - TCGA subtyping \citep{Robertson2017-mg} and the consensus \citet{Kamoun2020-tj} as well as the groups derived from the clustering analysis earlier in the project \cref{s:clustering_analysis}. }
+    \caption[P0 network derived clusters comparisons with others]{Sankey plots for the best performing clustering model in the standard P0 network with K=4 and K=5. The derived subgroups are also compared with the previous work in the field - TCGA subtyping \citep{Robertson2017-mg} and the consensus \citet{Kamoun2020-tj} as well as the groups derived from the clustering analysis earlier in the project \cref{s:clustering_analysis}. }
     \label{fig:N_I:p0_sky_KMeans}
 \end{figure}
 
@@ -101,11 +101,12 @@ A common challenge in unsupervised learning is the inconsistency in group labell
 
 This method is used to align the communities in the network comparison work from \cref{s:N_I:com_analysis} for the Sankey plot between the standard and reward networks derived from the P0 dataset - see \cref{fig:N_I:p0_chg_sankey}
 
+\newpage
 
 % gene expression across the communities
 \subsection{Gene expression across communities} \label{s:ap:ge_p0_com}
 
-The below plot, \cref{fig:ap:p0_ge_chgs}, support the work done in \cref{s:N_I:com_analysis} which analysis the genes mutations and expressions differences between the communities in the standard and reward graphs.
+The below plot, \cref{fig:ap:p0_ge_chgs}, support the work done in \cref{s:N_I:com_analysis} which analysis the genes mutations and expressions differences between the communities in the standard and reward graphs derived from P0 networks.
 
 \begin{figure}[H]
     \centering
@@ -119,10 +120,11 @@ The below plot, \cref{fig:ap:p0_ge_chgs}, support the work done in \cref{s:N_I:c
             \caption{Reward network}
             \label{fig:ap:p0_chg_rwd_exp}
     \end{subfigure}
-    \caption{Median gene expressions (Y-axis) across the communities (X-axis) in the standard and reward network.}
+    \caption[P0 tum: median expression in P0 communities]{Median gene expressions (Y-axis) across the communities (X-axis) in the standard and reward network.}
     \label{fig:ap:p0_ge_chgs}
 \end{figure}
 
+\newpage
 % gene rep standard
 \subsection{Gene representation standard} \label{s:ap:p0_gene_rep_std}
 
@@ -137,6 +139,6 @@ The figure displays how many of the genes selected from the standard P0 network 
     \end{subfigure}
     \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/P0/13K_p0_modConMev_rep_standard_4K_50TF_v3.png}
     \label{fig:ap:std_p0_mev_all_rep}
-    \caption{Genes found in the tumour dataset for the communities across the standard network derived from the P0 samples. The two plots show that using just the top 4000 most varied genes in tumour lead to a poor representation in the genes used to compute the MEVs.}
+    \caption[Gene representation in tumour dataset]{Genes found in the tumour dataset for the communities across the standard network derived from the P0 samples. The two plots show that using just the top 4000 most varied genes in tumour lead to a poor representation in the genes used to compute the MEVs.}
     \label{fig:ap:std_p0_mev_rep}
 \end{figure}

@@ -19,8 +19,7 @@
 
 
 % cancer is bad
-In the article titled "Is the world making progress against cancer?" \citep{Roser2015-qb}, the authors provide an overview of humanity's progress in combating the disease. Despite significant technological and biological advancements over the past decades, and an approximately 17\% reduction in standardised cancer death rates from 1990 to 2017, cancer remains a major global health challenge. As the world’s population continues to live longer, more people are being diagnosed with cancer, as reflected in the overall increase in cancer deaths (see \cref{fig
-}). Ageing is associated with the malfunction of normal physiological processes, which increases the likelihood of developing cancer. This underscores the ongoing prevalence of cancer and highlights the need for continuous development of new treatments to address the growing number of patients.
+In the article titled "Is the world making progress against cancer?" \citep{Roser2015-qb}, the authors provide an overview of humanity's progress in combating the disease. Despite significant technological and biological advancements over the past decades, and an approximately 17\% reduction in standardised cancer death rates from 1990 to 2017, cancer remains a major global health challenge. As the world’s population continues to live longer, more people are being diagnosed with cancer, as reflected in the overall increase in cancer deaths (see \cref{fig}). Ageing is associated with the malfunction of normal physiological processes, which increases the likelihood of developing cancer. This underscores the ongoing prevalence of cancer and highlights the need for continuous development of new treatments to address the growing number of patients.
 
 
 % Bladder cancer
@@ -33,7 +32,7 @@ There are two major types of bladder cancer: \gls{NMIBC} (NMIBC) and \gls{MIBC} 
 \begin{figure}[!t]
     \centering
     \includegraphics[width=0.8\textwidth,keepaspectratio]{Images/cancer-deaths-rate-and-age-standardized-rate-index.png}
-    \caption[Cancer mortality]{Changes in cancer mortality between 1990 and 2017. Image from \citep{Roser2015-qb}}
+    \caption[Cancer mortality]{With a more than 60\% increase in global cancer deaths over the past 30 years, cancer remains a major health challenge, despite advances in technology and medicine \citep{Roser2015-qb}.}
     \label{fig:cancer_death}
 \end{figure}
 
@@ -52,7 +51,7 @@ Therefore, the motivation of this project is to address the limitations of curre
 
 % The project's hypothesis proposes that integrating additional data types into the gene expression data will result in MIBC subtypes that more accurately represent the molecular biology of the samples. Especially by combining the gene expression of the non-tumour samples with the mutations and expressed genes in the tumour, it will lead to new MIBC subgroups. Based on this, the project aims can be defined as follows:
 
-The MIBC is a complex cancer where normal processes malfunction at different levels. Thus, using the gene expression from non-tumour samples into which integrated mutation and regulatory information will lead to MIBC, a closer representation of biology. These subgroups will then help advance bladder cancer research and develop targeted treatments. Based on this hypothesis, the project aims can be defined as follows:
+The current MIBC subtypes are based only on tumour expression data without considering the other available data types \citep{Kamoun2020-tj, Robertson2017-mg}. However, this is a complex type of cancer where normal processes malfunction at different levels. Thus, it is hypothesised that using gene expression from non-tumour (healthy) samples into which integrated mutation and regulatory information will lead to new and different MIBC subgroups with a closer representation of biology. These subgroups will then help advance bladder cancer research and develop targeted treatments. Based on this hypothesis, the project aims can be defined as follows:
 
 \begin{enumerate}
     \item Create a method that allows the integration of multiple data types
@@ -64,8 +63,9 @@ While working on achieving the research aims stated above, the research was guid
 
 \begin{itemize}
     \item Traceability - allows the researchers to understand and explain the outputs of the approach used
-    \item Ensure the method is modular and data-agnostic, allowing its application to other diseases
-    \item Keep the software and the method simple; the complexity arises from the biology
+    \item Ensure the method is modular and tissue-agnostic, allowing its application to other diseases
+    \item Keep the software and the method complexity to a minimum, the complexity arises from the biology
+    % \item Keep the software and method as simple as possible, ensuring that any complexity is driven by the underlying biological data
     \item Develop a platform that enables the integration of additional data types beyond those considered in this PhD project
 \end{itemize}
 
@@ -77,13 +77,14 @@ While working on achieving the research aims stated above, the research was guid
 
 \textbf{Cluster Analysis (\cref{s:clustering_analysis})} - This thesis section delves deeper into the clustering methods used throughout the project, whether to group gene expression data or network outputs. Through a standard clustering analysis process, we discovered that one of the major MIBC groups, the basal subtype, can be further divided into three subgroups with differing immune responses and survival prognoses. Notably, the subgroup with the lowest immune response has the poorest 5-year survival rate.
 
-\textbf{A Network Pipeline for Subtyping (\cref{s:N_I})} - This research investigates the integration of data into a network approach at three key stages: 1) modelling edge weights proportional to the genes' mutation burden, 2) selective edge pruning, which allows \acrlong{tf} to have more connections than other genes, and 3) using gene expression from freshly isolated samples to build a network representation. The chapter assesses the impact of these data integration strategies on the network's metrics.
+\textbf{A Network Pipeline for Subtyping (\cref{s:N_I})} - This research investigates the integration of data into a network approach at three key stages: 1) modelling edge weights proportional to the genes' mutation burden in MIBC, 2) selective edge pruning, which allows Transcription Factors (TF) to have more connections than other genes, and 3) using gene expression from freshly isolated samples to build a co-expressed network. 
+The chapter assesses the impact of these data integration strategies on the network's metrics.
 
 
-\textbf{Selective Edge Pruning (\cref{s:N_I:sel_pruning})} - This chapter extends the previous work focusing on finding the appropriate configuration for the number of edges assigned to TF genes and comparing the Leiden community detection algorithm with \acrfull{sbm}. From the selective edge pruning experiments, 98 TFs were identified as naturally co-expressed with other genes, even in a control network. Using the tumour gene expression of this subset to stratify the TCGA's MIBC cohort, a Basal subgroup formed of 7\% of samples from the tumour cohort was discovered, characterised by the lowest survival prognosis in the literature. Notably, this subgroup does not contain samples previously classified as \acrlong{ne} and exhibits squamous phenotypes. \acrshort{sbm} is preferred for community detection as it identifies more communities and is robust in detecting patterns in random data.
+\textbf{Selective Edge Pruning (\cref{s:N_I:sel_pruning})} - This chapter extends the previous work in the project, focusing on finding the appropriate configuration for the number of edges assigned to Transcription Factors genes and comparing the Leiden community detection algorithm with \acrfull{sbm}. From the selective edge pruning experiments, 98 TFs were identified as naturally co-expressed with other genes, even in a control network. Using the tumour gene expression of this subset to stratify the TCGA's MIBC cohort, a Basal subgroup formed of 7\% of samples from the tumour cohort was discovered, characterised by the lowest survival prognosis in the literature. Notably, this subgroup does not contain samples previously classified as \acrlong{ne} and exhibits squamous phenotypes. \acrshort{sbm} is preferred for community detection as it identifies more communities and is robust in detecting patterns in random data.
 
 
-\textbf{Network II (\cref{s:N_II})} - Building on the previous work, this chapter introduces a more refined network approach where the data integration methods from Chapter 4 are improved to have a larger impact on the network. The research presented identifies 122 genes (TF and non-TF) concentrated in small communities (\(<\)10 nodes) that are highly and strongly correlated, as well as having a high mutation burden. The analysis showed that many of the significantly differentially expressed genes are \acrlong{lncRNA} genes which are understudied as do not encode for proteins, but recent studies show that these have a regulatory role \citep{Statello2021-md}. This indicates the added level of complexity and information by using the healthy gene expression representation and the limits of current biological knowledge.
+\textbf{Network II (\cref{s:N_II})} - It introduces a refined network approach where the data integration methods from Chapter 4 are improved to have a larger impact on the network. Compared to the work from \cref{s:N_I}, the network is built from a larger number of healthy samples and the mutation burden of the MIBC is gradually integrated into edge weight modifiers. The research presented identifies 122 genes (TF and non-TF) concentrated in small communities (\(<\)10 nodes) that are highly and strongly correlated, as well as having a high mutation burden. The analysis showed that many of the significantly differentially expressed genes are \acrlong{lncRNA} genes, which do not encode for proteins, making them understudied in cancer subtyping but recent studies show that these have a regulatory role \citep{Statello2021-md}. This indicates the added level of complexity and information by using the healthy gene expression representation and the limits of current biological knowledge.
 
 
 \textbf{Discussion \& Future Work (\cref{s:discussion})} - This chapter presents the significance and implications of the findings throughout the project and discusses potential avenues for future research.
@@ -129,7 +130,7 @@ The research covered in this chapter was presented at the Complex Networks (CN) 
 
 This chapter brings the following contributions to the field:
 \begin{itemize}
-    \item A more advanced network pipeline is used to form a non-tumour network representation from which the \acrshort{mibc} is informed
+    \item A more advanced network pipeline is used to form a healthy (non-tumour) network representation from which the \acrshort{mibc} is informed
     \item Identification of a subset of genes and communities with a high mutation burden, which are highly and strongly co-expressed with other genes
     \item \acrfull{hsbm} from the network pipeline finds small communities off less than 10 genes in a network of 5000 nodes
     \item Discovery of new \gls{BASAL} and \gls{LUMINAL} subdivisions: the former has a low survival rate, and the latter has the highest survival rate over five years. Both are characterised by communities with Ensembl genes,

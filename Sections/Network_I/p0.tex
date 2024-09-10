@@ -35,7 +35,7 @@ A significant difference between the penalised network and the other two graphs 
 \begin{figure}[!t]    
     \centering
     \includegraphics[width=1.0\textwidth,keepaspectratio]{Sections/Network_I/Resources/P0/P0_NetworkMetricsComp_50TF_2.png}
-     \caption{Network metrics for the P0 networks formed from 4K genes, 3 connections per standard gene and 6 for TFs with the different weight modifiers; standard (red), reward (mustard) and penalised (green). The y-axis represent is in log10 of the metric. Higher the degree and pageRank values more important the node is to the network, smaller values of closeness metric indicates that the vertices are closer together, while higher values of betweenness means that a node serves as a key bridge between other nodes. Higher values of \acrlong{ivi} indicates the node has a large influence both locally and globally to the network. Overall, the P0 networks have nodes with a larger number of connections and are closer together compared to the tumour networks. The nodes in the reward network become closer together compared with the standard grap and the opposite effect is seen in the penalised network. }
+     \caption[P0: centrality network metrics]{Network metrics for the P0 networks formed from 4K genes, 3 connections per standard gene and 6 for TFs with the different weight modifiers; standard (red), reward (mustard) and penalised (green). The y-axis represent is in log10 of the metric. Higher the degree and pageRank values more important the node is to the network, smaller values of closeness metric indicates that the vertices are closer together, while higher values of betweenness means that a node serves as a key bridge between other nodes. Higher values of \acrlong{ivi} indicates the node has a large influence both locally and globally to the network. Overall, the P0 networks have nodes with a larger number of connections and are closer together compared to the tumour networks. The nodes in the reward network become closer together compared with the standard grap and the opposite effect is seen in the penalised network. }
     \label{fig:N_I:net_metrics_p0}
 \end{figure}
 
@@ -64,7 +64,7 @@ The small variance in the Modularity score, as shown in the figure on the right,
 \begin{figure}[!t]    
     \centering
     \includegraphics[width=1.0\textwidth,keepaspectratio]{Sections/Network_I/Resources/P0/Ldn_Sky_TF_50_RawKMeans_K5_v3.png}
-    \caption{Overview of the MIBC groups found using the expression from the P0 dataset. On the top are displayed the community size and Modularity Score. The two metrics used to asses effects of the weight modifiers (standard, reward and penalise) to the Leiden algorithm. At the bottom the Sankey plot displays comparison between the MIBC subtyping derived from the different standard classifiers (TCGA \citep{Robertson2017-mg} and consensus \citep{Kamoun2020-tj}), the previous developed subgroups with the cluster analysis \cref{s:clustering_analysis} and the three different networks. The figures show that there are less communities found compared with the tumour networks and there is less variance on the MIBC subtyping across the P0 derived networks. }
+    \caption[P0: Leiden metrics]{Overview of the MIBC groups found using the expression from the P0 dataset. On the top are displayed the community size and Modularity Score. The two metrics used to asses effects of the weight modifiers (standard, reward and penalise) to the Leiden algorithm. At the bottom the Sankey plot displays comparison between the MIBC subtyping derived from the different standard classifiers (TCGA \citep{Robertson2017-mg} and consensus \citep{Kamoun2020-tj}), the previous developed subgroups with the cluster analysis \cref{s:clustering_analysis} and the three different networks. The figures show that there are less communities found compared with the tumour networks and there is less variance on the MIBC subtyping across the P0 derived networks. }
     \label{fig:N_I:p0_sky_leiden}
 \end{figure}
 
@@ -108,7 +108,7 @@ Overall, the analysis suggests that the reward modifier triggers gene community 
         \caption{Mutation burden across communities}
         \label{fig:N_I:p0_chg_mut}
     \end{subfigure}
-    \caption{Gene communities changes (A) and their corresponding mutation burden (B). The X-axis in B) represent the communities in which the genes are in the reward network after the modifier was applied (or right-hand side in the Sankey plot) and the colours represent the communities in the standard network (left-hand side in the Sankey plot). The first figure indicates that the weight modifiers work by causing gene membership changes while the second plot show that the communities retain most of the genes mutated suggesting that the weight modifier are not powerful enough to cause larger changes across the blocks. }
+    \caption[Gene migrations between communities]{Gene communities changes (A) and their corresponding mutation burden (B). The X-axis in B) represent the communities in which the genes are in the reward network after the modifier was applied (or right-hand side in the Sankey plot) and the colours represent the communities in the standard network (left-hand side in the Sankey plot). The first figure indicates that the weight modifiers work by causing gene membership changes while the second plot show that the communities retain most of the genes mutated suggesting that the weight modifier are not powerful enough to cause larger changes across the blocks. }
     \label{fig:N_I:p0_comm_chgs_1}
 \end{figure}
 
@@ -145,7 +145,7 @@ However, the modifier does not have enough power to cause large changes which ma
         \caption{Reward}
         \label{fig:N_I:p0_rwd_mut_burden}
     \end{subfigure}
-    \caption{Mutation burden per communities}
+    \caption[Mutation burden per communities]{These two plot show how many genes are included in each community as the mutation burden increases.}
     \label{fig:N_I:p0_mut_burden}
 \end{figure}
 
@@ -176,7 +176,7 @@ Nevertheless, even when all expressed genes are considered, some genes are still
         \caption{All the genes expressed}
         \label{fig:N_I:p0_mev_all_rep}
     \end{subfigure}
-    \caption{Genes found in the tumour dataset for the communities in the reward graph. The top 100 genes are selected by ModCon score. A) Is when the tumour dataset is restricted to the top most varied genes B) Includes all the expressed genes in the tumour dataset. The two plots show that using just the top 4000 most varied genes in tumour lead to a poor representation in the genes used to compute the MEVs.}
+    \caption[Gene representation in MEV]{Genes found in the tumour dataset for the communities in the reward graph. The top 100 genes are selected by ModCon score. A) Is when the tumour dataset is restricted to the top most varied genes B) Includes all the expressed genes in the tumour dataset. The two plots show that using just the top 4000 most varied genes in tumour lead to a poor representation in the genes used to compute the MEVs.}
     \label{fig:N_I:p0_mev_rep}
 \end{figure}
 

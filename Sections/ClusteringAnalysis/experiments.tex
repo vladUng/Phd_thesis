@@ -22,7 +22,7 @@ In subsequent experiments, several clustering models were evaluated using the sc
 
 Before applying clustering methods, \gls{PCA} (PCA) is utilised to reduce the data dimensions. This dimension reduction technique notably enhances the performance of the clustering algorithms, as evidenced by the improved metric scores for PCA-transformed data, see  \cref{fig:cs:cs_metrics}, compared to non-PCA data as shown in \cref{s:ap:non-pca} from Appendix. Specifically, the Silhouette score doubles, indicating a two-fold improvement in cluster tightness and separation. The Calinski-Harabasz score sees a threefold increase, reflecting better-defined clusters, while the Davies-Bouldin score halves, suggesting a better partition (lower is better). The number of PCA components is set to four, marking the threshold beyond which each additional component contributes less than 1\% to the overall PCA variance\footnote{The PCA variance is a measure of the information each component captures}.
 
-\begin{figure}[!htb]
+\begin{figure}[!t]
     \captionsetup[subfigure]{justification=Centering}
     \centering
     \begin{subfigure}[!t]{1.0\textwidth}
@@ -36,7 +36,7 @@ Before applying clustering methods, \gls{PCA} (PCA) is utilised to reduce the da
         \caption{Calinski Harabasz}
         \label{fig:cs:cal_hab}
     \end{subfigure}
-    \caption{The means of the three cluster metrics introduced in \cref{s:lit:clustering_metrics}: Silhouette (cosine) and Calinski Harabasz. The gene expression is processed according to \cref{s:cs:methods} and PCA with 5 components was applied. For each metric the top 3 most performing models are marked by "X". Gaussian Mixture Model is abbreviated to GM and Spectral Clustering to SC. K-means with K=4 and K=5 are the best performing clustering configuration.}
+    \caption[Measuring clustering models: Silhouette and Calinski Habrasz]{The means of the three cluster metrics introduced in \cref{s:lit:clustering_metrics}: Silhouette (cosine) and Calinski Harabasz. The gene expression is processed according to \cref{s:cs:methods} and PCA with 5 components was applied. For each metric the top 3 most performing models are marked by "X". Gaussian Mixture Model is abbreviated to GM and Spectral Clustering to SC. K-means with K=4 and K=5 are the best performing clustering configuration.}
     \label{fig:cs:cs_metrics}
 \end{figure}
 
@@ -44,7 +44,7 @@ Before applying clustering methods, \gls{PCA} (PCA) is utilised to reduce the da
 \begin{figure}[!htb]    
     \centering
     \includegraphics[width=1.0\textwidth,keepaspectratio]{Sections/ClusteringAnalysis/Resources/cs_top3/PCA_top3_Davies_bouldin.png}
-    \caption{The means of the cluster metrics introduced in Davies Bouldin introduced in \cref{s:lit:clustering_metrics}. The gene expression is processed according to \cref{s:cs:methods} and PCA with 5 components was applied. For each metric the top 3 most performing models are marked by "X". Gaussian Mixture Model is abbreviated to GM and Spectral Clustering to SC. K-means with K=5 and Gaussian Mixture with 4 are the best two performing models.}
+    \caption[Measuring clustering models: Davies Boulding]{The means of the cluster metrics introduced in Davies Bouldin introduced in \cref{s:lit:clustering_metrics}. The gene expression is processed according to \cref{s:cs:methods} and PCA with 5 components was applied. For each metric the top 3 most performing models are marked by "X". Gaussian Mixture Model is abbreviated to GM and Spectral Clustering to SC. K-means with K=5 and Gaussian Mixture with 4 are the best two performing models.}
     \label{fig:cs:dav_boul}
 \end{figure}
 
@@ -69,7 +69,7 @@ Less common in the top three best performing, are the cluster models with high n
         \caption{Most frequent K in top 3}
         \label{fig:cs:heatmap_cs}
     \end{subfigure}
-    \caption{Most frequent model and K according to the clustering metrics. For each heatmap, the rows represent the top model/K for that metric, while the X-axis contains the methods used. The \textbf{colouring is done per column}, allowing for the determination of the optimal configuration per model and number of clusters. The following abbreviations were used: \textbf{Wrd} - Ward, \textbf{Brch} - Birch, \textbf{GaussianMixture} - Gaussian Mixture Models, \textbf{Spec} - Spectral Clustering. Both K-means with K=5 and Spectral Clustering with K=7 are the most frequent top scorers across the clustering models. Group sizes of 5 and 7 tend to score the highest across $K\in[3,13]$.}
+    \caption[Heatmaps: most common cluster model and $K$]{Most frequent model and K according to the clustering metrics. For each heatmap, the rows represent the top model/K for that metric, while the X-axis contains the methods used. The \textbf{colouring is done per column}, allowing for the determination of the optimal configuration per model and number of clusters. The following abbreviations were used: \textbf{Wrd} - Ward, \textbf{Brch} - Birch, \textbf{GaussianMixture} - Gaussian Mixture Models, \textbf{Spec} - Spectral Clustering. Both K-means with K=5 and Spectral Clustering with K=7 are the most frequent top scorers across the clustering models. Group sizes of 5 and 7 tend to score the highest across $K\in[3,13]$.}
     \label{fig:cs:cs_metrics_heatmap}
 \end{figure}
 
@@ -121,7 +121,7 @@ The bar plot in \cref{fig:cs:sill_neg_above_th} displays the number of samples o
         \caption{K=8 (Mean: $0.32$)}
     \end{subfigure}
     \centering
-    \caption{The Silhouette distribution of the K-means model for K ranging from 3 to 8. The scatter plot on the right displays the first 2 components of PCA (out of 4 components) coloured by the cluster labels from the method. A good Silhouette score is considered to be above 0.5, which is marked by the blue dotted line. The red dotted line represents the mean value. The values in the brackets represent the mean Silhouette scores across the samples. The figures provide a complete picture of the Silhouette scores for different K-values, including the proportion of negative values (indicating poor clustering) and their representation in the first two Principal Components. The highest mean Silhouette score is achieved when K=3, followed by K=5 and K=4. The number of negative Silhouette samples for each K is shown in \cref{fig:cs:sill_neg_above_th}.}
+    \caption[Silhouette distribution a further exploration of K-means]{The Silhouette distribution of the K-means model for K ranging from 3 to 8. The scatter plot on the right displays the first 2 components of PCA (out of 4 components) coloured by the cluster labels from the method. A good Silhouette score is considered to be above 0.5, which is marked by the blue dotted line. The red dotted line represents the mean value. The values in the brackets represent the mean Silhouette scores across the samples. The figures provide a complete picture of the Silhouette scores for different K-values, including the proportion of negative values (indicating poor clustering) and their representation in the first two Principal Components. The highest mean Silhouette score is achieved when K=3, followed by K=5 and K=4. The number of negative Silhouette samples for each K is shown in \cref{fig:cs:sill_neg_above_th}.}
     \label{fig:cs:sill_distrib}
 \end{figure}
 
@@ -145,7 +145,7 @@ Based on the analysis conducted in this section, $K=5$ and $K=6$ emerge as the m
         \label{fig:cs:sankey_kMeans}
     \end{subfigure}
     \centering
-    \caption{The bar plot presents the number of samples with a Silhouette score above 0.5 (well-clustered) compared to those with negative values (poorly clustered). When the cluster size (K) is 5, there are the most well-clustered samples, while $K\in{3,8}$ has the most samples with negative values. The Sankey plot shows the comparison across the different configurations of K-Means. It can be seen that the Basal groups are split before the Luminal groups, which differs from other classifications in the literature \citep{Robertson2017-mg, Kamoun2020-tj}.}
+    \caption[Mis-clustered samples overview]{The bar plot presents the number of samples with a Silhouette score above 0.5 (well-clustered) compared to those with negative values (poorly clustered). When the cluster size (K) is 5, there are the most well-clustered samples, while $K\in{3,8}$ has the most samples with negative values. The Sankey plot shows the comparison across the different configurations of K-Means. It can be seen that the Basal groups are split before the Luminal groups, which differs from other classifications in the literature \citep{Robertson2017-mg, Kamoun2020-tj}.}
     \label{fig:cs:sankey_comp}
 \end{figure}
 
@@ -182,6 +182,6 @@ The following adjustments based on the \citet{Scikit-learn_undated-ax} were made
 \begin{sidewaysfigure}
     \centering
     \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/ClusteringAnalysis/Resources/clustering_pipeline.png}
-    \caption{Summary of the clustering analysis developed in \cref{s:cs:right_config}, which is composed of four stages: 1) Filtering, where only genes expressed in 90\% of the samples are retained; 2) Pre-processing, where the top 3,500 genes with the highest median/standard deviation are selected; 3) Dimension reduction to 4 Principal Components (PCs); 4) Clustering, where K-means with K=5 is applied.}
+    \caption[Clustering analysis pipeline]{Summary of the clustering analysis developed in \cref{s:cs:right_config}, which is composed of four stages: 1) Filtering, where only genes expressed in 90\% of the samples are retained; 2) Pre-processing, where the top 3,500 genes with the highest median/standard deviation are selected; 3) Dimension reduction to 4 Principal Components (PCs); 4) Clustering, where K-means with K=5 is applied.}
     \label{fig:cs:clustering_pipeline}
 \end{sidewaysfigure}

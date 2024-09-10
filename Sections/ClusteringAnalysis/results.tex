@@ -24,13 +24,12 @@ By comparing with the TCGA stratification from \citet{Robertson2017-mg} (and the
         \label{fig:cs:ifn_three_basal}
     \end{subfigure} 
     \centering
-    \centering
-    \caption{Sankey plot comparing the TCGA classification \citet{Robertson2017-mg}, the Interferon$\gamma$ split from \cite{Baker2022-bj}, our clustering and the Lund classifier \citet{Marzouka2018-ge}. This plot highlights that the two basal splits found through our clustering are a group of samples that have high \acrshort{ifn} (small group) and a mixed response (Large Ba/Sa). }
+    \caption[MIBC groups comparisons over previous classifications]{Sankey plot comparing the TCGA classification \citet{Robertson2017-mg}, the Interferon$\gamma$ split from \cite{Baker2022-bj}, our clustering and the Lund classifier \citet{Marzouka2018-ge}. This plot highlights that the two basal splits found through our clustering are a group of samples that have high \acrshort{ifn} (small group) and a mixed response (Large Ba/Sa). }
     \label{fig:cs:ifn_comp}
 \end{figure}
 
 % IFNG
-The groups derived in this section are also compared with the \textit{in-situ} work \citet{Baker2022-bj} from the Jack Birch Unit (JBU) focused on splitting the Basal/Squamous group by the tumour's \acrfull{ifn} response: no response and a high response. The authors identified that patients classified with a high \acrshort{ifn} have a better survival prognosis compared to the ones with no immune response; the \acrshort{ifn} signature response is derived from the gene expression of a subset of genes found by the authors. In \cref{fig:cs:ifn_comp} it can be clearly seen that the Small Ba/Sq group contains a large portion of the the \acrshort{ifn} response group from \citet{Baker2022-bj}, while the large basal group a mixed of low and high \acrshort{ifn} samples. Taking the 3 main 'chords' of samples going from the \acrshort{ifn} to the Basal groups (KMeans), the Basal subtype can be further split into 3 as seen in \cref{fig:cs:ifn_three_basal}. The association of the Basal subgroups it is also supported by the Lund classifier \citet{Marzouka2018-ge}, where the Small Ba/sq (or High IFNG) contains the samples of the Ba/Sq-Inf and Mes-like from Lund, while the other two basal (in Basal\_type) are either Ba/Sq or UroB by Lund.
+The groups derived in this section are also compared with the \textit{in-vitro} work \citet{Baker2022-bj} from the Jack Birch Unit (JBU) focused on splitting the Basal/Squamous group by the tumour's \acrfull{ifn} response: no response and a high response. The authors identified that patients classified with a high \acrshort{ifn} have a better survival prognosis compared to the ones with no immune response; the \acrshort{ifn} signature response is derived from the gene expression of a subset of genes found by the authors. In \cref{fig:cs:ifn_comp} it can be clearly seen that the Small Ba/Sq group contains a large portion of the the \acrshort{ifn} response group from \citet{Baker2022-bj}, while the large basal group a mixed of low and high \acrshort{ifn} samples. Taking the 3 main 'chords' of samples going from the \acrshort{ifn} to the Basal groups (KMeans), the Basal subtype can be further split into 3 as seen in \cref{fig:cs:ifn_three_basal}. The association of the Basal subgroups it is also supported by the Lund classifier \citet{Marzouka2018-ge}, where the Small Ba/sq (or High IFNG) contains the samples of the Ba/Sq-Inf and Mes-like from Lund, while the other two basal (in Basal\_type) are either Ba/Sq or UroB by Lund.
 
 % Introduce the three splits
 \subsection{Immune and Stromal infiltration}
@@ -39,7 +38,7 @@ The groups derived in this section are also compared with the \textit{in-situ} w
 To further validate the immune characteristics of the subgroups, the ESTIMATE score from \citet{Yoshihara2013-wq} was employed. The authors assesses tumour purity based on immune and stromal infiltration by calculating the gene expression of a subset of genes that are known to be involved in the immune response and associated with stromal cells. The ESTIMATE, along with stromal and immune scores, were validated using DNA Copy Number Analysis and computed for the TCGA cohort by the authors of the study \citet{Yoshihara2013-wq}.
 
 % Check the three splits along the immune infiltration, ESTIMATE, and stroma score
-By using both K-means (K=5) and the \textit{in-situ} work from \citet{Baker2022-bj}, the three basal groups can be classified into three different groups proportional to their \acrfull{ifn} response: Low, Medium, and High \acrshort{ifn} Basal tumours. An initial confirmation of the basal immune heterogeneity is show in \cref{fig:cs:tumour_purity}. Across all the plots, the Y-axis is represented by the \acrshort{ifn} score from \citet{Baker2022-bj}, and the X-axis represents one of the three scores (immune, stromal and ESTIMATE) from \citet{Yoshihara2013-wq}, while the marker size is proportional to the infiltration score from the TCGA's metadata. The first scatter plot shows that High \acrshort{ifn} has the largest immune infiltration and \acrshort{ifn} response, while Low \acrshort{ifn} is at the opposite end of the spectrum, with Medium \acrshort{ifn} somewhere in between.
+By using both K-means (K=5) and the \textit{in-vitro} work from \citet{Baker2022-bj}, the three basal groups can be classified into three different groups proportional to their \acrfull{ifn} response: Low, Medium, and High \acrshort{ifn} Basal tumours. An initial confirmation of the basal immune heterogeneity is show in \cref{fig:cs:tumour_purity}. Across all the plots, the Y-axis is represented by the \acrshort{ifn} score from \citet{Baker2022-bj}, and the X-axis represents one of the three scores (immune, stromal and ESTIMATE) from \citet{Yoshihara2013-wq}, while the marker size is proportional to the infiltration score from the TCGA's metadata. The first scatter plot shows that High \acrshort{ifn} has the largest immune infiltration and \acrshort{ifn} response, while Low \acrshort{ifn} is at the opposite end of the spectrum, with Medium \acrshort{ifn} somewhere in between.
 
 \Cref{fig:cs:stroma_basal} shows the relationship between the three Basal subgroups and stromal infiltration. The spectrum is not as clear as in the previous plot, as both Low and Medium \acrshort{ifn} have a low stromal score, but the differences with the other Basal groups are clear. Lastly, the two scores are combined in the ESTIMATE scatter plot, shown in \cref{fig:cs:estimate_basal}, displaying the tumour purity of the samples in the three groups. The figure illustrates the spectrum-like nature of the Basal subtypes and their relationship, with Low \acrshort{ifn} showing the highest purity, followed by Medium and High \acrshort{ifn}, the latter being the most impure for stromal cell and immune infiltration. 
 
@@ -65,7 +64,7 @@ By using both K-means (K=5) and the \textit{in-situ} work from \citet{Baker2022-
         \label{fig:cs:estimate_basal}
     \end{subfigure}
     \centering
-    \caption{The tumour purity as indicated by the immune, stroma, and ESTIMATE scores from \citet{Yoshihara2013-wq} for the three basal splits. In all scatter plots, the Y-axis is represented by the \acrshort{ifn} score from \citet{Baker2022-bj}, the X-axis by one of the three scores, and the size of the markers is proportional to the infiltration score from \citet{Robertson2017-mg}. Positive values of the score denote infiltration by the type of cells, while negative values indicate their absence. The three figures shows how both the immune and stromal infiltration as well as the tumour impurity (ESTIMATE) increases with the \acrshort{ifn} response of the samples.}
+    \caption[New MIBC subgroups and their tumour purity]{The tumour purity as indicated by the immune, stroma, and ESTIMATE scores from \citet{Yoshihara2013-wq} for the three basal splits. In all scatter plots, the Y-axis is represented by the \acrshort{ifn} score from \citet{Baker2022-bj}, the X-axis by one of the three scores, and the size of the markers is proportional to the infiltration score from \citet{Robertson2017-mg}. Positive values of the score denote infiltration by the type of cells, while negative values indicate their absence. The three figures shows how both the immune and stromal infiltration as well as the tumour impurity (ESTIMATE) increases with the \acrshort{ifn} response of the samples.}
     \label{fig:cs:tumour_purity}
 \end{figure}
 
@@ -82,7 +81,7 @@ The relation of the immune response and survival is also found in the Basal subg
     \centering
     \includegraphics[width=1.0\textwidth,keepaspectratio]{Sections/ClusteringAnalysis/Resources/discussion/survival_basal.png}
     \centering
-    \caption{Kaplan-Meier survival analysis of the 3 Basal groups derived in \cref{s:cs:bio_interp} using K-means with K=5 and the basal subgroups by the \acrshort{ifn} response \citet{Baker2022-bj}, and the Ba/Sq survival from TCGA classification \citet{Robertson2017-mg}. The plot shows that the TCGA's Ba/Sq group is split into three by our clustering methods each with different survival rates. The Low IFNG having the poorest survival prognosis.}
+    \caption[New Basal subgroups and their survival prognosis]{Kaplan-Meier survival analysis of the 3 Basal groups derived in \cref{s:cs:bio_interp} using K-means with K=5 and the basal subgroups by the \acrshort{ifn} response \citet{Baker2022-bj}, and the Ba/Sq survival from TCGA classification \citet{Robertson2017-mg}. The plot shows that the TCGA's Ba/Sq group is split into three by our clustering methods each with different survival rates. The Low IFNG having the poorest survival prognosis.}
     \label{fig:cs:basal_survival}
 \end{figure}
 
@@ -96,7 +95,7 @@ With different survival rate across the Basal subtypes it is imperative to furth
 % Low IFNG
 The Low IFNG group has the poorest survival prognosis making it the focus of the Basal comparisons. The Pi-plot in \cref{fig:cs:pi_basal} compares the Low IFNG with the Med IFNG on the Y-axis and with the High IFNG on the X-axis. The initial observation from the scatter plot is the sparse presence of markers in the quadrant IV, specific to Low IFNG, indicating that there are a few genes distinctly characterising the Low IFNG with respect to the other Basal subtypes. This is specifically highlighted by the small scale of the Y-axis, where the Med and Low IFNG are compared, showing \textit{GSTM3} as being distinct for the latter.
 
-The negative side of the X-axis in \cref{fig:cs:pi_basal} highlights the genes unique to Low IFNG over High IFNG, where there are several known squamous markers such as \textit{TP64, DSC3} are present. Interestingly, \textit{FGFR3}, a well-documented differentiation-associated marker and extensively studied gene in MIBC, is also positioned on the negative side of the X-axis among \textit{ZBTB7C} which is associated with luminal differentiation found in the work of \citet{Ramal2024-ha}.
+The negative side of the X-axis in \cref{fig:cs:pi_basal} highlights the genes unique to Low IFNG over High IFNG, where there are several known squamous markers such as \textit{TP63, DSC3} are present. Interestingly, \textit{FGFR3}, a well-documented differentiation-associated marker and extensively studied gene in MIBC, is also positioned on the negative side of the X-axis among \textit{ZBTB7C} which is associated with luminal differentiation found in the work of \citet{Ramal2024-ha}.
 
 % Unknown genes
 Some of the genes on the positive side of Y-axis in \cref{fig:cs:pi_basal}, 
@@ -116,7 +115,7 @@ are labelled as 'other', were not included in any of the 'known markers': \texti
         \label{fig:cs:basal_comp_zoom}
     \end{subfigure} 
     \centering
-    \caption{The Pi plots with the \acrshort{dea} between Low and High IFNG (X-axis) and Low and Medium IFNG (Y-axis). The points in distinct colours representing the 98 \acrlong{tf} (Selected TF - next section \cref{s:N_I:sel_tfs}) and known markers presented in \cref{tab:ap:pi_genes_1,tab:ap:pi_genes_2}. Quadrant IV highlights the genes specific to Low IFNG, with the "Ref point" denoting the 'most' Low IFNG significantly expressed genes, and the top 10 closest points to it are displayed in orange. Quadrant II contains the genes most common to the other two Basal groups.}
+    \caption[Pi-plot show the DEA comparisons between Basal groups]{The Pi plots with the \acrshort{dea} between Low and High IFNG (X-axis) and Low and Medium IFNG (Y-axis). The points in distinct colours representing the 98 \acrlong{tf} (Selected TF - next section \cref{s:N_I:sel_tfs}) and known markers presented in \cref{tab:ap:pi_genes_1,tab:ap:pi_genes_2}. Quadrant IV highlights the genes specific to Low IFNG, with the "Ref point" denoting the 'most' Low IFNG significantly expressed genes, and the top 10 closest points to it are displayed in orange. Quadrant II contains the genes most common to the other two Basal groups.}
     \label{fig:cs:pi_basal}
 \end{figure}
 
@@ -139,7 +138,7 @@ The first quadrant in \cref{fig:cs:pi_basal_inf} contains markers that are speci
 \begin{figure}[!htb]    
     \centering
     \includegraphics[width=1.0\textwidth,keepaspectratio]{Sections/ClusteringAnalysis/Resources/discussion/basal_inf_pi.png}
-    \caption{The Pi plot with the \acrshort{dea} between Low and High IFNG (X-axis) and Luminal Infiltrated and Medium IFNG (Y-axis). The points are coloured distinctly to represent the 98 \acrlong{tf} (Selected TF - next section \cref{s:N_I:sel_tfs}) and known markers presented in \cref{tab:ap:pi_genes_1,tab:ap:pi_genes_2}. Quadrant III highlights the genes specific to the Low and Medium IFNG Basal groups, with the top 10 closest points to the 'Ref point' displayed in orange. This quadrant emphasises the basal characteristics of the two groups. In the diagonally opposite quadrant (I) are the genes most common to Luminal Infiltrated and High IFNG, highlighting the immune nature of the Basal group.}
+    \caption[Pi plot - for the DEA between the basal groups and immune infiltration]{The Pi plot with the \acrshort{dea} between Low and High IFNG (X-axis) and Luminal Infiltrated and Medium IFNG (Y-axis). The points are coloured distinctly to represent the 98 \acrlong{tf} (Selected TF - next section \cref{s:N_I:sel_tfs}) and known markers presented in \cref{tab:ap:pi_genes_1,tab:ap:pi_genes_2}. Quadrant III highlights the genes specific to the Low and Medium IFNG Basal groups, with the top 10 closest points to the 'Ref point' displayed in orange. This quadrant emphasises the basal characteristics of the two groups. In the diagonally opposite quadrant (I) are the genes most common to Luminal Infiltrated and High IFNG, highlighting the immune nature of the Basal group.}
     \label{fig:cs:pi_basal_inf}
 \end{figure}
 
@@ -185,7 +184,7 @@ This analysis confirms both the immune infiltration and the luminal molecular ch
         \label{fig:cs:lumInf_gsea}
     \end{subfigure} 
     \centering
-    \caption{Molecular overview of the Luminal Infiltrated (LumInf) group. The Pi plot shows the genes specific to LumInf from the DEAs against Basal Low IFNG (X-axis) and Luminal Papillary (Y-axis). The points are coloured distinctly to represent the 98 \acrlong{tf} (Selected TF - next \cref{s:N_I:sel_tfs}) and known markers presented in \cref{tab:ap:pi_genes_1,tab:ap:pi_genes_2}. Quadrant II highlights the genes specific to LumInf, which are mostly immune-related markers; the top 10 closest points to the 'Ref point' are displayed in orange. The GSEA plot displays the top 10 Reactome terms in the enrichment analysis, which primarily consist of immune pathways (FCCR Activation, CD22-mediated).}
+    \caption[LumInf-like - molecular overview: GSEA and Pi-plot]{Molecular overview of the Luminal Infiltrated (LumInf) group. The Pi plot shows the genes specific to LumInf from the DEAs against Basal Low IFNG (X-axis) and Luminal Papillary (Y-axis). The points are coloured distinctly to represent the 98 \acrlong{tf} (Selected TF - next \cref{s:N_I:sel_tfs}) and known markers presented in \cref{tab:ap:pi_genes_1,tab:ap:pi_genes_2}. Quadrant II highlights the genes specific to LumInf, which are mostly immune-related markers; the top 10 closest points to the 'Ref point' are displayed in orange. The GSEA plot displays the top 10 Reactome terms in the enrichment analysis, which primarily consist of immune pathways (FCCR Activation, CD22-mediated).}
     \label{fig:cs:lumInf}
 \end{figure}
 
@@ -218,7 +217,7 @@ In the GSEA plot, the top enriched pathways are down-regulated in the LumP, indi
         \label{fig:cs:lumP_gsea}
     \end{subfigure} 
     \centering
-    \caption{Molecular overview of the \acrfull{lump} group. The Pi plot shows the genes specific to LumP from the DEAs against the Basal Low IFNG (X-axis) and \acrlong{ne} groups. The points are coloured distinctly to represent the 98 \acrlong{tf} (next section \cref{s:N_I:sel_tfs}) and known markers presented in \cref{tab:ap:pi_genes_1,tab:ap:pi_genes_2}. Quadrant I highlights the genes specific to the LumP group, which consist of luminal markers (\textit{UPKs}); the top 10 closest points to the 'Ref point' are displayed in orange. The GSEA plot displays the top 10 Reactome terms in the enrichment analysis, which primarily shows a lack of enrichment in the pathways found in the Low IFNG and Ne groups.}
+    \caption[LumP like: overview of the molecular properties]{Molecular overview of the \acrfull{lump} group. The Pi plot shows the genes specific to LumP from the DEAs against the Basal Low IFNG (X-axis) and \acrlong{ne} groups. The points are coloured distinctly to represent the 98 \acrlong{tf} (next section \cref{s:N_I:sel_tfs}) and known markers presented in \cref{tab:ap:pi_genes_1,tab:ap:pi_genes_2}. Quadrant I highlights the genes specific to the LumP group, which consist of luminal markers (\textit{UPKs}); the top 10 closest points to the 'Ref point' are displayed in orange. The GSEA plot displays the top 10 Reactome terms in the enrichment analysis, which primarily shows a lack of enrichment in the pathways found in the Low IFNG and Ne groups.}
     \label{fig:cs:lump}
 \end{figure}
 
@@ -237,7 +236,7 @@ The second quadrant in \cref{fig:cs:ne_pi} showcases genes specifically associat
 \textit{TUBA1A} is highly expressed in bladder cancer and has been identified as a potential therapeutic target in the work of \citet{Zhang2019-fk} (see \href{https://www.proteinatlas.org/ENSG00000167552-TUBA1A/tissue}{Human Protein Atlas}). \textit{FGFR1}, part of the FGFR family, is associated with cell proliferation, as evidenced in both \textit{in-situ} and \textit{in-situ} experiments \citet{Tomlinson2009-td}. \textit{SLC16A1} has been characterised by \citet{Logotheti2020-ya} as a long non-coding gene that enhances cancer invasiveness. \textit{FXYD6}, associated with mental diseases, has shown potential in clinical therapies for a subtype of kidney cancer according to \citet{Gao2014-sq}. In vitro studies suggest \textit{PRRX1} as a therapeutic biomarker for bladder cancer by \citet{Huang2022-ez}, with its protein expression being moderately high (see \href{https://www.proteinatlas.org/ENSG00000116132-PRRX1/tissue}{Human Protein Atlas}). Additionally, mouse research on \textit{CTHRC1} indicates that the gene has a role in the proliferation of bladder cancer cells, with high levels correlating with poor prognosis. This protein's high expression is also documented on the \href{https://www.proteinatlas.org/ENSG00000164932-CTHRC1/tissue}{Human Protein Atlas}.
 
 % LumP and Basal
-The Low IFNG and LumP comparison groups represent the two major MIBC categories, basal and luminal. The genes in the third quadrant include those common to both groups, while those on the axes are specific to each subtype. On the positive vertical axis, genes such as \textit{UPK2, GATA3, ADIRF, VSIG2} are found, which are known to be associated with tissue differentiation or luminal biology. On the horizontal axis, basal-specific markers are displayed, such as \textit{KRT5} and the SERP family. \textit{AQP3, TP64, FGFR3} are highlighted in the scatter plot as markers known to be expressed across MIBC tumours.
+The Low IFNG and LumP comparison groups represent the two major MIBC categories, basal and luminal. The genes in the third quadrant include those common to both groups, while those on the axes are specific to each subtype. On the positive vertical axis, genes such as \textit{UPK2, GATA3, ADIRF, VSIG2} are found, which are known to be associated with tissue differentiation or luminal biology. On the horizontal axis, basal-specific markers are displayed, such as \textit{KRT5} and the SERP family. \textit{AQP3, TP63, FGFR3} are highlighted in the scatter plot as markers known to be expressed across MIBC tumours.
 
 % GSEA
 The GSEA plot in \cref{fig:cs:ne_gsea} reveals several pathways related to collagen or the lagging strand, suggesting the involvement of these genes in Epithelial Mesenchymal Transition (EMT). This is emphasized by the GSEA run on the Hallmark database, presented in the Appendix \cref{fig:ap:cs:gsea_ne_hallmark}, which also identifies pathways involved in the cell cycle. The analysis of the NE quadrant highlights the neuronal nature of the subgroups but also underlines the potential to discover new genes specific to the subtype. 
@@ -265,7 +264,7 @@ The genes highlighted across the six MIBC subtypes in the previous subsection ar
         \label{fig:cs:ne_gsea}
     \end{subfigure} 
     \centering
-    \caption{Molecular overview of the Neuroendocrine-like (NE) group. The Pi plot shows the genes specific to LumInf from the DEAs against Basal Low IFNG (X-axis) and Luminal Papillary (Y-axis). The points are coloured distinctly to represent the 98 \acrlong{tf} (Selected TF - next section \cref{s:N_I:sel_tfs}) and known markers presented in \cref{tab:ap:pi_genes_1,tab:ap:pi_genes_2}. Quadrant II highlights the genes specific to LumInf, which consists of new Neuronal markers and others new potential markers; the top 10 closest points to the 'Ref point' are displayed in orange. The GSEA plot displays the top 10 Reactome terms in the enrichment analysis, which primarily consist of cell-cycle pathways which is also found using the Hallmarks database in \cref{fig:ap:cs:gsea_ne_hallmark}.}
+    \caption[Ne-like - molecular overview]{Molecular overview of the Neuroendocrine-like (NE) group. The Pi plot shows the genes specific to LumInf from the DEAs against Basal Low IFNG (X-axis) and Luminal Papillary (Y-axis). The points are coloured distinctly to represent the 98 \acrlong{tf} (Selected TF - next section \cref{s:N_I:sel_tfs}) and known markers presented in \cref{tab:ap:pi_genes_1,tab:ap:pi_genes_2}. Quadrant II highlights the genes specific to LumInf, which consists of new Neuronal markers and others new potential markers; the top 10 closest points to the 'Ref point' are displayed in orange. The GSEA plot displays the top 10 Reactome terms in the enrichment analysis, which primarily consist of cell-cycle pathways which is also found using the Hallmarks database in \cref{fig:ap:cs:gsea_ne_hallmark}.}
     \label{fig:cs:ne}
 \end{figure}
 
@@ -281,7 +280,7 @@ The genes highlighted across the six MIBC subtypes in the previous subsection ar
     \midrule
     \multicolumn{3}{c}{\textbf{Basal groups - \cref{fig:cs:pi_basal,fig:cs:basal_comp_zoom}}} \\
     \midrule    
-    \multirow{3}{=}{\parbox[t]{\hsize}{\textbf{Low over High IFNG}}} & MIBC \cite{Robertson2017-mg} & \textit{TP64, DSC3} \\
+    \multirow{3}{=}{\parbox[t]{\hsize}{\textbf{Low over High IFNG}}} & MIBC \cite{Robertson2017-mg} & \textit{TP63, DSC3} \\
     \cmidrule{2-3}
     & Luminal differentiation \cite{Robertson2017-mg, Ramal2024-ha}  &  \textit{ZBTB7C, FGFR3}\\
     \cmidrule{2-3}
@@ -303,7 +302,7 @@ The genes highlighted across the six MIBC subtypes in the previous subsection ar
     \midrule
     \multirow{2}{=}{\parbox[t]{\hsize}{\textbf{LumP specific over Ne}}} & Tissue differentiation \cite{Robertson2017-mg} & \textit{UPK2, GATA3, ADIRF, VSIG2} \\
     \cmidrule{2-3}
-    & Various - see \cref{s:cs:lumP_interp} & \textit{KRT5, AQP3, TP64, FGFR3 and Serp} \\
+    & Various - see \cref{s:cs:lumP_interp} & \textit{KRT5, AQP3, TP63, FGFR3 and Serp} \\
     \midrule
     \multicolumn{3}{c}{\textbf{LumInf - \cref{fig:cs:lumInf_pi}}} \\
     \midrule  
@@ -326,7 +325,7 @@ The genes highlighted across the six MIBC subtypes in the previous subsection ar
     & \acrshort{scc} up-reg genes \citet{Hurst2022-sp} & \\
     \bottomrule
   \end{tabularx}
-  \caption{Summary of genes specific to the MIBC subgroups found in this section \cref{s:cs:bio_interp}. It uses a combination of Pi-plots (from \acrshort{dea}), GSEA and known markers in the fields: TCGA markers \citet{Robertson2017-mg}, Consensus \citet{Kamoun2020-tj} and Lund \citet{Marzouka2018-ge}. The first column represents the groups to which the genes specific and with respect to which comparison; i.e. the first row contains the genes specific to the Low IFNG over the High IFNG. \textbf{Low, Med} and \textbf{High} -- Low, Medium and High \acrlong{ifn} groups (\cref{s:cs:basal_interp}), \textbf{Ne} to Neuroendocrine-like (\cref{s:cs:ne_interp}), \textbf{LumInf} - Luminal infiltrated (\cref{s:cs:lumInf_interp}) and LumP - Luminal Papillary (\cref{s:cs:lumP_interp}).   }
+  \caption[Summary of the genes found across the DEAs]{Summary of genes specific to the MIBC subgroups found in this section \cref{s:cs:bio_interp}. It uses a combination of Pi-plots (from \acrshort{dea}), GSEA and known markers in the fields: TCGA markers \citet{Robertson2017-mg}, Consensus \citet{Kamoun2020-tj} and Lund \citet{Marzouka2018-ge}. The first column represents the groups to which the genes specific and with respect to which comparison; i.e. the first row contains the genes specific to the Low IFNG over the High IFNG. \textbf{Low, Med} and \textbf{High} -- Low, Medium and High \acrlong{ifn} groups (\cref{s:cs:basal_interp}), \textbf{Ne} to Neuroendocrine-like (\cref{s:cs:ne_interp}), \textbf{LumInf} - Luminal infiltrated (\cref{s:cs:lumInf_interp}) and LumP - Luminal Papillary (\cref{s:cs:lumP_interp}).   }
   \label{tab:cs:genes_summaries}
 \end{table}
 

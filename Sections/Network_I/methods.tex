@@ -7,7 +7,7 @@ It is worth noting that the \acrfull{pgcna} developed by \citet{Care2019-ij} was
 \begin{sidewaysfigure}
     \centering
     \includegraphics[width=1.0\textwidth,keepaspectratio]{Sections/Network_I/Resources/Methods/network_pipeline.png}
-    \caption{Network pipeline developed to integrate mutation burden, transcription factors (TFs), and the non-tumour dataset; supporting the methods described in \cref{s:N_I:methods}. The first step is to build the network, which includes: 1) computing the edge weights with Spearman correlation and applying modifiers to integrate mutation data; 2) selective edge pruning, where TFs are allowed a higher minimum degree; 3) applying community detection algorithms such as Leiden or Stochastic Block Model. The second step involves extracting the top 100 most well-connected nodes in a community using the ModCon score. The Module Evaluation Value (MEV) is then computed to assess the enrichment of the selected genes from each community in the MIBC samples from TCGA. Finally, the MEVs are grouped together using clustering analysis methods.}
+    \caption[The integrative network pipeline]{Network pipeline developed to integrate mutation burden, transcription factors (TFs), and the non-tumour dataset; supporting the methods described in \cref{s:N_I:methods}. The first step is to build the network, which includes: 1) computing the edge weights with Spearman correlation and applying modifiers to integrate mutation data; 2) selective edge pruning, where TFs are allowed a higher minimum degree; 3) applying community detection algorithms such as Leiden or Stochastic Block Model. The second step involves extracting the top 100 most well-connected nodes in a community using the ModCon score. The Module Evaluation Value (MEV) is then computed to assess the enrichment of the selected genes from each community in the MIBC samples from TCGA. Finally, the MEVs are grouped together using clustering analysis methods.}
     \hfill
     \label{fig:N_I:network_pipeline}
 \end{sidewaysfigure}
@@ -59,7 +59,7 @@ To achieve the desired behaviour the \cref{eq:weight_modifiers_1} is used where 
 \begin{figure}[!htb]    
     \centering
     \includegraphics[width=1.0\textwidth,keepaspectratio]{Sections/Network_I/Resources/Methods/modifiers.png}
-    \caption{Representing the two weight modifier strategies employed at the network construction stage. The red, reward strategy, awards the genes that have a high burden across the cohort. Conversely, the  penalised strategy decreases the edges' strength for highly mutated genes. In both cases, the non-mutated genes remain unchanged.}
+    \caption[Reward v1 vs Penalised edge weight modifiers]{Representing the two weight modifier strategies employed at the network construction stage. The red, reward strategy, awards the genes that have a high burden across the cohort. Conversely, the  penalised strategy decreases the edges' strength for highly mutated genes. In both cases, the non-mutated genes remain unchanged.}
     \label{fig:N_I:modifiers}
 \end{figure}
 

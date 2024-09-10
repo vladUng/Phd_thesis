@@ -19,7 +19,7 @@ Variance in gene expression can indicate the potential genes that are specific t
 \begin{figure}[!htb]   
     \centering
     \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/sel_tfs/sel_tfs_var_tum_healthy.png}
-      \caption{Bar plot of the log mean expression in both non-cancerous and tumour datasets with the error bars accounting for standard deviation. The genes are ordered in descending order by the mean values in the non-cancerous dataset. Red bars represents genes that have a high variance in the corresponding dataset, while the golden shows the TFs in both tumour and non-cancerous.}
+      \caption[Mean expression of the 98 TFs in tumour and healthy samples]{Bar plot of the log mean expression in both non-cancerous and tumour datasets with the error bars accounting for standard deviation. The genes are ordered in descending order by the mean values in the non-cancerous dataset. Red bars represents genes that have a high variance in the corresponding dataset, while the golden shows the TFs in both tumour and non-cancerous.}
     \label{fig:N_I:sel_tfs_var}
 \end{figure}
 
@@ -27,7 +27,7 @@ Variance in gene expression can indicate the potential genes that are specific t
 
 \begin{table}[!htb]
   \centering
-  \scriptsize
+  \small
   \begin{tabularx}{\textwidth}{>{\hsize=.25\hsize}X|>{\hsize=.75\hsize}X}
     \toprule
     \textbf{Dataset} & \textbf{Genes} \\
@@ -39,7 +39,7 @@ Variance in gene expression can indicate the potential genes that are specific t
     Non-cancerous only & \textit{ZBTB10, ARID5B, KLF6, JUN, MAFF, ETS2, MAFK} \\
     \bottomrule
   \end{tabularx}
-    \caption{Gene selection from the 98 TFs and in which dataset they vary. Variance is a an indicator for potential markers specific to a MIBC subgroup or bladder tissue differentiation marker.}
+    \caption[Summary of the subset of 98 TFs which are highly varied]{Gene selection from the 98 TFs and in which dataset they vary. Variance is a an indicator for potential markers specific to a MIBC subgroup or bladder tissue differentiation marker.}
     \label{tab:N_I:sel_tfs_var}
 \end{table}
 
@@ -61,7 +61,7 @@ The two Y-positive quadrants contains the genes that are likely involved in the 
 It can be noticed that there are several markers that might be UD specific (negative X-axis) while some additional markers involved in differentiation which do not vary as much. The latter may suggest that these markers are common both in Basal and Luminal tumours. 
 
 % No TFs shared between UD and Abs-Ca
-The samples from the Abs-Ca and UD datasets are at the opposite side of the differentiation spectrum, covered in \cref{s:lit:datasets_used}. This is supported by the Pi plot where there are are a few genes in quadrant II, the one present may indicate their role in the \textit{in-situ} differentiation. The points at the centre of the pi plot may indicate a list of TFs that are at the core of bladder tissue, regardless of their differentiated status and if are freshly isolated samples or obtain in the \textit{in-situ} experiments.
+The samples from the Abs-Ca and UD datasets are at the opposite side of the differentiation spectrum, covered in \cref{s:lit:datasets_used}. This is supported by the Pi plot where there are are a few genes in quadrant II, the one present may indicate their role in the tissue differentiation. The points at the centre of the pi plot may indicate a list of TFs that are at the core of bladder tissue, regardless of their differentiated status and if are freshly isolated samples or obtain in the \textit{in-vitro} experiments.
 
 
 \Cref{tab:N_I:markers_diff} summarises the TF classification based on the differentiation tissue type: AbsCa (differentiation in culture), P0 (differentiation in tissue) and undifferentiated (culture). The 'transitional' genes in AbsCa-UD, UD-P0 and P0-AbsCa may yield information about the common genes shared between differentiation tissue types.
@@ -87,13 +87,13 @@ The samples from the Abs-Ca and UD datasets are at the opposite side of the diff
     \textbf{P0-AbsCa} & \textit{NR4A2, ATF3, OVOL1, ZBTB7C, FOSL2, BCL6, MSX2, MYCL, ZNF750, ELF3, GRHL3, REL, KLF5, ZNF552, SATB1, DBP, ETV7, ETV3, MECOM, REPIN1, SP1, ZNF586} \\
     \bottomrule
   \end{tabularx}
-  \caption{TF marker classified by being significantly expressed in the two DEA comparisons: P0 vs AbsCa and UD vs AbsCa in \cref{fig:N_I:pi_sel_tfs_var}.} 
+  \caption[Tissue differentiation markers]{TF marker classified by being significantly expressed in the two DEA comparisons: P0 vs AbsCa and UD vs AbsCa in \cref{fig:N_I:pi_sel_tfs_var}.} 
   \label{tab:N_I:markers_diff}
 \end{table}
 
 \begin{sidewaysfigure}
     \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/sel_tfs/sel_tfs_pi_all_var_rect.png}
-    \caption{Pi plot across the three differentiated tissue dataset. The DEA is run between the Abs-Ca samples and the P0 (X-axis) and UD (Y-axis). Resulting in a scatter plot where the quadrants (Q) holds the genes specific to the Abs-Ca samples in Q I, Abs-Ca and UD in Q II, UD and P0 in Q III and P0 and Abs-Ca in Q IV. The markers in 
+    \caption[The 98 TFs and the DEA across the non-tumour datasets]{Pi plot across the three differentiated tissue dataset. The DEA is run between the Abs-Ca samples and the P0 (X-axis) and UD (Y-axis). Resulting in a scatter plot where the quadrants (Q) holds the genes specific to the Abs-Ca samples in Q I, Abs-Ca and UD in Q II, UD and P0 in Q III and P0 and Abs-Ca in Q IV. The markers in 
     are only varied in the tumour datasets, the blues only in non-tumour and yellow. the markers in red are genes TFs that are core to the bladder cancer tissue. }
     \label{fig:N_I:pi_sel_tfs_var}
 \end{sidewaysfigure}
@@ -130,7 +130,7 @@ Overall the analysis show that some of the 98 TFs have a role in bladder cancer 
     \textbf{Basal/Squamous} & \textit{TP63, BNC1, HES2, ERF, IRF6, ZXDB, ZNF750, ETS1, MSANTD3, FOSL1, KLF6, KLF16} \\
     \bottomrule
   \end{tabularx}
-  \caption{The 98 transcription factors markers categorised by Luminal and Basal subtypes.} % Caption for the table
+  \caption[Luminal and Basal markers from the 98 TFs]{The 98 transcription factors markers categorised by Luminal and Basal subtypes.} % Caption for the table
   \label{tab:N_I:genes_lum_basal}
 \end{table}
 
@@ -150,7 +150,7 @@ Overall the analysis show that some of the 98 TFs have a role in bladder cancer 
       \caption{Luminal}
       \label{fig:N_I:box_luminal_dendrogram}
     \end{subfigure}
-    \caption{Box plots showing the TPM spread of the \textbf{basal and luminal} markers over the MIBC groups derived using the 98 TFs. A similar plot, \cref{fig:ap:box_consensus} was created with the two set of TF markers but for the consensus \citep{Kamoun2020-tj} subgroups in Appendix \cref{s:ap:sel_prun_markers}.}
+    \caption[98 TFs: expression of basal and luminal markers in the new groups]{Box plots showing the TPM spread of the \textbf{basal and luminal} markers over the MIBC groups derived using the 98 TFs. A similar plot, \cref{fig:ap:box_consensus} was created with the two set of TF markers but for the consensus \citep{Kamoun2020-tj} subgroups in Appendix \cref{s:ap:sel_prun_markers}.}
     \label{fig:N_I:box_debdrogram}
 \end{figure}
 
@@ -176,7 +176,7 @@ The outputs of the GSEA runs using the Reactome database are summarised in two t
 \begin{figure}[!htb]   
     \centering
     \includegraphics[width=1.0\textwidth,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/pi_gsea/pi_smallBasal.png}
-      \caption{Pi plot showing the Small Basal vs Large Basal on the X-axis, and Small-Basal vs Mes-like Y-axis. This plot highlights the genes that are high and significantly expressed in the Small Basal subtype. }
+      \caption[Pi-plot to study the Basal group with lowest survival]{Pi plot showing the Small Basal vs Large Basal on the X-axis, and Small-Basal vs Mes-like Y-axis. This plot highlights the genes that are high and significantly expressed in the Small Basal subtype. }
     \label{fig:N_I:pi_smallBasal_comp}
 \end{figure}
 
@@ -259,7 +259,7 @@ GSEA was also applied to the hallmark gene set (50 pathways) results that can be
     FCGAMMA RECEPTOR FCGR DEPENDENT PHAGOCYTOSIS & 2.479 & 0 & 102 & 97 & 0.951 \\   
     \bottomrule
   \end{tabularx}
-  \caption{Normalised Enrichment Score (NES), False Discovery Rate (FDR) q-val, and lead gene statistics for the two basal groups.The lead genes from a pathway are selected by GSEAPY based on when the NES reached its peak; see \cref{s:lit:gsea} for how GSEA was run. }
+  \caption[Summary of the GSEA for the new basal subgroups]{Normalised Enrichment Score (NES), False Discovery Rate (FDR) q-val, and lead gene statistics for the two basal groups.The lead genes from a pathway are selected by GSEAPY based on when the NES reached its peak; see \cref{s:lit:gsea} for how GSEA was run. }
   \label{tab:N_I:gsea_basal_reactome}
 \end{table}
 
@@ -300,7 +300,7 @@ GSEA was also applied to the hallmark gene set (50 pathways) results that can be
     EUKARYOTIC TRANSLATION INITIATION & 1.77 & 0.025 & 76 & 5 & 0.066 \\
     \bottomrule
   \end{tabularx}
-  \caption{Normalised Enrichment Score (NES), False Discovery Rate (FDR) q-val, and lead gene statistics for the large, infiltrated and mes-like group. The lead genes from a pathway are selected by GSEAPY based on when the NES reached its peak; see \cref{s:lit:gsea} for how GSEA was run.}
+  \caption[Summary of the GSEA for the new luminal subgroups]{Normalised Enrichment Score (NES), False Discovery Rate (FDR) q-val, and lead gene statistics for the large, infiltrated and mes-like group. The lead genes from a pathway are selected by GSEAPY based on when the NES reached its peak; see \cref{s:lit:gsea} for how GSEA was run.}
   \label{tab:N_I:gsea_luminal_reactome}
 \end{table}
 
@@ -335,7 +335,7 @@ To leverage visualising aspect of the network, the basal/luminal markers were th
         \caption{\textit{BNC1} (basal)}
         \label{fig:N_I:net_BNC1}
     \end{subfigure}
-    \caption{The \textit{MSX2} luminal and \textit{BNC1} markers and their neighbours in a standard network (no weight modifier), where a minimum of 6 edges are allowed per TF and the Stochastic Block Model was applied to detect the communities. The size of the nodes is proportional to the degree of the gene and the edge weight to the correlation value.}
+    \caption[Network neighbours of \textit{MSX2} and \textit{BNC1}]{The \textit{MSX2} luminal and \textit{BNC1} markers and their neighbours in a standard network (no weight modifier), where a minimum of 6 edges are allowed per TF and the Stochastic Block Model was applied to detect the communities. The size of the nodes is proportional to the degree of the gene and the edge weight to the correlation value.}
     
     \label{fig:N_I:net_neighbours}
 \end{figure}

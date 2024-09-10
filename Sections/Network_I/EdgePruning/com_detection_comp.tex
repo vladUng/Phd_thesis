@@ -19,7 +19,7 @@ The first to notice is that both community detection methods, regardless of the 
         \caption{Leiden}
         \label{fig:N_I:leid_com_det_met}
     \end{subfigure}
-    \caption{Metrics comparison between Minimum Description Length (MDL) - entropy- in SBM (lower the better) and Modularity Maximisation in Leiden (higher the better). The error bars in the control is given by the standard deviations. As the minimum degree for the increases both community detection suffer a decrease in the performance. }
+    \caption[Metrics comparison between Leiden and SBM]{Metrics comparison between Minimum Description Length (MDL) - entropy- in SBM (lower the better) and Modularity Maximisation in Leiden (higher the better). The error bars in the control is given by the standard deviations. As the minimum degree for the increases both community detection suffer a decrease in the performance. }
     \label{fig:N_I:com_det_met}
 \end{figure}
 
@@ -32,7 +32,7 @@ Another major difference between Leiden and SBM is that the former finds consist
 \begin{figure}[!t]   
     \centering
     \includegraphics[width=1.0\textwidth,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/com_comp/sbm_Leiden_combNum.png}
-      \caption{Community size for Leiden and Stochastic Block Model. Blue lines are represented by the experiments run with biological TFs while the red ones are the controls, with non-TF genes. The error bars in the control is given by the standard deviations. The plot shows that SBM consistently find a large number of communities compared to Leiden. Another version of the plot where the trends of the two method are separated can be seen in \cref{fig:ap:leid_com_size} from Appendix.}
+      \caption[Leiden vs SBM: Number of communities found]{Community size for Leiden and Stochastic Block Model. Blue lines are represented by the experiments run with biological TFs while the red ones are the controls, with non-TF genes. The error bars in the control is given by the standard deviations. The plot shows that SBM consistently find a large number of communities compared to Leiden. Another version of the plot where the trends of the two method are separated can be seen in \cref{fig:ap:leid_com_size} from Appendix.}
     \label{fig:N_I:comp_size_com_det}
 \end{figure}
 
