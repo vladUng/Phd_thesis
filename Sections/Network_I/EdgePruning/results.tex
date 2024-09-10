@@ -107,19 +107,45 @@ The clustering analysis shows that the by only using 98 genes, the main groups, 
 \end{figure} 
 
 
-\subsubsection*{Comparing with Lund} \label{s:N_I:sel_tfs_comp_survival}
+\subsubsection*{Comparing with other classifications} \label{s:N_I:sel_tfs_comp_survival}
 
-The comparison with the Lund classification \citep{Marzouka2018-ge} revealed that the three basal groups—3, 4, and 5—include a significant number of samples previously classified as Mes-like, Ba/Sq, and UroB. To assess the novelty of the subtypes identified using the 98 TF, the survival rates of these three groups were compared between the two classifications, as shown in \cref{fig:N_I:sel_tfs_comp_leiden}.
+The comparison with the Lund classification \citep{Marzouka2018-ge} revealed that the three basal groups: 3, 4, and 5—include a significant number of samples previously classified as Mes-like, Ba/Sq, and UroB. To assess the novelty of the subtypes identified using the 98 TF, the survival rates of these three groups were compared between the two classifications, as shown in \cref{fig:N_I:sel_tfs_comp_leiden}.
 
-Group 5 and UroB exhibit similar trends, with Group 5 consistently showing a worse prognosis. Samples in Basal 4 demonstrate more favourable survival rates overall, while the two Mes-like subgroups display comparable trends. Overall, the survival analysis comparison indicates that the three Basal groups identified using the 98 TF align closely with the corresponding subtypes from the Lund classifier. This also highlights the effectiveness of the 98 TF in identifying these subgroups without the need for \acrlong{ihc}, as was required in the Lund classifier.
+Group 5 and UroB exhibit similar trends but are significantly different (p=0.0269), with Group 5 consistently showing a worse prognosis. Samples in Basal 4 demonstrate more favourable survival rates overall, while the two Mes-like subgroups display comparable trends. Overall, the survival analysis comparison indicates that the three Basal groups identified using the 98 TF align closely with the corresponding subtypes from the Lund classifier. This also highlights the effectiveness of the 98 TF in identifying these subgroups without the need for \acrlong{ihc}, as was required in the Lund classifier.
 
+Performing a similar comparison of the three basal groups with the subtypes from TCGA \citep{Robertson2017-mg}, there are significant differences (p=0.002674) between the two classifications. Basal 5 exhibits a worse prognosis than the tumours classified as Ne.
+
+Compared with the earlier work on clustering analysis in the project, the Basal 5 group contains 15 samples previously classified as Low IFNG, four as Medium IFNG, and one as High IFNG. When comparing the survival trends, the basal groups found using the 98 TFs exhibit significant differences (p=0.002674) from the subtypes found using clustering analysis. This indicates that there is a subgroup of Basal groups that have a poor prognosis with aggressive markers.
 
 \begin{figure}[!htb]
     \centering
-    \includegraphics[width=1.0\textwidth,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/comp_leiden_survival.png}
-    \caption[Basal 5 and UroB low survival prognosis]{Kaplan-Meier survival analysis of the three basal groups 3, 4 and 5, compared with Ba/Sq, UroB and Mes-like groups from Lund classification \citep{Marzouka2018-ge}. The survival comparison showing the similar trends in prognosis of the groups found using 98 TF and the subtyps derived using \citet{Marzouka2018-ge} which used gene expression and \acrlong{ihc} data. }
-    \label{fig:N_I:sel_tfs_comp_leiden}
-\end{figure} 
+    % Sankey - consensus and K-means comparison
+    \begin{subfigure}[!t]{1.0\textwidth}
+       \includegraphics[width=1.0\textwidth,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/sel_tfs/comp_leiden_survival.png}
+        \caption{Lund}
+        \label{fig:N_I:sel_tfs_comp_leiden}
+    \end{subfigure}
+    % Sankey - TCGA and Lun comparison  
+    \begin{subfigure}[!t]{1.0\textwidth}
+        \includegraphics[width=1.0\textwidth,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/sel_tfs/comp_leiden_survival_tcga.png}
+        \caption{TCGA}
+        \label{fig:N_I:sel_tfs_comp_tcga}
+    \end{subfigure}
+    \begin{subfigure}[!t]{1.0\textwidth}
+        \includegraphics[width=1.0\textwidth,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/sel_tfs/comp_leiden_survival_CA.png}
+        \caption{Clustering Analysis}
+        \label{fig:N_I:sel_tfs_comp_CA}
+    \end{subfigure}
+    \caption[Survival comparison with TCGA, Lund and CA]{Kaplan-Meier survival analysis of the three basal groups 3, 4 and 5, compared with selected groups from Lund classification \citep{Marzouka2018-ge}, TCGA \citep{Robertson2017-mg} and cluster analysis \cref{s:clustering_analysis}. The survival comparisons shows that the MIBC groups found using the 98 TFs consistently exhibit significantly different survival prognosis compared to the others. See \cref{s:N_I:sel_tfs_comp_survival}.}
+    \label{fig:N_I:sel_tfs_cs_comp}
+\end{figure}
+
+% \begin{figure}[!htb]
+%     \centering
+%     \includegraphics[width=1.0\textwidth,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/sel_tfs/comp_leiden_survival.png}
+%     \caption[Basal 5 and UroB low survival prognosis]{Kaplan-Meier survival analysis of the three basal groups 3, 4 and 5, compared with Ba/Sq, UroB and Mes-like groups from Lund classification \citep{Marzouka2018-ge}. The survival comparison showing the similar trends in prognosis of the groups found using 98 TF and the subtyps derived using \citet{Marzouka2018-ge} which used gene expression and \acrlong{ihc} data. }
+%     \label{fig:N_I:sel_tfs_comp_leiden}
+% \end{figure} 
 
 
 

@@ -108,7 +108,7 @@ So far a few known genes were mentioned in the analysis but it is unclear if the
 
 
 % Commenting on the mutation burden 
-The histogram from \cref{fig:N_II:hist_molecular_highCon} shows that all the genes in the 14 high degree communities are mutated in more than 10 samples across TCGA's MIBC cohort. It also shows that there are no highly mutated genes ($>$30) in the rest of the communities. This plot attests that that high degree communities exclusively contains mutated genes, further validating the data integration.
+The histogram from \cref{fig:N_II:hist_molecular_highCon} shows that all the genes in the 14 high degree communities are mutated in more than 10 samples across TCGA's MIBC cohort. It also shows that there are no highly mutated genes ($>$30) in the rest of the communities. This plot attests that that high degree communities exclusively contains mutated genes (\acrshort{mw}: 1928.5, p-value: $6.173e^{-84}$), further validating the data integration.
 
 % Introduce that it is a difference
 The two distributions in \cref{fig:N_II:hist_molecular_highCon} overlap between 10-30, where some of the genes with a mutation burden above 10 are not in the 70th percentile of the communities with the highest mean degree. This indicates that the the correlation values make the difference between the nodes with a higher degree and the rests. It is worth remembering that the nodes weights are the product between the weight modifier (i.e. mutation) and the Spearman correlation, which directly influences the number of connections in the selective edge pruning stage.
@@ -125,10 +125,10 @@ To validate this hypothesis, the genes with mutations $\in[10,25]$ were selected
 
 
 % Comment the plot 
-The top-right corner in \cref{fig:N_II:degree_high_corr} contains the nodes that are the most connected and have the highest number of correlations above the threshold, while the diagonally opposite corner contains low-correlated genes with few connections. The scatter plot shows that all the markers in the top-right corner are genes with a high number of connections, while in the opposite corner, such nodes are absent. In the bottom-left corner, there are a few genes with a high mutation burden (large circle), but due to the small number of highly correlated genes, the reward modifier does not have enough power to include them in communities with a high mean degree. Conversely, in the bottom-right corner, where there are several markers close to the X-axis, these genes do not have a high mutation burden to obtain more connections. This confirms that the number of connections is a function of both the correlation values and the mutation burden.
+The top-right corner in \cref{fig:N_II:degree_high_corr} contains the nodes that are the most connected and have the highest number of correlations above the threshold, while the diagonally opposite corner contains low-correlated genes with few connections. The scatter plot shows that all the markers in the top-right corner are genes with a high number of connections, while in the opposite corner, such nodes are absent. In the bottom-left corner, there are a few genes with a high mutation burden (large circle), but due to the small number of highly correlated genes, the reward modifier does not have enough power to include them in communities with a high mean degree. Conversely, in the bottom-right corner, where there are several markers close to the X-axis, these genes do not have a high mutation burden to obtain more connections. This confirms that the number of connections is a function of both the correlation values and the mutation burden. There distributions of the degree values of the "High Degree" and "Rest" are significantly different (\acrshort{mw}: 565.5, p-value: $6.546e^{-43}$), as well as the mutation burden (\acrshort{mw}: 8484.0, p-value: 0.0001).
 
 % The exception
-While \cref{fig:N_II:degree_high_corr} confirms that the number of connections is a function of both the correlation values and the mutation burden of the genes, there are a few exceptions such as \textit{WNK1}, \textit{RTTN}, and \textit{SYTL2}. These genes exhibit a high number of correlations above 0.5 and a relatively higher number of connections but are not part of the 14 communities with a high mean degree. Their correlation distributions, along with \textit{AHR}'s, are displayed in \cref{fig:N_II:corr_sel_genes}. 
+While \cref{fig:N_II:degree_high_corr} confirms that the number of connections is a function of both the correlation values and the mutation burden of the genes, there are a few exceptions such as \textit{WNK1}, \textit{RTTN}, and \textit{SYTL2}. These genes exhibit a high number of correlations above 0.5 and a relatively higher number of connections but are not part of the 14 communities with a high mean degree. These exhibit significantly different correlation distributions (\acrshort{kw}: 555.026, p-value:$5.654e^{-120}$), along with \textit{AHR}'s, are displayed in \cref{fig:N_II:corr_sel_genes}. 
 
 
 \begin{figure}[!b]    
@@ -215,7 +215,7 @@ Overall, the experiments in this subsection attest that for a gene to have a hig
 \begin{figure}[!htb]    
     \centering
     \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_II/resources/reward/ctr_degree.png}
-   \caption[The degree of highly connected genes across control networks]{Box plot showing the distribution of the highly connected genes across the five controls and the experiment. This shows that the mutation burden is essential for a gene to have a high degree.}
+   \caption[The degree of highly connected genes across control networks]{Box plot showing the distribution of the highly connected genes across the five controls and the experiment. This shows that the mutation burden is essential for a gene to have a high degree. No significant difference was observed in the degree distributions (\acrshort{kw}: 8.668, p-value: 0.123).}
     \label{fig:N_II:ctrl_box}
 \end{figure}
 
