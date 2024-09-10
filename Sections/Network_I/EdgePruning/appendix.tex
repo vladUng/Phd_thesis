@@ -28,10 +28,10 @@ The advantage of showing the two figures separately is that the variance in the 
 % Cluster analysis
 \section{Cluster analysis} \label{s:ap:sel_tfs_cs}
 
-The clustering analysis below supports the MIBC groups found using the expression of the 98 TFs genes which are highly correlated with other genes in the tumour network, see \cref{s:N_I:sel_tfs_mibc}.
+The clustering analysis below supports the MIBC groups found using the expression of the 98 TF genes which are highly correlated with other genes in the tumour network, see \cref{s:N_I:sel_tfs_mibc}.
 
 % Talk about the clustering
-Hierarchical clustering was applied to the tumour expression of the 98 TFs after 11 samples previously identified as outliers were removed\footnote{In this context, outliers are samples that cluster in 1-3 groups, making it hard to interpret the dendrogram from the hierarchical clustering}, leaving 392 samples for clustering. The tumour\footnote{TCGA's MIBC cohort} data was log2(TPM+1) transformed, normalised by the quantiles, and then agglomerative clustering with average linkage was applied on the 1-Pearson correlation distance\footnote{In this case, for both clustering and visualisation, Morpheus from the Broad Institute was used \cite{Broad-InstituteUnknown-kn}}. This method was preferred over those developed in the previous chapter because the number of genes was small and the heatmap from Morpheus is a useful tool for showing the gene expression specific to a group. The heatmap and the output are shown in \cref{fig:ap:morph_sel_tfs} in the Appendix.
+Hierarchical clustering was applied to the tumour expression of the 98 TF after 11 samples previously identified as outliers were removed\footnote{In this context, outliers are samples that cluster in 1-3 groups, making it hard to interpret the dendrogram from the hierarchical clustering}, leaving 392 samples for clustering. The tumour\footnote{TCGA's MIBC cohort} data was log2(TPM+1) transformed, normalised by the quantiles, and then agglomerative clustering with average linkage was applied on the 1-Pearson correlation distance\footnote{In this case, for both clustering and visualisation, Morpheus from the Broad Institute was used \cite{Broad-InstituteUnknown-kn}}. This method was preferred over those developed in the previous chapter because the number of genes was small and the heatmap from Morpheus is a useful tool for showing the gene expression specific to a group. The heatmap and the output are shown in \cref{fig:ap:morph_sel_tfs} in the Appendix.
 
 % describe morpheus
 A dendrogram cut of 15 was chosen as it split both the Luminal and Basal Groups and there are relatively small groups. From the heatmap \cref{fig:ap:morph_sel_tfs} it can be noticed that there is a large group of Luminal samples and a smaller one. The Basal group is split into three subgroups, a large one, a medium size which groups most of the Mes-like tumours from Lund classifier and a smaller ones which has a lower Infiltration/Stromal/Estimate scores compared to the other 2 Basal groups. Apart from these 2 groups, there are outliers samples that are grouped in 1 or 2 clusters, suggesting that they have particular molecular profiles.
@@ -44,7 +44,7 @@ The groups smaller than 1\% of the cohort size (equivalent to 4 samples) are rem
 \begin{sidewaysfigure}
     \centering
     \includegraphics[width=1.0\textwidth,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/15_CS_norm_sel_tfs.png}
-      \caption[Heatmap of the clustering of the gene expression of the 98 TFs]{Hierarchical clustering of the 98 TFs found in \cref{s:N_I:sel_tfs}. 
+      \caption[Heatmap of the clustering of the gene expression of the 98 TF]{Hierarchical clustering of the 98 TF found in \cref{s:N_I:sel_tfs}. 
       Their gene expression was log2(TPM+1) transformed, normalised by the quantiles, and then agglomerative clustering with average linkage was applied on the 1-Pearson correlation distance. The columns at the top of the heatmap represents the previous classification (TCGA \cite{Robertson2017-mg}, Consensus \cite{Kamoun2020-tj}, Lund \cite{Marzouka2018-ge} and the stratification from \cref{s:clustering_analysis}) as well as the Immune, Stromal and ESTIMATE scores available with the TCGA cohort.}
     \label{fig:ap:morph_sel_tfs}
 \end{sidewaysfigure}
@@ -53,15 +53,15 @@ The groups smaller than 1\% of the cohort size (equivalent to 4 samples) are rem
 \section{Tumour vs Non-tumour gene expression} \label{s:ap:tum_vs_non-tumour}
 
 
-The scatter plot complements the work in \cref{s:N_I:sel_tfs_bio} which explores the 98 TFs in both tumour and non-tumour datasets.
+The scatter plot complements the work in \cref{s:N_I:sel_tfs_bio} which explores the 98 TF in both tumour and non-tumour datasets.
 
-\Cref{fig:ap:sel_tfs_mean} depicts the mean expression of the 98 TFs genes found in the previous subsection. The log plot shows the non-cancerous mean on the y-axis and the tumour mean expression on the x-axis, the size and colour of the points is proportional to the mutation burden across the MIBC cohort from TCGA. The genes higher on the y-axis have a higher expression in the non-cancerous, similarly for x-axis, further on the right hand side, higher average value in the tumour cohort. \textit{ELF3} it is on the top right corner meaning that it is expressed both in the tumour and non-cancerous datasets, and it is also highly mutated in MIBC. \textit{BNC1} is on he left corner, having lower expression across the samples.
+\Cref{fig:ap:sel_tfs_mean} depicts the mean expression of the 98 TF genes found in the previous subsection. The log plot shows the non-cancerous mean on the y-axis and the tumour mean expression on the x-axis, the size and colour of the points is proportional to the mutation burden across the MIBC cohort from TCGA. The genes higher on the y-axis have a higher expression in the non-cancerous, similarly for x-axis, further on the right hand side, higher average value in the tumour cohort. \textit{ELF3} it is on the top right corner meaning that it is expressed both in the tumour and non-cancerous datasets, and it is also highly mutated in MIBC. \textit{BNC1} is on he left corner, having lower expression across the samples.
 
 % Tum vs non-cancerous dataset.
 \begin{figure}[!htb]
     \centering
     \includegraphics[width=1.0\textwidth,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/sel_tfs/sel_tfs_mean_tum_healthy.png}
-    \caption[Tumour vs non-tumour gene expression of the 98 TFs]{Selected TFs expression in the MIBC TCGA cohort and in the non-cancerous. Both the colour and size of the points are proportional to the mutation burden in the TCGA cohort.}
+    \caption[Tumour vs non-tumour gene expression of the 98 TF]{Selected TF expression in the MIBC TCGA cohort and in the non-cancerous. Both the colour and size of the points are proportional to the mutation burden in the TCGA cohort.}
     \label{fig:ap:sel_tfs_mean}
 \end{figure}
 
@@ -93,7 +93,7 @@ The scatter plot complements the work in \cref{s:N_I:sel_tfs_bio} which explores
 % Pi-plots for GSEA
 \section{Pi-plots for GSEA} \label{s:ap:sel_prun_pi}
 
-This section supports the results from \cref{s:N_I:sel_tfs_subtypes} and it contains the Pi-plots for each of the MIBC subtypes derived from the gene expression of the 98 TFs from \cref{s:N_I:sel_tfs}. The method on how the DEA was performed and the Pi-plots generated can be found in \cref{s:lit:dea,s:lit:pi,s:lit:gsea}. Below are some notes on choosing the comparison across the four pi plots:
+This section supports the results from \cref{s:N_I:sel_tfs_subtypes} and it contains the Pi-plots for each of the MIBC subtypes derived from the gene expression of the 98 TF from \cref{s:N_I:sel_tfs}. The method on how the DEA was performed and the Pi-plots generated can be found in \cref{s:lit:dea,s:lit:pi,s:lit:gsea}. Below are some notes on choosing the comparison across the four pi plots:
 
 \paragraph*{Basal 4}
 
@@ -168,7 +168,7 @@ This section supports the results from \cref{s:N_I:sel_tfs_subtypes} and it cont
 % GSEA plots
 \section{GSEA plots top 10 - Reactome} \label{s:ap:sel_tfs_gsea_reactome}
 
-This section supports the results presented in \cref{s:N_I:sel_tfs_mibc}, where the five subtypes were derived using the gene expression of the 98 TFs identified through selective edge pruning, as discussed in \cref{s:N_I:sel_tfs}. The Pi plots used to rank the data can be seen in \cref{s:ap:sel_prun_pi}. This section contains the GSEA results with the top 10 terms for each group.
+This section supports the results presented in \cref{s:N_I:sel_tfs_mibc}, where the five subtypes were derived using the gene expression of the 98 TF identified through selective edge pruning, as discussed in \cref{s:N_I:sel_tfs}. The Pi plots used to rank the data can be seen in \cref{s:ap:sel_prun_pi}. This section contains the GSEA results with the top 10 terms for each group.
 
 
 \begin{figure}[!htb]
@@ -212,7 +212,7 @@ This section supports the results presented in \cref{s:N_I:sel_tfs_mibc}, where 
 % GSEA - hallmarks
 \section{GSEA output (Hallmarks)} \label{s:ap:hallmarks}
 
-This section supports the results presented in \cref{s:N_I:sel_tfs_mibc}, where the five subtypes were derived using the gene expression of the 98 TFs identified through selective edge pruning, as discussed in \cref{s:N_I:sel_tfs}. The Pi plots used to rank the data can be seen in \cref{s:ap:sel_prun_pi}. In contrast to the main section, this GSEA analysis was performed using the Hallmark database.
+This section supports the results presented in \cref{s:N_I:sel_tfs_mibc}, where the five subtypes were derived using the gene expression of the 98 TF identified through selective edge pruning, as discussed in \cref{s:N_I:sel_tfs}. The Pi plots used to rank the data can be seen in \cref{s:ap:sel_prun_pi}. In contrast to the main section, this GSEA analysis was performed using the Hallmark database.
 
 
 \begin{table}[H]
@@ -253,7 +253,7 @@ This section supports the results presented in \cref{s:N_I:sel_tfs_mibc}, where 
     BILE ACID METABOLISM & 1.46 & 0.008 & 59 & 19 & 0.322 \\
     \bottomrule
   \end{tabularx}
-  \caption[98 TFs: summary of hallmarks pathways]{Normalised Enrichment Score (NES), False Discovery Rate (FDR) q-val, and lead gene statistics for different subtypes. The lead genes from a pathway are selected by GSEAY based on when the NES reached its peak.}
+  \caption[98 TF: summary of hallmarks pathways]{Normalised Enrichment Score (NES), False Discovery Rate (FDR) q-val, and lead gene statistics for different subtypes. The lead genes from a pathway are selected by GSEAY based on when the NES reached its peak.}
   \label{ap:tab:gsea_hallmark}
 \end{table}
 
@@ -263,7 +263,7 @@ This section supports the results presented in \cref{s:N_I:sel_tfs_mibc}, where 
 \begin{sidewaysfigure}
     \centering
     \includegraphics[width=1.0\textwidth,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/sel_tfs/sel_tfs_tcga_meta.png}
-      \caption[TCGA metadata and the groups derived from the 98 TFs]{The metadata from TCGA \cite{Robertson2017-mg} across the subtypes derived from applying hierarchical clustering on the expression of the 98 TFs from \cref{fig:N_I:sel_tfs}. The figure supports the analysis performed in \cref{s:N_I:sel_tfs_metadata}.}
+      \caption[TCGA metadata and the groups derived from the 98 TF]{The metadata from TCGA \cite{Robertson2017-mg} across the subtypes derived from applying hierarchical clustering on the expression of the 98 TF from \cref{fig:N_I:sel_tfs}. The figure supports the analysis performed in \cref{s:N_I:sel_tfs_metadata}.}
     \label{fig:ap:sel_tfs_tcga_metadata}
 \end{sidewaysfigure}[!htb]   
 
@@ -284,6 +284,6 @@ This section supports the results presented in \cref{s:N_I:sel_tfs_mibc}, where 
 \begin{sidewaysfigure}
     \centering
 \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/sel_tfs/sel_tfs_mut_meta.png}
-      \caption[98 TFs: subgroups and somatic mutations]{Heatmap of binary somatic mutation across across the groups derived using the selective edge pruning. The figure show that there is no hint of relation between the subgroups and the mutations. The figure supports the analysis performed in \cref{s:N_I:sel_tfs_metadata}}
+      \caption[98 TF: subgroups and somatic mutations]{Heatmap of binary somatic mutation across across the groups derived using the selective edge pruning. The figure show that there is no hint of relation between the subgroups and the mutations. The figure supports the analysis performed in \cref{s:N_I:sel_tfs_metadata}}
     \label{fig:ap:sel_tfs_tcga_meta_mut}
 \end{sidewaysfigure}

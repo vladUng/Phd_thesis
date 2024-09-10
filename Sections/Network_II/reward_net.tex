@@ -154,7 +154,7 @@ The two plots, \cref{fig:N_II:degree_high_corr,fig:N_II:corr_sel_genes}, confirm
 
 % To further help explaining the large number of connections of a node and to understand how the reward modifier affects the correlations values 
 
-% Understanding this is important as each gene is allowed to keep the 3 or 6 (for TFs) most correlated genes.
+% Understanding this is important as each gene is allowed to keep the 3 or 6 (for TF) most correlated genes.
 
 % Introduce what I am going to talk about
 It is clear that the reward modifier successfully integrates the mutation burden into the co-expressed gene network. However, it is not clear how the sigmoid function affects the correlation raking, how the values above a certain threshold are influenced to give a node a few hundreds connections when each gene is allowed to keep either the 3 or 6 most correlated genes.
@@ -227,7 +227,7 @@ Overall, the experiments in this subsection attest that for a gene to have a hig
 The previous sections showed that the 14 communities with the highest mean degree contain genes that need to meet several conditions to obtain that many connections. Biologically, gene expression is the proxy for their presence in the tissue, and it is the final (available) indicator of their importance in the MIBC, it is next used to understand genes' importance in the biological context.
 
 % The 14 communities gene expression
-The bar plot in \cref{fig:N_II:exp_molecular_highCon} shows the expression across the MIBC cohort of the 122 genes from the highly connected genes with the bar representing the standard deviation\footnote{This is a similar plot to \cref{fig:N_I:sel_tfs_var} used to refine the  98 TFs from \cref{s:ap:sel_prun}.}. It shows that most of the genes have a TPM higher than 1, and 39/122 have a TPM less than 10. In addition, the error bars indicate which genes have a high standard deviation across the samples, an indicator of variability which can help isolating genes specific to subgroups. 
+The bar plot in \cref{fig:N_II:exp_molecular_highCon} shows the expression across the MIBC cohort of the 122 genes from the highly connected genes with the bar representing the standard deviation\footnote{This is a similar plot to \cref{fig:N_I:sel_tfs_var} used to refine the  98 TF from \cref{s:ap:sel_prun}.}. It shows that most of the genes have a TPM higher than 1, and 39/122 have a TPM less than 10. In addition, the error bars indicate which genes have a high standard deviation across the samples, an indicator of variability which can help isolating genes specific to subgroups. 
 
 
 \begin{figure}[!b]    
@@ -307,7 +307,7 @@ Less clear in the Pi-plot is that many markers for upregulated Squamous Cell Car
 \begin{sidewaysfigure}
     \centering
     \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_II/resources/reward/PI_Basal_5.png}
-    \caption[Pi plot highlighting the properties for Basal 5]{The Pi plot with the \acrshort{dea} between Basal 5 and LumInf 0 (X-axis) and Basal 1 (Y-axis); following the methods from \cref{s:lit:pi}. The points in distinct colours representing different known markers, such as Luminal Markers, UPK, Up and Downs Regulated genes in \gls{SCC}, the 98 TFs found in previous sections \cref{s:N_I:sel_tfs}, as well as some of the highly significantly expressed genes in the two comparisons (Up\_LumInf\_0 and Up\_Basal\_1). The points in the third quadrant represent the genes that are most specific to group 5, while the first quadrant contains the genes specific to both clusters 0 and 1.}
+    \caption[Pi plot highlighting the properties for Basal 5]{The Pi plot with the \acrshort{dea} between Basal 5 and LumInf 0 (X-axis) and Basal 1 (Y-axis); following the methods from \cref{s:lit:pi}. The points in distinct colours representing different known markers, such as Luminal Markers, UPK, Up and Downs Regulated genes in \gls{SCC}, the 98 TF found in previous sections \cref{s:N_I:sel_tfs}, as well as some of the highly significantly expressed genes in the two comparisons (Up\_LumInf\_0 and Up\_Basal\_1). The points in the third quadrant represent the genes that are most specific to group 5, while the first quadrant contains the genes specific to both clusters 0 and 1.}
     \label{fig:N_II:pi_basal_5}
 \end{sidewaysfigure}
 
@@ -338,7 +338,7 @@ The analysis shows that Group 6 is different from the other groups by exhibiting
 \begin{sidewaysfigure}  
     \centering
     \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_II/resources/reward/PI_Lum_6.png}
-    \caption[Pi plot highlighting the properties for Lum 6]{The Pi plot with the \acrfull{dea} between Lum 6 and Lum 3 (X-axis) and Lum 2 (Y-axis); following the methods from \cref{s:lit:pi}. The points in distinct colours representing different known markers, such as Luminal Markers, UPK, Up and Downs Regulated genes in \acrlong{scc}, the 98 TFs found in previous sections \cref{s:N_I:sel_tfs}, as well as some of the highly significantly expressed genes in the two comparisons the two comparisons (Up\_Lum) and the negative values on the X-axis (Negative X). The third quadrant highlights the genes specific to the Basal 6 group, while the first quadrant contains the genes more common to the other two groups. The analysis shows that there are many \acrshort{lncRNA} genes specific to the Luminal 6 groups.}
+    \caption[Pi plot highlighting the properties for Lum 6]{The Pi plot with the \acrfull{dea} between Lum 6 and Lum 3 (X-axis) and Lum 2 (Y-axis); following the methods from \cref{s:lit:pi}. The points in distinct colours representing different known markers, such as Luminal Markers, UPK, Up and Downs Regulated genes in \acrlong{scc}, the 98 TF found in previous sections \cref{s:N_I:sel_tfs}, as well as some of the highly significantly expressed genes in the two comparisons the two comparisons (Up\_Lum) and the negative values on the X-axis (Negative X). The third quadrant highlights the genes specific to the Basal 6 group, while the first quadrant contains the genes more common to the other two groups. The analysis shows that there are many \acrshort{lncRNA} genes specific to the Luminal 6 groups.}
     \label{fig:N_II:pi_lum_6}
 \end{sidewaysfigure}
 

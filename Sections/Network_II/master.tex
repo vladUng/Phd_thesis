@@ -24,7 +24,7 @@ The previous two chapters introduced the first iteration of the integrative netw
 
 
 % Introduce the new network pipeline as an advanced version
-Building on the previous work presented, this chapter refines the network pipeline through several key improvements: 1) integrating all three datasets—P0, Abs-Ca, and UD—to construct a comprehensive network representation, 2) introducing a new weight modifier that gradually incorporates mutation burden, 3) proposing an integrative module evaluation value (iMEV) that considers gene expression across both tumour and non-tumour datasets, and 4) employing the \acrfull{hsbm}, which is not constrained by a predefined number of communities. This four pipeline upgrades allow for a more flexible and detailed analysis of both the tumour and non-tumour samples.
+Building on the previous work presented, this chapter refines the network pipeline through several key improvements: 1) integrating all three datasets—P0, ABS-Ca, and UD—to construct a comprehensive network representation, 2) introducing a new weight modifier that gradually incorporates mutation burden, 3) proposing an integrative module evaluation value (iMEV) that considers gene expression across both tumour and non-tumour datasets, and 4) employing the \acrfull{hsbm}, which is not constrained by a predefined number of communities. This four pipeline upgrades allow for a more flexible and detailed analysis of both the tumour and non-tumour samples.
 
 
 % Introduction to the limitations - Non-tumour dataset and MEV
@@ -55,7 +55,7 @@ This chapter aims to advance the previously introduced network method by:
 \subsection*{Datasets}
 
 % Not sure if I need to re-mention this
-As in the previous sections, the mutation and gene expression data from the \acrshort{tcga} dataset is employed as the tumour dataset. For the non-tumour dataset, the mRNAseq data from the \acrfull{jbu} generates most of the networks in this chapter. This consists of samples that are \acrlong{absCa} differentiated, undifferentiated (UD) and freshly isolated cells (P0). The list of TFs is taken from the Human Transcription Factors work by \citet{Lambert2018-el}.
+As in the previous sections, the mutation and gene expression data from the \acrshort{tcga} dataset is employed as the tumour dataset. For the non-tumour dataset, the mRNAseq data from the \acrfull{jbu} generates most of the networks in this chapter. This consists of samples that are \acrlong{absCa} differentiated, undifferentiated (UD) and freshly isolated cells (P0). The list of TF is taken from the Human Transcription Factors work by \citet{Lambert2018-el}.
 
 Using all the bladder samples available (UD, ABS-Ca, and P0) ensures gene expression from both differentiated, undifferentiated, and freshly isolated cells. This ensures that the gene abundance represents both the Basal and Luminal phenotypes seen in MIBC. This is an important change compared to the P0 network from \cref{s:p0}, which contains only differentiated samples.
 
@@ -71,7 +71,7 @@ Using all the bladder samples available (UD, ABS-Ca, and P0) ensures gene expres
 \section{Discussion}
 
 % Introduction and summary
-The work present in this chapter results from applying the improved version of the network pipeline to stratify the MIBC. It includes building a network from the non-tumour RNAseq data, integrating TFs via selective edge pruning and mutations via the reward edge weight modifier, and both the expression from tumour and non-tumour via iMEV. Throughout the chapter, the standard and reward networks were tested and validated computationally and through biology's lens. 
+The work present in this chapter results from applying the improved version of the network pipeline to stratify the MIBC. It includes building a network from the non-tumour RNAseq data, integrating TF via selective edge pruning and mutations via the reward edge weight modifier, and both the expression from tumour and non-tumour via iMEV. Throughout the chapter, the standard and reward networks were tested and validated computationally and through biology's lens. 
 
 % Standard and reward network findings
 The analysis of the standard network showed that the P0 \& ABS-Ca datasets can be split into two different subgroups, providing further insight into non-tumour biology and more malignant datasets. The communities responsible for the splits can be traced back to the network, showcasing the transparent nature of the graph representation. The reward network highlighted a subset of genes with a high mutation burden and are strongly and highly co-expressed in the non-tumour dataset, confirming the data integration was successful. The MIBC stratification found a Basal group with a poor survival prognosis and a Luminal with relatively good survival.
@@ -105,7 +105,7 @@ The following chapter discusses the implications of the network approach develop
 %     \item Utilisation of \acrfull{hsbm} in the network pipeline, which is able to find small communities in a network of 5000 nodes.
 %     \item Identification of seven new MIBC groups, within which Basal and Luminal 'signals' are observed.
 %     \item Discovery of new Basal and Luminal subdivisions: the former with a low survival rate and the latter with the highest survival rate over 5 years. Both are characterised by unnamed genes.
-%     \item Identifying new splits in the Abs-Ca and P0 datasets
+%     \item Identifying new splits in the ABS-Ca and P0 datasets
 %     \item An explainable computational solution which allows tracing the end result (i.e. subtyping) to network communities and implicitly to a subset of genes
 %     \item Across the analysis, many differentially expressed genes were found to be Ensembl genes, highlighting the potential for discovering new biological insights.
 %     \item Development of a Python package that creates the network, which is planned to be released to the research community.
@@ -132,7 +132,7 @@ The following chapter discusses the implications of the network approach develop
 % Community detection play an important role into the network pipelines developed in this project but also to other bioinformatics work (e.g. single-cell analysis). The research present in this project shows that the Stochastic Block Models are more powerful than Leiden. The SBMs are capable of finding hierarchical structures in the communities, wobble genes as well as finding small communities. The only disadvantage is their large computational time which is still manageable. The comparison between the two classes of community detection will be completed if Leiden would be applied to with the sigmoid modifier and check the communities found with it against the ones discovered with hSBM. This last comparison with the other work done in this project will complete the comparison between Leiden and SBM in the co-expressed networks.
 
 % % Female imbalance
-% The non-tumour dataset contains 88 samples which is predominantly females with a few male-paediatric samples. This may represent a limitation of the work done in this project as the MIBC is a male dominated disease. Nevertheless, the P0, UD and Abs-Ca dataset used is one the largest non-tumour dataset and there are plans to open to the research community in the near future.
+% The non-tumour dataset contains 88 samples which is predominantly females with a few male-paediatric samples. This may represent a limitation of the work done in this project as the MIBC is a male dominated disease. Nevertheless, the P0, UD and ABS-Ca dataset used is one the largest non-tumour dataset and there are plans to open to the research community in the near future.
 
 
 % \textbf{This might be explained by the MIBC samples have already a 'malignant signal' in the gene expression which is only then amplified by integrating the mutation burden. In contrast with this, the P0 samples still resemble the bladder tissue without the 'malignant signal' and there is no signal to amplify. The freshly isolated samples do not exhibit undifferentiated phenotype which is present in the basal tumour another reason for the small changes across the P0 networks.}

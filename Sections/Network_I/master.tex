@@ -25,7 +25,7 @@ This chapter aims to investigates how mutations and transcription factors can be
 
 There are two networks are constructed: one from the tumour dataset (Section \ref{s:N_I:tum}) and another from the healthy dataset (Section \ref{s:p0}). The goal of the first network type is to demonstrate the potential of the network approach and to draw comparisons with the findings from the previous chapter. The experiments with the non-tumour network investigate how non-cancerous information can inform MIBC stratification, thus performing an integration at the graph level.
 
-Overall, the work presented demonstrates the potential of networks in MIBC subtyping. This is enforced by the analysis and biological findings in \cref{s:N_I:sel_tfs} which found a subset of TFs that have a high impact on both tumour and non-tumour tissues. However, the initial methods for data integration show limited impact on disease subtyping, this chapter lays the groundwork for future chapters, where initial assumptions are revised, and new, adapted methods are employed.
+Overall, the work presented demonstrates the potential of networks in MIBC subtyping. This is enforced by the analysis and biological findings in \cref{s:N_I:sel_tfs} which found a subset of TF that have a high impact on both tumour and non-tumour tissues. However, the initial methods for data integration show limited impact on disease subtyping, this chapter lays the groundwork for future chapters, where initial assumptions are revised, and new, adapted methods are employed.
 
 
 
@@ -38,7 +38,7 @@ Mutation information is obtained from Whole Exome Sequencing (WES) of the MIBC c
 
 
 % \textbf{Taken From P0 - Don't think I needed it}
-% The Jack Birch's Unit holds a large dataset of bladder tissue samples both cancerous and non-cancerous. There are three different types of ' '  (i.e. non-cancerous) bladder samples: P0 (23), Abs/Ca-differentiated (49) and undifferentiated (15). The P0 are in situ tissues taken from individual with urinary tract infections (UTIs) unaltered in the lab, the ABS/Ca differentiated are in vitro which have been differentiated by the ABS/Ca protocol and lastly the undifferentiated are in vitro samples which tissues are yet not specialised; covered in \cref{s:lit:datasets_used}.From the previous classifications \citet{Robertson2017-mg, Kamoun2020-tj} it is known that there are 2 major subgroups Luminal (Lum) and Basal (Ba). The former is known to share aspects with the differentiated tissue while the latter with the undifferentiated. 
+% The Jack Birch's Unit holds a large dataset of bladder tissue samples both cancerous and non-cancerous. There are three different types of ' '  (i.e. non-cancerous) bladder samples: P0 (23), ABS/Ca-differentiated (49) and undifferentiated (15). The P0 are in situ tissues taken from individual with urinary tract infections (UTIs) unaltered in the lab, the ABS/Ca differentiated are in vitro which have been differentiated by the ABS/Ca protocol and lastly the undifferentiated are in vitro samples which tissues are yet not specialised; covered in \cref{s:lit:datasets_used}.From the previous classifications \citet{Robertson2017-mg, Kamoun2020-tj} it is known that there are 2 major subgroups Luminal (Lum) and Basal (Ba). The former is known to share aspects with the differentiated tissue while the latter with the undifferentiated. 
 
 
 % Aims
@@ -65,7 +65,7 @@ The aim of this chapter is to validate the data integration hypothesis using bot
 %     \parbox{\textwidth}{\centering \Huge Tumour derived Network - Leiden} % 
 %   \vspace{1.5cm} 
 %   \includegraphics[width=0.9\paperwidth, height=0.9\paperheight, keepaspectratio]{Sections/Network_I/Resources/networks/tum_std_4K_6TF.png} % Full-page image
-%   \parbox{0.8\textwidth}{\centering Network created from using the 4000 most varied genes in the tumour dataset, no weight modifier, minimum degree of 3 for standard genes and 6 for TFs.}
+%   \parbox{0.8\textwidth}{\centering Network created from using the 4000 most varied genes in the tumour dataset, no weight modifier, minimum degree of 3 for standard genes and 6 for TF.}
 % \end{figure}
 % \restoregeometry
 % \newpage
@@ -82,7 +82,7 @@ The aim of this chapter is to validate the data integration hypothesis using bot
 %     \parbox{\textwidth}{\centering \Huge P0 derived Network - Leiden} 
 %     \vspace{1.5cm} % Space between title and image% 
 %     \includegraphics[width=0.9\paperwidth, height=0.9\paperheight, keepaspectratio]{Sections/Network_I/Resources/networks/p0_std_4K_50TF_2.png} % Full-page image
-%     \parbox{0.8\textwidth}{\centering Network created from using the 4000 most varied genes in the P0 dataset, no weight modifier, minimum degree of 3 for standard genes and 50 for TFs.}
+%     \parbox{0.8\textwidth}{\centering Network created from using the 4000 most varied genes in the P0 dataset, no weight modifier, minimum degree of 3 for standard genes and 50 for TF.}
 % \end{figure}
 % \restoregeometry
 % \newpage
@@ -99,7 +99,7 @@ The aim of this chapter is to validate the data integration hypothesis using bot
 %     \parbox{\textwidth}{\centering \Huge Tumour derived Network - SBM} % 
 %   \vspace{1.5cm} 
 %   \includegraphics[width=0.9\paperwidth, height=0.9\paperheight, keepaspectratio]{Sections/Network_I/Resources/networks/sbm_standard_5K_6TF.png} % Full-page image
-%   \parbox{0.8\textwidth}{\centering Network created from using the 5000 most varied genes in the tumour dataset, no weight modifier, minimum degree of 3 for standard genes and 6 for TFs.}
+%   \parbox{0.8\textwidth}{\centering Network created from using the 5000 most varied genes in the tumour dataset, no weight modifier, minimum degree of 3 for standard genes and 6 for TF.}
 % \end{figure}
 % \restoregeometry
 % \newpage
@@ -125,7 +125,7 @@ Overall the experiment using both the tumour and P0 derived networks validates t
 % \textbf{DH: about hte initial attempt - Wouldn't say this, just say it is your network approach. Initial attempt suggests something that will be improved upon, could bring results into question?}
 
 % Weight modifiers need refinement
-% Two main co-expressed gene networks were explored: one constructed from tumour samples and the other from non-tumour tissue samples. The experiments demonstrated that integrating mutations and TFs was successful at the graph level but had limited impact on the MIBC subtypes derived from the. Network metrics varied between the modified networks (as shown in \cref{fig:N_I:net_metrics_tum,fig:N_I:net_metrics_p0}), and highly mutated genes were observed to change communities ( \cref{fig:N_I:p0_mut_burden}). The disease subgroups identified through this network approach showed different results compared to standard approaches, with only minor variations observed between networks modified by weight modifiers. This suggests that the weight modifier strategies, as depicted in \cref{fig:N_I:modifiers}, require further refinement.
+% Two main co-expressed gene networks were explored: one constructed from tumour samples and the other from non-tumour tissue samples. The experiments demonstrated that integrating mutations and TF was successful at the graph level but had limited impact on the MIBC subtypes derived from the. Network metrics varied between the modified networks (as shown in \cref{fig:N_I:net_metrics_tum,fig:N_I:net_metrics_p0}), and highly mutated genes were observed to change communities ( \cref{fig:N_I:p0_mut_burden}). The disease subgroups identified through this network approach showed different results compared to standard approaches, with only minor variations observed between networks modified by weight modifiers. This suggests that the weight modifier strategies, as depicted in \cref{fig:N_I:modifiers}, require further refinement.
 
 % \textbf{Reading this you could say - so why is it included? What is the narrative here? The thesis does not need to contain absolutely everything you did. Think about the key message you want to convey and what is needed to convey this.}
 
