@@ -6,7 +6,7 @@
     \parbox{0.95\linewidth}{
       \begin{itemize}
         \item Developed a network pipeline and tools to analyse the outputs
-        \item Mutations are integrated through edge weights 
+        \item Mutations were integrated through edge weights 
         \item Transcription Factors integrated through selective edge pruning
         \item Use of freshly isolated samples (P0) to build a network which is then used to inform MIBC stratification
       \end{itemize}
@@ -19,13 +19,13 @@
 
 In the previous chapter, standard clustering methods and insights from in situ experiments (\citet{Baker2022-bj}) were utilised to stratify the muscle-invasive bladder cancer (MIBC) cohort from The Cancer Genome Atlas (TCGA). This work revealed new MIBC subgroups with significant biological differences compared to those identified in the TCGA (\citet{Robertson2017-mg}) and consensus (\citet{Kamoun2020-tj}) stratification. This finding highlights the potential for discovering biologically relevant groups and underscores the need for new integrative methods that combine data at the computational level.
 
-Network/Graph methods have been previously used to stratify other cancers (glioblastoma - \citet{Care2019-ij}), and the co-expressed network constitute a method that enables further data integration, such as mutations or \acrfull{tf}. Additionally, building a relational representation between the genes aligns the analysis more closely with biological processes. Networks also serve as powerful visualisation tools, enhancing the understanding of complex processes or issues, such as the molecular depiction of a cancerous tissue from gene expression.
+Network/Graph methods have been previously used to stratify other cancers (glioblastoma - \citet{Care2019-ij}), and the co-expressed network constitutes a method that enables further data integration, such as mutations or \acrfull{tf}. This allows for the prioritisation of different gene sets rather than treating all of them equally, as in the case of traditional clustering models (e.g., K-means). Additionally, building a relational representation between the genes aligns the analysis more closely with biological processes. Networks also serve as powerful visualisation tools, enhancing the understanding of complex processes or issues, such as the molecular depiction of cancerous tissue from gene expression.
 
 This chapter aims to investigates how mutations and transcription factors can be integrated into a network with the aim to uncover new MIBC subgroups. Apart from building the graph there is a need to develop the tools and methods to analyse the vast amount of results, highlighting the challenges inherent in working with unsupervised learning, particularly in the context of highly heterogeneous data.
 
-There are two networks are constructed: one from the tumour dataset (Section \ref{s:N_I:tum}) and another from the healthy dataset (Section \ref{s:p0}). The goal of the first network type is to demonstrate the potential of the network approach and to draw comparisons with the findings from the previous chapter. The experiments with the non-tumour network investigate how non-cancerous information can inform MIBC stratification, thus performing an integration at the graph level.
+There are two networks constructed: one from the tumour dataset (Section \ref{s:N_I:tum}) and another from the healthy dataset (Section \ref{s:p0}). The goal of the first network type is to demonstrate the potential of the network approach and to draw comparisons with the findings from the previous chapter. The experiments with the non-tumour network investigate how non-cancerous information can inform MIBC stratification, thus performing an integration at the graph level.
 
-Overall, the work presented demonstrates the potential of networks in MIBC subtyping. This is enforced by the analysis and biological findings in \cref{s:N_I:sel_tfs} which found a subset of TF that have a high impact on both tumour and non-tumour tissues. However, the initial methods for data integration show limited impact on disease subtyping, this chapter lays the groundwork for future chapters, where initial assumptions are revised, and new, adapted methods are employed.
+Overall, the work presented demonstrates the potential of networks in MIBC subtyping. This is enforced by the analysis and biological findings in the next \cref{s:N_I:sel_tfs} which found a subset of TF that have a high impact on both tumour and non-tumour tissues. However, the initial methods for data integration show limited impact on disease subtyping, this chapter lays the groundwork for future chapters, where initial assumptions are revised, and new, adapted methods are employed.
 
 
 
@@ -34,7 +34,7 @@ Overall, the work presented demonstrates the potential of networks in MIBC subty
 
 The MIBC cohort from The Cancer Genome Atlas \citep{Tcga2018-sj} and the P0 samples from the Jack Birch Unit (JBU) are used in this chapter for building two different types of networks. The tumour dataset is used in the first part of the chapter to test if the integration of the mutations (from TCGA as well) amplify the signal in the tumours and lead to different MIBC subgroups; see \cref{s:N_I:tum}. The gene expressions from freshly isolated samples (or P0) are used to build the co-expressed networks \cref{s:p0} on which the mutations were integrated (using the TCGA data) from which the other MIBC subgroups were derived.
 
-Mutation information is obtained from Whole Exome Sequencing (WES) of the MIBC cohort from TCGA, focusing specifically on the mutation count, i.e., the frequency of gene mutations across the tumour biopsies . The list of Transcription Factors is taken from The Human Transcription Factors study by \citet{Lambert2018-el}. The different aspects of the datasets are discussed in the background \cref{s:lit:datasets_used}.
+Mutation information is obtained from Whole Exome Sequencing (WES) of the MIBC cohort from TCGA, focusing specifically on the mutation count, i.e., the frequency of gene mutations across the tumour biopsies. The list of Transcription Factors is taken from The Human Transcription Factors study by \citet{Lambert2018-el}. The different aspects of the datasets are introduced in the background \cref{s:lit:datasets_used}.
 
 
 % \textbf{Taken From P0 - Don't think I needed it}

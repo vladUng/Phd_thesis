@@ -1,11 +1,12 @@
-\chapter{Selective edge pruning} \label{s:N_I:sel_pruning}
+\chapter{Selective edge pruning uncovers subset of regulatory genes} \label{s:N_I:sel_pruning}
+\chaptermark{Selective edge pruning}
 \vspace{3mm}
 \fbox{
     \parbox{0.95\linewidth}{
       \begin{itemize}
         \item Finding the minimum degree for Transcription Factors (TF)
         \item A subset of 98 genes TF are highly connected in the network
-        \item Basal group with the lowest survival rate
+        \item Basal subset with the lowest survival rate
         \item SBM performs better when more edges are allowed in a graph
       \end{itemize}
     }
@@ -15,14 +16,15 @@
 \section{Introduction}
 
 % The aim to integrate the TF
-In the previous section it was noticed that the weight modifiers and selective edge pruning have an effect to the graphs, community detection algorithms and to the MIBC subtype. This part of the project aims to find the appropriate configuration for the selective edge pruning as well as understanding their effects on the community detection methods. 
+In the previous section, it was noticed that the weight modifiers and selective edge pruning affect the graphs, community detection algorithms and the MIBC subtype. This part of the project aims to find the appropriate configuration for selective edge pruning and understand their effects on community detection methods. Selective edge pruning is the process of reducing the number of edges in a network and prioritising a subset of genes, in this case \acrfull{tf}, to have more connections.
 
-The objective is prioritising the \acrfull{tf} over the standard genes as these up-regulated the expression of the other genes leading to higher biological influence. By allowing more connections for the TF, the minimum degree of the node increases as well as their role in the network, similar to the biology. The work in this section was presented as a poster at the \textit{\href{https://2023.complexnetworks.org/}{Complex Network Conference in 2023}}.
+The objective is prioritising the \acrshort{tf} over the standard genes as these regulate the expression of the other genes, leading to more substantial biological influence by allowing more connections for the TF, the minimum degree of the node increases as well as their role in the network analogous with biology. The work in this section was presented as a poster at the \textit{\href{https://2023.complexnetworks.org/}{Complex Network Conference in 2023}}.
+
 
 % The aim to find the better community detection
-An objective adopted for this section therefore was to compare the Leiden \citep{Traag2019-ne} community detection used in PGCNA with the degree corrected Stochastic Block Model (DC-SBM) from \citep{Karrer2011-si, Peixoto2017-gc}. As it was covered in \cref{s:lit:comm_detect} from Background, Leiden is faster and more popular, but it is prone to find patterns in noise, whereas the DC-SBM is slower but it is more error proof to find non-existent communities; the differences between the two methods are covered in more detail in \cref{s:lit:comm_detect}. 
+An objective adopted for this section therefore was to compare the Leiden \citep{Traag2019-ne} community detection used in PGCNA with the degree corrected Stochastic Block Model (DC-SBM) from \citep{Karrer2011-si, Peixoto2017-gc}. As it was covered in \cref{s:lit:comm_detect} from Background, Leiden is faster and more popular, but it is prone to find patterns in noise, whereas the DC-SBM is slower but it is unlikely to find non-existent communities; the differences between the two methods are covered in more detail in \cref{s:lit:comm_detect}. 
 
-The chapter begins by analysing the differences between the SBM and Leiden algorithms and how they respond to various configurations of selective edge pruning. During this comparison, a subset of 98 TF was identified as consistently highly connected, even in the control experiments. This subset of genes is further analysed and explored in \cref{s:N_I:sel_tfs} within the context of both tumour and non-tumour datasets. The analysis is then expanded in \cref{s:N_I:sel_tfs_bio}, where \acrfull{dea} is applied to the MIBC subtypes derived using the expression of these 98 genes.
+The chapter started by analysing the differences between the SBM and Leiden algorithms and how they responded to various configurations of selective edge pruning. During this comparison, a subset of 98 TF was identified as consistently highly connected, even emerging in the random-gene-selection control experiments. This subset of genes is further analysed and explored in \cref{s:N_I:sel_tfs} within the context of both tumour and non-tumour datasets. The analysis is then expanded in \cref{s:N_I:sel_tfs_bio}, where \acrfull{dea} is applied to the MIBC subtypes derived using the expression of these 98 genes.
 
 % The expression of this subset of gene is analysed in the context of both the non-tumour and tumour datasets and used to stratify the MIBC cohort from TCGA. Survival analysis and \acrfull{dea} is then used to further understand these subgroups with a focus on the basal samples with the poorest survival.
 

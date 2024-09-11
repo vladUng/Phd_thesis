@@ -2,30 +2,26 @@
 \section{Emergent Transcription Factors in Biology} \label{s:N_I:sel_tfs_bio}
 
 % Introduce the chapter
-The analysis performed so far suggested that the 98 TF influence the stratification of the MIBC cohort which were predominantly classified as basal by previous classifiers. This part of the chapter explore the role of these transcription factors in both the non-tumour and tumour datasets.
+The analysis performed so far suggested that the 98 TF influence the stratification of the MIBC cohort, which was predominantly classified as basal by previous classifiers. This part of the chapter explores the role of these transcription factors in both the non-tumour and tumour datasets.
 
-
-It is worth remembering that MIBC is generally divided into Luminal and Basal subgroups, the former exhibiting differentiated status, while the latter an undifferentiated status. The non-cancerous dataset contains samples that are either differentiated (ABS-Ca or in-situ) or undifferentiated. This implies that the TF with a high mean deviation may play a role in differentiation and also help in understanding the Basal/Luminal differences in MIBC. The molecular particularities in the tissue types of differentiation tissues are next explored.
-
-
-% Introduce the plots
-The bar plots in \cref{fig:N_I:sel_tfs_var} display the log mean of the gene expression in both non-cancerous and cancerous datasets of the 98 TF genes. The error bars depict the standard deviation of expression and the genes are in the descending order of the tumour average expressions. The red-bars represent the genes with a high variance\footnote{In this case, a high varied genes is one which has a standard deviation as big as the mean expression} in the either the non-cancerous or tumour dataset and the golden are the genes varied in both. Highly varied genes are the ones highlighted in the bar plot may yield important gene expression markers between the subgroups. The three list of varied genes can be seen \cref{tab:N_I:sel_tfs_var}.
-
-
-Variance in gene expression can indicate the potential genes that are specific to a group of samples. This means that \cref{fig:N_I:sel_tfs_var} helps to identify genes might have an important role in two datasets used. There are few genes that are highly expressed in both the tumours and non-cancerous datasets such as \textit{ELF3, KLF5} or \textit{JUN}. Later in the chapter the analysis will show that genes like \textit{BHLHE41} or \textit{ZBTB7C} have the potential to be basal/luminal markers. A scatter plot version of the bar plot can be seen in \cref{fig:ap:sel_tfs_mean} from Appendix, where the x-axis represents the non-cancerous mean, y-axis the tum mean and the size and colour the mutation burden of the genes.
-
+It is worth remembering that MIBC is generally divided into Luminal and Basal subgroups. Compared with normal urothelial biology, the former exhibits a differentiated status, and the latter an undifferentiated status. The non-cancerous dataset contains either differentiated (ABS-Ca or in-situ) or undifferentiated samples. This implies that the TF with a high mean deviation may play a role in differentiation and help understand the Basal/Luminal differences in MIBC. The molecular particularities in the tissue types of differentiation tissues are next explored.
 
 % Variance
-\begin{figure}[!htb]   
+\begin{figure}[!b]   
     \centering
     \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/sel_tfs/sel_tfs_var_tum_healthy.png}
-      \caption[Mean expression of the 98 TF in tumour and healthy samples]{Bar plot of the log mean expression in both non-cancerous and tumour datasets with the error bars accounting for standard deviation. The genes are ordered in descending order by the mean values in the non-cancerous dataset. Red bars represents genes that have a high variance in the corresponding dataset, while the golden shows the TF in both tumour and non-cancerous.}
+      \caption[Mean expression of the 98 TF in tumour and healthy samples]{Bar plot of the log mean expression in both non-cancerous and tumour datasets with the error bars accounting for standard deviation. The genes are ordered in descending order by the mean values in the non-cancerous dataset. Red bars represents genes that have a high variance in the corresponding dataset, while the golden shows TFs appear in both tumour and non-cancerous datasets.}
     \label{fig:N_I:sel_tfs_var}
 \end{figure}
 
+% Introduce the plots
+The bar plots in \cref{fig:N_I:sel_tfs_var} display the log mean of the gene expression in both non-cancerous and cancerous datasets of the 98 TF genes. The error bars depict the standard deviation of expression, and the genes are in the descending order of the tumour's average expressions. The red bars represent the genes with a high variance\footnote{In this case, a highly varied gene has a standard deviation as significant as the mean expression} in either the non-cancerous or tumour dataset, and the golden are the genes varied in both. Highly varied genes highlighted in the bar plot may yield important gene expression markers between the subgroups. The three lists of varied genes can be seen \cref{tab:N_I:sel_tfs_var}.
 
 
-\begin{table}[!htb]
+Variance in gene expression can indicate the potential genes specific to a group of samples. This means that \cref{fig:N_I:sel_tfs_var} helps to identify genes that might have an essential role in the two datasets used. There are a few genes that are highly expressed in both the tumours and non-cancerous datasets, such as \textit{ELF3, KLF5} or \textit{JUN}. Later in the chapter, the analysis will show that genes like \textit{BHLHE41} or \textit{ZBTB7C} have the potential to be basal/luminal markers. A scatter plot version of the bar plot can be seen in \cref{fig:ap:sel_tfs_mean} from the Appendix, where the x-axis represents the non-cancerous mean, the y-axis the tum mean and the size and colour of the mutation burden of the genes.
+
+
+\begin{table}[!t]
   \centering
   \small
   \begin{tabularx}{\textwidth}{>{\hsize=.25\hsize}X|>{\hsize=.75\hsize}X}
@@ -46,16 +42,16 @@ Variance in gene expression can indicate the potential genes that are specific t
 
 
 % Undiff vs Diff
-\subsection{In bladder tissue differentiation} \label{s:N:sel_tf_diff_status}
+\subsection{Role in bladder differentiation} \label{s:N:sel_tf_diff_status}
 
 
 To further understand the role of the 98 TF in the bladder tissue differentiation the Pi plot introduced in \cref{s:lit:pi} are used ti explore the \gls{DEA} across three tissue differentiation datasets, shown in \cref{fig:N_I:pi_sel_tfs_var}. The pi values are computed using the DEA between the ABS-Ca differentiated and P0 (X-axis) and UD (Y-axis) samples. There are shown only the 98 TF found classified by their variance.
 
 % Just the sel tfs - UD and P0
-In \cref{fig:N_I:pi_sel_tfs_var}, it can be seen that \textit{BNC1} and \textit{HES2} are UD markers, which may also indicate specificity for squamous markers. \textit{TP63} is another squamous marker \citep{Robertson2017-mg}, but it is more significantly differentiated in the UD over ABS-Ca comparison. \textit{FOSL1} is a highly varied gene that appears to be both an undifferentiated and P0 marker (note the difference in scale between the X-axis and Y-axis). \textit{KLF6} and \textit{JUN} are genes more specific to P0 but are also highly expressed in the undifferentiated tissue.
+In \cref{fig:N_I:pi_sel_tfs_var}, it can be seen that \textit{BNC1} and \textit{HES2} are UD markers, which may also indicate specificity for squamous markers. \textit{TP63} is another squamous marker \citep{Robertson2017-mg}, but it is more significantly expressed in the UD over ABS-Ca comparison. \textit{FOSL1} is a highly varied gene that appears to be both an undifferentiated and P0 marker (note the difference in scale between the X-axis and Y-axis). \textit{KLF6} and \textit{JUN} are genes more specific to P0 but are also highly expressed in the undifferentiated tissue.
 
 % Talk about the differentiation markers 
-The two Y-positive quadrants contains the genes that are likely involved in the differentiation of the bladder tissue, closer to the x-axis, more specific to the culture mode, conversely to Y-axis to the P0. It is worth noting that most of the genes specific to ABS-Ca model are highly varied in the tumours, which may suggest that are more expressed in the Luminal tumours compared to the Basal; \textit{HOXB6, ZNF552, JRK, BHLHe41}. Genes \textit{ZNF750, MSX2, MYCL, GRHL3 and REL} are specific to both P0 and ABS-Ca. Both \textit{MYCL, GRHL3} are known to be differentiation markers. There are also markers that are specific to P0 samples: \textit{EBF4, MAFK, ARID5B, EGR1, ETS2, MAFF, FOX1, KLF4, NR4A2, ATF3, OVOL1}. 
+The two Y-positive quadrants contains the genes that are likely involved in the differentiation of the urothelium, closer to the x-axis, more specific to the culture mode, conversely to Y-axis to the P0. It is worth noting that most of the genes specific to ABS-Ca model are highly varied in the tumours, which may suggest that are more expressed in the Luminal tumours compared to the Basal; \textit{HOXB6, ZNF552, JRK, BHLHe41}. Genes \textit{ZNF750, MSX2, MYCL, GRHL3 and REL} are specific to both P0 and ABS-Ca. Both \textit{MYCL, GRHL3} are known to be differentiation markers. There are also markers that are specific to P0 samples: \textit{EBF4, MAFK, ARID5B, EGR1, ETS2, MAFF, FOX1, KLF4, NR4A2, ATF3, OVOL1}. 
 
 % Less of Undiferentiated markers
 It can be noticed that there are several markers that might be UD specific (negative X-axis) while some additional markers involved in differentiation which do not vary as much. The latter may suggest that these markers are common both in Basal and Luminal tumours. 
@@ -64,7 +60,7 @@ It can be noticed that there are several markers that might be UD specific (nega
 The samples from the ABS-Ca and UD datasets are at the opposite side of the differentiation spectrum, covered in \cref{s:lit:datasets_used}. This is supported by the Pi plot where there are are a few genes in quadrant II, the one present may indicate their role in the tissue differentiation. The points at the centre of the pi plot may indicate a list of TF that are at the core of bladder tissue, regardless of their differentiated status and if are freshly isolated samples or obtain in the \textit{in-vitro} experiments.
 
 
-\Cref{tab:N_I:markers_diff} summarises the TF classification based on the differentiation tissue type: AbsCa (differentiation in culture), P0 (differentiation in tissue) and undifferentiated (culture). The 'transitional' genes in AbsCa-UD, UD-P0 and P0-AbsCa may yield information about the common genes shared between differentiation tissue types.
+\Cref{tab:N_I:markers_diff} summarises the TF classification based on the differentiation tissue type: ABSCa (differentiation in culture), P0 (differentiation in tissue) and undifferentiated (culture). The 'transitional' genes in ABSCa-UD, UD-P0 and P0-ABSCa may yield information about the common genes shared between differentiation tissue types.
 
 % Summary table
 \begin{table}[!htb]
@@ -87,13 +83,13 @@ The samples from the ABS-Ca and UD datasets are at the opposite side of the diff
     \textbf{P0-AbsCa} & \textit{NR4A2, ATF3, OVOL1, ZBTB7C, FOSL2, BCL6, MSX2, MYCL, ZNF750, ELF3, GRHL3, REL, KLF5, ZNF552, SATB1, DBP, ETV7, ETV3, MECOM, REPIN1, SP1, ZNF586} \\
     \bottomrule
   \end{tabularx}
-  \caption[Tissue differentiation markers]{TF marker classified by being significantly expressed in the two DEA comparisons: P0 vs AbsCa and UD vs AbsCa in \cref{fig:N_I:pi_sel_tfs_var}.} 
+  \caption[Tissue differentiation markers]{TF marker classified by being significantly expressed in the two DEA comparisons: P0 vs ABSCa and UD vs ABSCa in \cref{fig:N_I:pi_sel_tfs_var}.} 
   \label{tab:N_I:markers_diff}
 \end{table}
 
 \begin{sidewaysfigure}
     \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/sel_tfs/sel_tfs_pi_all_var_rect.png}
-    \caption[The 98 TF and the DEA across the non-tumour datasets]{Pi plot across the three differentiated tissue dataset. The DEA is run between the ABS-Ca samples and the P0 (X-axis) and UD (Y-axis). Resulting in a scatter plot where the quadrants (Q) holds the genes specific to the ABS-Ca samples in Q I, ABS-Ca and UD in Q II, UD and P0 in Q III and P0 and ABS-Ca in Q IV. The markers in 
+    \caption[The 98 TF and the DEA across the non-tumour datasets]{Pi plot across the three differentiation tissue types. The DEA is run between the ABS-Ca samples and the P0 (X-axis) and UD (Y-axis). Resulting in a scatter plot where the quadrants (Q) holds the genes specific to the ABS-Ca samples in Q I, ABS-Ca and UD in Q II, UD and P0 in Q III and P0 and ABS-Ca in Q IV. The markers in 
     are only varied in the tumour datasets, the blues only in non-tumour and yellow. the markers in red are genes TF that are core to the bladder cancer tissue. }
     \label{fig:N_I:pi_sel_tfs_var}
 \end{sidewaysfigure}
@@ -106,7 +102,7 @@ The samples from the ABS-Ca and UD datasets are at the opposite side of the diff
 
 
 % Selecting the genes for basal and luminal, expression in both Basal and Luminal
-The MIBC groups with luminal characteristics exhibit gene expression markers to differentiated bladder cancers which include ABS-Ca and freshly isolated samples, P0. The basal groups are molecular closer to the undifferentiated state of the bladder tissue. This means that the earlier devised TF markers for bladder tissue differentiation can be also used to guide the the analysis for MIBC. In addition to these markers the box plots are used \cref{fig:N_I:box_basal_dendrogram,fig:N_I:box_luminal_dendrogram} to validate and determine the two lists of genes specific to Basal/Squamous (Ba/Sq) and Luminal subtypes  also shown in \cref{tab:N_I:genes_lum_basal}. 
+The MIBC groups with luminal characteristics exhibit gene expression markers to differentiated bladder tumour which include ABS-Ca and freshly isolated samples, P0. The basal groups are molecular closer to the undifferentiated state of the urothelium. This means that the earlier devised TF markers for the three urothelium differentiation types can be also used to guide the the analysis for MIBC. In addition to these markers the box plots are used \cref{fig:N_I:box_basal_dendrogram,fig:N_I:box_luminal_dendrogram} to validate and determine the two lists of genes specific to Basal/Squamous (Ba/Sq) and Luminal subtypes  also shown in \cref{tab:N_I:genes_lum_basal}. 
 
 % Comment on luminal differentiation
 A recent study by \citet{Ramal2024-ha}, which investigated the regulatory network in urothelial cells, concluded that the following genes are considered 'novel putative TF' for luminal differentiation: \textit{\textbf{BHLHE41}, \textbf{MECOM}, \textbf{MYCL}, NCOA1, NR2F2, NR2F6, \textbf{REPIN1}, SREBF1, TBX2, TBX3, TRAFD1, and \textbf{ZBTB7C}}. The bold genes are among the 98 TF identified in this section, while \textit{MECOM, BHLHE41, ZBTB7C} are selected as markers in \cref{tab:N_I:genes_lum_basal}. \textit{GRHL3} is also mentioned in the work by \citet{Ramal2024-ha}, but it has already been determined as a differentiation marker \citep{Bock2014-zy}. \citet{Chen2021-tc} studied the role of \textit{ZBTB7C} across different cancers and its relation to tumour mutational burden, micro-satellite instability, and immune cell infiltration. The genes in \textbf{bold} are in the luminal/basal markers derived and can be seen in \cref{fig:N_I:box_debdrogram,fig:ap:box_consensus} and in the table \cref{tab:N_I:genes_lum_basal}.
@@ -180,16 +176,18 @@ The outputs of the GSEA runs using the Reactome database are summarised in two t
     \label{fig:N_I:pi_smallBasal_comp}
 \end{figure}
 
-% Why we chosen those comparisons
-Basal 5 has the lower survival prognosis seen for a subtype in this project and to understand what it differentiates from the other groups \cref{fig:N_I:pi_smallBasal_comp} was used. The Pi-plot consists on the DEA between the Basal 4 (X-axis) and Mes 3 (Y-Axis).
+
+% Why we choose those comparisons
+Basal 5 has the lower survival prognosis seen for a subtype in this project, and to understand what differentiates it from the other groups \cref{fig:N_I:pi_smallBasal_comp} was used. The Pi-plot consists of the DEA between the Basal 4 (X-axis) and Mes 3 (Y-axis).
 
 % 7 out of 10 biology
-From the plot it was found that seven out of the ten genes closest to the referential point were found to have biological significance in bladder cancer biology: \textit{GPX2, KRT13, ALDH3A1, KRT15, KRT4, AKR1B10, SOX2, TP63, RAPGEFL1, CAPNS2}. \textit{GPX2} is involved in squamous differentiation \citet{Naiki2018-fp}. 
+From the plot, it was found that seven out of the ten genes closest to the referential point were found to have biological significance in bladder cancer biology: \textit{GPX2, KRT13, ALDH3A1, KRT15, KRT4, AKR1B10, SOX2, TP63, RAPGEFL1, CAPNS2}. \textit{GPX2} is involved in squamous differentiation \citet{Naiki2018-fp}. 
 
 % In more depth
 Higher expression of \textit{KRT13} is associated with better response to chemotherapy and immunotherapy \citep{Yu2023-db}. The methylation of \textit{ALDH3A1}, along with \textit{HOXA9} and \textit{ISL1}, has been studied in \gls{NMIBC} and found to be a predictor of disease recurrence \citep{McLean2023-qk}. Additionally, higher expression of \textit{ALDH3A1} in bladder cancer is associated with higher tumour grade and has been studied in cancer stem cells \citet{Kim2013-th}. \textit{KRT4} is a basal keratin marker \citep{Marzouka2018-ge}. Both \textit{AKR1B10} and \textit{SOX2} are associated with cell and cancer aggressiveness \citep{Huang2021-bn, Chiu2020-xh}, while \textit{TP63} is a known squamous marker \citep{Robertson2017-mg}. 
 
 This evidence supports the poor survival prognosis of the smaller group and indicates that this group warrants further study.
+
 
 % Small basal commenting
 \paragraph*{GSEA}

@@ -27,7 +27,7 @@ The first to notice is that both community detection methods, regardless of the 
 % \Cref{fig:N_I:comp_size_com_det} presents the effects of increasing the minimum degree to the community sizes for Leiden and SBM where the blue traces represent the experiments performed while the red the controls. 
 
 % Comment com_size figure
-Another major difference between Leiden and SBM is that the former finds consistently considerably more communities than the latter; see \cref{fig:N_I:comp_size_com_det}. It can be noticed that SBM has an upward trend proportional with the minimum degree of the nodes, this highlighted by the control experiments. In \cref{fig:N_I:comp_size_com_det}, Leiden appears to find the same number of clusters, but in the \cref{fig:ap:leid_com_size} from Appendix, where the Leiden traces are plot separately, it can be noticed that Leiden tends to finds less communities as the minimum degree is increased. 
+Another major difference between Leiden and SBM is that the latter finds consistently considerably more communities than the latter; see \cref{fig:N_I:comp_size_com_det}. It can be noticed that SBM has an upward trend proportional with the minimum degree of the nodes, this highlighted by the control experiments. In \cref{fig:N_I:comp_size_com_det}, Leiden appears to find the same number of clusters, but in the \cref{fig:ap:leid_com_size} from Appendix, where the Leiden traces are plot separately, it can be noticed that Leiden tends to finds less communities as the minimum degree is increased. 
 
 \begin{figure}[!t]   
     \centering
@@ -41,7 +41,6 @@ Growing the number of nodes also increases the variance in the number of communi
 % However, due to the probabilistic nature of SBM it is possible to observe changes in the community members of the nodes. This helps feature might offer useful insights in the genes which are 'stable' and are important for a community.
 
 % Summary
-In summary, by increasing the minimum degree, both algorithms perform worse regardless of whether the prioritised genes are selected at random or have biological significance (i.e., TF). SBM finds more communities compared to Leiden but has a higher variance. Given the probabilistic nature of SBM, additional useful information can be extracted from the network like gene membership. Importantly, from the work of \cite{Peixoto2023-mw} the SBM is more error proof to find patterns in noise; see community detection \cref{s:lit:comm_detect}. For this reason and the results in this section the stochastic model is the preferred method in this project.
-
+In summary, by increasing the minimum degree, both algorithms perform worse regardless of whether the prioritised genes are selected at random or have biological significance (i.e., TF). SBM finds more communities compared to Leiden but has a higher variance. Given the probabilistic nature of SBM, additional useful information can be extracted from the network like proportional gene membership to multiple clusters. Importantly, from the work of \cite{Peixoto2023-mw} the SBM is more error proof against patterns in noise; see community detection \cref{s:lit:comm_detect}. For this reason and the results in this section the stochastic model is the preferred method in this project.
 
 % Analysing the TF

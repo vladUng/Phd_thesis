@@ -175,6 +175,10 @@ Other correlation measures in the literature may offer improvements to the netwo
 
 This chapter presented a detailed analysis of the effects of two gene filtering strategies and posited that both have merits in uncovering new biology. Therefore, it is necessary to better understand their impact on MIBC stratification and the network approach, particularly concerning graph metrics and community detection methods. 
 
+\subsubsection*{Wobble genes}
+
+The SBM models are probabilistic, and by attempting to optimise for the best community configurations, each node is assigned a probability indicating the likelihood of belonging to a particular community at the end of the runs. This can be viewed as a membership score, highlighting which genes are at the 'boundary' between communities. While the stability of community detection has been a focus throughout this thesis, studying the genes that exhibit instability could also provide new insights, an aspect that warrants further investigation.
+
 \subsubsection*{Software and Other Applications}
 
 The software developed in this project was designed from the outset to apply to other diseases. One of the next steps will be to test it on other gene expression datasets to evaluate the method and the software package in relation with other cancers. In addition, it is needed to perform a comparison with other integrative network approaches such as \citet{Hofree2013-ld,He2017-dj} which used propagation methods to combine somatic mutation to individual gene expression networks.
