@@ -30,7 +30,7 @@ Variance in gene expression can indicate the potential genes specific to a group
     \midrule
     Varied in both datasets & \textit{OVOL1, FOSL1, KLF4, BNC1, MYCL, NR4A2, ZBTB7C, FOXQ1, ZNF750, EGR1, HES2, ATF3, EBF4} \\
     \midrule
-    Tumours only & \textit{BHLHE41, JRK, MSX2, TP63, ZNF552, GRHL3, HOXB6, REL} \\
+    Tumours only & \textit{BHLHE41, JRK, MSX2, TP53, ZNF552, GRHL3, HOXB6, REL} \\
     \midrule
     Non-cancerous only & \textit{ZBTB10, ARID5B, KLF6, JUN, MAFF, ETS2, MAFK} \\
     \bottomrule
@@ -48,7 +48,7 @@ Variance in gene expression can indicate the potential genes specific to a group
 To further understand the role of the 98 TF in the bladder tissue differentiation the Pi plot introduced in \cref{s:lit:pi} are used ti explore the \gls{DEA} across three tissue differentiation datasets, shown in \cref{fig:N_I:pi_sel_tfs_var}. The pi values are computed using the DEA between the ABS-Ca differentiated and P0 (X-axis) and UD (Y-axis) samples. There are shown only the 98 TF found classified by their variance.
 
 % Just the sel tfs - UD and P0
-In \cref{fig:N_I:pi_sel_tfs_var}, it can be seen that \textit{BNC1} and \textit{HES2} are UD markers, which may also indicate specificity for squamous markers. \textit{TP63} is another squamous marker \citep{Robertson2017-mg}, but it is more significantly expressed in the UD over ABS-Ca comparison. \textit{FOSL1} is a highly varied gene that appears to be both an undifferentiated and P0 marker (note the difference in scale between the X-axis and Y-axis). \textit{KLF6} and \textit{JUN} are genes more specific to P0 but are also highly expressed in the undifferentiated tissue.
+In \cref{fig:N_I:pi_sel_tfs_var}, it can be seen that \textit{BNC1} and \textit{HES2} are UD markers, which may also indicate specificity for squamous markers. \textit{TP53} is another squamous marker \citep{Robertson2017-mg}, but it is more significantly expressed in the UD over ABS-Ca comparison. \textit{FOSL1} is a highly varied gene that appears to be both an undifferentiated and P0 marker (note the difference in scale between the X-axis and Y-axis). \textit{KLF6} and \textit{JUN} are genes more specific to P0 but are also highly expressed in the undifferentiated tissue.
 
 % Talk about the differentiation markers 
 The two Y-positive quadrants contains the genes that are likely involved in the differentiation of the urothelium, closer to the x-axis, more specific to the culture mode, conversely to Y-axis to the P0. It is worth noting that most of the genes specific to ABS-Ca model are highly varied in the tumours, which may suggest that are more expressed in the Luminal tumours compared to the Basal; \textit{HOXB6, ZNF552, JRK, BHLHe41}. Genes \textit{ZNF750, MSX2, MYCL, GRHL3 and REL} are specific to both P0 and ABS-Ca. Both \textit{MYCL, GRHL3} are known to be differentiation markers. There are also markers that are specific to P0 samples: \textit{EBF4, MAFK, ARID5B, EGR1, ETS2, MAFF, FOX1, KLF4, NR4A2, ATF3, OVOL1}. 
@@ -72,7 +72,7 @@ The samples from the ABS-Ca and UD datasets are at the opposite side of the diff
     \midrule
     \textbf{P0} & \textit{KLF4, ETS2, PHF1, ARID5B, EGR1, FOXQ1, MAFF, JUNB, MAFK, NFIL3, SRF, RUNX1, CASZ1, ZBTB10, EBF4} \\
     \midrule
-    \textbf{UD} & \textit{SLC2A4RG, ZXDB, SKI, TP63, ETS1} \\
+    \textbf{UD} & \textit{SLC2A4RG, ZXDB, SKI, TP53, ETS1} \\
     \midrule
     \textbf{AbsCa} & \textit{BCL6, MSX2, ELF3, GRHL3, REL, KLF5, ZNF552, SATB1, DBP, ETV7, ETV3, MECOM, REPIN1, SP1, ZNF586, ZBTB4, TEAD1, ATMIN, TMF1, SP100, FOXJ3, MBD1, STAT1, ANKZF1, IRF9, STAT2, NFATC4, ZNF224, ZSCAN16, JRK, BHLHE41, HOXB6} \\
     \midrule
@@ -123,7 +123,7 @@ Overall the analysis show that some of the 98 TF have a role in bladder cancer b
     \midrule
     \textbf{Luminal} & \textit{MSX2, HOXB6, MECOM, GRHL3, JRK, BHLHE41, ZBTB7C, ZSCAN16, ZNF224, ZBTB10} \\
     \midrule
-    \textbf{Basal/Squamous} & \textit{TP63, BNC1, HES2, ERF, IRF6, ZXDB, ZNF750, ETS1, MSANTD3, FOSL1, KLF6, KLF16} \\
+    \textbf{Basal/Squamous} & \textit{TP53, BNC1, HES2, ERF, IRF6, ZXDB, ZNF750, ETS1, MSANTD3, FOSL1, KLF6, KLF16} \\
     \bottomrule
   \end{tabularx}
   \caption[Luminal and Basal markers from the 98 TF]{The 98 transcription factors markers categorised by Luminal and Basal subtypes.} % Caption for the table
@@ -181,10 +181,10 @@ The outputs of the GSEA runs using the Reactome database are summarised in two t
 Basal 5 has the lower survival prognosis seen for a subtype in this project, and to understand what differentiates it from the other groups \cref{fig:N_I:pi_smallBasal_comp} was used. The Pi-plot consists of the DEA between the Basal 4 (X-axis) and Mes 3 (Y-axis).
 
 % 7 out of 10 biology
-From the plot, it was found that seven out of the ten genes closest to the referential point were found to have biological significance in bladder cancer biology: \textit{GPX2, KRT13, ALDH3A1, KRT15, KRT4, AKR1B10, SOX2, TP63, RAPGEFL1, CAPNS2}. \textit{GPX2} is involved in squamous differentiation \citet{Naiki2018-fp}. 
+From the plot, it was found that seven out of the ten genes closest to the referential point were found to have biological significance in bladder cancer biology: \textit{GPX2, KRT13, ALDH3A1, KRT15, KRT4, AKR1B10, SOX2, TP53, RAPGEFL1, CAPNS2}. \textit{GPX2} is involved in squamous differentiation \citet{Naiki2018-fp}. 
 
 % In more depth
-Higher expression of \textit{KRT13} is associated with better response to chemotherapy and immunotherapy \citep{Yu2023-db}. The methylation of \textit{ALDH3A1}, along with \textit{HOXA9} and \textit{ISL1}, has been studied in \gls{NMIBC} and found to be a predictor of disease recurrence \citep{McLean2023-qk}. Additionally, higher expression of \textit{ALDH3A1} in bladder cancer is associated with higher tumour grade and has been studied in cancer stem cells \citet{Kim2013-th}. \textit{KRT4} is a basal keratin marker \citep{Marzouka2018-ge}. Both \textit{AKR1B10} and \textit{SOX2} are associated with cell and cancer aggressiveness \citep{Huang2021-bn, Chiu2020-xh}, while \textit{TP63} is a known squamous marker \citep{Robertson2017-mg}. 
+Higher expression of \textit{KRT13} is associated with better response to chemotherapy and immunotherapy \citep{Yu2023-db}. The methylation of \textit{ALDH3A1}, along with \textit{HOXA9} and \textit{ISL1}, has been studied in \gls{NMIBC} and found to be a predictor of disease recurrence \citep{McLean2023-qk}. Additionally, higher expression of \textit{ALDH3A1} in bladder cancer is associated with higher tumour grade and has been studied in cancer stem cells \citet{Kim2013-th}. \textit{KRT4} is a basal keratin marker \citep{Marzouka2018-ge}. Both \textit{AKR1B10} and \textit{SOX2} are associated with cell and cancer aggressiveness \citep{Huang2021-bn, Chiu2020-xh}, while \textit{TP53} is a known squamous marker \citep{Robertson2017-mg}. 
 
 This evidence supports the poor survival prognosis of the smaller group and indicates that this group warrants further study.
 
