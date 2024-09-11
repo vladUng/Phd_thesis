@@ -118,17 +118,12 @@ From the two set of networks the tumour derived seemed more responsive to the da
 % Main takeaway 
 Overall the experiment using both the tumour and P0 derived networks validates the initial hypothesis data integration can happen by modelling the number of edges and their weights. In addition, the non-tumour graphs showed that it is possible to form a non-tumour representation from which the MIBC can be derived. Next chapter explores in more depth the effects of selective edge pruning and differences between community detection algorithms into the tumour network
 
-% The integration occurred at different levels, starting by building a graph from the non-tumour data and then using the representation to derive the MIBC subtypes, as described in \cref{s:p0}. The edge weights derived from the Spearman correlation are modified based on the mutation burden, and the node degree is limited depending on whether a gene is a transcription factor or not.
+\subsection{Chapter contributions}
 
-% \textbf{DH: You could highlight the novelty in your approach here as well. }
+The research covered in this chapter was presented at the Complex Networks (CN) conference from Menton, France in 2023.
 
-% \textbf{DH: about hte initial attempt - Wouldn't say this, just say it is your network approach. Initial attempt suggests something that will be improved upon, could bring results into question?}
-
-% Weight modifiers need refinement
-% Two main co-expressed gene networks were explored: one constructed from tumour samples and the other from non-tumour tissue samples. The experiments demonstrated that integrating mutations and TF was successful at the graph level but had limited impact on the MIBC subtypes derived from the. Network metrics varied between the modified networks (as shown in \cref{fig:N_I:net_metrics_tum,fig:N_I:net_metrics_p0}), and highly mutated genes were observed to change communities ( \cref{fig:N_I:p0_mut_burden}). The disease subgroups identified through this network approach showed different results compared to standard approaches, with only minor variations observed between networks modified by weight modifiers. This suggests that the weight modifier strategies, as depicted in \cref{fig:N_I:modifiers}, require further refinement.
-
-% \textbf{Reading this you could say - so why is it included? What is the narrative here? The thesis does not need to contain absolutely everything you did. Think about the key message you want to convey and what is needed to convey this.}
-
-% P0 not enough
-
-
+\begin{itemize}
+    \item Validates the network approach as an integrative method for MIBC stratification
+     \item Integration of the mutation burden and TF affect the network, community detection and MIBC stratification
+     \item Network generated from the gene expression obtained from freshly isolated cells finds different groups from the tumour network representation
+\end{itemize}
