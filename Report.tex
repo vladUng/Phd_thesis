@@ -43,7 +43,7 @@
 \pagenumbering{Roman}
 
 \import{Sections/}{abstract.tex}
-% \import{Sections/}{acknowledgments.tex}
+\import{Sections/}{acknowledgments.tex}
 
 
 \tableofcontents
@@ -71,11 +71,29 @@
 
 \import{Sections/}{intro.tex}
 
-% \import{Sections/Lit_review/}{master.tex}
-% \import{Sections/ClusteringAnalysis/}{master.tex}
-% \import{Sections/Network_I/}{master.tex}
-% \import{Sections/Network_I/EdgePruning}{master.tex}
-% \import{Sections/Network_II/}{master.tex}
+\import{Sections/Lit_review/}{master.tex}
+\import{Sections/ClusteringAnalysis/}{master.tex}
+\import{Sections/Network_I/}{master.tex}
+
+
+\newpage
+\newgeometry{left=1.5cm, right=1.5cm, top=0.5cm, bottom=1cm}
+\begin{figure}[p]
+  \thispagestyle{empty} % Suppress the page number on this page
+  \centering
+  \captionsetup{justification=centering, labelfont=bf}
+    \parbox{\textwidth}{\centering \Huge Tumour derived Network - SBM} % 
+  \vspace{3cm} 
+  \includegraphics[width=0.9\paperwidth, height=0.9\paperheight, keepaspectratio]{Sections/Network_I/Resources/networks/sbm_standard_5K_6TF_lowRes.png} % Full-page image
+  \parbox{0.8\textwidth}{\centering Network created from using the 5000 most varied genes in the tumour dataset, no weight modifier, minimum degree of 3 for standard genes and 6 for TF.}
+\end{figure}
+\restoregeometry
+\newpage
+
+\import{Sections/Network_I/EdgePruning}{master.tex}
+
+
+\import{Sections/Network_II/}{master.tex}
 
 \import{Sections/}{discussion.tex}
 
