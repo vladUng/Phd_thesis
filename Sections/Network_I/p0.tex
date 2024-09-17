@@ -1,24 +1,23 @@
 \section{Networks from freshly isolated samples} \label{s:p0}
 
 % Introduce the work
-This section presents the experiments on the second hypothesis made at the start of the chapter where a network representation of the gene expression form non-tumour will yield new \acrlong{mibc} subgroups. For this the gene expressions from the freshly isolated samples (P0 - \cref{s:lit:datasets_used}) was used to construct a co-expressed network following the pipeline in \cref{fig:N_I:network_pipeline}. The methods are almost identical with the previous section, where instead of tumour's gene expression the P0's RNAseq data is used. The mutation burden used for the edges' weight modifier is still from TCGA. 
+This section presents the experiments on the second hypothesis made at the start of the chapter, where a network representation of the gene expression from non-tumour will yield new \acrlong{mibc} subgroups. The gene expressions from the freshly isolated samples (P0 - \cref{s:lit:datasets_used}) are used to construct a co-expressed network following the pipeline in \cref{fig:N_I:network_pipeline}, the methods are almost identical to the previous section but instead of the tumour's gene expression, the P0's RNAseq data is used. The mutation burden for the edges' weight modifier is still from TCGA. 
 
 % Implication on the network pipeline
 % Limitation of using this method as only a gene selection method
-Having a non-tumour network  means that the \gls{MODCON} (ModCon) selects the genes that are most representative of the communities in the P0 samples. These genes are then used to compute the Module Evaluation Value (MEV) score using the gene expression from TCGA. In short, this is a method to select the genes most representative for the freshly isolated samples, being the closest molecular depiction of the bladder tissue, and how their expression in the tumours dataset inform the MIBC subtyping.
+Having a non-tumour network means that the \gls{MODCON} (ModCon) selects the genes that are most representative of the communities in the P0 samples. These genes are then used to compute the \gls{MEV} (MEV) score using the gene expression from TCGA. The work presented here is then a method to select the genes most representative of the freshly isolated samples. It is the closest molecular depiction of the bladder tissue and how their expression in the tumours dataset informs the MIBC subtyping.
+
+% Why choose the high number of TF
+The minimum degree for TF was pseudo-empirically chosen by generating several networks with TF degrees ranging from 10 to 100 (in increments of 25) and visualising them in Gephi. It was observed that networks with a higher number of edges were very nested, yielding lower scores; this can be seen in the two large network figures in this chapter - \cref{fig:N_I:tum_net} and \cref{fig:N_I:p0_net}. Initially, it was assumed that the Leiden algorithm would not be heavily influenced by allowing TF (approximately 325 of 4,000 genes) more links. To put this in perspective, the Spearman correlation matrix is 4,000x4,000, and each gene has 3,999 correlations. Thus, keeping 100 edges per TF is not excessive.
+
+In this section, the top 4K most-relative varied genes (median/std) from P0 are used to construct the network, the same weight modifiers (Reward and Penalised see \cref{fig:N_I:modifiers}) are employed, and 50 edges for the Transcription Factors. For the standard genes, 3 edges are kept, while for \acrlong{tf} 50. The top 100 genes are selected with ModCon, and for MEVs, the top 4000 most varied genes are used.
 
 % Caution on the small datasets
 P0 samples are an invaluable dataset, as they are the closest representation of healthy bladder tissue and hold significant potential for uncovering new biological insights. However, the small number of P0 samples—only 23 may limit the statistical power to detect communities with specific biological functions. In addition, the MIBC cohort contains de-differentiated and trans-differentiated samples, which may be poorer represented by the P0 datasets.
 
-
-% Why choosing the high number of TF
-The minimum degree for TF was pseudo-empirically chosen by generating several networks with TF degrees ranging from 10 to 100 (in increments of 25) and visualising them in Gephi. It was observed that networks with a higher number of edges were very nested yielding lower scores. Initially, it was assumed that the Leiden algorithm would not be heavily influenced by allowing TF (approximately 325 of 4,000 genes) more links. To put this in perspective, the Spearman correlation matrix is 4,000x4,000, and each gene has 3,999 correlations. Thus, keeping 100 edges per TF is not excessive.
-
 % However, the experiments in this section and the work in \cref{s:ap:sel_prun} will show that allowing such a large number of TF has a big impact on the number of communities.
 
 % In PGCNA \citet{Care2019-ij} select in each community the top 25 genes with the highest ModCon score. This was the initial value used in the P0 experiments too but many genes are missed, where communities in the healthy were not expressed in tumours. Thus, it was increased to 100. On top of that, when computing the MEV scores using the tumour gene expression it was used only the top 4000 most varied genes in the MIBC. This aggressive strategy for MEV was to include the genes that are both the most varied in the tumour and P0 samples, the results for this are covered in \cref{s:N_I:gene_rep}.
-
-In this section the top 4K most-relative varied genes (median/std) from P0 are used to construct the network, the same weight modifiers (Reward and Penalised see Figure \ref{fig:N_I:modifiers}) are employed and 50 edges for the Transcription Factors. For the standard genes 3 edges are kept while for \acrlong{tf} 50. The top 100 genes are selected with ModCon and for MEVs the top 4000 most varied genes are used.
 
 % Desribe the network
 \subsection{Network description} \label{s:N_I:p0_tum_description}
@@ -27,7 +26,7 @@ In this section the top 4K most-relative varied genes (median/std) from P0 are u
 The same five network metrics in the previous sections are used for the P0-derived graph: degree, PageRank, closeness, betweenness, and IVI, introduced in \cref{s:lit:net_metrics}. These metrics provide an overview of the network properties, including how well the nodes are connected, their shortest paths, and their overall importance (IVI).
 
 
-\begin{figure}[!b]    
+\begin{figure}[!t]    
     \centering
     \includegraphics[width=1.0\textwidth,keepaspectratio]{Sections/Network_I/Resources/P0/P0_NetworkMetricsComp_50TF_2.png}
      \caption[P0: centrality network metrics]{Network metrics for the P0 networks formed from 4K genes, 3 connections per standard gene and 6 for TF with the different weight modifiers; standard (red), reward (mustard) and penalised (green). The y-axis represent is in log scale of the metric. Higher the degree and pageRank values more important the node is to the network, smaller values of closeness metric indicates that the vertices are closer together, while higher values of betweenness means that a node serves as a key bridge between other nodes. Higher values of \acrlong{ivi} indicates the node has a large influence both locally and globally to the network. Overall, the P0 networks have nodes with a larger number of connections and are closer together compared to the tumour networks. The nodes in the reward network become closer together compared with the standard graph and the opposite effect is seen in the penalised network. }
@@ -36,7 +35,7 @@ The same five network metrics in the previous sections are used for the P0-deriv
 
 
 % Cone-shaped number of edges - a subset of genes closer together
-In the standard and reward networks, there is a subset of more connected nodes, with a noticeable difference from the rest of the nodes. This is illustrated by the cone-shaped distribution of the degree metrics, which comprises more than 200 nodes in each network, each having more than 50 connections; see \cref{fig:N_I:net_metrics_p0}. The aspect, which is less visible in the penalised network, has a significantly different degree distribution from the standard and reward graphs (\acrshort{kw}: 103.806,p-value: $2.870e^{-23}$).
+In the standard and reward networks, there is a subset of more connected nodes, with a noticeable difference from the rest of the nodes. This is illustrated by the cone-shaped distribution of the degree metrics, which comprises more than 200 nodes in each network, having more than 50 connections; see \cref{fig:N_I:net_metrics_p0}. The aspect, which is less visible in the penalised network, has a significantly different degree distribution from the standard and reward graphs (\acrshort{kw}: 103.806,p-value: $2.870e^{-23}$).
 
 The PageRank metric exhibits a similar trend, where a subset of vertices is noticeably more critical in the network than the others; this pattern is present across all three networks. However, the distribution of the score across the three networks is marginally significant (\acrshort{kw}: 5.829,p-value: 0.0542). The similar median values across the two centrality metrics can be explained by the fact that the penalised weight modifier does not remove connections but merely reduces their weights to a small value. Another effect of reducing the weight is that the penalised network has a higher spread in the degree, reaching nodes with almost 500 connections. In contrast, the maximum degree for the standard and reward networks is about half of this.
 
@@ -58,19 +57,19 @@ The PageRank metric exhibits a similar trend, where a subset of vertices is noti
     \textbf{IVI} & 8076343.0; 0.460 & 8823832.0; $7.65e^{-16}$ & 8749049.0; $2.21e^{-13}$ \\
     \bottomrule
   \end{tabularx}
-  \caption[P0: Network metrics significance]{P0 networks metrics comparison of Betweenness, Closeness, Degree, PageRank, and IVI metrics across standard, reward, and penalised networks. The first value is represented by the result from the \acrlong{mw} while the second the p-value.}
+  \caption[P0: Network metrics significance]{P0 networks metrics comparison of Betweenness, Closeness, Degree, PageRank, and IVI metrics across standard, reward, and penalised networks. The first value is represented by the result from the \acrlong{mw} while the second the p-value. The table highlights that the penalised network is significantly different from the other two networks.}
   \label{tab:N_I:p0_net_metrics}
 \end{table}
 
 % Closeness
-A significant difference between the penalised network and the other two graphs is that the former has nodes that are more spread apart (\acrshort{kw}: 9885.138,p-value: 0), as shown by the closeness metric in \cref{fig:N_I:net_metrics_p0}. The betweenness distributions are significantly different across the three networks (\acrshort{kw}: 376.559,p-value: $1.702e^{-82}$), indicating that the networks have different connecting nodes. The IVI distribution of the IVI scores was significantly different for the penalised network (\acrshort{kw}: 79.529,p-value: $5.373^{-18}$), suggesting that different nodes have local and global importance in the standard and reward networks.
+A significant difference between the penalised network and the other two graphs is that the former has nodes that are more spread apart (\acrshort{kw}: 9885.138, p-value: 0), as shown by the closeness metric in \cref{fig:N_I:net_metrics_p0}. The betweenness distributions are significantly different across the three networks (\acrshort{kw}: 376.559, p-value: $1.702e^{-82}$), indicating a difference in the bridging genes across the networks. The distribution of the IVI scores was also significantly different for the penalised network (\acrshort{kw}: 79.529, p-value: $5.373e^{-18}$), suggesting that the values for nodes with local and global importance differ compared to those in the standard and reward networks.
 
-The P0 penalised network is significantly different from the other two networks (see \cref{tab:N_I:p0_net_metrics}), suggesting that reducing the weights to values close to 0 for highly mutated genes has a greater impact on the network than rewarding them by doubling their values. This might be explained that the edges are almost pruned when the penalised edge weight modifiers is applied.
+The P0 penalised network is significantly different from the other two networks (see \cref{tab:N_I:p0_net_metrics}), suggesting that reducing the weights to values close to 0 for highly mutated genes has a greater impact on the network than rewarding them by doubling their values. This might be explained that the edges are almost pruned with the penalised modifier which has a considerable effect on the network metrics.
 
 % Comparing the scales
 
 
-\paragraph*{Comparing with the tumour networks}
+\paragraph*{Comparing with tumour networks}
 
 There are significant differences (see \cref{tab:N_I:tum_p0_comp}) between the graphs derived from the P0 dataset compared to those generated from the tumour dataset; see \cref{fig:N_I:net_metrics_tum}. The P0 networks appear to be more densely connected, with nodes that are closer together and exhibit greater variance in the degree and closeness metrics. The nodes in the P0 network have a median degree of around 10, while those in the tumour networks have a median degree of around 4. The distribution of connections in the P0 network is also skewed to the right, with an upper fence greater than 10, whereas in the tumour networks, the upper fence is less than 10. This is also reflected in other metrics, such as closeness, where the vertices in the P0 network are closer than those in the tumour graphs.
 
@@ -95,7 +94,7 @@ Overall, the P0 networks have nodes with a larger number of connections and are 
     \textbf{IVI} & 7399455.0; $6.09e^{-09}$ & 7428084.0; $3.07e^{-08}$ & 5540028.5; $3.13e^{-114}$ \\
     \bottomrule
   \end{tabularx}
-  \caption[Tum vs P0 network metrics significance]{Results of \gls{mw} between the betweenness, closeness, degree, PageRank, and IVI metrics of the P0 and tumour-derived networks. The first value is the result from the \acrshort{mw} test while the second is the p-value. Each network derived from the tumour dataset is compared with its equivalent from the non-tumour. The results show there is significant difference in the network metrics.}  \label{tab:N_I:tum_p0_comp}
+  \caption[Tum vs P0 network metrics significance]{Results of \gls{mw} between the P0 and tumour-derived graph across the network metrics. The first value is the result from the \acrshort{mw} test while the second is the p-value. Each network derived from the tumour dataset is compared with its equivalent from the non-tumour. The results show there is significant difference in the network metrics.}  \label{tab:N_I:tum_p0_comp}
 \end{table}
 
 
@@ -103,7 +102,7 @@ Overall, the P0 networks have nodes with a larger number of connections and are 
 \subsection{Network comparison}
 
 % Introducing
-\Cref{fig:N_I:p0_sky_leiden} represents an overview of the MIBC groups derived from the thee non-tumour networks, results which are put in the context of the other classifications: consensus \citep{Kamoun2020-tj}, TCGA sub-grouping \citep{Robertson2017-mg} and the previous work on clustering analysis (see \cref{s:clustering_analysis}). K-means with K=5 was applied across all three networks and for a more in-depth clustering analysis see \cref{s:ap:P0_cs_analysis} from Appendix.
+\Cref{fig:N_I:p0_sky_leiden} represents an overview of the MIBC groups derived from the thee non-tumour networks, results which are put in the context with other classifications: consensus \citep{Kamoun2020-tj}, TCGA sub-grouping \citep{Robertson2017-mg} and the previous work on cluster analysis (see \cref{s:clustering_analysis}). K-means with K=5 was applied across all three networks and for a more in-depth clustering analysis see \cref{s:ap:P0_cs_analysis} from Appendix.
 
 % Present the results
 There is no significant difference (\acrshort{kw}: 0.979, p-value: 0.61) between the range of communities found by Leiden in all three networks, with between 9 and 11 communities found in each case. This is less than half the number of blocks in the networks created from the tumour dataset (\cref{fig:N_I:tum_leiden_modifiers}), which also exhibited greater variability. There are significant differences between the community metrics for the networks derived from tumour and non-tumour datasets, see \cref{tab:N_I:modularity_module_num_comp}. The difference might be explained by the fact that malignant tumours exhibit multiple and distinct dysregulations of normal cellular processes, whereas, in the benign samples from P0, these processes are less disrupted. In addition, the tumour contains cell types that are not present in the P0 dataset.
@@ -157,10 +156,10 @@ To facilitate analysis, and guided by the Modularity Score, the standard and rew
 
 % Comment on the Sankey
 % Not that many changes
-The largest change in communities is represented by the lack of block 10 in the reward network, otherwise the communities are remarkably similar; see  Sankey plot \cref{fig:N_I:p0_chg_sankey} Again indicating that the weight modifiers are not powerful enough to have a stronger influence on the Leiden community detection algorithm. 
+The largest change in communities is represented by the lack of block 10 in the reward network, otherwise the communities are remarkably similar; see  Sankey plot \cref{fig:N_I:p0_chg_sankey}. The result indicates that the weight modifiers are not powerful enough to have a stronger influence on the Leiden community detection algorithm. 
 
 % Link it with the mutations
-As it was mentioned earlier if there is any membership change across the blocks of nodes it is influenced by the mutated genes. For each group it can be usually notice that the there is a large number of mutated genes from the same community. In the reward network community 1 has a large number of mutations which was also presented the standard network (red dotted) and it receives a few more mutated genes from community 2 (blue); shown in \cref{fig:N_I:p0_chg_mut}. Community 4 from the modifier graph retain most of the mutated genes from the standard (community 5 - orange) with some additional genes from community 6 (purple). Blocks 8 and 9 have a few mutated genes which can be in part explained by their small group size. 
+As it was mentioned earlier if there is any membership change across the blocks of nodes it is influenced by the mutated genes. For each group it can be usually notice that the there is a large number of mutated genes from the same community. In the reward network community 1 has a large number of mutations which was also presented the standard network (red) and it receives a few more mutated genes from community 2 (blue); shown in \cref{fig:N_I:p0_chg_mut}. Community 4 from the modifier graph retain most of the mutated genes from the standard (community 5 - orange) with some additional genes from community 6 (purple). Blocks 8 and 9 have a few mutated genes which can be in part explained by their small group size. 
 
 Overall, the analysis suggests that the reward modifier triggers gene community migrations between the two graphs which further proves that the data integration does happen in the modified network. However, as it was shown by the Sankey there are no large changes across the blocks which may explain why the MIBC groups do not change with the different networks.
 
@@ -193,10 +192,10 @@ The strip plot from \Cref{fig:N_I:p0_chg_mut} is a suitable figure to show that 
 \Cref{fig:N_I:p0_mut_burden} shows the evolution of the mutation burden across communities. In the standard, communities 1, 2, 3, 4 and 5 have the highest number of genes mutated and it can be noticed that all have the same trend a sharp decline after mutation burden $>1$; community 4 having the highest number of highly mutated genes. Similar trends can be noticed in the reward network but communities 2,3,4 have a similar slope. In addition, community 9 has just a few mutation with low burden, while 6 and 7 are better separated in the reward. This changes suggests that the highly mutated genes are the ones changing communities.
 
 % Comment on gene expression
-With few gene changes across the communities in the two graphs, there is also little change in the median gene expression between the standard and reward networks. This is shown in the box plots from \cref{fig:ap:p0_ge_chgs} in Appendix \cref{s:ap:ge_p0_com}. Communities 1 and two are almost unchanged in the reward network while in the others the spread of the median expression is affected. The largest difference is in community 9 and 3.  
+With few gene switches across the communities in the two graphs, there are also little changes in the median gene expression between the standard and reward networks. This is shown in the box plots from \cref{fig:ap:p0_ge_chgs} in Appendix \cref{s:ap:ge_p0_com}. Communities 1 and two are almost unchanged in the reward network, while the spread of the median expression is affected in the others. The most considerable difference is in community 9 and 3.  
 
 % Conclusion 1 - Weight modifiers work
-Overall, the community analysis shows that the reward modifier works, there are changes between communities and this is given by the mutated genes, especially the ones with a high burden. Nevertheless, the results indicate that a new weight modifier with a gradual, proportional change with the mutation burden will have a larger impact in the networks; this is introduced in \cref{s:N_II}.
+Overall, the community analysis shows that the reward modifier works, there are changes between communities and this is given by the mutated genes, especially the ones with a high burden. Nevertheless, the results indicate that a new weight modifier with a gradual, proportional change with the mutation burden might have a larger impact in the networks; this is introduced in \cref{s:N_II}.
 
 \begin{figure}[!htb]
     \centering
@@ -217,15 +216,15 @@ Overall, the community analysis shows that the reward modifier works, there are 
 
 \subsection{Gene representation} \label{s:N_I:gene_rep}
 
-It is worth remembering that the co-expressed networks are constructed from the gene expression data of the P0 samples and that only the genes selected with ModCon are used to stratify the MIBC. Differences in gene expression between the two datasets are expected; some genes may be expressed in the freshly isolated samples but not in the tumour, and vice versa. Additionally, the genes used to compute the MEV score were limited to the top 4000 most varied genes, ensuring variability across both datasets. It is therefore important to understand the implications of these decisions and assess how well the genes selected through ModCon and MEV are represented in the tumour dataset.
+It is necessary to remember that the co-expressed networks are constructed from the gene expression data of the P0 samples and that only the genes selected with ModCon are used to stratify the MIBC. Differences in gene expression between the two datasets are expected; some genes may be expressed in the freshly isolated samples but not in the tumour, and vice versa. The genes that computed the MEV score were limited to the top 4000 most varied ones in the tumour, ensuring variability across both datasets. Understanding the implications of these decisions is of utmost importance, as it allows us to assess how well the genes selected through ModCon and MEV are represented in the tumour dataset, thereby enhancing the significance of our work.
 
 % Introduce the bar plot
-To study these differences, only the reward network is presented in this section, while the standard network is covered in the Appendix (\cref{s:ap:p0_gene_rep_std}). The top 100 genes from each community were selected using the ModCon score, and their representation is shown in both the 4000 most varied genes (\cref{fig:N_I:p0_mev_sel_rep}) and all the expressed genes (\cref{fig:N_I:p0_mev_all_rep}) in the tumour dataset.
+Only the reward network is presented in this section to study these differences, while the standard network is covered in the Appendix (\cref{s:ap:p0_gene_rep_std}). The top 100 genes from each community were selected using the ModCon score, and their representation is shown in both the 4000 most varied genes (\cref{fig:N_I:p0_mev_sel_rep}) and all the expressed genes (\cref{fig:N_I:p0_mev_all_rep}) in the tumour dataset.
 
 % Conclusion - Poor representation
-From the two figures, it is evident that using only the most varied genes results in a significant number of missing genes, and the same pattern is observed for the standard network in \cref{fig:ap:std_p0_mev_rep}. This poor representation might explain the lack of differences between the MIBC subtypes derived from the reward/penalised networks, as seen in \cref{fig:N_I:p0_sky_leiden}.
+From the two figures, it is evident that using only the most varied genes results in a considerable number of missing genes, and the same pattern is observed for the standard network in \cref{fig:ap:std_p0_mev_rep}. This poor representation might explain the lack of differences between the MIBC subtypes derived from the reward/penalised networks, as seen in \cref{fig:N_I:p0_sky_leiden}.
 
-Nevertheless, even when all expressed genes are considered, some genes are still missing. One possible explanation is that a larger dataset is needed to form the network, including a molecular representation of the basal groups, such as undifferentiated samples from non-tumours. Another reason could be that the gene filtering used in \cref{s:cs:pre-processing} is too aggressive, discarding too many genes and leading to a poor match between tumour and non-tumour expressed genes.
+However, even when all expressed genes are considered, some genes are still missing. This underscores the urgent need for a larger dataset to form the network, including a molecular representation of the basal groups, such as undifferentiated samples from non-tumours. Another reason for the missing genes is the high level of disrupted biological processes in the MIBC compared to the normal, leading to a large mismatch between the two molecular states.
 
 
 \begin{figure}[!htb]
@@ -241,7 +240,7 @@ Nevertheless, even when all expressed genes are considered, some genes are still
         \caption{All the genes expressed}
         \label{fig:N_I:p0_mev_all_rep}
     \end{subfigure}
-    \caption[Gene representation in MEV]{Genes found in the tumour dataset for the communities in the reward graph. The top 100 genes are selected by ModCon score. A) Is when the tumour dataset is restricted to the top most varied genes B) Includes all the expressed genes in the tumour dataset. The two plots show that using just the top 4000 most varied genes in tumour lead to a poor representation in the genes used to compute the MEVs.}
+    \caption[Gene representation in MEV]{Genes found in the tumour dataset for the communities in the reward graph. The top 100 genes are selected by ModCon score. A) Is when the tumour dataset is restricted to the top most varied genes in MIBC B) Includes all the expressed genes in the tumour dataset. The two plots show that using just the top 4000 most varied genes in tumour lead to a poor representation in the genes used to compute the MEVs.}
     \label{fig:N_I:p0_mev_rep}
 \end{figure}
 
@@ -252,7 +251,7 @@ Nevertheless, even when all expressed genes are considered, some genes are still
 This section contains the first attempt in the project to integrate the non-healthy molecular information into MIBC subtyping by building a co-expressed network from the freshly isolated samples. The networks generated utilised the standard, reward, and penalised modifiers, with a minimum degree of 3 for standard genes and 50 for TF. The analysis performed in this section showed that the weight modifiers have an impact on both the network and the community detection algorithms but less so on the MIBC subgroups. 
 
 % Limitation of using the top most varied genes
-There are several limitations with the method presented in this section. The dataset consists only of P0 samples (only 23), so the network does not represent the other diverse tissue states as seen in the tumours. The gene expressions for both tumour and non-tumour datasets were aggressively filtered by keeping only the genes expressed in 90\% of the samples. There was also an additional filter of using just the 4000 most expressed genes in the tumours to compute the MEV which are the one used for MIBC stratification. These decision deepened the difference between the gene expression between the TCGA and the P0 samples which affected the MIBC subtypes derived from the three networks.
+There are several limitations with the method presented in this section. The dataset consists only of P0 samples (23), thus the network does not represent the other diverse tissue states as seen in the tumours. The gene expressions for both tumour and non-tumour datasets were aggressively filtered by keeping only the genes expressed in 90\% of the samples. There was also an additional filter of using just the 4000 most expressed genes in the tumours to compute the MEV which are the one used for MIBC stratification. These decision deepened the difference between the gene expression between the TCGA and the P0 samples which affected the MIBC subtypes derived from the three networks.
 
 % Limitation of MEV
 Another limitation of the MEVs was that the networks were used only as a gene selection mechanism, to extract the nodes which are highly connected inside a community. However, when it comes to computing the MEV only the expression from the tumour samples is used without taking in consideration the expression difference between the two datasets.
