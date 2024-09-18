@@ -1,12 +1,12 @@
 % Cluster analysis
-\chapter{Clustering analysis} \label{s:ap:cs}
+\chapter{Cluster analysis} \label{s:ap:cs}
 
 \newpage 
 
 % Non-PCA
 \section{Non-PCA} \label{s:ap:non-pca}
 
-This section presents the cluster metric plots (Davies Bouldin, Calinski Harabasz, and Silhouette) for the models used in \cref{s:cs:right_config}. The key difference between the two experiments is that, in \cref{s:ap:non-pca}, the expression of the 3,500 genes is not reduced to the 5 Principal Components, as was done in \cref{s:cs:right_config}. The following plots show that the metrics perform worse across all three clustering scores.
+This section presents the cluster metric plots (Davies Bouldin, Calinski Harabasz, and Silhouette) for the models used in \cref{s:cs:right_config}. The key difference between the two experiments is that, in \cref{s:ap:non-pca}, the expression of the 3,500 genes is not reduced to the 5 Principal Components, as was done in \cref{s:cs:right_config}. The following plots show that the metrics perform worse across all three clustering scores compared to the cluster analysis with the data PCA-transformed.
 
 
 \begin{figure}[!htb]    
@@ -46,29 +46,29 @@ This section presents the cluster metric plots (Davies Bouldin, Calinski Harabas
         \toprule
         \textbf{Name} & \textbf{Genes} & \textbf{Notes/Reference} \\
         \midrule
-        \textbf{Luminal Markers} & KRT20, PPARG, FOXA1, GATA3, SNX31, UPK1A, UPK2, FGFR3 & TCGA markers \cite{Robertson2017-mg} \\
+        \textbf{Luminal Markers} & KRT20, PPARG, FOXA1, GATA3, SNX31, UPK1A, UPK2, FGFR3 & TCGA \cite{Robertson2017-mg} \\
         \midrule
-        \textbf{Basal Markers} & CD44, KRT6A, KRT5, KRT14, COL17A1 & TCGA markers \cite{Robertson2017-mg} \\
+        \textbf{Basal Markers} & CD44, KRT6A, KRT5, KRT14, COL17A1 & TCGA \cite{Robertson2017-mg} \\
         \midrule
-        \textbf{Squamous Markers} & DSC3, GSDMC, TCGM1, PI3, TP53 & TCGA markers \cite{Robertson2017-mg} \\
+        \textbf{Squamous Markers} & DSC3, GSDMC, TCGM1, PI3, TP53 & TCGA \cite{Robertson2017-mg} \\
         \midrule
-        \textbf{Neural Differentiation} & MSI1, PLEKHG4B, GNG4, PEG10, RND2, APLP1, SOX2, TUBB2B & TCGA markers \cite{Robertson2017-mg} \\
+        \textbf{Neural Differentiation} & MSI1, PLEKHG4B, GNG4, PEG10, RND2, APLP1, SOX2, TUBB2B & TCGA \cite{Robertson2017-mg} \\
         \midrule
-        \textbf{Lund MES} & TP53, RB1, FGFR3, ANKHD1, VIM, ZEB2 & Lund markers \cite{Marzouka2018-ge} \\
+        \textbf{Lund MES} & TP53, RB1, FGFR3, ANKHD1, VIM, ZEB2 & Lund \cite{Marzouka2018-ge} \\
         \midrule
         \textbf{KRT} & KRT13, KRT14, KRT15, KRT20 & Family of genes - Lund \cite{Marzouka2018-ge}\\
         \midrule
         \textbf{UPK} & UPK1B, UPK1A, UPK3A, UPK2 & Family of genes - Lund \cite{Marzouka2018-ge}\\
         \midrule
-        \textbf{CLD} & CLDN3, CLDN4, CLDN5 & Family of genes - \ref{}  \\
+        \textbf{CLD} & CLDN3, CLDN4, CLDN5 & Urothelial tight junction \cite{Smith2015-rj}  \\
         \midrule
         \textbf{serp} & SERPINB13, SERPINB3, SERPINB4 & Specific to Basal groups (Empirical observations) \\
         \midrule
         \textbf{spr} & SPRR1A, SPRR1B, SPRR2A, SPRR2D, SPRR3 & Specific to Basal groups (Empirical observations) \\
         \midrule
-        \textbf{FGFR Family} & FGFR1, FGFR2, FGFR3, FGF1, FGF2 & Family of genes - differentiation (?) \\
+        \textbf{FGFR Family} & FGFR1, FGFR2, FGFR3, FGF1, FGF2 & Family of genes - differentiation \\
         \midrule
-        \textbf{PI3K Pathway} & PIK3C3, PIK3R2, PIK3C2B, AKT1, AKT2 & \ref{} \\
+        \textbf{PI3K Pathway} & PIK3C3, PIK3R2, PIK3C2B, AKT1, AKT2 & Cell proliferation \citet{Sathe2018-cq} \\
         \midrule
         \textbf{sb\_ifng} & INFG, B2M, BATF2, BTN3A3, CD74, CIITA, CXCL10, CXCL9, EPSTI1, GBP1, GBP4, GBP5, HAPLN3, HLA-DPA1, IDO1, IFI30, IFI35, IFIT3, IFITM1, IL32, IRF1, NLRC5, PARP9, PSMB8-AS1, PSMB9, SAMHD1, SECTM1, STAT1, TAP1, TNFSF13B, TYMP, UBE2L6, WARS1, ZBP1 & \acrfull{ifn} gene signature \citep{Baker2022-bj} \\
         \midrule
