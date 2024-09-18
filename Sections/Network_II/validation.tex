@@ -1,33 +1,25 @@
 \section{Verification} \label{s:N_II:validation}
 
 
-This part of the chapter contains different comparisons and network metrics analyses to test and validate the changes made to the network pipeline. The graph changes between a tumour and non-tumour network are presented in \cref{s:N_II:net_comp}, the difference in the two reward functions are presented in \cref{s:N_II:reward_comp} and the effects of the integrative MEV introduced to the MIBC subtypes are covered in \cref{s:N_II:mev_comp}. The difference in the community detection algorithms is not covered as the \acrfull{hsbm} is just a nested SBM which allows to discover more communities than the standard SBM; the comparison between Leiden and SBM was covered in \cref{s:N_II:rwd}.
+This part of the chapter contains different comparisons and network metrics analyses to test and validate the changes made to the network pipeline. The graph changes between a tumour and non-tumour network are presented in \cref{s:N_II:net_comp}, the difference in the two reward functions are presented in \cref{s:N_II:reward_comp} and the effects of the integrative MEV introduced to the MIBC subtypes are covered in \cref{s:N_II:mev_comp}. The difference in the community detection algorithms is not covered as the \acrlong{hsbm} is a nested SBM which allows to discover more communities than the standard SBM; the comparison between Leiden and SBM was covered in \cref{s:N_II:rwd}.
 
 
 % Network validation 
-\subsection{Non-tumour vs Tumour Network} \label{s:N_II:net_comp}
+\subsection{Healthy vs Tumour Network} \label{s:N_II:net_comp}
 
-To study the differences between the non-tumour and tumour networks the previously used graph metrics (degree, pageRank, closeness, betweenness and IVI)\footnote{Reminder: the degree - node's number of connections; pageRank - node's centrality;  closeness - how close the nodes are; betwenees - nodes between; IVI - a combination of network metrics} are shown in \cref{fig:N_II:net_metrics_comp}. There are four networks compared:
+To study the differences between the non-tumour and tumour networks the previously used graph metrics (degree, pageRank, closeness, betweenness and IVI)\footnote{Reminder: the degree - node's number of connections; pageRank - node's centrality;  closeness - how close the nodes are; betweenness - nodes between; IVI - a combination of network metrics} are shown in \cref{fig:N_II:net_metrics_comp}. There are four networks compared:
 \begin{enumerate}
     \item \textbf{Tumour standard \& reward} - networks derived from tumour dataset with or without mutation burden integration (mustard \& red)
-    \item \textbf{Non-tumour reward \& standard} - network derived using the non-tumour dataset with or without mutation burden integration (blue, green)
+    \item \textbf{Healthy reward \& standard} - network derived using the non-tumour dataset with or without mutation burden integration (blue, green)
 \end{enumerate}
 
 
 % Degreee & PageRank
 \subsubsection*{Degree \& PageRank}
 
-For the non-tumour derived networks, there appears to be a subset of nodes that are highly connected, as indicated by the third quartile (Q3 - 5.47) being 60\% higher than the median degree value (3.36). The reward modifier seems to further promote these nodes, with the Q3 value remaining similar ($\sim$5.98), while the maximum degree increases 25-fold, shifting the distribution towards a more pronounced long-tail. This is a significant difference between the non-tumour reward and standard network (\acrshort{mw}: 6250347.0, p-value: 0.0), and with the tumour networks (\acrshort{kw}: 682.7330180938997, p-value: $5.577^{e-149}$); shown in \cref{fig:N_II:net_metric_sig_std}.
+For the non-tumour derived networks, there appears to be a subset of nodes that are highly connected, as indicated by the third quartile (Q3 - 5.47) being 60\% higher than the median degree value (3.36); see degree plot top left. The reward modifier seems to further promote these nodes, with the Q3 value remaining similar ($\sim$5.98), while the maximum degree increases 25-fold, shifting the distribution towards a more pronounced long-tail. This is a significant difference between the non-tumour reward and standard network (\acrshort{mw}: 6250347.0,p-value: 0.0), and with the tumour networks (\acrshort{kw}: 682.7330180938997,p-value: $5.577e^{-149}$); shown in \cref{fig:N_II:net_metric_sig_std}.
 
-A similar trend is observed in the PageRank metric, although the median score decreases by nearly a third (from $161$ to $105$) in the reward network, which may suggest that the highly connected nodes are linked to less influential vertices. In contrast, the TCGA-derived graphs show nodes with similar centrality and degree values, exhibiting less pronounced skewness at the top. The differences are significant between the two non-tumour networks (\acrshort{mw}: 21010334.0.0, p-value: 0.0), and with Reward network compared with tumour networks (\acrshort{kw}: 2296.1121, p-value: 0)
-
-% The edges weight modifier promotes a subset of genes as the upper fence decrease from 10.162 to 7.59, the distribution acquiring a long-tail. This is present in the PageRank score as well. 
-% This aspect is further enforced by having an even larger group of nodes with higher degree and PageRank by the network with reward modifier. This is shown by an increase of $\sim70\%$ the mean degree (from 3.36 to 5.98) a
-
-% The high connected vertices gain more connections This subset of  is further shifted to a long-tail distribution for the reward network. then 
-% In the pageRank and degree metrics, the non-tumour networks seems to be elongated on the Y-axis, denoting a a high variance between the nodes. This is further enforced by the reward modifier, suggesting that there is a subset of nodes that have a high number of connections and are central to the network. Compared to the non-tumour, the TCGA derived graphs have nodes have similar values for centrality and degree. 
-
-
+A similar trend is observed in the PageRank metric, although the median score decreases by nearly a third (from $161$ to $105$) in the reward network, which may suggest that the highly connected nodes are linked to less influential vertices. In contrast, the TCGA-derived graphs show nodes with similar centrality and degree values, exhibiting less pronounced skewness at the top. The differences are significant between the two non-tumour networks (\acrshort{mw}: 21010334.0.0,p-value: 0.0), and with healthy reward network compared with tumour networks (\acrshort{kw}: 2296.1121,p-value: 0)
 
 \begin{figure}[!htb]    
     \centering
@@ -40,24 +32,22 @@ A similar trend is observed in the PageRank metric, although the median score de
 % Closeness & betweneess
 \subsubsection*{Closeness \& betweenness}
 
-Reward modifier has a significantly distinct effects on the two network types (\acrshort{kw}: 13078.435, p-value: 0.0), for the non-tumour graphs it spreads the nodes apart with a closeness mean (0.244) decreasing\footnote{Reminder: for closeness lower values are the better} by $\sim20\%$ over the standard network (mean 0.298); the two distributions are significantly different (\acrshort{mw}: 1480750.0, p-value: 0.0). The opposite effect is happening for the tumour networks where overall the mean closeness values increase by $\sim14\%$ from standard to reward network\footnote{mean standard 0.216, reward 0.252} (\acrshort{mw}: 23670821.0, p-value: 0.0).
+Reward modifier has a significantly distinct effects on the two network types (\acrshort{kw}: 13078.435,p-value: 0.0), for the non-tumour graphs it spreads the nodes apart with a closeness mean (0.244) decreasing\footnote{Reminder: for closeness lower values are the better} by $\sim20$\% over the standard network (mean 0.298); the two distributions are significantly different (\acrshort{mw}: 1480750.0,p-value: 0.0). The opposite effect is happening for the tumour networks where overall the mean closeness values increase by $\sim14$\% from standard to reward network\footnote{Mean standard 0.216, reward 0.252} (\acrshort{mw}: 23670821.0,p-value: 0.0).
 
 % This is given 
-In addition, a decrease of $20\%$ in betweenness metric across the non-tumour graphs indicates that there are fewer nodes as key connection points, but a few vertices are the important bridge. This is given by the higher variance in the metric for standard compared to the reward, which has an almost flat box with a few outliers in q3. This behaviour is not seen in the two tumour networks where the two distributions have a similar shape.
-
-% A distinct feature of the tumour networks is that there the there is a subset of genes that are adjacent given by the closeness plot. The reward non-tumour network has the nodes closer compared with the standard, indicating the reward modifier 'brings' the node closer. Another distinct feature of the tumour networks is that these are characterised by a high value in betweeness, suggesting that there are several important nodes into the network. Again, the reward modifier amplifies this compared to the standard.
+In addition, a decrease of $20$\% in betweenness metric across the non-tumour graphs indicates that there are fewer nodes as key connection points, but a few vertices are the important bridge. This is given by the higher variance in the metric for standard compared to the reward, which has an almost flat box with a few outliers in q3. This behaviour is not seen in the two tumour networks where the two distributions have a similar shape.
 
 % IVI
-The IVI distribution for the two tumour networks are not significantly different (\acrshort{mw}: 12532555.0, p-value: 0.8215), but there is a noticeable difference between the non-tumour standard and reward networks (\acrshort{mw}: 6702904.0, p-value: 0.8215). In the latter, the IVI distribution is elongating towards higher values, indicating that a subset of genes gained higher influence in the network, while the other's importance is lowered.
+The IVI distributions for the two tumour networks are not significantly different (\acrshort{mw}: 12532555.0,p-value: 0.821), but there is a noticeable difference between the non-tumour standard and reward networks (\acrshort{mw}: 6702904.0,p-value: 0). In the latter, the IVI distribution is elongating towards higher values, indicating that a subset of genes gained higher influence in the network, while the other's importance is lowered.
 
 
-Overall, the edge weight modifier has two distinct effects on the networks. In the tumour-derived graphs, the overall distributions are less impacted, and the nodes tend to cluster closer together. In contrast, for the non-tumour networks, a subset of genes gains a significant number of connections, and the nodes generally spread further apart after integrating the mutation burden. The vertices with a higher degree are explored in more detail in \cref{s:N_II:high_conn}. These trends might be explained by the presence of an existing signal in the tumour gene expression, which is merely amplified by the integration of the mutation burden. In the non-tumour networks, however, this signal is absent, and integrating the mutation burden reveals disruptions in normal cellular functioning.
+The edge weight modifier has two distinct effects on the networks. In the tumour-derived graphs, the distributions are less impacted, and the nodes tend to cluster closer together. In contrast, for the non-tumour networks, a subset of genes gains a significant number of connections, and the nodes generally spread further apart after integrating the mutation burden. The vertices with a higher degree are explored in more detail in \cref{s:N_II:high_conn}. These trends might be explained by the presence of an existing signal in the tumour gene expression, which is merely amplified by the integration of the mutation burden. In the non-tumour networks, however, this signal is absent, and integrating the mutation burden reveals disruptions in normal cellular functioning.
 
 \subsubsection*{Comparing with P0 derived networks}
 
-In the analysis of the freshly isolated cells (P0) from \cref{s:N_I:p0_tum_description}, a subset of highly connected nodes was observed, similar to the findings in this section. However, the first iteration of the weight modifier does not notably affect the centrality metrics, unlike the sigmoid modifier introduced in this chapter. Additionally, in the P0 network, the nodes in the reward network were closer together compare with the standard, and not further spread apart as it is the case of the non-tumour graphs.
+In the analysis of the freshly isolated cells (P0) from \cref{s:N_I:p0_tum_description}, a subset of highly connected nodes was observed, similar to the findings in this chapter. However, the first iteration of the weight modifier does not notably affect the centrality metrics, as the sigmoid modifier does. Additionally, in the P0 network, the reward network nodes were closer together than the standard and not further spread apart as in the non-tumour graphs.
 
-The differences may be attributed to the additional datasets included in the non-tumour network (gene expression from ABS-Ca and UD samples) and the changes in the genes used for the network construction. It is also worth noting that, although the overall closeness scores have similar median values across both network types, the outliers observed in the P0-derived graphs are absent in the non-tumour networks.
+The differences may be attributed to the additional datasets in the non-tumour network (gene expression from ABS-Ca and UD samples) and the changes in the genes used for the network construction. Although the overall closeness scores have similar median values across both network types, the outliers observed in the P0-derived graphs are absent in the non-tumour networks.
 
 
 % Reward 1 vs Reward v2
@@ -66,7 +56,7 @@ The differences may be attributed to the additional datasets included in the non
 % Do I need the following two paragraphs?
 A sigmoid function is used as a reward modifier for the improved network pipeline presented in this chapter. The differences in how the weights are changed by the two functions is shown in \cref{s:N_II:reward}. The networks effects of the two reward functions on the network is studied in this section.
 
-In the previous sections the network differences between the standard and modified networks was studied through the bar plots. The comparisons involved three networks as 3 histograms on a single plot resulted on a cluttered figures. In this section, only the standard and the reward with sigmoid function are compared over the usual clustering metrics utilised in this PhD project as well as the Katz Centrality metrics; see \cref{s:lit:net_metrics} for more information.
+In the previous sections the network differences between the standard and modified networks were studied through the bar plots. The comparisons involved three networks as 3 histograms on a single plot resulted on a cluttered figures. In this section, only the standard and the reward with sigmoid function are compared over the usual clustering metrics utilised in this PhD project as well as the Katz Centrality metrics; see \cref{s:lit:net_metrics} for more information.
 
 
 % Talk about the stats and the difference between the stats
@@ -98,12 +88,9 @@ The six metrics are displayed in \cref{fig:N_II:net_metric_sig_std}, where the x
     \textbf{IVI} & 9801086.0 & $5.170e^{-78}$ \\
     \bottomrule
   \end{tabularx}
-  \caption[Non-tumour networks: Standard vs Reward]{Results of \acrlong{mw} for the betweenness, closeness, degree, PageRank, and IVI metrics comparing Standard and Reward networks, showing significant differences between the two graphs.}
+  \caption[Non-tumour networks: Standard vs Reward]{Results of \acrlong{mw} for the betweenness, closeness, degree, PageRank, and IVI metrics comparing Standard and Reward networks, showing significant differences between the two graphs. The first value is represented by the result from the \acrlong{mw} while the second the p-value.}
   \label{tab:N_II:standard_vs_reward}
 \end{table}
-
-
-
 
 
 \subsubsection*{Effect on the ModCon}
@@ -117,10 +104,10 @@ Through the network metrics analysis it is clear that the weight modifier have a
 Across the two histogram sets it can be seen that integrating the mutation burden impacts the gene selection by ModCon. This is shown by the uniform distribution across the standard networks, whereas the distributions are skewed right for the other two networks with reward modifiers.
 
 % Similar distribution across the weight modifiers
-Across the tumour networks, the two weight modifiers exhibit similar distributions; see \cref{tab:N_II:sig_mut_burden_rank} for significance between the distribution comparison. However, in the non-tumour networks, the sigmoid-shaped weight modifier (Reward v2) has a reduced impact on ModCon. This outcome is somewhat unexpected, given that Reward v2 was designed to gradually promote genes with mutation burden, including those with intermediate values.
+The two weight modifiers exhibit similar distributions across the tumour networks; see \cref{tab:N_II:sig_mut_burden_rank} for significance between the distribution comparison. However, in the non-tumour networks, the sigmoid-shaped weight modifier (Reward v2) has a reduced impact on ModCon. This outcome is somewhat unexpected, given that Reward v2 was designed to gradually promote genes with mutation burden, including those with intermediate values.
 
 % Discussing the Community Size Imbalance and ModCon
-The limited impact of Reward v2 on ModCon in the non-tumour networks can be attributed to the community size imbalance within the network. As will be discussed in the following section, the network contains a large number of small ($<$10 genes) and medium-sized communities, alongside a few large blocks ($>$200 genes). This imbalance negatively affects ModCon since it selects a fixed number of 100 genes per community. This is reflected in the total number of genes selected by ModCon: 2,438 genes in the Reward v2 network, compared with 3,459 genes in Reward v1 and 3,056 in the standard networks.
+The limited impact of Reward v2 on ModCon in the non-tumour networks can be attributed to the community size imbalance within the network. As will be discussed in the following section, the network contains a large number of small ($<$10 genes) and medium-sized communities, alongside a few large blocks ($>$200 genes). This imbalance negatively affects ModCon since it selects a fixed number of 100 genes per community. This is reflected in the total number of genes selected by ModCon: 2,438 genes in the Reward v2 network, compared with 3,459 genes in Reward v1 and 3,056 in the Standard network.
 
 In summary, both reward modifiers similarly influence network structure and ModCon in the tumour networks. In the non-tumour networks, Reward v1 selects more genes with a high mutation burden than Reward v2, likely due to the community size imbalance. However, as will be discussed later in \cref{s:N_II:high_conn}, Reward v2 has a greater impact on community detection and gene grouping.
 
@@ -145,66 +132,30 @@ In summary, both reward modifiers similarly influence network structure and ModC
 \begin{table}[!htb]
   \centering
   \small
-  \begin{tabularx}{\textwidth}{>{\hsize=.5\hsize}X|>{\hsize=.5\hsize}X|>{\hsize=.5\hsize}X}
+  \begin{tabularx}{\textwidth}{>{\hsize=.55\hsize}X|>{\hsize=.5\hsize}X|>{\hsize=.45\hsize}X}
     \toprule
     \textbf{Comparison} & \textbf{Mutation Burden} & \textbf{ModCon Rank} \\
     \midrule
     \multicolumn{3}{c}{\textbf{Tumour}} \\
     \midrule
-    \textbf{Reward 1 vs Reward 2} & 9695120.0; p-value: $4.137e^{-12}$ & 9287455.0; p-value: 0.0012 \\
+    \textbf{Reward 1 vs Reward 2} & 9695120.0; $4.137e^{-12}$ & 9287455.0; 0.0012 \\
     \midrule
-    \textbf{Standard vs Reward 1} & 6101149.5; p-value: $8.240e^{-8}$ & 7098464.5; p-value: $5.322e^{-9}$ \\
+    \textbf{Standard vs Reward 1} & 6101149.5; $8.240e^{-8}$ & 7098464.5; $5.322e^{-9}$ \\
     \midrule
-    \textbf{Standard vs Reward 2} & 7233820.5; p-value: 0.280 & 9287455.0; p-value: $2.249e^{-19}$ \\
+    \textbf{Standard vs Reward 2} & 7233820.5; 0.280 & 9287455.0; $2.249e^{-19}$ \\
     \midrule
     \multicolumn{3}{c}{\textbf{Non-tumour}} \\
     \midrule 
-     \textbf{Reward v1 vs Reward v2} & 4752647.0; p-value: $3.03e^{-17}$ & 4418659.0; p-value: 0.0017 \\
+     \textbf{Reward 1 vs Reward 2} & 4752647.0; $3.03e^{-17}$ & 4418659.0; 0.0017 \\
     \midrule
-    \textbf{Standard vs Reward v1} & 4653638.5; p-value: $3.04e^{-17}$ & 5804760.5; p-value: $7.07e^{-12}$ \\
+    \textbf{Standard vs Reward 1} & 4653638.5; $3.04e^{-17}$ & 5804760.5; $7.07e^{-12}$ \\
     \midrule
-    \textbf{Standard vs Reward v2} & 3782724.0; p-value: 0.314 & 4276523.5; p-value: $3.79e^{-21}$ \\
+    \textbf{Standard vs Reward 2} & 3782724.0; 0.314 & 4276523.5; $3.79e^{-21}$ \\
     \bottomrule
   \end{tabularx}
-  \caption[Reward modifiers: Effect on Rank and Mutation Burden]{Compares the Mutation burden and ModCon Rank distributions between the three networks.}
+  \caption[Reward modifiers: Effect on Rank and Mutation Burden]{Compares the Mutation burden and ModCon Rank distributions between the three networks. The first value is represented by the result from the \acrlong{mw} while the second the p-value.}
   \label{tab:N_II:sig_mut_burden_rank}
 \end{table}
-
-
-
-
-% % Discuss the impact of Reward v1
-% The two histograms in \cref{fig:N_II:modCon_modifiers} show that the sigmoid modifier (Reward v2) has the intended effect on the ModCon, where the high mutation burden is achieved consistently across the score ranks, supported by a lower variance see \cref{tab:statistical_summary} This is because the sigmoid reward function not only promotes the highest mutated genes but also the others with intermediate values. In contrast, the first iteration of the reward function has a proportional increase with the ModCon rank peaking at the top selected genes (values of 1).
-
-% The difference in the two weight modifiers can also seen in the statistics of the mutation burden included in the genes with a normalised ModCon rank >0, where the variance is lower in the Sigmoid reward function, denoting the gradual increase of the intermediate values. It is also worth noting that the maximum highest mutated gene is promoted more by the initial weight modifier.
-
-% The two set of histograms in \cref{fig:N_II:modCon_modifiers} demonstrate the effects of the weight modifiers and confirm the intended behaviour of the sigmoid version. It is also worth noting the difference between the tumour and non-tumour datasets. The former has a high concentration of the mutation burden at the high ranks of the ModCon scores, indicating that gene expression reflects tumour abnormalities.
-
-
-% This behaviour  In both cases, the cumulative mutation burden of the selected genes increases with the ModCon ranks. In contrast, the previous modifier (Reward v1) results in a steep increase towards the higher-ranked nodes, while at the lower ranks, only a few genes are mutated. The steep increase in the first version of the weight modifier also leads to having the most mutated genes at high ModCon across the three networks.
-
-
-% \begin{table}[!htb]
-%     \centering
-%     \scriptsize
-%     \begin{tabularx}{\textwidth}{>{\hsize=0.8\hsize}X|>{\hsize=0.6\hsize}X|>{\hsize=0.6\hsize}X|>{\hsize=0.6\hsize}X|>{\hsize=0.6\hsize}X|>{\hsize=0.6\hsize}X|>{\hsize=0.6\hsize}X}
-%         \toprule
-%         \textbf{Type} & \textbf{Mean} & \textbf{Median} & \textbf{Standard deviation} & \textbf{Variance} & \textbf{Maximum} & \textbf{Minimum} \\
-%         \midrule
-%         Standard & 4.92 & 4.0 & 4.986 & 24.862 & 32.0 & 0.0 \\
-%         \midrule
-%         Reward v1 & 7.84 & 7.0 & 7.622 & 58.095 & 48.0 & 0.0 \\
-%         \midrule
-%         Reward v2 & 3.42 & 2.5 & 3.373 & 11.377 & 14.0 & 0.0 \\
-%         \bottomrule
-%     \end{tabularx}
-%     \caption{Summary of statistical measures of the mutation burden in the genes that are in top 100 by their ModCon score. }
-%     \label{tab:N_II:modCon_summar}
-% \end{table}
-
-
-
-
 
 
 % iMEV comparison
@@ -217,7 +168,7 @@ To validate the change in the MEV, the non-tumour networks of $5,000$ genes, wit
 % The largest change occur across the subtypes found using the standard network, from where 
 The results of the comparison are shown in \cref{fig:N_II:mevs_comp}, presenting the subtypes derived using the different MEVs scores, MEV\_1 (first iteration) and MEV\_2 (second iteration - integrative), in relation to previous classifications: the clustering analysis from \cref{s:clustering_analysis}, TCGA and consensus \citep{Robertson2017-mg,Kamoun2020-tj}. In the top comparison, where the subtypes derived from the standard networks, there is some change between the groups found using the two version of MEV scores.
 
-The integrative MEV has a stronger effect on the MIBC subtyping in the reward-derived networks as seen in bottom Sankey plot, where a subset of samples (n=20) that switch from group 0 (Reward\_MEV\_1) to 2 (Reward\_MEV\_2) which has a considerable implication to the subtypes, where the largest group (0) becomes the only the third group by size. It was observed by varying the size of $K$ that as the number of groups for K-means is increased, the difference between the two MEVs also increases, especially in the standard network see in \cref{fig:ap:mevs_comp} from Appendix \cref{ap:N_II:val_mibc_comp}.  
+The integrative MEV has a stronger effect on the MIBC subtyping in the reward-derived networks as seen in bottom Sankey plot, where a subset of samples (n=20) that switch from group 0 (Reward\_MEV\_1) to 2 (Reward\_MEV\_2) which has a considerable implication to the subtypes, where the largest group (0) becomes the only the third group by size. It was observed that the difference between the two MEVs increases as the number of groups for K-means, especially in the standard network see in \cref{fig:ap:mevs_comp} from Appendix \cref{ap:N_II:val_mibc_comp}.  
 
 This sub-section demonstrates that updating the MEV to integrate both tumour and non-tumour gene expressions has a limited impact on the MIBC subtypes. One possible reason for the smaller effect on the derived subgroups could be the lack of adjustment for community size imbalances. This is supported by the minimal changes observed in the reward network compared with the standard when K=7, as shown in \cref{fig:ap:mevs_comp}. The integrative MEV (iMEV) is preferred because it incorporates gene expression data from both datasets, whereas the previous versions treated the network merely as a complex gene selection mechanism.
 

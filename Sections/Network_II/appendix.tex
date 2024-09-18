@@ -1,14 +1,13 @@
-\chapter{Network II}
+\chapter{Advancing the network approach}
 
 \newpage
-\section{Validation} \label{ap:N_II:validation}
+\section{Verifications} \label{ap:N_II:validation}
 
 \subsection{MIBC comparison} \label{ap:N_II:val_mibc_comp}
 
 Below MIBC comparison figure complements the work from \cref{s:N_II:mev_comp}. K-means with K=7 was chosen as this was the cluster configuration found in the cluster analysis performed on the MEVs derived from the reward network in \cref{s:ap:N_II:clustering analysis}.
 
-
-\begin{figure}[H]
+\begin{figure}[!htb]
     \centering
     \begin{subfigure}{0.9\linewidth}
         \includegraphics[width=1.0\textwidth,keepaspectratio]{Sections/Network_II/validation/mevs_comp_std_K_7.png}
@@ -29,8 +28,6 @@ Below MIBC comparison figure complements the work from \cref{s:N_II:mev_comp}. K
 \section{Standard Network} \label{ap:N_II:coms}
 
 % 25
-\subsection*{Community 25}
-
 \begin{figure}[H]    
     \centering
     \includegraphics[width=0.9\textwidth,keepaspectratio]{Sections/Network_II/resources/non_tum/25_com.png}
@@ -38,11 +35,7 @@ Below MIBC comparison figure complements the work from \cref{s:N_II:mev_comp}. K
     \label{fig:ap:com_25}
 \end{figure}
 
-
-
 % 29
-\subsection*{Community 29}
-
 \begin{figure}[!htb]    
     \centering
     \includegraphics[width=0.9\textwidth,keepaspectratio]{Sections/Network_II/resources/non_tum/29_com.png}
@@ -80,7 +73,7 @@ The figure below represents the network representation of the small communities 
 
 
 % cluster analysis
-\subsection{Clustering analysis} \label{s:ap:N_II:clustering analysis}
+\subsection{Cluster analysis} \label{s:ap:N_II:clustering analysis}
 
 This section covers the clustering analysis performed on the MEV values derived using second version of the network pipeline covered in \cref{s:N_II:rwd}. The aim here is to find the appropriate the clustering model and its configuration. To achieve this the methods from \cref{s:cs:methods} are used which includes the clustering metrics covered in \cref{s:lit:clustering_metrics} and shown in \cref{fig:ap:n_II:cluster_metrics} as well as the Sankey comparison plot in \cref{fig:ap:cs_sankey}.
 

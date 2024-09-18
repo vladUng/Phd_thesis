@@ -7,21 +7,21 @@
       \begin{itemize}
         \item 14 highly connected communities
         \item 122 genes with high mutation burden and a high number of strong correlations
-        \item Non-tumour and network pipeline reveals Ensembl genes to have an important role in MIBC subgroups
+        \item Healthy dataset and network pipeline reveals lncRNA genes to have an important role in MIBC subtyping
       \end{itemize}
     }
 }
 \vspace{3mm}
 
 % Introducing the reward
-The reward network is constructed following the pipeline in \cref{s:N_II:methods} where the sigmoid modifier is used to reward the mutated genes and MEV takes in account the expression in both tumour and non-tumours data. Compared to the standard network, the correlations (or nodes' weights) of mutated genes are increased proportionally with the mutation burden from TCGA's MIBC cohort. As in the previous section, the network is constructed from the same 5000 most varied genes from non-tumour dataset (see \cref{s:N_II:methods}) which compromises of ABS-Ca, P0 and UD samples.
+The reward network is constructed following the pipeline in \cref{s:N_II:methods} where the sigmoid modifier is used to reward the mutated genes and iMEV takes in account the expression in both tumour and non-tumours data. Compared to the standard network, the correlations (or nodes' weights) of the mutated genes are increased proportionally with the mutation burden from TCGA's MIBC cohort. As in the previous section, the network is constructed from the same 5000 most varied genes from non-tumour dataset (see \cref{s:N_II:methods}) which compromises of ABS-Ca, P0 and UD samples.
 
 % Describe the network 
 % - small and large communities
-The result is shown in \cref{fig:N_II:reward_net} where it can be observed that there  is a large variation in the community sizes. On the left hand side there is a group of small communities, while on the other side there are larger blocks of nodes such as community 0 (blue) or purple (9) at top. The community size imbalance was evident from the network metrics the standard vs. reward comparison in \cref{fig:N_II:net_metric_sig_std}, which suggested that the modified network contains nodes that are highly connected.
+The output networm is shown in \cref{fig:N_II:reward_net} where it can be observed that there  is a large variation in the community sizes. On the left hand side there is a group of small communities, while on the other side there are larger blocks of nodes such as community 0 (blue) or purple (9) at top. The community size imbalance was evident from the network metrics the comparison in \cref{fig:N_II:net_metric_sig_std}, which suggested that the reward network contains nodes that are highly connected.
 
 % Talk about the aspects of the networks
-Overexpression and dysregulation of the \textit{AHR} gene promotes tumour formation and it is present the Luminal samples \citep{Shi2020-km}. In \cref{fig:N_II:reward_net}, the red-lines are the edges from the \textit{AHR} gene/node to its neighbours gene which are mostly situated in the largest community (0).  It was also observed that it is usually the case that smaller communities have genes that have a high degree and most of the edges lead to the larger communities. The genes in the large blocks (e.g., 0 or 9) are not connected with each other but these nodes seems to be grouped by their links to the genes in the smaller communities; like community \textbf{2} of which \textit{AHR} is part of. The small and highly connected communities are explored in more depth in the following sections.
+Overexpression and dysregulation of the \textit{AHR} gene promotes tumour formation and it is present the Luminal samples \citep{Shi2020-km}. In \cref{fig:N_II:reward_net}, the red-lines are the edges from the \textit{AHR} gene/node to its neighbours gene which are mostly situated in the largest community (0).  It was also observed that it is usually the case that smaller communities have genes with a high degree and most of the edges lead to the larger communities. The genes in the large blocks (e.g., 0 or 9) are not connected with each other but these nodes seems to be grouped by their links to the genes in the smaller communities; like community \textbf{2} of which \textit{AHR} is part of. The small and highly connected communities are explored in more depth in the following sections.
 
 % Size imbalance 
 
@@ -37,20 +37,18 @@ Overexpression and dysregulation of the \textit{AHR} gene promotes tumour format
 \subsection{High degree genes} \label{s:N_II:high_conn}
 
 % Present the figure
-To further understand the relationship between the size of a community (Y-axis) and the nodes' degree (mean values on the X-axis), the two properties were plotted on a scatter plot in \cref{fig:N_II:largeSmall_com}. The marker sizes in the figure are proportional to their mean mutation burden; the larger the point, the higher the average of highly mutated genes across the TCGA. A community is labelled as "HighDegree" when the mean degree of the genes constituting the groups is in the 70th percentile, and as "LowDegree" otherwise. The 70th percentile was chosen as the threshold because it includes all the small communities.
-
-
+To further understand the relationship between the size of a community (Y-axis) and the nodes' degree (mean values on the X-axis), the two properties were plotted on a scatter plot in \cref{fig:N_II:largeSmall_com}. The marker sizes in the figure are proportional to their mean mutation burden; the larger the point, the the mpre the gene is mutated across MIBC cohort. A community is labelled as "HighDegree" when the mean degree of the genes constituting the groups is in the 70th percentile, and as "LowDegree" otherwise. The 70th percentile was chosen as the threshold because it includes all the small communities.
 
 % Talk about the community size imbalance
-The positioning of communities with highly connected genes near the X-axis and those with less connected genes near the Y-axis suggests an inverse relationship between group size and degree. The analysis of the network metrics in \cref{fig:N_II:net_metrics_comp} highlighted a subset of nodes with high degree and lower closeness scores. However, it was unexpected that the hSBM would be able to isolate these nodes into separate groups to such an extent. Previously, a subset of highly connected nodes was observed in different network analyses, but the impact of the reward modifiers (v1 or v2) was not as pronounced as in this case. Specifically:
+The positioning of communities with highly connected genes near the X-axis and those with less connected genes near the Y-axis indicates an inverse relationship between group size and degree. The analysis of the network metrics in \cref{fig:N_II:net_metrics_comp} highlighted a subset of nodes with high degree and lower closeness scores. However, it was unexpected that the hSBM would be able to isolate these nodes into separate groups to such an extent. Previously, a subset of highly connected nodes was observed in different network analyses, but the impact of the reward modifiers (v1 or v2) was not as pronounced as in this case. Specifically:
 \begin{itemize}
     \item All graphs generated from the freshly isolated samples contained a subset of highly connected genes, more so than the tumour-generated networks, but this was not significantly amplified by the reward modifier (v1) - see network metrics in \cref{fig:N_I:net_metrics_p0}.
     \item Networks generated from the tumour dataset using the initial network approach from \cref{s:N_I:methods_edge_pruning} also exhibited a subset of highly connected nodes - see network metrics in \cref{fig:N_I:net_metrics_tum}.
-    \item In the tumour networks analysed in this chapter, the reward modifier (v2) does not amplify this effect to the same extent - see network metrics in \cref{fig:N_II:net_metrics_comp}.
+    \item In the tumour networks analysed in this chapter, the reward modifier (v2) does not amplify the number of connections to the same extent as in the healthy graps - see network metrics in \cref{fig:N_II:net_metrics_comp}.
 \end{itemize}
 
 % High correlation
-The inverse relationship between node degree and the community size as well as the effect of the reward modifier (v2)  is further confirmed by the negative Spearman correlation of $\rho = -0.8987$ and $p = 5.46 \times 10^{-17}$; see \cref{fig:N_II:genes_highConn}, The positive correlation between community size and the average mutation count in a group indicates that well-connected communities have a high mutation burden. The multi-plot in Appendix \cref{fig:ap:degree_com_size} provides a clearer depiction of the mean degree and group size of the communities in the reward network, complementing \cref{fig:N_II:largeSmall_com}.
+The inverse relationship between node degree and the community size as well as the effect of the reward modifier (v2)  is further confirmed by the negative Spearman correlation of $\rho = -0.8987$ and $p = 5.46$x$10^{-17}$; see \cref{fig:N_II:genes_highConn}, The positive correlation between community size and the average mutation count in a group indicates that well-connected communities have a high mutation burden. The multi-plot in Appendix \cref{fig:ap:degree_com_size} provides a clearer depiction of the mean degree and group size of the communities in the reward network, complementing \cref{fig:N_II:largeSmall_com}.
 
 \begin{figure}[!b]    
     \centering
@@ -60,7 +58,7 @@ The inverse relationship between node degree and the community size as well as t
 \end{figure}
 
 % Implication of the finding
-This initial analysis demonstrates that the \acrfull{hsbm} effectively separates mutated genes with a high degree from the rest of the nodes. This suggests that the community detection method is capable of identifying very small communities, consisting of just a few nodes, from the 5000 genes used to construct the network. Furthermore, the unconnected genes are grouped together into larger clusters. The ability to find communities with fewer than 10 nodes indicates that \acrshort{hsbm} is capable of analysing larger networks, suggesting that the gene filtering threshold of 5000 could potentially be relaxed.
+This initial analysis demonstrates that the \acrlong{hsbm} effectively separates mutated genes with a high degree from the rest of the nodes. This suggests that the community detection method is capable of identifying very small communities, consisting of just a few nodes, from the 5000 genes used to construct the network. Furthermore, the unconnected genes are grouped together into larger clusters. The ability to find communities with fewer than 10 nodes indicates that \acrshort{hsbm} is capable of analysing larger networks, suggesting that the gene filtering threshold of 5000 could potentially be relaxed.
 
 \subsubsection*{Understanding the group size imbalance}
 
@@ -142,7 +140,7 @@ While \cref{fig:N_II:degree_high_corr} confirms that the number of connections i
 % Talk about the histrogram
 The histogram indicates that \textit{AHR} and \textit{SYTL2} show more correlations with values above 0.5, as evidenced by the box plot at the top and the X-values in \cref{fig:N_II:degree_high_corr}. Although these two genes have similar distributions, it is noticeable that \textit{AHR} has a higher mutation burden (23 - \textit{AHR} and 14 - \textit{STYL2}) a greater number of correlations exceeding 0.75, leading to stronger weights. In contrast, \textit{WNK1} and \textit{RTTN} have correlation values that are centred around 0 (\textit{WNK1}) or are skewed to the left (\textit{RTTN}), indicating a tendency towards weaker or negative correlations.
 
-The two plots, \cref{fig:N_II:degree_high_corr,fig:N_II:corr_sel_genes}, confirm that the data integration has an effect on the network and that genes with a high number of connections need to have both a high number of correlations and a high mutation burden. It also shows that the labelling of some genes depends on the weight magnitude, as some genes are not included in the 14 communities with a high mean degree.
+The two plots, \cref{fig:N_II:degree_high_corr,fig:N_II:corr_sel_genes}, confirm that the data integration has an impact on the network and that genes with a high number of connections need to have both a high number of correlations and a high mutation burden. It also shows that the labelling of some genes depends on the weight magnitude, as some genes are not included in the 14 communities with a high mean degree.
 
 
 
@@ -150,17 +148,11 @@ The two plots, \cref{fig:N_II:degree_high_corr,fig:N_II:corr_sel_genes}, confirm
 % Correlation rank
 \subsection{High degree: correlation rank} \label{s:N_II:corr_rank}
 
-% The mean expression of some of the genes with a high number of connection is small, less than 10 TPMs as seen in \cref{fig:N_II:exp_molecular_highCon}. This suggests that the weight modifier has a large effect on the correlation matrix, bypassing the co-expressed values.
-
-% To further help explaining the large number of connections of a node and to understand how the reward modifier affects the correlations values 
-
-% Understanding this is important as each gene is allowed to keep the 3 or 6 (for TF) most correlated genes.
-
 % Introduce what I am going to talk about
 It is clear that the reward modifier successfully integrates the mutation burden into the co-expressed gene network. However, it is not clear how the sigmoid function affects the correlation raking, how the values above a certain threshold are influenced to give a node a few hundreds connections when each gene is allowed to keep either the 3 or 6 most correlated genes.
 
 % Why it is important to understand this change
-In the case of the 122 highly degree nodes, the rest of the connections must come from their neighbours to contain the subset of 122 genes in their top correlation. For example, the most connected gene \textit{ELF3} (a TF) has 985 neighbours and only 6 are being in the gene top correlation. The rest of the 979 gene have \textit{ELF3} in their top ranking. It is important to verify if the 979 genes have \textit{ELF3} already high in their correlation ranking before the reward modifier is applied as it will mean these genes have a weaker co-expression which is only amplified with the reward.
+In the case of the 122 highly degree nodes, the rest of the connections must come from their neighbours to contain the subset of 122 genes in their top correlation. For example, the most connected gene \textit{ELF3} (a TF) has 985 neighbours and only 6 are being in the gene top correlation. The rest of the 979 gene have \textit{ELF3} in their top ranking. It is important to verify if the 979 genes have \textit{ELF3} already high in their correlation ranking before the reward modifier is applied as it will mean these genes have a weaker co-expression that is only amplified with the reward.
 
 \begin{figure}[!t]
     \centering
@@ -192,10 +184,10 @@ In the case of the 122 highly degree nodes, the rest of the connections must com
 
 
 % Explain the correlation rank plots
-To understand this effect to a gene (e.g. \textit{ELF3}), the nodes which are directly connected to \textit{ELF3} in the reward network are 'extracted' as neighbour genes. For each of this gene it is computed the ranks in both the unmodified Spearman correlation matrix and the one modified by the reward modifier. Then the rank of the \textit{ELF3} gene is extracted, thus giving a relative indication of how well the two genes are connected.
+To understand this effect to a gene (e.g. \textit{ELF3}), the nodes that are directly connected to \textit{ELF3} in the reward network are 'extracted' as neighbour genes. For each of this gene it is computed the ranks in both the unmodified Spearman correlation matrix and the one modified by the reward modifier. Then the rank of the \textit{ELF3} gene is extracted, thus giving a relative indication of how well the two genes are connected.
 
 % Introduce the plots
-The ranks from both the Spearman correlation (red) and matrix changed  by the reward modifier (green) are shown for \textit{ELF3, AHR, FGFR3} and \textit{KLF5} gene in \cref{fig:N_II:corr_analysis}. All of these four genes have a well known function in the bladder tissue, are mutated and are high degree nodes. The four figures show that all the ranks in Spearman correlation matrix have a high variance and the four genes are usually within the top $\sim15\%$ (rank $500-600$) of the neighbour's ranking. In addition, the ranks for the reward modified matrix are in 1-7 range\footnote{With the exception of the gene \textit{NCOA1}, in the box plot for \textit{KLF5}, which has is in also top correlation ranks for the \textit{KLF5}. Thus, both genes have each other in their higher correlation ranks.} showing the clear effect on the correlation ranks after the reward modifier is applied. 
+The ranks from both the Spearman correlation (red) and matrix changed  by the reward modifier (green) are shown for \textit{ELF3, AHR, FGFR3} and \textit{KLF5} gene in \cref{fig:N_II:corr_analysis}. All of these four genes have a well known function in the bladder tissue, are mutated and are high degree nodes. The four figures show that all the ranks in Spearman correlation matrix have a high variance and the four genes are usually within the top $\sim15$\% (rank $500-600$) of the neighbour's ranking. In addition, the ranks for the reward modified matrix are in 1-7 range\footnote{With the exception of the gene \textit{NCOA1}, in the box plot for \textit{KLF5}, which has in its ranks the \textit{KLF5}. Thus, both genes have each other in their higher correlation ranks.} showing the clear effect on the correlation ranks after the reward modifier is applied. 
 
 % Control
 \subsubsection*{Control}
@@ -230,12 +222,6 @@ The previous sections showed that the 14 communities with the highest mean degre
 The bar plot in \cref{fig:N_II:exp_molecular_highCon} shows the expression across the MIBC cohort of the 122 genes from the highly connected genes with the bar representing the standard deviation\footnote{This is a similar plot to \cref{fig:N_I:sel_tfs_var} used to refine the  98 TF from \cref{s:ap:sel_prun}.}. It shows that most of the genes have a TPM higher than 1, and 39/122 have a TPM less than 10. In addition, the error bars indicate which genes have a high standard deviation across the samples, an indicator of variability which can help isolating genes specific to subgroups. 
 
 
-\begin{figure}[!b]    
-    \centering
-    \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_II/resources/reward/smallCom_Exp.png}
-   \caption[Tumour median TPMs of highly connected genes]{Bar plot showing the tumour median expression on a log scale (Y) across the high connected genes (X). The bar colour represents the community membership and the error bar the standard deviation. Most of the highly connected genes have a TPM value larger than 1 and $\sim60\%$ have above 10. }
-    \label{fig:N_II:exp_molecular_highCon}
-\end{figure}
 
 % Community 1
 \textit{ELF3}, \textit{KLF5}, and \textit{CDH2} are part of community 1, which has the highest mean degree. The former is an early differentiation marker of urothelium \citep{Bock2014-zy}, while \textit{KLF5} has been associated with ABS-Ca differentiation earlier in the project \cref{tab:N_I:markers_diff} and in research from JBU \citet{Bock2014-zy}. \textit{CDH2} is part of the markers for the \acrfull{emt} signature, which is specific to the Luminal-Infiltrated subtype in the TCGA cohort \citep{Robertson2017-mg}, see \cref{tab:lit:tcga_genes}.
@@ -248,9 +234,17 @@ Community 2 has the third largest mean degree and contains genes such as \textit
 The work of \citet{Guo2023-sf} studies the role of the collagen family, of which \textit{COL7A1} is part of, and it was found that these genes are associated with squamous subtypes. It is pointing out that \textit{COL7A1}, \textit{FN1}, and \textit{LAMA3} are all part of community 10, which has the second highest mean degree.
 
 
+\begin{figure}[!t]    
+    \centering
+    \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_II/resources/reward/smallCom_Exp.png}
+   \caption[Tumour median TPMs of highly connected genes]{Bar plot showing the tumour median expression on a log scale (Y) across the high connected genes (X). The bar colour represents the community membership and the error bar the standard deviation. Most of the highly connected genes have a TPM value larger than 1 and $\sim60\%$ have above 10. }
+    \label{fig:N_II:exp_molecular_highCon}
+\end{figure}
+
+
 Exploring the three communities with the highest mean degree shows that the genes with a high number of connections have a biological function. Although the other blocks remain unexplored, there are many genes, such as \textit{FGFR3}, \textit{TP53}, and \textit{CDKN2A}, that are known to play a role in bladder cancer \citep{Robertson2017-mg,Kamoun2020-tj,Marzouka2018-ge}, see tables with subtypes specific genes \cref{tab:lit:lund_genes,tab:lit:tcga_genes,tab:lit:consensus_genes}. This demonstrates the power of the network pipeline to isolate genes that have a functional role in bladder cancer, as studied in the literature, and to reveal new associations that have the potential to advance the understanding of bladder biology.
 
-A clustering analysis on the MIBC cohort from TCGA was performed using either the tumour gene expression of the 122 highly connected genes or the MEVs from their corresponding communities, but the Basal/Luminal groups were not split into smaller groups. Due to this and the limited time available in a PhD, this clustering analysis was not covered more extensively in this thesis.
+A cluster analysis on the MIBC cohort from TCGA was performed using either the tumour gene expression of the 122 highly connected genes or the MEVs from their corresponding communities, but the Basal/Luminal groups were not split into smaller groups. Due to this and the limited time available in a PhD, this cluster analysis was not covered more extensively in this thesis.
 
 
 
@@ -258,20 +252,18 @@ A clustering analysis on the MIBC cohort from TCGA was performed using either th
 \subsection{MIBC subtyping}
 
 % Introduce and motivate why we are choosing all the communities
-The work presented in this chapter so far has been focused on showing the data integration works and explaining that the 14 communities with a high mean degree are biologically functional and not a computational artefact. With this evidence that altering MEV and incorporating the mutation with the sigmoid reward function, the network approach created biologically relevant hubs which drastically altered network topology; all communities can now be applied to subtype the MIBC samples.
+So far, the work presented in this chapter has been focused on showing the data integration works and explaining that the 14 communities with a high mean degree are biologically functional and not a computational artefact. With this evidence that altering MEV and incorporating the mutation with the sigmoid reward function, the network approach created biologically relevant hubs which drastically altered network topology; all communities can now be applied to subtype the MIBC samples.
 
-From the 45 communities in the reward network, the top 100 genes are selected using ModCon and then the iMEV applied (see \cref{s:N_II:iMEV}). On these values a similar clustering analysis as in the earlier chapter is performed (see \cref{s:cs:methods}) and is covered in more depth in the Appendix \cref{s:ap:N_II:clustering analysis}. K-means with K=7 was chosen to stratify the MIBC and the output is compared with previous classification in \cref{fig:N_II:mibc_comp}.
-
-% Comment on the comparison
+From the 45 communities in the reward network, the top 100 genes are selected using ModCon, and then the iMEV is applied (see \cref{s:N_II:iMEV}). On these values, a similar cluster analysis as in the earlier chapter is performed (see \cref{s:cs:methods}) and is covered in more depth in the Appendix \cref{s:ap:N_II:clustering analysis}. K-means with K=7 were chosen to stratify the MIBC, and the output is compared with the previous classification in \cref{fig:N_II:mibc_comp}.
 
 % Basal groups
-In \cref{fig:N_II:mibc_comp} cluster 1 (79 samples) contains the largest proportion of the Basal samples out of the Network II subtyping regardless of their \acrlong{ifn} response. Cluster 5 (31 samples) it is also a Basal group which mainly consists of High and Low \acrshort{ifn} samples (CA+IFNG) as well as some Neuroendocrine (Ne) samples; the specific immune response of the cluster was supported by the DEA from \cref{fig:N_II:pi_basal_5}. Both groups (1 \& 5) have the lowest survival rate over 5 year as seen in \cref{fig:N_II:survival_K_7}, with patients group 1 having a poorer prognosis than the other Basal group. Despite of the Low IFNG and Ne samples which are associated with poorer prognosis, group 5 survival rate is in alignment of the previous work presented in this thesis, \cref{s:cs:basal_interp}, where the patient classified as higher \acrshort{ifn} have better survival chances.
+In \cref{fig:N_II:mibc_comp} cluster 1 (79 samples) contains the largest proportion of the Basal samples out of the Network II subtyping regardless of their \acrlong{ifn} response. Cluster 5 (31 samples) is also a Basal group which mainly consists of High and Low \acrshort{ifn} samples (CA+IFNG) as well as some Neuroendocrine (Ne) samples; the specific immune response of the cluster was supported by the DEA from \cref{fig:N_II:pi_basal_5}. Both groups (1 \& 5) have the lowest survival rate over 5 years, as seen in \cref{fig:N_II:survival_K_7}, with patients group 1 having a poorer prognosis than the other Basal group. Despite the Low IFNG and Ne samples, which are associated with a poorer prognosis, group 5 survival rate is in alignment with the previous work presented in this thesis, \cref{s:cs:basal_interp}, where the patient classified as higher \acrshort{ifn} have better survival chances.
 
 % Luminal infiltrated groups
-The largest group, 0 - 84 samples, it is comprised of some basal samples (TCGA/consensus) as well as LumInf samples by the TCGA or a combination of Stroma-rich, LumNS, Lump. Group 4 (56 samples) is also diverse containing samples from LumInf like groups similar to 0, but the reminder of the samples are classified as LumP by TCGA/Consensus. This may suggests that there are two tendencies in the Luminal infiltrated samples, where the samples from 0 tend towards Basal phenotype while in 4 towards Luminal. The survival plot, \cref{fig:N_II:survival_K_7}, confirms this hypothesis by group 0 (yellow) having a worst prognosis than group 4.
+The largest group, 0 - 84 samples, contains some basal (TCGA/consensus) and LumInf samples by the TCGA or a combination of Stroma-rich, LumNS, and Lump. Group 4 (56 samples) is also diverse, containing samples from LumInf-like groups similar to 0, but the remainder of the samples are classified as LumP by TCGA/Consensus. This may suggest two tendencies in the Luminal infiltrated samples, where the samples from 0 tend towards Basal phenotype while in 4 towards Luminal. The survival plot, \cref{fig:N_II:survival_K_7}, confirms this hypothesis by group 0 (yellow) having a worse prognosis than group 4.
 
 % Luminal Papillary
-Group 3 (67) is mainly compromised of Luminal Papillary (LumP) samples (TCGA, consensus) but also contains samples fron other luminal groups such as Luminal Unstable (LumU) or LumNS (Luminal Non-specified) as well a few Basal. Group 6 (18) and 2 (69) are both compromised of mainly LumP groups with a few small exceptions. The Luminal tendencies is also confirmed by the positive survival rates seen in \cref{fig:N_II:survival_K_7}.
+Group 3 (67) is mainly composed of Luminal Papillary (LumP) samples (TCGA, consensus) but also contains samples from other luminal groups such as Luminal Unstable (LumU) or LumNS (Luminal Non-specified) as well as a few Basal. Groups 6 (18) and 2 (69) are both comprised of mainly LumP groups with a few minor exceptions. The Luminal tendencies are also confirmed by the favourable survival rates seen in \cref{fig:N_II:survival_K_7}.
 
 \begin{figure}[!htb]
     \centering
@@ -296,13 +288,13 @@ Group 3 (67) is mainly compromised of Luminal Papillary (LumP) samples (TCGA, co
 \subsubsection*{Basal} \label{s:N_II:basal}
 
 % Introduce Basal 5
-The Basal groups 1 and 5 have the poorest survival prognosis and are both explored in the Pi plot from \cref{fig:N_II:pi_basal_5}. While the focus of the Pi-plot is on Basal 5, it can be seen that groups 0 and 5 do not share many common genes, and each has its own subset of genes specific to its group when compared to Basal 5.
+The Basal groups 1 and 5 have the poorest survival prognosis and are both explored in the Pi plot from \cref{fig:N_II:pi_basal_5}. While the focus of the Pi-plot is on Basal 5, it can be seen that groups 0 and 5 do not share many common genes, and each has its subset of genes specific to its group when compared to Basal 5. This is unexpected as both groups consist of previously clustered samples as either Luminal Infiltrated or High IFNG.
 
 % Comment on the Pi-plot
-The 'Ref point' in the bottom left represents the X and Y minimum values, denoting the most 'Basal 5' specific point. The top 10 closest points to the referential point are displayed, and it can be noticed that most of the genes are Ensembl genes denoting the unexplored nature of the genes found. However, there are some genes, such as \textit{MT2A}, \textit{MT1X}, and \textit{KRT6B}, which are specific to Basal 5 in comparison with Basal 1. \textit{MT2A} was found in in vitro experiments by to be a tumour suppressor, as its knockdown increased cell invasion and growth \citep{Sung2022-tm}. \textit{MT1X}, along with other metallothioneins (including \textit{MT2A}), was reviewed by \citep{Si2018-ep} and found to have the potential to be biomarkers for cancer diagnosis. \textit{KRT6B} is part of the Keratinization signature specific to the Ba/Sq group; see Lund markers in \cref{tab:lit:lund_genes}.
+The 'Ref point' in the bottom left represents the X and Y minimum values, denoting the most 'Basal 5' specific point. The top 10 closest points to the referential point are displayed, and it can be noticed that most of the genes are Ensembl genes, denoting the unexplored nature of the genes found. However, there are some genes, such as \textit{MT2A}, \textit{MT1X}, and \textit{KRT6B}, which are specific to Basal 5 in comparison with Basal 1. \textit{MT2A} was found in \textit{in vitro} experiments by to be a tumour suppressor, as its knockdown increased cell invasion and growth \citep{Sung2022-tm}. \textit{MT1X}, along with other metallothioneins (including \textit{MT2A}), was reviewed by \citep{Si2018-ep} and found to have the potential to be a biomarker for cancer diagnosis. \textit{KRT6B} is part of the Keratinization signature specific to the Ba/Sq group; see Lund markers in \cref{tab:lit:lund_genes}.
 
 % Squamous
-Less clear in the Pi-plot is that many markers for upregulated Squamous Cell Carcinoma (SCC) from \citep{Hurst2022-sp} are present on the negative side of the Y-axis, being specific to the Basal group; \textit{HMGA2} is one such marker. On the positive side of the vertical axis are the downregulated SCC markers shown in dark yellow, as well as other genes such as \textit{UPK} and \textit{ELF3}, which are specific to luminal groups; see Lund table \cref{tab:lit:lund_genes}.
+Less clear in the Pi-plot is that many markers for upregulated Squamous Cell Carcinoma (SCC) from \citep{Hurst2022-sp} are present on the negative side of the Y-axis, being specific to the Basal group 5; \textit{HMGA2} is one such marker. On the positive side of the vertical axis are the downregulated SCC markers shown in dark yellow, as well as other genes such as \textit{UPK} and \textit{ELF3}, which are specific to luminal groups; see Lund table \cref{tab:lit:lund_genes}.
 
 \begin{sidewaysfigure}
     \centering
@@ -313,10 +305,10 @@ Less clear in the Pi-plot is that many markers for upregulated Squamous Cell Car
 
 
 % Basal 1
-On the positive side of the X-axis are the markers specific to the Basal 1 group in comparison with Basal 5. Only four unnamed Ensembl genes are shown for visualisation purposes, but there are more that are significantly expressed in the DEA. There is also a \acrlong{tf}, \textit{NFAT5}, that was previously identified in the selective edge pruning chapter, \cref{s:N_I:sel_pruning}. It can also be noticed that \textit{SPTNB1} and its antisense \textit{SPTNB1-AS2} are present. In a proteogenomic study, \citep{Fanayan2013-uj} focused on colon cancer and found that these genes are potential tumour markers.
+On the positive side of the X-axis are the markers specific to the Basal 1 group compared to Basal 5. Only four unnamed Ensembl genes are shown for visualisation, but more are expressed in the DEA. There is also a \acrlong{tf}, \textit{NFAT5}, that was previously identified in the selective edge pruning work, \cref{s:N_I:sel_pruning}. It can also be noticed that \textit{SPTNB1} and its antisense \textit{SPTNB1-AS2} are present. In a proteogenomic study, \citep{Fanayan2013-uj} focused on colon cancer and found that these genes are potential tumour markers.
 
 % Conclusion
-The pi-plot in \cref{fig:N_II:pi_basal_5} affirms the 'Basalness' of groups 5 and 1, as well as the luminal properties of cluster 0. The analysis also shows that many significantly expressed genes between groups are \acrlong{lncRNA} denoting the uncharted territory and indicating the potential for new biological discoveries.
+The pi-plot in \cref{fig:N_II:pi_basal_5} affirms the 'Basalness' of groups 5 and 1, as well as the luminal properties of cluster 0. The analysis also shows that many significantly expressed genes between groups are \acrlong{lncRNA}, denoting uncharted territory and indicating the potential for new biological discoveries.
 
 
 
@@ -329,7 +321,7 @@ Group 6 from \cref{fig:N_II:mibc_comp} is one of the smallest luminal groups fou
 The three studied groups contain samples that were previously classified as luminal. The goal of the pi-plot is to highlight any particular molecular properties of Lum 6 over the other luminal subtypes, which is clearly shown by the genes displayed in the third quadrant. From the shape of the scatter plot, it can be seen that there are only a few genes close to either the X or Y-axis, indicating that Lum 6 does not share many genes with the other two groups, especially with group 2, which consists solely of LumP samples (see Sankey \cref{fig:N_II:mibc_comp}). Most of the values specific to group 6 are unnamed Ensembl genes, which indicates the novelty of this finding. Concurrently, this makes it challenging to characterise the subtype.
 
 % Quadrant 1
-In the diagonally opposite quadrant are the genes that are specific to the other two luminal groups, 2 and 3. There are several luminal markers present, such as PI3K Pathways, genes involved in maintaining transitional phenotype \citep{Hurst2022-sp}, and the luminal markers from TCGA \cref{tab:lit:tcga_genes}. Most of the genes specific to the top right do not have a determined role in bladder cancer, and there are several unnamed genes (only a few are shown for visualisation purposes). However, there are a few exceptions, such as \textit{HLTF} and \textit{SETD2}, which have known roles in cancer. \textit{HLTF} was studied by \citep{Dhont2016-vf}, who found that when the gene is silenced, it leads to more mutations in the genome, is present in the early stages of cancer, and is correlated with poorer prognosis. Both Lum 3 and Lum 2 have poorer survival rates than Lum 6, which is different from what the study suggests. In a pan-cancer analysis, the authors in \citep{Lu2021-jt} found that \textit{SETD2} mutation is correlated with a higher mutation burden and immune response across the cancer cohorts in TCGA and therefore with better survival.
+In the diagonally opposite quadrant are the genes that are specific to the other two luminal groups, 2 and 3. There are several luminal markers present, such as PI3K Pathways, genes involved in maintaining transitional phenotype \citep{Hurst2022-sp}, and the luminal markers from TCGA \cref{tab:lit:tcga_genes}. Most of the genes specific to the top right do not have a determined role in bladder cancer, and there are several Ensembl genes (only a few are shown for visualisation purposes). However, there are a few exceptions, such as \textit{HLTF} and \textit{SETD2}, which have known roles in cancer. \textit{HLTF} was studied by \citep{Dhont2016-vf}, who found that when the gene is silenced, it leads to more mutations in the genome, is present in the early stages of cancer, and is correlated with poorer prognosis. Both Lum 3 and Lum 2 have poorer survival rates than Lum 6, which is different from what the study suggests. In a pan-cancer analysis, the authors in \citep{Lu2021-jt} found that \textit{SETD2} mutation is correlated with a higher mutation burden and immune response across the cancer cohorts in TCGA and therefore with better survival.
 
 % Conclusion
 The analysis shows that Group 6 is different from the other groups by exhibiting strong differentially expressed markers in the DEA comparison with both Lum 2 and Lum 3. Unnamed genes were even more present than in the analysis of the basal groups (1, 5) from the previous sections. This indicates that the group has novel biological characteristics that are yet to be discovered.
