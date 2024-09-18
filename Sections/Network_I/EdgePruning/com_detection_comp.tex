@@ -2,10 +2,10 @@
 \section{Leiden vs Stochastic Block Model} \label{s:N_I:sel_tf_com_det}
 
 % Introduce the plots
-\Cref{fig:N_I:com_det_met} shows the evolution of the metrics corresponding to the two community detection algorithms. \Cref{fig:N_I:sbm_com_det_met} looks at the evolution of the MDL (or entropy - lower the better) in the communities found with SBM, while \cref{fig:N_I:leid_com_det_met} presents the Modularity Maximisation score (higher the better) for Leiden. The lines/boxes in blue represents the Experiment which prioritises the biological TF, while the traces in red represents the control with non-TF genes selected. 
+\Cref{fig:N_I:com_det_met} shows the evolution of the metrics corresponding to the two community detection algorithms. \Cref{fig:N_I:sbm_com_det_met} looks at the evolution of the MDL (or entropy - lower the better) in the communities found with SBM, while \cref{fig:N_I:leid_com_det_met} presents the Modularity Maximisation score for Leiden (higher the better). The lines/boxes in blue represent the experiment that prioritises the biological TF, while the traces in red denote the control with non-TF genes prioritised. 
 
 % Comment the scores figure
-The first to notice is that both community detection methods, regardless of the selected genes, perform lower as the minimum degree of the node is increased, indicating an inverse relationship between the minimum degree (for TF) and the performance of the two methods; an effect was also noticed by \citet{Care2019-ij}. This can be explained by that allowing a larger number of edges in a network, the graphs become more complex and require more information to 'describe' or reconstruct the network, this is supported by the ascending trend of the MDL in \cref{fig:N_I:sbm_com_det_met}. The variance of the metric also grows with the increase minimum degree, which is easier to see in the control experiments in Leiden \cref{fig:N_I:leid_com_det_met}.
+The first to notice is that both community detection methods, regardless of the selected genes, perform lower as the minimum degree of the node is increased, indicating an inverse relationship between the minimum degree (for TF) and the performance of the two methods; an effect also noticed by \citet{Care2019-ij}. This can be explained by that allowing a larger number of edges in a network, the graphs become more complex and require more information to 'describe' or reconstruct the network, this is supported by the ascending trend of the MDL in \cref{fig:N_I:sbm_com_det_met}. The variance of the metric also grows with the increase minimum degree, which is easier to see in the control experiments in Leiden, \cref{fig:N_I:leid_com_det_met}.
 
 \begin{figure}[!h]
     \centering
@@ -29,7 +29,7 @@ The first to notice is that both community detection methods, regardless of the 
 % Comment com_size figure
 Another major difference between Leiden and SBM is that the latter finds consistently considerably more communities than the latter; see \cref{fig:N_I:comp_size_com_det}. It can be noticed that SBM has an upward trend proportional with the minimum degree of the nodes, this highlighted by the control experiments. In \cref{fig:N_I:comp_size_com_det}, Leiden appears to find the same number of clusters, but in the \cref{fig:ap:leid_com_size} from Appendix, where the Leiden traces are plot separately, it can be noticed that Leiden tends to finds less communities as the minimum degree is increased. 
 
-\begin{figure}[!t]   
+\begin{figure}[!htb]   
     \centering
     \includegraphics[width=1.0\textwidth,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/com_comp/sbm_Leiden_combNum.png}
       \caption[Leiden vs SBM: Number of communities found]{Community size for Leiden and Stochastic Block Model. Blue lines are represented by the experiments run with biological TF while the red ones are the controls, with non-TF genes. The error bars in the control is given by the standard deviations. The plot shows that SBM consistently find a large number of communities compared to Leiden. Another version of the plot where the trends of the two method are separated can be seen in \cref{fig:ap:leid_com_size} from Appendix.}
