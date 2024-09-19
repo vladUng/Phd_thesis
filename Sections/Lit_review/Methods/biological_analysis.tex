@@ -2,7 +2,7 @@
 
 
 % Introduce the methods
-Throughout the project there are different methods used to find \acrfull{mibc} subgroups from the network approach followed by the cluster analysis (\cref{s:N_I,s:N_II}) or by just applying clustering models in \cref{s:clustering_analysis}. In all cases there are new subgroups that require interpretation with the goal to both biologically validate as well as to find new markers or functions. To achieve this three methods are used: \acrfull{dea}, pi-plots and \acrfull{gsea} which are all covered in the following subsections. 
+Throughout the project there are different methods used to find \acrfull{mibc} subgroups from the network approach followed by the cluster analysis (\cref{s:N_I,s:N_II}) or by just applying clustering models in \cref{s:clustering_analysis}. In all cases there are new subgroups that require interpretation with the goal to both biologically validate as well as to find new markers or functions. To achieve this three methods are used: \acrlong{dea}, pi-plots and \acrlong{gsea} which are all covered in the following subsections. 
 
 % Highlight the flow
 % Who introduced the method
@@ -17,7 +17,7 @@ The \acrshort{dea} is the most important tool as it allows to determine the gene
 The project employed the sleuth method from \citeauthor{Pimentel2017-xp} to perform differential expression analysis between two sample groups. This method takes as input a file containing the samples, their cluster labels, and the paths to the raw RNAseq reads. It returns the \textit{p} and \textit{q} (corrected p-value) values for each gene, indicating the significance of the expression differences.
 
 % How the Volcano figure is constructed
-The $-log_{10}$ transformed \textit{p}-values constitute the Y-axis in a volcano plot, while the X-axis displays the $log_{2}$ transformed fold-change in gene expression between the two groups. This means that the volcano plot, as shown in \cref{fig:lit:dea_eg}, displays the magnitude of gene expression change on the horizontal axis and the significance of that change on the vertical axis.
+The $-log_{10}$ transformed \textit{q}-values constitute the Y-axis in a volcano plot, while the X-axis displays the $log_{2}$ transformed fold-change in gene expression between the two groups. This means that the volcano plot, as shown in \cref{fig:lit:dea_eg}, displays the magnitude of gene expression change on the horizontal axis and the significance of that change on the vertical axis.
 
 % Interpretation
 In the example Volcano plot from \cref{fig:lit:dea_eg}, the two sides of the plot represent the two compared subgroups: subtype 1 on the right-hand side and subtype 2 on the left-hand side. The further up a gene is on the left side, the more differentially expressed it is in subtype 1, e.g., "Gene A" or "Gene P." Conversely, "Gene M" is specific to subtype 2. "Gene L" is an example of a gene that has higher expression in subtype 1 but is not significantly expressed.
@@ -45,7 +45,7 @@ The volcano plots are a great tool to understand the gene expression differences
 \end{equation} 
 
 % Describe the comparison
-By compressing the \acrshort{dea} results into one score enables four group comparison, two on each of the axis of a scatter plot as seen in \cref{fig:lit:pi_eg}. The X-axis holds the pi values for subtype 4 on the positive and subtype 3 on the negative side. On the vertical axis the positive side marks points for subtype 1 and negative for subtype 2. As in the case with the Volcano plots, the scale of the axis is important and denotes the strength in the difference between the compared groups. This is highlighted by difference in shape by the coloured rectangles which are all within $+/-5\%$ of the axes and are a visual cue for the genes that are very close to the axis.
+By compressing the \acrshort{dea} results into one score enables four group comparison, two on each of the axis of a scatter plot as seen in \cref{fig:lit:pi_eg}. The X-axis holds the pi values for subtype 4 on the positive and subtype 3 on the negative side. On the vertical axis the positive side marks points for subtype 1 and negative for subtype 2. As in the case with the Volcano plots, the scale of the axis is important and denotes the strength in the difference between the compared groups. This is highlighted by difference in shape by the coloured rectangles which are all within $+/-$5\% of the axes and are a visual cue for the genes that are very close to the axis.
 
 % Talk about the quadrant
 As indicated by coloured rectangles, in \cref{fig:lit:pi_eg}, the closer to the axis a point is the more specific to that group is. The values between the coloured rectangles are part of a quadrant, starting from the right corner are marked by Roman numbers (I, II, III, IV) represents the specific between two groups; shown in green text. For example, "Gene C" is specific to both subtype 4 and 2, whereas "Gene E" to groups 2 and 3. 
@@ -72,10 +72,10 @@ GSEA works by ranking all genes in your dataset according to a predefined metric
 In the pi-plot from \cref{fig:lit:pi_eg}, quadrant I represents genes specific to the subtype 1 and subtype 2. To determine whether any of these genes are enriched in a REACTOME pathway, they must first be ranked. The blue cross, referred to as the 'Ref point,' represents the referential point, which consists of the maximum value on the X-axis (the most significantly expressed in subtype 4 over subtype 3) and the maximum on the Y-axis (the most significantly expressed gene in comparison subtype 1 over group 2). This point thus represents the 'most significantly expressed' coordinates across the two comparisons. The distances of all other points from this referential marker are computed, and the genes are then ranked. 
 
 
-\begin{figure}[!b]
+\begin{figure}[!t]
     \centering
     \includegraphics[width=0.8\textwidth, keepaspectratio]{Sections/ClusteringAnalysis/Resources/discussion/other_groups/lumInf_reactome_10_top.png}
-    \caption[GSEA plot example]{Enrichment for the analysis in \cref{fig:cs:lumInf} used in the background chapter to showcase the \acrshort{gsea} . The group studied is the Luminal Infiltrated (LumInf) in quadrant III.}
+    \caption[GSEA plot example]{Enrichment for the analysis in \cref{fig:cs:lumInf} used in the background chapter to showcase the \acrshort{gsea}. The group studied is the Luminal Infiltrated (LumInf) in quadrant III.}
     \label{fig:lit:gsea_eg}
 \end{figure}
 

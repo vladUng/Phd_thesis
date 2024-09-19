@@ -11,7 +11,7 @@ One of the most popular methods (and the simplest) is K-means clustering, which 
 \begin{figure}[!t]
   \centering
   \includegraphics[width=0.8\textwidth,height=0.5\textheight,keepaspectratio]{Sections/Lit_review/Resources/clustering_scikit.png}
-    \caption[Clustering models on different datasets]{How K-means (MiniBatch version), Spectral Clustering, Wards, Agglomerative Clustering, and Gaussian Mixture Models behave with different types of 2D datasets. Running times shown on the bottom right corner, all algorithms having comparable running times, with K-means being the fastest. Image adapted from \citet{Scikit-learn_undated-ax}/}
+    \caption[Clustering models on different datasets]{How K-means (MiniBatch version), Spectral Clustering, Wards, Agglomerative Clustering, and Gaussian Mixture Models behave with different types of 2D datasets. Running times shown on the bottom right corner, all algorithms having comparable running times, with K-means being the fastest. Image adapted from \citet{Scikit-learn_undated-ax}.}
     \label{fig:lit:clustering_types}
 \end{figure}
 
@@ -64,7 +64,7 @@ The hierarchical clustering does not require the specification of the number of 
 
 Gaussian Mixture Models (GMM) are probabilistic models that assume all data points are generated from a mixture of a finite number of Gaussian distributions with unknown parameters. GMMs accommodate asymmetric clusters compared to K-means which assumes clusters are similar in size. Another applied clustering algorithm in the project, Spectral Clustering, transforms the clustering problem into a graph-partitioning problem. It begins by constructing an affinity matrix based on the pairwise similarity of points. It then uses linear algebra to project the data into a latent space from which the clusters are identified using methods such as K-means.
 
-The clustering algorithms presented so far are used throughout the project, initially to establish a referential point independent of the methods used in other MIBC subtyping classifications \citep{Robertson2017-mg, Marzouka2018-ge, Kamoun2020-tj}. Then, the clustering models are used to stratify the output of the network approach.
+The clustering algorithms presented are used throughout the project, initially to establish a referential point independent of the methods used in other MIBC subtyping classifications \citep{Robertson2017-mg, Marzouka2018-ge, Kamoun2020-tj}. Then, the clustering models are used to stratify the output of the network approach.
 
 
 % Clustering metrics
@@ -133,5 +133,5 @@ PCA is extensively used in this project, initially to reduce the dimensionality 
 
 While \acrshort{pca} is the main dimensionality reduction method used in this project, it has certain limitations, primarily its poor performance on non-linear datasets. To address these shortcomings, \acrfull{umap} and \acrfull{tsne} were developed by \citep{McInnes2018-dz,Hinton2002-pz} . Both are stochastic and non-linear dimensionality reduction techniques widely used in bioinformatics. UMAP has been gaining popularity as it is more stable in representing both within- and between-cluster sample relatedness. However, while UMAP is effective at reducing data dimensionality, its visualisations can be misleading, as the proximity of points and clusters does not necessarily represent the 'closeness' of the data \citep{Chari2023-et}. When applying these techniques, it is advisable to perform clustering first and then use UMAP/t-SNE for visualisation.
 
-Another dimensionality reduction technique is \acrfull{nmf} \citep{Lee1999-fj}, which operates on similar principles to PCA by finding a matrix of lower rank with minimal information loss. This approach means that features important to the data are better preserved when reduced to lower dimensions, while those that do not contribute significantly to data resolution are discarded. Additionally, NMF conserves the non-linear aspects of the data, and a Bayesian version of it has been used in the \acrlong{tcga} classification by \citet{Robertson2017-mg}. NMF is also used in the work of propagating mutation data into networks by \citet{Yang2016-dm, Cai2008-fv}, and this is further discussed in \cref{s:lit:net_prop}.
+Another dimensionality reduction technique is \acrfull{nmf} \citep{Lee1999-fj}, which operates on similar principles to PCA by finding a matrix of lower rank with minimal information loss. This approach means that features important to the data are better preserved when reduced to lower dimensions, while those that do not contribute significantly to data resolution are discarded. Additionally, NMF conserves the non-linear aspects of the data, and a Bayesian version of it has been used in \acrlong{tcga} classification \citep{Robertson2017-mg}. NMF is also used in the work of propagating mutation data into networks by \citet{Yang2016-dm, Cai2008-fv}, and this is further discussed in \cref{s:lit:net_prop}.
 

@@ -1,0 +1,13 @@
+\newpage
+\newgeometry{left=1.5cm, right=1.5cm, top=0.8cm, bottom=1cm}
+\begin{figure}[p]
+  \thispagestyle{empty} % Suppress the page number on this page
+  \centering
+  \captionsetup{justification=centering, labelfont=bf}
+    \parbox{\textwidth}{\centering \Huge Tumour derived Network - Leiden\vspace{0.5cm} } 
+    \label{fig:N_I:tum_net}
+  \includegraphics[width=0.9\paperwidth, keepaspectratio]{Sections/Network_pages/images/tum_std_4K_6TF_lowRes.jpg} % Full-page image
+  \parbox{0.8\textwidth}{\centering Network created from using the 5000 most varied genes in the tumour dataset, no weight modifier, minimum degree of 3 for standard genes and 6 for TF.}
+\end{figure}
+\restoregeometry
+\newpage
