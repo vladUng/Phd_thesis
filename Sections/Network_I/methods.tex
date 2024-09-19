@@ -22,7 +22,7 @@ For cluster analysis usually a third of the expressed genes (3000-4000 genes) ar
 
 \subsection{Weight modifiers} \label{s:N_I:weight_modifiers}
 
-The network weights are modified to integrated the mutation burden across the TCGA cohort into the network. The changes are applied after the Spearman correlation matrix is computed and before the selective edge pruning. Thus, the integration of the mutation burden influences the number of connections a gene has. This is important for the Module Connectivity score which ranks genes by their importance in the community considering the node's edges and their weights; the score is later introduced in \cref{s:N_I:methods_modcon}.
+The network weights are modified to integrated the mutation burden across TCGA cohort into the network. The changes are applied after the Spearman correlation matrix is computed and before the selective edge pruning. Thus, the integration of the mutation burden influences the number of connections a gene has. This is important for the Module Connectivity score which ranks genes by their importance in the community considering the node's edges and their weights; the score is later introduced in \cref{s:N_I:methods_modcon}.
 
 % What is the desired behaviour
 There are two mutation integration strategies proposed, one that rewards or promotes the mutated genes in the network by increasing the edges weights (i.e. correlation values). The other is the reverse and penalising the mutated genes by reducing their weights in the graph. The desired behaviour is for the highly mutated genes such as \textit{TP53} or \textit{TTN} (both are mutated in $\sim$50\% of the MIBC cohort) to have the largest change by either doubling their weights or reducing to almost 0. Concurrently, the non-mutated genes should not be effected by the weight modifiers.
@@ -44,7 +44,7 @@ There are two mutation integration strategies proposed, one that rewards or prom
 \end{equation}
 
 % Introduce the equation
-To achieve the desired behaviour the \cref{eq:weight_modifiers_1} is used where where $w$ is the $log_2$ transformed of the mutation burden shifted by 1 (to avoid undefined values at 0 see \cref{eq:w}, $x$ represents the mutation burden taken from the TCGA dataset.  The arc-like behaviour of the function is shown by the red line in \cref{fig:N_I:modifiers}. Most of the mutated genes increase the weights value up to $50\%$ (value of $1.5$) for reward while the opposite is true for the penalised modifier. 
+To achieve the desired behaviour the \cref{eq:weight_modifiers_1} is used where where $w$ is the $log_2$ transformed of the mutation burden shifted by 1 (to avoid undefined values at 0 see \cref{eq:w}, $x$ represents the mutation burden taken from TCGA dataset.  The arc-like behaviour of the function is shown by the red line in \cref{fig:N_I:modifiers}. Most of the mutated genes increase the weights value up to $50\%$ (value of $1.5$) for reward while the opposite is true for the penalised modifier. 
 
 % \begin{equation} \label{eq:norm3_func}
 % \text{f}(w) = \frac{\max(w) + w}{\max(w)}
