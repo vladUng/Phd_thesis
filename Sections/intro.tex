@@ -8,7 +8,6 @@
       \begin{itemize}
         \item Motivation and Aims
         \item Thesis outline
-        \item Contributions to knowledge
       \end{itemize}
     }
 }
@@ -19,13 +18,13 @@
 
 
 % cancer is bad
-In the article titled "Is the world making progress against cancer?" \citep{Roser2015-qb}, the authors provide an overview of humanity's progress in combating the disease. Despite significant technological and biological advancements over the past decades, and an approximately 17\% reduction in standardised cancer death rates from 1990 to 2017, cancer remains a major global health challenge. As the world’s population continues to live longer, more people are being diagnosed with cancer, as reflected in the overall increase in cancer deaths (see \cref{fig:cancer_death}). Ageing is associated with the malfunction of normal physiological processes, which increases the likelihood of developing cancer. This underscores the ongoing prevalence of cancer and highlights the need for continuous development of new treatments to address the growing number of patients.
+In the article titled “Is the world making progress against cancer?” \citep{Roser2015-qb}, the authors provide an overview of humanity’s progress in combating the disease. Despite significant technological and biological advancements over the past decades and an approximately 17\% reduction in standardised cancer death rates from 1990 to 2017, cancer remains a major global health challenge. As the world’s population continues to live longer, more people are being diagnosed with cancer, as reflected in the overall increase in cancer deaths (see \cref{fig:cancer_death}). A potential explanation for this is that ageing is associated with the malfunction of normal physiological processes, which increases the likelihood of developing cancer. The rise in the number of cases underscores the ongoing prevalence of cancer and highlights the need for continuous development of new treatments to address the growing number of patients.
 
 
 % Bladder cancer
-According to Cancer Research UK \citeyearpar{Cancer_Research_UK2015-cf}, bladder cancer is the 10\textsuperscript{th} leading cause of cancer death, accounting for 3\% of all cancer-related deaths in the UK, with 56\% of cases occurring in people older than 75. Almost half (52.6\%) of those diagnosed with bladder cancer survive for more than five years, and 46.4\% survive for more than ten years. The treatments for bladder cancer require periodic medical check-ups as there is an increased recurrence rate, and in some instances, the bladder is removed. All of these aspects have a negative impact on the patient's quality of life and represent a burden for the healthcare system.
+According to Cancer Research UK \citeyearpar{Cancer_Research_UK2015-cf}, bladder cancer is the 10\textsuperscript{th} leading cause of cancer death, accounting for 3\% of all cancer-related deaths in the UK, with 56\% of cases occurring in people older than 75. Almost half (52.6\%) of those diagnosed with bladder cancer survive for more than five years, and 46.4\% survive for more than ten years. The treatments for bladder cancer require periodic medical check-ups as there is an increased recurrence rate, and in some instances, the bladder is removed. All of these aspects have a negative impact on the patient’s quality of life and represent a burden for the healthcare system.
 
-There are two major types of bladder cancer: \gls{NMIBC} (NMIBC) and \gls{MIBC} (MIBC). 9 out of 10 patients with NMIBC survive five years from the diagnosis, but there is a high chance of recurrence, which impacts the quality of life. MIBC is more aggressive than the other, with a higher chance of becoming metastatic and a worse 5-year survival rate of approximately 50\%. Bladder cancer is the 4\textsuperscript{th} most mutated cancer and suffers many epigenetic machinery modifications. The disruptions at multiple molecular levels make bladder cancer a challenging disease to study, and this project focuses on researching the subgroups of \acrlong{MIBC}.
+There are two major types of bladder cancer: \gls{NMIBC} (NMIBC) and \gls{MIBC} (MIBC). Statistically nine out of ten patients with NMIBC survive five years from the diagnosis, but there is a high chance of recurrence, which impacts the quality of life \citep{Knowles2015-mu}. MIBC is more aggressive than NMIBC, with a higher chance of becoming metastatic and a worse 5-year survival rate of approximately 50\%. Bladder cancer is the 4\textsuperscript{th} most mutated cancer and suffers many epigenetic machinery modifications \citep{Alexandrov2013-gi}. The disruptions at multiple molecular levels make bladder cancer a challenging disease to study, and this project focuses on researching the subgroups of \acrlong{mibc}.
 
 
 
@@ -37,10 +36,10 @@ There are two major types of bladder cancer: \gls{NMIBC} (NMIBC) and \gls{MIBC} 
 \end{figure}
 
 % Limitations with MIBC classifications
-\gls{GE}, or the abundance of the genes in the tumour tissue, is the primary data source for stratifying MIBC \citep{Kamoun2020-tj,Robertson2017-mg,Marzouka2018-ge}. The aim of finding subgroups of the disease is to improve treatments by developing more targeted solutions, a step towards personalised treatments. However, while there are some clinical trials \citep{Griffin2024-zr} underway, these subgroups have yet to significantly improve clinical outcomes. One reason is that other tumour information, such as anomalies (mutations) or epigenetic modifications, is analysed separately and then attributed to the groups identified through gene expression.
+\gls{GE}, or the abundance of the genes in the tumour tissue, is the primary data source for stratifying MIBC \citep{Kamoun2020-tj,Robertson2017-mg,Marzouka2018-ge}. The aim of finding subgroups of the disease is to improve treatments by developing more targeted solutions, a step towards personalised treatments. While there are some clinical trials \citep{Griffin2024-zr} underway, these subgroups have yet to significantly improve clinical outcomes. One reason is that other tumour information, such as anomalies (mutations) or epigenetic modifications, is analysed separately and then attributed to the groups identified through gene expression.
 
 % What we're doing
-Therefore, the motivation of this project is to address the limitations of current \gls{MIBC} stratification by developing a new integrative network approach to stratify \gls{MIBC} in a way that is translatable to the clinic.
+The motivation of this project is therefore to address the limitations of current \gls{MIBC} stratification by developing a new integrative network approach to stratify \gls{MIBC} in a way that is translatable to the clinic.
 
 
 % While some clinical trials \citep{Griffin2024-zr} are underway, these subgroups have yet to improve clinical outcomes significantly. The complex molecular characteristics of MIBC necessitate the development of subtypes based on multi-omics data integration.
@@ -51,7 +50,7 @@ Therefore, the motivation of this project is to address the limitations of curre
 
 % The project's hypothesis proposes that integrating additional data types into the gene expression data will result in MIBC subtypes that more accurately represent the molecular biology of the samples. Especially by combining the gene expression of the non-tumour samples with the mutations and expressed genes in the tumour, it will lead to new MIBC subgroups. Based on this, the project aims can be defined as follows:
 
-The current MIBC subtypes are based only on tumour expression data without considering the other available data types \citep{Kamoun2020-tj, Robertson2017-mg}. However, this is a complex type of cancer where normal processes malfunction at different levels. Thus, it is hypothesised that using gene expression from non-tumour (healthy) samples into which integrated mutation and regulatory information will lead to new and different MIBC subgroups with a closer representation of biology. These subgroups will then help advance bladder cancer research and develop targeted treatments. Based on this hypothesis, the project aims can be defined as follows:
+The current MIBC subtypes are based only on tumour expression data without considering the other available data types \citep{Kamoun2020-tj, Robertson2017-mg}. However, this is a complex type of cancer where normal processes malfunction at different levels. Thus, it is hypothesised that integrating mutation and prioritising regulatory genes into the healthy expression dataset will lead to new and different MIBC subgroups with a closer representation of biology. These subgroups will help advance bladder cancer research and develop targeted treatments. Based on this hypothesis, the project aims are defined as follows:
 
 \begin{enumerate}
     \item Create a method that allows the integration of multiple data types
@@ -59,7 +58,7 @@ The current MIBC subtypes are based only on tumour expression data without consi
     \item Enable researchers to trace the biological mechanisms behind each subtype
 \end{enumerate}
 
-While working on achieving the research aims stated above, the research was guided by the following principles:
+In addition to these aims, the guiding principles of this project are:
 
 \begin{itemize}
     \item Traceability - allows the researchers to understand and explain the outputs of the approach used
@@ -83,11 +82,9 @@ The chapter assesses the impact of these data integration strategies on the netw
 
 \textbf{Selective Edge Pruning (\cref{s:N_I:sel_pruning})} - This chapter extends the previous work in the project, focusing on finding the appropriate configuration for the number of edges assigned to Transcription Factors genes and comparing the Leiden community detection algorithm with \acrfull{sbm}. From the selective edge pruning experiments, 98 TF were identified as naturally co-expressed with other genes, even in a control network. Using the tumour gene expression of this subset to stratify the TCGA's MIBC cohort, a Basal subgroup formed of 7\% of samples from the tumour cohort was discovered, characterised by the lowest survival prognosis in the literature. Notably, this subgroup does not contain samples previously classified as \acrlong{ne} and exhibits squamous phenotypes. \acrshort{sbm} is preferred for community detection as it identifies more communities and is robust in detecting patterns in random data.
 
+\textbf{Refined network approach (\cref{s:N_II})} - This section introduces a refined network approach in which the data integration methods from Chapter 4 are enhanced to have a greater impact on the network. Compared to the work in \cref{s:N_I}, the network is built from a larger number of healthy samples, and the mutation burden of MIBC is gradually integrated into edge weight modifiers. The research identifies 122 genes (TF and non-TF) concentrated in small communities (\(<\)10 nodes) that are highly correlated and have a high mutation burden. The analysis uncovers \acrlong{lncRNA} genes, many of which are statistically significantly differentially expressed between the derived subgroups. These do not encode proteins and are understudied, but recent research suggests that they have a regulatory role \citep{Statello2021-md} and play a role in bladder cancer \citep{Zhan2018-um,Logotheti2020-ya}. This indicates the added complexity and information gained by using healthy gene expression data and highlights the limitations of current biological knowledge.
 
-\textbf{Network II (\cref{s:N_II})} - It introduces a refined network approach where the data integration methods from Chapter 4 are improved to have a larger impact on the network. Compared to the work from \cref{s:N_I}, the network is built from a larger number of healthy samples and the mutation burden of the MIBC is gradually integrated into edge weight modifiers. The research presented identifies 122 genes (TF and non-TF) concentrated in small communities (\(<\)10 nodes) that are highly and strongly correlated, as well as having a high mutation burden. The analysis showed that many of the significantly differentially expressed genes are \acrlong{lncRNA} genes, which do not encode for proteins, making them understudied in cancer subtyping but recent studies show that these have a regulatory role \citep{Statello2021-md}. This indicates the added level of complexity and information by using the healthy gene expression representation and the limits of current biological knowledge.
-
-
-\textbf{Discussion \& Future Work (\cref{s:discussion})} - This chapter presents the significance and implications of the findings throughout the project and discusses potential avenues for future research.
+\textbf{Discussion \& Future Work (\cref{s:discussion})} - This chapter presents the significance and implications of the findings throughout the project and proposes potential avenues for future research.
 
 
 %%%%%%%%%%%%%% Contribution to knowledge %%%%%%%%%%%%%%
