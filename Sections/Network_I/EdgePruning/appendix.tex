@@ -28,7 +28,7 @@ The advantage of showing the two figures separately is that the variance in the 
 % Cluster analysis
 \section{Cluster analysis} \label{s:ap:sel_tfs_cs}
 
-The clustering analysis below supports the MIBC groups found using the expression of the 98 TF genes which are highly correlated with other genes in the tumour network, see \cref{s:N_I:sel_tfs_mibc}.
+The cluster analysis below supports the MIBC groups found using the expression of the 98 TF genes which are highly correlated with other genes in the tumour network, see \cref{s:N_I:sel_tfs_mibc}.
 
 % Talk about the clustering
 Hierarchical clustering was applied to the tumour expression of the 98 TF after 11 samples previously identified as outliers were removed\footnote{In this context, outliers are samples that cluster in 1-3 groups, making it hard to interpret the dendrogram from the hierarchical clustering}, leaving 392 samples for clustering. The tumour\footnote{TCGA's MIBC cohort} data was log2(TPM+1) transformed, normalised by the quantiles, and then agglomerative clustering with average linkage was applied on the 1-Pearson correlation distance\footnote{In this case, for both clustering and visualisation, Morpheus from the Broad Institute was used \cite{Broad-Institute2016-tn}}. This method was preferred over those developed in the previous chapter because the number of genes was small and the heatmap from Morpheus is a useful tool for showing the gene expression specific to a group. The heatmap and the output are shown in \cref{fig:ap:morph_sel_tfs} in the Appendix.

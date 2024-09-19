@@ -7,7 +7,7 @@ It is worth noting that the \acrfull{pgcna} developed by \citet{Care2019-ij} is 
 \begin{sidewaysfigure}
     \centering
     \includegraphics[width=1.0\textwidth,keepaspectratio]{Sections/Network_I/Resources/Methods/network_pipeline.png}
-    \caption[The integrative network pipeline]{Network pipeline developed to integrate mutation burden, transcription factors (TF), and the non-tumour dataset; supporting the methods described in \cref{s:N_I:methods}. The first step is to build the network, which includes: 1) computing the edge weights with Spearman correlation and applying modifiers to integrate mutation data; 2) selective edge pruning, where TF are allowed a higher minimum degree; 3) applying community detection algorithms such as Leiden or Stochastic Block Model. The second step involves extracting the top 100 most well-connected nodes in a community using the ModCon score. The Module Evaluation Value (MEV) is then computed to assess the enrichment of the selected genes from each community in the MIBC samples from TCGA. Finally, the MEVs are grouped together using clustering analysis methods.}
+    \caption[The integrative network pipeline]{Network pipeline developed to integrate mutation burden, transcription factors (TF), and the non-tumour dataset; supporting the methods described in \cref{s:N_I:methods}. The first step is to build the network, which includes: 1) computing the edge weights with Spearman correlation and applying modifiers to integrate mutation data; 2) selective edge pruning, where TF are allowed a higher minimum degree; 3) applying community detection algorithms such as Leiden or Stochastic Block Model. The second step involves extracting the top 100 most well-connected nodes in a community using the ModCon score. The Module Evaluation Value (MEV) is then computed to assess the enrichment of the selected genes from each community in the MIBC samples from TCGA. Finally, the MEVs are grouped together using cluster analysis methods.}
     \hfill
     \label{fig:N_I:network_pipeline}
 \end{sidewaysfigure}
@@ -18,7 +18,7 @@ It is worth noting that the \acrfull{pgcna} developed by \citet{Care2019-ij} is 
 The genes are filtered by the same aggressive approach as in the cluster analysis chapter, \cref{s:cs:methods}, selecting the top on 4000 genes, for tumour networks (\cref{s:N_I:tum}), and 5000 for P0 networks (\cref{s:p0}). These are the genes with the highest median/standard deviation and are expressed in at least 90\% of the samples. A Spearman Correlation matrix is then built, where the correlation of two genes represents the edge weights while network nodes are the genes themselves. 
 
 % There is not specific rationale for choosing 3K or 5K top most varied genes. 
-For clustering analysis usually a third of the expressed genes (3000-4000 genes) are used (e.g. TCGA subtyping - \citet{Robertson2017-mg}). When selecting only the top 3K, there are few genes included that are commonly mutated in the tumour dataset, so the threshold was lowered to 5K.
+For cluster analysis usually a third of the expressed genes (3000-4000 genes) are used (e.g. TCGA subtyping - \citet{Robertson2017-mg}). When selecting only the top 3K, there are few genes included that are commonly mutated in the tumour dataset, so the threshold was lowered to 5K.
 
 \subsection{Weight modifiers} \label{s:N_I:weight_modifiers}
 
@@ -145,7 +145,7 @@ After the genes are ranked with ModCon the top 100 genes are selected as represe
     \end{algorithmic}
 \end{algorithm}
 
-The output of the \cref{alg:N_I:mev} is a $M\text{x}N$ matrix, with $M$ communities and $N$ samples in the targeted dataset. On this matrix clustering analysis can then be applied to find the cancer subtypes. Thus, the methods and analysis tools developed in the previous chapter on cluster analysis, \cref{s:clustering_analysis}, can be applied to find the appropriate cluster configuration (see \cref{s:ap:P0_cs_analysis}).
+The output of the \cref{alg:N_I:mev} is a $M\text{x}N$ matrix, with $M$ communities and $N$ samples in the targeted dataset. On this matrix cluster analysis can then be applied to find the cancer subtypes. Thus, the methods and analysis tools developed in the previous chapter on cluster analysis, \cref{s:clustering_analysis}, can be applied to find the appropriate cluster configuration (see \cref{s:ap:P0_cs_analysis}).
 
 
 \subsection{Implementation details} \label{s:N_I:implementation}

@@ -1,5 +1,5 @@
 % Clustering analysis
-\subsection{Clustering analysis} \label{s:lit:clustering}
+\subsection{Cluster analysis} \label{s:lit:clustering}
 
 \subsubsection*{Models} \label{s:lit:cs_models}
 
@@ -124,9 +124,9 @@ In contrast to many computationally or physics-focused data analysis problems, b
 Variance is important as it explains how much the data points differ from each other, which can also be thought of as a proxy for the 'interesting' aspects of the data. For example, when the samples in a dataset do not vary a lot, it is easier to describe the information present; in this case, fewer principal components (PCs) are needed. Conversely, when the data points have a high variance, the dataset is more complex, and more PCs are required to adequately represent the dataset.
 
 % Where PCA is useful
-In simple cases, the variance between biological sexes across the dataset's samples can be represented by a single PC instead of the expression of a few specific genes. In more complex situations, such as in this project, the PCs may encode genetic variation that is specific to a subtype. For example, the first two components often encode for the Basal and Luminal phenotypes of MIBC, as seen in the cluster plot from the clustering analysis pipeline \cref{fig:cs:clustering_pipeline}.
+In simple cases, the variance between biological sexes across the dataset's samples can be represented by a single PC instead of the expression of a few specific genes. In more complex situations, such as in this project, the PCs may encode genetic variation that is specific to a subtype. For example, the first two components often encode for the Basal and Luminal phenotypes of MIBC, as seen in the cluster plot from the cluster analysis pipeline \cref{fig:cs:clustering_pipeline}.
 
-PCA is extensively used in this project, initially to reduce the dimensionality of the data, and subsequently as a proxy metric to gauge the amount of variance contained in a subset of genes. The work in \cref{s:clustering_analysis} covers the clustering analysis used in the project, where the methods for determining the number of PCs are discussed in \cref{s:cs:right_config}, along with the effects of dimensionality reduction on the clustering metrics.
+PCA is extensively used in this project, initially to reduce the dimensionality of the data, and subsequently as a proxy metric to gauge the amount of variance contained in a subset of genes. The work in \cref{s:clustering_analysis} covers the cluster analysis used in the project, where the methods for determining the number of PCs are discussed in \cref{s:cs:right_config}, along with the effects of dimensionality reduction on the clustering metrics.
 
 
 \subsubsection*{Limitations}
