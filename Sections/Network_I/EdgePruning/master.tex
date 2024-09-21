@@ -95,7 +95,7 @@ Considering the limitations, the analysis performed suggests that both the subse
 % Comm detection
 \subsubsection*{Community detection}
 
-Varying the number of edges per TF significantly impacts the community detection algorithms, Leiden more than SBM. It was observed that the former finds fewer communities as the nodes' degree is increased, while SBM is more stable. This, along with the work from \citet{Peixoto2021-jx, Peixoto2023-rt}, which shows that Modularity Maximisation methods are prone to finding patterns in noise, made SBM the preferred method in this project. In this chapter, the simple degree-corrected version of SBM was used, but a hierarchical version of it will be used in the next chapter. The hierarchical SBM is more complex and computationally expensive than the standard version, but it does not have a threshold on the number of communities it can find; limit discussed in \cref{s:lit:sbm}.
+Varying the number of edges per TF significantly impacts the community detection algorithms, Leiden more than SBM. It was observed that the former finds fewer communities as the nodes' degree is increased, while SBM is more stable. This, along with the work from \citet{Peixoto2023-se, Peixoto2023-rt}, which shows that Modularity Maximisation methods are prone to finding patterns in noise, made SBM the preferred method in this project. In this chapter, the simple degree-corrected version of SBM was used, but a hierarchical version of it will be used in the next chapter. The hierarchical SBM is more complex and computationally expensive than the standard version, but it does not have a threshold on the number of communities it can find; limit discussed in \cref{s:lit:sbm}.
 
 
 \subsection* {Limitations}
