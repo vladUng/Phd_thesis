@@ -89,7 +89,7 @@ The samples from the ABS-Ca and UD datasets are at the opposite side of the diff
 
 \begin{sidewaysfigure}
     \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/sel_tfs/sel_tfs_pi_all_var_rect.png}
-    \caption[The 98 TF and the DEA across the non-tumour datasets]{Pi plot across the three differentiation tissue types. The DEA is run between the ABS-Ca samples and the P0 (X-axis) and UD (Y-axis). Resulting in a scatter plot where the quadrants (Q) holds the genes specific to the ABS-Ca samples in Q I, ABS-Ca and UD in Q II, UD and P0 in Q III and P0 and ABS-Ca in Q IV. The markers in 
+    \caption[The 98 TF and the DEA across the healthy datasets]{Pi plot across the three differentiation tissue types. The DEA is run between the ABS-Ca samples and the P0 (X-axis) and UD (Y-axis). Resulting in a scatter plot where the quadrants (Q) holds the genes specific to the ABS-Ca samples in Q I, ABS-Ca and UD in Q II, UD and P0 in Q III and P0 and ABS-Ca in Q IV. The markers in 
     are only varied in the tumour datasets, the blues only in non-tumour and yellow. the markers in red are genes TF that are core to the bladder cancer tissue. }
     \label{fig:N_I:pi_sel_tfs_var}
 \end{sidewaysfigure}
@@ -172,7 +172,7 @@ The outputs of the GSEA runs using the Reactome database are summarised in two t
 \begin{figure}[!htb]   
     \centering
     \includegraphics[width=1.0\textwidth,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/pi_gsea/pi_smallBasal.png}
-      \caption[Pi-plot to study the Basal group with lowest survival]{Pi plot showing the Small Basal vs Large Basal on the X-axis, and Small-Basal vs Mes-like Y-axis. This plot highlights the genes that are high and significantly expressed in the Small Basal subtype. }
+      \caption[Pi-plot - for Basal group with the poorest survival]{Pi plot showing the Small Basal vs Large Basal on the X-axis, and Small-Basal vs Mes-like Y-axis. This plot highlights the genes that are high and significantly expressed in the Small Basal subtype. }
     \label{fig:N_I:pi_smallBasal_comp}
 \end{figure}
 
@@ -257,7 +257,7 @@ GSEA was also applied to the hallmark gene set (50 pathways) results that can be
     FCGAMMA RECEPTOR FCGR DEPENDENT PHAGOCYTOSIS & 2.479 & 0 & 102 & 97 & 0.951 \\   
     \bottomrule
   \end{tabularx}
-  \caption[Summary of the GSEA for the new basal subgroups]{Normalised Enrichment Score (NES), False Discovery Rate (FDR) q-val, and lead gene statistics for the two basal groups.The lead genes from a pathway are selected by GSEAPY based on when the NES reached its peak; see \cref{s:lit:gsea} for how GSEA was run. }
+  \caption[GSEA summary for the new basal subgroups]{Normalised Enrichment Score (NES), False Discovery Rate (FDR) q-val, and lead gene statistics for the two basal groups.The lead genes from a pathway are selected by GSEAPY based on when the NES reached its peak; see \cref{s:lit:gsea} for how GSEA was run. }
   \label{tab:N_I:gsea_basal_reactome}
 \end{table}
 
@@ -298,7 +298,7 @@ GSEA was also applied to the hallmark gene set (50 pathways) results that can be
     EUKARYOTIC TRANSLATION INITIATION & 1.77 & 0.025 & 76 & 5 & 0.066 \\
     \bottomrule
   \end{tabularx}
-  \caption[Summary of the GSEA for the new luminal subgroups]{Normalised Enrichment Score (NES), False Discovery Rate (FDR) q-val, and lead gene statistics for the large, infiltrated and mes-like group. The lead genes from a pathway are selected by GSEAPY based on when the NES reached its peak; see \cref{s:lit:gsea} for how GSEA was run.}
+  \caption[GSEA summary for the new luminal subgroups]{Normalised Enrichment Score (NES), False Discovery Rate (FDR) q-val, and lead gene statistics for the large, infiltrated and mes-like group. The lead genes from a pathway are selected by GSEAPY based on when the NES reached its peak; see \cref{s:lit:gsea} for how GSEA was run.}
   \label{tab:N_I:gsea_luminal_reactome}
 \end{table}
 

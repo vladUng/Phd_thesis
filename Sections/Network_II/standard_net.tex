@@ -1,4 +1,4 @@
-\section{Result: Standard Network}  \label{s:N_II:std_net}
+\section{Standard Network from healthy samples}  \label{s:N_II:std_net}
 
 \vspace{3mm}
 % \noindent\rule{17cm}{0.2pt}
@@ -34,7 +34,7 @@ From the heatmap in \cref{fig:N_II:morph_non_tum} it can be seen that the hierar
 \begin{figure}[!t]    
     \centering
     \includegraphics[width=1.0\textwidth,keepaspectratio]{Sections/Network_II/resources/non_tum/non_tum_split.png}
-    \caption[Split of the non-tumour dataset]{Sankey plot that shows the non-tumour dataset split compared with the metadata for NHU differentiated status, subset and biological sex. It shows that the new network pipeline can find the three distinct differentiated tissues with further divisions.}
+    \caption[Split of the healthy dataset]{Sankey plot that shows the non-tumour dataset split compared with the metadata for NHU differentiated status, subset and biological sex. It shows that the new network pipeline can find the three distinct differentiated tissues with further divisions.}
     \label{fig:N_II:non_tum_sankey_comp}
 \end{figure}
 
@@ -47,7 +47,7 @@ The ABS-Ca samples are split into a smaller (14 samples) and a large (28 samples
 
 \begin{sidewaysfigure}
     \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_II/resources/non_tum/norm_healthy_std_3.1.png}
-    \caption[Heatmap of the new non-tumour subgroups]{Heatmap showing both the groups in the non-tumour dataset and the clustered communities. Hierarchical clustering with average linkage and cosine distance is applied on the MEVs resulted from the network pipeline. There are four metadata shown at the top: Gender, NHU differentiation, subset name and the Diagnosis. }
+    \caption[Heatmap of the new healthy dataset subtypes]{Heatmap showing both the groups in the non-tumour dataset and the clustered communities. Hierarchical clustering with average linkage and cosine distance is applied on the MEVs resulted from the network pipeline. There are four metadata shown at the top: Gender, NHU differentiation, subset name and the Diagnosis. }
     \label{fig:N_II:morph_non_tum}
 \end{sidewaysfigure}
 
@@ -84,7 +84,7 @@ Another important observation from the selected points in the volcano plot in \c
 \begin{sidewaysfigure}   
     \centering
     \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_II/resources/non_tum/diff_split_dea.png}
-    \caption[Volcano plot between the ABS-Ca splits]{Volcano plot showing the \acrlong{dea} for the comparison between groups 6 (small ABS-Ca) and 7 (large ABS-Ca). The X-axis represents the difference in gene expression, $log_2(\text{fold\_change})$, while the Y-axis shows the significance of the change given by $-log_{10}(q)$. The 19, 1, 29, 25, and 22 coloured points represent the genes selected by ModCon for each corresponding community. The genes on the right-hand side of the plot are those significantly expressed in the larger ABS-Ca group, while the points on the left-hand side are specific to the smaller ABS-Ca group. The volcano plot shows that the significantly expressed genes between the two ABS-Ca groups mostly consists for Ensembl IDs genes which are poorly described in the literature thus showing the potential of new biological findings.}
+    \caption[Volcano plot - ABS-Ca splits comparison]{Volcano plot showing the \acrlong{dea} for the comparison between groups 6 (small ABS-Ca) and 7 (large ABS-Ca). The X-axis represents the difference in gene expression, $log_2(\text{fold\_change})$, while the Y-axis shows the significance of the change given by $-log_{10}(q)$. The 19, 1, 29, 25, and 22 coloured points represent the genes selected by ModCon for each corresponding community. The genes on the right-hand side of the plot are those significantly expressed in the larger ABS-Ca group, while the points on the left-hand side are specific to the smaller ABS-Ca group. The volcano plot shows that the significantly expressed genes between the two ABS-Ca groups mostly consists for Ensembl IDs genes which are poorly described in the literature thus showing the potential of new biological findings.}
     \label{fig:N_II:diff_split}
 \end{sidewaysfigure}
 
@@ -108,7 +108,7 @@ Many of the genes found are Ensembl IDs that are poorly described in the literat
 \begin{sidewaysfigure}    
     \centering
     \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_II/resources/non_tum/p0_split_dea.png}
-    \caption[Volcano plot between the P0 splits]{Volcano plot showing the \acrlong{dea} for the comparison between the P0 split shown in the heatmap from \cref{fig:N_II:morph_non_tum}. The X-axis represents the difference in gene expression, $log_2(\text{fold\_change})$, while the Y-axis shows the significance of the change given by $-log_{10}(q)$. The genes on the right-hand side of the plot are those significantly expressed in the larger P0 group, while the points on the left-hand side are specific to the smaller P0 group. As in the previous Volcano plot there are several \acrshort{lncRNA} significantly expressed which highlight the novelty of the biological findings using the network approach.}
+    \caption[Volcano plot -  P0 splits comparison]{Volcano plot showing the \acrlong{dea} for the comparison between the P0 split shown in the heatmap from \cref{fig:N_II:morph_non_tum}. The X-axis represents the difference in gene expression, $log_2(\text{fold\_change})$, while the Y-axis shows the significance of the change given by $-log_{10}(q)$. The genes on the right-hand side of the plot are those significantly expressed in the larger P0 group, while the points on the left-hand side are specific to the smaller P0 group. As in the previous Volcano plot there are several \acrshort{lncRNA} significantly expressed which highlight the novelty of the biological findings using the network approach.}
     \label{fig:N_II:p0_split}
 \end{sidewaysfigure}
 
@@ -135,7 +135,7 @@ Apart from the differences in the P0 and ABS-Ca samples, the heatmap shows that 
 \begin{figure}[H]    
     \centering
     \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_II/resources/non_tum/19_com.png}
-    \caption[Community 19]{Community 19 (along with 29 and 25) drives the splits in the tissue differentiation datasets. This community is enriched in the small ABS-Ca and the large P0 subgroups from \cref{fig:N_II:non_tum_sankey_comp}. The standard network is generated from 5000 genes, with no weight modifier, and the \acrshort{hsbm} was applied. The community contains 123 genes, of which the 50 with the highest ModCon scores are highlighted in orange. To aid visualisation, some of the gene names were trimmed: for those with longer names, the first 5 letters were kept, while for 'ENSG...' like nodes, "EN\_" and the last 3 digits were retained. The community contains many Ensembl genes or \acrshort{lncRNA} highlighting an additional layer of complexity to bladder biology. See the network representation of community 25 (\cref{fig:ap:com_25}) and 29 (\cref{fig:ap:com_29}).}
+    \caption[Community 19 - driving the healthy splits]{Community 19 (along with 29 and 25) drives the splits in the tissue differentiation datasets. This community is enriched in the small ABS-Ca and the large P0 subgroups from \cref{fig:N_II:non_tum_sankey_comp}. The standard network is generated from 5000 genes, with no weight modifier, and the \acrshort{hsbm} was applied. The community contains 123 genes, of which the 50 with the highest ModCon scores are highlighted in orange. To aid visualisation, some of the gene names were trimmed: for those with longer names, the first 5 letters were kept, while for 'ENSG...' like nodes, "EN\_" and the last 3 digits were retained. The community contains many Ensembl genes or \acrshort{lncRNA} highlighting an additional layer of complexity to bladder biology. See the network representation of community 25 (\cref{fig:ap:com_25}) and 29 (\cref{fig:ap:com_29}).}
     \label{fig:N_II:19_com}
 \end{figure}
 
@@ -155,14 +155,14 @@ It can be observed that at level three, there are different communities almost c
 \begin{figure}[H]    
     \centering
     \includegraphics[width=1.0\textwidth,keepaspectratio]{Sections/Network_II/resources/non_tum/clustertree_labels.png}
-    \caption[Cluster tree: non-tumour and bladder differentiation]{Cluster tree representation of the communities found through \acrshort{hsbm} \citep{Peixoto2014-yb}. There are 5 levels, and the size of the dots represents the size of the communities. The communities at the bottom layer were classified as Diff (ABS-Ca), UD, P0, or Misfit via \acrfull{dea}, covered in \cref{s:N_II:comm_charact}. The labels for the upper levels were propagated from the bottom. This is a summary of the community analysis in \cref{s:N_II:comm_charact} with their enrichment in the three non-tumour datasets.}
+    \caption[Cluster tree: healthy and bladder differentiation]{Cluster tree representation of the communities found through \acrshort{hsbm} \citep{Peixoto2014-yb}. There are 5 levels, and the size of the dots represents the size of the communities. The communities at the bottom layer were classified as Diff (ABS-Ca), UD, P0, or Misfit via \acrfull{dea}, covered in \cref{s:N_II:comm_charact}. The labels for the upper levels were propagated from the bottom. This is a summary of the community analysis in \cref{s:N_II:comm_charact} with their enrichment in the three non-tumour datasets.}
     \label{fig:N_II:cluster_tree}
 \end{figure}
 
 
 
 % 
-\subsection{MIBC split} \label{s:N_II:tum_split}
+\subsection{MIBC subgroups} \label{s:N_II:tum_split}
 
 % Introduce the work
 The non-tumour stratification yields new groups in two of the three datasets used to built the graph but how capable is the standard network to subtype the MIBC cohort from TCGA? This part of the chapter attempts to answer the question by using the same network presented earlier: 5000 most varied genes, 3 edges per standard gene and 6 per TF and using hierarchical SBM. The main difference is that the stratification is performed on the tumour samples rather then the non-tumour dataset. This means a different dataset is used from which the network was built and the integrative MEV (iMEV) is used, see \cref{s:N_II:iMEV}.

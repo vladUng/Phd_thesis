@@ -1,9 +1,7 @@
 \chapter{Advancing the network approach}
 
 \newpage
-\section{Verifications} \label{ap:N_II:validation}
-
-\subsection{MIBC comparison} \label{ap:N_II:val_mibc_comp}
+\section{Verification} \label{ap:N_II:val_mibc_comp}
 
 Below MIBC comparison figure complements the work from \cref{s:N_II:mev_comp}. K-means with K=7 was chosen as this was the cluster configuration found in the cluster analysis performed on the MEVs derived from the reward network in \cref{s:ap:N_II:clustering analysis}.
 
@@ -31,7 +29,7 @@ Below MIBC comparison figure complements the work from \cref{s:N_II:mev_comp}. K
 \begin{figure}[H]    
     \centering
     \includegraphics[width=0.9\textwidth,keepaspectratio]{Sections/Network_II/resources/non_tum/25_com.png}
-    \caption[Community 25 in non-tumour reward network]{Community 25 (along with 19 and 29) drives the splits in the tissue differentiation datasets. This community is enriched in the large ABS-Ca and the small P0 subgroups from \cref{fig:N_II:non_tum_sankey_comp}. The community contains 180 genes from which 50 with the highest ModCon score are highlighted in orange. To aid the visualisation some of the genes were trim, for the ones with longer names the first 5 letters were kept while for 'ENSG...' like nodes the "EN\_" and the last 3 digits were kept. See \cref{s:N_II:comm_charact} for more details, community 19 (\cref{fig:N_II:19_com}) and 29 (\cref{fig:ap:com_29}). }
+    \caption[Community 25 - driving the healthy splits]{Community 25 (along with 19 and 29) drives the splits in the tissue differentiation datasets. This community is enriched in the large ABS-Ca and the small P0 subgroups from \cref{fig:N_II:non_tum_sankey_comp}. The community contains 180 genes from which 50 with the highest ModCon score are highlighted in orange. To aid the visualisation some of the genes were trim, for the ones with longer names the first 5 letters were kept while for 'ENSG...' like nodes the "EN\_" and the last 3 digits were kept. See \cref{s:N_II:comm_charact} for more details, community 19 (\cref{fig:N_II:19_com}) and 29 (\cref{fig:ap:com_29}). }
     \label{fig:ap:com_25}
 \end{figure}
 
@@ -39,7 +37,7 @@ Below MIBC comparison figure complements the work from \cref{s:N_II:mev_comp}. K
 \begin{figure}[!htb]    
     \centering
     \includegraphics[width=0.9\textwidth,keepaspectratio]{Sections/Network_II/resources/non_tum/29_com.png}
-    \caption[Community 29 in non-tumour reward network]{Community 29 (along with 19 and 25) drives the splits in the tissue differentiation datasets. This community is enriched in the small ABS-Ca and the large P0 subgroups from \cref{fig:N_II:non_tum_sankey_comp}. The community contains 164 genes from which 50 with the highest ModCon score are highlighted in orange. To aid the visualisation some of the genes were trim, for the ones with longer names the first 5 letters were kept while for 'ENSG...' like nodes the "EN\_" and the last 3 digits were kept.  See the network representation of community 19 (\cref{fig:N_II:19_com}) and 29 (\cref{fig:ap:com_29}).}
+    \caption[Community 29 - driving the healthy splits]{Community 29 (along with 19 and 25) drives the splits in the tissue differentiation datasets. This community is enriched in the small ABS-Ca and the large P0 subgroups from \cref{fig:N_II:non_tum_sankey_comp}. The community contains 164 genes from which 50 with the highest ModCon score are highlighted in orange. To aid the visualisation some of the genes were trim, for the ones with longer names the first 5 letters were kept while for 'ENSG...' like nodes the "EN\_" and the last 3 digits were kept.  See the network representation of community 19 (\cref{fig:N_II:19_com}) and 29 (\cref{fig:ap:com_29}).}
     \label{fig:ap:com_29}
 \end{figure}
 
@@ -59,7 +57,7 @@ Below MIBC comparison figure complements the work from \cref{s:N_II:mev_comp}. K
 
 
 % High degree communities
-\subsection{High degree communities}
+\subsection{Network: high degree communities}
 
 The figure below represents the network representation of the small communities (\(<10\) nodes) with a high degree. These genes are explored in more details in \cref{s:N_II:high_conn} and show that are highly and strongly correlated with other genes, and have a high mutation burden. 
 
@@ -106,7 +104,7 @@ The top metrics from \cref{fig:ap:n_II:cluster_metrics} are extracted in the tab
         \caption{Davies Bouldin}
         \label{fig:ap:n_II:dav_boul}
     \end{subfigure}
-    \caption[Clustering analysis for the non-tumour reward network]{The means of the three cluster metrics introduced in \cref{s:lit:clustering_metrics}: Silhouette (cosine), Calinski Harabasz and Davies Bouldin. Each of them assess different aspects of clustering and are used to determine the right clustering model for the MIBC cohort from TCGA. The X across the bar signals the overall ranking across the models: rank 1 - X, rank 2 - XX, rank 3 - XXX. The clusters are derived from using the MEVs for the reward network derived in \cref{s:N_II:rwd}.}
+    \caption[Clustering analysis for the healthy reward network]{The means of the three cluster metrics introduced in \cref{s:lit:clustering_metrics}: Silhouette (cosine), Calinski Harabasz and Davies Bouldin. Each of them assess different aspects of clustering and are used to determine the right clustering model for the MIBC cohort from TCGA. The X across the bar signals the overall ranking across the models: rank 1 - X, rank 2 - XX, rank 3 - XXX. The clusters are derived from using the MEVs for the reward network derived in \cref{s:N_II:rwd}.}
     \label{fig:ap:n_II:cluster_metrics}
 \end{figure}
 
