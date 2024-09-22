@@ -63,6 +63,7 @@ Using all the bladder samples available (UD, ABS-Ca, and P0) ensures gene expres
 
 \import{Sections/Network_II/}{validation.tex}
 
+\import{Sections/Network_pages/}{hsbm_std.tex}
 \import{Sections/Network_II/}{standard_net.tex}
 
 \import{Sections/Network_II/}{reward_net.tex}
@@ -104,6 +105,9 @@ This chapter brings the following contributions to the field:
     \item iNet Python packaged was developed to be applied to other cancers, to be adapted to other data integration types and to be open to the research community
 \end{itemize}
 
+\subsection{Code availability} \label{s:N_II:implementation}
+
+The networks generated in this chapter use the \textbf{iNet} package, and the verification of the methods is covered in the following notebooks \textbf{validation\_hSBM, validation\_sigmoid}. The research performed on the standard network derived from all the healthy samples and the interpretation of the healthy datasets splits is found in \textbf{standard\_hSBM}. When the mutation burden is integrated with the "Reward v2" modifier, the resultant "Reward Network" and the corresponding analysis are in \textbf{reward\_hSBM} and \textbf{ctrl\_reward}. See \cref{tab:ap:software} from Appendix to the corresponding notebook and the links to their location in the project's \href{https://github.com/vladUng/PhD_thesis_exp/}{GitHub repository}.
 
 \newpage
 

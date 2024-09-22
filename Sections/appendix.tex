@@ -2,17 +2,69 @@
 
 \begin{appendices}
 
+\chapter{Software and Notebooks} \label{s:ap:software}
+
+The table below is a summary of the software written for this PhD thesis, the Jupyter Notebooks and the corresponding sections. All the source code and notebooks are centralised in one \href{https://github.com/vladUng/PhD_thesis_exp/}{GitHub repository} and the data is available to request. 
+
+For the networks created in \cref{s:N_I,s:N_I:sel_tfs} a modified version of the PGCNA python package \citep{Care2019-ij} was used and can be found in the \href{https://github.com/vladUng/PhD_thesis_exp/blob/03bb5b606d9a8bc59d88d6ab0843bac383b8a502/src/pgcna3.py}{\textbf{pgcna3.py}} file from the GitHub repository. The Python script can be used to create a co-expressed network with varying edges for the TFs and with Reward v1 and Penalised weight modifiers. The \href{https://github.com/vladUng/PhD_thesis_exp/blob/03bb5b606d9a8bc59d88d6ab0843bac383b8a502/src/pgcna3_playground.py}{pgcna3\_playground.py} shows how to run the modified version of PGCNA.
+
+The code for the refined network can be found in the \href{https://github.com/vladUng/PhD_thesis_exp/tree/03bb5b606d9a8bc59d88d6ab0843bac383b8a502/src/iNet}{\textbf{iNet}} folder. The module can be used to generate co-expressed networks, run Leiden and different version of the SBM models. The \href{https://github.com/vladUng/PhD_thesis_exp/blob/03bb5b606d9a8bc59d88d6ab0843bac383b8a502/src/playground.py}{playground.py} is a script which shows how the package can be used.
+
+The scripts from \href{https://github.com/vladUng/PhD_thesis_exp/tree/03bb5b606d9a8bc59d88d6ab0843bac383b8a502/src/NetworkAnalysis}{\textbf{NetworkAnalysis/}} contains all the code necessary to analyse the networks generated with the two network packages. This also includes the code for generating the DEA, Pi-plots, Kaplan-Meier and GSEA.
+
+\begin{table}[H]
+    \centering
+    \small
+    \begin{tabularx}{\textwidth}{>{\hsize=0.8\hsize}X|>{\hsize=0.5\hsize}X|>{\hsize=1.7\hsize}X}
+        \toprule
+        \textbf{Name} & \textbf{Section} & \textbf{Description} \\
+        \midrule
+        \multicolumn{3}{c}{\textbf{Cluster analysis (\cref{s:clustering_analysis})}} \\
+        \midrule
+        \href{https://github.com/vladUng/PhD_thesis_exp/blob/1569062d5f9ae1a62d2440a6a086ce668b9beaab/notebooks/clustering_analysis/reclasssification.ipynb}{reclassification} & \cref{s:cs:right_config} & Experiments to find the clustering configuration \\
+        \midrule  \href{https://github.com/vladUng/PhD_thesis_exp/blob/1569062d5f9ae1a62d2440a6a086ce668b9beaab/notebooks/clustering_analysis/discussion.ipynb}{discussion} & \cref{s:cs:bio_interp} & Interpreting the new MIBC subtypes found using DEA, Pi-plots \\
+        \midrule
+        \multicolumn{3}{c}{\textbf{An integrative network approach for MIBC subtyping (\cref{s:N_I})}} \\
+        \midrule
+        \href{https://github.com/vladUng/PhD_thesis_exp/blob/1569062d5f9ae1a62d2440a6a086ce668b9beaab/notebooks/network_I/tum_modifiers.ipynb}{tum\_modifiers} & \cref{s:N_I:tum} & Testing the first version of the network approach applied to TCGA's MIBC cohort.\\
+        \midrule
+        \href{https://github.com/vladUng/PhD_thesis_exp/blob/1569062d5f9ae1a62d2440a6a086ce668b9beaab/notebooks/network_I/network_vs_clustering.ipynb}{network\_vs\_clustering} & \cref{s:N_I:cs_vs_gene_sel} & Comparing network approach with the cluster analysis from previous chapter \\
+        \midrule
+        \href{https://github.com/vladUng/PhD_thesis_exp/blob/1569062d5f9ae1a62d2440a6a086ce668b9beaab/notebooks/network_I/p0_modifiers.ipynb}{p0\_modifiers} & \cref{s:p0} & Validating the first network approach on the the P0 samples \\
+        \midrule
+
+        \multicolumn{3}{c}{\textbf{Selective edge pruning uncovers subset of regulatory genes (\cref{s:N_I:sel_pruning})}} \\
+        \midrule
+        \href{https://github.com/vladUng/PhD_thesis_exp/blob/1569062d5f9ae1a62d2440a6a086ce668b9beaab/notebooks/network_I/selective_edge_pruning.ipynb}{selective\_edge\_pruning} & \cref{s:N_I:sel_pruning} & Analysis the experiment and control networks and the subset of 98 TFs are found \\
+        \midrule
+        \href{https://github.com/vladUng/PhD_thesis_exp/blob/1569062d5f9ae1a62d2440a6a086ce668b9beaab/notebooks/network_I/selected_ctrl_tf.ipynb}{selected\_ctrl\_tf} & \cref{s:N_I:sel_tfs} & The 98 TFs are analyesed in both tumour and healthy datasets \\
+        \midrule
+        \multicolumn{3}{c}{\textbf{Advancing the network approach (\cref{s:N_II})}} \\
+        \midrule
+        \href{https://github.com/vladUng/PhD_thesis_exp/blob/1569062d5f9ae1a62d2440a6a086ce668b9beaab/notebooks/network_II/validation_hSBM.ipynb}{validation\_hSBM} & \cref{s:N_II:validation} & Testing the refined network approach (iNet) \\
+        \midrule
+        \href{https://github.com/vladUng/PhD_thesis_exp/blob/1569062d5f9ae1a62d2440a6a086ce668b9beaab/notebooks/network_II/validation_sigmoid.ipynb}{validation\_sigmoid} & \cref{s:N_II:validation} & Validating the new weight modifier \\
+        \midrule
+        \href{https://github.com/vladUng/PhD_thesis_exp/blob/1569062d5f9ae1a62d2440a6a086ce668b9beaab/notebooks/network_II/standard_hSBM.ipynb}{standard\_hSBM} & \cref{s:N_II:std} & Analysing standard network derived from the healthy samples without mutation integration. This lead to the discovery of the healthy splits in the ABS-Ca and P0 samples \\
+        \midrule
+        \href{https://github.com/vladUng/PhD_thesis_exp/blob/1569062d5f9ae1a62d2440a6a086ce668b9beaab/notebooks/network_II/reward_hSBM.ipynb}{reward\_hSBM} & \cref{s:N_II:rwd} & Analysing the reward network derived from healthy samples which have the mutation burden integrated. This revealed a subset of 122 genes that are highly connected \\
+        \midrule
+        \href{https://github.com/vladUng/PhD_thesis_exp/blob/1569062d5f9ae1a62d2440a6a086ce668b9beaab/notebooks/network_II/ctrl_reward_hSBM.ipynb}{ctrl\_reward} & \cref{s:N_II:ctrl_exp} & Notebooks to test that the 122 genes are found due to the data integration method  \\
+        
+        \bottomrule
+    \end{tabularx}
+    \caption{Summary of the Jupyter Notebooks created and their corresponding sections. Each value in the name column is hyperlink to the corresponding notebook on GitHub.}
+    \label{tab:ap:software}
+\end{table}
+
+
+
 \import{Sections/Lit_review/}{appendix.tex}
 \import{Sections/ClusteringAnalysis/}{appendix.tex}
 \import{Sections/Network_I/}{appendix.tex}
 \import{Sections/Network_I/EdgePruning/}{appendix.tex}
 \import{Sections/Network_II/}{appendix.tex}
 
-\chapter{Software and Notebooks} \label{s:ap:software}
 
-\begin{itemize}
-    \item Network I: PGCNA modified, Notebooks
-    \item Cluster Analysis
-\end{itemize}
 
 \end{appendices}

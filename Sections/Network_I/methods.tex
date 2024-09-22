@@ -148,12 +148,7 @@ After the genes are ranked with ModCon the top 100 genes are selected as represe
 The output of the \cref{alg:N_I:mev} is a $M\text{x}N$ matrix, with $M$ communities and $N$ samples in the targeted dataset. On this matrix cluster analysis can then be applied to find the cancer subtypes. Thus, the methods and analysis tools developed in the previous chapter on cluster analysis, \cref{s:clustering_analysis}, can be applied to find the appropriate cluster configuration (see \cref{s:ap:P0_cs_analysis}).
 
 
-\subsection{Implementation details} \label{s:N_I:implementation}
 
-The experiments performed in this section are using a modified version of the PGCNA Python packaged developed by \citet{Care2019-ij}. It is worth noting that PGCNA was developed to support gene expression integration at the network level i.e., use the median expression across the given datasets. For the needs of the project this was not needed and a single gene expression is used to created the networks but with the new data integration. The adapted version is published along with the software in this project see \cref{s:ap:software} from Appendix.
-
-% Changes made
-Initially the correlation values between genes is changed based on the weight modifiers proposed in \cref{fig:N_I:modifiers} and their effect are explored in both tumour and P0 networks in \cref{s:N_I:tum,s:p0}. Then, the number of edges is selectively altered for a given subset of genes, the experiments are covered in \cref{s:N_I:sel_pruning}. 
 
 
 

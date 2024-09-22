@@ -15,7 +15,7 @@
 \section{Introduction}
 
 % The aim to integrate the TF
-In the previous section, it was noticed that the weight modifiers and selective edge pruning affect the graphs, community detection algorithms and the MIBC subtype. This part of the project aims to find the appropriate configuration for selective edge pruning and to understand their effects on community detection methods. Selective edge pruning reduces the number of edges in a network and prioritises a subset of genes, in this case \acrfull{tf}, to have more connections.
+The previous section has shown that the weight modifiers and selective edge pruning affect the graphs, community detection algorithms and the MIBC subtype. This part of the project aims to find the appropriate configuration for selective edge pruning and to understand their effects on community detection methods. Selective edge pruning reduces the number of edges in a network and prioritises a subset of genes, in this case \acrfull{tf}, to have more connections.
 
 The objective of prioritising the \acrshort{tf} over the standard genes as these regulate the expression of the other genes, leading to more substantial biological influence by allowing more connections for the TF, the minimum degree of the node increases as well as their role in the network which is analogous with biology. 
 
@@ -24,17 +24,6 @@ An objective adopted for this section therefore is to compare the Leiden \citep{
 
 
 The chapter begins by analysing the differences between the SBM and Leiden algorithms and how they respond to various configurations of selective edge pruning. During this comparison, a subset of 98 TF is identified as consistently highly connected, emerging even in the random-gene-selection control experiments. This subset of genes is further analysed and explored in \cref{s:N_I:sel_tfs} within the context of both tumour and non-tumour datasets. The analysis is then expanded in \cref{s:N_I:sel_tfs_bio}, where \acrfull{dea} is applied to the MIBC subtypes derived using the expression of these 98 genes.
-
-
-% The expression of this subset of gene is analysed in the context of both the non-tumour and tumour datasets and used to stratify the MIBC cohort from TCGA. Survival analysis and \acrfull{dea} is then used to further understand these subgroups with a focus on the basal samples with the poorest survival.
-
-% Throughout the project the degree corrected (DC-SBM) \& hierarchical (hSBM) stochastic block models were preferred over the simple SBM \citep{Holland1983-eu} as it accounts for the node degree when it finds the communities, which is crucial for selective edge pruning; for convenience DC-SBM and SBM are used interchangeably.
-
-% Mention that there are 98 TF
-
-
-% 
-% Through the experiments performed in this project and the analysis in the PGCNA work \citep{Care2019-ij} it was noticed that if a node has too many edges, the network becomes very dense and more complicated to analyse. Conversely, if a node has a few edges ($<3$), then the community detection (Leiden \cite{Traag2019-ne}) finds disconnected community. \citet{Care2019-ij} (empirically) found that the appropriate number of edges for a node is 3, and it is the value used throughout the project for the non-transcription factor gene (or 'standard'). 
 
 \section{Aims}
 
@@ -108,7 +97,7 @@ This and the previous chapter explored three types of data integration in a grap
 
 \subsection{Chapter contributions}
 
-The research covered in this chapter was presented at the Complex Networks (CN) conference from Menton, France, in 2023.
+The research covered in this chapter was presented at the \textit{\href{https://2023.complexnetworks.org/}{Complex Network Conference}} from Menton, France, in 2023.
 
 \begin{itemize}
     \item Selective edge pruning as a method to find highly correlated genes in gene expression datasets 
@@ -116,3 +105,9 @@ The research covered in this chapter was presented at the Complex Networks (CN) 
     \item The Basal group of 20 samples exhibiting squamous markers has the lowest survival prognosis seen in the literature
     \item Compares two classes of community detection methods in the biological networks and finds SBM to perform better 
 \end{itemize}
+
+\subsection{Code availability}
+
+The experiments performed in this section use a modified version of the PGCNA Python package developed by \citep{Care2019-ij}, in \textbf{pgcna3.py}. The code for analysing the experiment and control networks is in the \textbf{selective\_edge\_pruning} notebook, along with the finding of the subset of the 98 TFs. Their biological analysis is covered in \textbf{selectred\_ctrl\_tf} notebook. See \cref{tab:ap:software} from Appendix to the corresponding notebook and the links to their location in the project's \href{https://github.com/vladUng/PhD_thesis_exp/}{GitHub repository}.
+
+
