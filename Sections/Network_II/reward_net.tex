@@ -74,7 +74,7 @@ The \textit{AHR} \acrlong{tf} which overexpression and mutation plays an importa
 \begin{figure}[!t]    
     \centering
     \includegraphics[width=1.0\textwidth,keepaspectratio]{Sections/Network_II/resources/reward/SmallCom_gene_labeled.png}
-    \caption[Degree values of the highly connected genes]{The genes (X-axis) and their node degree (Y-axis) in the 14 highly connected communities; the colour is given by their community number. \textit{ELF3, AHR, FGFR3, TP53} are nodes with a high degree and genes which play a role in bladder cancer \citep{Robertson2017-mg} included in these groups showing that the network pipeline can isolate relevant genes based on the expression and their mutation burden.}
+    \caption[Degree values of the highly connected genes]{The genes (X-axis) and their node degree (Y-axis) in the 14 highly connected communities; the colour is given by their community number. \textit{ELF3, AHR, FGFR3, TP63} are nodes with a high degree and genes which play a role in bladder cancer \citep{Robertson2017-mg} included in these groups showing that the network pipeline can isolate relevant genes based on the expression and their mutation burden.}
     \label{fig:N_II:genes_highConn}
 \end{figure}
 
@@ -84,7 +84,7 @@ Out of the 45 communities found in the reward network, there are 14 which are in
 
 
 % Commenting on the plot
-The most connected gene is \textit{ELF3} which is involved in bladder differentiation and is one of the Luminal Non-Specified markers from consensus \citep{Kamoun2020-tj} \& \cref{tab:lit:consensus_genes}. \textit{KLF5} which is the third highest connected gene in community 1 was shown in \cref{s:cs:basal_interp} to be differentially expressed to basal groups, and are associated with differentiation \citep{Bell2011-xj} and \cref{tab:N_I:markers_diff}. \textit{AHR} mutations are associated with bladder cancer \citep{Shi2020-km}, while \textit{FGFR3} is a known luminal marker \citep{Robertson2017-mg}. \textit{TP53} is also involved in bladder cancer \citep{Robertson2017-mg} and controls cell cycle checkpoints.
+The most connected gene is \textit{ELF3} which is involved in bladder differentiation and is one of the Luminal Non-Specified markers from consensus \citep{Kamoun2020-tj} \& \cref{tab:lit:consensus_genes}. \textit{KLF5} which is the third highest connected gene in community 1 was shown in \cref{s:cs:basal_interp} to be differentially expressed to basal groups, and are associated with differentiation \citep{Bell2011-xj} and \cref{tab:N_I:markers_diff}. \textit{AHR} mutations are associated with bladder cancer \citep{Shi2020-km}, while \textit{FGFR3} is a known luminal marker \citep{Robertson2017-mg}. \textit{TP63} is also involved in bladder cancer \citep{Choi2012-kk, Karni-Schmidt2011-ps, Choi2014-ed} and controls cell cycle checkpoints.
 
 
 % Highly correlated genes and the genes they contain
@@ -242,7 +242,7 @@ The work of \citet{Guo2023-sf} studies the role of the collagen family, of which
 \end{figure}
 
 
-Exploring the three communities with the highest mean degree shows that the genes with a high number of connections have a biological function. Although the other blocks remain unexplored, there are many genes, such as \textit{FGFR3}, \textit{TP53}, and \textit{CDKN2A}, that are known to play a role in bladder cancer \citep{Robertson2017-mg,Kamoun2020-tj,Marzouka2018-ge}, see tables with subtypes specific genes \cref{tab:lit:lund_genes,tab:lit:tcga_genes,tab:lit:consensus_genes}. This demonstrates the power of the network pipeline to isolate genes that have a functional role in bladder cancer, as studied in the literature, and to reveal new associations that have the potential to advance the understanding of bladder biology.
+Exploring the three communities with the highest mean degree shows that the genes with a high number of connections have a biological function. Although the other blocks remain unexplored, there are many genes, such as \textit{FGFR3}, \textit{TP63}, and \textit{CDKN2A}, that are known to play a role in bladder cancer \citep{Robertson2017-mg,Kamoun2020-tj,Marzouka2018-ge,Choi2014-ed}, see tables with subtypes specific genes \cref{tab:lit:lund_genes,tab:lit:tcga_genes,tab:lit:consensus_genes}. This demonstrates the power of the network pipeline to isolate genes that have a functional role in bladder cancer, as studied in the literature, and to reveal new associations that have the potential to advance the understanding of bladder biology.
 
 A cluster analysis on the MIBC cohort from TCGA was performed using either the tumour gene expression of the 122 highly connected genes or the MEVs from their corresponding communities, but the Basal/Luminal groups were not split into smaller groups. Due to this and the limited time available in a PhD, this cluster analysis was not covered more extensively in this thesis.
 
