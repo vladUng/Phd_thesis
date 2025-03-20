@@ -102,7 +102,7 @@ Hitherto, decision-making within this project was guided by the average values d
 
 
 % Comment on the sillhouette distribution
-The first two rows of \cref{fig:cs:sill_distrib} display subplots containing the Silhouette distribution and the 2-D scatter plot of the first two principal components. Across the top four plots, it is apparent that the vast majority of samples fall below the 0.5 threshold\footnote{In the research effort that introduced the Silhouette score \citep{Rousseeuw1987-wy}, the author indicates that positive values (closer to 1 are better) indicate well-separated groups, while negative values denote mis-clustering of the samples, and scores around 0 suggest that a sample could belong to multiple clusters. As a midpoint between 0 and 1, Silhouette values $>$0.5 are considered to be well clustered.}, indicating a lack of clearly defined clusters and a high degree of data heterogeneity, a known characteristic of the MIBC molecular profile; this was presented in more depth in \cref{s:lit:bladder_cancer}. Although K=3 has a higher mean score than other models, the top right plot shows that most samples still score below 0.5, as also confirmed in \cref{fig:cs:sill_neg_above_th}.
+The first two rows of \cref{fig:cs:sill_distrib} display subplots containing the Silhouette distribution and the 2-D scatter plot of the first two principal components. Across the top four plots, it is apparent that the vast majority of samples fall below the 0.5 threshold\footnote{In the research effort that introduced the Silhouette score \citep{Rousseeuw1987-wy}, the author indicates that positive values (closer to 1 are better) indicate well-separated groups, while negative values denote mis-clustering of the samples, and scores around 0 suggest that a sample could belong to multiple clusters. As a midpoint between 0 and 1, Silhouette values $>$0.5 are considered to be well clustered.}, indicating a lack of clearly defined clusters and a high data heterogeneity, a known characteristic of the MIBC molecular profile; this was presented in more depth in \cref{s:lit:bladder_cancer}. Although K=3 has a higher mean score than other models, the top right plot shows that most samples still score below 0.5, as also confirmed in \cref{fig:cs:sill_neg_above_th}.
 
 
 % Comment on the bar plot and the number of samples
@@ -157,7 +157,7 @@ Based on the analysis conducted in this section, $K=5$ and $K=6$ emerge as the m
 % pipeline
 \subsection{Pipeline}
 
-The pipeline and configuration of the different components can be summarised in the \cref{fig:cs:clustering_pipeline} and has three stages:
+The pipeline and configuration of the different components can be summarised in \cref{fig:cs:clustering_pipeline} and has three stages:
 \begin{enumerate}
     \item \textbf{Data pre-processing} - only the genes that are expressed in 90\% of the samples are selected, resulting in a dataset of $\sim$15000 genes
     \item \textbf{Gene selection} - the top $3500$ with the highest std/median ratio are kept. The number of genes represent $\sim$25\% of the filtered dataset and it is a similar size to the data used by \citet{Robertson2017-mg}

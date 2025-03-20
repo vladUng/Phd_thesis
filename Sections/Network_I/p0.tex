@@ -159,7 +159,7 @@ To facilitate analysis, and guided by the Modularity Score, the standard and rew
 The largest change in communities is represented by the lack of block 10 in the reward network, otherwise the communities are remarkably similar; see  Sankey plot \cref{fig:N_I:p0_chg_sankey}. The result indicates that the weight modifiers are not powerful enough to have a stronger influence on the Leiden community detection algorithm. 
 
 % Link it with the mutations
-As it was mentioned earlier if there is any membership change across the blocks of nodes it is influenced by the mutated genes. For each group it can be usually notice that the there is a large number of mutated genes from the same community. In the reward network community 1 has a large number of mutations which was also presented the standard network (red) and it receives a few more mutated genes from community 2 (blue); shown in \cref{fig:N_I:p0_chg_mut}. Community 4 from the modifier graph retain most of the mutated genes from the standard (community 5 - orange) with some additional genes from community 6 (purple). Blocks 8 and 9 have a few mutated genes which can be in part explained by their small group size. 
+As it was mentioned earlier if there is any membership change across the blocks of nodes it is influenced by the mutated genes. For each group it can be usually notice that the there is a large number of mutated genes from the same community. In the reward network community 1 has a large number of mutations which was also presented the standard network (red) and it receives a few more mutated genes from community 2 (blue); shown in \cref{fig:N_I:p0_chg_mut}. Community 4 from the modified graph retain most of the mutated genes from the standard (community 5 - orange) with some additional genes from community 6 (purple). Blocks 8 and 9 have a few mutated genes which can be in part explained by their small group size. 
 
 Overall, the analysis suggests that the reward modifier triggers gene community migrations between the two graphs which further proves that the data integration does happen in the modified network. However, as it was shown by the Sankey there are no large changes across the blocks which may explain why the MIBC groups do not change with the different networks.
 
@@ -231,7 +231,7 @@ However, even when all expressed genes are considered, some genes are still miss
     \centering
     \begin{subfigure}[b]{1.0\textwidth}
         \includegraphics[width=\textwidth,keepaspectratio]{Sections/Network_I/Resources/P0/4K_p0_modConMev_rep_norm3_4K_50TF_v3.png}
-        \caption{The most relative varied genes}
+        \caption{The 4000 most relative varied genes}
         \label{fig:N_I:p0_mev_sel_rep}
     \end{subfigure}
     \begin{subfigure}[b]{1.0\textwidth}

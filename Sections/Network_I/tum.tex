@@ -77,7 +77,7 @@ To further understand how the weight modifiers affect the network, it is essenti
 From the $\approx13K$ genes, there are $\approx$10K genes which are mutated at least once, but as the mutation count is increased, there are fewer genes represented as seen in \cref{fig:N_I:mut_rep_tum}. The same trend can be noticed for TF genes, initially 1027 genes in all the expressed genes, from which about a quarter (265) are mutated; the bottom bar plot in \cref{fig:N_I:mut_rep_tum}.
 
 % Implications
-TFs are more commonly mutated than other genes, which supports the importance of their dysregulation in bladder cancer. This is depicted by the inverse relationship of the number of TF genes with the mutation burden, e.g., for mutation burden $>=$10, there are 386 of the 4000 genes initially used for building the network ($\sim$10\%) and 36 out of the 265 TF ($\sim$14\%). The trend can be noticed in both all the 4000 genes and the TF, but the latter has a higher representation of the mutated genes, see \cref{fig:N_I:mut_rep_tum}. 
+TFs are more commonly mutated than other genes, which supports the importance of their dysregulation in bladder cancer. This is depicted by the inverse relationship of the number of TF genes with the mutation burden, e.g., for mutation burden $>=$10, there are 385 of the 4000 genes initially used for building the network ($\sim$10\%) and 36 out of the 265 TF ($\sim$14\%). The trend can be noticed in both all the 4000 genes and the TF, but the latter has a higher representation of the mutated genes, see \cref{fig:N_I:mut_rep_tum}. 
 
 % Linking it back to the weight modifiers
 With a low representation of the mutated genes, the weight modifiers might have a limited impact on the network and the MIBC stratification. This is not so explicit in the tumour networks, but it is present in the tumour-derived graphs.
@@ -124,7 +124,7 @@ There is a non-significant difference (\acrshort{kw}:  3.3047, p-value 0.1915) i
     \textbf{Reward vs Penalised} & 0.0; $1.83e^{-4}$ & 70.0; 0.109 \\
     \bottomrule
   \end{tabularx}
-  \caption[Tum: Leiden network comparisons statistics]{Comparison of Modularity Score and Module Number across Standard, Reward, and Penalised networks. \acrlong{MW} performed between the compared networks gives the first value while the second is the p-value in the cell. The standard and reward networks are significantly better than the penalised networks.}
+  \caption[Tum: Leiden network comparisons statistics]{Comparison of Modularity Score and Module Number across Standard, Reward, and Penalised networks. \acrlong{mw} performed between the compared networks gives the first value while the second is the p-value in the cell. The standard and reward networks are significantly better than the penalised networks.}
   \label{tab:N_I:modularity_module_number}
 \end{table}
 

@@ -31,7 +31,7 @@ Building on the previous work presented, this chapter refines the network pipeli
 
 
 % Weight reward changes
-Previously, the thesis explored two mutation integration strategies to reward or penalise the mutated genes. The two modifier functions were designed to double the weight value (reward) or to reduce it close to 0 (penalised) for the most mutated genes and leave it unchanged for the rest, as seen in \cref{fig:N_I:modifiers}. \Cref{s:N_I:tum_stratification} showed the effects on the network metrics, but the modifiers had little impact on the tumour stratification\footnote{See the Sankey plot Reward vs Penalised in \cref{fig:N_II:modifiers_comp}}. A possible explanation for this is the lack of a gradual increase in the weights for the genes that have a 'medium' mutation burden and that the number of mutations is not normally distributed, leading to their effects not being picked up by Module Connection (ModCon), see \cref{fig:N_I:tum_leiden_modifiers}. This chapter addresses this limitation by introducing a new weight modifier, a Sigmoid function, offering a gradual weight increase. This chapter discusses only the reward function, as the penalised modifier had poorer performance in previous work, allowing a more comprehensive analysis of the data integration.
+Previously, the thesis explored two mutation integration strategies to reward or penalise the mutated genes. The two modifier functions were designed to double the weight value (reward) or to reduce it close to 0 (penalised) for the most mutated genes and leave it unchanged for the rest, as seen in \cref{fig:N_I:modifiers}. \Cref{s:N_I:tum_stratification} showed the effects on the network metrics, but the modifiers had little impact on the tumour stratification\footnote{See the Sankey plot Reward vs Penalised in \cref{fig:N_I:p0_sky_leiden}}. A possible explanation for this is the lack of a gradual increase in the weights for the genes that have a 'medium' mutation burden and that the number of mutations is not normally distributed, leading to their effects not being picked up by Module Connection (ModCon), see \cref{fig:N_I:tum_leiden_modifiers}. This chapter addresses this limitation by introducing a new weight modifier, a Sigmoid function, offering a gradual weight increase. This chapter discusses only the reward function, as the penalised modifier had poorer performance in previous work, allowing a more comprehensive analysis of the data integration.
 
 
 % Community detection - hSBM and SBM
@@ -42,9 +42,9 @@ In summary, there are four major changes brought to the network pipeline: a larg
 
 \section{Aims}
 
-This chapter aims to advance the previously introduced network method by:
+This chapter aims to advance the previously introduced network method by adding the:
 \begin{itemize}
-    \item Sigmoid Edge weight modifier- a sigmoid function is used to shape the changes in the correlation values
+    \item Sigmoid Edge weight modifier - a sigmoid function is used to shape the changes in the correlation values
     \item iMEV - Both tumour and non-tumour gene expression contribute to the values used to subtype the MIBC
     \item All non-tumour datasets - Three different gene expression datasets are used to build the network: differentiated (ABS-Ca), undifferentiated and freshly isolated samples (P0)
     \item Hierarchical Stochastic Block Model (hSBM) is used for community detection

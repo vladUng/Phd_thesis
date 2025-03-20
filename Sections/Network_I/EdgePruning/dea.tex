@@ -156,7 +156,7 @@ Overall the analysis show that some of the 98 TF have a role in bladder cancer b
 
 This section expands the analysis of the 98 TF and their impact on MIBC by performing \acrlong{dea}, followed by the use of a Pi plot to rank the genes for \acrfull{gsea}; methods introduced in \cref{s:lit:dea,s:lit:pi,s:lit:gsea}. For each of the five MIBC subtypes identified earlier—basal 3, basal 4, basal 5, luminal 13, and luminal 12—a Pi plot was created, which can be found in Appendix \cref{s:ap:sel_prun_pi}. 
 
-It is important to note that the input data for GSEA across all subtypes uses the same list of genes but ranks them differently, prioritising genes specific to each studied subtype. As a result, the GSEA output includes pathways shared across the subtypes. To address this, the top ten \textbf{unique} pathways with the highest normalised enrichment score (NES) and a significant FDR q-value ($>$0.05) were retained for each MIBC group.
+It is important to note that the input data for GSEA across all subtypes uses the same list of genes but ranks them differently, prioritising genes specific to each studied subtype. As a result, the GSEA output includes pathways shared across the subtypes. To address this, the top ten \textbf{unique} pathways with the highest normalised enrichment score (NES) and a significant FDR q-value ($<$0.05) were retained for each MIBC group.
 
 No unique signature was found for the mes 3 subgroup, as it shared several pathways with the basal 4 (e.g., interferon alpha and gamma pathways), as shown in the GSEA outputs in Appendix \cref{fig:ap:gsea_largeBasal,fig:ap:gsea_mesLike}.
 
@@ -206,7 +206,7 @@ In the second part of the \cref{tab:N_I:gsea_basal_reactome}, the pathways for t
 
 The table \cref{tab:N_I:gsea_luminal_reactome} contains the pathways found for the larger and infiltrated luminal subtypes. The pathway for latter mostly contains immunoglobulin related genes (e.g. \textit{IGV1-17}) denoting the infiltration of the immune cells in the bladder cancer samples. The pathways found for the large luminal are general and the lead genes have a low match ratio with the most 5000 most representative genes. This suggests that there is a less of a clear signal for a pathway to be enriched which might be explained by the size of the luminal group. 
 
-\subsubsection*{GSEA with hallmarks}
+\subsubsection*{GSEA with hallmarks dataset}
 
 
 GSEA was also applied to the hallmark gene set (50 pathways) results that can be seen in Appendix \cref{ap:tab:gsea_hallmark}. The GSEA outputs are harder to interpret due to many shared pathways but it can be observed that most of the unique pathways are found in both small basal and large luminal groups. Considering that the small basal group is considerably smaller than the large luminal, it indicates that the subtype should be study more.

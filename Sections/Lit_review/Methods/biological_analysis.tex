@@ -2,7 +2,7 @@
 
 
 % Introduce the methods
-Throughout the project there are different methods used to find \acrfull{mibc} subgroups from the network approach followed by the cluster analysis (\cref{s:N_I,s:N_II}) or by just applying clustering models in \cref{s:clustering_analysis}. In all cases there are new subgroups that require interpretation with the goal to both biologically validate as well as to find new markers or functions. To achieve this three methods are used: \acrlong{dea}, pi-plots and \acrlong{gsea} which are all covered in the following subsections. 
+Throughout the project there are different methods used to find \acrlong{mibc} subgroups from the network approach followed by the cluster analysis (\cref{s:N_I,s:N_II}) or by just applying clustering models in \cref{s:clustering_analysis}. In all cases there are new subgroups that require interpretation with the goal to both biologically validate as well as to find new markers or functions. To achieve this three methods are used: \acrlong{dea}, pi-plots and \acrlong{gsea} which are all covered in the following subsections. 
 
 % Highlight the flow
 % Who introduced the method
@@ -17,19 +17,19 @@ The \acrshort{dea} is the most important tool as it allows to determine the gene
 The project employed the sleuth method from \citeauthor{Pimentel2017-xp} to perform differential expression analysis between two sample groups. This method takes as input a file containing the samples, their cluster labels, and the paths to the raw RNAseq reads. It returns the \textit{p} and \textit{q} (corrected p-value) values for each gene, indicating the significance of the expression differences.
 
 % How the Volcano figure is constructed
-The $-log_{10}$ transformed \textit{q}-values constitute the Y-axis in a volcano plot, while the X-axis displays the $log_{2}$ transformed fold-change in gene expression between the two groups. This means that the volcano plot, as shown in \cref{fig:lit:dea_eg}, displays the magnitude of gene expression change on the horizontal axis and the significance of that change on the vertical axis.
+The $-log_{10}$ transformed \textit{q}-values constitute the Y-axis in a volcano plot, while the X-axis displays the fold-change in gene expression between the two groups. This means that the volcano plot, as shown in \cref{fig:lit:dea_eg}, displays the magnitude of gene expression change on the horizontal axis and the significance of that change on the vertical axis.
 
 % Interpretation
 In the example Volcano plot from \cref{fig:lit:dea_eg}, the two sides of the plot represent the two compared subgroups: subtype 1 on the right-hand side and subtype 2 on the left-hand side. The further up a gene is on the left side, the more differentially expressed it is in subtype 1, e.g., "Gene A" or "Gene P." Conversely, "Gene M" is specific to subtype 2. "Gene L" is an example of a gene that has higher expression in subtype 1 but is not significantly expressed.
 
-The scale of the axes is particularly important, especially for the horizontal axis, where larger differences in gene expression lead to a larger scale. The vertical dotted lines represent the threshold $[-1, 1]$, which for $log_{2}$ transformed values, indicates a doubling or halving of gene expression. The "Point(s) of interest" are those that lie outside these lines, while the points in dark blue indicate genes with no significant expression difference between the two groups.
+The scale of the axes is particularly important, especially for the horizontal axis, where larger differences in gene expression lead to a larger scale. The vertical dotted lines represent the threshold $[-1, 1]$ which denots above decimal expression difference. The "Point(s) of interest" are those that lie outside these lines, while the points in dark blue indicate genes with no significant expression difference between the two groups.
 
 In summary, the volcano plot is a powerful tool for identifying genes that have both a large expression difference (X-axis) and a statistically significant difference (Y-axis). The plot was used to analyse the ABS-Ca differentiated split in \cref{fig:N_II:diff_split} and the division in the P0 samples in \cref{fig:N_II:p0_split}.
 
 \begin{figure}[H] 
     \centering
     \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Lit_review/Resources/volcano_explainer.png}
-    \caption[Example - Volcano plot]{A toy example where the DEA results from two subtypes are shown. The genes specific to Subtype 1 are on the left-hand side, while those for Subtype 2 are on the right-hand side. Higher on the Y-axis indicates more significant changes, while further along the horizontal axis (in either direction) denotes a larger gene expression difference (in $log_2(FC)$).}
+    \caption[Example - Volcano plot]{A toy example where the DEA results from two subtypes are shown. The genes specific to Subtype 1 are on the left-hand side, while those for Subtype 2 are on the right-hand side. Higher on the Y-axis indicates more significant changes, while further along the horizontal axis (in either direction) denotes a larger gene expression difference (i.e., fold change). }
     \label{fig:lit:dea_eg}
 \end{figure}
 
@@ -41,7 +41,7 @@ In summary, the volcano plot is a powerful tool for identifying genes that have 
 The volcano plots are a great tool to understand the gene expression differences between two groups but are limited to the comparison size. To account for that \cite{Xiao2014-zn} introduced a new metric, pi-values (or $\pi$), which combines both the significance and the gene expression difference in one value using \cref{eq:lit:pi_val}. The adjusted p-value, $q-value$, represents the significance of the expression difference (from sleuth), and the $FC$ denotes the fold-change between the two compared groups. 
 
 \begin{equation} \label{eq:lit:pi_val}
-    pi = - log_{10}(q_{val}) * log_{2}(FC)
+    pi = - log_{10}(q_{val}) * FC
 \end{equation} 
 
 % Describe the comparison
