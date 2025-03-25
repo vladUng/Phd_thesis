@@ -73,7 +73,7 @@ Using the selective edge pruning and the control networks, it was found that a s
 The Basal 5 subtype consisted of 20 samples ($\sim$4\% of the cohort) previously classified as basal \citep{Kamoun2020-tj,Robertson2017-mg} or UroB \citep{Marzouka2018-ge}\footnote{The latter having poor survival prognosis} and with no samples previously classified as \acrlong{ne}\footnote{\acrlong{ne} have the worst poor survival in the consensus and TCGA classifications \citep{Kamoun2020-tj,Robertson2017-mg}}. The group exhibited squamous markers and had a low immune response, and some of the significantly expressed genes were responsible for the aggressiveness of the tumours, while others could be targeted to improve treatment response.
 
 % Selective edge pruning + controls as a method to find TF
-The biological findings indicate that the selective edge pruning and the control networks can represent a new method to find relevant \gls{TF}s in a gene expression dataset. The technique can help the researchers reduce the list of potential gene regulatory networks, focusing on the co-expressed ones such as \textit{BNC1, HES2, ZBTB10, MECOM} or \textit{GRHL3}.
+The biological findings indicate that the selective edge pruning and the control networks can represent a new method to find relevant \gls{TF} in a gene expression dataset. The technique can help the researchers reduce the list of potential gene regulatory networks, focusing on the co-expressed ones such as \textit{BNC1, HES2, ZBTB10, MECOM} or \textit{GRHL3}.
 
 % High degree
 \subsubsection*{Subset of genes with high degree}
@@ -118,10 +118,11 @@ The network approach suffered from a few limitations, which are considered below
 
 The TCGA and healthy datasets are invaluable assets to bladder research, but both sample sets have some aspects that need consideration. The MIBC cohort from TCGA is comprised of biopsies that are considered to be predominantly aggressive forms of MIBC and come mostly from males (\(\sim\)74\%) that are predominantly white (\(\sim\)80\%).
 
-% Talk
+% Sex imbalance 
 The samples from the healthy dataset consist mainly of tissues from female donors (\(\sim\)90\%) and the rest are male paediatric. However, TCGA's MIBC cohort is a male-dominant dataset. While in the analysis performed, no biological sex difference was observed, not even in one of the ABS-Ca or P0 splits. Bladder cancer is male dominant disease and the differences in the biological sexes might represent a limitation.
 
 Another difference between the two datasets is that the stroma cells are removed in the non-tumour samples to form a cleaner representation of the bladder tissue. In addition, the samples from the healthy dataset do not include \acrlong{ifn} response. However, among the previous MIBC stratification, the stroma infiltration characterises groups or, as it was shown \acrshort{ifn} response. This means that the non-tumour network representation cannot find stroma-like MIBC or high immune infiltration subgroups. Concurrently, this also represented an opportunity to build epithelial cell only networks, which may have contributed to the finding of Ensemble genes. In the future, the dataset can be expanded to include immune or stromal stimulated samples.
+
 
 \subsubsection*{ModCon and MEV}
 
@@ -144,6 +145,10 @@ Another limitation of the co-expressed network built in this project is that onl
 \section{Future work} \label{s:future_work}
 
 Due to the limited time in a PhD project and the unsupervised nature of MIBC subtyping, several areas and limitations could be improved upon and suggested for future work.
+
+\subsubsection*{Beyond TCGA}
+
+The subgroups identified through standard clustering analysis with aggressive filtering (\cref{s:clustering_analysis}) and the poor-survival subtype derived from the 98 TFs (\cref{s:N_I:sel_tfs}) were extracted from a single tumour dataset. Although this cohort is among the most influential in MIBC research, the identified subgroups require validation in additional mRNA-seq datasets. In line with previous efforts, such as the consensus and Lund classifiers \citep{Marzouka2018-ge,Kamoun2020-tj}, a single-sample classifier could be trained on the groups defined in this study and subsequently applied to other publicly available datasets. This approach would help ensure that the identified subtypes are not specific to the TCGA cohort alone.
 
 \subsubsection*{Larger Networks}
 
