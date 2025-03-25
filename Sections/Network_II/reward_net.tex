@@ -246,13 +246,15 @@ Exploring the three communities with the highest mean degree shows that the gene
 
 A cluster analysis on the MIBC cohort from TCGA was performed using either the tumour gene expression of the 122 highly connected genes or the MEVs from their corresponding communities, but the Basal/Luminal groups were not split into smaller groups. Due to this and the limited time available in a PhD, this cluster analysis was not covered more extensively in this thesis.
 
+\subsubsection*{High degree: Gene Ontology} \label{s:N_II:go}
 
+Gene Ontology analysis was performed on the 122 genes identified within highly connected communities, using the REACTOME database\footnote{GO analysis was also conducted on the HALLMARKS database, but it yielded minimal output and is therefore not discussed further.}; see results in \cref{s:ap:N_II:go}. The analysis revealed enrichment in the \textit{“Type I Hemidesmosome Assembly”} pathway, with slightly over 30\% gene representation, followed by cell cycle-related pathways (e.g., \textit{TP53}). Overall, the results suggest that these 122 genes are involved in epithelial structure and cell cycle regulation.
 
 % MIBC subtyping
 \subsection{MIBC subtyping}
 
 % Introduce and motivate why we are choosing all the communities
-So far, the work presented in this chapter has been focused on showing the data integration works and explaining that the 14 communities with a high mean degree are biologically functional and not a computational artefact. With this evidence that altering MEV and incorporating the mutation with the sigmoid reward function, the network approach created biologically relevant hubs which drastically altered network topology; all communities can now be applied to subtype the MIBC samples.
+The work presented in this chapter has been focused on showing the data integration works and explaining that the 14 communities with a high mean degree are biologically functional and not a computational artefact. With this evidence that altering MEV and incorporating the mutation with the sigmoid reward function, the network approach created biologically relevant hubs which drastically altered network topology; all communities can now be applied to subtype the MIBC samples.
 
 From the 45 communities in the reward network, the top 100 genes are selected using ModCon, and then the iMEV is applied (see \cref{s:N_II:iMEV}). On these values, a similar cluster analysis as in the earlier chapter is performed (see \cref{s:cs:methods}) and is covered in more depth in the Appendix \cref{s:ap:N_II:clustering analysis}. K-means with K=7 were chosen to stratify the MIBC, and the output is compared with the previous classification in \cref{fig:N_II:mibc_comp}.
 

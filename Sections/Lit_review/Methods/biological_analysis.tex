@@ -90,6 +90,10 @@ Overall, the \acrshort{gsea} shows that Subtype 1 and Subtype 4 exhibit immune m
 
 The GSEA was used to complement the Pi and Volcano plots in the second results chapter, \cref{s:N_I:sel_pruning}, where the subtypes were derived using a subset of \acrlong{tf}. In this project, \acrfull{gsea} was run using the GSEApy package \citep{Fang2023-ec} and the REACTOME database \cite{Milacic2024-yt}\footnote{The Reactome version \textit{c2.cp.reactome.v2023.2.Hs.symbols} was used in this project.}.
 
+\subsection{Gene Ontology} \label{s:lit:go}
+
+\acrfull{go} represents an alternative gene set analysis approach that operates by querying the REACTOME and/or Hallmarks databases using a predefined list of genes. Unlike \acrshort{gsea}, GO analysis does not require pre-ranked input, and as such, lacks the contextual weighting of gene importance, which may reduce its analytical power. Nevertheless, it is employed in this study as a complementary validation step to support findings from the selective edge pruning experiments (\cref{s:N_I:sel_pruning}) and the reward network analysis (\cref{s:N_II:reward}).
+
 
 \subsection{Survival Analysis} \label{s:lit:survival}
 
