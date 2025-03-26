@@ -9,7 +9,7 @@
       \begin{itemize}
         \item Non-tumour network representation informs MIBC subtyping
         \item Mutation burden 'gradual' integration
-        \item A new integrative Module Evaluation Value (iMEV)
+        \item A new integrative Module Expression Value (iMEV)
       \end{itemize}
     }
 }
@@ -23,11 +23,11 @@ The previous two chapters introduced the first iteration of the integrative netw
 
 
 % Introduce the new network pipeline as an advanced version
-Building on the previous work presented, this chapter refines the network pipeline through several key improvements: 1) integrating all three datasets—P0, ABS-Ca, and UD—to construct a comprehensive network representation, 2) introducing a new weight modifier that gradually incorporates mutation burden, 3) proposing an integrative module evaluation value (iMEV) that considers gene expression across both tumour and non-tumour datasets, and 4) employing the \acrfull{hsbm}, which is not constrained by a predefined number of communities. These four pipeline upgrades allow for a more flexible and detailed analysis of the tumour and non-tumour samples.
+Building on the previous work presented, this chapter refines the network pipeline through several key improvements: 1) integrating all three datasets—P0, ABS-Ca, and UD—to construct a comprehensive network representation, 2) introducing a new weight modifier that gradually incorporates mutation burden, 3) proposing an integrative module expression value (iMEV) that considers gene expression across both tumour and non-tumour datasets, and 4) employing the \acrfull{hsbm}, which is not constrained by a predefined number of communities. These four pipeline upgrades allow for a more flexible and detailed analysis of the tumour and non-tumour samples.
 
 
 % Introduction to the limitations - Non-tumour dataset and MEV
-\Cref{s:p0} showed that using only the gene expression from the freshly isolated cells (P0 dataset) did not offer a sufficient representation of the non-tumour data, while the weight modifiers in \cref{s:N_I:tum} were not powerful enough to produce a change in disease stratification. When using the non-tumour data to build the network, the pipeline selects the most connected genes in each community, which are then used with the \textbf{tumour} expression to the Module Evaluation Value (MEV). This means there is a decoupling between the data used to build the network and the one used for tumour stratification. The limitation is addressed in the new version of the MEV introduced, which considers both datasets, introduced in \cref{s:N_II:iMEV}.
+\Cref{s:p0} showed that using only the gene expression from the freshly isolated cells (P0 dataset) did not offer a sufficient representation of the non-tumour data, while the weight modifiers in \cref{s:N_I:tum} were not powerful enough to produce a change in disease stratification. When using the non-tumour data to build the network, the pipeline selects the most connected genes in each community, which are then used with the \textbf{tumour} expression to the Module Expression Value (MEV). This means there is a decoupling between the data used to build the network and the one used for tumour stratification. The limitation is addressed in the new version of the MEV introduced, which considers both datasets, introduced in \cref{s:N_II:iMEV}.
 
 
 % Weight reward changes
@@ -95,7 +95,7 @@ The following chapter discusses the implications of the network approach develop
 
 This chapter brings the following contributions to the field:
 \begin{itemize}
-    \item A more advanced network pipeline is used to form a healthy (non-tumour) network representation from which the \acrshort{mibc} is informed
+    \item A more advanced network pipeline is used to build a healthy (non-tumour) network representation from which the \acrshort{mibc} is informed
     \item Identification of a subset of genes and communities with a high mutation burden, which are highly and strongly co-expressed with other genes
     \item \acrlong{hsbm} from the network pipeline finds small communities of less than 10 genes in a network of 5000 nodes
     \item Discovery of new \gls{BASAL} and \gls{LUMINAL} subdivisions: the former has a low survival rate, and the latter has the highest survival rate over five years. Both are characterised by communities with Ensembl genes

@@ -36,7 +36,7 @@ Before applying clustering methods, \gls{PCA} is employed to reduce the data dim
         \caption{Calinski Harabasz}
         \label{fig:cs:cal_hab}
     \end{subfigure}
-    \caption[Measuring clustering models: Silhouette and Calinski Habrasz]{The means of the three cluster metrics introduced in \cref{s:lit:clustering_metrics}: Silhouette (cosine) and Calinski Harabasz. The gene expression is processed according to \cref{s:cs:methods} and PCA with 5 components was applied. For each metric the top 3 most performing models are marked by "X". Gaussian Mixture Model is abbreviated to GM and Spectral Clustering to SC. K-means with K=4 and K=5 are the best performing clustering configuration.}
+    \caption[Measuring clustering models: Silhouette and Calinski Habrasz]{The means of the two cluster metrics introduced in \cref{s:lit:clustering_metrics}: Silhouette (cosine) and Calinski Harabasz. The gene expression is processed according to \cref{s:cs:methods} and PCA with 5 components was applied. For each metric the top 3 most performing models are marked by "X". Gaussian Mixture Model is abbreviated to GM and Spectral Clustering to SC. K-means with K=4 and K=5 are the best performing clustering configuration.}
     \label{fig:cs:cs_metrics}
 \end{figure}
 
@@ -182,12 +182,4 @@ The following adjustments based on the \citet{Scikit-learn_undated-ax} were made
     \item \textbf{Gaussian Mixture:} The covariance type was set to diagonal with maximum iterations capped at 500.
     \item \textbf{Spectral Clustering:} Eigenvalue decomposition was performed using arpack, and the affinity matrix was based on nearest neighbours.
 \end{itemize}
-
-
-\begin{sidewaysfigure}
-    \centering
-    \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/ClusteringAnalysis/Resources/clustering_pipeline.png}
-    \caption[Cluster analysis pipeline]{Summary of the cluster analysis developed in \cref{s:cs:right_config}, which is composed of four stages: 1) Filtering, where only genes expressed in 90\% of the samples are retained; 2) Pre-processing, where the top 3,500 genes with the highest median/standard deviation are selected; 3) Dimension reduction to 4 Principal Components (PCs); 4) Clustering, where K-means with K=5 is applied.}
-    \label{fig:cs:clustering_pipeline}
-\end{sidewaysfigure}
 

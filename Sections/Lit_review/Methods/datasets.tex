@@ -2,7 +2,7 @@
 
 There are two important types of datasets used in the project: the gene expression of non-cancerous bladder from The Jack Birch Unit for Molecular Carcinogenesis (The University of York, UK) and the MIBC cohort from \acrlong{tcga}. The JBU data is currently in the process of getting published\footnote{In the near future after this PhD is completed, the data is likely to become available on a public portal} as the dataset helps building a representation of the urothelium it closely resembles the healthy tissue, throughout the project the JBU dataset is refereed as non-tumour, healthy or non-cancerous dataset. TCGA dataset is publicly available from the Genomics Data Central (GDC) portal\footnote{A new user needs to set an agreement with the Genome Data Comons in order to have access \url{https://portal.gdc.cancer.gov/}}.
 
-Both gene expression datasets used in this project were pseudo-align using the Kallisto method\citep{Bray2016-cv} and genome version GRCh38 with Gencode annotation version 42 which resulted in $\sim33k$ genes for each dataset.
+Both gene expression datasets used in this project were pseudo-aligned using the Kallisto method \citep{Bray2016-cv} and genome version GRCh38 with Gencode annotation version 42 which resulted in $\sim33k$ genes for each dataset. Kallisto is preferred for its computational performance while maintaining accuracy.
 
 \subsubsection*{The healthy dataset} \label{s:lit:non_tum_data}
 
@@ -21,7 +21,7 @@ By their differentiation status both ABS-Ca and P0 are closer to Luminal samples
 \begin{figure}[!b]
     \centering
     \includegraphics[width=1.0\textwidth, keepaspectratio]{Sections/Lit_review/Resources/differentiation.png}
-    \caption[Bladder samples protcol for the healthy dataset]{Overview of the processing of bladder tissue samples forming the non-tumour dataset from \acrfull{jbu}. After the collection of biopsies, the samples are processed to separate the urothelium from the stroma, resulting in freshly isolated cells (P0). To obtain undifferentiated cells (UD), the protocol described by \citet{Cross2005-fe} is used. These cells can then be used to create biomimetic tissue using the ABS-Ca protocol described in \citet{Cross2005-fe}.}
+    \caption[Bladder samples protocol for the healthy dataset]{Overview of the processing of bladder tissue samples forming the non-tumour dataset from \acrfull{jbu}. After the collection of biopsies, the samples are processed to separate the urothelium from the stroma, resulting in freshly isolated cells (P0). To obtain undifferentiated cells (UD), the protocol described by \citet{Cross2005-fe} is used. These cells can then be used to create biomimetic tissue using the ABS-Ca protocol described in \citet{Cross2005-fe}.}
     \label{fig:lit:diff_samples}
 \end{figure}
 

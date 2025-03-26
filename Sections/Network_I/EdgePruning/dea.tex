@@ -4,13 +4,13 @@
 % Introduce the chapter
 The analysis performed so far suggested that the 98 TF influence the stratification of the MIBC cohort, and in this part of the chapter, the role of the regulatory gene subset is explored in both the non-tumour\footnote{Remember non-tumour dataset is referred to throughout the project as the non-cancerous or healthy dataset. In all instances, it refers to the gene expression from the non-tumour samples in JBU; see \cref{s:lit:datasets_used}.} and tumour datasets.
 
-It is worth remembering that MIBC is generally divided into Luminal and Basal subgroups. Compared with normal urothelial biology, the former exhibits a differentiated status and an undifferentiated status. The non-cancerous dataset contains differentiated (ABS-Ca or in situ) or undifferentiated samples. This implies that the TF with a high mean deviation may play a role in differentiation and help understand the Basal/Luminal dissimilarities in MIBC. The molecular particularities in the tissue types of differentiation tissues are next explored.
+It is worth remembering that MIBC is generally divided into Luminal and Basal subgroups. Compared with normal urothelial biology, the former exhibits a differentiated status and the latter an undifferentiated status. The non-cancerous dataset contains differentiated (ABS-Ca or in situ) or undifferentiated samples. This implies that the TF with a high mean deviation may play a role in differentiation and help understand the Basal/Luminal dissimilarities in MIBC. The molecular particularities in the tissue types of differentiation tissues are next explored.
 
 % Variance
 \begin{figure}[!b]   
     \centering
     \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/Network_I/Resources/selective_pruning/sel_tfs/sel_tfs_var_tum_healthy.png}
-      \caption[Mean expression of the 98 TF in tumour and healthy samples]{Bar plot of the log mean expression in both non-cancerous and tumour datasets with the error bars accounting for standard deviation. The genes are ordered in descending order by the mean values in the non-cancerous dataset. Red bars represents genes that have a high variance in the corresponding dataset, while the golden shows TFs appear in both tumour and non-cancerous datasets.}
+      \caption[Mean expression of the 98 TF in tumour and healthy samples]{Bar plot of the log mean expression in both non-cancerous and tumour datasets with the error bars accounting for standard deviation. The genes are ordered in descending order by the mean values in the tumour dataset. Red bars represents genes that have a high variance in the corresponding dataset, while the golden shows TFs appear in both tumour and non-cancerous datasets.}
     \label{fig:N_I:sel_tfs_var}
 \end{figure}
 
@@ -321,7 +321,7 @@ From the appendix \Cref{fig:ap:sel_tfs_tcga_meta_mut} shows that there is no imm
 \subsection{Linking back to the communities} \label{s:N_I:sel_tfs_net}
 
 % Network stats
-To leverage visualising aspect of the network, the basal/luminal markers were then searched in the experiment 5000 genes network generated using no weight modifiers (standard), minimum 3 edges per genes and 6 for the TF, and to which the Stochastic Block Model was applied. Neither of the markers, basal/luminal or for differentiated, were not grouped in a single or 2-3 communities, but rather spread across several.
+To leverage the visual interpretability of network analysis, basal and luminal markers were mapped onto the experimental network generated from the 5,000 most variable genes, constructed without weight modifiers (standard network). The network required a minimum of three edges per gene and six for transcription factors, and was subsequently partitioned using a Stochastic Block Model. The markers associated with basal/luminal subtypes and differentiated/undifferentiated bladder tissue were not confined to specific communities but were instead distributed across multiple node groups within the network.
 
 
 \begin{figure}[!t]
