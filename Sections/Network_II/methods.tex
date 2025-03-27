@@ -2,11 +2,11 @@
 
 % Introduce the new pipeline 
 % In the previous network chapters the graphs were generated using an adapted version of the PGCNA as it was for an initial exploration of the network approach to stratify a disease. 
-The previous chapter explored and tested the integrative network approach to stratify the MIBC. The implementation used a modified version of the PGCNA package to build the networks. However, PGCNA was created to combine multiple gene expression datasets at the network construction stage, which differs from this project's goals. The main drawback of using PGCNA is that the code is inflexible for other data types integration, and it only supports Leiden as a community detection method. For this reason, a new package was developed in this PhD called \textit{iNet} with the following requirements: 
+The previous chapter explored and tested the integrative network approach to stratify the \acrlong{mibc}. The implementation used a modified version of the PGCNA package to build the networks. However, PGCNA was created to combine multiple gene expression datasets in the network construction stage, which differs from the objectives of this project. The main drawback of using PGCNA is that the code is inflexible for other data types integration and only supports Leiden as a community detection method. For this reason, in this PhD, a new package was developed called \textit{iNet} with the following requirements: 
 
 % Goals of the pipeline
 \begin{itemize}
-    \item Modular - easy to change and adapt the different stages of the network pipeline. This  is essential for the current data integration but for also other data types in the future
+    \item Modular - Easy to change and adapt the different stages of the network pipeline. This  is essential for the current data integration but for also other data types in the future
     \item Support for multiple community detection methods - apart from Leiden and SBM, it should be easy to adapt for future methods. This also includes the capability to specify the arguments for a community detection algorithm
     \item Weight modifiers - have the capability to easily add a new function to modify the weights
     \item Other correlation matrices - allow to easily change the correlation metric from which the co-expressed network is built
@@ -14,7 +14,7 @@ The previous chapter explored and tested the integrative network approach to str
     \item Readability - easy to understand and use by another Python programmer
 \end{itemize}
 
-Apart from following the Object Oriented Programming (OOP), splitting the process into different stages helped meeting the implementation requirements. Without delving into the code is split into following stages:
+Apart from following the Object-Orientated Programming (OOP), splitting the process into different stages helped meeting the implementation requirements. Without delving into the code is split into following stages:
 \begin{enumerate}
     \item Filter the data - keep the specified number of the genes with the highest median, median ratio
     \item Build the correlation matrix
@@ -25,16 +25,16 @@ Apart from following the Object Oriented Programming (OOP), splitting the proces
 \end{enumerate}
 
 % Highlight some of the changes
-Compared to the previous network pipeline, the correlation matrix can be also be built from other correlation metrics such as the partial-correlation. The weight modifier function is easy to change and supports the sigmoid function to reward the mutated genes. The edge pruning uses the information from an input file of the genes that are allowed multiple edges. There is more freedom to change the community detection and configure them, apart from the \acrfull{sbm} support, the Leiden algorithm can be applied with Constant Potts Model as modularity maximisation function\footnote{Constant Potts Model or CPM is an alternative cost function for Leiden or Louvain}.
+Compared to the previous network pipeline, the correlation matrix can also be built from other correlation metrics such as the partial-correlation. The weight modifier function is easy to change and supports the sigmoid function to reward mutated genes. Edge pruning uses the information from an input file of genes that are allowed multiple edges. There is more freedom to change the community detection and configure them, apart from the \acrfull{sbm} support, the Leiden algorithm can be applied with Constant Potts Model as modularity maximisation function\footnote{Constant Potts Model or CPM is an alternative cost function for Leiden or Louvain}.
 
 % How was tested
-The new package was tested by comparing the outputs generated with \textit{iNet} against those from the modified PGCNA pipeline. This was possible despite implementation differences as the two pipelines followed the same principles, where a correlation matrices is used to build the graph. This means, that both the correlation matrices and the generated networks could be used to test the implementation.
+The new package was tested by comparing the outputs generated with \textit{iNet} against those from the modified PGCNA pipeline. This was possible despite implementation differences as the two pipelines followed the same principles, where correlation matrices are used to build the graph. This means that both the correlation matrices and the generated networks could be used to test the implementation.
 
 \subsection*{Reward modifier - sigmoid} \label{s:N_II:reward}
 
-In the previous chapter, two different edge weight modifiers were introduced to integrate the mutation count at the edge's weight level; see \cref{fig:N_I:modifiers}. It was observed that the two strategies impacted the network metrics but with little effect on the MIBC stratification. One possible explanation is that the modifiers had a steep increase/decrease over the weights with no intermediate effect on the weights, leading to a few node edges being affected. 
+In the previous chapter, two different edge weight modifiers were introduced to integrate the mutation count at the edge's weight level; see \cref{fig:N_I:modifiers}. The two strategies were observed to have an impact on network metrics, but with little effect on MIBC stratification. One possible explanation is that the modifiers had a steep increase/decrease over the weights with no intermediate effect on the weights, leading to a few node edges being affected. 
 
-The reward function is preferred over the penalised modifier as it does not contain isolated nodes and it performs significantly better based on the Modularity score, see \cref{fig:N_I:net_metrics_tum,fig:N_I:net_metrics_p0}. The initial version of the reward modifier is described by \cref{eq:n_II:norm3_func}, where $w$ is the $log_2$ transformed of the mutation count shifted by 1 (to avoid undefined values at 0), see \cref{eq:n_II:w}\footnote{\Cref{eq:n_II:w,eq:n_II:norm3_func} are the same equations as the ones from \cref{s:N_I:weight_modifiers} and were presented here again to improve the reading experience.}. $x$ represents the mutation count taken from TCGA dataset. The function's shape is depicted by the red line in \cref{fig:N_II:modifiers_comp}, which has an arc-like behaviour, where most of the mutated genes increase the weights value up to $50\%$ (value of $1.5$). The figure also shows that the values do not gradually increase with the mutation count.
+The reward function is preferred over the penalised modifier as it does not contain isolated nodes and performs significantly better based on the Modularity score, see \cref{fig:N_I:net_metrics_tum,fig:N_I:net_metrics_p0}. The initial version of the reward modifier is described by \cref{eq:n_II:norm3_func}, where $w$ is the $log_2$ transformed mutation count shifted by 1 (to avoid undefined values at 0), see \cref{eq:n_II:w}\footnote{\Cref{eq:n_II:w,eq:n_II:norm3_func} are the same equations as the ones from \cref{s:N_I:weight_modifiers} and were presented here again to improve the reading experience.}. $x$ represents the mutation count taken from TCGA dataset. The shape of the function is depicted by the red line in \cref{fig:N_II:modifiers_comp}, which has an arc-like behaviour, where most of the mutated genes increase the weights value up to $50\%$ (value of $1.5$). The figure also shows that the values do not gradually increase with the mutation count.
 
 \begin{equation} \label{eq:n_II:w}
     w(x) = \log_2(x+1)
@@ -44,7 +44,7 @@ The reward function is preferred over the penalised modifier as it does not cont
 \text{f}(w) = \frac{\max(w) + w}{\max(w)}
 \end{equation}
 
-To accommodate the limitation of the previous function, a new reward function is introduced in this chapter which is modelled after the logistic function, the sigmoid function being a special case of it, see \cref{eq:sig_func}. In this new reward function, $x$ represents the input variable, and $x_0$ shifts the function along the x-axis. The mutation counts are scaled to the range $[-12, 12]$, with $x_0 = -8$, and the constant $+1$ in \cref{eq:sig_func} keeps the values in the range $[1, 2]$. The parameters were determined empirically to ensure that the function meets the desired shape of a gradual increase, where the maximum is reached at the highest mutated genes and there is little effect on the low mutated gene.
+To accommodate the limitation of the previous function, in this chapter a new reward function is introduced that is modelled after the logistic function, the sigmoid function being a special case of it, see \cref{eq:sig_func}. In this new reward function, $x$ represents the input variable and $x_0$ shifts the function along the x-axis. Mutation counts are scaled to the range $[-12, 12]$, with $x_0 = -8$, and the constant $+1$ in \cref{eq:sig_func} keeps the values in the range $[1, 2]$. The parameters were determined empirically to ensure that the function meets the desired shape of a gradual increase, where the maximum is reached at the highest mutated genes, and there is little effect on the low mutated gene.
 
 \begin{equation} \label{eq:sig_func}
 \text{f}(x) =  \frac{1}{1 + e^{-(x - x_0)}} + 1, \text{ where } x_0=-8
@@ -59,29 +59,29 @@ To accommodate the limitation of the previous function, a new reward function is
 \end{figure}
 
 
-The behaviour of the logistic reward function is represented by the green line in \cref{fig:N_II:modifiers_comp}. From the figure it can be noticed the gradual increase of the weight modifier with the mutational burden. Highly mutated genes sch as \textit{FGFR3, KMT2C, PIK3CA} have a much higher impact on the weights compared to the previous weight function. It worth noting that a 50\% increase of the weight value happens at a point of $\sim$30 mutation burden equating to $\sim7$\% of the cohort mutated (112 genes).
+The behaviour of the logistic reward function is represented by the green line in \cref{fig:N_II:modifiers_comp}. From the figure, it can be noticed that the gradual increase of the weight modifier with the mutational burden. Highly mutated genes sch as \textit{FGFR3, KMT2C, PIK3CA} have a much higher impact on the weights compared to the previous weight function. It worth noting that a 50\% increase in the weight value occurs at a point of $\sim$30 mutation burden equating to $\sim7$\% of the cohort mutated (112 genes).
 
-Later in the chapter, \cref{s:N_II:reward_comp}, there is a direct comparison of the network metrics across both tumour and non-tumour of the two modifier functions.
+Later in the chapter, \cref{s:N_II:reward_comp}, there is a direct comparison of the network metrics in both tumour and non-tumour of the two modifier functions.
 
 
 
 % iMev
 \subsection*{iMev - integrative MEV} \label{s:N_II:iMEV}
 
-Module Expression Value is introduced in the PGCNA pipeline \citep{Care2019-ij} and presented in \cref{s:N_I:mev}. The role of the score is to bridge the gap between the gene and tumour representation by showing how much a sample is enriched by the (selected) gene expression from a community. This is done by summing up the z-scores of the $log_2$ gene expression in the community. Notably, the gene expression for the z-score has to always be from the stratified dataset, which usually is the MIBC cohort from TCGA. This means that when the non-tumour dataset was used to generate the network, in \cref{s:N_II}, the gene expression of the non-tumour samples was not considered to inform the tumour subtyping. This can be accommodated by adapting the z-score.
+Module Expression Value is introduced in the PGCNA pipeline \citep{Care2019-ij} and presented in \cref{s:N_I:mev}. The role of the score is to bridge the gap between the gene and tumour representation by showing how much a sample is enriched by the (selected) gene expression from a community. This is done by summing up the z-scores of $log_2$ gene expression in the community. Notably, the gene expression for the z-score has to always be from the stratified data set, which is usually the MIBC cohort from TCGA. This means that when the non-tumour dataset was used to generate the network, in \cref{s:N_II}, the gene expression of the non-tumour samples was not considered to inform the tumour subtyping. This can be accommodated by adapting the z-score.
 
 \begin{equation} \label{eq:N_II:z_score}
 z = \frac{x_{tum} - \mu_{tum}}{\sigma_{tum}}
 \end{equation}
 
-To calculate the z-score for the tumour dataset the equation in \cref{eq:N_II:z_score} is used, where $x_{tum}$ is the observed expression in a tumour sample, $\mu_{tum}$ and $\sigma_{tum}$ are the mean and standard expression across tumours. In the context of this project, the z-score measures how far the expression of a gene in a sample is from the mean expression across the tumours. Positive values denoting that the sample expression is higher than the mean while negative values indicating that is lower.
+To calculate the z-score for the tumour dataset the equation in \cref{eq:N_II:z_score} is used, where $x_{tum}$ is the expression observed in a tumour sample, $\mu_{tum}$ and $\sigma_{tum}$ are the mean and standard expression across tumours. In the context of this project, the z-score measures how far the expression of a gene in a sample is from the mean expression across the tumours. Positive values denote that the sample expression is higher than the mean, while negative values indicate that is lower.
 
 
 \begin{equation} \label{eq:N_II:i_z_score}
 z = \frac{x_{tum} - \mu_{non\_tum}}{\sigma_{non\_tum}}
 \end{equation}
 
-To integrate the two gene expression datasets, the MEV score is changed to consider the expression trend in the healthy dataset but to use the sample observation from the tumour dataset; described by \cref{eq:N_II:i_z_score}. The change occurs at the mean and standard deviation which are now computed for the non-tumour samples or the dataset that it is used to generate the network; the observed samples, $x_{tum}$ remains unchanged. The modification of the z-score brings the distribution characteristics of the non-tumour dataset (or the data used to create the network) into the equation of computing the MEV. In other words, the equation \cref{eq:N_II:i_z_score} is computing how far is the gene expression in a tumour sample with respect to the mean and standard deviation of the healthy.
+To integrate the two gene expression datasets, the MEV score is changed to consider the expression trend in the healthy dataset but to use the sample observation from the tumour dataset; described by \cref{eq:N_II:i_z_score}. The change occurs at the mean and standard deviation which are now computed for the non-tumour samples or the dataset that is used to generate the network; the observed samples, $x_{tum}$ remain unchanged. The modification of the z-score brings the distribution characteristics of the non-tumour dataset (or the data used to create the network) into the equation of computing the MEV. In other words, equation \cref{eq:N_II:i_z_score} is used to calculate the degree of gene expression in a tumour sample with respect to the mean and standard deviation of healthy.
 
 It is worth noting that there are rare instances when a gene from the non-tumour network representation, selected with ModCon, is not expressed in the tumour sample. In those cases, the gene is not included in the MEV. It was observed that these are rare situations and do not have a significant influence on the MEV score, as there are usually fewer than five mismatches.
 
