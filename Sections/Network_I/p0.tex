@@ -94,7 +94,7 @@ Overall, the P0 networks have nodes with a larger number of connections and are 
     \textbf{IVI} & 7399455.0; $6.09e^{-09}$ & 7428084.0; $3.07e^{-08}$ & 5540028.5; $3.13e^{-114}$ \\
     \bottomrule
   \end{tabularx}
-  \caption[Tum vs P0 network metrics MW test]{Results of \gls{mw} between the P0 and tumour-derived graph across the network metrics. The first value is the result from the \acrshort{mw} test while the second is the p-value. Each network derived from the tumour dataset is compared with its equivalent from the non-tumour. The results show there is significant difference in the network metrics.}  \label{tab:N_I:tum_p0_comp}
+  \caption[Tum vs P0 network metrics MW test]{Results of \gls{mw} between the P0 and tumour derived graph across the network metrics. The first value is the result from the \acrshort{mw} test while the second is the p-value. Each network derived from the tumour dataset is compared with its equivalent from the non-tumour. The results show there is significant difference in the network metrics.}  \label{tab:N_I:tum_p0_comp}
 \end{table}
 
 
@@ -111,12 +111,12 @@ There is no significant difference (\acrshort{kw}: 0.979, p-value: 0.61) between
 \begin{figure}[!b]    
     \centering
     \includegraphics[width=1.0\textwidth,keepaspectratio]{Sections/Network_I/Resources/P0/Ldn_Sky_TF_50_RawKMeans_K5_v3.png}
-    \caption[P0: Leiden metrics]{Overview of the MIBC groups found using the expression from the P0 dataset. On the top are displayed the community size and Modularity Score. The two metrics used to asses effects of the weight modifiers (standard, reward and penalise) to the Leiden algorithm. At the bottom the Sankey plot displays comparison between the MIBC subtyping derived from the different standard classifiers (TCGA \citep{Robertson2017-mg} and consensus \citep{Kamoun2020-tj}), the previous developed subgroups with the cluster analysis \cref{s:clustering_analysis} and the three different networks. The figures show that there are less communities found compared with the tumour networks and there is less variance on the MIBC subtyping across the P0 derived networks. }
+    \caption[P0: Leiden metrics]{Overview of the MIBC groups found using the expression from the P0 dataset. On the top are displayed the community size and Modularity Score. The two metrics used to assess effects of the weight modifiers (standard, reward and penalise) to the Leiden algorithm. At the bottom the Sankey plot displays comparison between the MIBC subtyping derived from the different standard classifiers (TCGA \citep{Robertson2017-mg} and consensus \citep{Kamoun2020-tj}), the previous developed subgroups with the cluster analysis \cref{s:clustering_analysis} and the three different networks. The figures show that there are less communities found compared with the tumour networks and there is less variance on the MIBC subtyping across the P0 derived networks. }
     \label{fig:N_I:p0_sky_leiden}
 \end{figure}
 
 % Talk about the variance in Modularity score
-The small variance in the Modularity score, as shown in the figure on the right, suggests that the communities are fairly stable, with the penalised network performing lower by 0.04. Compared to tumour networks, P0-derived graphs exhibit a significantly lower performance by 0.02 (\acrshort{kw}: 22.165,p-value: $1.537e^{-05}$). This indicates that the communities in the non-tumour networks are not as well separated as those in the tumour-derived networks. This observation aligns with the network metrics discussed in \cref{s:N_I:tum_describe}.
+The small variance in the Modularity score, as shown in the figure on the right, suggests that the communities are fairly stable, with the penalised network performing lower by 0.04. Compared to tumour networks, P0-derived graphs exhibit a significantly lower performance by 0.02 (\acrshort{kw}: 22.165,p-value: $1.537e^{-05}$). This indicates that the communities in the non-tumour networks are not as well separated as those in the tumour derived networks. This observation aligns with the network metrics discussed in \cref{s:N_I:tum_describe}.
 
 The lack of change across the subtypes derived from the P0 networks is striking, as seen in the Sankey plot at the bottom of \cref{fig:N_I:p0_sky_leiden}. The cluster \textbf{2} holds most of the High INFG (from CA + INFG), the group \textbf{0} is a mixture of the other Basal groups combined with the luminal infiltrated and \textbf{4} is a small subset of High IFNG. The luminal groups are combined in two clusters \textbf{3} and \textbf{1}.
 
@@ -133,12 +133,12 @@ The lack of change across the subtypes derived from the P0 networks is striking,
     \textbf{Module Number} & 0.0; $1.43e^{-04}$ & 0.0; $1.29e^{-04}$ & 0.0; $1.17e^{-04}$ \\
     \bottomrule
   \end{tabularx}
-  \caption[Tum vs P0: Modularity and Module Number Comparison]{Results of \gls{mw} for the modularity score and module number between the P0 and tumour-derived networks. Each network derived from the tumour dataset is compared with its equivalent from the non-tumour: Standard derived from tumour vs Standard build from non-tumour. The results show there is significant difference in the community detection metrics.}
+  \caption[Tum vs P0: Modularity and Module Number Comparison]{Results of \gls{mw} for the modularity score and module number between the P0 and tumour derived networks. Each network derived from the tumour dataset is compared with its equivalent from the non-tumour: Standard derived from tumour vs Standard build from non-tumour. The results show there is significant difference in the community detection metrics.}
   \label{tab:N_I:modularity_module_num_comp}
 \end{table}
 
 
-Overall, the comparison between classifications shows that network approaches exhibit different subtypes than other traditional methods.  Several samples change group membership in the three different networks, but there are no large changes. This contrasts with the MIBC subgroups found in the work on tumour-derived networks where the weight modifiers had a larger impact on the disease stratification. In addition,  three are fewer communities found and less clearly defined compared to the blocks found in the tumour-derived networks. 
+Overall, the comparison between classifications shows that network approaches exhibit different subtypes than other traditional methods.  Several samples change group membership in the three different networks, but there are no large changes. This contrasts with the MIBC subgroups found in the work on tumour derived networks where the weight modifiers had a larger impact on the disease stratification. In addition,  three are fewer communities found and less clearly defined compared to the blocks found in the tumour derived networks. 
 
 
 % From the Sankey plot it can be seen that the High IFNG group (CA+IFNg) is contained across the 3 networks in cluster \textbf{2}. Groups \textbf{2} in Standard and Penalised are similar and formed mostly from Ba/Sq groups while cluster \textbf{1} (Reward) has additional samples from LumInf/NS\footnote{Would this mean that by increasing the weight values more samples are added to the group? While pruning edges removes some of the noise?}. The cluster \textbf{0} from the Standard network resembles to the LumInf/NS group from the CA+IFNG classification, being a mixed of samples. Group \textbf{ 0} (Reward and Penalised) and \textbf{1} (Standard) contains samples which previously were considered Luminal samples. Lastly, cluster \textbf{4} contains a consistent number of samples which previously classified as High IFNG.

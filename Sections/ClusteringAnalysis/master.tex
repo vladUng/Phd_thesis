@@ -41,7 +41,7 @@ The aims of this section are:
 \begin{sidewaysfigure}
     \centering
     \includegraphics[width=1.0\textwidth,height=1.0\textheight,keepaspectratio]{Sections/ClusteringAnalysis/Resources/clustering_pipeline.png}
-    \caption[Cluster analysis pipeline]{Summary of the cluster analysis developed in \cref{s:cs:right_config}, which is composed of four stages: 1) Filtering, where only genes expressed in 90\% of the samples are retained; 2) Pre-processing, where the top 3,500 genes with the highest median/standard deviation are selected; 3) Dimension reduction to 4 Principal Components (PCs); 4) Clustering, where K-means with K=5 is applied.}
+    \caption[Cluster analysis pipeline]{Summary of the cluster analysis developed in \cref{s:cs:right_config}, which is composed of four stages: 1) Filtering, where only genes expressed in 90\% of the samples are retained; 2) Pre-processing, where the top 3,500 genes with the highest standard deviation/median are selected; 3) Dimension reduction to 4 Principal Components (PCs); 4) Clustering, where K-means with K=5 is applied.}
     \label{fig:cs:clustering_pipeline}
 \end{sidewaysfigure}
 
@@ -65,7 +65,7 @@ The aims of this section are:
 Three novel Basal groups with heterogeneous \acrfull{ifn} responses were found in this chapter. This discovery was facilitated by initially employing a clustering approach and comparing the results with existing MIBC classifications \citep{Baker2022-bj,Marzouka2018-ge}. Group-specific marker genes were identified using a suite of tools: DEA, pi-plots, GSEA, and other metadata available on TCGA.
 
 % High and Medium IFNG
-Both the High and Medium IFNG groups exhibit an \acrshort{ifn} response, highlighted by the expression of the \acrshort{ifn} signature from \citet{Baker2022-bj}. The two differ in that the High IFNG samples display a distinct immunoglobulin response, aligning them more closely with samples classified as Luminal Infiltrated. In contrast, the Low and Medium IFNG groups show a stronger expression of basal/squamous markers compared to the third basal group. Beyond differences in immune response, the DEA between low / medium IFNG reveals few genes that are significantly expressed in the low IFNG group. Some of these genes (e.g., squamous markers), highlighted in the analysis performed in \cref{s:cs:basal_interp}, may require further biological investigation, given the poor survival prognosis associated with low IFNG.
+Both the High and Medium IFNG groups exhibit an \acrshort{ifn} response, highlighted by the expression of the \acrshort{ifn} signature from \citet{Baker2022-bj}. The two differ in that the High IFNG samples display a distinct immunoglobulin response, aligning them more closely with samples classified as Luminal Infiltrated. In contrast, the Low and Medium IFNG groups show a stronger expression of basal/squamous markers compared to the third basal group. Beyond differences in immune response, the DEA between Low/Medium IFNG reveals few genes that are significantly expressed in the low IFNG group. Some of these genes (e.g., squamous markers), highlighted in the analysis performed in \cref{s:cs:basal_interp}, may require further biological investigation, given the poor survival prognosis associated with Low IFNG.
 
 % Urgency to study it
 Low IFNG does not include Neuronal samples and has a survival prognosis similar to the Neuronal group, with less than 30\% chances to survive after 3 years. This underscores the novelty of the basal group and the urgency of studying it.
